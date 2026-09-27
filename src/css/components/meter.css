@@ -1,0 +1,35 @@
+/* Meter — a bounded quantity. The numeric value is always exposed in text as
+   well as width, because width alone is not an accessible value. */
+@layer components {
+  :where([data-tk="meter"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="meter-head"]) {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--tk-space-3);
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="meter-track"]) {
+    block-size: 0.5rem;
+    border-radius: var(--tk-radius-full);
+    background-color: var(--tk-surface-sunken);
+    border: 1px solid var(--tk-line-default);
+    overflow: hidden;
+  }
+
+  :where([data-tk="meter-fill"]) {
+    block-size: 100%;
+    inline-size: calc(var(--tk-meter-value, 0) * 1%);
+    /* Not --tk-action-fill: a meter fill carries no label, so the fill is
+       the information and has to clear 3:1 against its own track. See the
+       --tk-data-ink note in 02-property.css. */
+    background-color: var(--tk-data-ink, var(--tk-action-fill));
+    transition: inline-size var(--tk-motion-size);
+  }
+}

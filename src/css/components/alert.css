@@ -1,0 +1,54 @@
+/* Alert — a status message. Status is carried by the boundary and the icon
+   slot, never by colour alone (WCAG 1.4.1). A grayscale pack has no hue to
+   spend; a brand pack adds hue and the component does not change. */
+@layer components {
+  /* tk-default: data-status=info
+     Info is the base rule rather than a variant of it, so there is no
+     [data-status="info"] anywhere and there should not be: the three below
+     each replace one of the slots this sets. */
+  :where([data-tk="alert"]) {
+    --_line: var(--tk-status-info-line);
+    --_surface: var(--tk-status-info-surface);
+    --_text: var(--tk-status-info-text);
+
+    display: flex;
+    gap: var(--tk-space-3);
+    padding: var(--tk-space-4);
+
+    --_radius: var(--tk-radius-nested);
+    --_radius-gap: var(--tk-space-4);
+    --_alert-out: max(0px, calc(var(--_radius) - var(--_radius-gap)));
+    border: 1px solid var(--_line);
+    border-inline-start-width: 4px;
+    border-radius: var(--_radius);
+    background-color: var(--_surface);
+    color: var(--_text);
+  }
+
+  :where([data-tk="alert"][data-status="success"]) {
+    --_line: var(--tk-status-success-line);
+    --_surface: var(--tk-status-success-surface);
+    --_text: var(--tk-status-success-text);
+  }
+
+  :where([data-tk="alert"][data-status="warning"]) {
+    --_line: var(--tk-status-warning-line);
+    --_surface: var(--tk-status-warning-surface);
+    --_text: var(--tk-status-warning-text);
+  }
+
+  :where([data-tk="alert"][data-status="danger"]) {
+    --_line: var(--tk-status-danger-line);
+    --_surface: var(--tk-status-danger-surface);
+    --_text: var(--tk-status-danger-text);
+  }
+
+  :where([data-tk="alert"]) > * {
+    --tk-radius-nested: var(--_alert-out);
+  }
+
+  :where([data-tk="alert-title"]) {
+    font-weight: var(--tk-weight-semibold);
+    margin: 0 0 var(--tk-space-1);
+  }
+}

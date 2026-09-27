@@ -1,0 +1,118 @@
+/* Chip — refined pill. Non-interactive by default; data-interactive makes it a
+   control and raises it to the 24px target floor. Grayscale craft: hairline
+   + inset edge, not a flat grey lozenge. */
+@layer components {
+  :where([data-tk="chip"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    /* Hug content — flex column parents default to stretch and blow pills wide. */
+    align-self: flex-start;
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    padding-block: calc(var(--tk-space-1) + 1px);
+    padding-inline: var(--tk-space-3);
+    border: 1px solid var(--tk-line-strong);
+    border-radius: var(--tk-radius-full);
+    background-color: var(--tk-surface-default);
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-semibold);
+    letter-spacing: var(--tk-tracking-wide, 0.04em);
+    line-height: var(--tk-leading-tight);
+    white-space: nowrap;
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--tk-surface-raised) 80%, transparent),
+      0 1px 0 color-mix(in srgb, var(--tk-text-primary) 6%, transparent);
+    transition:
+      background-color var(--tk-motion-surface),
+      border-color var(--tk-motion-line),
+      color var(--tk-motion-ink),
+      box-shadow var(--tk-motion-elevation),
+      transform var(--tk-motion-transform);
+  }
+
+  :where([data-tk="chip"][data-leading]) {
+    padding-inline-start: var(--tk-space-2);
+  }
+
+  :where([data-tk="chip-leading"]) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+    opacity: 0.85;
+  }
+
+  :where([data-tk="chip-leading"] [data-tk="icon"]) {
+    display: block;
+  }
+
+  :where([data-tk="chip-label"]) {
+    display: inline-block;
+  }
+
+  :where([data-tk="chip"][data-emphasis="strong"]),
+  :where([data-tk="chip"][data-pressed]),
+  :where([data-tk="chip"][aria-pressed="true"]) {
+    background-color: var(--tk-surface-inverse);
+    border-color: transparent;
+    color: var(--tk-text-inverse);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--tk-text-inverse) 18%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--tk-text-primary) 12%, transparent);
+  }
+
+  :where([data-tk="chip"][data-emphasis="quiet"]) {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--tk-text-tertiary);
+    letter-spacing: var(--tk-tracking-wide, 0.04em);
+  }
+
+  :where([data-tk="chip"][data-interactive]) {
+    min-block-size: var(--tk-target-min);
+    cursor: pointer;
+    font: inherit;
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-semibold);
+    letter-spacing: var(--tk-tracking-wide, 0.04em);
+  }
+
+  :where([data-tk="chip"][data-interactive]:hover) {
+    background-color: var(--tk-action-quiet-fill-hover);
+    border-color: var(--tk-line-strong);
+    color: var(--tk-text-primary);
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--tk-surface-raised) 90%, transparent),
+      0 4px 12px color-mix(in srgb, var(--tk-text-primary) 10%, transparent);
+  }
+
+  :where([data-tk="chip"][data-interactive][data-pressed]:hover),
+  :where([data-tk="chip"][data-interactive][aria-pressed="true"]:hover) {
+    background-color: var(--tk-surface-inverse);
+    color: var(--tk-text-inverse);
+    transform: translateY(-1px);
+  }
+
+  :where([data-tk="chip"][data-interactive]:active) {
+    transform: translateY(0) scale(0.97);
+  }
+
+  :where([data-tk="chip"][data-interactive]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="chip"]) {
+      transition: none;
+    }
+    :where([data-tk="chip"][data-interactive]:hover),
+    :where([data-tk="chip"][data-interactive]:active) {
+      transform: none;
+    }
+  }
+}

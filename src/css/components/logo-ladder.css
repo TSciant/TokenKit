@@ -1,0 +1,346 @@
+/* ---------------------------------------------------------------------------
+   Logo ladder — a logo that picks its own stage from the box it was handed.
+
+   A logo is the one asset almost everybody still ships as a single fixed SVG,
+   scaled down until it stops working. The mark that reads at 400px is mud at
+   24px; the tagline that sets the tone in a hero is an unreadable smear in a
+   footer. The usual fix is three exported files and a rule in a brand book
+   that says which to use where — a rule enforced by whoever remembers it.
+
+   This is the same decision made by the layout instead. The wrapper is a
+   container; the stage is a function of its inline size:
+
+     ICON     < 80px    mark alone, in its own keyline — favicons, notifications
+     MARK    >= 80px    mark alone, no chrome
+     WORD    >= 80px    wordmark alone — for type-led brands (see `smStage`)
+     STACK  >= 160px    mark above wordmark — narrow columns, square slots
+     LOCKUP >= 280px    mark beside wordmark — the default site header
+     FULL   >= 420px    lockup plus tagline — heroes, launch screens
+
+   THREE THINGS THAT MAKE THIS WORK, none of them obvious.
+
+   One DOM tree, not six. The naive build renders a subtree per stage and
+   hides five of them — which mounts the wordmark six times, and a wordmark
+   that animates is then six animations deep in a document that shows one.
+   Here the parts exist once and the CSS rearranges them. Nothing remounts
+   when a container crosses a band, so a logo mid-animation in a resizing
+   sidebar keeps animating rather than restarting.
+
+   Bands are `min-width` in ascending order, and the last matching one wins.
+   The spec this came from described them as ranges — 0–80, 80–160, 160–280 —
+   which reads correctly and implements wrongly: `min-width` is inclusive, so
+   at exactly 160px a range-faithful implementation has two rules claiming the
+   element and source order quietly deciding. Ascending `min-width` with later
+   overriding is the same ladder with the ambiguity removed, which is why the
+   comments above say `>=` rather than a range.
+
+   WORD and MARK share a band on purpose. Both sit at >= 80px, because the
+   question at that size is not how much room there is — it is whether this
+   brand survives as a symbol or as type. A monogram in a square reads at
+   80px; a wordmark-led brand with a decorative flourish does not, and its
+   name does. A container query cannot answer that, because it is a fact about
+   the brand and not about the box. So it is a prop, `smStage`, set once per
+   brand. Two rules that both match at the same width is the bug this avoids.
+
+   Everything here is sized from the container, not from tokens: a logo has to
+   fill the box it was given. Colour is the exception and comes from the pack
+   like everything else, so a brand arriving is a pack arriving.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="logo"]) {
+    /* `inline-size` not `size`: the height is the logo's business, and a
+       container that queries both axes cannot be sized by its contents. */
+    container-type: inline-size;
+    container-name: logo;
+
+    display: flex;
+    align-items: center;
+    /* Alignment belongs to whatever placed the logo, not to the logo. */
+    justify-content: flex-start;
+    gap: var(--_gap);
+    inline-size: 100%;
+
+    /* Scales with the container, floors at a legible size, caps so a very
+       wide slot does not produce a billboard. cqi is 1% of the container's
+       inline size — the whole point of the exercise. */
+    --_unit: clamp(0.75rem, 7cqi, 2.5rem);
+    --_gap: calc(var(--_unit) * 0.45);
+
+    /* Pack-facing. A brand fills these; nothing else should set them. */
+    color: var(--tk-logo-ink, var(--tk-text-primary));
+  }
+
+  /* The parts. Each is present in every stage and hidden by band. */
+  :where([data-tk="logo-mark"]) {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    inline-size: var(--_unit);
+    block-size: var(--_unit);
+    color: var(--tk-logo-mark-ink, currentColor);
+
+    /* The colour a mark knocks its own detail out in.
+
+       A one-colour mark with interior detail — a face, a counter, a hole —
+       has to paint that detail in the GROUND, not in a second ink, or it
+       stops being a one-colour mark. Which ground that is changes by stage:
+       everywhere above ICON the mark sits directly on the surface, and at
+       ICON it sits on its own tile. The mark cannot know; this can. */
+    --_mark-ground: var(--tk-logo-tile, var(--tk-surface-default));
+  }
+
+  :where([data-tk="logo-mark"]) > :where(svg, img) {
+    inline-size: 100%;
+    block-size: 100%;
+    display: block;
+  }
+
+  :where([data-tk="logo-word"]) {
+    display: block;
+    min-inline-size: 0;
+    font-size: calc(var(--_unit) * 0.62);
+    line-height: 1.05;
+    font-weight: var(--tk-logo-word-weight, 700);
+    letter-spacing: var(--tk-logo-word-tracking, -0.02em);
+    color: var(--tk-logo-word-ink, currentColor);
+    white-space: nowrap;
+  }
+
+  :where([data-tk="logo-tagline"]) {
+    display: block;
+    font-size: calc(var(--_unit) * 0.26);
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tk-logo-tagline-ink, var(--tk-text-secondary));
+    white-space: nowrap;
+  }
+
+  :where([data-tk="logo-text"]) {
+    display: grid;
+    gap: calc(var(--_unit) * 0.12);
+    min-inline-size: 0;
+  }
+
+  /* -------------------------------------------------------------------------
+     ICON — the floor. Everything is hidden but the mark, and the mark gets a
+     keyline of its own, because at this size it is a favicon or a
+     notification badge and it sits on surfaces the brand does not control.
+     The corner follows the concentric rule: the inner radius is the outer
+     radius less the padding, so the mark's own silhouette stays concentric
+     with the tile around it.
+  ------------------------------------------------------------------------- */
+  :where([data-tk="logo"]) {
+    --_pad: calc(var(--_unit) * 0.18);
+    --_tile-radius: var(--tk-radius-sm);
+  }
+
+  :where([data-tk="logo"]) :where([data-tk="logo-text"]) {
+    display: none;
+  }
+
+  :where([data-tk="logo"]) :where([data-tk="logo-mark"]) {
+    background: var(--tk-logo-tile, transparent);
+    padding: var(--_pad);
+    border-radius: var(--_tile-radius);
+    inline-size: calc(var(--_unit) + var(--_pad) * 2);
+    block-size: calc(var(--_unit) + var(--_pad) * 2);
+  }
+
+  /* ---- >= 80px : MARK or WORD, decided per brand, never both ----
+     tk-default: data-sm=mark
+     Mark is what the rule below already shows; word is the brand that says
+     "not the mark, the name" and has to hide one and reveal the other. There
+     is no third value, and "never both" is enforced by there being only one
+     rule. */
+  @container logo (min-width: 80px) {
+    :where([data-tk="logo"]) :where([data-tk="logo-mark"]) {
+      background: none;
+      padding: 0;
+      inline-size: var(--_unit);
+      block-size: var(--_unit);
+      --_mark-ground: var(--tk-surface-default);
+    }
+
+    :where([data-tk="logo"][data-sm="word"]) :where([data-tk="logo-mark"]) {
+      display: none;
+    }
+
+    :where([data-tk="logo"][data-sm="word"]) :where([data-tk="logo-text"]) {
+      display: grid;
+    }
+  }
+
+  /* ---- >= 160px : STACK — mark above wordmark ---- */
+  @container logo (min-width: 160px) {
+    :where([data-tk="logo"]) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: calc(var(--_unit) * 0.3);
+    }
+
+    :where([data-tk="logo"]) :where([data-tk="logo-mark"]) {
+      display: grid;
+    }
+
+    :where([data-tk="logo"]) :where([data-tk="logo-text"]) {
+      display: grid;
+      justify-items: center;
+    }
+
+    :where([data-tk="logo"]) :where([data-tk="logo-tagline"]) {
+      display: none;
+    }
+  }
+
+  /* ---- >= 280px : LOCKUP — mark beside wordmark ---- */
+  @container logo (min-width: 280px) {
+    :where([data-tk="logo"]) {
+      flex-direction: row;
+      align-items: center;
+      text-align: start;
+      gap: var(--_gap);
+    }
+
+    :where([data-tk="logo"]) :where([data-tk="logo-text"]) {
+      justify-items: start;
+    }
+  }
+
+  /* ---- >= 420px : FULL — the tagline earns its place ---- */
+  @container logo (min-width: 420px) {
+    :where([data-tk="logo"]) :where([data-tk="logo-tagline"]) {
+      display: block;
+    }
+  }
+
+  /* -------------------------------------------------------------------------
+     Forced stage.
+
+     A filmstrip has to show all six stages at once, in six boxes that are all
+     the same width — so the container query, which is right about everything
+     else, is exactly wrong here. `data-stage` pins one.
+
+     It has to beat the rules above and container queries add no specificity
+     of their own, so these carry one extra attribute and win on specificity
+     rather than on order. That is also why they are not wrapped in `:where()`
+     the way everything above is.
+  ------------------------------------------------------------------------- */
+  [data-tk="logo"][data-stage] {
+    --_unit: clamp(0.75rem, 7cqi, 2.5rem);
+  }
+
+  [data-tk="logo"][data-stage="icon"] {
+    flex-direction: row;
+  }
+  [data-tk="logo"][data-stage="icon"] [data-tk="logo-text"] {
+    display: none;
+  }
+  [data-tk="logo"][data-stage="icon"] [data-tk="logo-mark"] {
+    display: grid;
+    --_mark-ground: var(--tk-logo-tile, var(--tk-surface-default));
+    background: var(--tk-logo-tile, transparent);
+    padding: var(--_pad);
+    border-radius: var(--_tile-radius);
+    inline-size: calc(var(--_unit) + var(--_pad) * 2);
+    block-size: calc(var(--_unit) + var(--_pad) * 2);
+  }
+
+  [data-tk="logo"][data-stage="mark"] {
+    flex-direction: row;
+  }
+  [data-tk="logo"][data-stage="mark"] [data-tk="logo-text"] {
+    display: none;
+  }
+  [data-tk="logo"][data-stage="mark"] [data-tk="logo-mark"] {
+    display: grid;
+    --_mark-ground: var(--tk-surface-default);
+    background: none;
+    padding: 0;
+    inline-size: var(--_unit);
+    block-size: var(--_unit);
+  }
+
+  [data-tk="logo"][data-stage="word"] {
+    flex-direction: row;
+  }
+  [data-tk="logo"][data-stage="word"] [data-tk="logo-mark"] {
+    display: none;
+  }
+  [data-tk="logo"][data-stage="word"] [data-tk="logo-text"] {
+    display: grid;
+    justify-items: start;
+  }
+  [data-tk="logo"][data-stage="word"] [data-tk="logo-tagline"] {
+    display: none;
+  }
+
+  [data-tk="logo"][data-stage="stack"] {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: calc(var(--_unit) * 0.3);
+  }
+  [data-tk="logo"][data-stage="stack"] [data-tk="logo-mark"] {
+    display: grid;
+    --_mark-ground: var(--tk-surface-default);
+    background: none;
+    padding: 0;
+    inline-size: var(--_unit);
+    block-size: var(--_unit);
+  }
+  [data-tk="logo"][data-stage="stack"] [data-tk="logo-text"] {
+    display: grid;
+    justify-items: center;
+  }
+  [data-tk="logo"][data-stage="stack"] [data-tk="logo-tagline"] {
+    display: none;
+  }
+
+  [data-tk="logo"][data-stage="lockup"] {
+    flex-direction: row;
+    align-items: center;
+    text-align: start;
+    gap: var(--_gap);
+  }
+  [data-tk="logo"][data-stage="lockup"] [data-tk="logo-mark"] {
+    display: grid;
+    --_mark-ground: var(--tk-surface-default);
+    background: none;
+    padding: 0;
+    inline-size: var(--_unit);
+    block-size: var(--_unit);
+  }
+  [data-tk="logo"][data-stage="lockup"] [data-tk="logo-text"] {
+    display: grid;
+    justify-items: start;
+  }
+  [data-tk="logo"][data-stage="lockup"] [data-tk="logo-tagline"] {
+    display: none;
+  }
+
+  [data-tk="logo"][data-stage="full"] {
+    flex-direction: row;
+    align-items: center;
+    text-align: start;
+    gap: var(--_gap);
+  }
+  [data-tk="logo"][data-stage="full"] [data-tk="logo-mark"] {
+    display: grid;
+    --_mark-ground: var(--tk-surface-default);
+    background: none;
+    padding: 0;
+    inline-size: var(--_unit);
+    block-size: var(--_unit);
+  }
+  [data-tk="logo"][data-stage="full"] [data-tk="logo-text"] {
+    display: grid;
+    justify-items: start;
+  }
+  [data-tk="logo"][data-stage="full"] [data-tk="logo-tagline"] {
+    display: block;
+  }
+}

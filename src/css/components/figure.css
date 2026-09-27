@@ -1,0 +1,54 @@
+/* Figure — accessible img/video asset with caption. */
+@layer components {
+  :where([data-tk="figure"]) {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-3);
+    max-inline-size: 100%;
+  }
+
+  :where([data-tk="figure-frame"]) {
+    --_aspect: 16 / 9;
+    aspect-ratio: var(--_aspect);
+    border-radius: var(--tk-radius-nested);
+    overflow: hidden;
+    background-color: var(--tk-surface-sunken);
+    border: 1px solid var(--tk-line-default);
+  }
+
+  :where([data-tk="figure"][data-aspect="1/1"]) { --_aspect: 1 / 1; }
+  :where([data-tk="figure"][data-aspect="4/3"]) { --_aspect: 4 / 3; }
+  :where([data-tk="figure"][data-aspect="16/9"]) { --_aspect: 16 / 9; }
+  :where([data-tk="figure"][data-aspect="21/9"]) { --_aspect: 21 / 9; }
+
+  :where([data-tk="figure-media"]) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  /* The caption element is layout; its two children each own their own voice.
+     Before this, the caption set the secondary voice and the credit
+     overrode it, which left [data-tk="figure-caption-text"] in the markup
+     with no rule anywhere — a kit name on an element the kit never styled.
+     Splitting it means a pack can move the caption without also moving the
+     credit, and neither line inherits its appearance from a sibling's
+     container. */
+  :where([data-tk="figure-caption"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-1);
+  }
+
+  :where([data-tk="figure-caption-text"]) {
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="figure-credit"]) {
+    font-size: var(--tk-size-xs);
+    color: var(--tk-text-tertiary);
+  }
+}

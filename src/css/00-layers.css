@@ -1,0 +1,17 @@
+/* ---------------------------------------------------------------------------
+   Cascade layer order. Must be the first thing the browser sees.
+
+   Later layers win regardless of selector specificity. This is what lets a
+   composition adjust a component, and a component adjust a shell, without
+   anyone escalating specificity or reaching for !important.
+
+   reset        normalize UA differences
+   tokens       custom property declarations only, no rules
+   elements     bare element defaults (h1, p, a, table)
+   shells       layout containers: stack, row, grid, split, sidebar, center
+   components   named UI components
+   compositions page-level arrangement
+   utilities    single-purpose escape hatches, used sparingly
+--------------------------------------------------------------------------- */
+
+@layer reset, tokens, elements, shells, components, compositions, utilities;

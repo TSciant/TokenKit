@@ -1,0 +1,197 @@
+/* Card — a bounded surface. Declares itself a query container so its own
+   contents can respond to the card's width rather than the viewport's. */
+@layer components {
+  :where([data-tk="card"]) {
+    --_pad: var(--tk-space-5);
+
+    container-type: inline-size;
+    container-name: card;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-3);
+
+    padding: var(--_pad);
+    border: 1px solid var(--tk-line-default);
+
+    /* The concentric chain. Published to the children below, never here —
+       reading and re-declaring the same property on one element is a cycle.
+       See the block at the foot of 03-scale.css. */
+    --_radius: var(--tk-radius-nested);
+    --_radius-gap: var(--_pad);
+    --_card-out: max(0px, calc(var(--_radius) - var(--_radius-gap)));
+    border-radius: var(--_radius);
+    background-color: var(--tk-surface-raised);
+    box-shadow: var(--tk-shadow-sm);
+
+    /* `clip` rather than `hidden`: same painting, but it does not make the
+       card a scroll container, so a focused control inside can still be
+       scrolled into view by the page. Needed so bleeding media is cut by the
+       card's own corner rather than squaring it off. */
+    overflow: clip;
+
+    transition:
+      background-color var(--tk-motion-surface),
+      border-color var(--tk-motion-line),
+      box-shadow var(--tk-motion-elevation);
+  }
+
+  :where([data-tk="card"][data-variant="flat"]) {
+    border-color: transparent;
+    background-color: var(--tk-surface-sunken);
+    box-shadow: var(--tk-shadow-none);
+  }
+
+  :where([data-tk="card"]) > * {
+    --tk-radius-nested: var(--_card-out);
+  }
+
+  :where([data-tk="card"][data-variant="bare"]) {
+    /* No padding means no gap to subtract: children share the card's arc. */
+    --_radius-gap: 0px;
+    --_card-out: max(0px, calc(var(--_radius) - var(--_radius-gap)));
+    padding: 0;
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: var(--tk-shadow-none);
+  }
+
+  /* An interactive card gets the boundary contrast a UI component needs. */
+  :where([data-tk="card"][data-interactive]) {
+    border-color: var(--tk-line-strong);
+    cursor: pointer;
+  }
+
+  :where([data-tk="card"][data-interactive]:hover) {
+    background-color: var(--tk-surface-base);
+  }
+
+  /* Type follows the box, not the window.
+
+     42rem is measured, not chosen. tools/type-gate.mjs lays a representative
+     title out at the stepped-up size and binary-searches the width where it
+     stops needing a second line: 41.9rem. Below that, stepping the size up
+     buys presence at the cost of a wrap. The earlier value here was 30rem,
+     which did exactly that — and nothing in the source said so. */
+  @container card (min-width: 42rem) {
+    :where([data-tk="card"]) > :where([data-tk="card-title"]) {
+      font-size: var(--tk-size-xl);
+    }
+  }
+
+  :where([data-tk="card-title"]) {
+    font-size: var(--tk-size-lg);
+    font-weight: var(--tk-weight-semibold);
+    line-height: var(--tk-leading-snug);
+    margin: 0;
+  }
+
+  :where([data-tk="card-body"]) {
+    color: var(--tk-text-secondary);
+    margin: 0;
+  }
+
+  /* --- media ------------------------------------------------------------
+     Two corner problems, one rule each.
+
+     A plate inset by the card's padding is a rounded box inside a rounded box.
+     There is exactly one inner radius that shares a centre with the outer one:
+     the outer radius less the gap. Any other value leaves two arcs that do not
+     agree, which is what makes an otherwise careful card look approximate.
+     --tk-radius-nested is that subtraction, clamped at zero.
+
+     A plate that bleeds to the card's edge has no gap to subtract. It takes
+     the card's radius exactly on the corners it touches and square on the
+     ones it does not — which is why it is a separate case and not a tighter
+     number. The card clips, so the arcs are the card's own.
+     -------------------------------------------------------------------- */
+  :where([data-tk="card-media"]) {
+    border-radius: var(--tk-radius-nested);
+    overflow: clip;
+  }
+
+  :where([data-tk="card-media"][data-bleed]) {
+    /* Out to the card's edges, cancelling the padding on three sides.
+       Width must grow by both side pads — margin alone on width:100% leaves
+       a one-pad gap on the trailing edge (the Featured capabilities offset). */
+    margin: calc(var(--_pad) * -1) calc(var(--_pad) * -1) 0;
+    inline-size: calc(100% + 2 * var(--_pad));
+    max-inline-size: none;
+    border-radius: 0;
+  }
+
+  :where([data-tk="card-media"][data-bleed="full"]) {
+    margin-block-end: calc(var(--_pad) * -1);
+  }
+
+  /* Plate with data-bleed is the photograph stand-in for card-media.
+     Same contract: cancel the card padding on the sides it touches, square
+     its own corners, let the card clip. Without the negative margin, bleed
+     only zeroed the radius and left an inset photo with disagreeing arcs —
+     the Featured capabilities failure mode. */
+  :where([data-tk="card"] > [data-tk="plate"][data-bleed]) {
+    margin: calc(var(--_pad) * -1) calc(var(--_pad) * -1) 0;
+    /* How much padding there is to cancel. The plate does the widening — see
+       the block in plate.css for why it cannot be done from here: an
+       `inline-size` written in this file is overwritten by the plate's own
+       base rule, which index.css imports afterwards. That declaration used to
+       be on this rule and had never once applied. */
+    --tk-plate-bleed-pad: var(--_pad);
+    max-inline-size: none;
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+
+  :where([data-tk="card"] > [data-tk="plate"][data-bleed="full"]) {
+    margin-block-end: calc(var(--_pad) * -1);
+  }
+
+  :where([data-tk="card-footer"]) {
+    margin-block-start: auto;
+    padding-block-start: var(--tk-space-3);
+    border-block-start: 1px solid var(--tk-line-subtle);
+  }
+
+  :where([data-tk="card"]:not([data-variant="bare"], [data-variant="flat"])) {
+    transition:
+      background-color var(--tk-motion-surface),
+      border-color var(--tk-motion-line),
+      box-shadow var(--tk-motion-elevation),
+      transform var(--tk-motion-transform);
+  }
+
+  :where(a:hover [data-tk="card"]:not([data-variant="bare"]),
+    a:focus-visible [data-tk="card"]:not([data-variant="bare"]),
+    [data-tk="card"][data-interactive]:hover,
+    [data-tk="card"][data-interactive]:focus-visible) {
+    border-color: var(--tk-line-strong);
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 color-mix(in srgb, var(--tk-text-primary) 6%, transparent),
+      0 12px 28px color-mix(in srgb, var(--tk-text-primary) 10%, transparent);
+  }
+
+  :where(a:hover [data-tk="card"] [data-tk="plate-media"],
+    a:focus-visible [data-tk="card"] [data-tk="plate-media"],
+    [data-tk="card"][data-interactive]:hover [data-tk="plate-media"],
+    [data-tk="card"][data-interactive]:focus-visible [data-tk="plate-media"]) {
+    transform: scale(1.04);
+  }
+
+  :where([data-tk="card"] [data-tk="plate-media"]) {
+    transition: transform var(--tk-duration-slow) var(--tk-ease-standard);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="card"]:not([data-variant="bare"], [data-variant="flat"])) {
+      transition: border-color var(--tk-motion-line), background-color var(--tk-motion-surface);
+    }
+    :where(a:hover [data-tk="card"], [data-tk="card"][data-interactive]:hover) {
+      transform: none;
+    }
+    :where([data-tk="card"] [data-tk="plate-media"]) {
+      transition: none;
+      transform: none !important;
+    }
+  }
+}

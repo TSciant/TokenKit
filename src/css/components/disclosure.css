@@ -1,0 +1,29 @@
+/* ---------------------------------------------------------------------------
+   Disclosure entrance.
+
+   A panel inserted into the DOM has no previous value for a transition to run
+   from, so it appears rather than arrives no matter what transition it
+   carries. @starting-style supplies that first value — it is the only way to
+   animate an element on insertion without a second render or a class toggled
+   one frame later.
+
+   Scoped to [data-tk="panel"] so it is opt-in: not everything that appears
+   should move, and a panel that is already on screen must not re-run this.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="panel"]) {
+    transition:
+      opacity var(--tk-motion-enter),
+      translate var(--tk-motion-transform);
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @starting-style {
+    :where([data-tk="panel"]) {
+      opacity: 0;
+      translate: 0 calc(var(--tk-space-2) * -1);
+    }
+  }
+}

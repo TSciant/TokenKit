@@ -1,0 +1,442 @@
+/* ---------------------------------------------------------------------------
+   Textures.
+
+   A wireframe that is only rectangles reads as unfinished even when it is
+   complete, and the reviewer fills the silence with revisions. A little
+   surface interest buys the composition enough presence to be judged on its
+   structure instead.
+
+   These are masks, not images. An SVG data URI cannot read `currentColor`, so
+   a texture shipped as a background-image carries its own colour and needs one
+   copy per pack — which is the exact coupling the kit exists to avoid. As a
+   mask the shape is kit-owned and the ink is a pack token:
+
+     background-color: var(--tk-texture-ink);   <- the pack decides
+     mask-image: var(--tk-texture-hatch);       <- the kit decides
+
+   One asset, every pack, light and dark, and the lint stays satisfied because
+   there is no colour in the shape at all: SVG's default fill is black, so the
+   masks declare none.
+
+   Keep them quiet. --tk-texture-ink is deliberately a low-contrast token; a
+   texture that competes with the type is worse than no texture. None of these
+   carries information, so all of them are decorative and none is read.
+--------------------------------------------------------------------------- */
+
+@layer tokens {
+  :root {
+    /* 45-degree hatch, 8px pitch. The wireframe idiom for "a photograph goes
+       here", without the crossed-out box that reads as an error state. */
+    --tk-texture-hatch: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">\
+<path d="M-2 2 2 -2M0 8 8 0M6 10 10 6" stroke="%23000" stroke-width="1.25" fill="none"/>\
+</svg>');
+
+    /* Dot lattice, 8px pitch. For sunken bands and canvas — enough to say the
+       surface is a surface. */
+    --tk-texture-dots: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">\
+<circle cx="1" cy="1" r="0.75"/>\
+</svg>');
+
+    /* Stacked hairlines, 6px pitch. For blocks standing in for running text
+       at sizes where real lorem would be unreadable anyway. */
+    --tk-texture-rule: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" viewBox="0 0 6 6">\
+<rect width="6" height="1"/>\
+</svg>');
+
+
+    /* Orthogonal grid, 12px pitch. For catalogue surfaces and wireframe
+       "structure" bands — denser than dots, quieter than hatch. */
+    --tk-texture-grid: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">\
+<path d="M12 0H0M0 0V12" stroke="%23000" stroke-width="1" fill="none"/>\
+</svg>');
+
+    /* Soft noise speckles. Presence without direction — good under hero
+       plates when hatch would imply "missing photo". */
+    --tk-texture-noise: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">\
+<circle cx="2" cy="3" r="0.6"/><circle cx="9" cy="1" r="0.5"/>\
+<circle cx="14" cy="6" r="0.55"/><circle cx="5" cy="10" r="0.5"/>\
+<circle cx="11" cy="13" r="0.6"/><circle cx="1" cy="14" r="0.45"/>\
+</svg>');
+
+
+    /* --- three more, so six brands are not all hatched ---------------------
+       Added when the specimen packs started owning proportion and it became
+       obvious that every one of them still had the same surface. A texture is
+       as much a brand's handwriting as its radius is. All three are masks
+       like the rest — they carry no colour; the element paints
+       --tk-texture-ink through them.
+       -------------------------------------------------------------------- */
+
+    /* Crosshatch. Hatch in both directions, so it reads as woven cloth rather
+       than as a direction. Lighter stroke than the single hatch on purpose:
+       twice the lines at the same weight is twice the ink. */
+    --tk-texture-weave: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">\
+<path d="M-2 2 2 -2M0 10 10 0M8 12 12 8M-2 8 2 12M0 0 10 10M8 -2 12 2" stroke="%23000" stroke-width="0.9" fill="none"/>\
+</svg>');
+
+    /* Chevron. The one texture in the set with a direction, which is why it
+       is here — a travel brand wants movement and every other mask is
+       static. */
+    --tk-texture-chevron: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10">\
+<path d="M0 7 7 1 14 7" stroke="%23000" stroke-width="1.3" fill="none" stroke-linecap="square"/>\
+</svg>');
+
+    /* Grain. Finer and denser than noise — presence with no pattern at all,
+       for a brand whose surfaces should read as paper rather than as a
+       drawing. Twelve specks on a 20px tile is below the pitch at which the
+       eye finds a repeat. */
+    --tk-texture-grain: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">\
+<circle cx="3" cy="2" r="0.45"/><circle cx="11" cy="4" r="0.4"/>\
+<circle cx="17" cy="1" r="0.45"/><circle cx="7" cy="8" r="0.4"/>\
+<circle cx="15" cy="9" r="0.45"/><circle cx="1" cy="11" r="0.4"/>\
+<circle cx="9" cy="14" r="0.45"/><circle cx="19" cy="15" r="0.4"/>\
+<circle cx="5" cy="18" r="0.45"/><circle cx="13" cy="19" r="0.4"/>\
+<circle cx="18" cy="11" r="0.35"/><circle cx="4" cy="6" r="0.35"/>\
+</svg>');
+
+    /* --- the pack's choice ------------------------------------------------
+       Which mask a brand uses, and at what pitch. The kit owns the shapes;
+       the brand picks one. Until now --tk-texture-ink was the only part of a
+       texture a pack could reach, so six brands with six palettes still had
+       exactly one surface between them.
+
+       Named values on [data-texture] still win — a Plate asked for "dots" is
+       dots in every brand. The pack fills the DEFAULT, which is what an
+       element that did not ask for a particular texture gets.
+       -------------------------------------------------------------------- */
+
+    /* --- the material family -----------------------------------------------
+       Everything above this line is a DRAFTING mark: a 1-bit mask at a small
+       pitch, painted in one flat ink. Hatch, dots, grid, rule, weave and
+       chevron are the vocabulary of a drawing ABOUT a page, which is exactly
+       right for the unbranded grayscale wireframe the kit delivers in — a
+       wireframe should look like a wireframe.
+
+       It is exactly wrong once a brand arrives. Six brands owning type,
+       proportion, radius and colour still read as roughs, because a hard
+       binary alpha at an 8px pitch reads as annotation no matter what colour
+       it is painted in.
+
+       These five are the other family. The mechanism is feTurbulence, which
+       produces fractal noise and therefore CONTINUOUS alpha — a mask whose
+       pixels are 37% opaque rather than on or off. That single change is what
+       separates material from annotation, and nothing else about the
+       architecture moves: they are still masks, they still carry no colour,
+       the element still paints --tk-texture-ink through them.
+
+       TILE SIZE IS THE WHOLE GAME. A repeat the eye can find reads as
+       wallpaper and undoes the effect — a 26px turbulent tile looks quilted.
+       These run from 140px to 300px, and the reason that is affordable is
+       that feTurbulence is PROCEDURAL: the SVG is a few hundred bytes whether
+       the tile is 12px or 300px, where a bitmap noise texture at 300px would
+       be tens of kilobytes. The expensive option happens to be free.
+
+       stitchTiles="stitch" on every one of them, and it is not optional.
+
+       feTurbulence generates noise in filter space and the rect crops it. Two
+       adjacent copies of that crop do not line up: the noise restarts rather
+       than continuing, so a tiled material shows a hard vertical seam wherever
+       one tile ends. Enlarging the tile moves the seam; it does not remove it,
+       which is how this was found — mist went from 300px to 900px and a wide
+       hero went from four obvious repeats to one obvious edge.
+
+       `stitch` makes the browser adjust the base frequency very slightly so a
+       whole number of periods fits the tile, and the noise then wraps.
+
+       And it does nothing on its own, which cost an hour. A filter's default
+       region is x=-10% y=-10% width=120% height=120% — twenty per cent larger
+       than the element it filters, so that a blur has somewhere to bleed into.
+       Stitching is computed across the FILTER REGION, so with the default the
+       browser wraps the noise over a box twenty per cent wider than the tile
+       and the tile is a crop out of the middle of it. The seam survives, and
+       the attribute that was supposed to remove it is sitting right there in
+       the markup looking correct.
+
+       x="0" y="0" width="100%" height="100%" pins the region to the tile.
+       Both halves are needed and neither works alone.
+
+       What could not be done: a per-brand `seed`. feTurbulence takes one, and
+       two brands on the same material with different seeds would get visibly
+       different paper — but the seed lives inside the data URI, and a data
+       URI is an opaque string that no custom property can reach into. Brands
+       differentiate by scale and position instead, which is weaker but real.
+       -------------------------------------------------------------------- */
+
+    /* Paper. Fine, even, close to the grain of an uncoated stock. */
+    --tk-texture-paper: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180">\
+<filter id="t" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" stitchTiles="stitch" baseFrequency="0.9" numOctaves="4"/>\
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0"/></filter>\
+<rect width="180" height="180" filter="url(%23t)"/></svg>');
+
+    /* Stone. Coarse and clumped — aggregate rather than grain. */
+    --tk-texture-stone: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220">\
+<filter id="t" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" stitchTiles="stitch" baseFrequency="0.16" numOctaves="5"/>\
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.1 0 0 0 -0.62"/></filter>\
+<rect width="220" height="220" filter="url(%23t)"/></svg>');
+
+    /* Mist. Very low frequency, so it reads as depth rather than as surface —
+       the only one of these that behaves like atmosphere.
+
+       900px, and the size is the whole point rather than a preference. The
+       tile was 300px, and a tile has to hold enough FEATURES that repeating
+       it is not obvious: at baseFrequency 0.012 one feature is about 83 user
+       units across, so a 300px tile held roughly three of them. Across a
+       1280px hero that is four repeats of a three-blob pattern, which reads
+       as a grid of identical clouds — the exact "is the repeat findable"
+       test this kit applied to somebody else's textures and then failed on
+       its own.
+
+       Nine hundred holds about eleven, and the period now exceeds most
+       elements it will ever be laid on. Costs nothing in bytes: the mask is
+       a filter over a rect, so the data URI is the same length whatever the
+       dimensions — only rasterisation grows, on one element.
+
+       None of the other materials needs this. Paper at 0.9, grit at 2.2 and
+       stone at 0.16 all hold tens of features per tile already, and halftone
+       repeats deliberately because a halftone screen is regular. Low
+       frequency is what makes a tile findable, not size. */
+    --tk-texture-mist: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900">\
+<filter id="t" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" stitchTiles="stitch" baseFrequency="0.012" numOctaves="3"/>\
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.1 0 0 0 -0.2"/></filter>\
+<rect width="900" height="900" filter="url(%23t)"/></svg>');
+
+    /* Grit. Dense film grain — presence at the threshold of noticing. */
+    --tk-texture-grit: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140">\
+<filter id="t" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" stitchTiles="stitch" baseFrequency="2.2" numOctaves="2"/>\
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.85 0 0 0 0"/></filter>\
+<rect width="140" height="140" filter="url(%23t)"/></svg>');
+
+    /* Halftone. The one material with a deliberate repeat, because a halftone
+       screen IS regular — a soft-edged dot rather than the hard disc the
+       drafting `dots` mask uses, which is the whole difference between print
+       and drawing. */
+    --tk-texture-halftone: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">\
+<radialGradient id="d"><stop offset="0" stop-color="%23fff"/>\
+<stop offset="0.45" stop-color="%23fff" stop-opacity="0.55"/>\
+<stop offset="1" stop-color="%23fff" stop-opacity="0"/></radialGradient>\
+<circle cx="6" cy="6" r="4.2" fill="url(%23d)"/></svg>');
+
+    --tk-texture-mask: var(--tk-texture-hatch);
+
+    --tk-texture-scale: 8px 8px;
+
+    /* WHAT THE MASK CUTS.
+ 
+       Until now this was `background-color: var(--tk-texture-ink)` written
+       into each consumer, so a texture could only ever be one flat colour.
+       That is a reasonable default and a poor ceiling: the mask is a shape,
+       and a shape can be cut out of anything paintable. A pack that hands
+       this a gradient gets a texture that moves across the element; one that
+       hands it a colour gets exactly what it had before.
+ 
+       Every specimen pack painted --tk-texture-ink, which each of them maps
+       to the RULE grey — so six brands with six palettes had six identical
+       grey textures. That was the real finding. */
+    --tk-texture-paint: var(--tk-texture-ink);
+
+    /* THE BRAND'S OWN SHAPE.
+ 
+       The other twelve names are kit-owned and mean the same thing in every
+       pack: `dots` is dots under Mohave and under Door Shop. `signature` is
+       the opposite — it means whatever this brand drew, and the pack fills
+       both slots. It is the one texture the kit does not define.
+ 
+       Defaults to the pack's own mask so a pack that declares no signature
+       still answers `data-texture="signature"` with something sensible
+       rather than with nothing. */
+    --tk-texture-signature: var(--tk-texture-mask);
+    --tk-texture-signature-scale: var(--tk-texture-scale);
+  }
+
+  /* Applied via an attribute so a texture is a coordinate, not a class pile.
+     The element paints its ink and the mask decides which pixels survive. */
+  :where([data-texture]) {
+    background-color: var(--tk-texture-ink);
+    /* The pack's mask is the default. Every named value below overrides it,
+       so `data-texture="dots"` is dots under every brand, and an element that
+       only says `data-texture` gets whatever this brand's surface is. */
+    mask-image: var(--tk-texture-mask);
+    mask-size: var(--tk-texture-scale);
+    mask-repeat: repeat;
+    mask-position: center;
+  }
+
+  /* --- THE NAMES, DECLARED ONCE ------------------------------------------
+     Every named texture sets two private slots and nothing else:
+
+       --_mask    which mask
+       --_scale   the tile size that mask was drawn at
+
+     Two consumers read them — `data-texture`, which replaces the element's
+     surface, and `data-texture-overlay`, which rides above one on a
+     pseudo-element. Before this they were two hand-maintained lists, and the
+     overlay list had four of the thirteen names. `data-texture-overlay="rule"`
+     therefore produced an element with `position: relative`, an empty
+     `::after` and no texture: no error, no warning, nothing on screen.
+
+     The scale is declared beside each name for the same reason. A mask is an
+     SVG drawn at a specific size, and tiling it at another size does not make
+     it smaller or larger — it stretches the drawing. `hatch` and `dots` used
+     to inherit `--tk-texture-scale`, which is the BRAND's tile, so asking for
+     an 8px hatch under a pack whose own texture tiles at 300px produced 300px
+     diagonal bars. That bug shipped once already, in the plate.
+     -------------------------------------------------------------------- */
+  :where([data-texture], [data-texture-overlay]) {
+    /* The pack's own is the default, so an element that only says
+       `data-texture` gets whatever this brand's surface is. */
+    --_mask: var(--tk-texture-mask);
+    --_scale: var(--tk-texture-scale);
+  }
+
+  /* An explicit way to ask for the brand's own, for an element that wants to
+     say so rather than rely on the default. */
+  :where([data-texture="brand"], [data-texture-overlay="brand"]) {
+    --_mask: var(--tk-texture-mask);
+    --_scale: var(--tk-texture-scale);
+  }
+
+  /* Signature — pack-owned shape, pack-owned scale. Listed here with the
+     rest so both consumers reach it the same way; the value itself is not in
+     this file and cannot be, because it is a brand's and this file is
+     nobody's. */
+  :where([data-texture="signature"], [data-texture-overlay="signature"]) {
+    --_mask: var(--tk-texture-signature);
+    --_scale: var(--tk-texture-signature-scale);
+  }
+
+  /* Drafting — hard-edged, drawn, unmistakably a diagram. */
+  :where([data-texture="hatch"], [data-texture-overlay="hatch"]) {
+    --_mask: var(--tk-texture-hatch);
+    --_scale: 8px 8px;
+  }
+
+  :where([data-texture="dots"], [data-texture-overlay="dots"]) {
+    --_mask: var(--tk-texture-dots);
+    --_scale: 8px 8px;
+  }
+
+  :where([data-texture="rule"], [data-texture-overlay="rule"]) {
+    --_mask: var(--tk-texture-rule);
+    --_scale: 6px 6px;
+  }
+
+  :where([data-texture="grid"], [data-texture-overlay="grid"]) {
+    --_mask: var(--tk-texture-grid);
+    --_scale: 12px 12px;
+  }
+
+  :where([data-texture="noise"], [data-texture-overlay="noise"]) {
+    --_mask: var(--tk-texture-noise);
+    --_scale: 16px 16px;
+  }
+
+  :where([data-texture="weave"], [data-texture-overlay="weave"]) {
+    --_mask: var(--tk-texture-weave);
+    --_scale: 10px 10px;
+  }
+
+  :where([data-texture="chevron"], [data-texture-overlay="chevron"]) {
+    --_mask: var(--tk-texture-chevron);
+    --_scale: 14px 10px;
+  }
+
+  :where([data-texture="grain"], [data-texture-overlay="grain"]) {
+    --_mask: var(--tk-texture-grain);
+    --_scale: 20px 20px;
+  }
+
+  /* Material — feTurbulence, continuous alpha, reads as a surface. */
+  :where([data-texture="paper"], [data-texture-overlay="paper"]) {
+    --_mask: var(--tk-texture-paper);
+    --_scale: 180px 180px;
+  }
+
+  :where([data-texture="stone"], [data-texture-overlay="stone"]) {
+    --_mask: var(--tk-texture-stone);
+    --_scale: 220px 220px;
+  }
+
+  :where([data-texture="mist"], [data-texture-overlay="mist"]) {
+    --_mask: var(--tk-texture-mist);
+    --_scale: 900px 900px;
+  }
+
+  :where([data-texture="grit"], [data-texture-overlay="grit"]) {
+    --_mask: var(--tk-texture-grit);
+    --_scale: 140px 140px;
+  }
+
+  :where([data-texture="halftone"], [data-texture-overlay="halftone"]) {
+    --_mask: var(--tk-texture-halftone);
+    --_scale: 12px 12px;
+  }
+
+  /* --- consumer one: replace the surface ------------------------------- */
+  :where([data-texture]) {
+    /* `background`, not `background-color`, because the paint may be a
+       gradient. The shorthand takes either; the longhand takes only one. */
+    background: var(--tk-texture-paint);
+    mask-image: var(--_mask);
+    mask-size: var(--_scale);
+    mask-repeat: repeat;
+    mask-position: center;
+  }
+
+  /* `none` has to switch off the ink as well as the mask. A mask of `none`
+     means every pixel survives, so an element still painting its ink would
+     go from a texture to a solid block — louder than the thing being turned
+     off, which is the opposite of what the caller asked for. */
+  :where([data-texture="none"]) {
+    background-color: transparent;
+    mask-image: none;
+  }
+
+  /* --- consumer two: ride above the surface ----------------------------
+     The element keeps its own background and the texture sits on a
+     pseudo-element, which is what a sunken band wants. A pseudo-element
+     inherits custom properties from the element that originates it, so the
+     two slots above reach it without being restated. */
+  :where([data-texture-overlay]) {
+    position: relative;
+    isolation: isolate;
+  }
+
+  :where([data-texture-overlay])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--tk-texture-paint);
+    mask-image: var(--_mask);
+    mask-size: var(--_scale);
+    mask-repeat: repeat;
+    mask-position: center;
+  }
+
+  :where([data-texture-overlay="none"])::after {
+    content: none;
+  }
+
+  @media (prefers-contrast: more) {
+    /* Decoration is the first thing to go when someone has asked for
+       contrast. Nothing here carries meaning, so nothing is lost. */
+    :where([data-texture]),
+    :where([data-texture-overlay])::after {
+      mask-image: none;
+    }
+  }
+}

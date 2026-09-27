@@ -1,0 +1,143 @@
+/* ---------------------------------------------------------------------------
+   Gradient — a pair of contract slots and a direction, not a pile of presets.
+
+   A gradient is the first thing a brand book asks for that a token system
+   usually cannot give it, because the obvious implementation is a named blob:
+   `--brand-gradient-hero: linear-gradient(135deg, <blue>, <yellow>)`. That is
+   one value carrying four decisions — two colours, an angle and a shape — and
+   none of the four can be changed without rewriting the other three. It is a
+   class wearing a token's clothes.
+
+   Split into its parts it becomes ordinary:
+
+     --tk-gradient-from   pack-owned colour
+     --tk-gradient-to     pack-owned colour
+     --tk-gradient-angle  direction, set by an attribute
+     --tk-gradient-stop   where `to` lands, so a gradient can finish early
+
+   A brand fills the two colours once. Direction and shape are coordinates on
+   the element, so the same pair paints a header wash, a corner glow and a
+   diagonal band with no second gradient defined anywhere.
+
+   THE COLOURS ARE THE SAME PAIR THE TEXTURE PAINTS. `--tk-texture-paint` and
+   this both come from one `paint: [a, b]` declaration in the brand table, so
+   a brand's textured surface and its gradient surfaces are the same two
+   colours doing the same job at different opacities. Two declarations would
+   be two things to keep in step, and they would not stay in step.
+
+   ---------------------------------------------------------------------------
+   TEXT ON A GRADIENT, which is where this goes wrong in every system that
+   ships it.
+
+   A contrast ratio is between two colours. A gradient is a range, so a text
+   colour that clears 4.5:1 against `from` may fail against `to`, and the
+   failure is at one end of an element rather than across it — which is the
+   hardest kind to notice, because the screenshot everyone looks at is of the
+   other end.
+
+   So: a gradient is DECORATION by default. `data-gradient` paints a ground
+   and makes no promise about text on it. Text over a gradient belongs on a
+   scrim (src/css/components/scrim.css), which is checked against the worst
+   backdrop it can be given, or over a stop the pack has judged at both ends.
+   02 Tokens/01 Colour/06 Gradient shows both ends measured.
+
+   `prefers-contrast: more` flattens every gradient to its `from` colour, for
+   the same reason the textures drop their masks: a reader who has asked for
+   contrast has asked for fewer things happening at once.
+--------------------------------------------------------------------------- */
+
+@layer tokens {
+  :root {
+    /* Surface to sunken is the grayscale default, which is what the delivered
+       wireframe gets: a gradient that is barely a gradient, present only
+       enough to say a band is a band. A pack replaces both ends. */
+    --tk-gradient-from: var(--tk-surface-default);
+    --tk-gradient-to: var(--tk-surface-sunken);
+
+    /* 180deg is `to bottom`. Named rather than `to bottom` because an angle
+       interpolates and a keyword does not — a registered <angle> can be
+       transitioned, and a rotating conic sweep is one declaration rather than
+       a keyframe list. */
+    --tk-gradient-angle: 180deg;
+    --tk-gradient-stop: 100%;
+
+    /* Where a radial or conic gradient is centred. */
+    --tk-gradient-origin: 50% 50%;
+  }
+}
+
+@layer components {
+  /* --- the paint ---------------------------------------------------------
+     One declaration. Shape switches the function; direction and colour are
+     the same custom properties in all three, which is why adding `conic` was
+     three lines rather than a third gradient system. */
+  :where([data-gradient]) {
+    background-image: linear-gradient(
+      var(--tk-gradient-angle),
+      var(--tk-gradient-from) 0%,
+      var(--tk-gradient-to) var(--tk-gradient-stop)
+    );
+  }
+
+  :where([data-gradient="radial"]) {
+    background-image: radial-gradient(
+      circle at var(--tk-gradient-origin),
+      var(--tk-gradient-from) 0%,
+      var(--tk-gradient-to) var(--tk-gradient-stop)
+    );
+  }
+
+  :where([data-gradient="conic"]) {
+    background-image: conic-gradient(
+      from var(--tk-gradient-angle) at var(--tk-gradient-origin),
+      var(--tk-gradient-from) 0%,
+      var(--tk-gradient-to) var(--tk-gradient-stop)
+    );
+  }
+
+  /* A fade to nothing rather than to a second colour. The one shape that
+     cannot be expressed by swapping the two slots, because the second colour
+     has to be the FIRST one at zero alpha — fading to `transparent` in sRGB
+     travels through grey and leaves a dirty band in the middle, which is the
+     oldest gradient bug there is. */
+  :where([data-gradient="fade"]) {
+    background-image: linear-gradient(
+      var(--tk-gradient-angle),
+      var(--tk-gradient-from) 0%,
+      color-mix(in srgb, var(--tk-gradient-from) 0%, transparent) var(--tk-gradient-stop)
+    );
+  }
+
+  /* --- direction ---------------------------------------------------------
+     Logical names, physical angles. `end` is the inline end, which is the
+     right edge in English and the left in Arabic — but a CSS angle has no
+     opinion about writing mode, so these are flipped under rtl below rather
+     than pretending 90deg means "towards the end". */
+  :where([data-direction="block-end"]) { --tk-gradient-angle: 180deg; }
+  :where([data-direction="block-start"]) { --tk-gradient-angle: 0deg; }
+  :where([data-direction="inline-end"]) { --tk-gradient-angle: 90deg; }
+  :where([data-direction="inline-start"]) { --tk-gradient-angle: 270deg; }
+  :where([data-direction="diagonal"]) { --tk-gradient-angle: 135deg; }
+  :where([data-direction="diagonal-up"]) { --tk-gradient-angle: 45deg; }
+
+  :where([dir="rtl"] [data-direction="inline-end"]) { --tk-gradient-angle: 270deg; }
+  :where([dir="rtl"] [data-direction="inline-start"]) { --tk-gradient-angle: 90deg; }
+  :where([dir="rtl"] [data-direction="diagonal"]) { --tk-gradient-angle: 225deg; }
+  :where([dir="rtl"] [data-direction="diagonal-up"]) { --tk-gradient-angle: 315deg; }
+
+  /* --- strength ----------------------------------------------------------
+     How far the second colour travels, not how strong it is. A gradient that
+     stops at 40% is a wash at the top of a band; one that runs the full
+     height is a field. Two attributes rather than six named gradients. */
+  :where([data-gradient][data-emphasis="subtle"]) { --tk-gradient-stop: 35%; }
+  :where([data-gradient][data-emphasis="strong"]) { --tk-gradient-stop: 100%; }
+
+  @media (prefers-contrast: more) {
+    /* Flattened to the first colour. Nothing here carries meaning — the
+       scrim, which does, is checked separately and is not a gradient. */
+    :where([data-gradient]) {
+      background-image: none;
+      background-color: var(--tk-gradient-from);
+    }
+  }
+}

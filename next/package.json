@@ -1,0 +1,9 @@
+{
+  "name": "tokenkit-next",
+  "private": true,
+  "version": "0.1.0",
+  "//": "No dependencies of its own on purpose. This app shares the repo's single node_modules so there is exactly one copy of React; see next.config.mjs. Build it from the repo root with `npm run next:build`.",
+  "devDependencies": {
+    "@types/node": "20.17.6"
+  }
+}

@@ -1,0 +1,16 @@
+/* Tachometer — tokenized canvas dial shell. */
+@layer components {
+  :where([data-tk="tachometer"]) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    min-block-size: 14rem;
+  }
+
+  :where([data-tk="tachometer-canvas"]) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    min-block-size: 14rem;
+  }
+}

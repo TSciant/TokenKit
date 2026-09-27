@@ -1,0 +1,348 @@
+/* ---------------------------------------------------------------------------
+   Scales. Brand-independent.
+
+   A brand pack may override any of these, but most packs will not — a brand
+   changes what things look like, rarely how they are proportioned. Colour and
+   anything else a brand genuinely owns lives in the pack, not here.
+
+   Everything is rem. No vw in the type scale: fluid type built on viewport
+   units does not respond to the user's browser font-size setting, which is
+   what WCAG 1.4.4 actually tests at 200%. Container-relative sizing, where a
+   component wants it, is expressed per-component with cqi.
+--------------------------------------------------------------------------- */
+
+@layer tokens {
+  :root {
+    /* --- space: a 4px base with a doubling tail -------------------------
+       The private ramp. The public --tk-space-* tokens are this times
+       --tk-density, derived just below.
+       ------------------------------------------------------------------ */
+    --_space-0: 0px;
+    --_space-1: 0.25rem;
+    --_space-2: 0.5rem;
+    --_space-3: 0.75rem;
+    --_space-4: 1rem;
+    --_space-5: 1.5rem;
+    --_space-6: 2rem;
+    --_space-7: 3rem;
+    --_space-8: 4rem;
+    --_space-9: 6rem;
+
+    /* --- type ------------------------------------------------------------ */
+    /* Manrope is the kit's own face — see src/css/fonts/manrope.css for
+       what it is and why it is here. "Manrope Fallback" is a metric-matched
+       stand-in so the swap costs no layout shift; the generic stack after it
+       is what runs if neither loads. A brand pack overrides this slot like
+       any other. */
+    --tk-font-sans:
+      "Manrope", "Manrope Fallback", ui-sans-serif, system-ui,
+      -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --tk-font-mono:
+      ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+      "Liberation Mono", monospace;
+
+    /* Display face and case. Default to the body face and no transform, so
+       the kit reads as one voice until a pack says otherwise. */
+    --tk-font-display: var(--tk-font-sans);
+    --tk-display-case: none;
+
+    /* Lucide's own default. A pack with a heavy display face usually wants
+       more than this; a quiet one usually wants less. */
+    --tk-icon-stroke: 2;
+
+    /* Icon box, in rem, so a reader at 200% gets icons at 200% along with the
+       text beside them. These were three numbers in Icon.tsx — 16, 20, 24 —
+       which meant icon size was the one measurement in the kit that ignored
+       the root size, ignored a pack, and could only be changed by editing
+       TypeScript. */
+    --tk-icon-sm: 1rem;
+    --tk-icon-md: 1.25rem;
+    --tk-icon-lg: 1.5rem;
+
+    --tk-size-xs: 0.75rem;
+    --tk-size-sm: 0.875rem;
+    --tk-size-base: 1rem;
+    --tk-size-md: 1.125rem;
+    --tk-size-lg: 1.25rem;
+    --tk-size-xl: 1.5rem;
+    --tk-size-2xl: 1.875rem;
+    --tk-size-3xl: 2.25rem;
+    --tk-size-4xl: 3rem;
+
+    /* --- leading and tracking ---------------------------------------------
+       Type does not scale linearly and neither should its spacing. The same
+       tracking from caption to display is the single loudest tell that a
+       scale was listed rather than designed: at 12px a face needs air, at
+       48px the same air reads as a gap. Leading runs the other way — long
+       body lines need it, a two-word headline does not.
+
+       So the ramp is paired. Larger step, tighter leading, tighter tracking.
+       --tk-*-display is the top of the ramp; the older four leading values
+       and three tracking values keep their names and meanings.
+       -------------------------------------------------------------------- */
+    --tk-leading-display: 1.04;
+    --tk-leading-tight: 1.15;
+    --tk-leading-snug: 1.3;
+    --tk-leading-normal: 1.5;
+    --tk-leading-relaxed: 1.6;
+
+    --tk-tracking-display: -0.035em;
+    --tk-tracking-tight: -0.02em;
+    --tk-tracking-snug: -0.01em;
+    --tk-tracking-normal: 0em;
+    --tk-tracking-wide: 0.04em;
+
+    --tk-weight-normal: 400;
+    --tk-weight-medium: 500;
+    --tk-weight-semibold: 600;
+    --tk-weight-bold: 700;
+
+    /* --- radius ---------------------------------------------------------- */
+    --tk-radius-none: 0;
+    --tk-radius-sm: 4px;
+    --tk-radius-md: 8px;
+    --tk-radius-lg: 16px;
+    /* Surface seed: large enough that pad (space-4/5) leaves a visible inner curve. */
+    --tk-radius-xl: 2rem;
+    --tk-radius-full: 9999px;
+
+    /* Concentric nesting. A rounded box inside a rounded box has one correct
+       inner radius: the outer radius less the gap between them. Any other
+       value leaves two arcs that do not share a centre, which is what makes a
+       card with an inset plate look approximate no matter how careful the
+       rest of it is. Clamped at zero, because past that the inner corner is
+       square and square is correct.
+
+       Surfaces that bleed to their parent's edge do not use this — they
+       inherit the parent's radius exactly. See card-media. */
+    /* --tk-radius-nested is NOT a value, it is a running total. See the
+       concentric-radius block at the foot of this file. */
+
+    /* --- plate ------------------------------------------------------------
+       The cap is the point. A plate is the one element whose height comes from
+       its ratio rather than its content, so in a fluid grid it is what makes
+       the page lurch — measured at +1785px in one step when the insights feed
+       dropped from four columns to one. It keeps its ratio until it reaches
+       this, then stops.
+       -------------------------------------------------------------------- */
+    --tk-search-width: 14rem;
+
+    --tk-plate-max: 22rem;
+    --tk-plate-max-portrait: 15rem;
+    --tk-plate-min: 4rem;
+
+    /* --- scrim ------------------------------------------------------------
+       Derived in src/css/components/scrim.css, not chosen. Each alpha is the
+       lightest wash that still guarantees its contrast ratio when the image
+       underneath is pure white — the worst case an unknown photograph can
+       present. The gate composites them and checks the arithmetic.
+       -------------------------------------------------------------------- */
+    --tk-scrim-aa-large: 0.42;  /* >= 3:1   — 1.4.3 large text */
+    --tk-scrim-aa: 0.54;        /* >= 4.5:1 — 1.4.3 normal text */
+    --tk-scrim-aaa: 0.66;       /* >= 7:1   — 1.4.6 */
+
+    /* How far up the gradient holds full alpha. Text must sit inside this
+       band or the guarantee above does not apply to it. */
+    --tk-scrim-hold: 62%;
+    /* How far from the anchor edge the wash reaches. 100% = full frame. */
+    --tk-scrim-cover: 100%;
+
+    /* The manual-level escape hatch and its bounds. 0.25 is the point below
+       which a wash stops reading as a wash; 0.88 is the point above which
+       there is no photograph left. Neither is a compliance threshold — those
+       are the three above. */
+    --tk-scrim-level-min: 0.25;
+    --tk-scrim-level-max: 0.88;
+    --tk-scrim-hover: var(--tk-scrim-aaa);
+
+    /* Frost radius over the same conceptual range. */
+    --tk-scrim-blur-min: 2px;
+    --tk-scrim-blur-base: 8px;
+    --tk-scrim-blur-max: 20px;
+
+    /* The per-instance overrides. Declared here so the lint can see them and
+       so every one has a documented default rather than appearing out of a
+       style attribute. */
+    --tk-scrim-level: var(--tk-scrim-aa);
+    --tk-scrim-frost: var(--tk-scrim-blur-base);
+
+    /* --- measure ----------------------------------------------------------
+       Set from tools/type-gate.mjs, not by eye. `ch` is the advance width of
+       the digit zero, which is wider than the average character, so a measure
+       in `ch` always renders MORE characters per line than its number
+       suggests — 68ch measured at 80 CPL, well past the comfortable band.
+       56ch lands at ~66, which is the middle of the 45-75 range.
+       ------------------------------------------------------------------- */
+    --tk-measure: 53ch;      /* measured: 66.7 CPL in Manrope (the type gate's body row) */
+    --tk-measure-narrow: 44ch; /* measured: 53.6 CPL */
+
+    /* --- target size: WCAG 2.5.8 AA is 24px ------------------------------ */
+    --tk-target-min: 24px;
+    --tk-target-comfortable: 44px;
+
+    /* --- motion -----------------------------------------------------------
+       The raw material: three durations and three curves. A component never
+       names these directly, for the same reason it never names a hex — they
+       are the ramp, not the contract.
+       -------------------------------------------------------------------- */
+    --tk-duration-fast: 120ms;
+    --tk-duration-base: 200ms;
+    --tk-duration-slow: 320ms;
+    --tk-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --tk-ease-entrance: cubic-bezier(0, 0, 0, 1);
+    --tk-ease-exit: cubic-bezier(0.3, 0, 1, 1);
+
+    /* --- motion contract ---------------------------------------------------
+       One motion token per kind of change, each a complete `<duration> <easing>`
+       so a component writes
+
+           transition: background-color var(--tk-motion-surface);
+
+       and never picks a number. Pairing motion to WHAT MOVES rather than to a
+       t-shirt size is what makes it consistent: every surface in the kit
+       changes at the same rate because they all read the same slot, and a
+       brand that wants to feel quicker moves one value rather than auditing
+       every component for stray 200ms.
+
+       These are pack slots. Pace and curve are as much a brand's property as
+       its greys — the packs below fill them, and packs/_template.css lists
+       them with the rest.
+
+       Ordered by how much of the screen each one disturbs: ink and surface
+       are instant-feeling, size and position are the slowest, because a box
+       changing shape is the one the eye actually has to follow.
+       -------------------------------------------------------------------- */
+    --tk-motion-ink: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-surface: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-line: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-elevation: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-opacity: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-transform: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-size: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-enter: var(--tk-duration-base) var(--tk-ease-entrance);
+    --tk-motion-exit: var(--tk-duration-fast) var(--tk-ease-exit);
+
+    /* --- elevation: expressed as line + shadow so a flat wireframe pack
+           can zero the shadow and keep the boundary --------------------- */
+    --tk-shadow-none: none;
+    --tk-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
+    --tk-shadow-md: 0 2px 8px rgb(0 0 0 / 0.08);
+
+    /* --- density: the single knob context turns.
+           Components multiply their own padding by it. ------------------- */
+    --tk-density: 1;
+  }
+
+  /* Density is contextual, not owned. Any ancestor can set it and every
+     component below resolves against it. */
+  [data-density="compact"] {
+    --tk-density: 0.75;
+  }
+
+  [data-density="comfortable"] {
+    --tk-density: 1.25;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Density.
+
+   Density used to be applied at the call site — `calc(var(--tk-space-5) *
+   var(--tk-density))`, written out in each component that remembered to. Six
+   files did. The shells did not, so `data-gap` ignored density entirely, and
+   neither did any section padding, so the whole compact/comfortable range moved
+   a page by about twelve pixels. A multiplier you have to remember is a
+   multiplier that is mostly absent.
+
+   So the scale carries it instead: --tk-space-* IS the ramp times the density
+   in force, and every consumer gets it for free — shells, components, and the
+   inline styles in the audit rebuilds alike. No call site multiplies any more.
+
+   Why the derivation is repeated on [data-density] rather than written once on
+   :root: a custom property is substituted at computed-value time and then
+   INHERITED AS A VALUE. Declared only on :root, --tk-space-5 would compute
+   against :root's density and descendants would inherit that number — the same
+   trap that makes a pack re-declare `color` instead of trusting the token to
+   re-resolve. Restating it on every element that can change --tk-density is
+   what makes a nested density region actually nest.
+
+   --tk-target-min is deliberately NOT in the ramp. Pointer targets have a
+   floor in WCAG 2.5.8 and density is not allowed to argue with it.
+
+   [data-brand] is in the selector for the same reason [data-density] is, and
+   it was missing until a pack tried to set its own density. A brand that owns
+   proportion sets --tk-density in its pack; without restating the ramp on
+   [data-brand] that pack inherits the space tokens ROOT already computed and
+   the density silently does nothing — the page looks identical and nothing
+   reports a problem, which is the worst kind of bug this file can have. The
+   same applies to --tk-radius-nested below: a pack that changes --tk-radius-xl
+   has to re-seed the concentric chain or every nested corner on its pages
+   keeps solving from the kit's radius instead of the brand's.
+--------------------------------------------------------------------------- */
+@layer tokens {
+  :root,
+  [data-density],
+  [data-brand] {
+    --tk-space-0: calc(var(--_space-0) * var(--tk-density));
+    --tk-space-1: calc(var(--_space-1) * var(--tk-density));
+    --tk-space-2: calc(var(--_space-2) * var(--tk-density));
+    --tk-space-3: calc(var(--_space-3) * var(--tk-density));
+    --tk-space-4: calc(var(--_space-4) * var(--tk-density));
+    --tk-space-5: calc(var(--_space-5) * var(--tk-density));
+    --tk-space-6: calc(var(--_space-6) * var(--tk-density));
+    --tk-space-7: calc(var(--_space-7) * var(--tk-density));
+    --tk-space-8: calc(var(--_space-8) * var(--tk-density));
+    --tk-space-9: calc(var(--_space-9) * var(--tk-density));
+
+    /* The seed for the concentric chain below: a container with nothing
+       around it rounds at --tk-radius-xl (was lg; lg is now a mid step). Re-stated here because the space
+       ramp changes with density and so does every subtraction downstream. */
+    --tk-radius-nested: var(--tk-radius-xl);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Concentric radii.
+
+   One rule, everywhere: **the inner radius is the outer radius less the gap
+   between them.** Two rounded boxes whose arcs do not share a centre look
+   approximate no matter how careful the rest of the page is, and the eye
+   catches it long before anyone can say why. A system that picks radius-sm for
+   inner things and radius-lg for outer things is guessing at that centre
+   rather than computing it.
+
+   A single global "nested radius" token cannot express this, which is what the
+   kit had and what was wrong with it: the correct inner radius depends on
+   which container you are in and how much padding that container has. A card
+   inset by space-5 and an alert inset by space-4 do not want the same number.
+
+   So --tk-radius-nested is a running total. Every rounded container does this:
+
+     :where([data-tk="thing"]) {
+       --_radius: var(--tk-radius-nested);      what I was handed
+       --_radius-gap: var(--tk-space-5);        what I inset my children by
+       border-radius: var(--_radius);
+     }
+     :where([data-tk="thing"]) > * {
+       --tk-radius-nested: max(0px, calc(var(--_radius) - var(--_radius-gap)));
+     }
+
+   The subtraction is published on the CHILDREN, not on the container, and that
+   is not a style choice — it is the only arrangement that works. A custom
+   property reference resolves against the element's OWN computed value, so a
+   container that both reads --tk-radius-nested and re-declares it is a cycle:
+   both properties become guaranteed-invalid, border-radius falls back to its
+   initial value, and every rounded box on the page silently squares off. That
+   is exactly what the first version of this did. Declaring on `> *` reads the
+   inherited value on one element and writes on another, so there is no cycle.
+
+   Three things are deliberately outside the chain:
+
+   - Capsules. --tk-radius-full is a shape, not a rounded rectangle. A pill
+     inside a card stays a pill; subtracting a gap from it is meaningless.
+   - Bleeding surfaces. A child flush to its parent's edge has no gap to
+     subtract, so it takes the parent's corners exactly and the parent clips.
+   - Square things. Zero stays zero; max() already guarantees it.
+
+   tools/radius-gate.mjs walks every built story and checks the arithmetic.
+--------------------------------------------------------------------------- */

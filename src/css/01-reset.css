@@ -1,0 +1,90 @@
+/* ---------------------------------------------------------------------------
+   Reset. Lineage: box-sizing inheritance, modern-css-reset media defaults,
+   :focus-visible. Deliberately small — it normalizes, it does not style.
+--------------------------------------------------------------------------- */
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* No font-size here. The user's browser setting is the root em and we
+       do not override it — WCAG 1.4.4 is tested against exactly that. */
+  }
+
+  body {
+    min-height: 100svh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  /* Zero-specificity so anything downstream cascades over without a fight. */
+  :where(a) {
+    color: inherit;
+  }
+
+  /* A list used as a layout shell is still a list semantically — which is the
+     point, it keeps the item count and list role — but it is not a bulleted
+     list visually. Classed lists were already covered; data-shell was not, so
+     every grid or stack built on a <ul> rendered its markers. */
+  :where(ul, ol):is([class], [data-shell]) {
+    list-style: none;
+    padding: 0;
+  }
+
+  /* Focus: never remove the indicator, only replace it. */
+  :focus-visible {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+
+  :where(:focus:not(:focus-visible)) {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

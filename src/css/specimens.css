@@ -1,0 +1,19 @@
+/* ---------------------------------------------------------------------------
+   tokenkit — specimen packs.
+
+   Six unrelated identities filling the same slots, which is the only way to
+   show that a brand arriving is a pack arriving. Emitted from
+   tools/gen-specimen-packs.mjs; see that file for why two of the six cannot
+   put their brand colour where a brand colour usually goes.
+
+   Storybook and the contrast fixture load this. `tokenkit/css` does not: a
+   product ships its own pack, not six invented ones, and these were a third
+   of every consumer's stylesheet. Load it after index.css.
+--------------------------------------------------------------------------- */
+
+@import url("./packs/tk.css");
+@import url("./packs/door-shop.css");
+@import url("./packs/mohave.css");
+@import url("./packs/bathing-bagels.css");
+@import url("./packs/wandas.css");
+@import url("./packs/muncheese.css");

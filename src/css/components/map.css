@@ -1,0 +1,210 @@
+/* Map — MapLibre canvas with token-styled control chrome. */
+@layer components {
+  :where([data-tk="map"]) {
+    --_ratio: 16 / 9;
+    position: relative;
+    display: grid;
+    overflow: clip;
+    isolation: isolate;
+    aspect-ratio: var(--_ratio);
+    min-block-size: 14rem;
+    border: 1px solid var(--tk-line-subtle);
+    border-radius: var(--tk-radius-nested);
+    background: var(--tk-surface-sunken, var(--tk-surface-default));
+    color: var(--tk-text-primary);
+  }
+
+  /* Waiting for the reader to arrive.
+
+     MapLazy renders this box, at the map's exact ratio, and only fetches
+     maplibre (~800 KB) once the box is within a screen of the viewport. It
+     holds the space so nothing shifts when the map replaces it, and it is a
+     drawn surface rather than an empty grey rectangle — the same argument as
+     plate.css, that an absence invites a revision and a texture does not. */
+  :where([data-tk="map"][data-pending]) {
+    background-image:
+      linear-gradient(
+        to bottom,
+        var(--tk-surface-raised) 0%,
+        var(--tk-surface-sunken) 100%
+      );
+  }
+
+  :where([data-tk="map"][data-pending])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-color: var(--tk-texture-ink);
+    mask-image: var(--tk-texture-rule);
+    mask-size: 12px 12px;
+    mask-repeat: repeat;
+  }
+
+  /* The facade's button, centred in the placeholder. The host is a grid whose
+     items would otherwise stretch, so a 21/9 panel would get a button the full
+     width of the page. z-index clears the texture overlay above. */
+  :where([data-tk="map"][data-pending] [data-map-activate]) {
+    place-self: center;
+    z-index: 1;
+  }
+
+  :where([data-tk="map-canvas"]) {
+    grid-area: 1 / 1;
+    min-inline-size: 0;
+    min-block-size: 0;
+    block-size: 100%;
+    inline-size: 100%;
+  }
+
+  :where([data-tk="map"] .maplibregl-map) {
+    font: inherit;
+  }
+
+  :where([data-tk="map"] .maplibregl-ctrl-group) {
+    /* Floating chrome over the map, not a padded inset child. Shares the
+       host's nested radius by inheritance on purpose — not outer-minus-gap
+       (map has no content padding; geometric inset is MapLibre layout). */
+    overflow: clip;
+    border: 1px solid var(--tk-line-subtle);
+    border-radius: var(--tk-radius-nested);
+    background: rgb(from var(--tk-surface-default) r g b / 0.92);
+    box-shadow: none;
+    backdrop-filter: blur(var(--tk-scrim-frost, 8px));
+    -webkit-backdrop-filter: blur(var(--tk-scrim-frost, 8px));
+  }
+
+  :where([data-tk="map"] .maplibregl-ctrl-group button) {
+    inline-size: var(--tk-target-min);
+    block-size: var(--tk-target-min);
+    background-color: transparent;
+  }
+
+  :where([data-tk="map"] .maplibregl-ctrl-group button + button) {
+    border-block-start: 1px solid var(--tk-line-subtle);
+  }
+
+  :where([data-tk="map"] .maplibregl-ctrl-group button:hover) {
+    background-color: var(--tk-action-fill-hover, var(--tk-surface-raised, transparent));
+  }
+
+  :where([data-tk="map"] .maplibregl-ctrl-group button:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: -2px;
+  }
+
+  :where([data-tk="map"] .maplibregl-ctrl-icon) {
+    filter: none;
+  }
+
+  /* Keep control glyphs readable on both packs — ink follows text token. */
+  :where([data-tk="map"] .maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon),
+  :where([data-tk="map"] .maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon),
+  :where([data-tk="map"] .maplibregl-ctrl button.maplibregl-ctrl-compass .maplibregl-ctrl-icon),
+  :where([data-tk="map"] .maplibregl-ctrl button.maplibregl-ctrl-fullscreen .maplibregl-ctrl-icon),
+  :where([data-tk="map"] .maplibregl-ctrl button.maplibregl-ctrl-shrink .maplibregl-ctrl-icon),
+  :where([data-tk="map"] .maplibregl-ctrl button.maplibregl-ctrl-geolocate .maplibregl-ctrl-icon) {
+    background-color: transparent;
+  }
+
+  :where([data-tk="map"][data-scheme="dark"] .maplibregl-ctrl-group) {
+    background: rgb(from var(--tk-surface-default) r g b / 0.88);
+  }
+
+  :where([data-tk="map"] .maplibregl-ctrl-scale) {
+    border-color: var(--tk-text-secondary);
+    color: var(--tk-text-secondary);
+    background: rgb(from var(--tk-surface-default) r g b / 0.85);
+    font-size: var(--tk-size-xs);
+    border-radius: var(--tk-radius-nested);
+    padding-inline: var(--tk-space-2);
+  }
+
+  :where([data-tk="map"] .maplibregl-ctrl-attrib) {
+    background: rgb(from var(--tk-surface-default) r g b / 0.8);
+    color: var(--tk-text-tertiary);
+    font-size: var(--tk-size-xs);
+    border-radius: var(--tk-radius-nested);
+  }
+
+  :where([data-tk="map"] .maplibregl-ctrl-attrib a) {
+    color: inherit;
+  }
+
+  :where([data-tk="map"] .maplibregl-marker) {
+    color: var(--tk-text-primary);
+  }
+
+  /* --- basemap placeholder and control chrome ---------------------------
+     These five rules used to sit AFTER the closing brace of @layer components,
+     which made them unlayered — and an unlayered rule beats every layered rule
+     in the kit regardless of specificity, including anything a brand pack says.
+     A component that silently outranks the pack is the one thing the layer
+     order exists to prevent. Back inside.
+
+     The control chrome is deliberately the same in both packs. It floats on a
+     basemap nobody controls, so it owns both sides of its own pair rather than
+     inheriting one — the same argument as [data-on="scrim"], in the opposite
+     direction: light glass, dark ink.
+     -------------------------------------------------------------------- */
+  :where([data-tk="map"][data-scheme="light"]) {
+    background: var(--tk-surface-sunken);
+  }
+
+  :where([data-tk="map"][data-scheme="dark"]) {
+    background: var(--tk-surface-inverse);
+  }
+
+  :where([data-tk="map"] .maplibregl-ctrl-group) {
+    background: color-mix(in srgb, var(--tk-glass-fill) 92%, transparent);
+    border-color: var(--tk-glass-line);
+    color: var(--tk-glass-ink);
+  }
+
+  :where([data-tk="map"][data-scheme="dark"] .maplibregl-ctrl-group button) {
+    filter: none;
+  }
+
+  /* --- exited --------------------------------------------------------------
+     What a map looks like when it has admitted it is not one.
+
+     The box keeps its ratio and its corner, so a basemap that fails after
+     first paint costs zero layout shift — the failure swaps the contents of
+     a box that was already the right size.
+
+     Everything here is a token. The ground is the sunken surface rather than
+     a warning colour, because this is an absence and not a hazard: nothing
+     the reader did caused it and there is nothing for them to fix. The
+     meaning is carried by the icon and the sentence; if this block were
+     rendered with no colour at all it would still say exactly what it says.
+     -------------------------------------------------------------------- */
+  :where([data-tk="map"][data-failed]) {
+    display: grid;
+    place-items: center;
+    padding: var(--tk-space-5);
+    background-color: var(--tk-surface-sunken);
+    border: 1px dashed var(--tk-line-strong);
+  }
+
+  :where([data-tk="map-exit"]) {
+    display: grid;
+    justify-items: center;
+    gap: var(--tk-space-2);
+    text-align: center;
+    max-inline-size: var(--tk-measure-narrow);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="map-exit"]) > p {
+    margin: 0;
+  }
+
+  :where([data-tk="map-exit"]) :where(strong) {
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="map-exit-note"]) {
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-tertiary);
+  }
+}

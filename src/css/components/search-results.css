@@ -1,0 +1,239 @@
+/* Search results — type-filtered list with mark highlight. */
+@layer components {
+  :where([data-tk="search-results"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-4);
+    max-inline-size: 40rem;
+  }
+
+  /* Joins the concentric chain: outer radius is whatever the parent handed
+     us; children get outer minus this toolbar's padding. Hardcoding lg here
+     broke nesting inside cards (toolbar arcs larger than the host). */
+  :where([data-tk="search-results-toolbar"]) {
+    --_radius: var(--tk-radius-nested);
+    --_radius-gap: var(--tk-space-4);
+    --_results-out: max(0px, calc(var(--_radius) - var(--_radius-gap)));
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-3);
+    padding: var(--tk-space-4);
+    background: var(--tk-surface-raised);
+    border: 1px solid var(--tk-line-default);
+    border-radius: var(--_radius);
+  }
+
+  :where([data-tk="search-results-toolbar"]) > * {
+    --tk-radius-nested: var(--_results-out);
+  }
+
+  :where([data-tk="search-results-types"]) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="search-results-count"]) {
+    margin: 0;
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="search-results-list"]) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="search-results-item"]) {
+    margin: 0;
+  }
+
+  /* A link joins the chain AND continues it. It used to only take
+     --tk-radius-nested and stop, which meant its own children inherited the
+     link's outer radius unchanged — a 3rem thumbnail rounded to the row's
+     full 32px, sitting one padding inside it. Publishing the subtraction is
+     what makes a chain a chain. */
+  :where([data-tk="search-results-link"]) {
+    --_radius: var(--tk-radius-nested);
+    --_radius-gap: var(--tk-space-4);
+    --_results-out: max(0px, calc(var(--_radius) - var(--_radius-gap)));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tk-space-3);
+    padding: var(--tk-space-3) var(--tk-space-4);
+    text-decoration: none;
+    color: inherit;
+    background: var(--tk-surface-default);
+    border: 1px solid var(--tk-line-default);
+    border-radius: var(--_radius);
+    transition:
+      border-color var(--tk-motion-line),
+      background-color var(--tk-motion-surface);
+  }
+
+  :where([data-tk="search-results-link"]) > * {
+    --tk-radius-nested: var(--_results-out);
+  }
+
+  /* Media is a flex child here — without grow + min-inline-size it collapses
+     and the description wraps one glyph per line. */
+  :where([data-tk="search-results-link"] [data-tk="media"]) {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="search-results-link"] > [data-tk="icon"]) {
+    flex: 0 0 auto;
+  }
+
+  :where([data-tk="search-results-link"] [data-tk="media"]) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  :where([data-tk="search-results-link"] [data-tk="media-figure"]) {
+    flex: 0 0 3rem;
+    inline-size: 3rem;
+    aspect-ratio: 1;
+  }
+
+
+  :where(a[data-tk="search-results-link"]) {
+    transition:
+      border-color var(--tk-motion-line),
+      background-color var(--tk-motion-surface),
+      transform var(--tk-motion-transform),
+      box-shadow var(--tk-motion-elevation);
+  }
+
+  :where(a[data-tk="search-results-link"]:hover),
+  :where(a[data-tk="search-results-link"]:focus-visible) {
+    border-color: var(--tk-line-strong);
+    background: var(--tk-surface-raised);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--tk-text-primary) 8%, transparent);
+  }
+
+  :where(a[data-tk="search-results-link"]:hover [data-tk="search-results-chevron"]),
+  :where(a[data-tk="search-results-link"]:focus-visible [data-tk="search-results-chevron"]) {
+    transform: translateX(3px);
+  }
+
+  :where([data-tk="search-results-chevron"]) {
+    display: inline-flex;
+    transition: transform var(--tk-motion-transform);
+    color: var(--tk-text-secondary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(a[data-tk="search-results-link"]),
+    :where([data-tk="search-results-chevron"]) {
+      transition: none;
+    }
+    :where(a[data-tk="search-results-link"]:hover),
+    :where(a[data-tk="search-results-link"]:focus-visible) {
+      transform: none;
+    }
+  }
+
+
+  :where([data-tk="search-results-row-text"]) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--tk-space-1);
+    min-inline-size: 0;
+    flex: 1 1 auto;
+  }
+
+  :where([data-tk="search-results-row-text"] [data-tk="search-results-title"]),
+  :where([data-tk="search-results-row-text"] [data-tk="search-results-desc"]),
+  :where([data-tk="search-results-row-text"] [data-tk="search-results-meta"]) {
+    align-self: stretch;
+  }
+
+  :where([data-tk="search-results-type"]) {
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-semibold);
+    letter-spacing: var(--tk-tracking-wide, 0.04em);
+    text-transform: uppercase;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="search-results-title"]) {
+    font-size: var(--tk-size-base);
+    font-weight: var(--tk-weight-semibold);
+  }
+
+  :where([data-tk="search-results-desc"]) {
+    margin: 0;
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  :where([data-tk="search-results-meta"]) {
+    font-size: var(--tk-size-xs);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="search-results-mark"]) {
+    display: grid;
+    place-items: center;
+    inline-size: 100%;
+    block-size: 100%;
+    font-weight: var(--tk-weight-bold);
+    background: var(--tk-surface-sunken);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="search-mark"]) {
+    background: color-mix(in srgb, var(--tk-action-fill) 28%, transparent);
+    color: inherit;
+    padding-inline: 0.1em;
+    border-radius: 0.15em;
+  }
+
+  :where([data-tk="search-results-empty"]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tk-space-3);
+    padding: var(--tk-space-7) var(--tk-space-5);
+    text-align: center;
+    color: var(--tk-text-secondary);
+    border: 1px dashed var(--tk-line-default);
+    border-radius: var(--tk-radius-nested);
+  }
+
+  :where([data-tk="search-results-empty"] p) {
+    margin: 0;
+    max-inline-size: 24rem;
+  }
+
+  @keyframes tk-rise-row {
+    from { opacity: 0; transform: translateY(0.4rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  :where([data-tk="search-results-item"]) {
+    animation: tk-rise-row var(--tk-duration-base) var(--tk-ease-entrance) both;
+  }
+
+  :where([data-tk="search-results-item"]:nth-child(1)) { animation-delay: 0ms; }
+  :where([data-tk="search-results-item"]:nth-child(2)) { animation-delay: 40ms; }
+  :where([data-tk="search-results-item"]:nth-child(3)) { animation-delay: 80ms; }
+  :where([data-tk="search-results-item"]:nth-child(4)) { animation-delay: 120ms; }
+  :where([data-tk="search-results-item"]:nth-child(5)) { animation-delay: 150ms; }
+  :where([data-tk="search-results-item"]:nth-child(n + 6)) { animation-delay: 170ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="search-results-item"]) { animation: none; }
+  }
+}

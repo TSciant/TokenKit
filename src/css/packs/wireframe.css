@@ -1,0 +1,296 @@
+/* ---------------------------------------------------------------------------
+   Pack: wireframe
+
+   Pure grayscale. This is the delivered appearance for an unbranded,
+   grayscale wireframe prototype. It is also the reference pack — every other
+   pack fills the same slots.
+
+   Values are true neutrals (R = G = B). Every text-on-surface pair below is
+   verified by tools/contrast-gate.mjs against computed values in the browser,
+   not asserted here. Ratios in comments are the expected result.
+
+   Applied at :root so the kit renders correctly with no attribute set, and
+   at [data-brand="wireframe"] so it can be scoped to a subtree.
+--------------------------------------------------------------------------- */
+
+@layer tokens {
+  :root,
+  [data-brand="wireframe"] {
+    /* --- pack-private ramp -------------------------------------------------
+       Nothing outside this file reads --wf-*. Components read --tk-* only. */
+    --wf-0: #ffffff;
+    --wf-50: #fafafa;
+    --wf-100: #f4f4f4;
+    --wf-150: #ededed;
+    --wf-200: #e4e4e4;
+    --wf-300: #d0d0d0;
+    --wf-400: #a8a8a8;
+    --wf-500: #808080;
+    --wf-600: #636363;
+    --wf-700: #4a4a4a;
+    --wf-800: #333333;
+    --wf-900: #1f1f1f;
+    --wf-950: #0f0f0f;
+    --wf-1000: #000000;
+
+    /* --- the contract ---------------------------------------------------- */
+
+    /* surface */
+    --tk-surface-base: var(--wf-100);
+    --tk-surface-default: var(--wf-0);
+    --tk-surface-raised: var(--wf-0);
+    --tk-surface-sunken: var(--wf-200);
+    --tk-surface-inverse: var(--wf-900);
+
+    /* text — ratios against --tk-surface-default (#ffffff) */
+    --tk-text-primary: var(--wf-900); /* 16.48:1  AAA */
+    --tk-text-secondary: var(--wf-700); /*  8.86:1  AAA */
+    --tk-text-tertiary: var(--wf-600); /*  6.01:1  AAA */
+    --tk-text-inverse: var(--wf-0); /* on --tk-surface-inverse: 16.48:1 */
+    --tk-text-disabled: var(--wf-500); /*  3.95:1  — 1.4.3 exempts disabled */
+
+    /* line — --tk-line-strong is the one used on anything a user operates,
+       because 1.4.11 wants 3:1 for UI component boundaries.
+       subtle and default are decorative only. */
+    /* Decorative strokes — soft opacity so boxes whisper, not shout.
+       --tk-line-strong stays solid for operable UI (1.4.11). */
+    --tk-line-subtle: color-mix(in srgb, var(--wf-500) 22%, transparent);
+    --tk-line-default: color-mix(in srgb, var(--wf-500) 34%, transparent);
+    /* --- scrim and texture ------------------------------------------------
+       The alphas are arithmetic and live in the scale. The ink is a colour,
+       so it lives here. --tk-scrim-ink must stay the darkest value the pack
+       has: every alpha in the scale was solved against a black wash, and a
+       lighter ink invalidates all three at once. --tk-texture-ink is meant to
+       be barely there — it decorates and never informs. */
+    --tk-scrim-ink: var(--wf-1000);
+    /* Glass: chrome floating on imagery the pack does not control. Identical
+       in every pack, for the same reason [data-on="scrim"] is — see the note
+       in 02-property.css. */
+    --tk-glass-fill: var(--wf-0);
+    --tk-glass-ink: var(--wf-950);
+    --tk-glass-line: var(--wf-300);
+
+    /* --- motion -----------------------------------------------------------
+       Pace and curve are brand properties, so the pack sets them. These are
+       the kit's defaults restated; a brand that wants to feel quicker or
+       softer changes them here and every component follows.
+       -------------------------------------------------------------------- */
+    --tk-motion-ink: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-surface: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-line: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-elevation: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-opacity: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-transform: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-size: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-enter: var(--tk-duration-base) var(--tk-ease-entrance);
+    --tk-motion-exit: var(--tk-duration-fast) var(--tk-ease-exit);
+
+    --tk-text-on-scrim: var(--wf-0);
+    --tk-texture-ink: var(--wf-300);
+    /* logo — grayscale, like everything else here.
+       A brand pack is where these stop being grey; see _template.css. */
+    --tk-logo-ink: var(--wf-900);
+    --tk-logo-mark-ink: var(--wf-900);
+    --tk-logo-word-ink: var(--wf-900);
+    --tk-logo-tagline-ink: var(--wf-600);
+    --tk-logo-tile: var(--wf-100);
+
+    --tk-line-strong: var(--wf-500); /*  3.95:1  UI boundary */
+
+    /* action */
+    --tk-action-fill: var(--wf-900);
+    --tk-action-fill-hover: var(--wf-800);
+    --tk-action-fill-active: var(--wf-1000);
+    --tk-action-text: var(--wf-0); /* 16.48:1 on fill */
+
+    --tk-action-quiet-fill: transparent;
+    --tk-action-quiet-fill-hover: var(--wf-100);
+    --tk-action-quiet-text: var(--wf-900);
+
+    /* focus */
+    --tk-focus-color: var(--wf-900); /* 16.48:1 on default surface */
+    /* A bare graphic against its own track — see --tk-data-ink in
+       02-property.css for why this is not --tk-action-fill. */
+    --tk-data-ink: var(--wf-900); /* 16.48:1 on default surface */;
+
+    /* status — a grayscale pack has no hue to spend, so status is carried by
+       weight and boundary. A brand pack replaces these with hue and the
+       components do not change. */
+    --tk-status-info-line: var(--wf-500);
+    --tk-status-info-surface: var(--wf-100);
+    --tk-status-info-text: var(--wf-900);
+
+    --tk-status-success-line: var(--wf-600);
+    --tk-status-success-surface: var(--wf-100);
+    --tk-status-success-text: var(--wf-900);
+
+    --tk-status-warning-line: var(--wf-600);
+    --tk-status-warning-surface: var(--wf-150);
+    --tk-status-warning-text: var(--wf-900);
+
+    --tk-status-danger-line: var(--wf-900);
+    --tk-status-danger-surface: var(--wf-150);
+    --tk-status-danger-text: var(--wf-900);
+
+    /* elevation: flat. The boundary carries the depth. */
+    --tk-shadow-sm: none;
+    --tk-shadow-md: none;
+  }
+
+
+  /* --- painting -----------------------------------------------------------
+     A pack applied to a subtree has to paint, and this is not cosmetic.
+
+     Custom properties inherit, but an already-computed inherited property does
+     not re-resolve further down. `:where(body)` computes `color:
+     var(--tk-text-primary)` once, against whatever pack is in force at the
+     body; a <p> three levels down has no colour declaration of its own, so it
+     inherits that computed value. Remapping the token underneath it changes
+     nothing, and the text renders in the outer pack's ink on the inner pack's
+     ground.
+
+     So the element that switches packs re-declares colour and background. This
+     rule sits in the tokens layer, which the elements layer comes after, so it
+     does not fight `:where(body)` at the root — it only takes effect where a
+     pack is scoped mid-tree, which is exactly where it is needed.
+     ---------------------------------------------------------------------- */
+  [data-brand="wireframe"] {
+    background-color: var(--wf-100);
+    color: var(--wf-900);
+  }
+
+  /* --- inverse context ---------------------------------------------------
+     Every slot that has to move when a subtree sits on the dark surface.
+     Components are not told they are on a dark background; the context
+     re-resolves the same slots they were already reading.
+
+     The set is deliberately complete. Remapping only --tk-text-primary leaves
+     quiet buttons, borders and focus rings resolving against the light
+     surface, which is invisible ink on a dark plate — a failure that looks
+     like a missing element rather than a contrast bug. */
+  :where([data-on="inverse"]),
+  [data-brand="wireframe"] :where([data-on="inverse"]) {
+    /* Paint from the ramp, not from --tk-surface-inverse. The element that
+       flips the context also remaps that slot, so painting from it would
+       resolve against the new value and flip straight back to light. */
+    background-color: var(--wf-900);
+    color: var(--wf-0);
+
+    --tk-surface-default: var(--wf-900);
+    --tk-surface-base: var(--wf-900);
+    --tk-surface-raised: var(--wf-800);
+    --tk-surface-sunken: var(--wf-950);
+    --tk-surface-inverse: var(--wf-0);
+
+    --tk-text-primary: var(--wf-0); /* 16.48:1 on wf-900 */
+    --tk-text-secondary: var(--wf-300); /*  9.80:1 */
+    --tk-text-tertiary: var(--wf-400); /*  6.15:1 */
+    --tk-text-inverse: var(--wf-900);
+    --tk-text-disabled: var(--wf-500);
+
+    --tk-line-subtle: color-mix(in srgb, var(--wf-0) 14%, transparent);
+    --tk-line-default: color-mix(in srgb, var(--wf-0) 22%, transparent);
+    /* --- scrim and texture ------------------------------------------------
+       The alphas are arithmetic and live in the scale. The ink is a colour,
+       so it lives here. --tk-scrim-ink must stay the darkest value the pack
+       has: every alpha in the scale was solved against a black wash, and a
+       lighter ink invalidates all three at once. --tk-texture-ink is meant to
+       be barely there — it decorates and never informs. */
+    --tk-scrim-ink: var(--wf-1000);
+    --tk-text-on-scrim: var(--wf-0);
+    --tk-texture-ink: var(--wf-700);
+    /* logo — on inverse paper. */
+    --tk-logo-ink: var(--wf-0);
+    --tk-logo-mark-ink: var(--wf-0);
+    --tk-logo-word-ink: var(--wf-0);
+    --tk-logo-tagline-ink: var(--wf-300);
+    --tk-logo-tile: color-mix(in srgb, var(--wf-0) 14%, transparent);
+
+    --tk-line-strong: var(--wf-400); /*  6.15:1 as a boundary */
+
+    --tk-action-fill: var(--wf-0);
+    --tk-action-fill-hover: var(--wf-200);
+    --tk-action-fill-active: var(--wf-300);
+    --tk-action-text: var(--wf-900);
+
+    --tk-action-quiet-fill: transparent;
+    --tk-action-quiet-fill-hover: var(--wf-800);
+    --tk-action-quiet-text: var(--wf-0);
+
+    --tk-focus-color: var(--wf-0);
+    /* A bare graphic against its own track — see --tk-data-ink in
+       02-property.css for why this is not --tk-action-fill. */
+    --tk-data-ink: var(--wf-0);
+
+    --tk-status-info-line: var(--wf-400);
+    --tk-status-info-surface: var(--wf-800);
+    --tk-status-info-text: var(--wf-0);
+    --tk-status-success-line: var(--wf-400);
+    --tk-status-success-surface: var(--wf-800);
+    --tk-status-success-text: var(--wf-0);
+    --tk-status-warning-line: var(--wf-300);
+    --tk-status-warning-surface: var(--wf-800);
+    --tk-status-warning-text: var(--wf-0);
+    --tk-status-danger-line: var(--wf-0);
+    --tk-status-danger-surface: var(--wf-800);
+    --tk-status-danger-text: var(--wf-0);
+  }
+
+  /* --- on a scrim --------------------------------------------------------
+     A context, not a component rule — which is why it lives in the pack with
+     the others, and why it is a COMPLETE slot set rather than a text colour.
+
+     It exists because [data-on="inverse"] could not do this job. Inverse means
+     "the opposite of whatever this pack defaults to", so it is light ink in a
+     light pack and DARK ink in a dark one. A scrim's wash is the pack's
+     darkest value in both packs, because that is what the alphas were solved
+     against — so borrowing inverse put near-black controls on a near-black
+     wash under wireframe-dark, at 2.28:1.
+
+     This block is therefore deliberately IDENTICAL in every pack. The ground
+     it sits on is the same ground everywhere.
+
+     Two rules for anything added here. Nothing paints a background: the wash
+     is the ground, and painting over it would hide the photograph the scrim
+     exists to sit on. And nothing de-emphasises by colour — secondary and
+     tertiary collapse onto the primary ink, because a scrim has exactly the
+     contrast headroom the alpha bought it and none spare. Hierarchy on a
+     scrim comes from size and weight.
+     -------------------------------------------------------------------- */
+  :where([data-on="scrim"], [data-tk="scrim-content"]),
+  [data-brand="wireframe"] :where([data-on="scrim"], [data-tk="scrim-content"]) {
+    color: var(--wf-0);
+
+    --tk-text-primary: var(--wf-0);
+    --tk-text-secondary: var(--wf-0);
+    --tk-text-tertiary: var(--wf-0);
+    --tk-text-inverse: var(--wf-1000);
+    --tk-text-disabled: var(--wf-300);
+
+    /* A boundary on a wash has to clear 3:1 against the wash's worst case,
+       which is a light composite. White is the only value that always does. */
+    --tk-line-subtle: var(--wf-300);
+    --tk-line-default: var(--wf-0);
+    --tk-line-strong: var(--wf-0);
+
+    /* Controls are their own opaque boxes, so they carry their own pair. */
+    --tk-action-fill: var(--wf-0);
+    --tk-action-fill-hover: var(--wf-200);
+    --tk-action-fill-active: var(--wf-300);
+    --tk-action-text: var(--wf-1000);
+
+    /* Outline / quiet controls are glass chips on the wash: dark ink at high
+       alpha is the ground (contrast), frost on the button is middle-ground
+       craft (see hero.css). Transparent fill failed AA whenever the photo
+       composite lightened past the wash's worst-case budget. */
+    --tk-action-quiet-fill: color-mix(in srgb, var(--tk-scrim-ink) 72%, transparent);
+    --tk-action-quiet-fill-hover: color-mix(in srgb, var(--tk-scrim-ink) 88%, transparent);
+    --tk-action-quiet-fill-active: color-mix(in srgb, var(--tk-scrim-ink) 94%, transparent);
+    --tk-action-quiet-text: var(--wf-0);
+
+    --tk-focus-color: var(--wf-0);
+    /* A bare graphic against its own track — see --tk-data-ink in
+       02-property.css for why this is not --tk-action-fill. */
+    --tk-data-ink: var(--wf-0);
+  }
+}

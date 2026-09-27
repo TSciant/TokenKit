@@ -1,0 +1,141 @@
+/* Modal - composable dialog chrome + enter/exit motion on --tk-motion-*. */
+@layer components {
+  :where([data-tk="modal"]) {
+    /* The browser centres a modal dialog with margin: auto. The reset's
+       `* { margin: 0 }` is an author rule, so it beats that and pins every
+       dialog to the top-left corner; this puts the centring back. */
+    margin: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-inline-size: min(92vw, 36rem);
+    width: min(92vw, 36rem);
+    color: inherit;
+
+    /* Closed resting pose - animates to open via [open] + @starting-style. */
+    opacity: 0;
+    transform: translateY(0.85rem) scale(0.97);
+    transition:
+      opacity var(--tk-motion-exit),
+      transform var(--tk-motion-exit),
+      overlay var(--tk-duration-base) allow-discrete,
+      display var(--tk-duration-base) allow-discrete;
+  }
+
+  :where([data-tk="modal"][data-size="sm"]) {
+    max-inline-size: min(92vw, 24rem);
+    width: min(92vw, 24rem);
+  }
+
+  :where([data-tk="modal"][data-size="lg"]) {
+    max-inline-size: min(94vw, 44rem);
+    width: min(94vw, 44rem);
+  }
+
+  :where([data-tk="modal"][open]) {
+    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition:
+      opacity var(--tk-motion-enter),
+      transform var(--tk-motion-enter),
+      overlay var(--tk-duration-base) allow-discrete,
+      display var(--tk-duration-base) allow-discrete;
+  }
+
+  /* First frame when opening - browser applies this then transitions to [open]. */
+  @starting-style {
+    :where([data-tk="modal"][open]) {
+      opacity: 0;
+      transform: translateY(0.85rem) scale(0.97);
+    }
+  }
+
+  :where([data-tk="modal"])::backdrop {
+    background: color-mix(in srgb, var(--tk-scrim-ink) 58%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity var(--tk-motion-exit);
+  }
+
+  :where([data-tk="modal"][open])::backdrop {
+    opacity: 1;
+    transition: opacity var(--tk-motion-enter);
+  }
+
+  @starting-style {
+    :where([data-tk="modal"][open])::backdrop {
+      opacity: 0;
+    }
+  }
+
+  :where([data-tk="modal-panel"]) {
+    --_radius: var(--tk-radius-xl);
+    --_radius-gap: var(--tk-space-5);
+    --_modal-out: max(0px, calc(var(--_radius) - var(--_radius-gap)));
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-4);
+    padding: var(--tk-space-5);
+    background-color: var(--tk-surface-raised);
+    color: var(--tk-text-primary);
+    border: 1px solid var(--tk-line-default);
+    border-radius: var(--_radius);
+    box-shadow:
+      var(--tk-shadow-md),
+      0 24px 48px color-mix(in srgb, var(--tk-scrim-ink) 18%, transparent);
+  }
+
+  :where([data-tk="modal-panel"] > *) {
+    --tk-radius-nested: var(--_modal-out);
+  }
+
+  :where([data-tk="modal-header"]) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--tk-space-3);
+  }
+
+  :where([data-tk="modal-title"]) {
+    margin: 0;
+    font-size: var(--tk-size-xl);
+    font-weight: var(--tk-weight-semibold);
+    letter-spacing: var(--tk-tracking-snug);
+    line-height: var(--tk-leading-tight);
+  }
+
+  :where([data-tk="modal-body"]) {
+    font-size: var(--tk-size-base);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="modal-footer"]) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--tk-space-3);
+    padding-block-start: var(--tk-space-2);
+    border-block-start: 1px solid var(--tk-line-default);
+  }
+
+  /* Trigger affordance - optional data-attr on the opener button. */
+  :where([data-tk="button"][data-modal-trigger]) {
+    position: relative;
+  }
+
+  :where([data-tk="modal-trigger"][data-busy-open]) {
+    /* Reserved for async open states */
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="modal"]),
+    :where([data-tk="modal"][open]),
+    :where([data-tk="modal"])::backdrop,
+    :where([data-tk="modal"][open])::backdrop {
+      transition: none;
+      transform: none;
+    }
+  }
+}

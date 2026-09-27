@@ -1,0 +1,294 @@
+/* ---------------------------------------------------------------------------
+   Registered custom properties.
+
+   Registration buys three things an unregistered property does not have:
+
+   1. A type. `--tk-space-4: bananas` is rejected at parse time and falls back
+      to initial-value, instead of silently poisoning every declaration that
+      references it with guaranteed-invalid.
+   2. An initial value. The kit still renders if a pack fails to load.
+   3. Interpolation. Registered <length> and <color> properties animate;
+      unregistered ones snap.
+
+   Only the contract is registered. Pack-private values are not — they are
+   plumbing and get no guarantees.
+--------------------------------------------------------------------------- */
+
+/* --- space ----------------------------------------------------------------
+   The initial values are in PIXELS and the real values, in 03-scale.css, are
+   in rem. That is not an inconsistency, it is the only thing that works.
+
+   `initial-value` on a registered <length> must be COMPUTATIONALLY
+   INDEPENDENT — it cannot depend on a font size, a root font size or a
+   viewport, because it has to be resolvable before any of those exist.
+   `0.25rem` is dependent, so `@property --tk-space-1 { initial-value:
+   0.25rem }` is an invalid rule, and an invalid @property is DISCARDED IN
+   SILENCE. No warning, no error, and the source looks identical to a rule
+   that worked.
+
+   Every one of these nine was discarded from the day this file was written.
+   The ramp had no type, no fallback and no interpolation — the three things
+   the header above promises — and `--tk-space-5: bananas` computed to
+   `bananas`. Found by a readout on the token playground printing
+   `calc(1.5rem * 1.6)` where a length should have been, and now checked by
+   tools/property-gate.mjs, which sets a garbage value and sees whether the
+   property rejects it.
+
+   The pixel figures are the rem values at the 16px default, so the fallback
+   a consumer gets if 03-scale.css never loads is the ramp they expected.
+   -------------------------------------------------------------------------- */
+@property --tk-space-0 { syntax: "<length>"; inherits: true; initial-value: 0px; }
+@property --tk-space-1 { syntax: "<length>"; inherits: true; initial-value: 4px; }
+@property --tk-space-2 { syntax: "<length>"; inherits: true; initial-value: 8px; }
+@property --tk-space-3 { syntax: "<length>"; inherits: true; initial-value: 12px; }
+@property --tk-space-4 { syntax: "<length>"; inherits: true; initial-value: 16px; }
+@property --tk-space-5 { syntax: "<length>"; inherits: true; initial-value: 24px; }
+@property --tk-space-6 { syntax: "<length>"; inherits: true; initial-value: 32px; }
+@property --tk-space-7 { syntax: "<length>"; inherits: true; initial-value: 48px; }
+@property --tk-space-8 { syntax: "<length>"; inherits: true; initial-value: 64px; }
+@property --tk-space-9 { syntax: "<length>"; inherits: true; initial-value: 96px; }
+
+/* --- surface -------------------------------------------------------------- */
+@property --tk-surface-base { syntax: "<color>"; inherits: true; initial-value: #f4f4f4; }
+@property --tk-surface-default { syntax: "<color>"; inherits: true; initial-value: #ffffff; }
+@property --tk-surface-raised { syntax: "<color>"; inherits: true; initial-value: #ffffff; }
+@property --tk-surface-sunken { syntax: "<color>"; inherits: true; initial-value: #e4e4e4; }
+@property --tk-surface-inverse { syntax: "<color>"; inherits: true; initial-value: #1f1f1f; }
+
+/* --- text ----------------------------------------------------------------- */
+@property --tk-text-primary { syntax: "<color>"; inherits: true; initial-value: #1f1f1f; }
+@property --tk-text-secondary { syntax: "<color>"; inherits: true; initial-value: #4a4a4a; }
+@property --tk-text-tertiary { syntax: "<color>"; inherits: true; initial-value: #636363; }
+@property --tk-text-inverse { syntax: "<color>"; inherits: true; initial-value: #ffffff; }
+@property --tk-text-disabled { syntax: "<color>"; inherits: true; initial-value: #808080; }
+
+/* --- line ----------------------------------------------------------------- */
+@property --tk-line-subtle { syntax: "<color>"; inherits: true; initial-value: #eeeeee; }
+@property --tk-line-default { syntax: "<color>"; inherits: true; initial-value: #e0e0e0; }
+@property --tk-line-strong { syntax: "<color>"; inherits: true; initial-value: #808080; }
+
+/* --- action --------------------------------------------------------------- */
+@property --tk-action-fill { syntax: "<color>"; inherits: true; initial-value: #1f1f1f; }
+@property --tk-action-fill-hover { syntax: "<color>"; inherits: true; initial-value: #333333; }
+@property --tk-action-fill-active { syntax: "<color>"; inherits: true; initial-value: #000000; }
+@property --tk-action-text { syntax: "<color>"; inherits: true; initial-value: #ffffff; }
+
+/* --- focus ---------------------------------------------------------------- */
+@property --tk-focus-color { syntax: "<color>"; inherits: true; initial-value: #1f1f1f; }
+@property --tk-focus-width { syntax: "<length>"; inherits: true; initial-value: 2px; }
+@property --tk-focus-offset { syntax: "<length>"; inherits: true; initial-value: 2px; }
+
+/* --- the concentric running total -----------------------------------------
+   Registered, and that is what makes the chain work at all.
+
+   --tk-radius-nested is not a value, it is a running total: each rounded
+   container publishes `max(0px, calc(var(--_radius) - var(--_radius-gap)))`
+   to its children, which subtract their own padding and pass it on. Six
+   components do this — alert, card, chat, guidance, modal, search-results.
+
+   UNREGISTERED, that publication is a TOKEN STREAM, substituted lazily at
+   whichever element finally reads it. So when one publisher sits directly
+   inside another — an alert in a card, which is not exotic — the inner one
+   resolves the outer one's expression against ITS OWN --_radius, which is
+   the very property being defined. That is a cycle. The whole declaration
+   becomes guaranteed-invalid, `border-radius: var(--tk-radius-nested)` has
+   no fallback, and the box squares off to 0.
+
+   Registering it as a <length> makes the subtraction compute at the element
+   that publishes it, so a child inherits an absolute pixel value rather than
+   an expression, and there is nothing left to cycle. The chain had been one
+   nesting level deep everywhere it was tested; the first alert placed
+   directly in a card exposed it.
+
+   initial-value must be computationally independent, so 0px — which is also
+   the right fallback: no chain, no rounding. The real seed is
+   var(--tk-radius-xl), stated in 03-scale.css. */
+@property --tk-radius-nested { syntax: "<length>"; inherits: true; initial-value: 0px; }
+
+/* --- radius --------------------------------------------------------------- */
+@property --tk-radius-none { syntax: "<length>"; inherits: true; initial-value: 0px; }
+@property --tk-radius-sm { syntax: "<length>"; inherits: true; initial-value: 4px; }
+@property --tk-radius-md { syntax: "<length>"; inherits: true; initial-value: 8px; }
+@property --tk-radius-lg { syntax: "<length>"; inherits: true; initial-value: 16px; }
+@property --tk-radius-xl { syntax: "<length>"; inherits: true; initial-value: 32px; }
+@property --tk-radius-full { syntax: "<length>"; inherits: true; initial-value: 9999px; }
+
+/* --- target size (WCAG 2.5.8) -------------------------------------------- */
+@property --tk-target-min { syntax: "<length>"; inherits: true; initial-value: 24px; }
+@property --tk-target-comfortable { syntax: "<length>"; inherits: true; initial-value: 44px; }
+
+/* --- measure -------------------------------------------------------------- */
+@property --tk-measure { syntax: "<length>"; inherits: true; initial-value: 53ch; }
+@property --tk-measure-narrow { syntax: "<length>"; inherits: true; initial-value: 46ch; }
+
+/* --- density: the one knob context turns --------------------------------- */
+@property --tk-density { syntax: "<number>"; inherits: true; initial-value: 1; }
+
+/* --- component inputs -----------------------------------------------------
+   Values supplied by component instances rather than brands. Meter value
+   inherits because the fill is a child of the element carrying the inline
+   value; the typed zero keeps an unset meter honest. */
+@property --tk-meter-value { syntax: "<number>"; inherits: true; initial-value: 0; }
+
+/* --- typography ramp additions ------------------------------------------- */
+@property --tk-leading-display { syntax: "<number>"; inherits: true; initial-value: 1.04; }
+@property --tk-tracking-display { syntax: "<length>"; inherits: true; initial-value: -0.035em; }
+@property --tk-tracking-snug { syntax: "<length>"; inherits: true; initial-value: -0.01em; }
+
+/* --- scrim ----------------------------------------------------------------
+   Registered as <number>, which is the point: a scrim alpha typed as a number
+   cannot be handed a string, and an unregistered one silently could. The ink
+   is a colour and therefore a pack slot, registered with the rest of them. */
+@property --tk-scrim-aa-large { syntax: "<number>"; inherits: true; initial-value: 0.42; }
+@property --tk-scrim-aa { syntax: "<number>"; inherits: true; initial-value: 0.54; }
+@property --tk-scrim-aaa { syntax: "<number>"; inherits: true; initial-value: 0.66; }
+@property --tk-scrim-hold { syntax: "<percentage>"; inherits: true; initial-value: 62%; }
+@property --tk-scrim-ink { syntax: "<color>"; inherits: true; initial-value: #000000; }
+/* Pairs with --tk-scrim-ink and does not flip with the pack: the wash is the
+   pack's darkest value in every pack, so its ink is the pack's lightest. */
+@property --tk-text-on-scrim { syntax: "<color>"; inherits: true; initial-value: #ffffff; }
+
+/* --- texture --------------------------------------------------------------
+   The shapes are kit-owned and live in 05-textures.css; only the ink is a
+   pack decision, so only the ink is a contract slot.
+
+   Pixel initial values for the same reason as the space ramp: a rem
+   initial-value is computationally dependent and the whole rule is thrown
+   away. 03-scale.css still states these in rem. */
+@property --tk-plate-max { syntax: "<length>"; inherits: true; initial-value: 352px; }
+@property --tk-plate-max-portrait { syntax: "<length>"; inherits: true; initial-value: 240px; }
+@property --tk-plate-min { syntax: "<length>"; inherits: true; initial-value: 64px; }
+
+/* How much host padding a bled plate has to grow back. The host sets it; the
+   plate reads it. Zero by default, so a plate bled into something with no
+   padding is unchanged rather than two pads too wide.
+ 
+   inherits: false, and that is the load-bearing half. A card sets this on the
+   plate it contains, and a plate nested deeper — inside a figure inside a
+   card — must not pick up a cancellation for padding that is not between it
+   and its own edge. An inherited value here would widen the wrong box. */
+@property --tk-plate-bleed-pad { syntax: "<length>"; inherits: false; initial-value: 0px; }
+
+/* --- glass ----------------------------------------------------------------
+   Chrome that floats over imagery nobody controls — map controls, and anything
+   else laid on a basemap or a photograph. Like [data-on="scrim"], it is a
+   FIXED pair rather than a pack-relative one: the ground is unknown, so the
+   component has to own both sides. The packs fill these identically for the
+   same reason. */
+@property --tk-glass-fill { syntax: "<color>"; inherits: true; initial-value: #ffffff; }
+@property --tk-glass-ink { syntax: "<color>"; inherits: true; initial-value: #0f0f0f; }
+@property --tk-glass-line { syntax: "<color>"; inherits: true; initial-value: #d0d0d0; }
+
+@property --tk-texture-ink { syntax: "<color>"; inherits: true; initial-value: #d0d0d0; }
+
+/* What the mask cuts. A universal syntax because it is a colour in most packs
+   and a gradient in the ones that want the texture to carry brand colour, and
+   there is no CSS syntax that names both. Registration still buys inherits and
+   an initial value here; it cannot buy a type, which is why the property gate
+   counts this as untestable rather than as a failure. */
+@property --tk-texture-paint { syntax: "*"; inherits: true; initial-value: #d0d0d0; }
+
+/* --- gradient --------------------------------------------------------------
+   Two colours, an angle, a stop and an origin — the four decisions a named
+   gradient blob would have welded together.
+
+   The angle is registered as <angle> rather than left as a token stream for
+   one reason: a registered angle INTERPOLATES. `transition: --tk-gradient-angle`
+   rotates a conic sweep in one declaration, where an unregistered property
+   would jump from one value to the next because the browser has no idea the
+   string is an angle. Same argument as every other registration in this file,
+   with a visible payoff. */
+@property --tk-gradient-from { syntax: "<color>"; inherits: true; initial-value: #ffffff; }
+@property --tk-gradient-to { syntax: "<color>"; inherits: true; initial-value: #e4e4e4; }
+@property --tk-gradient-angle { syntax: "<angle>"; inherits: true; initial-value: 180deg; }
+@property --tk-gradient-stop { syntax: "<percentage>"; inherits: true; initial-value: 100%; }
+@property --tk-gradient-origin { syntax: "*"; inherits: true; initial-value: 50% 50%; }
+
+/* --- data ink --------------------------------------------------------------
+   The colour of a BARE graphic — a meter fill, a gauge arc — judged against
+   the track behind it rather than against a label on top of it.
+
+   This exists because the specimen packs proved --tk-action-fill could not do
+   both jobs. A button's fill carries text, so what has to clear 4.5:1 is the
+   label against the fill; the fill itself can be any colour the label can sit
+   on. A meter fill carries nothing, so the FILL is the information, and
+   1.4.11 asks it to clear 3:1 against its own track. Mohave's orange
+   (#F59E0B) passes the first test comfortably — ink on orange is 7.29:1 — and
+   fails the second at 1.73:1 against a light grey track. Both statements are
+   about the same colour and both are correct.
+
+   Defaults to the action fill, because for most brands they are the same
+   value and a slot nobody has to think about is a slot that stays filled. */
+@property --tk-data-ink { syntax: "<color>"; inherits: true; initial-value: #1f1f1f; }
+
+/* --- icon ------------------------------------------------------------------
+   Stroke weight, as a token, which works only because of how Lucide draws.
+
+   Every glyph is an open stroke with its weight in `stroke-width="2"` — a
+   presentation attribute on the root <svg>, which is the lowest rung of the
+   cascade, below every author rule. So a single declaration in icon.css
+   overrides all 221 of them and a pack can make its icons heavier or lighter
+   by filling one slot. An icon set that baked weight into path geometry, or
+   into an inline style, could not do this at any price.
+
+   It is a <number>, not a <length>: SVG stroke-width in user units scales
+   with the viewBox, so 2 means the same visual weight at 16px and at 24px.
+   A length would make the small sizes look hairline. */
+@property --tk-icon-stroke { syntax: "<number>"; inherits: true; initial-value: 2; }
+
+/* The box. px initial values, not the rem the scale actually uses: an
+   initial-value has to be computationally independent or the whole @property
+   rule is discarded, silently. See the header of tools/property-gate.mjs —
+   twelve slots sat unregistered for weeks on exactly this. */
+@property --tk-icon-sm { syntax: "<length>"; inherits: true; initial-value: 16px; }
+@property --tk-icon-md { syntax: "<length>"; inherits: true; initial-value: 20px; }
+@property --tk-icon-lg { syntax: "<length>"; inherits: true; initial-value: 24px; }
+
+/* --- display type --------------------------------------------------------
+   The two slots a brand needs in order to sound different rather than just
+   look different.
+
+   Everything else about type was already a token — size, leading, tracking,
+   weight — and a pack could always have moved them. None ever did, which is
+   why six packs produced six versions of the same page in different colours.
+   A brand's voice is mostly proportion: how big the headline is relative to
+   the body, how tight it is set, whether it shouts in caps or murmurs in
+   lowercase. Colour is the part everyone notices and the smallest part of
+   the difference.
+
+   `syntax: "*"` because neither has a typed grammar @property can express —
+   a font stack is a token list and text-transform is a keyword. They still
+   get an initial value and inheritance, which is what the contract needs.
+
+   --tk-font-display falls back to the body face, so a pack that says nothing
+   gets the kit's behaviour and a pack with a display face gets it everywhere
+   display type is set, without touching a component. */
+@property --tk-font-display { syntax: "*"; inherits: true; initial-value: inherit; }
+@property --tk-display-case { syntax: "*"; inherits: true; initial-value: none; }
+
+/* --- logo ------------------------------------------------------------------
+   The brand's own surface, and the only place in the contract that exists to
+   be filled with something distinctive rather than something systematic.
+
+   A logo is the one element whose job is to NOT match the rest of the page —
+   it is the coral in a grayscale wireframe, the thing you are allowed to look
+   at first. So the ladder's behaviour is kit-owned (logo-ladder.css) and every
+   value it draws with is a slot, which is what makes a brand arriving the same
+   event as a pack arriving.
+
+   `-ink` cascades: mark and word inherit it unless a pack sets them apart,
+   which is the usual case for a one-colour brand and costs a pack one line.
+   `-tile` is the ICON stage's keyline only — it sits on surfaces the brand
+   does not control, so it is the one place a logo is allowed a background. */
+@property --tk-logo-ink { syntax: "<color>"; inherits: true; initial-value: #1f1f1f; }
+@property --tk-logo-mark-ink { syntax: "<color>"; inherits: true; initial-value: #1f1f1f; }
+@property --tk-logo-word-ink { syntax: "<color>"; inherits: true; initial-value: #1f1f1f; }
+@property --tk-logo-tagline-ink { syntax: "<color>"; inherits: true; initial-value: #4a4a4a; }
+@property --tk-logo-tile { syntax: "<color>"; inherits: true; initial-value: #e4e4e4; }
+@property --tk-logo-word-weight { syntax: "<number>"; inherits: true; initial-value: 700; }
+@property --tk-logo-word-tracking { syntax: "<length-percentage>"; inherits: true; initial-value: -0.02em; }
+
+/* --- motion contract -------------------------------------------------------
+   Not registered as a type: `<duration> <easing>` is two values and @property
+   has no syntax for a transition shorthand. They are still contract — the lint
+   checks that every pack fills them, which is the guarantee that matters. */

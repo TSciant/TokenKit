@@ -1,0 +1,182 @@
+/* Sample pages — section rhythm + stagger cascade (MotionFx owns reveal). */
+@layer components {
+  :where([data-tk="sample-page"]) {
+    /* Page canvas */
+  }
+
+  :where([data-tk="sample-page"] [data-tk="section"][data-section="proof"]) {
+    padding-block: var(--tk-space-8);
+  }
+
+  :where([data-tk="sample-page"] [data-tk="section"][data-section="audience"]) {
+    padding-block: var(--tk-space-8) var(--tk-space-7);
+  }
+
+  :where([data-tk="sample-page"] [data-tk="section"][data-section="feature"]) {
+    padding-block: var(--tk-space-9) var(--tk-space-8);
+  }
+
+  :where([data-tk="sample-page"] [data-tk="section"][data-section="feed"]) {
+    padding-block: var(--tk-space-8);
+  }
+
+  :where([data-tk="sample-page"] [data-tk="section"][data-section="promo"]) {
+    padding-block: var(--tk-space-9);
+  }
+
+  /* Also apply when modules are dogfooded outside Sample Pages. */
+  :where([data-tk="section"][data-section="proof"]) {
+    padding-block: var(--tk-space-8);
+  }
+  :where([data-tk="section"][data-section="audience"]) {
+    padding-block: var(--tk-space-8) var(--tk-space-7);
+  }
+  :where([data-tk="section"][data-section="feature"]) {
+    padding-block: var(--tk-space-9) var(--tk-space-8);
+  }
+  :where([data-tk="section"][data-section="feed"]) {
+    padding-block: var(--tk-space-8);
+  }
+  :where([data-tk="section"][data-section="promo"]) {
+    padding-block: var(--tk-space-9);
+  }
+
+  @keyframes tk-stagger-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Cascade after the section MotionFx reveals — children land in sequence. */
+  :where([data-tk="stagger"] > *) {
+    animation: tk-stagger-in var(--tk-duration-slow) var(--tk-ease-entrance) both;
+  }
+
+  :where([data-tk="stagger"] > *:nth-child(1)) { animation-delay: 40ms; }
+  :where([data-tk="stagger"] > *:nth-child(2)) { animation-delay: 100ms; }
+  :where([data-tk="stagger"] > *:nth-child(3)) { animation-delay: 160ms; }
+  :where([data-tk="stagger"] > *:nth-child(4)) { animation-delay: 220ms; }
+  :where([data-tk="stagger"] > *:nth-child(5)) { animation-delay: 280ms; }
+  :where([data-tk="stagger"] > *:nth-child(6)) { animation-delay: 340ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="stagger"] > *) {
+      animation: none;
+    }
+  }
+}
+
+/* CTAs in vertical stacks should hug content — full-bleed solid buttons feel like banners. */
+@layer components {
+  :where([data-tk="sample-page"] [data-shell="stack"] > [data-tk="button"]),
+  :where([data-tk="sample-page"] [data-shell="stack"] > [data-modal-trigger]),
+  :where([data-tk="section"][data-shell="stack"] > [data-tk="button"]),
+  :where([data-tk="section"] [data-tk="button"][data-modal-trigger]) {
+    align-self: start;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Footer links — WCAG 2.2 AA, 2.5.8 Target Size (Minimum).
+
+   A line of 14px text is a 19px-tall target. The criterion asks for 24×24 CSS
+   pixels, or, for a smaller target, enough clear space around it that a 24px
+   circle centred on it touches nothing else clickable. A wrapped list of text
+   links at an 8px gap is neither: measured at 412px, the safe space around
+   each footer link was 21px.
+
+   This is the kind of failure that only exists at a phone width, which is why
+   tools/a11y-gate.mjs now runs every story at two viewports — at 1440px these
+   links sit in one uncrowded row and pass.
+
+   inline-flex rather than padding: vertical padding on an inline box paints
+   and hit-tests outside the line box without reserving any room, so it would
+   satisfy the measurement while overlapping the link above. Giving the box a
+   minimum height reserves the space it claims.
+
+   --tk-target-min is the floor and does not scale with density — see the note
+   in 03-scale.css. A denser page may draw the text smaller; it may not make
+   the target smaller than a fingertip.
+--------------------------------------------------------------------------- */
+@layer components {
+  :where([data-tk="footer-link"]) {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tk-target-min);
+  }
+
+  /* --- the clickable prototype's own chrome --------------------------------
+     These three were written as inline styles on elements that carried kit
+     names. Both halves of that were wrong: an inline style is the one thing a
+     pack cannot override, so the prototype — the artefact a client actually
+     looks at — was the one page in the kit that did not fully respond to a
+     brand; and a data-tk that no selector answers is a hook the CSS does not
+     honour, which is what tools/attribute-gate.mjs is for.
+
+     The rail is a Storybook affordance rather than page furniture, so it is
+     deliberately quiet: it says which route you are on and gets out of the
+     way.
+     -------------------------------------------------------------------- */
+  :where([data-tk="prototype"]) {
+    display: block;
+  }
+
+  :where([data-tk="prototype-rail"]) {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 20;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-3);
+    padding: var(--tk-space-2) var(--tk-space-4);
+    border-block-end: 1px solid var(--tk-line-subtle);
+    background-color: color-mix(
+      in srgb,
+      var(--tk-surface-default) 92%,
+      transparent
+    );
+    backdrop-filter: blur(8px);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-tk="prototype-rail"] [data-tk="eyebrow"]) {
+    margin: 0;
+  }
+
+  :where([data-tk="prototype-route"]) {
+    font-weight: var(--tk-weight-semibold);
+  }
+
+  :where([data-tk="prototype-spine"]) {
+    color: var(--tk-text-secondary);
+  }
+
+  /* A route button that has to read as a link. `font: inherit` and no chrome
+     is what makes a <button> disappear into the nav; the underline is the
+     current page, and it is a second channel beside aria-current rather than
+     a replacement for it. */
+  :where([data-tk="nav-link"]) {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    text-underline-offset: 0.3em;
+  }
+
+  :where([data-tk="nav-link"][data-current]) {
+    text-decoration: underline;
+  }
+
+  :where([data-tk="nav-link"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: 4px;
+  }
+}

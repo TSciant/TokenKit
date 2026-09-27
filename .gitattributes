@@ -1,0 +1,23 @@
+# Line endings, decided once.
+#
+# Without this the repo stored whatever each machine happened to write, and it
+# cost real debugging twice: a file silently converted LF -> CRLF produced an
+# 88-line diff that hid a three-line change, and an encoding round-trip
+# destroyed 11 em dashes into U+FFFD across the CSS and two story files.
+#
+# `text=auto` normalises every text file to LF in the object store and checks
+# it out in the platform's native form. Binary files are marked so git never
+# touches their bytes.
+#
+# Adopting this renormalises existing blobs. Run `git add --renormalize .` once
+# and commit it on its own, so the change is reviewable as what it is.
+* text=auto
+
+*.woff2 -text
+*.jpg   -text
+*.jpeg  -text
+*.png   -text
+*.ico   -text
+*.webp  -text
+*.mp4   -text
+*.pdf   -text

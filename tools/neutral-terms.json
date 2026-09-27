@@ -1,0 +1,53 @@
+{
+  "_readme": [
+    "Terms that must not appear anywhere in the kit. Read tools/neutral-gate.mjs first.",
+    "",
+    "`terms` are case-insensitive regex fragments. \\\\b is a word boundary — use it for",
+    "short or common words, or the gate will match inside longer innocent ones.",
+    "",
+    "`allow` entries are exceptions, each with a `why`. An allowlist without reasons",
+    "is where violations go to hide, so a reason is required by convention even",
+    "though the tool will not enforce one.",
+    "",
+    "Names go in tools/neutral-terms.local.json, not here. That file is gitignored",
+    "and read by the gate alongside this one, so a client's name, abbreviations,",
+    "products and people are checked on every run without the wordlist itself",
+    "being the one place in the repo that names them. Same shape: { \"terms\": [] }.",
+    "",
+    "Forking for a new client: add their sector's words here and their names to the",
+    "local file. Keep the old entries too. A term costs nothing to leave in and",
+    "catches a copy-paste from the last engagement, which is the way most of these",
+    "arrive."
+  ],
+
+  "terms": [
+    "healthcare",
+    "health care",
+    "\\bhealth\\b",
+    "health plan",
+    "health system",
+    "hospital",
+    "clinician",
+    "clinical",
+    "\\bpatient",
+    "\\bnurse",
+    "physician",
+    "medicaid",
+    "medicare",
+    "\\bpayer\\b",
+    "telehealth",
+    "behavioral",
+    "care team",
+    "actuarial",
+    "\\b1115\\b",
+    "revenue cycle"
+  ],
+
+  "allow": [
+    {
+      "path": "NOTICE.md",
+      "pattern": "health",
+      "why": "Reserved: the provenance note may need to name a sector when describing an engagement. No hit today."
+    }
+  ]
+}

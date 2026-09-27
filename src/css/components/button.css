@@ -1,0 +1,193 @@
+/* Button — the interactive primitive. Props in, attributes out.
+   data-tk="button" data-variant=solid|outline|quiet data-size=sm|md|lg
+   data-icon = icon-only (square padding; require accessible name) */
+@layer components {
+  /* tk-default: data-variant=solid, data-size=md
+     Solid and md are what this rule paints. outline, quiet, sm and lg all
+     subtract from it, which is why none of the four is the default and the
+     default names no selector. */
+  :where([data-tk="button"]) {
+    --_pad-y: var(--tk-space-2);
+    --_pad-x: var(--tk-space-4);
+    --_fill: var(--tk-action-fill);
+    --_fill-hover: var(--tk-action-fill-hover);
+    --_fill-active: var(--tk-action-fill-active);
+    --_text: var(--tk-action-text);
+    --_line: transparent;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--tk-space-2);
+
+    /* WCAG 2.5.8 — the floor, not the aspiration. */
+    min-block-size: max(var(--tk-target-min), calc(2.25rem * var(--tk-density)));
+    min-inline-size: var(--tk-target-min);
+
+    padding: var(--_pad-y) var(--_pad-x);
+    border: 1px solid var(--_line);
+    /* Leaf of the concentric chain: rounds by what the host handed down. */
+    border-radius: var(--tk-radius-nested);
+    background-color: var(--_fill);
+    color: var(--_text);
+    font: inherit;
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    line-height: var(--tk-leading-tight);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color var(--tk-motion-surface),
+      border-color var(--tk-motion-line),
+      color var(--tk-motion-ink),
+      box-shadow var(--tk-motion-elevation);
+  }
+
+  :where([data-tk="button"]:hover:not(:disabled, [aria-disabled="true"])) {
+    background-color: var(--_fill-hover);
+  }
+
+  :where([data-tk="button"]:active:not(:disabled, [aria-disabled="true"])) {
+    background-color: var(--_fill-active);
+  }
+
+  :where([data-tk="button"]:disabled, [data-tk="button"][aria-disabled="true"]) {
+    color: var(--tk-text-disabled);
+    background-color: var(--tk-surface-sunken);
+    border-color: transparent;
+    cursor: not-allowed;
+  }
+
+  :where([data-tk="button"][data-variant="outline"]) {
+    --_fill: var(--tk-action-quiet-fill);
+    --_fill-hover: var(--tk-action-quiet-fill-hover);
+    --_fill-active: var(--tk-action-quiet-fill-active, var(--tk-surface-sunken));
+    --_text: var(--tk-action-quiet-text);
+    --_line: var(--tk-line-strong);
+  }
+
+  :where([data-tk="button"][data-variant="quiet"]) {
+    --_fill: var(--tk-action-quiet-fill);
+    --_fill-hover: var(--tk-action-quiet-fill-hover);
+    --_fill-active: var(--tk-action-quiet-fill-active, var(--tk-surface-sunken));
+    --_text: var(--tk-action-quiet-text);
+    --_line: transparent;
+  }
+
+  :where([data-tk="button"][data-size="sm"]) {
+    --_pad-y: var(--tk-space-1);
+    --_pad-x: var(--tk-space-3);
+    font-size: var(--tk-size-xs);
+  }
+
+  :where([data-tk="button"][data-size="lg"]) {
+    --_pad-y: var(--tk-space-3);
+    --_pad-x: var(--tk-space-5);
+    font-size: var(--tk-size-base);
+    min-block-size: var(--tk-target-comfortable);
+  }
+
+  :where([data-tk="button"][data-full]) {
+    inline-size: 100%;
+  }
+
+  /* Icon-only — square hit target; padding matches block size. */
+  :where([data-tk="button"][data-icon]) {
+    --_pad-x: var(--_pad-y);
+    aspect-ratio: 1;
+    padding-inline: var(--_pad-y);
+  }
+
+  :where([data-tk="button"][data-icon][data-size="sm"]) {
+    --_pad-y: var(--tk-space-1);
+  }
+
+  :where([data-tk="button"][data-icon][data-size="lg"]) {
+    --_pad-y: var(--tk-space-3);
+  }
+
+  /* Affixes (leading / trailing / bound icon)
+     tk-default: data-side=leading */
+  :where([data-tk="button"] [data-tk="button-affix"]) {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    line-height: 0;
+  }
+
+  :where([data-tk="button"] [data-tk="button-label"]) {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Motion — sell the wireframe. Trailing icons nudge on hover; leading stay put. */
+  :where([data-tk="button"]:not(:disabled, [aria-disabled="true"], [data-busy])) {
+    transition:
+      background-color var(--tk-motion-surface),
+      border-color var(--tk-motion-line),
+      color var(--tk-motion-ink),
+      box-shadow var(--tk-motion-elevation),
+      transform var(--tk-motion-transform);
+  }
+
+  :where([data-tk="button"]:hover:not(:disabled, [aria-disabled="true"], [data-busy])) {
+    transform: translateY(-1px);
+  }
+
+  :where([data-tk="button"]:active:not(:disabled, [aria-disabled="true"], [data-busy])) {
+    transform: translateY(0) scale(0.98);
+  }
+
+  :where([data-tk="button"] [data-tk="button-affix"][data-side="trailing"]) {
+    transition: transform var(--tk-motion-transform);
+  }
+
+  :where(
+    [data-tk="button"]:hover:not(:disabled, [aria-disabled="true"], [data-busy], [data-icon])
+      [data-tk="button-affix"][data-side="trailing"],
+    [data-tk="button"]:focus-visible:not(:disabled, [aria-disabled="true"], [data-busy], [data-icon])
+      [data-tk="button-affix"][data-side="trailing"]
+  ) {
+    transform: translateX(3px);
+  }
+
+  :where([data-tk="button"][data-busy]) {
+    position: relative;
+    color: var(--tk-text-disabled);
+    cursor: wait;
+  }
+
+  :where([data-tk="button"][data-busy])::after {
+    content: "";
+    inline-size: 0.85em;
+    block-size: 0.85em;
+    margin-inline-start: var(--tk-space-2);
+    border: 2px solid currentColor;
+    border-inline-end-color: transparent;
+    border-radius: var(--tk-radius-full);
+    animation: tk-button-spin 0.7s linear infinite;
+  }
+
+  @keyframes tk-button-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-tk="button"]) {
+    transition: none;
+    transform: none !important;
+  }
+  :where([data-tk="button"] [data-tk="button-affix"]) {
+    transition: none;
+    transform: none !important;
+  }
+  :where([data-tk="button"][data-busy])::after {
+    animation: none;
+    border-inline-end-color: currentColor;
+    opacity: 0.5;
+  }
+}

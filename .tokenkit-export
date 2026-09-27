@@ -1,0 +1,2 @@
+The kit, exported from a private working repo by tools/export-kit.mjs.
+An export replaces everything in this folder except .git and node_modules.

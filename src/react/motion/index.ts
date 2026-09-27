@@ -1,0 +1,11 @@
+export { MotionFx } from "./MotionFx";
+export type { MotionFxProps } from "./MotionFx";
+export { useMotionFx } from "./useMotionFx";
+export type { MotionFxBind } from "./useMotionFx";
+export { useInView } from "./useInView";
+export { useParallax } from "./useParallax";
+export { usePrefersReducedMotion } from "./usePrefersReducedMotion";
+export { normalizeFx } from "./types";
+export type { FxProp, FxProps, FxReveal } from "./types";
+export { inferFx, plateFxContext } from "./types";
+export type { FxContext } from "./types";

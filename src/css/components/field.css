@@ -1,0 +1,108 @@
+/* Field — label, control, description, error. The association is structural:
+   the label wraps or references the control, the description and error are
+   referenced by aria-describedby. None of that is optional styling. */
+@layer components {
+  :where([data-tk="field"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="field-label"]) {
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="field-hint"]) {
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+    margin: 0;
+  }
+
+  :where([data-tk="field-error"]) {
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    color: var(--tk-status-danger-text);
+    margin: 0;
+  }
+
+  :where([data-tk="input"], [data-tk="textarea"], [data-tk="select"]) {
+    inline-size: 100%;
+    min-block-size: max(var(--tk-target-min), calc(2.5rem * var(--tk-density)));
+    padding: var(--tk-space-2)
+             var(--tk-space-3);
+    /* line-strong, not line-default: 1.4.11 wants 3:1 on a control boundary */
+    border: 1px solid var(--tk-line-strong);
+    border-radius: var(--tk-radius-nested);
+    transition:
+      border-color var(--tk-motion-line),
+      background-color var(--tk-motion-surface),
+      box-shadow var(--tk-motion-elevation);
+    background-color: var(--tk-surface-default);
+    color: var(--tk-text-primary);
+    font-size: var(--tk-size-base);
+  }
+
+  :where([data-tk="textarea"]) {
+    min-block-size: 6rem;
+    resize: vertical;
+    field-sizing: content;
+  }
+
+  :where([data-tk="input"]::placeholder, [data-tk="textarea"]::placeholder) {
+    color: var(--tk-text-tertiary);
+  }
+
+  :where([data-tk="input"][aria-invalid="true"],
+         [data-tk="textarea"][aria-invalid="true"],
+         [data-tk="select"][aria-invalid="true"]) {
+    border-width: 2px;
+    border-color: var(--tk-status-danger-line);
+  }
+
+  :where([data-tk="input"]:disabled,
+         [data-tk="textarea"]:disabled,
+         [data-tk="select"]:disabled) {
+    background-color: var(--tk-surface-sunken);
+    color: var(--tk-text-disabled);
+    cursor: not-allowed;
+  }
+
+  /* Checkbox and radio keep the native control — it is accessible, themeable
+     via accent-color, and free. */
+  :where([data-tk="choice"]) {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--tk-space-3);
+    min-block-size: var(--tk-target-min);
+    cursor: pointer;
+  }
+
+  :where([data-tk="choice"]) > :where(input) {
+    inline-size: 1.125rem;
+    block-size: 1.125rem;
+    margin-block-start: 0.2em;
+    accent-color: var(--tk-action-fill);
+    flex-shrink: 0;
+  }
+}
+
+  :where([data-tk="input"]:focus-visible,
+         [data-tk="textarea"]:focus-visible,
+         [data-tk="select"]:focus-visible) {
+    outline: 2px solid var(--tk-focus-color);
+    outline-offset: 2px;
+    /* tk-field-focus */
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--tk-focus-color) 18%, transparent);
+    transition:
+      border-color var(--tk-motion-line),
+      background-color var(--tk-motion-surface),
+      box-shadow var(--tk-motion-elevation);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="input"], [data-tk="textarea"], [data-tk="select"]) {
+      transition: none;
+    }
+  }

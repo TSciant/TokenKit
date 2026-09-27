@@ -1,0 +1,111 @@
+﻿/* FAQ / additional info â€” strong disclosure stack for page sections. */
+@layer components {
+  :where([data-tk="faq"]) {
+    --_line: var(--tk-line-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-inline-size: min(100%, 44rem);
+  }
+
+  :where([data-tk="faq"][data-tone="info"]) {
+    /* Same bones; eyebrow copy carries the "additional info" voice. */
+  }
+
+  :where([data-tk="faq-head"]) {
+    margin-block-end: var(--tk-space-5);
+    max-inline-size: var(--tk-measure);
+  }
+
+  :where([data-tk="faq-item"]) {
+    border-block-start: 1px solid var(--_line);
+  }
+
+  :where([data-tk="faq-item"]:last-child) {
+    border-block-end: 1px solid var(--_line);
+  }
+
+  :where([data-tk="faq-trigger"]) {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    gap: var(--tk-space-4);
+    width: 100%;
+    margin: 0;
+    padding-block: var(--tk-space-5);
+    padding-inline: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+    min-block-size: var(--tk-target-min);
+  }
+
+  :where([data-tk="faq-trigger"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: 4px;
+  }
+
+  :where([data-tk="faq-index"]) {
+    font-family: var(--tk-font-mono);
+    font-size: var(--tk-size-sm);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tk-tracking-wide);
+    color: var(--tk-text-tertiary);
+    padding-block-start: 0.15em;
+  }
+
+  :where([data-tk="faq-question"]) {
+    margin: 0;
+    font-size: var(--tk-size-lg);
+    font-weight: var(--tk-weight-semibold);
+    line-height: var(--tk-leading-snug, var(--tk-leading-tight));
+    text-wrap: balance;
+  }
+
+  :where([data-tk="faq-mark"]) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    block-size: var(--tk-target-min);
+    inline-size: var(--tk-target-min);
+    border-radius: var(--tk-radius-nested);
+    border: 1px solid var(--_line);
+    color: var(--tk-text-secondary);
+    transition:
+      transform var(--tk-motion-transform),
+      background-color var(--tk-motion-opacity),
+      color var(--tk-motion-opacity);
+  }
+
+  :where([data-tk="faq-item"][data-open] [data-tk="faq-mark"]) {
+    background: var(--tk-action-fill);
+    color: var(--tk-action-text);
+    border-color: transparent;
+  }
+
+  :where([data-faq-panel]) {
+    padding-block-end: var(--tk-space-5);
+    padding-inline-start: calc(var(--tk-space-4) + 2ch + var(--tk-space-4));
+    padding-inline-end: calc(var(--tk-target-min) + var(--tk-space-4));
+    max-inline-size: var(--tk-measure);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-faq-panel] > :first-child) {
+    margin-block-start: 0;
+  }
+
+  :where([data-faq-panel] > :last-child) {
+    margin-block-end: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="faq-mark"]) {
+      transition: none;
+    }
+  }
+}
+

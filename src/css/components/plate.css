@@ -1,0 +1,398 @@
+/* ---------------------------------------------------------------------------
+   Plate — the standing-in-for-a-photograph surface.
+
+   A wireframe has no photographs, and the usual substitute is a flat grey
+   rectangle, or a grey rectangle with a cross through it. Both read as an
+   absence. A reviewer looking at an absence fills it in with a revision.
+
+   So a plate is always an image: it has a light source, a horizon, a subject,
+   a vignette and a texture, all built from surface tokens and the texture
+   masks, all grayscale, and none of it depicting anything. It is enough
+   structure for the eye to accept the slot as filled and move on to the
+   layout, which is the thing being reviewed.
+
+   The second job is less obvious and more useful. A plate is the only element
+   in a composition whose height is not set by its content, so in a fluid grid
+   it is the element that makes the page lurch: four 3:4 cards at four columns
+   are 480px tall and at one column they are 2,500px tall, and every width in
+   between slides continuously. Measured on the insights feed, the drop from
+   four columns to one added 1,785px in a single step.
+
+   --tk-plate-max is the cap that stops it. A plate keeps its ratio while it
+   can and then stops growing, which is what a real photograph in a real
+   layout does anyway — nobody ships a 640px-tall thumbnail because the column
+   got wide.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="plate"]) {
+    --_ratio: 16 / 9;
+
+    /* The composition. Seeds below move these; nothing else should. */
+    --_light-x: 78%;
+    --_light-y: 18%;
+    --_subject-x: 70%;
+    --_subject-y: 40%;
+    --_subject-r: 11%;
+    --_horizon: 68%;
+    /* How strongly the ground reads against the sky. One number, because it
+       is the only thing left to tune once the horizon stopped being a line. */
+    --_ground: 72%;
+
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+
+    display: grid;
+    place-items: center;
+
+    aspect-ratio: var(--_ratio);
+    max-block-size: var(--tk-plate-max);
+    min-block-size: var(--tk-plate-min);
+    inline-size: 100%;
+
+    /* A plate has no padding of its own, so it consumes the chain rather
+       than continuing it: it rounds by what it was given and stops. */
+    border-radius: var(--tk-radius-nested);
+    background-color: var(--tk-surface-sunken);
+
+    /* Depth, bottom layer up: a ground plane, a light source, and a vignette
+       that keeps the edges from dissolving into the page. */
+    background-image:
+      radial-gradient(
+        120% 120% at 50% 50%,
+        transparent 55%,
+        var(--tk-surface-sunken) 100%
+      ),
+      radial-gradient(
+        60% 50% at var(--_light-x) var(--_light-y),
+        var(--tk-surface-default) 0%,
+        transparent 70%
+      ),
+      linear-gradient(
+        to bottom,
+        var(--tk-surface-raised) 0%,
+        var(--tk-surface-sunken) 100%
+      );
+  }
+
+  /* The subject and the horizon. A disc and a line is the least a picture can
+     be and still be read as one. */
+  :where([data-tk="plate"])::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-image:
+      radial-gradient(
+        circle at var(--_subject-x) var(--_subject-y),
+        var(--tk-surface-default) 0 var(--_subject-r),
+        transparent calc(var(--_subject-r) + 0.4%)
+      ),
+      /* The horizon, as GROUND rather than as a line.
+
+         It was a hard 1px rule in --tk-line-default, and on a hatched plate
+         that is exactly what it looked like: a ruled line crossing a diagonal
+         pattern at an unrelated angle, which the eye reads as a flaw in the
+         artwork rather than as depth.
+
+         The first attempt at a fix softened the line into a narrow band,
+         which removed the flaw and the depth together — a 2% band at 45%
+         opacity is nothing at all, and the plate went back to being flat
+         hatch. A horizon is not a mark on a picture. It is the edge of a
+         region: everything below it is a slightly different tone from
+         everything above it, and the eye takes that as distance without ever
+         being shown an edge.
+
+         So the ground is washed from the horizon down, and the transition
+         into it spans 10% of the height — wide enough that no slice of it is
+         a line at any plate size the kit ships. */
+      linear-gradient(
+        to bottom,
+        transparent 0 calc(var(--_horizon) - 7%),
+        color-mix(in srgb, var(--tk-line-default) var(--_ground), transparent)
+          calc(var(--_horizon) + 3%),
+        color-mix(in srgb, var(--tk-line-default) var(--_ground), transparent) 100%
+      );
+  }
+
+  /* The texture, over everything, in the pack's ink AND the pack's mask.
+
+     The mask used to be hardcoded to --tk-texture-hatch while the size came
+     from --tk-texture-scale. That was fine while scale was a kit constant and
+     became a bug the moment a pack could own it: Mohave asks for a 300px
+     tile, the plate kept drawing hatch, and an 8px hatch stretched to 300px
+     is a set of enormous hard-edged diagonal stripes across every plate on
+     the page. Invisible while every drafting mask sat near 8px, and
+     unmissable the moment a material mask arrived with a 300px tile.
+
+     A mask and its scale are one decision and have to be read as a pair. */
+  :where([data-tk="plate"])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--tk-texture-paint);
+    mask-image: var(--tk-texture-mask);
+    mask-size: var(--tk-texture-scale);
+    mask-repeat: repeat;
+  }
+
+  :where([data-tk="plate"][data-texture="dots"])::after {
+    mask-image: var(--tk-texture-dots);
+  }
+
+  :where([data-tk="plate"][data-texture="rule"])::after {
+    mask-image: var(--tk-texture-rule);
+    mask-size: 6px 6px;
+  }
+
+  :where([data-tk="plate"][data-texture="none"])::after {
+    mask-image: none;
+    background-color: transparent;
+  }
+
+  /* tk-default: data-seed=1
+     Seed 1 is the composition the base rule already describes; 2 through 6
+     move it. Asking for seed 1 explicitly is how a caller says "leave this
+     one alone" in a list where its neighbours are shifted.
+
+     Seeds. A grid of identical plates reads as a repeated asset rather than as
+     four different photographs, so the composition shifts. Deterministic, not
+     random: the same slot looks the same on every reload, which matters when
+     someone is comparing two screenshots. */
+  :where([data-tk="plate"][data-seed="2"]) {
+    --_light-x: 22%;
+    --_light-y: 24%;
+    --_subject-x: 30%;
+    --_subject-y: 46%;
+    --_subject-r: 9%;
+    --_horizon: 74%;
+  }
+
+  :where([data-tk="plate"][data-seed="3"]) {
+    --_light-x: 50%;
+    --_light-y: 12%;
+    --_subject-x: 58%;
+    --_subject-y: 34%;
+    --_subject-r: 14%;
+    --_horizon: 62%;
+  }
+
+  :where([data-tk="plate"][data-seed="4"]) {
+    --_light-x: 86%;
+    --_light-y: 34%;
+    --_subject-x: 36%;
+    --_subject-y: 52%;
+    --_subject-r: 7%;
+    --_horizon: 78%;
+  }
+
+  :where([data-tk="plate"][data-seed="5"]) {
+    --_light-x: 14%;
+    --_light-y: 40%;
+    --_subject-x: 76%;
+    --_subject-y: 30%;
+    --_subject-r: 12%;
+    --_horizon: 58%;
+  }
+
+  :where([data-tk="plate"][data-seed="6"]) {
+    --_light-x: 62%;
+    --_light-y: 26%;
+    --_subject-x: 22%;
+    --_subject-y: 38%;
+    --_subject-r: 10%;
+    --_horizon: 70%;
+  }
+
+  /* A portrait crop wants its subject higher — a face is not a sunset — and a
+     lower cap, because nobody ships a 350px headshot in a directory row just
+     because the column got wide. */
+  :where([data-tk="plate"][data-crop="portrait"]) {
+    --_subject-y: 34%;
+    --_subject-r: 16%;
+    --_horizon: 82%;
+
+    max-block-size: var(--tk-plate-max-portrait);
+  }
+
+  /* Flush to a parent's edge: the parent's corners, and the parent clips. */
+  :where([data-tk="plate"][data-bleed]) {
+    /* Square self; the host cancels its padding with a negative margin (see
+       card.css). Radius 0 without a flush margin is the approximate-arc
+       trap. */
+    border-radius: 0;
+    max-inline-size: none;
+
+    /* THE WIDTH HAS TO GROW HERE, not at the host, and the reason is source
+       order.
+ 
+       A negative margin moves a box; it does not widen one. A plate at
+       `inline-size: 100%` pulled left by one pad is still one pad narrow, so
+       it sits flush on the leading edge and stops short on the trailing one
+       — which is exactly what it did, in every card in the kit, for as long
+       as this pair of rules has existed.
+ 
+       card.css already wrote `inline-size: calc(100% + 2 * var(--_pad))` for
+       this case, with a comment saying so. It never applied. Both rules are
+       :where() at zero specificity and index.css imports card.css at line 48
+       and plate.css at 58, so the base rule three declarations above this one
+       won on source order and reset the width to 100%. The fix reads as
+       correct in the file where you would look for it and loses to the file
+       you would not.
+ 
+       So the plate owns how it bleeds and the host only says how much
+       padding there is to cancel. Defaulting to 0px means a bleed with no
+       host declaration — a plate bled into a section rather than a card — is
+       unchanged rather than mis-sized, which is the behaviour every other
+       bleed in the kit already had. */
+    inline-size: calc(100% + 2 * var(--tk-plate-bleed-pad));
+  }
+
+  /* The label, when a plate says what it is standing in for. */
+  :where([data-tk="plate-label"]) {
+    font-family: var(--tk-font-mono);
+    font-size: var(--tk-size-xs);
+    letter-spacing: var(--tk-tracking-wide);
+    text-transform: uppercase;
+    color: var(--tk-text-tertiary);
+    background-color: var(--tk-surface-raised);
+    padding: var(--tk-space-1) var(--tk-space-3);
+    border-radius: var(--tk-radius-full);
+    border: 1px solid var(--tk-line-default);
+  }
+
+
+  /* --- stock photograph (Unsplash stand-in) ----------------------------- */
+  :where([data-tk="plate"][data-stock]) {
+    background-image: none;
+    background-color: var(--tk-surface-sunken);
+    isolation: isolate;
+  }
+
+  :where([data-tk="plate"][data-stock])::after {
+    content: none;
+    display: none;
+  }
+
+  :where([data-tk="plate"][data-stock])::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    /* Scrim wash — legibility for the placement chip, not brand colour. */
+    background-image: none;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--tk-scrim-ink) 42%, transparent) 0%,
+      color-mix(in srgb, var(--tk-scrim-ink) 14%, transparent) 40%,
+      transparent 68%
+    );
+    mask-image: none;
+  }
+
+  :where([data-tk="plate-media"]) {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(1) contrast(0.92) brightness(1.02);
+  }
+
+  /* Honesty mark — whisper by default so composition leads. */
+  :where([data-tk="plate-placement"]) {
+    position: absolute;
+    z-index: 2;
+    inset-inline-start: var(--tk-space-2);
+    inset-block-start: var(--tk-space-2);
+    inset-block-end: auto;
+
+    font-family: var(--tk-font-mono);
+    font-size: 0.5625rem;
+    font-weight: var(--tk-weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--tk-text-on-scrim) 55%, transparent);
+    background: color-mix(in srgb, var(--tk-scrim-ink) 28%, transparent);
+    border: 1px solid color-mix(in srgb, var(--tk-text-on-scrim) 12%, transparent);
+
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--tk-radius-full);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  :where([data-tk="plate-placement"][data-tone="loud"]) {
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-semibold);
+    letter-spacing: var(--tk-tracking-wide);
+    color: var(--tk-text-on-scrim);
+    background: color-mix(in srgb, var(--tk-scrim-ink) 78%, transparent);
+    border-color: color-mix(in srgb, var(--tk-text-on-scrim) 40%, transparent);
+    padding: var(--tk-space-1) var(--tk-space-3);
+    opacity: 1;
+  }
+
+  :where([data-tk="plate"][data-stock] [data-tk="plate-label"]) {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Bleed: keep whisper at the leading-start corner, clear of bottom copy. */
+  :where([data-tk="plate"][data-stock][data-bleed] [data-tk="plate-placement"]),
+  :where([data-tk="plate"][data-stock][data-bleed="full"] [data-tk="plate-placement"]) {
+    inset-block-end: auto;
+    inset-block-start: var(--tk-space-2);
+  }
+
+  /* Under a page scrim the copy owns the corner — hide the stamp (CREDITS.md
+     still records stock). Avoids fighting the eyebrow on heroes. */
+  :where([data-tk="scrim"] > [data-tk="plate"] [data-tk="plate-placement"]),
+  :where([data-tk="scrim"] [data-tk="plate-placement"]) {
+    display: none;
+  }
+
+
+
+  :where([data-tk="plate"][data-stock] [data-tk="plate-media"]) {
+    transition:
+      transform var(--tk-duration-slow) var(--tk-ease-standard),
+      filter var(--tk-motion-surface);
+  }
+
+  :where([data-tk="plate"][data-stock]:hover [data-tk="plate-media"]) {
+    transform: scale(1.035);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="plate"][data-stock] [data-tk="plate-media"]) {
+      transition: none;
+    }
+    :where([data-tk="plate"][data-stock]:hover [data-tk="plate-media"]) {
+      transform: none;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    /* Everything here is decoration and none of it survives a contrast
+       request. The plate stays a plate; it just stops pretending. */
+    :where([data-tk="plate"]) {
+      background-image: none;
+    }
+
+    :where([data-tk="plate"])::before,
+    :where([data-tk="plate"])::after {
+      background-image: none;
+      mask-image: none;
+    }
+  }
+}

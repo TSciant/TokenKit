@@ -1,0 +1,85 @@
+{
+  "name": "tokenkit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A token-driven CSS design system. Primitives, layout shells, and a headless accessibility gate.",
+  "license": "MIT",
+  "exports": {
+    "./css": "./src/css/index.css",
+    "./react": "./src/react/index.ts",
+    "./contrast": "./src/lib/contrast.ts"
+  },
+  "files": [
+    "src",
+    "docs",
+    "tools"
+  ],
+  "scripts": {
+    "gate": "node tools/contrast-gate.mjs",
+    "gate:report": "node tools/contrast-gate.mjs --report",
+    "capture": "node tools/capture.mjs",
+    "audit": "node tools/audit.mjs",
+    "onionskin": "node tools/onionskin.mjs",
+    "lint:css": "node tools/lint-tokens.mjs",
+    "check": "node tools/check.mjs",
+    "gates": "node tools/browser-gates.mjs",
+    "storybook": "node tools/storybook.mjs",
+    "build-storybook": "storybook build",
+    "serve": "node tools/serve.mjs",
+    "bundle": "node tools/bundle.mjs",
+    "type-gate": "node tools/type-gate.mjs",
+    "build-pretext": "node tools/build-pretext.mjs",
+    "a11y": "node tools/a11y-gate.mjs",
+    "radius": "node tools/radius-gate.mjs",
+    "tokens": "node tools/tokens-export.mjs",
+    "next:build": "node tools/sync-next-public.mjs && next build next",
+    "next:start": "next start next",
+    "next:dev": "node tools/sync-next-public.mjs && next dev next",
+    "lighthouse": "node tools/lighthouse-gate.mjs",
+    "controls": "node tools/controls-gate.mjs",
+    "attrs": "node tools/attribute-gate.mjs",
+    "vocab": "node tools/vocabulary-gate.mjs",
+    "content": "node tools/content-gate.mjs",
+    "boundary": "node tools/boundary-gate.mjs",
+    "neutral": "node tools/neutral-gate.mjs",
+    "gen:stories": "node tools/gen-component-stories.mjs",
+    "packs": "node tools/gen-specimen-packs.mjs",
+    "packs:check": "node tools/gen-specimen-packs.mjs --check",
+    "check:delivery": "npm run check && npm run next:build && npm run lighthouse",
+    "properties": "node tools/property-gate.mjs",
+    "icons": "node tools/gen-icon-set.mjs",
+    "icons:check": "node tools/gen-icon-set.mjs --check"
+  },
+  "devDependencies": {
+    "@chenglou/pretext": "^0.0.9",
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/react-vite": "^10.6.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "lighthouse": "^13.5.0",
+    "motion": "^13.4.0",
+    "next": "^15.5.0",
+    "playwright": "^1.63.0",
+    "postcss": "^8.5.28",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "storybook": "^10.6.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "maplibre-gl": "^6.10.0",
+    "react-icons": "^5.7.0"
+  }
+}

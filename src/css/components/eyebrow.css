@@ -1,0 +1,39 @@
+/* Eyebrow — small label above a headline; optional leading icon. */
+@layer components {
+  :where([data-tk="eyebrow"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    font-family: var(--tk-font-mono);
+    font-size: var(--tk-size-xs);
+    line-height: var(--tk-leading-snug);
+    letter-spacing: var(--tk-tracking-wide);
+    text-transform: uppercase;
+    font-weight: var(--tk-weight-medium);
+    font-feature-settings: "case" 1;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="eyebrow"][data-emphasis="quiet"]) {
+    color: var(--tk-text-tertiary);
+  }
+
+  :where([data-tk="eyebrow"] [data-tk="icon"]) {
+    flex: 0 0 auto;
+    opacity: 0.9;
+  }
+
+  :where([data-tk="eyebrow-tag"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    padding: var(--tk-space-1) var(--tk-space-2);
+    border: 1px solid var(--tk-line-default);
+    border-radius: var(--tk-radius-full);
+    background: color-mix(in srgb, var(--tk-surface-sunken) 70%, transparent);
+    /* Hug content — search rows are flex columns that would otherwise stretch this. */
+    align-self: flex-start;
+    inline-size: fit-content;
+    max-inline-size: 100%;
+  }
+}

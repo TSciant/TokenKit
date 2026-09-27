@@ -1,0 +1,47 @@
+/* Media — figure beside body. The canonical two-part assembly: a row shell
+   with a fixed-basis first child. Collapses on its own container, not the
+   viewport. */
+@layer components {
+  :where([data-tk="media"]) {
+    --_figure: 8rem;
+
+    container-type: inline-size;
+    container-name: media;
+
+    display: flex;
+    gap: var(--tk-space-4);
+    align-items: flex-start;
+  }
+
+  :where([data-tk="media-figure"]) {
+    flex: 0 0 var(--_figure);
+    aspect-ratio: 1;
+    border-radius: var(--tk-radius-nested);
+    background-color: var(--tk-surface-sunken);
+    overflow: hidden;
+  }
+
+  :where([data-tk="media-figure"]) > :where(img) {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  :where([data-tk="media-body"]) {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="media"][data-size="sm"]) { --_figure: 4rem; }
+  :where([data-tk="media"][data-size="lg"]) { --_figure: 12rem; }
+
+  @container media (max-width: 24rem) {
+    :where([data-tk="media"]) {
+      flex-direction: column;
+    }
+    :where([data-tk="media-figure"]) {
+      flex-basis: auto;
+      inline-size: var(--_figure);
+    }
+  }
+}

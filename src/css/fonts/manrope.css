@@ -1,0 +1,101 @@
+/* ---------------------------------------------------------------------------
+   Manrope — the kit's own typeface.
+
+   This is a *kit* decision, not a brand one. A wireframe has to render text in
+   something, and the browser default stack renders as an unstyled document:
+   the system face is not neutral, it is absent. Manrope is the kit's voice in
+   the same way the grayscale ramp is — a brand pack remaps --tk-font-sans
+   exactly as it remaps --tk-text-primary, and nothing downstream changes.
+
+   Provenance: Manrope by Mikhail Sharanda, © The Manrope Project Authors,
+   under the SIL Open Font License 1.1. The licence travels beside the files
+   (files/OFL.txt) and inside them. Taken from Google Fonts' repository
+   (ofl/manrope, version 4.505): the variable font, fixed at the four weights
+   the kit uses and subset to its 225 characters with fonttools, hinting
+   dropped, every OpenType feature kept. The OFL allows exactly that for
+   Manrope, which reserves no font name.
+
+   Until 2026-09-27 the kit set in Hauora Sans, a modification of Manrope
+   whose licence reserves the names "Hauora" and "Hauora Sans" for unmodified
+   copies, which a subset is not. Hauora is Manrope with a few glyphs redrawn:
+   compared across the kit's 225 characters at all four weights, the
+   vertical metrics are identical, and so is every advance but the ordinals
+   ª and º (Hauora drew them 0.24em wider) and eight off by one unit in 2,000.
+   The `0` that `ch` measures is the same, so the swap moved nothing: the
+   fallback below, --tk-measure and the type gate's numbers all hold.
+
+   One known weakness, recorded rather than hidden: capital I and lowercase l
+   are the same bare rectangle, 0.073em wide on the same advance; l stands 2%
+   taller (0.735em against 0.720em). The font exposes no stylistic alternate
+   to fix it (GSUB carries aalt, calt, case, liga, locl, tnum, pnum, frac,
+   numr, dnom, ordn, sups, subs, sinf — no ss01, no cv##). If a brand pack is
+   ever asked to carry codes, IDs or drug names as running text, that is the
+   reason to reach for a different face, and the pack is where to do it.
+
+   Shipped as four subset static weights, about 14KB each: four subset statics
+   beat one full variable file when four is all the kit uses.
+--------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./files/manrope-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./files/manrope-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./files/manrope-600.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./files/manrope-700.woff2") format("woff2");
+}
+
+/* ---------------------------------------------------------------------------
+   The metric-matched fallback.
+
+   `font-display: swap` shows the fallback first and swaps, which is a layout
+   shift — and CLS is a quarter of the Lighthouse performance score. The fix is
+   to make the fallback occupy the same space: adjust a locally-present face
+   until its average advance and its baseline match Manrope's, so the swap
+   moves nothing.
+
+   Every number below is measured, not guessed. Liberation Sans stands in for
+   Arial, which it is metric-compatible with and which is present on Windows
+   and macOS both:
+
+     average advance   Manrope 0.4726 em   Arial 0.4565 em  -> 103.53%
+     hhea ascent       1.0660 em                            -> 102.97% of adjusted
+     hhea descent      0.3000 em                            -> 28.98% of adjusted
+     x-height after adjustment: 0.540 vs 0.547 — within 1.3%
+
+   They were measured against Hauora, whose advances and vertical metrics
+   Manrope shares (see the header; compared 2026-09-27). If the face ever
+   changes, re-derive them from the new face's hmtx and hhea tables.
+--------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Manrope Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Liberation Sans");
+  size-adjust: 103.53%;
+  ascent-override: 102.97%;
+  descent-override: 28.98%;
+  line-gap-override: 0%;
+}

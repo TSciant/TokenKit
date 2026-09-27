@@ -1,0 +1,81 @@
+/* Gauge — semicircle dial (cq-panel-kit lineage), token-skinned. */
+@layer components {
+  :where([data-tk="gauge"]) {
+    container-type: inline-size;
+    container-name: gauge;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tk-space-2);
+    padding: var(--tk-space-4);
+    background: var(--tk-surface-raised);
+    border: 1px solid var(--tk-line-default);
+    border-radius: var(--tk-radius-nested);
+  }
+
+  :where([data-tk="gauge-label"]) {
+    margin: 0;
+    align-self: stretch;
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-semibold);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="gauge-svg"]) {
+    width: min(100%, 12rem);
+    height: auto;
+    aspect-ratio: 2 / 1;
+    overflow: visible;
+  }
+
+  :where([data-tk="gauge-track"]) {
+    fill: none;
+    stroke: var(--tk-surface-sunken);
+    stroke-width: 12;
+    stroke-linecap: round;
+  }
+
+  :where([data-tk="gauge-fill"]) {
+    fill: none;
+    /* Same reason as the meter fill: a bare arc is judged against its own
+       track, not against a label sitting on it. */
+    stroke: var(--tk-data-ink, var(--tk-action-fill));
+    stroke-width: 12;
+    stroke-linecap: round;
+    transition: stroke-dashoffset var(--tk-motion-size);
+  }
+
+  :where([data-tk="gauge-value"]) {
+    margin: calc(var(--tk-space-2) * -1) 0 0;
+    font-size: var(--tk-size-2xl);
+    font-weight: var(--tk-weight-bold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tk-tracking-tight);
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="gauge-unit"]) {
+    font-size: 0.55em;
+    font-weight: var(--tk-weight-semibold);
+    color: var(--tk-text-secondary);
+    margin-inline-start: 0.15em;
+  }
+
+  :where([data-tk="gauge-hint"]) {
+    margin: 0;
+    font-size: var(--tk-size-xs);
+    color: var(--tk-text-secondary);
+  }
+
+  @container gauge (min-width: 16rem) {
+    :where([data-tk="gauge-svg"]) {
+      width: min(100%, 16rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="gauge-fill"]) {
+      transition: none;
+    }
+  }
+}

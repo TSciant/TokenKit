@@ -1,0 +1,228 @@
+/* ---------------------------------------------------------------------------
+   Pack template.
+
+   Copy this file, rename it, replace <brand> with the brand's short slug, and
+   fill in the private ramp. Nothing below the "contract" divider changes
+   shape between packs — the slot names are fixed, only the values move.
+
+   Naming, two levels and they do different jobs:
+
+     --<brand>-*   pack-private. Whatever the brand book actually says:
+                   --acme-navy-600, --acme-display, --acme-rule. Only this file
+                   reads them. Name them however the brand names them.
+
+     --tk-*        the contract. Every component reads these and only these.
+                   Fixed across all packs. This is why applying a brand is a
+                   pack swap rather than a component edit.
+
+   Two packs can be live on one page at once, because custom properties
+   resolve per element against inherited context — put each brand's selector
+   on a different subtree and both resolve correctly in the same document.
+
+   A pack that leaves a slot unfilled falls back to that property's
+   initial-value from 02-property.css. It will render; it may not be on brand.
+   tools/lint-tokens.mjs reports unfilled slots.
+--------------------------------------------------------------------------- */
+
+@layer tokens {
+  [data-brand="<brand>"] {
+    /* ---------------------------------------------------------------------
+       PACK-PRIVATE — the brand book, transcribed. Add, remove, rename freely.
+       --------------------------------------------------------------------- */
+    --<brand>-ink: #000000;
+    --<brand>-paper: #ffffff;
+    --<brand>-primary: #000000;
+    --<brand>-primary-dark: #000000;
+    --<brand>-rule: #000000;
+
+    /* ---------------------------------------------------------------------
+       CONTRACT — fixed slots. Map private values in; do not rename.
+       --------------------------------------------------------------------- */
+
+    /* surface */
+    --tk-surface-base: var(--<brand>-paper);
+    --tk-surface-default: var(--<brand>-paper);
+    --tk-surface-raised: var(--<brand>-paper);
+    --tk-surface-sunken: var(--<brand>-paper);
+    --tk-surface-inverse: var(--<brand>-ink);
+
+    /* text */
+    --tk-text-primary: var(--<brand>-ink);
+    --tk-text-secondary: var(--<brand>-ink);
+    --tk-text-tertiary: var(--<brand>-ink);
+    --tk-text-inverse: var(--<brand>-paper);
+    --tk-text-disabled: var(--<brand>-ink);
+
+    /* line — line-strong must clear 3:1 against the surface behind it */
+    --tk-line-subtle: var(--<brand>-rule);
+    --tk-line-default: var(--<brand>-rule);
+    /* Scrim and texture ink. The scrim alphas in 03-scale.css were solved
+       against a black wash — keep this the darkest value the pack has or all
+       three guarantees move at once. The texture ink should be barely
+       visible; it decorates and never informs. */
+    --tk-scrim-ink: var(--<brand>-ink);
+
+    /* Glass: chrome over imagery the pack does not control. Fixed pair. */
+    --tk-glass-fill: var(--<brand>-paper);
+    --tk-glass-ink: var(--<brand>-ink);
+    --tk-glass-line: var(--<brand>-rule);
+    /* --- motion -----------------------------------------------------------
+       Pace and curve are brand properties, so the pack sets them. These are
+       the kit's defaults restated; a brand that wants to feel quicker or
+       softer changes them here and every component follows.
+       -------------------------------------------------------------------- */
+    --tk-motion-ink: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-surface: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-line: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-elevation: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-opacity: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-transform: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-size: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-enter: var(--tk-duration-base) var(--tk-ease-entrance);
+    --tk-motion-exit: var(--tk-duration-fast) var(--tk-ease-exit);
+
+    --tk-text-on-scrim: var(--<brand>-paper);
+    --tk-texture-ink: var(--<brand>-rule);
+    /* logo — the one place a pack is meant to look like itself.
+       Everything else in this file exists to be systematic; this exists to be
+       recognisable. Set mark and word apart only if the brand actually does. */
+    --tk-logo-ink: var(--<brand>-primary);
+    --tk-logo-mark-ink: var(--<brand>-primary);
+    --tk-logo-word-ink: var(--<brand>-ink);
+    --tk-logo-tagline-ink: var(--<brand>-ink-muted);
+    --tk-logo-tile: var(--<brand>-primary);
+    /* Only if the brand's wordmark is actually set this way. */
+    --tk-logo-word-weight: 700;
+    --tk-logo-word-tracking: -0.02em;
+
+    --tk-line-strong: var(--<brand>-rule);
+
+    /* action — action-text must clear 4.5:1 against action-fill */
+    --tk-action-fill: var(--<brand>-primary);
+    --tk-action-fill-hover: var(--<brand>-primary-dark);
+    --tk-action-fill-active: var(--<brand>-primary-dark);
+    --tk-action-text: var(--<brand>-paper);
+
+    --tk-action-quiet-fill: transparent;
+    --tk-action-quiet-fill-hover: var(--<brand>-paper);
+    --tk-action-quiet-text: var(--<brand>-primary);
+
+    /* focus — must clear 3:1 against every surface it can land on */
+    --tk-focus-color: var(--<brand>-primary);
+
+    /* data ink — a bare graphic (meter fill, gauge arc) against its own
+       track. Usually the same as the action fill; set it apart when the
+       action fill only clears its floor because a label sits on top of it. */
+    --tk-data-ink: var(--<brand>-primary);
+
+    /* status */
+    --tk-status-info-line: var(--<brand>-rule);
+    --tk-status-info-surface: var(--<brand>-paper);
+    --tk-status-info-text: var(--<brand>-ink);
+
+    --tk-status-success-line: var(--<brand>-rule);
+    --tk-status-success-surface: var(--<brand>-paper);
+    --tk-status-success-text: var(--<brand>-ink);
+
+    --tk-status-warning-line: var(--<brand>-rule);
+    --tk-status-warning-surface: var(--<brand>-paper);
+    --tk-status-warning-text: var(--<brand>-ink);
+
+    --tk-status-danger-line: var(--<brand>-rule);
+    --tk-status-danger-surface: var(--<brand>-paper);
+    --tk-status-danger-text: var(--<brand>-ink);
+
+    /* Optional. Most packs leave the scales alone. Uncomment only if the
+       brand genuinely owns proportion, not just appearance. */
+    /* --tk-font-sans: "<Brand Sans>", ui-sans-serif, system-ui, sans-serif; */
+    /* --tk-radius-md: 0; */
+  }
+
+  /* --- painting -----------------------------------------------------------
+     A pack applied to a subtree has to paint, and this is not cosmetic.
+
+     Custom properties inherit, but an already-computed inherited property does
+     not re-resolve further down. `:where(body)` computes `color:
+     var(--tk-text-primary)` once, against whatever pack is in force at the
+     body; a <p> three levels down has no colour declaration of its own, so it
+     inherits that computed value. Remapping the token underneath it changes
+     nothing, and the text renders in the outer pack's ink on the inner pack's
+     ground.
+
+     So the element that switches packs re-declares colour and background. This
+     rule sits in the tokens layer, which the elements layer comes after, so it
+     does not fight `:where(body)` at the root — it only takes effect where a
+     pack is scoped mid-tree, which is exactly where it is needed.
+     ---------------------------------------------------------------------- */
+  [data-brand="<brand>"] {
+    background-color: var(--<brand>-paper);
+    color: var(--<brand>-ink);
+  }
+
+  /* -----------------------------------------------------------------------
+     INVERSE CONTEXT — required.
+
+     [data-on="inverse"] flips a subtree onto the dark plate. Every slot below
+     must move. Remapping only the text colour leaves quiet buttons, borders
+     and focus rings resolving against the light surface, which renders as
+     invisible ink and reads like a missing element rather than a contrast bug.
+
+     Paint the background from the private ramp, not from --tk-surface-inverse:
+     this same rule remaps that slot, so painting from it resolves against the
+     new value and flips straight back.
+     ----------------------------------------------------------------------- */
+  [data-brand="<brand>"] :where([data-on="inverse"]),
+  [data-brand="<brand>"][data-on="inverse"] {
+    background-color: var(--<brand>-ink);
+    color: var(--<brand>-paper);
+
+    --tk-surface-default: var(--<brand>-ink);
+    --tk-surface-base: var(--<brand>-ink);
+    --tk-surface-raised: var(--<brand>-ink);
+    --tk-surface-sunken: var(--<brand>-ink);
+    --tk-surface-inverse: var(--<brand>-paper);
+
+    --tk-text-primary: var(--<brand>-paper);
+    --tk-text-secondary: var(--<brand>-paper);
+    --tk-text-tertiary: var(--<brand>-paper);
+    --tk-text-inverse: var(--<brand>-ink);
+    --tk-text-disabled: var(--<brand>-paper);
+
+    --tk-line-subtle: var(--<brand>-rule);
+    --tk-line-default: var(--<brand>-rule);
+    /* Scrim and texture ink. The scrim alphas in 03-scale.css were solved
+       against a black wash — keep this the darkest value the pack has or all
+       three guarantees move at once. The texture ink should be barely
+       visible; it decorates and never informs. */
+    --tk-scrim-ink: var(--<brand>-ink);
+    --tk-text-on-scrim: var(--<brand>-paper);
+    --tk-texture-ink: var(--<brand>-rule);
+
+    --tk-line-strong: var(--<brand>-paper);
+
+    --tk-action-fill: var(--<brand>-paper);
+    --tk-action-fill-hover: var(--<brand>-paper);
+    --tk-action-fill-active: var(--<brand>-paper);
+    --tk-action-text: var(--<brand>-ink);
+
+    --tk-action-quiet-fill: transparent;
+    --tk-action-quiet-fill-hover: var(--<brand>-ink);
+    --tk-action-quiet-text: var(--<brand>-paper);
+
+    --tk-focus-color: var(--<brand>-paper);
+    --tk-data-ink: var(--<brand>-paper);
+
+    --tk-status-info-line: var(--<brand>-rule);
+    --tk-status-info-surface: var(--<brand>-ink);
+    --tk-status-info-text: var(--<brand>-paper);
+    --tk-status-success-line: var(--<brand>-rule);
+    --tk-status-success-surface: var(--<brand>-ink);
+    --tk-status-success-text: var(--<brand>-paper);
+    --tk-status-warning-line: var(--<brand>-rule);
+    --tk-status-warning-surface: var(--<brand>-ink);
+    --tk-status-warning-text: var(--<brand>-paper);
+    --tk-status-danger-line: var(--<brand>-rule);
+    --tk-status-danger-surface: var(--<brand>-ink);
+    --tk-status-danger-text: var(--<brand>-paper);
+  }
+}

@@ -1,0 +1,209 @@
+/* ---------------------------------------------------------------------------
+   Element defaults. Bare HTML should already be readable and accessible
+   before a single class or attribute is applied.
+
+   Everything here is wrapped in :where() so it carries zero specificity and
+   any component or composition cascades over it without escalation.
+--------------------------------------------------------------------------- */
+
+@layer elements {
+  :where(body) {
+    font-family: var(--tk-font-sans);
+    font-size: var(--tk-size-base);
+    line-height: var(--tk-leading-relaxed);
+    color: var(--tk-text-primary);
+    background-color: var(--tk-surface-base);
+
+    /* Ligatures and contextual alternates on; the face ships calt and liga
+       and both are corrections, not decoration. */
+    font-variant-ligatures: common-ligatures contextual;
+    font-kerning: normal;
+  }
+
+  /* --- headings ----------------------------------------------------------
+     Leading and tracking step with the size rather than sitting at one value
+     for the whole ramp. At 16px a face wants air between letters and room
+     between lines; at 48px the same air is a gap and the same leading is a
+     hole. One value across six levels is the loudest tell that a scale was
+     listed rather than drawn, and it is what makes an otherwise correct page
+     look like an unstyled document.
+     -------------------------------------------------------------------- */
+  :where(h1, h2, h3, h4, h5, h6) {
+    line-height: var(--tk-leading-tight);
+    font-weight: var(--tk-weight-semibold);
+    letter-spacing: var(--tk-tracking-snug);
+    text-wrap: balance;
+  }
+
+  :where(h1) {
+    /* The display slots, not the body ones. A brand that shouts does it
+       here, and does it by filling tokens rather than by a component
+       learning which brand it is rendering. */
+    font-family: var(--tk-font-display);
+    text-transform: var(--tk-display-case);
+    font-size: var(--tk-size-3xl);
+    line-height: var(--tk-leading-display);
+    letter-spacing: var(--tk-tracking-display);
+    font-weight: var(--tk-weight-bold);
+  }
+
+  :where(h2) {
+    font-size: var(--tk-size-2xl);
+    line-height: var(--tk-leading-tight);
+    letter-spacing: var(--tk-tracking-tight);
+  }
+
+  :where(h3) {
+    font-size: var(--tk-size-xl);
+    letter-spacing: var(--tk-tracking-tight);
+  }
+
+  :where(h4) { font-size: var(--tk-size-lg); }
+
+  :where(h5) {
+    font-size: var(--tk-size-md);
+    line-height: var(--tk-leading-snug);
+  }
+
+  /* The eyebrow. Uppercase at body size needs the opposite correction —
+     capitals set tight are the hardest thing on a page to read. */
+  :where(h6) {
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-snug);
+    letter-spacing: var(--tk-tracking-wide);
+    font-weight: var(--tk-weight-medium);
+    text-transform: uppercase;
+    color: var(--tk-text-secondary);
+    font-feature-settings: "case" 1;
+  }
+
+  :where(p) {
+    text-wrap: pretty;
+    max-inline-size: var(--tk-measure);
+  }
+
+  /* Figures line up in a column or they are not a column. The face ships
+     tnum; this is where it earns its place. */
+  :where(td, th, time, data, output) {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :where(small) {
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where(code, kbd, samp, pre) {
+    font-family: var(--tk-font-mono);
+    font-size: 0.9em;
+  }
+
+  :where(a[href]) {
+    color: currentColor;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  :where(a[href]:hover) {
+    text-decoration-thickness: 2px;
+  }
+
+  :where(hr) {
+    border: 0;
+    block-size: 1px;
+    background-color: var(--tk-line-default);
+    margin-block: var(--tk-space-5);
+  }
+
+  :where(table) {
+    inline-size: 100%;
+    border-collapse: collapse;
+    text-align: start;
+  }
+
+  :where(th, td) {
+    padding: var(--tk-space-3) var(--tk-space-4);
+    border-block-end: 1px solid var(--tk-line-default);
+    text-align: start;
+    vertical-align: top;
+  }
+
+  :where(th) {
+    font-weight: var(--tk-weight-semibold);
+    color: var(--tk-text-primary);
+  }
+
+  :where(caption) {
+    caption-side: top;
+    text-align: start;
+    padding-block-end: var(--tk-space-3);
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where(fieldset) {
+    border: 1px solid var(--tk-line-strong);
+    padding: var(--tk-space-4);
+
+    --_radius: var(--tk-radius-nested);
+    --_radius-gap: var(--tk-space-4);
+    border-radius: var(--_radius);
+  }
+
+  :where(fieldset) > * {
+    --tk-radius-nested: max(0px, calc(var(--_radius) - var(--_radius-gap)));
+  }
+
+  :where(legend) {
+    padding-inline: var(--tk-space-2);
+    font-weight: var(--tk-weight-medium);
+  }
+
+  :where(blockquote) {
+    border-inline-start: 2px solid var(--tk-line-strong);
+    padding-inline-start: var(--tk-space-4);
+    color: var(--tk-text-secondary);
+  }
+
+  :where(dialog) {
+    border: 1px solid var(--tk-line-default);
+    padding: var(--tk-space-6);
+
+    /* Top-level surface: outer = pad + desired inner, or the arc dies at zero. */
+    --_radius-gap: var(--tk-space-6);
+    --_radius: calc(var(--_radius-gap) + var(--tk-radius-md));
+    border-radius: var(--_radius);
+    background-color: var(--tk-surface-raised);
+    color: var(--tk-text-primary);
+    max-inline-size: min(90vw, 40rem);
+  }
+
+  :where(dialog) > * {
+    --tk-radius-nested: max(0px, calc(var(--_radius) - var(--_radius-gap)));
+  }
+
+  :where(dialog)::backdrop {
+    background-color: rgb(0 0 0 / 0.45);
+  }
+
+  /* Disclosure. `name` gives an exclusive accordion with no JS. */
+  :where(summary) {
+    cursor: pointer;
+    min-block-size: var(--tk-target-min);
+    display: flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+  }
+
+  :where([hidden]) {
+    display: none !important;
+  }
+
+  /* --- surface context ---------------------------------------------------
+     [data-on="inverse"] flips a subtree onto the inverse surface. It is
+     implemented entirely in the pack, because every value it moves is a
+     colour decision and the pack is the only place allowed to hold one.
+     See src/css/packs/wireframe.css for the full slot list a pack must
+     provide, and docs/02-token-contract.md for why the set is complete
+     rather than just the text colour. */
+}

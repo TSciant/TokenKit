@@ -1,0 +1,99 @@
+/* ---------------------------------------------------------------------------
+   Motion FX — IntersectionObserver-driven reveal + CSS parallax.
+   JS sets data-fx-in / --tk-fx-y; this file owns the craft.
+
+   Every hidden state below is scoped to [data-fx-ready], which the FX layer
+   puts on <html> as its first act. That scope is the whole difference between
+   an enhancement and a liability.
+
+   Without it, `[data-fx-reveal]:not([data-fx-in]) { opacity: 0 }` hides
+   content the moment the markup renders and only ever un-hides it if
+   JavaScript runs AND IntersectionObserver fires. Script blocked, script
+   failed, a crawler that does not run observers — the content is simply gone,
+   permanently, with no error anywhere. `data-fx-reveal` comes from the
+   component's own markup; `data-fx-in` comes from a browser API. Hiding on
+   the first and revealing on the second bets the content on the second
+   arriving.
+
+   With the scope, the default is visible. JS announces itself, and only then
+   does anything hide. Nothing can be lost by a script that never ran.
+--------------------------------------------------------------------------- */
+@layer components {
+  :where([data-fx]) {
+    --tk-fx-y: 0px;
+  }
+
+  /* --- reveal presets --------------------------------------------------- */
+  :where([data-fx-ready] [data-fx-reveal="rise"]:not([data-fx-in])),
+  :where([data-fx-ready] [data-fx-reveal="fade"]:not([data-fx-in])),
+  :where([data-fx-ready] [data-fx-reveal="zoom"]:not([data-fx-in])),
+  :where([data-fx-ready] [data-fx-reveal="blur-rise"]:not([data-fx-in])) {
+    opacity: 0;
+    will-change: transform, opacity, filter;
+  }
+
+  :where([data-fx-ready] [data-fx-reveal="rise"]:not([data-fx-in])) {
+    transform: translate3d(0, 1.1rem, 0);
+  }
+
+  :where([data-fx-ready] [data-fx-reveal="fade"]:not([data-fx-in])) {
+    transform: none;
+  }
+
+  :where([data-fx-ready] [data-fx-reveal="zoom"]:not([data-fx-in])) {
+    transform: scale(0.96) translate3d(0, 0.5rem, 0);
+  }
+
+  :where([data-fx-ready] [data-fx-reveal="blur-rise"]:not([data-fx-in])) {
+    transform: translate3d(0, 0.85rem, 0);
+    filter: blur(4px);
+  }
+
+  :where([data-fx-reveal][data-fx-in]) {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, var(--tk-fx-y, 0px), 0);
+    transition:
+      opacity var(--tk-motion-enter),
+      transform var(--tk-motion-enter),
+      filter var(--tk-motion-enter);
+  }
+
+  /* Parallax-only (already in view): keep transform live on --tk-fx-y */
+  :where([data-fx-parallax]:not([data-fx-reveal])) {
+    transform: translate3d(0, var(--tk-fx-y, 0px), 0);
+    will-change: transform;
+    transition: none; /* scroll-linked — no laggy tween */
+  }
+
+  :where([data-fx-parallax][data-fx-reveal][data-fx-in]) {
+    /* After enter, parallax owns Y; ease only opacity/filter */
+    transition:
+      opacity var(--tk-motion-enter),
+      filter var(--tk-motion-enter);
+    transform: translate3d(0, var(--tk-fx-y, 0px), 0);
+  }
+
+  /* Nested media (Plate photo) can track a gentler opposite parallax */
+  :where([data-fx-parallax][data-fx-in] [data-tk="plate-media"]),
+  :where([data-fx-parallax]:not([data-fx-reveal]) [data-tk="plate-media"]) {
+    transform: translate3d(0, calc(var(--tk-fx-y, 0px) * -0.35), 0) scale(1.06);
+    transition: none;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-fx-reveal]:not([data-fx-in])),
+    :where([data-fx-reveal][data-fx-in]),
+    :where([data-fx-parallax]) {
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    :where([data-fx-parallax] [data-tk="plate-media"]) {
+      transform: none !important;
+    }
+  }
+}

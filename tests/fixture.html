@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>tokenkit contrast fixture</title>
+    <link rel="stylesheet" href="../src/css/index.css" />
+    <link rel="stylesheet" href="../src/css/specimens.css" />
+    <style>
+      /* Fixture chrome only. Not part of the kit. */
+      body { padding: 1rem; }
+      section { margin-block-end: 2rem; }
+      .ctx { padding: 1rem; margin-block-start: 0.5rem; }
+      .ctx[data-surface="default"] { background: var(--tk-surface-default); }
+      .ctx[data-surface="base"]    { background: var(--tk-surface-base); }
+      .ctx[data-surface="sunken"]  { background: var(--tk-surface-sunken); }
+      .ctx[data-surface="raised"]  { background: var(--tk-surface-raised); }
+      /* No background here — data-on="inverse" paints itself from the pack. */
+      h2 { font-size: 1rem; margin-block-end: 0.25rem; }
+    </style>
+  </head>
+
+  <!--
+    Every element carrying data-check is a pair the gate asserts.
+
+      data-check="textNormal"        color vs nearest opaque background
+      data-check="textLarge"         same, large-text threshold
+      data-check="nonText:border"    border colour vs background behind it
+      data-check="nonText:outline"   outline colour vs background behind it
+      data-check="nonText:background" own background vs parent's background
+      data-check="textNormal:scrim"   text vs the scrim's guaranteed worst case
+
+    data-label names the pair in the report.
+  -->
+
+  <body data-brand="wireframe">
+    <template id="specimen">
+      <div data-shell="stack" data-gap="4">
+        <span data-tk="eyebrow" data-check="textNormal" data-label="eyebrow/default"
+          >Section label</span
+        >
+        <span
+          data-tk="eyebrow"
+          data-emphasis="quiet"
+          data-check="textNormal"
+          data-label="eyebrow/quiet"
+          >Section label</span
+        >
+        <p data-check="textNormal" data-label="body/primary">
+          Primary body text.
+        </p>
+        <p
+          data-check="textNormal"
+          data-label="body/secondary"
+          style="color: var(--tk-text-secondary)"
+        >
+          Secondary body text.
+        </p>
+        <p
+          data-check="textNormal"
+          data-label="body/tertiary"
+          style="color: var(--tk-text-tertiary)"
+        >
+          Tertiary body text.
+        </p>
+
+        <div data-shell="inline" data-gap="3">
+          <button data-tk="button" data-check="textNormal" data-label="button/solid ink">
+            Solid
+          </button>
+          <button
+            data-tk="button"
+            data-variant="outline"
+            data-check="nonText:border"
+            data-label="button/outline boundary"
+          >
+            Outline
+          </button>
+          <button
+            data-tk="button"
+            data-variant="quiet"
+            data-check="textNormal"
+            data-label="button/quiet ink"
+          >
+            Quiet
+          </button>
+        </div>
+
+        <div data-tk="field">
+          <label data-tk="field-label" data-check="textNormal" data-label="field/label">
+            Label
+          </label>
+          <input
+            data-tk="input"
+            data-check="nonText:border"
+            data-label="input/boundary"
+            value="value"
+          />
+          <p data-tk="field-hint" data-check="textNormal" data-label="field/hint">
+            Hint text.
+          </p>
+          <p data-tk="field-error" data-check="textNormal" data-label="field/error">
+            Error text.
+          </p>
+        </div>
+
+        <div data-shell="inline" data-gap="2">
+          <span data-tk="chip" data-check="textNormal" data-label="chip/default">chip</span>
+          <span
+            data-tk="chip"
+            data-emphasis="strong"
+            data-check="textNormal"
+            data-label="chip/strong"
+            >strong</span
+          >
+        </div>
+
+        <div data-tk="alert" data-check="textNormal" data-label="alert/info ink">
+          <div><p data-tk="alert-title">Info</p></div>
+        </div>
+        <div
+          data-tk="alert"
+          data-status="danger"
+          data-check="nonText:border"
+          data-label="alert/danger boundary"
+        >
+          <div><p data-tk="alert-title">Danger</p></div>
+        </div>
+
+        <div data-tk="meter">
+          <div data-tk="meter-head" data-check="textNormal" data-label="meter/label">
+            <span>Meter</span><span>64 / 100</span>
+          </div>
+          <div data-tk="meter-track">
+            <div
+              data-tk="meter-fill"
+              data-check="nonText:background"
+              data-label="meter/fill vs track"
+              style="--tk-meter-value: 64"
+            ></div>
+          </div>
+        </div>
+
+        <div data-tk="card" data-interactive>
+          <h3 data-tk="card-title" data-check="textNormal" data-label="card/title">
+            Card title
+          </h3>
+          <p data-tk="card-body" data-check="textNormal" data-label="card/body">
+            Card body copy.
+          </p>
+        </div>
+
+        <a
+          href="#"
+          class="focus-probe"
+          data-check="nonText:outline"
+          data-label="focus/ring"
+          >Focus probe</a
+        >
+      </div>
+
+      <!-- Scrim. Three strengths, each asserted against the lightest backdrop
+           an unknown photograph can produce. The plate underneath is whatever
+           the pack says; the gate ignores it and composites over white, which
+           is the only claim that survives contact with a real image. -->
+      <div data-tk="scrim" data-strength="large" style="block-size: 5rem">
+        <div style="background: var(--tk-surface-sunken)"></div>
+        <div data-tk="scrim-content">
+          <span
+            style="font-size: 1.5rem; font-weight: 700"
+            data-check="textLarge:scrim"
+            data-label="scrim/large 3:1"
+            >Large over scrim</span
+          >
+        </div>
+      </div>
+
+      <div data-tk="scrim" style="block-size: 5rem">
+        <div style="background: var(--tk-surface-sunken)"></div>
+        <div data-tk="scrim-content">
+          <!-- The de-emphasised label. This is the pair that was missing, and
+               its absence is why an eyebrow rendered at 1.3:1 on a wash for
+               two commits without the gate noticing. -->
+          <span
+            data-tk="eyebrow"
+            data-check="textNormal:scrim"
+            data-label="scrim/eyebrow"
+            >Webinar</span
+          >
+          <span data-check="textNormal:scrim" data-label="scrim/normal 4.5:1"
+            >Body over scrim</span
+          >
+          <!-- Controls on a wash. They paint their own ground, so they are
+               checked as ordinary pairs; what the scrim context has to get
+               right is that they are legible at all. -->
+          <span data-shell="inline" data-gap="2">
+            <button data-tk="button" data-size="sm" data-check="textNormal" data-label="scrim/button solid">
+              1
+            </button>
+            <button
+              data-tk="button"
+              data-size="sm"
+              data-variant="outline"
+              data-check="textNormal:scrim"
+              data-label="scrim/button outline"
+            >
+              2
+            </button>
+            <button
+              data-tk="button"
+              data-size="sm"
+              data-variant="outline"
+              data-check="nonText:scrim"
+              data-label="scrim/button outline boundary"
+            >
+              3
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <div data-tk="scrim" data-strength="aaa" style="block-size: 5rem">
+        <div style="background: var(--tk-surface-sunken)"></div>
+        <div data-tk="scrim-content">
+          <span
+            data-tk="eyebrow"
+            data-check="textNormal:scrim"
+            data-label="scrim/eyebrow aaa"
+            >Webinar</span
+          >
+          <span data-check="textNormal:scrim" data-label="scrim/aaa 7:1"
+            >Body over AAA scrim</span
+          >
+        </div>
+      </div>
+    </template>
+
+    <main data-shell="stack" data-gap="6">
+      <section>
+        <h2>surface: default</h2>
+        <div class="ctx" data-surface="default" data-mount></div>
+      </section>
+      <section>
+        <h2>surface: base</h2>
+        <div class="ctx" data-surface="base" data-mount></div>
+      </section>
+      <section>
+        <h2>surface: sunken</h2>
+        <div class="ctx" data-surface="sunken" data-mount></div>
+      </section>
+      <section>
+        <h2>surface: default · density compact</h2>
+        <div class="ctx" data-surface="default" data-density="compact" data-mount></div>
+      </section>
+      <section>
+        <h2>surface: default · density comfortable</h2>
+        <div
+          class="ctx"
+          data-surface="default"
+          data-density="comfortable"
+          data-mount
+        ></div>
+      </section>
+      <section>
+        <h2>surface: inverse</h2>
+        <div class="ctx" data-surface="inverse" data-on="inverse" data-mount></div>
+      </section>
+      <section data-brand="wireframe-dark">
+        <h2>pack: wireframe-dark · surface default</h2>
+        <div class="ctx" data-surface="default" data-mount></div>
+      </section>
+      <section data-brand="wireframe-dark">
+        <h2>pack: wireframe-dark · surface raised</h2>
+        <div class="ctx" data-surface="raised" data-mount></div>
+      </section>
+      <section data-brand="wireframe-dark">
+        <h2>pack: wireframe-dark · inverse</h2>
+        <div class="ctx" data-surface="inverse" data-on="inverse" data-mount></div>
+      </section>
+      <!-- Specimen packs.
+
+           Here for the same reason the wireframe-dark blocks are: a pack that
+           is not in the fixture is a pack the gate has never seen, and every
+           one of these six was solved on paper before it was written down.
+           Paper is not a proof. Three contexts each — the default ground, the
+           sunken ground where line-strong is closest to failing, and the
+           inverse plate where a brand colour has no guarantee at all. -->
+      <section data-brand="tk">
+        <h2>pack: TK · surface default</h2>
+        <div class="ctx" data-surface="default" data-mount></div>
+      </section>
+      <section data-brand="tk">
+        <h2>pack: TK · surface sunken</h2>
+        <div class="ctx" data-surface="sunken" data-mount></div>
+      </section>
+      <section data-brand="tk">
+        <h2>pack: TK · inverse</h2>
+        <div class="ctx" data-surface="inverse" data-on="inverse" data-mount></div>
+      </section>
+      <section data-brand="door-shop">
+        <h2>pack: Door Shop · surface default</h2>
+        <div class="ctx" data-surface="default" data-mount></div>
+      </section>
+      <section data-brand="door-shop">
+        <h2>pack: Door Shop · surface sunken</h2>
+        <div class="ctx" data-surface="sunken" data-mount></div>
+      </section>
+      <section data-brand="door-shop">
+        <h2>pack: Door Shop · inverse</h2>
+        <div class="ctx" data-surface="inverse" data-on="inverse" data-mount></div>
+      </section>
+      <section data-brand="mohave">
+        <h2>pack: Mohave · surface default</h2>
+        <div class="ctx" data-surface="default" data-mount></div>
+      </section>
+      <section data-brand="mohave">
+        <h2>pack: Mohave · surface sunken</h2>
+        <div class="ctx" data-surface="sunken" data-mount></div>
+      </section>
+      <section data-brand="mohave">
+        <h2>pack: Mohave · inverse</h2>
+        <div class="ctx" data-surface="inverse" data-on="inverse" data-mount></div>
+      </section>
+      <section data-brand="bathing-bagels">
+        <h2>pack: Bathing Bagels · surface default</h2>
+        <div class="ctx" data-surface="default" data-mount></div>
+      </section>
+      <section data-brand="bathing-bagels">
+        <h2>pack: Bathing Bagels · surface sunken</h2>
+        <div class="ctx" data-surface="sunken" data-mount></div>
+      </section>
+      <section data-brand="bathing-bagels">
+        <h2>pack: Bathing Bagels · inverse</h2>
+        <div class="ctx" data-surface="inverse" data-on="inverse" data-mount></div>
+      </section>
+      <section data-brand="wandas">
+        <h2>pack: Wanda's · surface default</h2>
+        <div class="ctx" data-surface="default" data-mount></div>
+      </section>
+      <section data-brand="wandas">
+        <h2>pack: Wanda's · surface sunken</h2>
+        <div class="ctx" data-surface="sunken" data-mount></div>
+      </section>
+      <section data-brand="wandas">
+        <h2>pack: Wanda's · inverse</h2>
+        <div class="ctx" data-surface="inverse" data-on="inverse" data-mount></div>
+      </section>
+      <section data-brand="muncheese">
+        <h2>pack: Muncheese · surface default</h2>
+        <div class="ctx" data-surface="default" data-mount></div>
+      </section>
+      <section data-brand="muncheese">
+        <h2>pack: Muncheese · surface sunken</h2>
+        <div class="ctx" data-surface="sunken" data-mount></div>
+      </section>
+      <section data-brand="muncheese">
+        <h2>pack: Muncheese · inverse</h2>
+        <div class="ctx" data-surface="inverse" data-on="inverse" data-mount></div>
+      </section>
+      <section>
+        <h2>surface: inverse · density compact</h2>
+        <div
+          class="ctx"
+          data-surface="inverse"
+          data-on="inverse"
+          data-density="compact"
+          data-mount
+        ></div>
+      </section>
+    </main>
+
+    <script>
+      // Mount the same specimen into every context. Identical markup, and the
+      // only thing that differs is where it sits.
+      const tpl = document.getElementById("specimen");
+      for (const host of document.querySelectorAll("[data-mount]")) {
+        host.append(tpl.content.cloneNode(true));
+      }
+      // Force the focus ring to be computable without a real focus event.
+      for (const probe of document.querySelectorAll(".focus-probe")) {
+        probe.style.outline =
+          "var(--tk-focus-width) solid var(--tk-focus-color)";
+        probe.style.outlineOffset = "var(--tk-focus-offset)";
+      }
+    </script>
+  </body>
+</html>

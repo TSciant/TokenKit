@@ -1,0 +1,134 @@
+/* ---------------------------------------------------------------------------
+   Guidance — Do and Don't.
+
+   The rule this file exists to obey: COLOUR IS THE LAST CHANNEL, never the
+   only one. Roughly one man in twelve cannot reliably separate green from
+   red, and a green panel beside a red panel with nothing else distinguishing
+   them is, to that reader, two identical panels. WCAG 1.4.1 says the same
+   thing in fewer words.
+
+   So the difference between the two is carried four times:
+
+     the word      "Do" / "Don't", in text, which survives greyscale, a
+                   screen reader, a printout and a pack with no colour in it
+     the icon      a check or a cross
+     the border    solid for Do, dashed for Don't — a shape difference that
+                   reads at a glance and at any zoom
+     the colour    the status slots, and only as reinforcement
+
+   The test for anything added below: switch to the wireframe pack, which is
+   entirely grey, and check the two are still separable. If they are not, the
+   colour was doing the work rather than backing it up.
+
+   Every value is a token, including the status colours, so a brand owns this
+   the way it owns everything else. A palette with no green and no red gets
+   its own answer and the guidance still reads, because the word and the
+   border never depended on the palette in the first place.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  /* Side by side when the slot can hold two readable columns, stacked when it
+     cannot. 17rem is about the narrowest a component example stays honest in,
+     so the pair splits at 34rem plus the gap.
+
+     auto-fit, NOT a container query, and the first version of this got it
+     wrong in a way worth recording: it declared `container-type: inline-size`
+     on this element and then wrote `@container (min-width: 34rem)` selecting
+     this same element. An element cannot query its own container — it is the
+     container, and a container query never matches the element that
+     establishes it. The rule silently never applied and the pair stacked at
+     every width, which looked like a layout preference rather than a bug.
+
+     The same shape as the concentric-radius cycle at the foot of 03-scale.css:
+     a thing that both declares and reads the same contextual value. Fixing it
+     with a wrapper element would have worked; not needing the query at all is
+     better, because auto-fit expresses the intent directly — as many columns
+     as fit, minimum 17rem — with no breakpoint to keep in step. */
+  :where([data-tk="guidance-pair"]) {
+    display: grid;
+    gap: var(--tk-space-4);
+    align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+  }
+
+  :where([data-tk="guidance"]) {
+    --_pad: var(--tk-space-4);
+
+    display: grid;
+    gap: var(--tk-space-3);
+    margin: 0;
+    padding: var(--_pad);
+
+    /* The concentric chain, published to children below rather than here.
+       Reading and re-declaring the same custom property on one element is a
+       cycle — see the block at the foot of 03-scale.css. */
+    --_radius: var(--tk-radius-nested);
+    --_radius-gap: var(--_pad);
+    --_guidance-out: max(0px, calc(var(--_radius) - var(--_radius-gap)));
+    border-radius: var(--_radius);
+  }
+
+  :where([data-tk="guidance"]) > * {
+    --tk-radius-nested: var(--_guidance-out);
+  }
+
+  /* --- the two tones -------------------------------------------------------
+     Border STYLE is the load-bearing difference, not border colour. Solid
+     reads as settled and dashed as provisional in every pack and at every
+     zoom, and neither depends on hue. The colour follows the status slots
+     and is allowed to be identical in a grayscale pack without anything
+     breaking.
+     ---------------------------------------------------------------------- */
+  :where([data-tk="guidance"][data-tone="do"]) {
+    border: 2px solid var(--tk-status-success-line);
+    background-color: var(--tk-status-success-surface);
+    color: var(--tk-status-success-text);
+  }
+
+  :where([data-tk="guidance"][data-tone="dont"]) {
+    border: 2px dashed var(--tk-status-danger-line);
+    background-color: var(--tk-status-danger-surface);
+    color: var(--tk-status-danger-text);
+  }
+
+  /* The example sits on the pack's own default surface rather than on the
+     status ground. Guidance about a component has to show that component in
+     the context it actually ships in — a button judged against a pale green
+     panel is a button nobody will ever see. */
+  :where([data-tk="guidance-example"]) {
+    padding: var(--tk-space-4);
+    background-color: var(--tk-surface-default);
+    border-radius: var(--tk-radius-nested);
+  }
+
+  :where([data-tk="guidance-caption"]) {
+    display: grid;
+    gap: var(--tk-space-1);
+  }
+
+  :where([data-tk="guidance-flag"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    text-transform: uppercase;
+    letter-spacing: var(--tk-tracking-wide);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-tk="guidance-note"]) {
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-normal);
+    max-inline-size: var(--tk-measure);
+  }
+
+  /* Forced-colours mode throws every author colour away and substitutes the
+     user's own. Background and border colour both go, so without this the two
+     tones become one shape. The border STYLE survives, which is the reason it
+     was chosen as the primary difference — but the word and the icon are what
+     actually carry it here, and both are text. */
+  @media (forced-colors: active) {
+    :where([data-tk="guidance"]) {
+      border-width: 2px;
+    }
+  }
+}

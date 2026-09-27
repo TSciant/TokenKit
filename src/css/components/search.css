@@ -1,0 +1,53 @@
+/* ---------------------------------------------------------------------------
+   Search — a disclosure that does not swap the DOM.
+
+   The first version conditionally rendered: an icon button when closed, and a
+   label, an input, a submit and a close button when open. Clicking it replaced
+   one subtree with another, which is why it landed with a snap — there is
+   nothing to ease between two different elements, and the header reflowed in a
+   single frame. It also meant four elements existed only to be hidden.
+
+   This version has two elements and always has the same two. The input is
+   always in the markup and collapses to zero inline size; opening it is a
+   size and opacity change, which is a thing CSS can interpolate. The trigger
+   becomes the submit rather than being replaced by one.
+
+   `inert` on the collapsed input is what keeps a zero-width box out of the tab
+   order and out of the accessibility tree — the honest version of hiding,
+   rather than a visually-hidden class that still takes focus.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="search"]) {
+    display: flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="search"]) :where([data-tk="input"]) {
+    inline-size: 0;
+    min-inline-size: 0;
+    padding-inline: 0;
+    border-inline-width: 0;
+    opacity: 0;
+
+    transition:
+      inline-size var(--tk-motion-size),
+      padding-inline var(--tk-motion-size),
+      opacity var(--tk-motion-exit),
+      border-color var(--tk-motion-line);
+  }
+
+  :where([data-tk="search"][data-open]) :where([data-tk="input"]) {
+    inline-size: var(--tk-search-width);
+    padding-inline: var(--tk-space-3);
+    border-inline-width: 1px;
+    opacity: 1;
+
+    transition:
+      inline-size var(--tk-motion-enter),
+      padding-inline var(--tk-motion-enter),
+      opacity var(--tk-motion-enter),
+      border-color var(--tk-motion-line);
+  }
+}

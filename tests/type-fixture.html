@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>tokenkit type fixture</title>
+    <link rel="stylesheet" href="../src/css/index.css" />
+    <script src="./vendor/pretext.js"></script>
+    <style>
+      body { padding: 1rem; }
+      .probe { margin-block-end: 1.5rem; }
+    </style>
+  </head>
+  <body data-brand="wireframe">
+    <!--
+      Probes the gate measures. Each carries the real computed type of a role
+      in the system, so the numbers come from the tokens rather than from
+      values restated here.
+    -->
+    <main data-shell="stack" data-gap="5">
+      <p class="probe" data-role="body">Body copy at the default measure.</p>
+      <p class="probe" data-role="body-narrow" style="max-inline-size: var(--tk-measure-narrow)">
+        Body copy at the narrow measure.
+      </p>
+      <h1 class="probe" data-role="h1">Heading one</h1>
+      <h2 class="probe" data-role="h2">Heading two</h2>
+      <h3 class="probe" data-role="h3">Heading three</h3>
+      <div data-tk="card" style="max-inline-size: 30rem">
+        <h3 class="probe" data-tk="card-title" data-role="card-title">Card title</h3>
+        <p class="probe" data-tk="card-body" data-role="card-body">Card body copy.</p>
+        <h3
+          class="probe"
+          data-tk="card-title"
+          data-role="card-title-stepped"
+          style="font-size: var(--tk-size-xl)"
+        >
+          Card title after the container query steps it up
+        </h3>
+      </div>
+      <span class="probe" data-tk="button" data-role="button">Button label</span>
+      <span class="probe" data-tk="chip" data-role="chip">chip</span>
+    </main>
+
+    <script>
+      /**
+       * Everything below is measurement scaffolding for tools/type-gate.mjs.
+       * Pretext needs a canvas, so this runs in the browser and the gate drives
+       * it through page.evaluate.
+       */
+
+      /** Canvas font shorthand, built from what the cascade actually resolved. */
+      function fontOf(el) {
+        const cs = getComputedStyle(el);
+        const style = cs.fontStyle === "normal" ? "" : `${cs.fontStyle} `;
+        return `${style}${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      }
+
+      function metricsOf(el) {
+        const cs = getComputedStyle(el);
+        return {
+          font: fontOf(el),
+          fontSizePx: parseFloat(cs.fontSize),
+          lineHeightPx:
+            cs.lineHeight === "normal"
+              ? parseFloat(cs.fontSize) * 1.2
+              : parseFloat(cs.lineHeight),
+          letterSpacing:
+            cs.letterSpacing === "normal" ? 0 : parseFloat(cs.letterSpacing),
+          maxInlineSizePx:
+            cs.maxInlineSize === "none" ? null : parseFloat(cs.maxInlineSize),
+        };
+      }
+
+      /**
+       * Lay a sample out at a given width and report what typographers
+       * actually care about: characters per line, line count, and whether the
+       * last line is a lone word.
+       */
+      window.measureSample = function measureSample(role, text, widthPx) {
+        const el = document.querySelector(`[data-role="${role}"]`);
+        if (!el) return { error: `no probe for role ${role}` };
+
+        const m = metricsOf(el);
+        const width = widthPx ?? m.maxInlineSizePx;
+        if (!width) return { error: `no width for role ${role}` };
+
+        const prepared = Pretext.prepareWithSegments(text, m.font, {
+          letterSpacing: m.letterSpacing,
+        });
+        const result = Pretext.layoutWithLines(prepared, width, m.lineHeightPx);
+
+        const lines = result.lines.map((l) => l.text.replace(/\s+$/, ""));
+        const counts = lines.map((l) => [...l].length);
+        const total = counts.reduce((a, b) => a + b, 0);
+
+        // Characters per line is averaged over every line but the last, which
+        // is short by definition and would drag the mean down.
+        const body = counts.length > 1 ? counts.slice(0, -1) : counts;
+        const cpl = body.reduce((a, b) => a + b, 0) / body.length;
+
+        const lastLine = lines[lines.length - 1] ?? "";
+        const lastWords = lastLine.trim().split(/\s+/).filter(Boolean);
+
+        return {
+          role,
+          widthPx: width,
+          fontSizePx: m.fontSizePx,
+          lineHeightPx: m.lineHeightPx,
+          font: m.font,
+          lineCount: result.lineCount,
+          heightPx: result.height,
+          totalChars: total,
+          cpl,
+          minCpl: Math.min(...body),
+          maxCpl: Math.max(...body),
+          orphan: result.lineCount > 1 && lastWords.length === 1,
+          lastLine,
+        };
+      };
+
+      /** The width at which a string stops needing `targetLines` lines. */
+      window.findBreakpoint = function findBreakpoint(role, text, targetLines) {
+        const el = document.querySelector(`[data-role="${role}"]`);
+        if (!el) return { error: `no probe for role ${role}` };
+        const m = metricsOf(el);
+        const prepared = Pretext.prepareWithSegments(text, m.font, {
+          letterSpacing: m.letterSpacing,
+        });
+
+        // Binary search on width: the smallest width that fits in targetLines.
+        let lo = 32;
+        let hi = 4000;
+        while (hi - lo > 0.5) {
+          const mid = (lo + hi) / 2;
+          const { lineCount } = Pretext.measureLineStats(prepared, mid);
+          if (lineCount <= targetLines) hi = mid;
+          else lo = mid;
+        }
+        const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+        return { role, targetLines, widthPx: hi, widthRem: hi / rem };
+      };
+
+      window.rootFontSizePx = () =>
+        parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+      window.tokenPx = (name) => {
+        const v = getComputedStyle(document.body).getPropertyValue(name).trim();
+        return v;
+      };
+
+      window.pretextReady = typeof Pretext !== "undefined";
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+/* ---------------------------------------------------------------------------
+   Icon — Lucide via react-icons, sized by the token scale and weighted by the
+   token contract.
+
+   The stroke-width line is the whole point of this file. Lucide sets
+   `stroke-width="2"` as a PRESENTATION ATTRIBUTE on each root <svg>, and a
+   presentation attribute loses to any author stylesheet rule — including a
+   `:where()` rule at zero specificity. So this one declaration re-weights
+   every glyph in the set, and --tk-icon-stroke becomes a slot a brand fills
+   like any other. Had Lucide written the weight as an inline style instead,
+   it would have beaten this and icon weight would not have been ownable.
+--------------------------------------------------------------------------- */
+@layer components {
+  /* tk-default: data-size=md
+     md is the box this rule sets; sm and lg replace it. */
+  :where([data-tk="icon"]) {
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: middle;
+    color: currentColor;
+    stroke-width: var(--tk-icon-stroke);
+
+    /* react-icons writes width="1em" height="1em" as PRESENTATION attributes,
+       the same category as Lucide's stroke-width above, so these two lines
+       beat them at zero specificity and the box becomes a token. The
+       component used to pass width={16} and height={24} as real attributes
+       instead — which these would also have beaten, leaving the number in
+       the TSX doing nothing. */
+    inline-size: var(--tk-icon-md);
+    block-size: var(--tk-icon-md);
+  }
+
+  :where([data-tk="icon"][data-size="sm"]) {
+    inline-size: var(--tk-icon-sm);
+    block-size: var(--tk-icon-sm);
+  }
+
+  :where([data-tk="icon"][data-size="lg"]) {
+    inline-size: var(--tk-icon-lg);
+    block-size: var(--tk-icon-lg);
+  }
+}

@@ -1,0 +1,252 @@
+/* ---------------------------------------------------------------------------
+   Scrim — a wash between media and the text on top of it.
+
+   The problem it solves is the one that made component 10 depart from the
+   reference: a title over a photograph cannot be contrast-checked, because
+   nobody knows what the photograph is. The usual answers are to move the text
+   off the image (safe, and a different design) or to add a dark gradient and
+   assert that it is probably fine (the same design, and unverifiable).
+
+   There is a third answer. The image is unknown, but it is bounded: no pixel
+   is lighter than white. So a scrim of a known colour at a known alpha has a
+   computable worst case, and the worst case is all WCAG needs.
+
+   For white text on a black scrim over an arbitrary image, the lightest the
+   composite can be is
+
+       c = (1 - alpha) * 255
+
+   and the required alpha follows from inverting the contrast formula at the
+   ratio you need. Solving for 3:1, 4.5:1 and 7:1:
+
+       ratio  max luminance  max channel  alpha    measured
+       3:1    0.3000         148.9        0.416    3.04:1   <- large text, 1.4.3
+       4.5:1  0.1833         118.6        0.535    4.59:1   <- normal text, 1.4.3
+       7:1    0.1000          89.0        0.651    7.26:1   <- AAA, 1.4.6
+
+   Rounded up to 0.42 / 0.54 / 0.66. These are not taste. Changing one changes
+   which success criterion the component meets, which is why they are tokens
+   with a derivation attached and why tools/contrast-gate.mjs composites them
+   over white and checks the arithmetic rather than trusting this comment.
+
+   The ink is a pack decision — it is a colour — so --tk-scrim-ink lives in the
+   pack. The alphas are contract, because they are arithmetic.
+
+   The gradient anchors from an edge (data-from) and only covers as far as
+   data-cover / --tk-scrim-cover (default 100%). Hold is the full-alpha band
+   inside that cover. Text must live inside the hold. Partial cover leaves the
+   rest of the photograph clear — use it to break a harsh horizon instead of
+   washing the whole frame.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="scrim"]) {
+    --_alpha: var(--tk-scrim-aa);
+    --_blur: 0px;
+
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    overflow: clip;
+
+    /* Joins the chain like any other container. Its content is positioned
+       over the media rather than inset from it, so the gap is zero and the
+       content shares the scrim's arc. */
+    --_radius: var(--tk-radius-nested);
+    border-radius: var(--_radius);
+  }
+
+  /* The content is laid over the media, not inset from it, so the gap is zero
+     and everything inside shares the scrim's arc. */
+  :where([data-tk="scrim"]) > * {
+    --tk-radius-nested: var(--_radius);
+  }
+
+  /* Every child lands in the same cell. The media is placed first, the wash
+     over it, the content last — no absolute positioning, so the box is as
+     tall as its content and nothing has to be measured. */
+  :where([data-tk="scrim"]) > * {
+    grid-area: 1 / 1;
+    min-inline-size: 0;
+  }
+
+  /* Direction + coverage.
+     data-from = which edge the wash anchors to (bottom default).
+     data-cover / --tk-scrim-cover = how far into the media the wash reaches
+     (25-100). Hold is the full-alpha band inside that cover. Outside cover
+     the photograph stays clear — contrast only where text needs it. */
+  :where([data-tk="scrim"]) {
+    --_scrim-dir: to top;
+    --_scrim-cover: var(--tk-scrim-cover, 100%);
+    --_scrim-hold-stop: min(var(--tk-scrim-hold), var(--_scrim-cover));
+  }
+
+  :where([data-tk="scrim"][data-from="bottom"]) { --_scrim-dir: to top; }
+  :where([data-tk="scrim"][data-from="top"]) { --_scrim-dir: to bottom; }
+  :where([data-tk="scrim"][data-from="start"]),
+  :where([data-tk="scrim"][data-from="left"]) { --_scrim-dir: to right; }
+  :where([data-tk="scrim"][data-from="end"]),
+  :where([data-tk="scrim"][data-from="right"]) { --_scrim-dir: to left; }
+
+  :where([data-tk="scrim"][data-cover="25"]) { --_scrim-cover: 25%; }
+  :where([data-tk="scrim"][data-cover="40"]) { --_scrim-cover: 40%; }
+  :where([data-tk="scrim"][data-cover="55"]) { --_scrim-cover: 55%; }
+  :where([data-tk="scrim"][data-cover="70"]) { --_scrim-cover: 70%; }
+  :where([data-tk="scrim"][data-cover="85"]) { --_scrim-cover: 85%; }
+  :where([data-tk="scrim"][data-cover="100"]) { --_scrim-cover: 100%; }
+
+  :where([data-tk="scrim"])::before {
+    content: "";
+    grid-area: 1 / 1;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity var(--tk-motion-opacity);
+    background: linear-gradient(
+      var(--_scrim-dir),
+      rgb(from var(--tk-scrim-ink) r g b / var(--_alpha)) 0,
+      rgb(from var(--tk-scrim-ink) r g b / var(--_alpha))
+        var(--_scrim-hold-stop),
+      rgb(from var(--tk-scrim-ink) r g b / 0) var(--_scrim-cover),
+      transparent var(--_scrim-cover)
+    );
+  }
+
+  /* Solid within the cover band only — still not a full-frame paint unless
+     cover is 100. */
+  :where([data-tk="scrim"][data-scrim="solid"])::before {
+    background: linear-gradient(
+      var(--_scrim-dir),
+      rgb(from var(--tk-scrim-ink) r g b / var(--_alpha)) 0,
+      rgb(from var(--tk-scrim-ink) r g b / var(--_alpha)) var(--_scrim-cover),
+      transparent var(--_scrim-cover)
+    );
+  }
+
+  /* The strength is the success criterion, named as one. Prefer these: they
+     are the three levels that mean something, and each one is the answer to
+     "what is this allowed to carry", not "how dark do I want it". */
+  :where([data-tk="scrim"][data-strength="large"]) {
+    --_alpha: var(--tk-scrim-aa-large);
+  }
+
+  :where([data-tk="scrim"][data-strength="aaa"]) {
+    --_alpha: var(--tk-scrim-aaa);
+  }
+
+  /* --- manual level ------------------------------------------------------
+     `--tk-scrim-level` is the escape hatch, clamped to 25%-88%.
+
+     Clamped rather than validated because an unclamped alpha is the one input
+     that can silently un-do the component: at 0.20 nothing on the scrim meets
+     any success criterion, and at 1.0 there is no photograph left. The bounds
+     are the range over which a scrim is still a scrim.
+
+     What the clamp CANNOT do is make a chosen level compliant. Below 0.42
+     nothing passes, even large text — so a scrim under that floor is
+     decorative, and anything it carries has to get its contrast elsewhere.
+     The gate asserts this rather than trusting the caller; see the level
+     probes in tests/fixture.html.
+     -------------------------------------------------------------------- */
+  :where([data-tk="scrim"][style*="--tk-scrim-level"]),
+  :where([data-tk="scrim"][data-level]) {
+    --_alpha: clamp(
+      var(--tk-scrim-level-min),
+      var(--tk-scrim-level),
+      var(--tk-scrim-level-max)
+    );
+  }
+
+  /* --- hover -------------------------------------------------------------
+     A scrim that deepens on hover, for a card whose whole surface is the
+     link. It only ever goes DARKER: the resting state is the one that carries
+     the guarantee, so hover can improve contrast and must never reduce it. */
+  :where([data-tk="scrim"][data-hover]) {
+    transition: --_alpha var(--tk-motion-surface);
+  }
+
+  :where([data-tk="scrim"][data-hover]:hover),
+  :where([data-tk="scrim"][data-hover]:focus-within),
+  :where(a:hover, a:focus-visible, button:hover, button:focus-visible)
+    :where([data-tk="scrim"][data-hover]) {
+    --_alpha: clamp(
+      var(--tk-scrim-level-min),
+      max(var(--_alpha), var(--tk-scrim-hover)),
+      var(--tk-scrim-level-max)
+    );
+  }
+
+  /* --- frosted -----------------------------------------------------------
+     Blur behind the wash, over the same 25%-88% range expressed as a radius.
+
+     Worth being precise about what this does and does not buy: frosting
+     flattens detail, so text stops competing with edges and looks cleaner. It
+     does NOT improve the worst case. A blurred white photograph is still
+     white, so the luminance bound the alphas were solved against is exactly
+     where it was. Frost is legibility in the loose sense and never the reason
+     a level is allowed to come down.
+
+     backdrop-filter needs something behind it to filter, which the media layer
+     provides; on a scrim with no media it costs a compositing layer and does
+     nothing, hence the opt-in. */
+  :where([data-tk="scrim"][data-frosted])::before {
+    backdrop-filter: blur(var(--_blur));
+    -webkit-backdrop-filter: blur(var(--_blur));
+  }
+
+  :where([data-tk="scrim"][data-frosted]) {
+    --_blur: clamp(
+      var(--tk-scrim-blur-min),
+      var(--tk-scrim-frost),
+      var(--tk-scrim-blur-max)
+    );
+  }
+
+  /* Content rides above the wash.
+     
+     The first version of this borrowed [data-on="inverse"] and the gate threw
+     it out, correctly. "Inverse" means the opposite of whatever the pack's
+     default is — light ink in a light pack, DARK ink in a dark one. But the
+     scrim's ink is the darkest value the pack has in both packs, because that
+     is what the alphas were solved against. So in the dark pack the borrowed
+     context put near-black text on a near-black wash: 2.28:1, and nothing in
+     the source said so.
+
+     The lesson generalises. A scrim is not a context it can borrow, because it
+     controls both sides of the pair: it paints the ground itself. So it names
+     its own slot. --tk-text-on-scrim is the pack's lightest ink in every pack,
+     for the same reason --tk-scrim-ink is the darkest. */
+  :where([data-tk="scrim-content"]) {
+    /* No colours here. `scrim-content` is a CONTEXT, and a context is a
+       complete slot set — text, lines, controls, focus — which makes it the
+       pack's business, not this file's. See the [data-on="scrim"] block in
+       src/css/packs/wireframe.css; this rule only has to make sure the
+       component does not paint over the wash it is sitting on. */
+    background-color: transparent;
+    z-index: 2;
+    align-self: end;
+    padding: var(--tk-space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+  }
+
+  /* The media layer. Sits under the wash and is never the thing being read. */
+  :where([data-tk="scrim-media"]) {
+    z-index: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  @media (prefers-contrast: more) {
+    /* Asked for more contrast, give the guaranteed maximum rather than the
+       minimum that passes. */
+    :where([data-tk="scrim"]) {
+      --_alpha: var(--tk-scrim-aaa);
+    }
+
+    :where([data-tk="scrim"])::before {
+      background: rgb(from var(--tk-scrim-ink) r g b / var(--tk-scrim-aaa));
+    }
+  }
+}
