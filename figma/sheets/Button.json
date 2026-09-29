@@ -1,0 +1,258 @@
+{
+ "component": "Button",
+ "node": "37:332",
+ "variants": [
+  {
+   "name": "Variant=solid, Size=sm, State=default",
+   "x": 0,
+   "y": 0,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=solid, Size=sm, State=hover",
+   "x": 134,
+   "y": 0,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=solid, Size=sm, State=active",
+   "x": 268,
+   "y": 0,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=solid, Size=sm, State=disabled",
+   "x": 402,
+   "y": 0,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=solid, Size=md, State=default",
+   "x": 0,
+   "y": 76,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=solid, Size=md, State=hover",
+   "x": 134,
+   "y": 76,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=solid, Size=md, State=active",
+   "x": 268,
+   "y": 76,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=solid, Size=md, State=disabled",
+   "x": 402,
+   "y": 76,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=solid, Size=lg, State=default",
+   "x": 0,
+   "y": 152,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=solid, Size=lg, State=hover",
+   "x": 134,
+   "y": 152,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=solid, Size=lg, State=active",
+   "x": 268,
+   "y": 152,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=solid, Size=lg, State=disabled",
+   "x": 402,
+   "y": 152,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=outline, Size=sm, State=default",
+   "x": 0,
+   "y": 228,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=outline, Size=sm, State=hover",
+   "x": 134,
+   "y": 228,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=outline, Size=sm, State=active",
+   "x": 268,
+   "y": 228,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=outline, Size=sm, State=disabled",
+   "x": 402,
+   "y": 228,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=outline, Size=md, State=default",
+   "x": 0,
+   "y": 304,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=outline, Size=md, State=hover",
+   "x": 134,
+   "y": 304,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=outline, Size=md, State=active",
+   "x": 268,
+   "y": 304,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=outline, Size=md, State=disabled",
+   "x": 402,
+   "y": 304,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=outline, Size=lg, State=default",
+   "x": 0,
+   "y": 380,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=outline, Size=lg, State=hover",
+   "x": 134,
+   "y": 380,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=outline, Size=lg, State=active",
+   "x": 268,
+   "y": 380,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=outline, Size=lg, State=disabled",
+   "x": 402,
+   "y": 380,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=quiet, Size=sm, State=default",
+   "x": 0,
+   "y": 456,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=quiet, Size=sm, State=hover",
+   "x": 134,
+   "y": 456,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=quiet, Size=sm, State=active",
+   "x": 268,
+   "y": 456,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=quiet, Size=sm, State=disabled",
+   "x": 402,
+   "y": 456,
+   "w": 65,
+   "h": 36
+  },
+  {
+   "name": "Variant=quiet, Size=md, State=default",
+   "x": 0,
+   "y": 532,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=quiet, Size=md, State=hover",
+   "x": 134,
+   "y": 532,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=quiet, Size=md, State=active",
+   "x": 268,
+   "y": 532,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=quiet, Size=md, State=disabled",
+   "x": 402,
+   "y": 532,
+   "w": 79,
+   "h": 36
+  },
+  {
+   "name": "Variant=quiet, Size=lg, State=default",
+   "x": 0,
+   "y": 608,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=quiet, Size=lg, State=hover",
+   "x": 134,
+   "y": 608,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=quiet, Size=lg, State=active",
+   "x": 268,
+   "y": 608,
+   "w": 102,
+   "h": 44
+  },
+  {
+   "name": "Variant=quiet, Size=lg, State=disabled",
+   "x": 402,
+   "y": 608,
+   "w": 102,
+   "h": 44
+  }
+ ]
+}

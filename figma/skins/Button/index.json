@@ -1,0 +1,150 @@
+{
+ "component": "Button",
+ "node": "37:332",
+ "skins": {
+  "solid-sm-default.png": {
+   "w": 65,
+   "h": 36
+  },
+  "solid-sm-hover.png": {
+   "w": 65,
+   "h": 36
+  },
+  "solid-sm-active.png": {
+   "w": 65,
+   "h": 36
+  },
+  "solid-sm-disabled.png": {
+   "w": 65,
+   "h": 36
+  },
+  "solid-md-default.png": {
+   "w": 79,
+   "h": 36
+  },
+  "solid-md-hover.png": {
+   "w": 79,
+   "h": 36
+  },
+  "solid-md-active.png": {
+   "w": 79,
+   "h": 36
+  },
+  "solid-md-disabled.png": {
+   "w": 79,
+   "h": 36
+  },
+  "solid-lg-default.png": {
+   "w": 102,
+   "h": 44
+  },
+  "solid-lg-hover.png": {
+   "w": 102,
+   "h": 44
+  },
+  "solid-lg-active.png": {
+   "w": 102,
+   "h": 44
+  },
+  "solid-lg-disabled.png": {
+   "w": 102,
+   "h": 44
+  },
+  "outline-sm-default.png": {
+   "w": 65,
+   "h": 36
+  },
+  "outline-sm-hover.png": {
+   "w": 65,
+   "h": 36
+  },
+  "outline-sm-active.png": {
+   "w": 65,
+   "h": 36
+  },
+  "outline-sm-disabled.png": {
+   "w": 65,
+   "h": 36
+  },
+  "outline-md-default.png": {
+   "w": 79,
+   "h": 36
+  },
+  "outline-md-hover.png": {
+   "w": 79,
+   "h": 36
+  },
+  "outline-md-active.png": {
+   "w": 79,
+   "h": 36
+  },
+  "outline-md-disabled.png": {
+   "w": 79,
+   "h": 36
+  },
+  "outline-lg-default.png": {
+   "w": 102,
+   "h": 44
+  },
+  "outline-lg-hover.png": {
+   "w": 102,
+   "h": 44
+  },
+  "outline-lg-active.png": {
+   "w": 102,
+   "h": 44
+  },
+  "outline-lg-disabled.png": {
+   "w": 102,
+   "h": 44
+  },
+  "quiet-sm-default.png": {
+   "w": 65,
+   "h": 36
+  },
+  "quiet-sm-hover.png": {
+   "w": 65,
+   "h": 36
+  },
+  "quiet-sm-active.png": {
+   "w": 65,
+   "h": 36
+  },
+  "quiet-sm-disabled.png": {
+   "w": 65,
+   "h": 36
+  },
+  "quiet-md-default.png": {
+   "w": 79,
+   "h": 36
+  },
+  "quiet-md-hover.png": {
+   "w": 79,
+   "h": 36
+  },
+  "quiet-md-active.png": {
+   "w": 79,
+   "h": 36
+  },
+  "quiet-md-disabled.png": {
+   "w": 79,
+   "h": 36
+  },
+  "quiet-lg-default.png": {
+   "w": 102,
+   "h": 44
+  },
+  "quiet-lg-hover.png": {
+   "w": 102,
+   "h": 44
+  },
+  "quiet-lg-active.png": {
+   "w": 102,
+   "h": 44
+  },
+  "quiet-lg-disabled.png": {
+   "w": 102,
+   "h": 44
+  }
+ }
+}

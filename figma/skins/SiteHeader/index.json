@@ -1,0 +1,22 @@
+{
+ "component": "SiteHeader",
+ "node": "54:245",
+ "skins": {
+  "wide-false.png": {
+   "w": 960,
+   "h": 59
+  },
+  "wide-true.png": {
+   "w": 960,
+   "h": 61
+  },
+  "narrow-false.png": {
+   "w": 800,
+   "h": 59
+  },
+  "narrow-true.png": {
+   "w": 800,
+   "h": 61
+  }
+ }
+}

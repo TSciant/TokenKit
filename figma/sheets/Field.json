@@ -1,0 +1,69 @@
+{
+ "component": "Field",
+ "node": "38:200",
+ "variants": [
+  {
+   "name": "Control=input, State=default",
+   "x": 0,
+   "y": 0,
+   "w": 320,
+   "h": 71
+  },
+  {
+   "name": "Control=input, State=invalid",
+   "x": 352,
+   "y": 0,
+   "w": 320,
+   "h": 102
+  },
+  {
+   "name": "Control=input, State=disabled",
+   "x": 704,
+   "y": 0,
+   "w": 320,
+   "h": 71
+  },
+  {
+   "name": "Control=select, State=default",
+   "x": 0,
+   "y": 186,
+   "w": 320,
+   "h": 71
+  },
+  {
+   "name": "Control=select, State=invalid",
+   "x": 352,
+   "y": 186,
+   "w": 320,
+   "h": 102
+  },
+  {
+   "name": "Control=select, State=disabled",
+   "x": 704,
+   "y": 186,
+   "w": 320,
+   "h": 71
+  },
+  {
+   "name": "Control=textarea, State=default",
+   "x": 0,
+   "y": 372,
+   "w": 320,
+   "h": 125
+  },
+  {
+   "name": "Control=textarea, State=invalid",
+   "x": 352,
+   "y": 372,
+   "w": 320,
+   "h": 154
+  },
+  {
+   "name": "Control=textarea, State=disabled",
+   "x": 704,
+   "y": 372,
+   "w": 320,
+   "h": 125
+  }
+ ]
+}

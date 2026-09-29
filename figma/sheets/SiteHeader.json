@@ -1,0 +1,34 @@
+{
+ "component": "SiteHeader",
+ "node": "54:245",
+ "variants": [
+  {
+   "name": "Container=wide, Mega menu=false",
+   "x": 0,
+   "y": 0,
+   "w": 960,
+   "h": 59
+  },
+  {
+   "name": "Container=wide, Mega menu=true",
+   "x": 0,
+   "y": 91,
+   "w": 960,
+   "h": 61
+  },
+  {
+   "name": "Container=narrow, Mega menu=false",
+   "x": 0,
+   "y": 184,
+   "w": 800,
+   "h": 59
+  },
+  {
+   "name": "Container=narrow, Mega menu=true",
+   "x": 0,
+   "y": 275,
+   "w": 800,
+   "h": 61
+  }
+ ]
+}

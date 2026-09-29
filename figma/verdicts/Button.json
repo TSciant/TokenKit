@@ -1,0 +1,19 @@
+{
+  "id": "Button",
+  "figmaNode": "37:332",
+  "checked": ["solid/md/default 37:76", "outline/md/default 37:172", "quiet/lg/default 37:300"],
+  "date": "2026-09-29",
+  "method": "Figma node exported at 1x; browser element screenshot at dpr 1 from src/css/index.css, wireframe pack; overlaid, difference blend",
+  "driftType": "Design execution != live execution",
+  "diffs": [
+    { "type": "spacing", "observation": "solid, quiet and disabled variants were 2px narrower than the DOM (79 vs 77): CSS reserves a 1px transparent border, Figma had none", "pull": "Align", "result": "stroke bound to action/quiet-fill (transparent) with strokes included in layout; widths now 79/79/102 against 78.7/78.7/101.1" },
+    { "type": "font", "observation": "text raster differs: Chromium draws LCD-subpixel antialiasing (coloured fringes), Figma draws greyscale; glyph positions and weights coincide", "pull": "Accept", "result": "renderer difference, not a design difference" },
+    { "type": "spacing", "observation": "lg height 44 vs 44.39: 115% of 16px is 18.4, Figma rounds the line box to 18", "pull": "Accept", "result": "0.39px, below anything a designer can place" }
+  ],
+  "result": "Aligned",
+  "meanDiff": { "solid/md": 5.12, "outline/md": 4.52, "quiet/lg": 2.37, "scale": "0-255 per channel, mean over the box, text antialiasing included" },
+  "remainingMiss": "text antialiasing only",
+  "acceptedDrift": ["LCD vs greyscale text", "0.39px line-box rounding at lg"],
+  "promotion": "An invisible stroke must be a variable that is transparent (action/quiet-fill), never a paint at opacity 0: Figma drops the opacity and draws the line. Also: a page background in the file must be white or the export composites onto canvas grey.",
+  "rollUp": "Button | Aligned | box, colour, radius and glyph placement match; text antialiasing accepted | invisible-border-as-variable"
+}

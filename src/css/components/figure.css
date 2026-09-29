@@ -9,8 +9,11 @@
   }
 
   :where([data-tk="figure-frame"]) {
-    --_aspect: 16 / 9;
-    aspect-ratio: var(--_aspect);
+    /* The ratio arrives from the figure's data-aspect. It used to be declared
+       here as well, and a custom property set on the frame beats one inherited
+       from the figure, so every data-aspect below was dead: found by laying the
+       Figma design over this component. The default lives in the fallback. */
+    aspect-ratio: var(--_aspect, 16 / 9);
     border-radius: var(--tk-radius-nested);
     overflow: hidden;
     background-color: var(--tk-surface-sunken);

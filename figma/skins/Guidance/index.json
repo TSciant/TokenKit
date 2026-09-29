@@ -1,0 +1,14 @@
+{
+ "component": "Guidance",
+ "node": "38:121",
+ "skins": {
+  "do.png": {
+   "w": 320,
+   "h": 150
+  },
+  "dont.png": {
+   "w": 320,
+   "h": 150
+  }
+ }
+}

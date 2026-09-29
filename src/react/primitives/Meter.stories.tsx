@@ -30,3 +30,14 @@ export const Range: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { label: "Label", value: 50 },
+  argTypes: { value: { control: { type: "select" }, options: [0, 25, 50, 75, 100] } },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, at the 240px width the design was drawn at. Switch Onion in the toolbar; value picks the skin (0, 25, 50, 75, 100)." } },
+    onion: { component: "Meter", skin: (a: Record<string, unknown>) => `${a.value ?? 50}.png` },
+  },
+  render: (args) => <div style={{ inlineSize: 240 }}><Meter {...args} display={`${args.value}%`} /></div>,
+};

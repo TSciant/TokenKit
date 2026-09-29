@@ -1,0 +1,257 @@
+{
+  "note": "Which story shows which Figma skin, and how a skin's file name maps back to story args. Read by tools/onion-check.mjs. pattern names the axes in file-name order; a value of true/false is a boolean, a number is a number, 1x1 is 1/1. states: what each state axis value means as args; a state not listed here (hover, active) is CSS the story cannot force, so it is not checked.",
+  "components": {
+    "Button": {
+      "story": "04-primitives-01-button--onion-skin",
+      "pattern": [
+        "variant",
+        "size",
+        "state"
+      ],
+      "states": {
+        "default": {},
+        "disabled": {
+          "disabled": true
+        }
+      }
+    },
+    "Chip": {
+      "story": "04-primitives-02-chip--onion-skin",
+      "pattern": [
+        "emphasis",
+        "pressed",
+        "state",
+        "interactive"
+      ],
+      "states": {
+        "default": {}
+      }
+    },
+    "Eyebrow": {
+      "story": "04-primitives-17-eyebrow--onion-skin",
+      "pattern": [
+        "emphasis"
+      ]
+    },
+    "Card": {
+      "story": "04-primitives-05-card--onion-skin",
+      "pattern": [
+        "variant",
+        "interactive",
+        "state"
+      ],
+      "states": {
+        "default": {}
+      }
+    },
+    "Alert": {
+      "story": "04-primitives-08-alert--onion-skin",
+      "pattern": [
+        "status"
+      ]
+    },
+    "Guidance": {
+      "story": "04-primitives-24-guidance--onion-skin",
+      "pattern": [
+        "tone"
+      ]
+    },
+    "Field": {
+      "story": "04-primitives-03-field--onion-skin",
+      "pattern": [
+        "control",
+        "state"
+      ],
+      "states": {
+        "default": {},
+        "invalid": {
+          "invalid": true
+        },
+        "disabled": {
+          "disabled": true
+        }
+      }
+    },
+    "Meter": {
+      "story": "04-primitives-12-meter--onion-skin",
+      "pattern": [
+        "value"
+      ]
+    },
+    "Figure": {
+      "story": "04-primitives-07-figure--onion-skin",
+      "pattern": [
+        "aspect"
+      ]
+    },
+    "Media": {
+      "story": "04-primitives-06-media--onion-skin",
+      "pattern": [
+        "size",
+        "container"
+      ]
+    },
+    "Icon": {
+      "story": "04-primitives-04-icon--onion-skin",
+      "pattern": [
+        "size"
+      ]
+    },
+    "RailNav": {
+      "story": "04-primitives-25-rail-nav--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      }
+    },
+    "Modal": {
+      "story": "04-primitives-09-modal--onion-skin",
+      "pattern": [
+        "size"
+      ]
+    },
+    "SiteHeader": {
+      "story": "04-primitives-20-site-header--onion-skin",
+      "pattern": [
+        "container",
+        "withMegaMenu"
+      ]
+    },
+    "ProofStrip": {
+      "story": "05-patterns-07-proof-strip--onion-skin",
+      "pattern": [
+        "columns"
+      ],
+      "viewport": 1072
+    },
+    "Masthead": {
+      "story": "05-patterns-01-masthead--onion-skin",
+      "pattern": [
+        "container",
+        "withMegaMenu",
+        "showSearch",
+        "showContactCta"
+      ],
+      "containerFrom": "viewport",
+      "containers": {
+        "wide": 1072,
+        "narrow": 700
+      }
+    },
+    "PageHero": {
+      "story": "05-patterns-14-page-hero--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root"
+    },
+    "SiteFooter": {
+      "story": "05-patterns-13-site-footer--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root"
+    },
+    "ContactCta": {
+      "story": "05-patterns-03-contact-cta--onion-skin",
+      "pattern": [
+        "variant",
+        "size",
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "skinsFrom": "Button",
+      "component": "Button",
+      "fixed": {
+        "state": "default"
+      },
+      "defaults": {
+        "variant": "solid",
+        "size": "sm"
+      },
+      "args": {
+        "children": "Button"
+      },
+      "doc": "ContactCta is a Button with a default label and size sm, so its skins are the Figma Button's, laid over this one. Switch Onion in the toolbar; variant and size in Controls pick the skin."
+    },
+    "ArrowCta": {
+      "story": "05-patterns-06-arrow-cta--onion-skin",
+      "pattern": [
+        "variant",
+        "size"
+      ],
+      "defaults": {
+        "variant": "solid",
+        "size": "lg"
+      },
+      "doc": "The Figma component laid over this one. ArrowCta is a Button with an uppercase, tracked, semibold label and a trailing arrow, drawn at lg by default. Switch Onion in the toolbar; variant and size pick the skin."
+    },
+    "HeroCarousel": {
+      "story": "05-patterns-05-hero-carousel--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "settle": 1500,
+      "doc": "The Figma component laid over this one, first slide, at the 1024px width it was drawn at. The plate is the kit's stock placeholder (the same image is in the design), so what is compared is the scrim, the copy, the CTA and the pager. Switch Onion in the toolbar."
+    },
+    "TileGrid": {
+      "story": "05-patterns-15-tile-grid--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "settle": 1200,
+      "doc": "The Figma component laid over this one at 1024px, nine tiles as the grid lays them out (four to a row: columns is a minimum tile width). The stock plates are the same images in the design, so what is compared is the card, its radii, the type and the grid. Switch Onion in the toolbar."
+    },
+    "HubCards": {
+      "story": "05-patterns-16-hub-cards--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: four cards as the grid lays them (three to a row, then one: columns is a minimum card width), each the height of its row, the footer rule and link pinned to the bottom. Switch Onion in the toolbar."
+    },
+    "CtaBlocks": {
+      "story": "05-patterns-17-cta-blocks--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: an inverse block with an outline ArrowCta and a sunken block with a solid one, the button radius the concentric remainder of the block's. Switch Onion in the toolbar."
+    }
+  }
+}

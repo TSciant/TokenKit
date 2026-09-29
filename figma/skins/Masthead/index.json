@@ -1,0 +1,18 @@
+{
+ "component": "Masthead",
+ "node": "69:393",
+ "skins": {
+  "wide-false-true-true.png": {},
+  "wide-false-true-false.png": {},
+  "wide-false-false-true.png": {},
+  "wide-false-false-false.png": {},
+  "wide-true-true-true.png": {},
+  "wide-true-true-false.png": {},
+  "wide-true-false-true.png": {},
+  "wide-true-false-false.png": {},
+  "narrow-false-true-true.png": {},
+  "narrow-false-true-false.png": {},
+  "narrow-false-false-true.png": {},
+  "narrow-false-false-false.png": {}
+ }
+}

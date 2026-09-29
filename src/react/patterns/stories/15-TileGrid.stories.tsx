@@ -64,3 +64,14 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Tile grid",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at 1024px, nine tiles as the grid lays them out (four to a row: columns is a minimum tile width). The stock plates are the same images in the design, so what is compared is the card, its radii, the type and the grid. Switch Onion in the toolbar." } },
+    onion: {
+      component: "TileGrid",
+      skin: () => "default.png",
+    },
+  },
+};

@@ -1,0 +1,102 @@
+{
+ "component": "Chip",
+ "node": "37:393",
+ "skins": {
+  "default-false-default-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "default-false-hover-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "default-true-default-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "default-true-hover-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "strong-false-default-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "strong-false-hover-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "strong-true-default-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "strong-true-hover-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "quiet-false-default-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "quiet-false-hover-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "quiet-true-default-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "quiet-true-hover-false.png": {
+   "w": 55,
+   "h": 26
+  },
+  "default-false-default-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "default-false-hover-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "default-true-default-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "default-true-hover-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "strong-false-default-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "strong-false-hover-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "strong-true-default-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "strong-true-hover-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "quiet-false-default-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "quiet-false-hover-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "quiet-true-default-true.png": {
+   "w": 55,
+   "h": 30
+  },
+  "quiet-true-hover-true.png": {
+   "w": 55,
+   "h": 30
+  }
+ }
+}

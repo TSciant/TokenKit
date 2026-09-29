@@ -711,7 +711,10 @@ export function SiteFooter({
           </ul>
         </div>
 
-        <div data-shell="stack" data-gap="3" style={{ textAlign: "end" }}>
+        {/* alignItems as well as textAlign: a stack's children hug their content, so text-align
+            alone ended the text inside boxes that themselves sat at the column's start, and the
+            subscribe line and the copyright drifted left of the nav and the chips. */}
+        <div data-shell="stack" data-gap="3" style={{ textAlign: "end", alignItems: "flex-end" }}>
           <ul
             data-shell="inline"
             data-gap="3"

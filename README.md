@@ -1,4 +1,4 @@
-# tokenkit
+# <img src=".storybook/static/wordmark.svg" alt="token kit" height="44">
 
 A token-driven CSS design system at **wireframe fidelity**. Primitives, seven
 layout shells, and headless gates that check the system rather than a palette.
@@ -127,6 +127,27 @@ import { Stack, Card, CardTitle, CardBody, Button } from "tokenkit/react";
   <Button variant="outline">Action</Button>
 </Stack>
 ```
+
+## Onion skin
+
+The Figma file and the code are meant to be the same object, and a claim like
+that is only worth something if you can check it. Storybook's toolbar has an
+**Onion** switch: it lays the Figma design, exported at 1x, over the live
+component. Overlay has opacity and blend controls, Difference is black where the
+two agree, and Split puts a seam through it. Controls drive it, so changing
+`variant` or `size` swaps the skin to the matching Figma variant.
+
+```bash
+npm run figma:manifest        # every component's props, mapped to Figma property types
+node tools/onion-skins.mjs Button   # figma/sheets/Button.{png,json} -> figma/skins/Button/*.png
+```
+
+`figma/skins/` are the skins, `figma/verdicts/` is what was found comparing them
+(what was aligned, what was accepted and why), and `figma/keys.json` maps each
+component to its Figma node. The switch is off by default, the skins are only
+served to Storybook, and nothing in `src/` imports any of it. Text antialiasing
+is the one difference you will always see: Chromium draws coloured subpixel
+fringes and Figma draws greyscale.
 
 ## Type
 
@@ -463,9 +484,9 @@ For production, bundle the CSS rather than shipping the `@import` chain;
 
 ## License
 
-The kit's own code and docs are under the MIT License (`LICENSE`). Two
+The kit's own code and docs are under the MIT License (`LICENSE`). Three
 third-party pieces ship inside it under their own licences, each with its
-licence beside it: the Manrope typeface (SIL Open Font License 1.1) and a
-bundled copy of Pretext used by the type gate (MIT). `NOTICE.md` lists them.
+licence beside it: the Manrope and Geist Mono typefaces (SIL Open Font License
+1.1) and a bundled copy of Pretext used by the type gate (MIT). `NOTICE.md` lists them.
 The packages in `package.json` are not included; npm installs them under
 their own licences.

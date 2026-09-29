@@ -1,0 +1,42 @@
+{
+ "component": "Card",
+ "node": "38:88",
+ "skins": {
+  "default-false-default.png": {
+   "w": 320,
+   "h": 160
+  },
+  "default-true-default.png": {
+   "w": 320,
+   "h": 160
+  },
+  "default-true-hover.png": {
+   "w": 320,
+   "h": 160
+  },
+  "flat-false-default.png": {
+   "w": 320,
+   "h": 160
+  },
+  "flat-true-default.png": {
+   "w": 320,
+   "h": 160
+  },
+  "flat-true-hover.png": {
+   "w": 320,
+   "h": 160
+  },
+  "bare-false-default.png": {
+   "w": 320,
+   "h": 88
+  },
+  "bare-true-default.png": {
+   "w": 320,
+   "h": 88
+  },
+  "bare-true-hover.png": {
+   "w": 320,
+   "h": 88
+  }
+ }
+}

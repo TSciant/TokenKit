@@ -1,0 +1,22 @@
+{
+ "component": "Alert",
+ "node": "38:101",
+ "skins": {
+  "info.png": {
+   "w": 400,
+   "h": 86
+  },
+  "success.png": {
+   "w": 400,
+   "h": 86
+  },
+  "warning.png": {
+   "w": 400,
+   "h": 86
+  },
+  "danger.png": {
+   "w": 400,
+   "h": 86
+  }
+ }
+}

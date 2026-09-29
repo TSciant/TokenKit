@@ -99,3 +99,14 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Masthead",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, at the 1024px section width it was drawn at. Switch Onion in the toolbar. The arguments that pick the skin are container, withMegaMenu, showSearch, showContactCta." } },
+    onion: {
+      component: "Masthead",
+      skin: (a: Record<string, unknown>, ctx: { width: number }) => `${ctx.width < 896 ? "narrow" : "wide"}-${a.withMegaMenu}-${a.showSearch}-${a.showContactCta}.png`,
+    },
+  },
+};

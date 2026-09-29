@@ -1,0 +1,69 @@
+{
+ "component": "ArrowCta",
+ "node": "76:255",
+ "variants": [
+  {
+   "name": "Variant=solid, Size=sm",
+   "x": 0,
+   "y": 0,
+   "w": 96,
+   "h": 36
+  },
+  {
+   "name": "Variant=solid, Size=md",
+   "x": 200,
+   "y": 0,
+   "w": 112,
+   "h": 36
+  },
+  {
+   "name": "Variant=solid, Size=lg",
+   "x": 400,
+   "y": 0,
+   "w": 135,
+   "h": 44
+  },
+  {
+   "name": "Variant=outline, Size=sm",
+   "x": 0,
+   "y": 80,
+   "w": 96,
+   "h": 36
+  },
+  {
+   "name": "Variant=outline, Size=md",
+   "x": 200,
+   "y": 80,
+   "w": 112,
+   "h": 36
+  },
+  {
+   "name": "Variant=outline, Size=lg",
+   "x": 400,
+   "y": 80,
+   "w": 135,
+   "h": 44
+  },
+  {
+   "name": "Variant=quiet, Size=sm",
+   "x": 0,
+   "y": 160,
+   "w": 96,
+   "h": 36
+  },
+  {
+   "name": "Variant=quiet, Size=md",
+   "x": 200,
+   "y": 160,
+   "w": 112,
+   "h": 36
+  },
+  {
+   "name": "Variant=quiet, Size=lg",
+   "x": 400,
+   "y": 160,
+   "w": 135,
+   "h": 44
+  }
+ ]
+}

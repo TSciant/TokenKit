@@ -68,12 +68,13 @@ ship the kit, provided the copyright and licence notice go with it. It covers
 the code, not the name: it does not grant use of the TokenKit name or its
 wordmark as someone else's brand.
 
-Two pieces of other people's work ship inside the kit. Each keeps its own
+Three pieces of other people's work ship inside the kit. Each keeps its own
 licence, and the licence travels beside it:
 
 | What | Where | Licence | Copyright |
 | --- | --- | --- | --- |
 | Manrope, the kit's typeface: four weights fixed from the variable font and subset to the kit's characters | `src/css/fonts/files/` | SIL Open Font License 1.1, `src/css/fonts/files/OFL.txt` (also inside each font file) | The Manrope Project Authors; designed by Mikhail Sharanda |
+| Geist Mono, the kit's monospace face: the variable font, latin subset, exactly as Next.js ships it, unmodified | `src/css/fonts/files/` | SIL Open Font License 1.1, `src/css/fonts/files/OFL-GeistMono.txt` (the licence URL is also inside the font) | The Geist Project Authors; Vercel with basement.studio |
 | Pretext, bundled into one script for the type gate | `tests/vendor/pretext.js` | MIT, `tests/vendor/pretext.LICENSE` (and a banner in the bundle) | Pretext contributors |
 
 The OFL allows the subsetting because Manrope reserves no font name. The kit

@@ -57,3 +57,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Hub cards",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at 1024px: four cards as the grid lays them (three to a row, then one: columns is a minimum card width), each the height of its row, the footer rule and link pinned to the bottom. Switch Onion in the toolbar." } },
+    onion: {
+      component: "HubCards",
+      target: "root",
+      skin: () => "default.png",
+    },
+  },
+};

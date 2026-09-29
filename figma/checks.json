@@ -1,0 +1,148 @@
+{
+  "components": {
+    "Alert": {
+      "skins": 4,
+      "mean": 2.21,
+      "worst": 2.24,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "ArrowCta": {
+      "skins": 9,
+      "mean": 4.82,
+      "worst": 9.39,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Button": {
+      "skins": 18,
+      "mean": 4.75,
+      "worst": 14.01,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Card": {
+      "skins": 6,
+      "mean": 4.53,
+      "worst": 8.73,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Chip": {
+      "skins": 12,
+      "mean": 10.84,
+      "worst": 14.51,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "ContactCta": {
+      "skins": 9,
+      "mean": 6.92,
+      "worst": 14.01,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "CtaBlocks": {
+      "skins": 1,
+      "mean": 1.27,
+      "worst": 1.27,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Eyebrow": {
+      "skins": 2,
+      "mean": 28.91,
+      "worst": 30.76,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Field": {
+      "skins": 9,
+      "mean": 2.34,
+      "worst": 7.32,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Figure": {
+      "skins": 5,
+      "mean": 1.27,
+      "worst": 1.66,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Guidance": {
+      "skins": 2,
+      "mean": 3.78,
+      "worst": 5.81,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "HeroCarousel": {
+      "skins": 1,
+      "mean": 1.6,
+      "worst": 1.6,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "HubCards": {
+      "skins": 1,
+      "mean": 4.51,
+      "worst": 4.51,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Icon": {
+      "skins": 3,
+      "mean": 13.29,
+      "worst": 15.96,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Masthead": {
+      "skins": 12,
+      "mean": 4.44,
+      "worst": 7,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Media": {
+      "skins": 6,
+      "mean": 3.92,
+      "worst": 6.56,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Meter": {
+      "skins": 5,
+      "mean": 2.07,
+      "worst": 2.86,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "Modal": {
+      "skins": 3,
+      "mean": 5.83,
+      "worst": 7.14,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "PageHero": {
+      "skins": 1,
+      "mean": 3.01,
+      "worst": 3.01,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "ProofStrip": {
+      "skins": 1,
+      "mean": 3.58,
+      "worst": 3.58,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "RailNav": {
+      "skins": 1,
+      "mean": 2.17,
+      "worst": 2.17,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "SiteFooter": {
+      "skins": 1,
+      "mean": 4.32,
+      "worst": 4.32,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "SiteHeader": {
+      "skins": 4,
+      "mean": 2.76,
+      "worst": 4.93,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    },
+    "TileGrid": {
+      "skins": 1,
+      "mean": 3.27,
+      "worst": 3.27,
+      "checkedAt": "2026-09-29T20:00:31.416Z"
+    }
+  }
+}

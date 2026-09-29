@@ -16,6 +16,7 @@
 /* Faces before anything that sets a font stack. @font-face is not layered —
    it declares a resource, it does not participate in the cascade. */
 @import url("./fonts/manrope.css");
+@import url("./fonts/geist-mono.css");
 
 @import url("./01-reset.css");
 @import url("./02-property.css");
@@ -38,6 +39,7 @@
 @import url("./components/card.css");
 @import url("./components/chip.css");
 @import url("./components/eyebrow.css");
+@import url("./components/rail-nav.css");
 @import url("./components/field.css");
 @import url("./components/alert.css");
 @import url("./components/scrim.css");

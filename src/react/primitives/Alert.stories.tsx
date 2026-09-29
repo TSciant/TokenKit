@@ -35,3 +35,13 @@ export const AllStatuses: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { title: "Alert title", children: "What happened, and what to do about it." },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, at the 400px width the design was drawn at. Switch Onion in the toolbar; status picks the skin." } },
+    onion: { component: "Alert", skin: (a: Record<string, unknown>) => `${(a.status as string) ?? "info"}.png` },
+  },
+  decorators: [(Story) => <div style={{ inlineSize: 400 }}><Story /></div>],
+};

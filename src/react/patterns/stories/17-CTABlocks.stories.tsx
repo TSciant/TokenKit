@@ -43,3 +43,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "CTA blocks",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at 1024px: an inverse block with an outline ArrowCta and a sunken block with a solid one, the button radius the concentric remainder of the block's. Switch Onion in the toolbar." } },
+    onion: {
+      component: "CtaBlocks",
+      target: "root",
+      skin: () => "default.png",
+    },
+  },
+};

@@ -39,6 +39,8 @@ export { Eyebrow } from "./Eyebrow";
 export type { EyebrowProps } from "./Eyebrow";
 export { Disclosure } from "./Disclosure";
 export type { DisclosureProps } from "./Disclosure";
+export { RailNav } from "./RailNav";
+export type { RailNavProps, RailNavItem } from "./RailNav";
 export { Search } from "./Search";
 export type { SearchProps } from "./Search";
 export { SiteHeader } from "./SiteHeader";

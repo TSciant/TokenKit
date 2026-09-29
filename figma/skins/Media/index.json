@@ -1,0 +1,30 @@
+{
+ "component": "Media",
+ "node": "39:173",
+ "skins": {
+  "sm-wide.png": {
+   "w": 480,
+   "h": 74
+  },
+  "sm-narrow.png": {
+   "w": 320,
+   "h": 154
+  },
+  "md-wide.png": {
+   "w": 480,
+   "h": 128
+  },
+  "md-narrow.png": {
+   "w": 320,
+   "h": 218
+  },
+  "lg-wide.png": {
+   "w": 480,
+   "h": 192
+  },
+  "lg-narrow.png": {
+   "w": 320,
+   "h": 282
+  }
+ }
+}

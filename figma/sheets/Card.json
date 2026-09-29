@@ -1,0 +1,69 @@
+{
+ "component": "Card",
+ "node": "38:88",
+ "variants": [
+  {
+   "name": "Variant=default, Interactive=false, State=default",
+   "x": 0,
+   "y": 0,
+   "w": 320,
+   "h": 160
+  },
+  {
+   "name": "Variant=default, Interactive=true, State=default",
+   "x": 352,
+   "y": 0,
+   "w": 320,
+   "h": 160
+  },
+  {
+   "name": "Variant=default, Interactive=true, State=hover",
+   "x": 704,
+   "y": 0,
+   "w": 320,
+   "h": 160
+  },
+  {
+   "name": "Variant=flat, Interactive=false, State=default",
+   "x": 0,
+   "y": 192,
+   "w": 320,
+   "h": 160
+  },
+  {
+   "name": "Variant=flat, Interactive=true, State=default",
+   "x": 352,
+   "y": 192,
+   "w": 320,
+   "h": 160
+  },
+  {
+   "name": "Variant=flat, Interactive=true, State=hover",
+   "x": 704,
+   "y": 192,
+   "w": 320,
+   "h": 160
+  },
+  {
+   "name": "Variant=bare, Interactive=false, State=default",
+   "x": 0,
+   "y": 384,
+   "w": 320,
+   "h": 88
+  },
+  {
+   "name": "Variant=bare, Interactive=true, State=default",
+   "x": 352,
+   "y": 384,
+   "w": 320,
+   "h": 88
+  },
+  {
+   "name": "Variant=bare, Interactive=true, State=hover",
+   "x": 704,
+   "y": 384,
+   "w": 320,
+   "h": 88
+  }
+ ]
+}

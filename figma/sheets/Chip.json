@@ -1,0 +1,174 @@
+{
+ "component": "Chip",
+ "node": "37:393",
+ "variants": [
+  {
+   "name": "Emphasis=default, Pressed=false, State=default, Interactive=false",
+   "x": 0,
+   "y": 0,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=default, Pressed=false, State=hover, Interactive=false",
+   "x": 87,
+   "y": 0,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=default, Pressed=true, State=default, Interactive=false",
+   "x": 0,
+   "y": 46,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=default, Pressed=true, State=hover, Interactive=false",
+   "x": 87,
+   "y": 46,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=strong, Pressed=false, State=default, Interactive=false",
+   "x": 0,
+   "y": 92,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=strong, Pressed=false, State=hover, Interactive=false",
+   "x": 87,
+   "y": 92,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=strong, Pressed=true, State=default, Interactive=false",
+   "x": 0,
+   "y": 138,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=strong, Pressed=true, State=hover, Interactive=false",
+   "x": 87,
+   "y": 138,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=quiet, Pressed=false, State=default, Interactive=false",
+   "x": 0,
+   "y": 184,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=quiet, Pressed=false, State=hover, Interactive=false",
+   "x": 87,
+   "y": 184,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=quiet, Pressed=true, State=default, Interactive=false",
+   "x": 0,
+   "y": 230,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=quiet, Pressed=true, State=hover, Interactive=false",
+   "x": 87,
+   "y": 230,
+   "w": 55,
+   "h": 26
+  },
+  {
+   "name": "Emphasis=default, Pressed=false, State=default, Interactive=true",
+   "x": 174,
+   "y": 0,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=default, Pressed=false, State=hover, Interactive=true",
+   "x": 261,
+   "y": 0,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=default, Pressed=true, State=default, Interactive=true",
+   "x": 174,
+   "y": 46,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=default, Pressed=true, State=hover, Interactive=true",
+   "x": 261,
+   "y": 46,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=strong, Pressed=false, State=default, Interactive=true",
+   "x": 174,
+   "y": 92,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=strong, Pressed=false, State=hover, Interactive=true",
+   "x": 261,
+   "y": 92,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=strong, Pressed=true, State=default, Interactive=true",
+   "x": 174,
+   "y": 138,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=strong, Pressed=true, State=hover, Interactive=true",
+   "x": 261,
+   "y": 138,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=quiet, Pressed=false, State=default, Interactive=true",
+   "x": 174,
+   "y": 184,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=quiet, Pressed=false, State=hover, Interactive=true",
+   "x": 261,
+   "y": 184,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=quiet, Pressed=true, State=default, Interactive=true",
+   "x": 174,
+   "y": 230,
+   "w": 55,
+   "h": 30
+  },
+  {
+   "name": "Emphasis=quiet, Pressed=true, State=hover, Interactive=true",
+   "x": 261,
+   "y": 230,
+   "w": 55,
+   "h": 30
+  }
+ ]
+}

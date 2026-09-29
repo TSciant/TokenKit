@@ -1,0 +1,139 @@
+/* ---------------------------------------------------------------------------
+   Rail nav — a category list for a side rail.
+
+   Container-first: it takes the width of whatever it is placed in and asks the
+   viewport for nothing, so the same component is a right rail, a drawer or a
+   full-width block. Groups are native <details>, so they open without script.
+
+   The inset panel's corner is concentric with the outer one: outer radius
+   minus the gap between them, never inverted. A brand that squares the outer
+   corner squares the inner one without saying so.
+
+   Type and spacing follow the Figma set (RailNav, RailNav/Item): 14px labels
+   on a 1.5 line, a 1rem slot ahead of every label so rows align whether or not
+   they carry a mark, children indented by space-5.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="rail-nav"]) {
+    --_gap: var(--tk-space-2);
+    --_radius: var(--tk-radius-lg);
+    display: flex;
+    flex-direction: column;
+    /* The inset is the nav's own padding, so the panel's corner is measured
+       against the box it sits in (the radius gate reads the host's padding).
+       The header takes the padding back with a negative margin, so it still
+       runs edge to edge. */
+    padding: 0 var(--_gap) var(--_gap);
+    border: 1px solid var(--tk-line-default);
+    border-radius: var(--_radius);
+    background-color: var(--tk-surface-default);
+    color: var(--tk-text-primary);
+    overflow: clip;
+  }
+
+  :where([data-tk="rail-nav-title"]) {
+    margin: 0 calc(var(--_gap) * -1);
+    padding: var(--tk-space-3) var(--tk-space-4);
+    border-block-end: 1px solid var(--tk-line-default);
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-bold);
+    line-height: var(--tk-leading-normal);
+    letter-spacing: var(--tk-tracking-wide);
+    text-transform: uppercase;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="rail-nav-panel"]) {
+    margin-block-start: var(--_gap);
+    padding: var(--_gap);
+    border-radius: max(0px, calc(var(--_radius) - var(--_gap)));
+    background-color: var(--tk-surface-base);
+  }
+
+  :where([data-tk="rail-nav-list"]) {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* One row: the link, or the summary of a group. */
+  :where([data-tk="rail-nav-link"]) {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--tk-space-2);
+    padding-block: var(--tk-space-1);
+    padding-inline: var(--tk-space-2);
+    color: var(--tk-text-primary);
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-semibold);
+    line-height: var(--tk-leading-normal);
+    text-decoration: none;
+    cursor: pointer;
+    list-style: none;
+    transition: color var(--tk-motion-ink);
+  }
+  :where([data-tk="rail-nav-link"])::-webkit-details-marker {
+    display: none;
+  }
+  :where([data-tk="rail-nav-link"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+
+  /* The slot ahead of the label: one glyph wide, one line tall. */
+  :where([data-tk="rail-nav-mark"]) {
+    display: flex;
+    flex: 0 0 1rem;
+    align-items: center;
+    justify-content: center;
+    block-size: 1lh;
+    color: var(--tk-text-secondary);
+  }
+  :where([data-tk="rail-nav-chevron"]) {
+    inline-size: 1rem;
+    block-size: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--tk-icon-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: rotate var(--tk-motion-transform);
+  }
+  :where(details[open] > [data-tk="rail-nav-link"] [data-tk="rail-nav-chevron"]) {
+    rotate: 90deg;
+  }
+  :where([data-tk="rail-nav-dot"]) {
+    inline-size: 0.375rem;
+    block-size: 0.375rem;
+    border-radius: var(--tk-radius-full);
+    background-color: currentColor;
+  }
+
+  /* An open group reads as the place you are. */
+  :where(details[open] > [data-tk="rail-nav-link"]) {
+    font-weight: var(--tk-weight-bold);
+  }
+
+  /* Children: indented, quieter, until one is current. */
+  :where([data-tk="rail-nav-list"] [data-tk="rail-nav-list"] [data-tk="rail-nav-link"]) {
+    padding-inline-start: var(--tk-space-5);
+    color: var(--tk-text-secondary);
+    font-weight: var(--tk-weight-normal);
+  }
+  :where([data-tk="rail-nav-link"]:hover) {
+    color: var(--tk-text-primary);
+  }
+  :where([data-tk="rail-nav-link"][aria-current="page"]) {
+    color: var(--tk-text-primary);
+    font-weight: var(--tk-weight-bold);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="rail-nav-link"], [data-tk="rail-nav-chevron"]) {
+      transition: none;
+    }
+  }
+}

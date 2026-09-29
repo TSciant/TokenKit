@@ -57,3 +57,15 @@ export const Decorative: Story = {
     credit: undefined,
   },
 };
+
+const PIXEL = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { src: PIXEL, alt: "", decorative: true, caption: "Caption describing the image.", credit: "Credit: photographer" },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, at the 320px width the design was drawn at. The image is a transparent pixel, so the frame is what is compared; the design's placeholder glyph is not drawn here. Switch Onion in the toolbar; aspect picks the skin." } },
+    onion: { component: "Figure", skin: (a: Record<string, unknown>) => `${String(a.aspect ?? "auto").replace("/", "x")}.png` },
+  },
+  decorators: [(Story) => <div style={{ inlineSize: 320 }}><Story /></div>],
+};

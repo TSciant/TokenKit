@@ -91,6 +91,24 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
 
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { children: "Button" },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The Figma component laid over this one. Switch Onion in the toolbar to Overlay, Difference or Split; vary variant, size and disabled in Controls and the skin follows. The skin is a 1x export of the matching Figma variant, so what you see is whether a CSS pixel and a design pixel coincide. Off by default; nothing in the component imports it.",
+      },
+    },
+    onion: {
+      component: "Button",
+      skin: (a: Record<string, unknown>) =>
+        `${(a.variant as string) ?? "solid"}-${(a.size as string) ?? "md"}-${a.disabled ? "disabled" : "default"}.png`,
+    },
+  },
+};
+
 export const WithIcon: Story = {
   name: "With icon",
   parameters: {

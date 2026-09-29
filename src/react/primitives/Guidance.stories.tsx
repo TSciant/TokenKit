@@ -126,3 +126,13 @@ export const Verbs: Story = {
     </GuidancePair>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { note: "Why this is the right or wrong move.", children: "Example content" },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, at the 320px width the design was drawn at. Switch Onion in the toolbar; tone picks the skin." } },
+    onion: { component: "Guidance", skin: (a: Record<string, unknown>) => `${(a.tone as string) ?? "do"}.png` },
+  },
+  decorators: [(Story) => <div style={{ inlineSize: 320 }}><Story /></div>],
+};

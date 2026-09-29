@@ -174,3 +174,25 @@ export const Trigger: StoryObj<typeof ModalTrigger> = {
       "Share a short brief. We match you to a practice lead — usually within one business day.",
   },
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { open: true, title: "Modal title", onClose: () => {} },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, drawn inside the dialog because a modal lives in the browser's top layer and nothing outside it can be seen through it. The backdrop is left out of the comparison. Switch Onion in the toolbar; size picks the skin." } },
+    onion: { component: "Modal", skin: (a: Record<string, unknown>) => `${(a.size as string) ?? "md"}.png` },
+  },
+  render: (args) => (
+    <Modal
+      {...args}
+      footer={
+        <>
+          <Button variant="outline">Button</Button>
+          <Button>Button</Button>
+        </>
+      }
+    >
+      Body copy for the dialog. It explains the decision being asked for.
+    </Modal>
+  ),
+};

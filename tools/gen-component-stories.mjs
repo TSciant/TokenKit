@@ -48,6 +48,14 @@ const SRC = resolve(ROOT, "src/react/patterns");
 const OUT = resolve(SRC, "stories");
 const check = process.argv.includes("--check");
 
+/* Patterns that have a Figma skin get an Onion story beside Default. Which ones,
+   and which arguments pick the skin, is figma/onion.json's word: the same file
+   the checker reads, so the story and the check cannot disagree about which
+   skin belongs to which arguments. */
+const onionMap = existsSync(resolve(ROOT, "figma/onion.json"))
+  ? JSON.parse(readFileSync(resolve(ROOT, "figma/onion.json"), "utf8")).components
+  : {};
+
 /* ---------------------------------------------------------------------------
    Which story renders which component.
 
@@ -318,6 +326,30 @@ ${argLines.join("\n")}
 `
     : "";
 
+  const onionDef = onionMap[comp];
+  /* A pattern's container is the box it is given, which the story cannot pass as an
+     arg: the skin is chosen by the measured width, 56rem being the query threshold. */
+  const viewportContainer = onionDef?.containerFrom === "viewport";
+  /* One skin, no axes: `single` in onion.json. */
+  const singleSkin = onionDef?.single === true;
+  const onionStory =
+    onionDef && onionDef.pattern && !extraArgs
+      ? `
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",${onionDef.args ? `
+  args: ${JSON.stringify(onionDef.args)},` : ""}
+  parameters: {
+    docs: { description: { story: ${JSON.stringify(onionDef.doc ?? ("The Figma component laid over this one, at the 1024px section width it was drawn at. Switch Onion in the toolbar. " + (singleSkin ? "There is one skin." : "The arguments that pick the skin are " + onionDef.pattern.join(", ") + ".")))} } },
+    onion: {
+      component: ${JSON.stringify(onionDef.component ?? comp)},${onionDef.target ? `
+      target: ${JSON.stringify(onionDef.target)},` : ""}
+      skin: ${singleSkin ? '() => "default.png"' : `(a: Record<string, unknown>${viewportContainer ? ", ctx: { width: number }" : ""}) => \`${onionDef.pattern.map((x) => (onionDef.fixed && x in onionDef.fixed ? onionDef.fixed[x] : x === "container" && viewportContainer ? '${ctx.width < 896 ? "narrow" : "wide"}' : onionDef.defaults && x in onionDef.defaults ? "${a." + x + " ?? " + JSON.stringify(onionDef.defaults[x]) + "}" : "${a." + x + "}")).join("-")}.png\``},
+    },
+  },
+};
+`
+      : "";
+
   const next = `import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as ${mod} from "../${mod}";
 
@@ -345,7 +377,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: ${JSON.stringify(label)},
 };
-`;
+${onionStory}`;
 
   // Compare as LF: git checks files out CRLF on Windows.
   const existing = existsSync(file) ? readFileSync(file, "utf8").replace(/\r\n/g, "\n") : null;

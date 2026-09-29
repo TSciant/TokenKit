@@ -38,7 +38,7 @@
       "Manrope", "Manrope Fallback", ui-sans-serif, system-ui,
       -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --tk-font-mono:
-      ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+      "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
       "Liberation Mono", monospace;
 
     /* Display face and case. Default to the body face and no transform, so

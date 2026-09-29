@@ -89,3 +89,29 @@ export const ContainerResponse: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  args: {
+    interactive: true,
+    fx: {}
+  },
+
+  name: "Onion skin (Figma)",
+
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, at the 320px width the design was drawn at. Switch Onion in the toolbar; variant and interactive pick the skin." } },
+    onion: {
+      component: "Card",
+      skin: (a: Record<string, unknown>) => `${(a.variant as string) ?? "default"}-${a.interactive ? "true" : "false"}-default.png`,
+    },
+  },
+
+  render: (args) => (
+    <div style={{ inlineSize: 320 }}>
+      <Card {...args}>
+        <CardTitle>Card title</CardTitle>
+        <CardBody>Card body copy sits here and wraps inside the card, whatever its container is.</CardBody>
+      </Card>
+    </div>
+  )
+};

@@ -49,9 +49,25 @@ const motion = [...scaleSrc.matchAll(/(--tk-motion-[\w-]+)\s*:/g)].map((m) => m[
    Kept identical to src/tokens/slots.ts so the CLI export and Tokens/Export
    describe the same contract. */
 const timing = [...scaleSrc.matchAll(/(--tk-(?:duration|ease)-[\w-]+)\s*:/g)].map((m) => m[1]);
-const SLOTS = [...new Set([...registered, ...motion, ...timing])].sort();
+/* Slots the components read that are declared in a pack or in the scale but
+   not registered with @property: status colours, quiet-action fills, shadows,
+   the type scale. They are just as much contract — Alert, Guidance and Field
+   read status-*, Button's outline and quiet variants read action-quiet-*, and
+   no component can be drawn without sizes and weights — and a token file that
+   left them out sent a Figma sync back to the CSS for values the export
+   claimed to have. */
+const packSrc = (
+  await Promise.all(["wireframe", "wireframe-dark"].map((p) => readFile(resolve(ROOT, `src/css/packs/${p}.css`), "utf8")))
+).join(String.fromCharCode(10));
+const declared = [
+  ...packSrc.matchAll(/(--tk-(?:status|action-quiet|shadow|font)-[\w-]+)\s*:/g),
+  ...scaleSrc.matchAll(/(--tk-(?:size|weight|leading|tracking|font)-[\w-]+)\s*:/g),
+].map((m) => m[1]);
+const SLOTS = [...new Set([...registered, ...motion, ...timing, ...declared])].sort();
 
-const PACKS = ["wireframe", "wireframe-dark"].filter((p) => !onlyPack || p === onlyPack);
+/* The six specimen brands are packs like any other, so a Figma sync can carry
+   them: every brand a client could arrive as is one more mode. */
+const PACKS = ["wireframe", "wireframe-dark", "tk", "door-shop", "mohave", "bathing-bagels", "wandas", "muncheese"].filter((p) => !onlyPack || p === onlyPack);
 const DENSITIES = ["default", "compact", "comfortable"];
 
 const typeOf = (name, value) => {
@@ -61,6 +77,7 @@ const typeOf = (name, value) => {
   if (/^--tk-(ease)/.test(name)) return "cubicBezier";
   if (/^--tk-motion/.test(name)) return "transition";
   if (/^--tk-(weight)/.test(name)) return "fontWeight";
+  if (/^--tk-(status|action-quiet)/.test(name) && !/^(rgb|#|color\()/.test(value)) return "color";
   if (/^--tk-font/.test(name)) return "fontFamily";
   if (/^--tk-(leading|tracking|density|scrim)/.test(name)) return "number";
   if (/^--tk-shadow/.test(name)) return "shadow";
@@ -83,6 +100,7 @@ await writeFile(
   probePath,
   `<!doctype html><meta charset="utf-8">
 <link rel="stylesheet" href="../src/css/index.css">
+<link rel="stylesheet" href="../src/css/specimens.css">
 <body><div id="probe"></div></body>`,
 );
 
@@ -125,6 +143,7 @@ for (const pack of PACKS) {
           inner.appendChild(ruler);
 
           const render = (slot, raw) => {
+            if (/^--tk-tracking-/.test(slot)) return raw; // em is the token; px at some font size is not
             if (!/calc\(|[\d.]+(rem|em|ch|ex|vw|vh|%)/.test(raw)) return raw;
             if (/^(rgb|#|color\()/.test(raw)) return raw;
             ruler.style.width = "";

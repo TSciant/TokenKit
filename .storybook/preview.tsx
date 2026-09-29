@@ -2,6 +2,8 @@ import type { Preview, Decorator } from "@storybook/react-vite";
 import { useEffect } from "react";
 
 import { ContentProvider } from "../src/samples/content";
+import { onionGlobalType, withOnion } from "./onion";
+import { withTokens } from "./tokens";
 
 import "../src/css/index.css";
 import "../src/css/specimens.css";
@@ -19,6 +21,7 @@ import "./storybook.css";
  * its context, not a variant being selected.
  */
 export const globalTypes = {
+  onion: onionGlobalType,
   pack: {
     description: "Token pack",
     toolbar: {
@@ -71,6 +74,10 @@ export const globalTypes = {
 };
 
 export const initialGlobals = {
+  onion: "off",
+  onionOpacity: 60,
+  onionBlend: "normal",
+  onionSeam: 50,
   pack: "wireframe",
   density: "default",
   root: "16",
@@ -118,7 +125,7 @@ const withContext: Decorator = (Story, context) => {
 };
 
 const preview: Preview = {
-  decorators: [withContext],
+  decorators: [withContext, withOnion, withTokens],
 
   parameters: {
     layout: "fullscreen",

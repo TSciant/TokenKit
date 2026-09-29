@@ -90,3 +90,15 @@ export const Emphasis: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { children: "Chip" },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one. Switch Onion in the toolbar; emphasis, pressed and interactive in Controls pick the matching skin. An interactive chip is 30px tall against 26: it inherits the body line height." } },
+    onion: {
+      component: "Chip",
+      skin: (a: Record<string, unknown>) => `${(a.emphasis as string) ?? "default"}-${a.pressed ? "true" : "false"}-default-${a.interactive ? "true" : "false"}.png`,
+    },
+  },
+};

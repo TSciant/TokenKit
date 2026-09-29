@@ -1,0 +1,42 @@
+{
+ "component": "ArrowCta",
+ "node": "76:255",
+ "skins": {
+  "solid-sm.png": {
+   "w": 96,
+   "h": 36
+  },
+  "solid-md.png": {
+   "w": 112,
+   "h": 36
+  },
+  "solid-lg.png": {
+   "w": 135,
+   "h": 44
+  },
+  "outline-sm.png": {
+   "w": 96,
+   "h": 36
+  },
+  "outline-md.png": {
+   "w": 112,
+   "h": 36
+  },
+  "outline-lg.png": {
+   "w": 135,
+   "h": 44
+  },
+  "quiet-sm.png": {
+   "w": 96,
+   "h": 36
+  },
+  "quiet-md.png": {
+   "w": 112,
+   "h": 36
+  },
+  "quiet-lg.png": {
+   "w": 135,
+   "h": 44
+  }
+ }
+}

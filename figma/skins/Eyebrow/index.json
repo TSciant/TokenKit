@@ -1,0 +1,14 @@
+{
+ "component": "Eyebrow",
+ "node": "37:404",
+ "skins": {
+  "default.png": {
+   "w": 54,
+   "h": 16
+  },
+  "quiet.png": {
+   "w": 54,
+   "h": 16
+  }
+ }
+}

@@ -1,0 +1,201 @@
+{
+  "date": "2026-09-29",
+  "tool": "node tools/onion-check.mjs",
+  "note": "Tier 2 and the components Tier 1 left out. Same method as Tier1.json.",
+  "summary": {
+    "Modal": {
+      "skins": 3,
+      "mean": "4.7-7.1",
+      "result": "Aligned",
+      "note": "sizes exact at sm, md, lg; best shift (0,1) drops the mean to 2.6-3.8, a one-pixel text-baseline rounding"
+    },
+    "SiteHeader": {
+      "skins": 4,
+      "mean": "1.4-4.9",
+      "result": "Aligned",
+      "note": "within 0.5px; wide is drawn at 960 because Figma exports cap at 1024, and the query threshold is 896"
+    },
+    "RailNav": {
+      "skins": 1,
+      "mean": "2.2",
+      "result": "Aligned",
+      "note": "280x272 exact"
+    },
+    "ProofStrip": {
+      "skins": 1,
+      "mean": "3.6",
+      "result": "Aligned",
+      "note": "1024px section; columns is a minimum column width, so only the three-column layout exists at this width"
+    },
+    "Masthead": {
+      "skins": 12,
+      "mean": "1.9-7.0",
+      "result": "Aligned",
+      "note": "wide (1024) and narrow (652, below the 56rem query) x mega menu x search x contact CTA; sizes exact except one at 0.5px"
+    },
+    "PageHero": {
+      "skins": 1,
+      "mean": "3.0",
+      "result": "Aligned",
+      "note": "1024x262 against 262.4; root is a plain div, so onion.json says target root"
+    },
+    "SiteFooter": {
+      "skins": 1,
+      "mean": "4.3",
+      "result": "Aligned after a CSS fix",
+      "note": "1024x244 exact; drawn on the inverse context (tk mode wireframe-inverse on the frame); plate is the texture-none tile"
+    },
+    "Chip (interactive)": {
+      "skins": 12,
+      "mean": "2.5-12.5",
+      "result": "Aligned",
+      "note": "the Interactive axis added: 24 variants, interactive chips 55x30 against 55x26"
+    },
+    "ContactCta": {
+      "skins": 9,
+      "mean": "2.4-14.0",
+      "result": "Aligned",
+      "note": "a Button with a default label and size sm: it borrows the Button skins (onion.json skinsFrom), so it has no Figma component of its own"
+    },
+    "ArrowCta": {
+      "skins": 9,
+      "mean": "1.9-9.4",
+      "result": "Aligned",
+      "note": "variant x size at the default state; uppercase +4% semibold label and the Arrow.tsx path, within 0.4px"
+    },
+    "HeroCarousel": {
+      "skins": 1,
+      "mean": "1.6",
+      "result": "Aligned",
+      "note": "first slide, 1024x608. The stock plate is the same image in the design (a placeholder for a photograph), so what is compared is the scrim, the copy, the CTA and the pager. Slides two and three differ in seed, copy and the current dot."
+    },
+    "TileGrid": {
+      "skins": 1,
+      "mean": "3.3",
+      "result": "Aligned",
+      "note": "1024x803 against 802.6; nine tiles, four to a row (columns is a minimum tile width); six stock plates uploaded as the tiles' image fills"
+    },
+    "HubCards": {
+      "skins": 1,
+      "mean": "4.5",
+      "result": "Aligned",
+      "note": "1024x672 against 672.5; four cards, three per row then one, each the height of its row"
+    },
+    "CtaBlocks": {
+      "skins": 1,
+      "mean": "1.3",
+      "result": "Aligned",
+      "note": "1024x296 against 295.6; an inverse block with an outline ArrowCta, a sunken block with a solid one"
+    }
+  },
+  "findings": [
+    {
+      "component": "Modal",
+      "driftType": "Design execution != live execution",
+      "diff": "a modal lives in the browser top layer, so the onion cannot sit under it and its backdrop dims the comparison",
+      "pull": "Align",
+      "result": "the decorator draws the skin and the control bar inside the top layer (a portal into the dialog, a popover for the bar); the checker leaves the backdrop out"
+    },
+    {
+      "component": "SiteHeader",
+      "driftType": "Design execution != live execution",
+      "diff": "the non-mega variant was 61px against 59.5: Figma keeps a hidden layer's size in an auto-layout frame, so an invisible Menu button still propped the header open",
+      "pull": "Align",
+      "result": "the variants that have no Menu button do not contain one; now 59 against 59.5"
+    },
+    {
+      "component": "RailNav",
+      "driftType": "Live execution != design intent",
+      "diff": "the radius gate measures the concentric gap as the host's own padding, and the inset was padding on an unpainted wrapper, so the gate saw a gap of 0",
+      "pull": "Align",
+      "result": "the nav owns the inset padding and the header bleeds back out with a negative margin; pixels unchanged"
+    },
+    {
+      "component": "Masthead",
+      "driftType": "Design execution != live execution",
+      "diff": "the search and contact variants change the bar height (67, 61, 59) because the search field is 42px tall and the button 36; the variants that drop them must not contain them, since a hidden layer still counts in Figma",
+      "pull": "Align",
+      "result": "twelve variants, each built without the layers it does not show; all match the live heights"
+    },
+    {
+      "component": "Masthead",
+      "driftType": "Design execution != live execution",
+      "diff": "a pattern's container is the width its box is given, which a story cannot pass as an arg",
+      "pull": "Align",
+      "result": "figma/onion.json says containerFrom viewport: the checker sets the viewport per skin, and the generated story picks the skin from the measured width (56rem is the query threshold)"
+    },
+    {
+      "component": "PageHero",
+      "driftType": "Design execution != live execution",
+      "diff": "the checker took the first data-tk on the page, the deck paragraph, for the component, because the pattern root has none",
+      "pull": "Align",
+      "result": "onion.json can name target: root; the checker, the decorator and the generated story measure the story's first child"
+    },
+    {
+      "component": "SiteFooter",
+      "driftType": "Live execution != live intent",
+      "diff": "the right column sets text-align: end, but the children of a stack hug their content, so the subscribe line and the copyright ended their text inside boxes that sat at the column's start, left of the nav and the chips",
+      "pull": "Align",
+      "result": "the column also takes align-items: flex-end (chrome.tsx); every block now ends at the column edge"
+    },
+    {
+      "component": "Chip",
+      "driftType": "Design execution != live execution",
+      "diff": "an interactive chip inherits the body line height (font: inherit), so it is 30px tall where a static chip is 26; the Figma set never modelled interactive, and the footer's chips exposed it",
+      "pull": "Align",
+      "result": "an Interactive axis on the Chip set (24 variants); the story's skin picks by interactive too"
+    },
+    {
+      "component": "HeroCarousel",
+      "driftType": "Design execution != live execution",
+      "diff": "the hero's plate is a procedural stock placeholder (hatch, seeded shape, grayscale filter), content rather than design; drawing it in Figma would have swamped the comparison with hatch pixels",
+      "pull": "Align",
+      "result": "the live plate is captured at 1x with the scrim and copy hidden and uploaded into Figma as the plate's image fill (upload_assets, nodeIds); a design swaps that image for a photograph. Everything designed on top of it (gradient, copy, CTA, pager) is drawn from measurements and checked."
+    },
+    {
+      "component": "HeroCarousel",
+      "driftType": "Design execution != live execution",
+      "diff": "the scrim's gradient stops and the pager's translucent fills are colour-mix() values with no token slot a Figma paint can bind: gradient stops take literals through the Plugin API",
+      "pull": "Accept",
+      "result": "literals from the CSS (black 0.54 held to 38%, clear at 70%; pager black 0.55, edge white 0.28); the alpha is scrim/aa and the ink scrim/ink in the variables"
+    },
+    {
+      "component": "HeroCarousel",
+      "driftType": "Live execution != live intent",
+      "diff": "the hero animates in (copy 320ms plus stagger, plate scale and filter), so a photograph taken too early is mid-animation",
+      "pull": "Align",
+      "result": "onion.json gains settle: the checker waits that many ms before it photographs"
+    },
+    {
+      "component": "TileGrid",
+      "driftType": "Live execution != live intent",
+      "diff": "the columns prop reads as a count but the shell grid takes it as a minimum tile width (data-cols=3 is 14rem), so columns: 3 gives four 230px tiles per row at 1024, and nine tiles wrap 4, 4, 1",
+      "pull": "Accept",
+      "result": "the same finding as ProofStrip: the prop name says count, the CSS says minimum width. The design follows the code; renaming the prop (minTile?) is a decision for the kit, and it would not change a pixel"
+    },
+    {
+      "component": "HubCards",
+      "driftType": "Design execution != live execution",
+      "diff": "three 314.7px cards and two 24px gaps come to 992.1px, 0.1px over the 992px content box, so Figma wrapped after two cards where the browser (314.667px) fits three",
+      "pull": "Align",
+      "result": "the cards are drawn at 314.66; the grid wraps 3, 1 and the height is 672 against 672.5"
+    },
+    {
+      "component": "CtaBlocks",
+      "driftType": "Design execution != live execution",
+      "diff": "the block radius is 48, a sum (--_radius-gap 32 + radius-lg 16), and the button's is the concentric remainder (16); no single variable holds 48",
+      "pull": "Accept",
+      "result": "48 is drawn literal on the block; the button's 16 is radius/lg, bound"
+    }
+  ],
+  "promotion": [
+    "A component whose variants add or drop a child drops it: a hidden layer still counts toward an auto-layout frame's size in Figma.",
+    "A concentric inset is padding on the painted host, not on a wrapper, because that is what the radius gate (and the eye) reads.",
+    "Text-align does not move a box: in a stack whose children hug their content, align-items is what puts a block at the end.",
+    "Composing a pattern exposes what its parts never showed alone: the footer found the interactive chip.",
+    "A pattern that is only a configured primitive (ContactCta) borrows the primitive's skins rather than owning a copy: one design object, two doors in the code.",
+    "An image inside a pattern is content: capture it from the live component at 1x and put it in the design as an image fill (upload_assets with nodeIds), so the comparison is about what was designed.",
+    "Six plates fit one upload_assets call (count 6, nodeIds in variant order): a pattern with several images is one call, not one per image.",
+    "A grid that wraps in Figma when it does not in the browser is usually a sub-pixel overhang: draw the cell at the exact fraction ((content - gaps) / columns), not the rounded measurement."
+  ]
+}

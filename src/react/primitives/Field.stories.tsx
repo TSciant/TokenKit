@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Field } from "./Field";
+import { Field, type FieldProps } from "./Field";
 
 const meta = {
   title: "04 Primitives/03 Field",
@@ -105,6 +105,29 @@ export const States: Story = {
       <Field label="With hint" hint="Hint sits under the control." />
       <Field label="With error" defaultValue="bad" error="This field is required." />
       <Field label="Disabled" disabled defaultValue="Locked" />
+    </div>
+  ),
+};
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { label: "Label", placeholder: "Placeholder" },
+  argTypes: { disabled: { control: "boolean" }, invalid: { control: "boolean" } } as never,
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, at the 320px width the design was drawn at. Switch Onion in the toolbar; control, invalid and disabled pick the skin." } },
+    onion: {
+      component: "Field",
+      skin: (a: Record<string, unknown>) =>
+        `${(a.control as string) ?? "input"}-${a.invalid ? "invalid" : a.disabled ? "disabled" : "default"}.png`,
+    },
+  },
+  render: ({ invalid, ...args }: Record<string, unknown> & { invalid?: boolean }) => (
+    <div style={{ inlineSize: 320 }}>
+      <Field
+        {...(args as unknown as FieldProps)}
+        {...((args as { control?: string }).control === "select" ? { options: [{ value: "", label: "Choose one" }] } : {})}
+        error={invalid ? "What went wrong." : undefined}
+      />
     </div>
   ),
 };

@@ -48,3 +48,14 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Arrow CTA",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one. ArrowCta is a Button with an uppercase, tracked, semibold label and a trailing arrow, drawn at lg by default. Switch Onion in the toolbar; variant and size pick the skin." } },
+    onion: {
+      component: "ArrowCta",
+      skin: (a: Record<string, unknown>) => `${a.variant ?? "solid"}-${a.size ?? "lg"}.png`,
+    },
+  },
+};

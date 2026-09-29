@@ -63,3 +63,14 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Proof strip",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, at the 1024px section width it was drawn at. Switch Onion in the toolbar. The arguments that pick the skin are columns." } },
+    onion: {
+      component: "ProofStrip",
+      skin: (a: Record<string, unknown>) => `${a.columns}.png`,
+    },
+  },
+};

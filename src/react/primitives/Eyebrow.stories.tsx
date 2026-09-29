@@ -41,3 +41,12 @@ export const Default: Story = {
   ),
 };
 
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { children: "Eyebrow" },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one. Switch Onion in the toolbar." } },
+    onion: { component: "Eyebrow", skin: (a: Record<string, unknown>) => `${(a.emphasis as string) ?? "default"}.png` },
+  },
+};

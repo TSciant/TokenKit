@@ -1,0 +1,20 @@
+{
+ "component": "Eyebrow",
+ "node": "37:404",
+ "variants": [
+  {
+   "name": "Emphasis=default",
+   "x": 0,
+   "y": 0,
+   "w": 54,
+   "h": 16
+  },
+  {
+   "name": "Emphasis=quiet",
+   "x": 86,
+   "y": 0,
+   "w": 54,
+   "h": 16
+  }
+ ]
+}

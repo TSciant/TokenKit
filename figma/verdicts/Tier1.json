@@ -1,0 +1,126 @@
+{
+  "date": "2026-09-29",
+  "tool": "node tools/onion-check.mjs",
+  "method": "each skin (Figma variant, 1x) against its Onion story photographed at 1x on the design's ground (surface-default); mean difference 0-255 per channel over the box, text antialiasing included; best whole-pixel shift reported to tell a different shape from an edge one pixel away",
+  "summary": {
+    "Button": {
+      "skins": 18,
+      "mean": "1.4-14.0",
+      "result": "Aligned"
+    },
+    "Chip": {
+      "skins": 6,
+      "mean": "7.5-14.5",
+      "result": "Aligned"
+    },
+    "Card": {
+      "skins": 6,
+      "mean": "3.3-10.4",
+      "result": "Aligned"
+    },
+    "Alert": {
+      "skins": 4,
+      "mean": "2.2",
+      "result": "Aligned"
+    },
+    "Guidance": {
+      "skins": 2,
+      "mean": "1.8-5.8",
+      "result": "Aligned"
+    },
+    "Field": {
+      "skins": 9,
+      "mean": "0.6-7.3",
+      "result": "Aligned"
+    },
+    "Meter": {
+      "skins": 5,
+      "mean": "1.6-2.9",
+      "result": "Aligned"
+    },
+    "Figure": {
+      "skins": 5,
+      "mean": "0.9-1.7",
+      "result": "Aligned, after a CSS fix"
+    },
+    "Icon": {
+      "skins": 3,
+      "mean": "10.2-16.0",
+      "result": "Aligned"
+    },
+    "Eyebrow": {
+      "skins": 2,
+      "mean": "27.1-30.8",
+      "result": "Aligned after pinning the mono face; a 1px text baseline (best shift (0,-1) drops the mean to 10.2-11.4)"
+    },
+    "Media": {
+      "skins": 6,
+      "mean": "2.5-6.6",
+      "result": "Aligned after a CSS fix; sizes exact, best shift (0,0)"
+    },
+    "Modal": {
+      "skins": 3,
+      "mean": null,
+      "result": "Skins exported, no story yet: a dialog needs its own harness"
+    }
+  },
+  "findings": [
+    {
+      "component": "Figure",
+      "driftType": "Live execution != live intent",
+      "diff": "the aspect prop never changed the frame: figure-frame declared --_aspect itself, and a custom property set on the element beats one inherited from the figure, so every data-aspect rule was dead",
+      "pull": "Align",
+      "result": "the default moved into the var() fallback in figure.css; sizes now match at 1:1, 4:3, 16:9, 21:9"
+    },
+    {
+      "component": "Media",
+      "driftType": "Live execution != live intent",
+      "diff": "media.css stacks the figure over the body with @container media (max-width: 24rem) on [data-tk=media], but that element is the container, and a container cannot be styled by its own query; the rule never fires, so a 320px Media stays a row where the design (and the CSS) say stacked",
+      "pull": "Align",
+      "result": "fixed in media.css: the body wants 16rem beside the figure and wraps below at full width when the box cannot give it, so the same component stacks by its own box with no query and no wrapper. Figma's invented 8px gap inside the body was removed (the body is a free slot). All six skins now match exactly."
+    },
+    {
+      "component": "Chip",
+      "driftType": "Design intent != live",
+      "diff": "the Figma set drew pressed+quiet as inverse; chip.css orders the quiet rule after the pressed rule, so quiet wins",
+      "pull": "Align",
+      "result": "Figma follows the code (browser truth); 185 -> 7.5"
+    },
+    {
+      "component": "Icon",
+      "driftType": "Design execution != design intent",
+      "diff": "resizing an icon instance did not scale the glyph: the vectors had fixed constraints; then a fractional line-box offset in the checker read as a 1px shift",
+      "pull": "Align",
+      "result": "vectors set to scale with the frame; checker translates the live element onto the pixel grid; residual is antialiasing of 1.3-2px strokes"
+    },
+    {
+      "component": "Eyebrow",
+      "driftType": "Design execution != live execution",
+      "diff": "monospace face: Figma uses Roboto Mono, the browser resolves the kit's stack (ui-monospace ... monospace) to the system mono; 54px against 49.5px wide",
+      "pull": "Align",
+      "result": "the kit now pins its mono face like it pins its sans: Geist Mono (OFL, unmodified variable font, 31KB) in src/css/fonts, --tk-font-mono leads with it, NOTICE.md records it; Figma uses the same family. Width now 53.8 against 54."
+    },
+    {
+      "component": "Button",
+      "driftType": "Design execution != live execution",
+      "diff": "sm labels sit one pixel off vertically (12px at 115% is a 13.8px line box, Figma rounds to 14)",
+      "pull": "Accept",
+      "result": "best shift (0,-1) drops solid-sm from 14.0 to 11.7; a rounding difference in text layout"
+    },
+    {
+      "component": "all",
+      "driftType": "Design execution != live execution",
+      "diff": "a Figma variant without a visible border was 2px smaller than the DOM (CSS keeps a transparent 1px border): Chip and Card flat/bare repeated the Button bug",
+      "pull": "Align",
+      "result": "invisible border is a stroke bound to action/quiet-fill; widths and heights now equal"
+    }
+  ],
+  "promotion": [
+    "An invisible stroke is a variable that is transparent, never a paint at opacity 0.",
+    "Figma image exports cap at 1024px: a wide set is laid out in columns so each sheet exports at 1x.",
+    "The design ground is surface-default: the checker and the Onion decorator put the live component on it, because Figma bakes a transparent component onto its page background.",
+    "A face the kit does not pin is a face Figma cannot draw: pin it (Manrope for sans, Geist Mono for mono) and design and code become one object.",
+    "A rule that reads @container on the element that is the container never fires; wrap with intrinsic flex-basis instead."
+  ],
+  "acceptedClass": "A one-pixel vertical text offset between Figma and Chromium (Button sm, Modal, Eyebrow, ProofStrip): Figma keeps a whole-pixel text box and snaps the baseline differently from Chrome. It is a renderer difference, present when the layout is exact; the checker's best-shift number shows it."
+}

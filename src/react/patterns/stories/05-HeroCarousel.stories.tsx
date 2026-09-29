@@ -50,3 +50,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Hero carousel",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, first slide, at the 1024px width it was drawn at. The plate is the kit's stock placeholder (the same image is in the design), so what is compared is the scrim, the copy, the CTA and the pager. Switch Onion in the toolbar." } },
+    onion: {
+      component: "HeroCarousel",
+      target: "root",
+      skin: () => "default.png",
+    },
+  },
+};

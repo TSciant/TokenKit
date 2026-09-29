@@ -49,7 +49,10 @@
     "check:delivery": "npm run check && npm run next:build && npm run lighthouse",
     "properties": "node tools/property-gate.mjs",
     "icons": "node tools/gen-icon-set.mjs",
-    "icons:check": "node tools/gen-icon-set.mjs --check"
+    "icons:check": "node tools/gen-icon-set.mjs --check",
+    "figma:manifest": "node tools/figma-manifest.mjs",
+    "figma:onion": "node tools/onion-check.mjs",
+    "figma:meta": "node tools/figma-meta.mjs"
   },
   "devDependencies": {
     "@chenglou/pretext": "^0.0.9",

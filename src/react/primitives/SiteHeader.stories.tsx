@@ -51,3 +51,20 @@ export const MegaSheet: Story = {
   render: (args) => <SiteHeader {...args} actions={<Search />} />,
 };
 
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  argTypes: { container: { control: "inline-radio", options: ["wide", "narrow"] } } as never,
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one. Container is the width the header sits in: wide is 960px, narrow is 800px, and below 56rem the nav is hidden by a container query on the header itself, so the same component answers to where it is put. Switch Onion in the toolbar; withMegaMenu shows the Menu button." } },
+    onion: {
+      component: "SiteHeader",
+      skin: (a: Record<string, unknown>) => `${(a as { container?: string }).container ?? "wide"}-${a.withMegaMenu ? "true" : "false"}.png`,
+    },
+  },
+  render: ({ container = "wide", ...args }: Record<string, unknown> & { container?: string }) => (
+    <div style={{ inlineSize: container === "narrow" ? 800 : 960 }}>
+      <SiteHeader {...(args as object)} />
+    </div>
+  ),
+};

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ReactNode } from "react";
+import { ToekneeWordmark } from "../tokens/ToekneeWordmark";
 
 /**
  * 00 Start — how to read tokenkit in Storybook.
@@ -175,6 +176,8 @@ export const Introduction: Story = {
       }}
     >
       <header data-shell="stack" data-gap="2">
+        {/* The mark: toe knee, token, token kit. Click it to replay. */}
+        <ToekneeWordmark width={560} height={120} />
         <p className="tk-doc-sub" style={{ margin: 0 }}>
           tokenkit · Storybook IA
         </p>

@@ -44,3 +44,24 @@ export const Collapse: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { size: "md" },
+  argTypes: { container: { control: "inline-radio", options: ["wide", "narrow"] } } as never,
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one. Container is the width it sits in: wide is 480px, narrow is 320px. When the box cannot give the body 16rem beside the figure, the body wraps below it at full width: the same component answers to where it is put, with no query and no wrapper. Switch Onion in the toolbar." } },
+    onion: {
+      component: "Media",
+      skin: (a: Record<string, unknown>) => `${(a.size as string) ?? "md"}-${(a as { container?: string }).container ?? "wide"}.png`,
+    },
+  },
+  render: ({ container = "wide", ...args }: Record<string, unknown> & { container?: string }) => (
+    <div style={{ inlineSize: container === "narrow" ? 320 : 480 }}>
+      <Media {...(args as object)} figure={<span />}>
+        <h3 style={{ margin: 0, fontSize: "var(--tk-size-lg)", fontWeight: "var(--tk-weight-semibold)", lineHeight: "var(--tk-leading-snug)" }}>Media title</h3>
+        <p style={{ margin: 0, color: "var(--tk-text-secondary)" }}>Supporting copy beside or under the figure, depending on the container.</p>
+      </Media>
+    </div>
+  ),
+};

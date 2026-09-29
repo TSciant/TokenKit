@@ -1,0 +1,42 @@
+{
+ "component": "Field",
+ "node": "38:200",
+ "skins": {
+  "input-default.png": {
+   "w": 320,
+   "h": 71
+  },
+  "input-invalid.png": {
+   "w": 320,
+   "h": 102
+  },
+  "input-disabled.png": {
+   "w": 320,
+   "h": 71
+  },
+  "select-default.png": {
+   "w": 320,
+   "h": 71
+  },
+  "select-invalid.png": {
+   "w": 320,
+   "h": 102
+  },
+  "select-disabled.png": {
+   "w": 320,
+   "h": 71
+  },
+  "textarea-default.png": {
+   "w": 320,
+   "h": 125
+  },
+  "textarea-invalid.png": {
+   "w": 320,
+   "h": 154
+  },
+  "textarea-disabled.png": {
+   "w": 320,
+   "h": 125
+  }
+ }
+}

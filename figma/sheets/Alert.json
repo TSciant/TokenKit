@@ -1,0 +1,34 @@
+{
+ "component": "Alert",
+ "node": "38:101",
+ "variants": [
+  {
+   "name": "Status=info",
+   "x": 0,
+   "y": 0,
+   "w": 400,
+   "h": 86
+  },
+  {
+   "name": "Status=success",
+   "x": 432,
+   "y": 0,
+   "w": 400,
+   "h": 86
+  },
+  {
+   "name": "Status=warning",
+   "x": 0,
+   "y": 118,
+   "w": 400,
+   "h": 86
+  },
+  {
+   "name": "Status=danger",
+   "x": 432,
+   "y": 118,
+   "w": 400,
+   "h": 86
+  }
+ ]
+}

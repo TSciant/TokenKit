@@ -1,14 +1,19 @@
 /* Media — figure beside body. The canonical two-part assembly: a row shell
-   with a fixed-basis first child. Collapses on its own container, not the
-   viewport. */
+   with a fixed-basis first child. It stacks when its own box is too narrow for
+   both, not when the viewport is.
+
+   It used to say so with a container query on this element, and a container
+   cannot be styled by its own query: the rule never fired, so a narrow Media
+   stayed a row where the design (and the CSS) said stacked. Found by laying the
+   Figma design over it. Wrapping does the same job with no query and no
+   wrapper: the body wants 16rem beside the figure, and when the box cannot give
+   it, the body drops below at full width. */
 @layer components {
   :where([data-tk="media"]) {
     --_figure: 8rem;
 
-    container-type: inline-size;
-    container-name: media;
-
     display: flex;
+    flex-wrap: wrap;
     gap: var(--tk-space-4);
     align-items: flex-start;
   }
@@ -28,20 +33,10 @@
   }
 
   :where([data-tk="media-body"]) {
-    flex: 1 1 auto;
+    flex: 1 1 16rem;
     min-inline-size: 0;
   }
 
   :where([data-tk="media"][data-size="sm"]) { --_figure: 4rem; }
   :where([data-tk="media"][data-size="lg"]) { --_figure: 12rem; }
-
-  @container media (max-width: 24rem) {
-    :where([data-tk="media"]) {
-      flex-direction: column;
-    }
-    :where([data-tk="media-figure"]) {
-      flex-basis: auto;
-      inline-size: var(--_figure);
-    }
-  }
 }

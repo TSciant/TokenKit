@@ -48,3 +48,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Contact CTA",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: {"children":"Button"},
+  parameters: {
+    docs: { description: { story: "ContactCta is a Button with a default label and size sm, so its skins are the Figma Button's, laid over this one. Switch Onion in the toolbar; variant and size in Controls pick the skin." } },
+    onion: {
+      component: "Button",
+      skin: (a: Record<string, unknown>) => `${a.variant ?? "solid"}-${a.size ?? "sm"}-default.png`,
+    },
+  },
+};

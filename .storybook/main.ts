@@ -16,6 +16,12 @@ const config: StorybookConfig = {
   },
 
   staticDirs: [
+    /* The wordmark, served at /wordmark.svg: the manager's sidebar brand, and the
+       one copy the README title points at. */
+    { from: "./static", to: "/" },
+    /* The Figma skins the Onion toolbar switch lays over a component. Served
+       at /onion; requested only while the switch is on. */
+    { from: "../figma/skins", to: "/onion" },
     /* maplibre's web worker, served where Map.tsx's TK_MAP_WORKER_URL expects
        it. maplibre resolves its own worker from import.meta.url, which inside
        a bundled chunk is not an http(s) URL, so it has to be a real served

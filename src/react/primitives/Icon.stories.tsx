@@ -212,3 +212,12 @@ export const Labelling: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { name: "info" },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one. Switch Onion in the toolbar; size picks the skin (16, 20, 24px)." } },
+    onion: { component: "Icon", skin: (a: Record<string, unknown>) => `${(a.size as string) ?? "md"}.png` },
+  },
+};
