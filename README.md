@@ -34,6 +34,7 @@ src/css/
   03-scale.css       space, type, radius, motion, target size
   04-elements.css    bare HTML defaults, zero specificity
   packs/             colour and anything else a brand owns
+  bonus/             opt-in effect packs (marquee, onion, ambient, seed)
   shells/            seven layout containers
   components/        one file per component
 src/react/
@@ -41,6 +42,7 @@ src/react/
   patterns/          composed patterns — chrome, marketing, catalog, templates
   shells/            the seven shells as React
   motion/            the fx system, optional
+  bonus/             bonus pack components (OnionScrub, AmbientField, ColorSeedLab)
 src/tokens/          the token stories — ramp, contract, scales, measure, contrast
 src/foundations/     layers, context, composition, scrim, concentric corners
 src/samples/         page compositions and the clickable prototype
@@ -48,6 +50,7 @@ src/lib/contrast.mjs WCAG maths, one copy, shared by browser, Storybook and CI
 .storybook/          config; pack / density / root size are toolbar globals
 next/                the page compositions as a Next.js app, for Lighthouse
 tools/               gate, lint, bundle, serve, capture, audit, onionskin
+docs/                architecture, token contract, composition, accessibility, bonus packs
 ```
 
 ## WordPress
@@ -127,6 +130,34 @@ import { Stack, Card, CardTitle, CardBody, Button } from "tokenkit/react";
   <Button variant="outline">Action</Button>
 </Stack>
 ```
+
+## Bonus Packs
+
+Four **opt-in effect modules** that extend TokenKit without polluting core:
+
+1. **marquee** — GradientText, shimmer effects, pattern fields (CSS-only)
+2. **onion** — Meant|Got scrub UI for design-code alignment
+3. **ambient** — SVG motifs + optional canvas particle effects
+4. **seed** — ColorSeed lab for generating candidate brand packs
+
+```css
+/* Import individual packs */
+@import "tokenkit/css";
+@import "tokenkit/css/bonus/marquee.css";
+@import "tokenkit/css/bonus/ambient.css";
+
+/* Or all at once */
+@import "tokenkit/css/bonus/index.css";
+```
+
+```tsx
+/* React components where needed */
+import { OnionScrub, AmbientField, ColorSeedLab } from "tokenkit/react/bonus";
+```
+
+See [docs/08-bonus-packs.md](docs/08-bonus-packs.md) for full documentation.
+
+Core remains fully usable without loading any bonus pack. Bonus packs honor the same gates, respect `prefers-reduced-motion`, and reuse TokenKit primitives.
 
 ## Type
 

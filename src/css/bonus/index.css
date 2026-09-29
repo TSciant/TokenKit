@@ -1,0 +1,66 @@
+/* ---------------------------------------------------------------------------
+   TokenKit Bonus Packs — Opt-in Effect Channel
+
+   Four bonus packs that extend TokenKit with wild energy from Quantum Design.
+   These are OPTIONAL effects that keep core gate-honest while shipping
+   dignity, not bloat.
+
+   Brand packs (data-brand, src/css/packs/*) are appearance-only and stay
+   separate. Bonus packs are effects and behaviors that layer on top of any
+    10|   brand.
+
+   ## Usage
+
+   Import individual packs as needed:
+
+   ```css
+   @import "tokenkit/css";
+   @import "tokenkit/css/bonus/marquee.css";
+   @import "tokenkit/css/bonus/onion.css";
+   ```
+    20|
+   Or import all four at once:
+
+   ```css
+   @import "tokenkit/css";
+   @import "tokenkit/css/bonus/index.css";
+   ```
+
+   ## The Four Packs
+
+    30|   1. **marquee** — GradientText / shimmer (@property pan), PatternField
+      density/scale coords, CoherentType mask modes. CSS/attrs opt-in only.
+
+   2. **onion** — Meant|Got scrub plate UI + Align / Accept / Pause / Replace
+      verbs. Craft-chamber onion for design-code alignment, NOT Figma↔live
+      onionskin tooling (npm run onionskin / Storybook Onion switch stay
+      separate).
+
+   3. **ambient** — AmbientField-style SVG motifs (grid/orbit/pulse/mesh) +
+      optional Kuramoto/PosterGhosts-style canvas PE behind
+    40|      prefers-reduced-motion → static. Canvas PE is opt-in.
+
+   4. **seed** — ColorSeed-style hue-graph lab that emits candidate brand
+      packs (or writes candidates for nudge/contrast re-gate). Must NEVER
+      hot-rewrite shipped --tk-* in production without re-gate.
+
+   ## Core Contract
+
+   - Core remains usable WITHOUT loading any bonus pack
+   - Wireframe/neutral/boundary/contrast honesty stays intact
+    50|   - Reuse TokenKit primitives (textures, gradients, MotionFx, etc.)
+   - Honor cascade layers, --tk-* contract, :where(), reduced-motion
+   - Extend attr/vocab allowlists only for bonus-pack attrs, scoped so core
+     gates don't require bonus CSS
+
+   ## Ethos
+
+   TokenKit = portable gated engine. Quantum Design invents. Bonus packs
+   harden wild energy as opt-in modules. No doctrine chrome in core.
+
+    60|--------------------------------------------------------------------------- */
+
+@import url("./marquee.css");
+@import url("./onion.css");
+@import url("./ambient.css");
+@import url("./seed.css");

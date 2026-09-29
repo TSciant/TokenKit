@@ -1,0 +1,141 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Bonus Packs/Overview" />
+
+# Bonus Packs
+
+TokenKit's **bonus pack channel** — four opt-in effect modules that keep the core kit gate-honest while shipping Quantum Design's wild energy as dignity, not bloat.
+
+## Architecture
+
+**Brand packs** (`data-brand`, `src/css/packs/*`) are **appearance-only**. They control color, typography, and brand identity.
+
+**Bonus packs** (`src/css/bonus/*`) are **effects and behaviors** that layer on top of any brand. They're completely optional — core remains fully usable without loading any bonus pack.
+
+---
+
+## The Four Packs
+
+### 1. Marquee
+
+**GradientText, shimmer effects, and pattern field enhancements.**
+
+Pure CSS effects using `@property` animations and text clipping.
+
+- Gradient text (static and animated)
+- Shimmer sweep effects
+- Pattern field density variants
+- Text mask modes (soft edge, vignette)
+- CSS-only, no React component
+
+👉 [View Marquee Stories →](?path=/docs/bonus-packs-marquee--docs)
+
+---
+
+### 2. Onion
+
+**Meant|Got scrub plate UI for design-code alignment.**
+
+Shows intended vs actual values with Align / Accept / Pause / Replace verbs.
+
+- Meant|Got comparison plates
+- Delta indicators for mismatches
+- Verb controls for alignment workflow
+- State indicators (aligned/misaligned/paused)
+- React component with TypeScript
+
+👉 [View Onion Stories →](?path=/docs/bonus-packs-onion--docs)
+
+---
+
+### 3. Ambient
+
+**AmbientField-style SVG motifs with optional canvas particle effects.**
+
+Provides grid/orbit/pulse/mesh backgrounds plus Kuramoto/PosterGhosts-style coordinated particles.
+
+- SVG motifs (grid, orbit, pulse, mesh)
+- Density variants (sparse, normal, dense)
+- Color themes (cool, warm, brand)
+- Optional canvas particle effects
+- Respects `prefers-reduced-motion`
+
+👉 [View Ambient Stories →](?path=/docs/bonus-packs-ambient--docs)
+
+---
+
+### 4. Seed
+
+**ColorSeed-style hue-graph lab for generating candidate brand packs.**
+
+A development tool that emits candidate pack values for nudge/contrast re-gate.
+
+- Interactive hue wheel
+- OKLab color space (perceptual uniformity)
+- Live ramp preview
+- Export candidate CSS
+- React component for development use
+
+⚠️ **Development tool** — emits candidates for re-gate, never hot-rewrites production tokens.
+
+👉 [View Seed Stories →](?path=/docs/bonus-packs-seed--docs)
+
+---
+
+## Import
+
+### CSS
+
+```css
+/* Import all four at once */
+@import "tokenkit/css";
+@import "tokenkit/css/bonus/index.css";
+
+/* Or import selectively */
+@import "tokenkit/css/bonus/marquee.css";
+@import "tokenkit/css/bonus/onion.css";
+@import "tokenkit/css/bonus/ambient.css";
+@import "tokenkit/css/bonus/seed.css";
+```
+
+### React
+
+```tsx
+// All at once
+import { OnionScrub, AmbientField, ColorSeedLab } from "tokenkit/react/bonus";
+
+// Or individually
+import { OnionScrub } from "tokenkit/react/bonus/OnionScrub";
+import { AmbientField } from "tokenkit/react/bonus/AmbientField";
+import { ColorSeedLab } from "tokenkit/react/bonus/ColorSeedLab";
+```
+
+---
+
+## Core Contract
+
+Bonus packs honor the same rules as core:
+
+- ✅ Core remains usable **without** loading any bonus pack
+- ✅ Wireframe/neutral/boundary/contrast honesty stays intact
+- ✅ Reuse TokenKit primitives (textures, gradients, MotionFx)
+- ✅ Honor cascade layers, `--tk-*` contract, `:where()`, reduced-motion
+- ✅ No doctrine chrome in core
+
+---
+
+## Ethos
+
+**TokenKit** = portable gated engine.
+
+**Quantum Design** invents.
+
+**Bonus packs** harden wild energy as opt-in modules.
+
+The core stays neutral. The bonus channel ships dignity, not bloat.
+
+---
+
+## Full Documentation
+
+See [docs/08-bonus-packs.md](https://github.com/TSciant/tokenkit/blob/main/docs/08-bonus-packs.md) for complete documentation, usage examples, and integration guides.
