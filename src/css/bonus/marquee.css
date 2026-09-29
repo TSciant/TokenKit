@@ -1,0 +1,154 @@
+/* ---------------------------------------------------------------------------
+   Bonus Pack: Marquee
+
+   Shimmer effects, gradient text, and pattern field enhancements. Pure CSS
+   opt-in effects that layer on TokenKit's existing texture and gradient
+   primitives.
+
+   Usage:
+     @import "tokenkit/css";
+     @import "tokenkit/css/bonus/marquee.css";
+    10|
+   Then apply data-marquee attributes to elements for effect opt-in.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  /* --- @property registrations for animation ---------------------------- */
+  @property --marquee-shimmer-x {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+    20|  }
+
+  /* --- GradientText: clip background gradient to text ------------------ */
+  :where([data-marquee="gradient-text"]) {
+    background: linear-gradient(
+      135deg,
+      var(--tk-gradient-from, var(--tk-action-fill)),
+      var(--tk-gradient-to, var(--tk-logo-mark-ink))
+    );
+    background-clip: text;
+    30|    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* --- Shimmer: animated gradient sweep -------------------------------- */
+  :where([data-marquee="shimmer"]) {
+    position: relative;
+    overflow: hidden;
+  }
+
+    40|  :where([data-marquee="shimmer"])::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 0%,
+      transparent 40%,
+      color-mix(in srgb, var(--tk-surface-raised) 80%, transparent) 50%,
+      transparent 60%,
+      transparent 100%
+    50|    );
+    transform: translateX(var(--marquee-shimmer-x, 0%));
+    animation: marquee-shimmer 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes marquee-shimmer {
+    0% {
+      --marquee-shimmer-x: -100%;
+    }
+    60|    100% {
+      --marquee-shimmer-x: 200%;
+    }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-marquee="shimmer"])::before {
+      animation: none;
+      opacity: 0;
+    70|    }
+  }
+
+  /* --- PatternField: enhanced texture controls ------------------------- */
+  :where([data-marquee-pattern]) {
+    --marquee-pattern-scale: var(--tk-texture-scale, 8px 8px);
+    --marquee-pattern-density: 1;
+    background-color: var(--tk-surface-sunken);
+    background-image: var(--tk-texture-dots);
+    background-size: var(--marquee-pattern-scale);
+    80|    mask-image: linear-gradient(
+      to bottom,
+      black calc(100% - var(--tk-space-xs)),
+      transparent 100%
+    );
+  }
+
+  /* Density variants via attribute value */
+  :where([data-marquee-pattern="dense"]) {
+    --marquee-pattern-density: 0.5;
+    --marquee-pattern-scale: 6px 6px;
+    90|  }
+
+  :where([data-marquee-pattern="sparse"]) {
+    --marquee-pattern-density: 1.5;
+    --marquee-pattern-scale: 12px 12px;
+  }
+
+  /* --- Coherent Type: text mask modes ---------------------------------- */
+  :where([data-marquee-mask="soft"]) {
+   100|    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  :where([data-marquee-mask="vignette"]) {
+   110|    mask-image: radial-gradient(
+      ellipse 80% 80% at center,
+      black 0%,
+      black 50%,
+      transparent 100%
+    );
+  }
+
+  /* --- Gradient Text with animation ------------------------------------ */
+  :where([data-marquee="gradient-text-animated"]) {
+   120|    background: linear-gradient(
+      90deg,
+      var(--tk-gradient-from, var(--tk-action-fill)) 0%,
+      var(--tk-gradient-to, var(--tk-logo-mark-ink)) 50%,
+      var(--tk-gradient-from, var(--tk-action-fill)) 100%
+    );
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+   130|    color: transparent;
+    animation: marquee-gradient-pan 4s ease-in-out infinite;
+  }
+
+  @keyframes marquee-gradient-pan {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+   140|      background-position: 100% 50%;
+    }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-marquee="gradient-text-animated"]) {
+      animation: none;
+      background-position: 0% 50%;
+    }
+   150|  }
+}

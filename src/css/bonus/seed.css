@@ -1,0 +1,283 @@
+/* ---------------------------------------------------------------------------
+   Bonus Pack: Seed
+
+   ColorSeed-style hue-graph lab that emits candidate brand packs. This lab
+   UI lets designers explore color systems and generate pack artifacts for
+   re-gate, but NEVER hot-rewrites shipped --tk-* values in production.
+
+   Usage:
+     @import "tokenkit/css";
+     @import "tokenkit/css/bonus/seed.css";
+    10|
+   Then use <ColorSeedLab> component or apply data-seed attributes.
+
+   SAFETY: Seed emits candidate VALUES for nudge/contrast re-gate, not live
+   production remaps. It's a development tool, not a runtime theme engine.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  /* --- Seed lab container ---------------------------------------------- */
+  :where([data-seed="lab"]) {
+    20|    display: grid;
+    gap: var(--tk-space-md);
+    padding: var(--tk-space-lg);
+    background-color: var(--tk-surface-base);
+    border: 1px solid var(--tk-line-default);
+    border-radius: var(--tk-radius-lg);
+    min-height: 400px;
+  }
+
+  /* --- Hue graph / color wheel ----------------------------------------- */
+    30|  :where([data-seed-graph]) {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    max-width: 400px;
+    margin: 0 auto;
+    background: 
+      conic-gradient(
+        from 0deg,
+        oklch(65% 0.2 0),
+        oklch(65% 0.2 30),
+    40|        oklch(65% 0.2 60),
+        oklch(65% 0.2 90),
+        oklch(65% 0.2 120),
+        oklch(65% 0.2 150),
+        oklch(65% 0.2 180),
+        oklch(65% 0.2 210),
+        oklch(65% 0.2 240),
+        oklch(65% 0.2 270),
+        oklch(65% 0.2 300),
+        oklch(65% 0.2 330),
+    50|        oklch(65% 0.2 360)
+      );
+    border-radius: 50%;
+    border: 2px solid var(--tk-line-strong);
+    position: relative;
+  }
+
+  /* Hue selector pin */
+  :where([data-seed-pin]) {
+    position: absolute;
+    60|    width: 20px;
+    height: 20px;
+    background-color: var(--tk-action-fill);
+    border: 3px solid var(--tk-surface-raised);
+    border-radius: 50%;
+    cursor: move;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+  }
+
+    70|  :where([data-seed-pin]:hover) {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  :where([data-seed-pin]:active) {
+    cursor: grabbing;
+  }
+
+  /* --- Color ramp preview ---------------------------------------------- */
+  :where([data-seed-ramp]) {
+    80|    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: var(--tk-space-xs);
+    padding: var(--tk-space-md);
+    background-color: var(--tk-surface-sunken);
+    border-radius: var(--tk-radius-md);
+  }
+
+  :where([data-seed-swatch]) {
+    aspect-ratio: 1;
+    90|    border-radius: var(--tk-radius-sm);
+    border: 1px solid var(--tk-line-default);
+    cursor: pointer;
+    transition: transform var(--tk-motion-transform);
+  }
+
+  :where([data-seed-swatch]:hover) {
+    transform: scale(1.05);
+    border-color: var(--tk-line-strong);
+  }
+   100|
+  /* Swatch label */
+  :where([data-seed-swatch-label]) {
+    font-size: var(--tk-size-xs);
+    font-family: var(--tk-font-mono, ui-monospace, monospace);
+    color: var(--tk-text-tertiary);
+    text-align: center;
+    margin-top: var(--tk-space-xs);
+  }
+
+  /* --- Control panel --------------------------------------------------- */
+   110|  :where([data-seed-controls]) {
+    display: grid;
+    gap: var(--tk-space-sm);
+    padding: var(--tk-space-md);
+    background-color: var(--tk-surface-default);
+    border-radius: var(--tk-radius-md);
+  }
+
+  :where([data-seed-control]) {
+    display: grid;
+    grid-template-columns: 100px 1fr 60px;
+   120|    gap: var(--tk-space-sm);
+    align-items: center;
+  }
+
+  :where([data-seed-label]) {
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-seed-slider]) {
+   130|    flex: 1;
+  }
+
+  :where([data-seed-value]) {
+    font-family: var(--tk-font-mono, ui-monospace, monospace);
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-primary);
+    text-align: right;
+  }
+
+   140|  /* --- Export / generate controls -------------------------------------- */
+  :where([data-seed-actions]) {
+    display: flex;
+    gap: var(--tk-space-sm);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  :where([data-seed-action]) {
+    padding: var(--tk-space-sm) var(--tk-space-md);
+   150|    background-color: var(--tk-action-fill);
+    color: var(--tk-action-text);
+    border: none;
+    border-radius: var(--tk-radius-md);
+    font-size: var(--tk-size-base);
+    font-weight: var(--tk-weight-semibold);
+    cursor: pointer;
+    transition: 
+      background-color var(--tk-motion-surface),
+      transform var(--tk-motion-transform);
+   160|  }
+
+  :where([data-seed-action]:hover) {
+    background-color: var(--tk-action-fill-hover);
+  }
+
+  :where([data-seed-action]:active) {
+    background-color: var(--tk-action-fill-active);
+    transform: scale(0.98);
+  }
+
+   170|  :where([data-seed-action="secondary"]) {
+    background-color: var(--tk-action-quiet-fill);
+    color: var(--tk-action-quiet-text);
+    border: 1px solid var(--tk-line-strong);
+  }
+
+  :where([data-seed-action="secondary"]:hover) {
+    background-color: var(--tk-action-quiet-fill-hover);
+  }
+
+   180|  /* --- Candidate pack preview ------------------------------------------ */
+  :where([data-seed-preview]) {
+    padding: var(--tk-space-lg);
+    background-color: var(--tk-surface-default);
+    border: 2px solid var(--tk-line-strong);
+    border-radius: var(--tk-radius-lg);
+  }
+
+  :where([data-seed-preview-tokens]) {
+    display: grid;
+    gap: var(--tk-space-xs);
+   190|    font-family: var(--tk-font-mono, ui-monospace, monospace);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-seed-token-line]) {
+    display: grid;
+    grid-template-columns: 200px 100px 1fr;
+    gap: var(--tk-space-sm);
+    padding: var(--tk-space-xs);
+    border-radius: var(--tk-radius-sm);
+  }
+   200|
+  :where([data-seed-token-line]:hover) {
+    background-color: var(--tk-surface-sunken);
+  }
+
+  :where([data-seed-token-name]) {
+    color: var(--tk-text-tertiary);
+  }
+
+  :where([data-seed-token-value]) {
+    color: var(--tk-text-primary);
+   210|    font-weight: var(--tk-weight-semibold);
+  }
+
+  :where([data-seed-token-preview]) {
+    width: 60px;
+    height: 20px;
+    border-radius: var(--tk-radius-sm);
+    border: 1px solid var(--tk-line-default);
+  }
+
+   220|  /* --- Copy code output ------------------------------------------------ */
+  :where([data-seed-output]) {
+    padding: var(--tk-space-md);
+    background-color: var(--tk-surface-inverse);
+    color: var(--tk-text-inverse);
+    border-radius: var(--tk-radius-md);
+    font-family: var(--tk-font-mono, ui-monospace, monospace);
+    font-size: var(--tk-size-sm);
+    overflow-x: auto;
+    max-height: 400px;
+   230|  }
+
+  :where([data-seed-output] pre) {
+    margin: 0;
+    white-space: pre;
+  }
+
+  /* --- Warning banner -------------------------------------------------- */
+  :where([data-seed-warning]) {
+    padding: var(--tk-space-md);
+   240|    background-color: var(--tk-status-warning-surface);
+    border-left: 4px solid var(--tk-status-warning-line);
+    border-radius: var(--tk-radius-md);
+    color: var(--tk-status-warning-text);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-seed-warning] strong) {
+    font-weight: var(--tk-weight-bold);
+  }
+   250|
+  /* --- Accessibility --------------------------------------------------- */
+  :where([data-seed-contrast-badge]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-xs);
+    padding: 2px var(--tk-space-xs);
+    background-color: var(--tk-surface-sunken);
+    border-radius: var(--tk-radius-sm);
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-semibold);
+   260|  }
+
+  :where([data-seed-contrast-badge="pass"]) {
+    background-color: var(--tk-status-success-surface);
+    color: var(--tk-status-success-text);
+    border: 1px solid var(--tk-status-success-line);
+  }
+
+  :where([data-seed-contrast-badge="fail"]) {
+    background-color: var(--tk-status-danger-surface);
+   270|    color: var(--tk-status-danger-text);
+    border: 1px solid var(--tk-status-danger-line);
+  }
+}

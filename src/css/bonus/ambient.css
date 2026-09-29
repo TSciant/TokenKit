@@ -1,0 +1,178 @@
+/* ---------------------------------------------------------------------------
+   Bonus Pack: Ambient
+
+   AmbientField-style SVG motifs (grid/orbit/pulse/mesh) with optional
+   Kuramoto/PosterGhosts-style canvas particle effects. Canvas PE is opt-in
+   and respects prefers-reduced-motion.
+
+   Usage:
+     @import "tokenkit/css";
+     @import "tokenkit/css/bonus/ambient.css";
+    10|
+   Then apply data-ambient attributes for SVG motifs, or use <AmbientField>
+   component for canvas PE integration.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  /* --- Ambient container ----------------------------------------------- */
+  :where([data-ambient]) {
+    position: relative;
+    overflow: hidden;
+    20|  }
+
+  /* --- SVG motif backgrounds ------------------------------------------- */
+  :where([data-ambient="grid"]) {
+    background-image: 
+      linear-gradient(var(--tk-line-subtle) 1px, transparent 1px),
+      linear-gradient(90deg, var(--tk-line-subtle) 1px, transparent 1px);
+    background-size: var(--ambient-grid-size, 40px 40px);
+    background-position: center;
+  }
+    30|
+  :where([data-ambient="orbit"]) {
+    background-image: 
+      radial-gradient(circle at 50% 50%, transparent 20%, var(--tk-line-subtle) 20.5%, transparent 21%),
+      radial-gradient(circle at 50% 50%, transparent 40%, var(--tk-line-subtle) 40.5%, transparent 41%),
+      radial-gradient(circle at 50% 50%, transparent 60%, var(--tk-line-subtle) 60.5%, transparent 61%);
+    background-size: 100% 100%;
+    background-position: center;
+  }
+
+   40|  :where([data-ambient="pulse"]) {
+    background: radial-gradient(
+      circle at 50% 50%,
+      color-mix(in srgb, var(--tk-action-fill) 8%, transparent) 0%,
+      transparent 70%
+    );
+    animation: ambient-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes ambient-pulse {
+    50|    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.05);
+    }
+  }
+
+    60|  @media (prefers-reduced-motion: reduce) {
+    :where([data-ambient="pulse"]) {
+      animation: none;
+      opacity: 0.3;
+    }
+  }
+
+  :where([data-ambient="mesh"]) {
+    background-image: 
+      linear-gradient(45deg, var(--tk-line-subtle) 1px, transparent 1px),
+      linear-gradient(-45deg, var(--tk-line-subtle) 1px, transparent 1px);
+    70|    background-size: var(--ambient-mesh-size, 30px 30px);
+    background-position: center;
+  }
+
+  /* --- Ambient field overlay (for canvas PE) --------------------------- */
+  :where([data-ambient-field]) {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    80|  }
+
+  /* Content layer above ambient */
+  :where([data-ambient] > :not([data-ambient-field])) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* --- Kuramoto-style coordinated motion ------------------------------- */
+  :where([data-ambient-kuramoto]) {
+    90|    --kuramoto-phase: 0deg;
+  }
+
+  :where([data-ambient-kuramoto]) > * {
+    animation: ambient-kuramoto-sync 8s ease-in-out infinite;
+    animation-delay: calc(var(--kuramoto-phase, 0deg) * 0.01s);
+  }
+
+  @keyframes ambient-kuramoto-sync {
+   100|    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(calc(var(--tk-space-xs) * -1));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+   110|    :where([data-ambient-kuramoto]) > * {
+      animation: none;
+    }
+  }
+
+  /* --- PosterGhosts-style trailing effect ------------------------------ */
+  :where([data-ambient-ghost]) {
+    position: relative;
+  }
+
+   120|  :where([data-ambient-ghost])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    opacity: 0.3;
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+   130|  /* --- Density variants ------------------------------------------------ */
+  :where([data-ambient-density="sparse"]) {
+    --ambient-grid-size: 60px 60px;
+    --ambient-mesh-size: 50px 50px;
+  }
+
+  :where([data-ambient-density="dense"]) {
+    --ambient-grid-size: 25px 25px;
+    --ambient-mesh-size: 20px 20px;
+  }
+   140|
+  /* --- Canvas particle effect container -------------------------------- */
+  :where([data-ambient-canvas]) {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--ambient-canvas-opacity, 0.6);
+  }
+
+  /* Flag for when canvas PE is enabled */
+   150|  :where([data-ambient-pe-enabled]) {
+    /* Canvas PE active - SVG motifs can be dimmed or hidden */
+    --ambient-svg-opacity: 0.3;
+  }
+
+  /* Reduced motion hides canvas PE entirely */
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-ambient-canvas]) {
+      display: none;
+    }
+   160|  }
+
+  /* --- Color themes for ambient effects -------------------------------- */
+  :where([data-ambient-theme="cool"]) {
+    --ambient-color-primary: var(--tk-status-info-line);
+    --ambient-color-secondary: color-mix(in srgb, var(--tk-gradient-to) 40%, transparent);
+  }
+
+  :where([data-ambient-theme="warm"]) {
+    --ambient-color-primary: var(--tk-status-warning-line);
+   170|    --ambient-color-secondary: color-mix(in srgb, var(--tk-gradient-from) 40%, transparent);
+  }
+
+  :where([data-ambient-theme="brand"]) {
+    --ambient-color-primary: var(--tk-action-fill);
+    --ambient-color-secondary: var(--tk-gradient-to);
+  }
+}

@@ -7,7 +7,9 @@
   "license": "MIT",
   "exports": {
     "./css": "./src/css/index.css",
+    "./css/bonus/*": "./src/css/bonus/*.css",
     "./react": "./src/react/index.ts",
+    "./react/bonus": "./src/react/bonus/index.ts",
     "./contrast": "./src/lib/contrast.ts"
   },
   "files": [
