@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29T20:00:34.695Z",
+  "generated": "2026-09-30T01:45:49.899Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -16,7 +16,7 @@
         "skins": 18,
         "mean": 4.75,
         "worst": 14.01,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Chip": {
@@ -33,7 +33,7 @@
         "skins": 12,
         "mean": 10.84,
         "worst": 14.51,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Eyebrow": {
@@ -50,7 +50,7 @@
         "skins": 2,
         "mean": 28.91,
         "worst": 30.76,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Card": {
@@ -67,7 +67,7 @@
         "skins": 6,
         "mean": 4.53,
         "worst": 8.73,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Alert": {
@@ -84,7 +84,7 @@
         "skins": 4,
         "mean": 2.21,
         "worst": 2.24,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Guidance": {
@@ -101,7 +101,7 @@
         "skins": 2,
         "mean": 3.78,
         "worst": 5.81,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Field": {
@@ -118,7 +118,7 @@
         "skins": 9,
         "mean": 2.34,
         "worst": 7.32,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Meter": {
@@ -135,7 +135,7 @@
         "skins": 5,
         "mean": 2.07,
         "worst": 2.86,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Modal": {
@@ -150,9 +150,9 @@
       "stale": false,
       "check": {
         "skins": 3,
-        "mean": 5.83,
-        "worst": 7.14,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "mean": 5.58,
+        "worst": 6.82,
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Figure": {
@@ -169,7 +169,7 @@
         "skins": 5,
         "mean": 1.27,
         "worst": 1.66,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Media": {
@@ -186,7 +186,7 @@
         "skins": 6,
         "mean": 3.92,
         "worst": 6.56,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Icon": {
@@ -203,7 +203,7 @@
         "skins": 3,
         "mean": 13.29,
         "worst": 15.96,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "RailNav": {
@@ -220,7 +220,7 @@
         "skins": 1,
         "mean": 2.17,
         "worst": 2.17,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "SiteHeader": {
@@ -237,7 +237,7 @@
         "skins": 4,
         "mean": 2.76,
         "worst": 4.93,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "Masthead": {
@@ -254,7 +254,7 @@
         "skins": 12,
         "mean": 4.44,
         "worst": 7,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "ProofStrip": {
@@ -271,7 +271,7 @@
         "skins": 1,
         "mean": 3.58,
         "worst": 3.58,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "PageHero": {
@@ -288,7 +288,7 @@
         "skins": 1,
         "mean": 3.01,
         "worst": 3.01,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "SiteFooter": {
@@ -305,7 +305,7 @@
         "skins": 1,
         "mean": 4.32,
         "worst": 4.32,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "ArrowCta": {
@@ -322,7 +322,7 @@
         "skins": 9,
         "mean": 4.82,
         "worst": 9.39,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "ContactCta": {
@@ -339,7 +339,7 @@
         "skins": 9,
         "mean": 6.92,
         "worst": 14.01,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "HeroCarousel": {
@@ -356,7 +356,7 @@
         "skins": 1,
         "mean": 1.6,
         "worst": 1.6,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "TileGrid": {
@@ -373,7 +373,7 @@
         "skins": 1,
         "mean": 3.27,
         "worst": 3.27,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "HubCards": {
@@ -390,7 +390,7 @@
         "skins": 1,
         "mean": 4.51,
         "worst": 4.51,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
       }
     },
     "CtaBlocks": {
@@ -407,7 +407,75 @@
         "skins": 1,
         "mean": 1.27,
         "worst": 1.27,
-        "checkedAt": "2026-09-29T20:00:31.416Z"
+        "checkedAt": "2026-09-30T01:40:41.531Z"
+      }
+    },
+    "MediaCards": {
+      "node": "98:384",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=98-384",
+      "story": "05-patterns-19-media-cards--onion-skin",
+      "source": "src/react/patterns/catalog.tsx",
+      "skinDir": "figma/skins/MediaCards",
+      "skins": 1,
+      "skinPulledAt": "2026-09-29T21:41:02-04:00",
+      "sourceUpdatedAt": "2026-09-20T14:02:46-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 3.31,
+        "worst": 3.31,
+        "checkedAt": "2026-09-30T01:40:41.531Z"
+      }
+    },
+    "FilterBar": {
+      "node": "99:319",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=99-319",
+      "story": "05-patterns-18-filter-bar--onion-skin",
+      "source": "src/react/patterns/catalog.tsx",
+      "skinDir": "figma/skins/FilterBar",
+      "skins": 1,
+      "skinPulledAt": "2026-09-29T21:41:02-04:00",
+      "sourceUpdatedAt": "2026-09-20T14:02:46-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 2.83,
+        "worst": 2.83,
+        "checkedAt": "2026-09-30T01:40:41.531Z"
+      }
+    },
+    "PeopleDirectory": {
+      "node": "104:459",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=104-459",
+      "story": "05-patterns-20-people-directory--onion-skin",
+      "source": "src/react/patterns/catalog.tsx",
+      "skinDir": "figma/skins/PeopleDirectory",
+      "skins": 1,
+      "skinPulledAt": "2026-09-29T21:44:23-04:00",
+      "sourceUpdatedAt": "2026-09-20T14:02:46-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 1.86,
+        "worst": 1.86,
+        "checkedAt": "2026-09-30T01:43:53.775Z"
+      }
+    },
+    "EventList": {
+      "node": "106:421",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=106-421",
+      "story": "05-patterns-24-event-list--onion-skin",
+      "source": "src/react/patterns/catalog.tsx",
+      "skinDir": "figma/skins/EventList",
+      "skins": 1,
+      "skinPulledAt": "2026-09-30T01:45:22.140Z",
+      "sourceUpdatedAt": "2026-09-20T14:02:46-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 3.73,
+        "worst": 3.73,
+        "checkedAt": "2026-09-30T01:45:26.123Z"
       }
     }
   }

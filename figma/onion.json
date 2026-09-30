@@ -252,6 +252,60 @@
       "viewport": 1072,
       "target": "root",
       "doc": "The Figma component laid over this one at 1024px: an inverse block with an outline ArrowCta and a sunken block with a solid one, the button radius the concentric remainder of the block's. Switch Onion in the toolbar."
+    },
+    "MediaCards": {
+      "story": "05-patterns-19-media-cards--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: three cards in a row, each a stand-in photograph, a kind chip with its icon and a duration, and a linked title. Switch Onion in the toolbar.",
+      "still": true
+    },
+    "FilterBar": {
+      "story": "05-patterns-18-filter-bar--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: seven interactive chips in a wrapping row, the first pressed. Switch Onion in the toolbar."
+    },
+    "PeopleDirectory": {
+      "story": "05-patterns-20-people-directory--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: an inverse band and filter form (three fields and an outline button), then four portrait cards. Switch Onion in the toolbar.",
+      "still": true
+    },
+    "EventList": {
+      "story": "05-patterns-24-event-list--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: a heading and three rows, each with the date and place in mono above the title, an outline button at the right and a hairline under it. Switch Onion in the toolbar."
     }
   }
 }

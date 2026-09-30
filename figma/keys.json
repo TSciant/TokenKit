@@ -28,7 +28,14 @@
     "TileGrid/Tile": "82:247",
     "HubCards": "86:260",
     "HubCards/Card": "86:250",
-    "CtaBlocks": "87:282"
+    "CtaBlocks": "87:282",
+    "MediaCards": "98:384",
+    "MediaCards/Card": "98:288",
+    "FilterBar": "99:319",
+    "PeopleDirectory": "104:459",
+    "PeopleDirectory/Card": "104:455",
+    "EventList": "106:421",
+    "EventList/Row": "106:413"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -57,7 +64,14 @@
     "TileGrid/Tile": "05-patterns-15-tile-grid--onion-skin",
     "HubCards": "05-patterns-16-hub-cards--onion-skin",
     "HubCards/Card": "05-patterns-16-hub-cards--onion-skin",
-    "CtaBlocks": "05-patterns-17-cta-blocks--onion-skin"
+    "CtaBlocks": "05-patterns-17-cta-blocks--onion-skin",
+    "MediaCards": "05-patterns-19-media-cards--onion-skin",
+    "MediaCards/Card": "05-patterns-19-media-cards--onion-skin",
+    "FilterBar": "05-patterns-18-filter-bar--onion-skin",
+    "PeopleDirectory": "05-patterns-20-people-directory--onion-skin",
+    "PeopleDirectory/Card": "05-patterns-20-people-directory--onion-skin",
+    "EventList": "05-patterns-24-event-list--onion-skin",
+    "EventList/Row": "05-patterns-24-event-list--onion-skin"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -86,6 +100,13 @@
     "TileGrid/Tile": "src/react/patterns/catalog.tsx",
     "HubCards": "src/react/patterns/catalog.tsx",
     "HubCards/Card": "src/react/patterns/catalog.tsx",
-    "CtaBlocks": "src/react/patterns/catalog.tsx"
+    "CtaBlocks": "src/react/patterns/catalog.tsx",
+    "MediaCards": "src/react/patterns/catalog.tsx",
+    "MediaCards/Card": "src/react/patterns/catalog.tsx",
+    "FilterBar": "src/react/patterns/catalog.tsx",
+    "PeopleDirectory": "src/react/patterns/catalog.tsx",
+    "PeopleDirectory/Card": "src/react/patterns/catalog.tsx",
+    "EventList": "src/react/patterns/catalog.tsx",
+    "EventList/Row": "src/react/patterns/catalog.tsx"
   }
 }

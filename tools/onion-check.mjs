@@ -51,7 +51,7 @@ for (const [name, def] of Object.entries(map)) {
         if (!st) skip = true; else Object.assign(args, st);
       } else args[axis] = parse(val);
     });
-    if (!skip) cases.push({ name, story: def.story, file: f, args, viewport, target: def.target, settle: def.settle ?? 0, skin: readFileSync(resolve(dir, f)).toString("base64") });
+    if (!skip) cases.push({ name, story: def.story, file: f, args, viewport, target: def.target, settle: def.settle ?? 0, still: !!def.still, skin: readFileSync(resolve(dir, f)).toString("base64") });
   }
 }
 
@@ -81,6 +81,9 @@ for (const c of cases) {
   const root = page.locator(c.target === "root" ? "#storybook-root .sb-host > *" : "#storybook-root [data-tk]").first();
   try { await root.waitFor({ timeout: 8000 }); } catch { rows.push({ ...c, err: "no [data-tk] rendered" }); continue; }
   await page.evaluate(() => document.fonts.ready);
+  /* A component whose plate drifts with the scroll (motion FX) is photographed still: `still: true`. */
+  await page.emulateMedia({ reducedMotion: c.still ? "reduce" : "no-preference" });
+  if (c.still) await page.waitForTimeout(400);
   /* Some components animate in (the hero copy and its plate): wait out the entrance. */
   if (c.settle) await page.waitForTimeout(c.settle);
   const r = await root.boundingBox();

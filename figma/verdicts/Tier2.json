@@ -86,6 +86,30 @@
       "mean": "1.3",
       "result": "Aligned",
       "note": "1024x296 against 295.6; an inverse block with an outline ArrowCta, a sunken block with a solid one"
+    },
+    "MediaCards": {
+      "skins": 1,
+      "mean": "3.3",
+      "result": "Aligned",
+      "note": "1024x426 against 426.2; three cards, each a stand-in photograph (captured from the live plate and placed as an image fill), an exposed Chip instance with its icon, a duration and a linked title. Photographed still (onion.json still: true)"
+    },
+    "FilterBar": {
+      "skins": 1,
+      "mean": "2.8",
+      "result": "Aligned",
+      "note": "1024x78, exact; seven interactive Chips with their icons in a wrapping row, the first pressed"
+    },
+    "PeopleDirectory": {
+      "skins": 1,
+      "mean": "1.9",
+      "result": "Aligned",
+      "note": "1024x532 against 531.8; an inverse band and filter form (Name, Location, Company Fields and an outline ArrowCta), four portrait cards with the live plates as image fills"
+    },
+    "EventList": {
+      "skins": 1,
+      "mean": "3.7",
+      "result": "Aligned",
+      "note": "1024x380 against 380.5; a heading and three rows (mono date and place, the title link, an outline ArrowCta, a hairline). The remainder is the known 1px baseline offset: shifted by a pixel the mean is 3.0"
     }
   },
   "findings": [
@@ -186,6 +210,27 @@
       "diff": "the block radius is 48, a sum (--_radius-gap 32 + radius-lg 16), and the button's is the concentric remainder (16); no single variable holds 48",
       "pull": "Accept",
       "result": "48 is drawn literal on the block; the button's 16 is radius/lg, bound"
+    },
+    {
+      "component": "MediaCards",
+      "driftType": "Live execution != live intent",
+      "diff": "the plates carry motion FX, which shift each photograph a few pixels by scroll position (2.7px in the checker's viewport), so the live component is never at rest where the design is",
+      "pull": "Align",
+      "result": "onion.json gains still: true, and the checker emulates reduced motion for that component before it photographs; the mean falls from 5.9 to 3.6. The remainder is the 1px Figma-vs-Chromium text baseline"
+    },
+    {
+      "component": "FilterBar",
+      "driftType": "Design execution != live execution",
+      "diff": "a Chip with a leading icon is 4px wider in Figma than in the browser: the code takes the left padding from 12 to 8 when a leading icon is present, the design kept 12. Separately the Interactive variants were never wired to the Label and Leading properties, so setting them did nothing",
+      "pull": "Align",
+      "result": "the leading icon now sits in a 12px slot and overhangs it by 4, so the padding is 8 with an icon and 12 without, and all 24 variants read the Label, Show leading and Leading properties. The chips now come out at the browser's widths (61.7, 100.9, 89.4...) and FilterBar's mean falls from 7.0 to 2.8"
+    },
+    {
+      "component": "PeopleDirectory",
+      "driftType": "Design execution != live execution",
+      "diff": "three: (1) the code shows a select's chosen option in the value colour and an input's placeholder in the quiet one, while the Field variants draw one value colour per control; (2) the native select draws its own chevron and sits its text 4px further in; (3) the role is italic in the code and Manrope has no italic",
+      "pull": "Align (1), Accept (2, 3)",
+      "result": "(1) the value text on the instances is overridden: text/tertiary on the input, text/primary on the selects; (2) a native control's chrome is the browser's, not the design's; (3) drawn upright, noted on the card's description"
     }
   ],
   "promotion": [
@@ -196,6 +241,10 @@
     "A pattern that is only a configured primitive (ContactCta) borrows the primitive's skins rather than owning a copy: one design object, two doors in the code.",
     "An image inside a pattern is content: capture it from the live component at 1x and put it in the design as an image fill (upload_assets with nodeIds), so the comparison is about what was designed.",
     "Six plates fit one upload_assets call (count 6, nodeIds in variant order): a pattern with several images is one call, not one per image.",
-    "A grid that wraps in Figma when it does not in the browser is usually a sub-pixel overhang: draw the cell at the exact fraction ((content - gaps) / columns), not the rounded measurement."
+    "A grid that wraps in Figma when it does not in the browser is usually a sub-pixel overhang: draw the cell at the exact fraction ((content - gaps) / columns), not the rounded measurement.",
+    "A component with scroll-linked motion is photographed at rest: `still: true` in onion.json emulates prefers-reduced-motion, so the comparison is about the design and not about where the page happened to be scrolled.",
+    "A padding that depends on a child being present has no auto-layout equivalent: draw the child in a fixed slot that overhangs the padding, and the padding stays one number.",
+    "A variant added by cloning does not inherit its wiring: after adding an axis, check every variant's componentPropertyReferences, or the property silently does nothing on half the set.",
+    "An inverse band inside a page is a frame with the tk collection's mode set explicitly to wireframe-inverse and surface/default as its fill; everything inside it, Field instances included, resolves in that context."
   ]
 }

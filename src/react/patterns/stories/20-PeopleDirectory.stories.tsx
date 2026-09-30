@@ -88,3 +88,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "People directory",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at 1024px: an inverse band and filter form (three fields and an outline button), then four portrait cards. Switch Onion in the toolbar." } },
+    onion: {
+      component: "PeopleDirectory",
+      target: "root",
+      skin: () => "default.png",
+    },
+  },
+};
