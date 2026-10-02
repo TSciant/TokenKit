@@ -99,3 +99,12 @@ export const Textures: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { texture: "hatch", seed: 1, stock: false },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at the 512px it is drawn at, one ratio at a time (the ratio control picks the skin). The height is capped at 22rem, so 4:3, 1:1 and 3:4 are the same height. Switch Onion in the toolbar." } },
+    onion: { component: "Plate", skin: (a: Record<string, unknown>) => `${String(a.ratio ?? "16 / 9").replace(/\s*\/\s*/, "x")}.png` },
+  },
+};

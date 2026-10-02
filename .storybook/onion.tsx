@@ -8,7 +8,8 @@ import { addons } from "storybook/preview-api";
  *
  * A story opts in with `parameters.onion = { component, skin(args) }`. `skin`
  * returns a file name under figma/skins/<component>/, which is served at
- * /onion/. The toolbar switch is off by default and, while it is off, the skin
+ * onion/, relative to wherever this Storybook is hosted (a root-absolute /onion/
+ * 404s when it lives under /storybook/, as it does on the site). The toolbar switch is off by default and, while it is off, the skin
  * is not even requested: this is a viewing instrument, not part of the
  * component, and nothing here is imported by src/.
  *
@@ -112,7 +113,7 @@ function OnionStage({ param, mode, args, globals, storyId, children }: { param: 
   const skinImg = box && (
     <img
       alt=""
-      src={`/onion/${param.component}/${file}`}
+      src={`onion/${param.component}/${file}`}
       onError={() => setMissing(true)}
       onLoad={(e) => setSkinSize({ w: e.currentTarget.naturalWidth, h: e.currentTarget.naturalHeight })}
       style={{

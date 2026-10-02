@@ -58,7 +58,8 @@
     "SearchResults": "172:308",
     "SearchResults/Row": "172:287",
     "LogoLadder": "173:513",
-    "LogoLadder/Mark": "173:476"
+    "LogoLadder/Mark": "173:476",
+    "Plate": "176:488"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -117,7 +118,8 @@
     "SearchResults": "04-primitives-11-search-results--onion-skin",
     "SearchResults/Row": "04-primitives-11-search-results--onion-skin",
     "LogoLadder": "04-primitives-22-logo-ladder--onion-skin",
-    "LogoLadder/Mark": "04-primitives-22-logo-ladder--onion-skin"
+    "LogoLadder/Mark": "04-primitives-22-logo-ladder--onion-skin",
+    "Plate": "04-primitives-16-plate--onion-skin"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -176,6 +178,7 @@
     "SearchResults": "src/react/primitives/SearchResults.tsx",
     "SearchResults/Row": "src/react/primitives/SearchResults.tsx",
     "LogoLadder": "src/react/primitives/LogoLadder.tsx",
-    "LogoLadder/Mark": "src/react/primitives/LogoLadder.tsx"
+    "LogoLadder/Mark": "src/react/primitives/LogoLadder.tsx",
+    "Plate": "src/react/primitives/Plate.tsx"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-02T11:57:47.743Z",
+  "generated": "2026-10-02T12:28:21.109Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -740,7 +740,7 @@
       "source": "src/react/primitives/LogoLadder.tsx",
       "skinDir": "figma/skins/LogoLadder",
       "skins": 6,
-      "skinPulledAt": "2026-10-02T11:57:07.234Z",
+      "skinPulledAt": "2026-10-02T08:03:26-04:00",
       "sourceUpdatedAt": "2026-10-02T07:31:59-04:00",
       "stale": false,
       "check": {
@@ -748,6 +748,23 @@
         "mean": 6.72,
         "worst": 20.38,
         "checkedAt": "2026-10-02T11:57:14.255Z"
+      }
+    },
+    "Plate": {
+      "node": "176:488",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=176-488",
+      "story": "04-primitives-16-plate--onion-skin",
+      "source": "src/react/primitives/Plate.tsx",
+      "skinDir": "figma/skins/Plate",
+      "skins": 6,
+      "skinPulledAt": "2026-10-02T12:27:39.072Z",
+      "sourceUpdatedAt": "2026-09-21T17:54:41-04:00",
+      "stale": false,
+      "check": {
+        "skins": 6,
+        "mean": 0.2,
+        "worst": 1.2,
+        "checkedAt": "2026-10-02T12:27:50.515Z"
       }
     }
   }

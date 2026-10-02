@@ -110,7 +110,7 @@ function DesignPanel({ active }: { active: boolean }) {
 
   const thumb = m.skinDir && live?.file && skin
     ? h("a", { href: figmaUrl(m.node), target: "_blank", rel: "noreferrer", title: "Open in Figma", style: { display: "block", flex: "0 0 auto" } },
-        h("img", { alt: `${name} in Figma`, src: `/onion/${name}/${skin.file}`, style: { display: "block", maxWidth: 240, maxHeight: 160, border: "1px solid rgba(128,128,128,.4)", borderRadius: 6, background: "#fff", objectFit: "contain" } }))
+        h("img", { alt: `${name} in Figma`, src: `onion/${name}/${skin.file}`, style: { display: "block", maxWidth: 240, maxHeight: 160, border: "1px solid rgba(128,128,128,.4)", borderRadius: 6, background: "#fff", objectFit: "contain" } }))
     : null;
 
   return h(AddonPanel, { active }, h("div", { style: { ...ink, display: "flex", gap: 32, flexWrap: "wrap", alignItems: "flex-start" } }, thumb, table, controls));

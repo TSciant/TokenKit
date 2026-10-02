@@ -210,6 +210,12 @@
       "worst": 1.86,
       "checkedAt": "2026-09-30T01:43:53.775Z"
     },
+    "Plate": {
+      "skins": 6,
+      "mean": 0.2,
+      "worst": 1.2,
+      "checkedAt": "2026-10-02T12:27:50.515Z"
+    },
     "ProofStrip": {
       "skins": 1,
       "mean": 3.58,

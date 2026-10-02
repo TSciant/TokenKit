@@ -206,6 +206,12 @@
       "mean": "icon 6.3, mark 1.2, word 20.4 (7.2 shifted), stack 2.0, lockup 6.2, full 4.3",
       "result": "Aligned",
       "note": "six stages, each in a box of the width its band starts at (64, 120, 120, 200, 320, 480): the neutral stand-in mark (the kit's own, scaling with its box), the wordmark, the tagline. The word stage's high number is a 1px text-baseline offset on a frame that holds nothing else"
+    },
+    "Plate": {
+      "skins": 6,
+      "mean": "0.0 (21x9: 1.2)",
+      "result": "Aligned",
+      "note": "six ratios at 512 wide, seed 1, hatch: the live plate captured at 1x over the checker's ground and placed as an image fill, so what is compared is the box, its corner (radius-nested) and the height cap. The image is the live drawing by construction, so the number says the box and corner agree, not that Figma can draw the texture"
     }
   },
   "findings": [
@@ -418,6 +424,20 @@
       "diff": "scaling a mark instance in Figma does not scale its stroke weights (the code scales them with the viewBox), so a 20px mark drew with a 32px mark's strokes; and a variable name written without its collection prefix silently bound nothing (black)",
       "pull": "Align",
       "result": "each stage's mark is built from the SVG at its own size, so the strokes scale as the viewBox does, then bound to text/primary; the icon tile is surface/base; the mean of the icon stage fell from 15 to 6"
+    },
+    {
+      "component": "Plate",
+      "driftType": "Live execution != live intent",
+      "diff": "the height is capped at 22rem (--tk-plate-max), so at 512 wide the 4:3, 1:1 and 3:4 plates are all 352px tall and identical: the ratio control stops doing anything past 16:10 at this width",
+      "pull": "Accept",
+      "result": "drawn as the code behaves (three variants of one size) and noted on the component; a cap is a decision, not a drift"
+    },
+    {
+      "component": "Plate",
+      "driftType": "Design execution != live execution",
+      "diff": "a live element captured to become a design image carries the ground it was photographed on: the first plates were captured over Storybook's page grey (244) and the checker composites over white (255), a uniform difference of 8.4 across the whole frame",
+      "pull": "Align",
+      "result": "capture over the same ground the checker uses (surface-default); the mean fell from 8.4 to 0.0"
     }
   ],
   "promotion": [
@@ -447,6 +467,7 @@
     "A hairline that sits above every item and below the last is the item's top border plus one closing rule in the list: the last item does not get a different border, the list closes itself.",
     "One instance-swap property can drive two layers: a row's mark and its tag show the same icon, so one Icon property sets both, and the row cannot be configured into disagreeing with itself.",
     "Resizing a vector instance does not scale its stroke weight: for a mark that is drawn at several sizes, build each from the SVG at that size (stroke weights scale with the viewBox) rather than resizing one component.",
-    "setBoundVariableForPaint with a variable that was not found does not throw: it binds nothing and the paint goes black. Look the variable up and throw when it is missing, every time."
+    "setBoundVariableForPaint with a variable that was not found does not throw: it binds nothing and the paint goes black. Look the variable up and throw when it is missing, every time.",
+    "Capture a live element for the design over the ground the comparison will use (surface-default), or the whole frame differs by the difference between the two grounds."
   ]
 }
