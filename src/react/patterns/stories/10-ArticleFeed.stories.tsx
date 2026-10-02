@@ -77,3 +77,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Article feed",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at 1024px: a centred header and four portrait cards with their kind and title over a dark scrim. Switch Onion in the toolbar." } },
+    onion: {
+      component: "ArticleFeed",
+      target: "root",
+      skin: () => "default.png",
+    },
+  },
+};

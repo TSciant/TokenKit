@@ -1,0 +1,72 @@
+/* ---------------------------------------------------------------------------
+   On this page — the contents of a long page, as a list of its headings.
+
+   A title and a list with a rule down its left edge; the heading you are at is
+   marked on the rule. It belongs in a side rail beside the article and fills
+   whatever box it is placed in. The current heading is aria-current="location":
+   the page you are on is "page", the place you are on it is "location".
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="toc"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-3);
+  }
+
+  :where([data-tk="toc-title"]) {
+    margin: 0;
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-bold);
+    line-height: var(--tk-leading-normal);
+    letter-spacing: var(--tk-tracking-wide);
+    text-transform: uppercase;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="toc-list"]) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-inline-start: 1px solid var(--tk-line-default);
+  }
+
+  :where([data-tk="toc-link"]) {
+    display: block;
+    padding-block: var(--tk-space-1);
+    padding-inline: var(--tk-space-3);
+    /* The mark replaces the rule beside it rather than sitting next to it. */
+    margin-inline-start: -1px;
+    border-inline-start: 2px solid transparent;
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-normal);
+    text-decoration: none;
+    transition: color var(--tk-motion-ink);
+  }
+  /* One level of nesting: a sub-heading steps in. */
+  :where([data-tk="toc-list"] [data-tk="toc-list"]) {
+    border-inline-start: 0;
+  }
+  :where([data-tk="toc-list"] [data-tk="toc-list"] [data-tk="toc-link"]) {
+    padding-inline-start: var(--tk-space-5);
+  }
+  :where([data-tk="toc-link"]:hover) {
+    color: var(--tk-text-primary);
+  }
+  :where([data-tk="toc-link"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+  :where([data-tk="toc-link"][aria-current="location"]) {
+    color: var(--tk-text-primary);
+    font-weight: var(--tk-weight-semibold);
+    border-inline-start-color: currentColor;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="toc-link"]) {
+      transition: none;
+    }
+  }
+}

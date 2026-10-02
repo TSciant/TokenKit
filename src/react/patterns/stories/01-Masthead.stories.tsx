@@ -72,6 +72,10 @@ const meta = {
       control: "inline-radio",
       options: [1, 2, 3, 4],
     },
+    megaInitialOpen: {
+      control: "boolean",
+      description: "The mega panel open on first render (wide header only).",
+    },
     showSearch: {
       control: "boolean",
     },
@@ -88,6 +92,7 @@ const meta = {
     megaTrigger: chrome.MEGA_TRIGGER,
     megaActions: chrome.MEGA_ACTIONS,
     megaColumns: 3,
+    megaInitialOpen: false,
     showSearch: true,
     showContactCta: true,
   },

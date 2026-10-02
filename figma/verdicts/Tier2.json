@@ -64,10 +64,10 @@
       "note": "variant x size at the default state; uppercase +4% semibold label and the Arrow.tsx path, within 0.4px"
     },
     "HeroCarousel": {
-      "skins": 1,
-      "mean": "1.6",
+      "skins": 3,
+      "mean": "1.6, 2.0, 2.1",
       "result": "Aligned",
-      "note": "first slide, 1024x608. The stock plate is the same image in the design (a placeholder for a photograph), so what is compared is the scrim, the copy, the CTA and the pager. Slides two and three differ in seed, copy and the current dot."
+      "note": "three slides, 1024x608 each, now the Slide variants of one component set: the copy, the call to action, the stock photograph and the current dot differ. Slide one 1.6, slide two 2.0, slide three 2.1. The stock plate is the same image in the design (a placeholder for a photograph)"
     },
     "TileGrid": {
       "skins": 1,
@@ -110,6 +110,84 @@
       "mean": "3.7",
       "result": "Aligned",
       "note": "1024x380 against 380.5; a heading and three rows (mono date and place, the title link, an outline ArrowCta, a hairline). The remainder is the known 1px baseline offset: shifted by a pixel the mean is 3.0"
+    },
+    "LeadForm": {
+      "skins": 1,
+      "mean": "4.8",
+      "result": "Aligned",
+      "note": "1024x893 against 893.5; an inverse section with a 768px form: six Fields in two columns, a select, a textarea, the verification Alert and an outline ArrowCta. Shifted one pixel the mean is 1.4 (the text baseline)"
+    },
+    "ApplyForm": {
+      "skins": 1,
+      "mean": "7.7",
+      "result": "Aligned",
+      "note": "517x665 against 517.3x667; one column of Fields with a file Field, a consent checkbox and a solid ArrowCta. The remainder is the browser's own controls (file input, checkbox, select chevron) drawn as stand-ins"
+    },
+    "SegmentPage": {
+      "skins": 1,
+      "mean": "2.5",
+      "result": "Aligned",
+      "note": "1024x1048, exact; a PageHero instance with its title, deck and crumbs set, an intro, a capabilities list beside the live plate, and an inverse call to action whose button fills the row. Exported in three sections and stitched: Figma caps an export at 1024px"
+    },
+    "SubBrandPage": {
+      "skins": 1,
+      "mean": "1.9",
+      "result": "Aligned",
+      "note": "1024x889 against 889.4; a PageHero instance on its default deck, a narrow column of plate and outline button beside an intro and four facts (label over value, hairline under)"
+    },
+    "ArticlePage": {
+      "skins": 1,
+      "mean": "3.7",
+      "result": "Aligned",
+      "note": "1024x1280 against 1280.7; a PageHero, then the 485px reading column (kind Chip and date, lede, two paragraphs, a section, a flat byline card). The skin is the hero and the column exported separately and placed, as the page is over 1024px"
+    },
+    "FeatureGrid": {
+      "skins": 1,
+      "mean": "5.4",
+      "result": "Aligned",
+      "note": "1024x665 against 665.5; a header at the reading measure and three cards, each a photograph bleeding to the card's edges over a title. The remainder is the plates' fine hatching, which lands half a pixel apart between the two renderers"
+    },
+    "EventPromo": {
+      "skins": 1,
+      "mean": "5.6",
+      "result": "Aligned",
+      "note": "1024x498 against 499; a photograph beside a centred column at the narrow measure (mono eyebrow, heading, body, date and place, solid ArrowCta). The remainder is the plate's hatching, half a pixel apart; shifted one pixel the mean is 3.8"
+    },
+    "ArticleFeed": {
+      "skins": 1,
+      "mean": "4.6",
+      "result": "Aligned",
+      "note": "1024x638 against 639; a centred header and four portrait cards, each a photograph under a dark scrim with its kind and title over it. The scrim is a gradient layer (black 54% from the bottom to 62% of the height, then out); the photographs are captured without it"
+    },
+    "HeaderSearch": {
+      "skins": 2,
+      "mean": "0.2, 0.4",
+      "result": "Aligned",
+      "note": "closed and open, each 1024x42 (the form the story gives it, the control at the left): one quiet icon button; a 224px input with the button beside it. The means are low because the frame is mostly empty, so the drift is in the button: 42px against the code's 44"
+    },
+    "SectionNav": {
+      "skins": 1,
+      "mean": "6.3",
+      "result": "Aligned",
+      "note": "720x47, exact; five SectionNav/Item instances (Current marks the page) in a row under a hairline. Figma sets the labels a hair tighter, so the links drift up to a pixel along the row; shifted by one the mean is 5.0"
+    },
+    "OnThisPage": {
+      "skins": 1,
+      "mean": "3.2",
+      "result": "Aligned",
+      "note": "240x225, exact; a title and six OnThisPage/Item instances (two levels, one current) beside a 1px rule"
+    },
+    "MenuButton": {
+      "skins": 2,
+      "mean": "7.2 closed, 2.7 open",
+      "result": "Aligned",
+      "note": "closed 79x36 and open 203x210, exact; an outline sm Button with a trailing chevron and, open, a panel 8px below it whose corner (radius-lg) and items' (radius-md) are concentric. The closed mean is high for a tiny frame: it is the label and chevron, a pixel apart"
+    },
+    "MegaMenu": {
+      "skins": 1,
+      "mean": "2.1",
+      "result": "Aligned",
+      "note": "1024x617, exact: the masthead (wide, mega menu on) and its panel open 16px under it: an inverse promo rail of two outline buttons beside three groups of links, in two columns. The new megaInitialOpen prop is what lets the open state be photographed"
     }
   },
   "findings": [
@@ -231,6 +309,83 @@
       "diff": "three: (1) the code shows a select's chosen option in the value colour and an input's placeholder in the quiet one, while the Field variants draw one value colour per control; (2) the native select draws its own chevron and sits its text 4px further in; (3) the role is italic in the code and Manrope has no italic",
       "pull": "Align (1), Accept (2, 3)",
       "result": "(1) the value text on the instances is overridden: text/tertiary on the input, text/primary on the selects; (2) a native control's chrome is the browser's, not the design's; (3) drawn upright, noted on the card's description"
+    },
+    {
+      "component": "ApplyForm",
+      "driftType": "Design execution != live execution",
+      "diff": "three: the file input, the checkbox and the select chevron are the browser's own controls and cannot be drawn the same in Figma; Figma sets the heading a little tighter than Chromium, so a 485px heading keeps 'hex' on its first line where the browser wraps before it; the file Field is 1px shorter than the native file input (43 against 42)",
+      "pull": "Accept (controls), Align (wrap)",
+      "result": "the controls are stand-ins, noted on the component; the heading carries a soft line break where the browser wraps; the mean is 7.7 with the ceiling at 8"
+    },
+    {
+      "component": "SegmentPage",
+      "driftType": "Design execution != live execution",
+      "diff": "two small ones: the hero deck breaks a word earlier in Figma than in the browser (its measure is a couple of pixels narrower), and the breadcrumb links are underlined in the code but plain in the design",
+      "pull": "Accept",
+      "result": "noted; neither moves a box"
+    },
+    {
+      "component": "ArticlePage",
+      "driftType": "Design execution != live execution",
+      "diff": "the hero deck wraps a word apart from the browser's (as on SegmentPage); the hero's breadcrumb links are underlined in the code",
+      "pull": "Accept",
+      "result": "the same two notes as SegmentPage; nothing moves a box. Templates are now all five in the design: LeadForm 4.8, ApplyForm 7.7, SegmentPage 2.5, SubBrandPage 1.9, ArticlePage 3.7"
+    },
+    {
+      "component": "FeatureGrid",
+      "driftType": "Design execution != live execution",
+      "diff": "Figma sets Manrope slightly tighter than Chromium, so the heading and the second card title keep one more word on their first line; and the plate's 1px hatching is resampled where the image fill is placed at a fractional width",
+      "pull": "Align (wrap), Accept (hatching)",
+      "result": "soft line breaks where the browser wraps; the hatching is a stand-in texture and the half-pixel registration is noted"
+    },
+    {
+      "component": "ArticleFeed",
+      "driftType": "Design execution != live execution",
+      "diff": "a photograph captured from the live page comes with whatever is painted over it: the first plates had the scrim baked in, so the design darkened twice (mean 25.6)",
+      "pull": "Align",
+      "result": "the plates are captured with the scrim's pseudo-element hidden and the scrim is drawn as its own gradient layer, so the design has one scrim; the mean falls to 4.6. The gradient stops are literal (Figma cannot bind a variable to a stop); the alpha 0.54 is the contract in scrim.css"
+    },
+    {
+      "component": "HeroCarousel",
+      "driftType": "Design execution != live execution",
+      "diff": "the copy block is anchored to the bottom of the hero in the code, so a longer lede grows it upward; a block drawn at a fixed top would grow it downward, and slides two and three came out 15px low (mean 6.4). Separately, a component set's text properties have one default for every variant, so per-slide copy cannot be a property",
+      "pull": "Align",
+      "result": "each variant draws its own text, and the copy block's top is set from its height so its bottom stays where the code holds it (mean 2.0 and 2.1); onion.json lists the slide states (initialSlide 1 and 2)"
+    },
+    {
+      "component": "HeaderSearch",
+      "driftType": "Design execution != live execution",
+      "diff": "the icon-only button is 42px wide in Figma and 44 in the code: the code draws an 18px search mark where the kit's Icon/search is 16 on its 24 grid, and the Button's hidden label still leaves its padding",
+      "pull": "Accept",
+      "result": "noted; a 2px difference in a control whose hit area is governed by the 36px height"
+    },
+    {
+      "component": "MegaMenu, SegmentList",
+      "driftType": "Not built",
+      "diff": "MegaMenu's open panel has no story state (it opens on a click, and its closed form is the SiteHeader), and SegmentList carries a live map (MapLibre tiles), which Figma cannot draw",
+      "pull": "Pause",
+      "result": "left out of the design for now; the mega panel needs an initialOpen prop or a play function before it can be photographed, and the map wants a plate stand-in with its own verdict"
+    },
+    {
+      "component": "SectionNav, OnThisPage, MenuButton",
+      "driftType": "New patterns",
+      "diff": "the kit had one navigation primitive (RailNav) and the mega menu, so every context-navigation need either got a side rail or a panel of links; three smaller patterns were missing: the pages beside this one, the headings of this page, and a short list behind one button",
+      "pull": "Align",
+      "result": "built in code (SectionNav, OnThisPage, MenuButton: one stylesheet and one component each, tokens only, aria-current for state, concentric radii) and drawn in Figma (SectionNav/Item, OnThisPage/Item as sets; MenuButton Open=false/true)"
+    },
+    {
+      "component": "MenuButton",
+      "driftType": "Live execution != live intent",
+      "diff": "the first panel took the trigger's width, so every item label wrapped: an absolutely positioned box shrinks to fit its containing block, which here was the 79px button",
+      "pull": "Align",
+      "result": "inline-size max-content with a floor of 12rem and a cap of 24rem"
+    },
+    {
+      "component": "MegaMenu",
+      "driftType": "Live execution != live intent",
+      "diff": "the panel was anchored to the nav's cell of the header, not to the header: at a 1024 header it was 692px wide and its three groups fell into one 700px-tall column. Separately the trigger's open and closed marks are the characters ▲ and ▼, not the kit's chevron icons",
+      "pull": "Align (anchor), Accept (marks)",
+      "result": "the nav wrapper no longer positions itself, so the panel anchors to the header (position: relative) and takes its full width: 534px tall in two columns. columns is a minimum width, so three groups do not fit beside a 224px rail at 1024; that is the grid doing what it was asked. The trigger's glyphs are drawn as the chevron icon in the design"
     }
   ],
   "promotion": [
@@ -245,6 +400,17 @@
     "A component with scroll-linked motion is photographed at rest: `still: true` in onion.json emulates prefers-reduced-motion, so the comparison is about the design and not about where the page happened to be scrolled.",
     "A padding that depends on a child being present has no auto-layout equivalent: draw the child in a fixed slot that overhangs the padding, and the padding stays one number.",
     "A variant added by cloning does not inherit its wiring: after adding an axis, check every variant's componentPropertyReferences, or the property silently does nothing on half the set.",
-    "An inverse band inside a page is a frame with the tk collection's mode set explicitly to wireframe-inverse and surface/default as its fill; everything inside it, Field instances included, resolves in that context."
+    "An inverse band inside a page is a frame with the tk collection's mode set explicitly to wireframe-inverse and surface/default as its fill; everything inside it, Field instances included, resolves in that context.",
+    "A template section is a component whose children are instances of the primitives: Fields, Alert and ArrowCta carry their own properties (Label, Required, Value), so a form is configured, not redrawn.",
+    "When Figma and Chromium wrap a paragraph differently by a word, put a soft line break (U+2028) in the text where the browser breaks it; set the width to the real measure, not a width chosen to force the wrap.",
+    "A page taller than 1024px cannot be exported whole: export its sections by node id and stitch them at 1x (the skin is still one picture, at native size).",
+    "A centred column narrower than the page is its own frame in the design: export the full-width parts and the column separately and compose them at 1x, so the skin stays a single picture at native size.",
+    "Three cards at 314.66 fit a 992 row where three at 314.7 wrap (the same 0.1px overhang as HubCards): draw grid cells at the exact fraction.",
+    "When a live element is captured to become a design image, hide whatever overlays it in the code (a scrim, a badge) before the screenshot, and draw that overlay in the design as its own layer: otherwise the design carries it twice.",
+    "A block that is bottom-anchored in the code (copy over a hero) needs its top set from its height in every variant: auto-layout grows down, the browser grows up.",
+    "An absolutely positioned panel is as wide as its anchor unless told otherwise: give it max-content with a floor and a cap, or every label wraps.",
+    "A story that decorates the component with padding and flex will stretch a wrapper to the decorator's height: align-items flex-start, or an absolutely positioned panel lands below the stretched box instead of the trigger.",
+    "A panel that opens over the page anchors to the element whose edges it follows (the header), not to the cell of it that holds the trigger: anchor it to the cell and it is as wide as the cell.",
+    "A state that only exists after a click needs a prop (initialOpen) before it can be photographed: the design cannot be compared with something the story cannot show."
   ]
 }

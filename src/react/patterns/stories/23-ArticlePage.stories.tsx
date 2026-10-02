@@ -136,3 +136,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Article page",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at 1024px: a PageHero, then a 485px reading column (kind chip and date, lede, paragraphs, a section, a flat byline card). The skin is the hero and the column exported separately and placed, because Figma caps an export at 1024px. Switch Onion in the toolbar." } },
+    onion: {
+      component: "ArticlePage",
+      target: "root",
+      skin: () => "default.png",
+    },
+  },
+};

@@ -25,13 +25,15 @@
       ],
       "states": {
         "default": {}
-      }
+      },
+      "maxMean": 12
     },
     "Eyebrow": {
       "story": "04-primitives-17-eyebrow--onion-skin",
       "pattern": [
         "emphasis"
-      ]
+      ],
+      "maxMean": 30
     },
     "Card": {
       "story": "04-primitives-05-card--onion-skin",
@@ -95,7 +97,8 @@
       "story": "04-primitives-04-icon--onion-skin",
       "pattern": [
         "size"
-      ]
+      ],
+      "maxMean": 14
     },
     "RailNav": {
       "story": "04-primitives-25-rail-nav--onion-skin",
@@ -206,13 +209,18 @@
         "state"
       ],
       "states": {
-        "default": {}
+        "default": {},
+        "slide2": {
+          "initialSlide": 1
+        },
+        "slide3": {
+          "initialSlide": 2
+        }
       },
-      "single": true,
       "viewport": 1072,
       "target": "root",
       "settle": 1500,
-      "doc": "The Figma component laid over this one, first slide, at the 1024px width it was drawn at. The plate is the kit's stock placeholder (the same image is in the design), so what is compared is the scrim, the copy, the CTA and the pager. Switch Onion in the toolbar."
+      "doc": "The Figma component laid over this one at the 1024px width it was drawn at, slides one to three (the Slide variants). The plate is the kit's stock placeholder (the same image is in the design), so what is compared is the scrim, the copy, the CTA and the pager. Switch Onion in the toolbar."
     },
     "TileGrid": {
       "story": "05-patterns-15-tile-grid--onion-skin",
@@ -306,6 +314,186 @@
       "viewport": 1072,
       "target": "root",
       "doc": "The Figma component laid over this one at 1024px: a heading and three rows, each with the date and place in mono above the title, an outline button at the right and a hairline under it. Switch Onion in the toolbar."
+    },
+    "LeadForm": {
+      "story": "05-patterns-12-lead-form--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: an inverse section with a 768px form (six fields in two columns, a select, a textarea, the verification alert and a button). Switch Onion in the toolbar.",
+      "still": true
+    },
+    "ApplyForm": {
+      "story": "05-patterns-25-apply-form--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at its own width (the form's measure, 517px): a heading over one column of fields, a file Field, a consent checkbox and a solid button. The file input and checkbox are the browser's own controls; the design draws stand-ins. Switch Onion in the toolbar.",
+      "still": true
+    },
+    "SegmentPage": {
+      "story": "05-patterns-21-segment-page--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: a PageHero, an intro, a capabilities list beside a photograph, and an inverse call to action. The skin is exported in three sections and stitched, because Figma caps an export at 1024px. Switch Onion in the toolbar.",
+      "still": true
+    },
+    "SubBrandPage": {
+      "story": "05-patterns-22-sub-brand-page--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: a PageHero, a narrow column of photograph and button beside an intro and a list of facts. Switch Onion in the toolbar.",
+      "still": true
+    },
+    "ArticlePage": {
+      "story": "05-patterns-23-article-page--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: a PageHero, then a 485px reading column (kind chip and date, lede, paragraphs, a section, a flat byline card). The skin is the hero and the column exported separately and placed, because Figma caps an export at 1024px. Switch Onion in the toolbar.",
+      "still": true
+    },
+    "FeatureGrid": {
+      "story": "05-patterns-09-feature-grid--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: a header and three cards, each a photograph bleeding to the card's edges over a title. Switch Onion in the toolbar."
+    },
+    "EventPromo": {
+      "story": "05-patterns-11-event-promo--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: a photograph beside a centred column (mono eyebrow, heading, body, date and place, a solid button). Switch Onion in the toolbar."
+    },
+    "ArticleFeed": {
+      "story": "05-patterns-10-article-feed--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: a centred header and four portrait cards with their kind and title over a dark scrim. Switch Onion in the toolbar."
+    },
+    "HeaderSearch": {
+      "story": "05-patterns-04-header-search--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "closed": {
+          "initialOpen": false
+        },
+        "open": {
+          "initialOpen": true
+        }
+      },
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one, closed and open, in the 1024px form the story gives it: the control sits at the left, one quiet icon button closed, a 224px input and the button open. Switch Onion in the toolbar."
+    },
+    "SectionNav": {
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "story": "04-primitives-26-section-nav--onion-skin",
+      "doc": "The Figma component laid over this one, at the 720px width it was drawn at."
+    },
+    "OnThisPage": {
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "story": "04-primitives-27-on-this-page--onion-skin",
+      "doc": "The Figma component laid over this one, at the 240px width it was drawn at."
+    },
+    "MenuButton": {
+      "story": "04-primitives-28-menu-button--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "closed": {
+          "initialOpen": false
+        },
+        "open": {
+          "initialOpen": true
+        }
+      },
+      "doc": "The Figma component laid over this one, closed and open. Open includes the list, so the box is as tall as the list under the trigger.",
+      "target": "root"
+    },
+    "MegaMenu": {
+      "story": "05-patterns-02-mega-menu--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The Figma component laid over this one at 1024px: the masthead with its mega panel open under it, anchored to the header and as wide as it. The frame is as tall as the open panel. Switch Onion in the toolbar.",
+      "args": {
+        "megaInitialOpen": true
+      },
+      "pad": 550,
+      "settle": 600
     }
   }
 }

@@ -56,7 +56,7 @@ const bar: React.CSSProperties = {
   zIndex: 2147483647,
 };
 
-function OnionStage({ param, mode, args, globals, children }: { param: OnionParam; mode: string; args: Record<string, unknown>; globals: Record<string, unknown>; children: React.ReactNode }) {
+function OnionStage({ param, mode, args, globals, storyId, children }: { param: OnionParam; mode: string; args: Record<string, unknown>; globals: Record<string, unknown>; storyId: string; children: React.ReactNode }) {
   const host = useRef<HTMLDivElement>(null);
   const [box, setBox] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
   const [dialog, setDialog] = useState<HTMLDialogElement | null>(null);
@@ -89,12 +89,13 @@ function OnionStage({ param, mode, args, globals, children }: { param: OnionPara
     return () => ro.disconnect();
   }, [file, args]);
 
-  useEffect(() => { setSkinSize(null); }, [file]);
+  const [missing, setMissing] = useState(false);
+  useEffect(() => { setSkinSize(null); setMissing(false); }, [file]);
 
   /* Tell the Design tab which skin is on and how the two sizes compare. */
   useEffect(() => {
-    addons.getChannel().emit("tokenkit/onion", { component: param.component, file, skin: skinSize && [skinSize.w, skinSize.h], live: box && [+box.w.toFixed(1), +box.h.toFixed(1)] });
-  }, [param.component, file, skinSize, box?.w, box?.h]);
+    addons.getChannel().emit("tokenkit/onion", { storyId, component: param.component, file, skin: skinSize && [skinSize.w, skinSize.h], live: box && [+box.w.toFixed(1), +box.h.toFixed(1)] });
+  }, [storyId, param.component, file, skinSize, box?.w, box?.h]);
 
   /* The control bar goes in the top layer too, and after any dialog, so a modal's
      backdrop does not dim the controls that are measuring it. */
@@ -112,6 +113,7 @@ function OnionStage({ param, mode, args, globals, children }: { param: OnionPara
     <img
       alt=""
       src={`/onion/${param.component}/${file}`}
+      onError={() => setMissing(true)}
       onLoad={(e) => setSkinSize({ w: e.currentTarget.naturalWidth, h: e.currentTarget.naturalHeight })}
       style={{
         position: "absolute", left: box.x, top: box.y, width: w || undefined, height: h || undefined,
@@ -133,7 +135,7 @@ function OnionStage({ param, mode, args, globals, children }: { param: OnionPara
       {dialog && skinImg && createPortal(skinImg, dialog)}
       <div ref={barRef} {...({ popover: "manual" } as object)} style={bar} role="group" aria-label="Onion skin">
         <span>Figma skin: {param.component}/{file}</span>
-        <span>skin {skinSize ? `${skinSize.w}×${skinSize.h}` : "…"} · live {box ? `${box.w.toFixed(1)}×${box.h.toFixed(1)}` : "…"}</span>
+        <span>skin {missing ? "not found" : skinSize ? `${skinSize.w}×${skinSize.h}` : "…"} · live {box ? `${box.w.toFixed(1)}×${box.h.toFixed(1)}` : "…"}</span>
         {mode === "overlay" && <label>opacity <input type="range" min={0} max={100} value={opacity} onChange={(e) => setOpacity(+e.target.value)} /></label>}
         {mode === "overlay" && (
           <label>
@@ -155,7 +157,7 @@ export const withOnion: Decorator = (Story, context) => {
   const mode = (context.globals.onion as string) ?? "off";
   if (!param || mode === "off") return <Story />;
   return (
-    <OnionStage param={param} mode={mode} args={context.args as Record<string, unknown>} globals={context.globals}>
+    <OnionStage param={param} mode={mode} args={context.args as Record<string, unknown>} globals={context.globals} storyId={context.id}>
       <Story />
     </OnionStage>
   );

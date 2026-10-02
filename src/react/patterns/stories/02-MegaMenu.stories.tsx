@@ -72,6 +72,10 @@ const meta = {
       control: "inline-radio",
       options: [1, 2, 3, 4],
     },
+    megaInitialOpen: {
+      control: "boolean",
+      description: "The mega panel open on first render (wide header only).",
+    },
     showSearch: {
       control: "boolean",
     },
@@ -88,6 +92,7 @@ const meta = {
     megaTrigger: chrome.MEGA_TRIGGER,
     megaActions: chrome.MEGA_ACTIONS,
     megaColumns: 3,
+    megaInitialOpen: false,
     showSearch: true,
     showContactCta: true,
   },
@@ -98,4 +103,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   name: "Mega menu",
+};
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: {"megaInitialOpen":true},
+  /* Room below, for something that opens over the page: the skin is measured from
+     the first box in the story, so the box has to be as tall as the open panel. */
+  decorators: [(Story) => <div style={{ paddingBlockEnd: 550 }}><Story /></div>],
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at 1024px: the masthead with its mega panel open under it, anchored to the header and as wide as it. The frame is as tall as the open panel. Switch Onion in the toolbar." } },
+    onion: {
+      component: "MegaMenu",
+      target: "root",
+      skin: () => "default.png",
+    },
+  },
 };

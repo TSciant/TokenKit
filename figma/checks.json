@@ -6,11 +6,29 @@
       "worst": 2.24,
       "checkedAt": "2026-09-30T01:40:41.531Z"
     },
+    "ApplyForm": {
+      "skins": 1,
+      "mean": 7.72,
+      "worst": 7.72,
+      "checkedAt": "2026-09-30T14:16:22.803Z"
+    },
     "ArrowCta": {
       "skins": 9,
       "mean": 4.82,
       "worst": 9.39,
       "checkedAt": "2026-09-30T01:40:41.531Z"
+    },
+    "ArticleFeed": {
+      "skins": 1,
+      "mean": 4.61,
+      "worst": 4.61,
+      "checkedAt": "2026-09-30T20:34:01.646Z"
+    },
+    "ArticlePage": {
+      "skins": 1,
+      "mean": 3.68,
+      "worst": 3.68,
+      "checkedAt": "2026-09-30T14:22:42.983Z"
     },
     "Button": {
       "skins": 18,
@@ -34,7 +52,7 @@
       "skins": 9,
       "mean": 6.92,
       "worst": 14.01,
-      "checkedAt": "2026-09-30T01:40:41.531Z"
+      "checkedAt": "2026-10-01T13:39:13.591Z"
     },
     "CtaBlocks": {
       "skins": 1,
@@ -48,11 +66,23 @@
       "worst": 3.73,
       "checkedAt": "2026-09-30T01:45:26.123Z"
     },
+    "EventPromo": {
+      "skins": 1,
+      "mean": 5.62,
+      "worst": 5.62,
+      "checkedAt": "2026-09-30T20:30:46.150Z"
+    },
     "Eyebrow": {
       "skins": 2,
       "mean": 28.91,
       "worst": 30.76,
       "checkedAt": "2026-09-30T01:40:41.531Z"
+    },
+    "FeatureGrid": {
+      "skins": 1,
+      "mean": 5.35,
+      "worst": 5.35,
+      "checkedAt": "2026-09-30T20:29:23.900Z"
     },
     "Field": {
       "skins": 9,
@@ -78,11 +108,17 @@
       "worst": 5.81,
       "checkedAt": "2026-09-30T01:40:41.531Z"
     },
+    "HeaderSearch": {
+      "skins": 2,
+      "mean": 0.32,
+      "worst": 0.43,
+      "checkedAt": "2026-10-01T13:39:13.591Z"
+    },
     "HeroCarousel": {
-      "skins": 1,
-      "mean": 1.6,
-      "worst": 1.6,
-      "checkedAt": "2026-09-30T01:40:41.531Z"
+      "skins": 3,
+      "mean": 1.93,
+      "worst": 2.15,
+      "checkedAt": "2026-09-30T20:39:19.115Z"
     },
     "HubCards": {
       "skins": 1,
@@ -96,11 +132,17 @@
       "worst": 15.96,
       "checkedAt": "2026-09-30T01:40:41.531Z"
     },
+    "LeadForm": {
+      "skins": 1,
+      "mean": 4.83,
+      "worst": 4.83,
+      "checkedAt": "2026-09-30T14:14:16.327Z"
+    },
     "Masthead": {
       "skins": 12,
       "mean": 4.44,
       "worst": 7,
-      "checkedAt": "2026-09-30T01:40:41.531Z"
+      "checkedAt": "2026-10-01T13:39:13.591Z"
     },
     "Media": {
       "skins": 6,
@@ -114,6 +156,18 @@
       "worst": 3.31,
       "checkedAt": "2026-09-30T01:40:41.531Z"
     },
+    "MegaMenu": {
+      "skins": 1,
+      "mean": 2.12,
+      "worst": 2.12,
+      "checkedAt": "2026-10-01T13:46:40.696Z"
+    },
+    "MenuButton": {
+      "skins": 2,
+      "mean": 4.9,
+      "worst": 7.15,
+      "checkedAt": "2026-10-01T13:52:35.176Z"
+    },
     "Meter": {
       "skins": 5,
       "mean": 2.07,
@@ -126,11 +180,17 @@
       "worst": 6.82,
       "checkedAt": "2026-09-30T01:40:41.531Z"
     },
+    "OnThisPage": {
+      "skins": 1,
+      "mean": 3.18,
+      "worst": 3.18,
+      "checkedAt": "2026-10-01T13:37:42.592Z"
+    },
     "PageHero": {
       "skins": 1,
       "mean": 3.01,
       "worst": 3.01,
-      "checkedAt": "2026-09-30T01:40:41.531Z"
+      "checkedAt": "2026-10-01T13:39:13.591Z"
     },
     "PeopleDirectory": {
       "skins": 1,
@@ -150,17 +210,35 @@
       "worst": 2.17,
       "checkedAt": "2026-09-30T01:40:41.531Z"
     },
+    "SectionNav": {
+      "skins": 1,
+      "mean": 6.3,
+      "worst": 6.3,
+      "checkedAt": "2026-10-01T13:37:42.592Z"
+    },
+    "SegmentPage": {
+      "skins": 1,
+      "mean": 2.48,
+      "worst": 2.48,
+      "checkedAt": "2026-09-30T14:19:03.471Z"
+    },
     "SiteFooter": {
       "skins": 1,
       "mean": 4.32,
       "worst": 4.32,
-      "checkedAt": "2026-09-30T01:40:41.531Z"
+      "checkedAt": "2026-10-01T13:39:13.591Z"
     },
     "SiteHeader": {
       "skins": 4,
       "mean": 2.76,
       "worst": 4.93,
       "checkedAt": "2026-09-30T01:40:41.531Z"
+    },
+    "SubBrandPage": {
+      "skins": 1,
+      "mean": 1.93,
+      "worst": 1.93,
+      "checkedAt": "2026-09-30T14:20:38.238Z"
     },
     "TileGrid": {
       "skins": 1,

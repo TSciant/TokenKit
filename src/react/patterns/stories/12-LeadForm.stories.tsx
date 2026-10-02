@@ -106,3 +106,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Lead form",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at 1024px: an inverse section with a 768px form (six fields in two columns, a select, a textarea, the verification alert and a button). Switch Onion in the toolbar." } },
+    onion: {
+      component: "LeadForm",
+      target: "root",
+      skin: () => "default.png",
+    },
+  },
+};

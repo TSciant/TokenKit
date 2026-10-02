@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T01:45:49.899Z",
+  "generated": "2026-10-01T13:52:47.911Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -248,13 +248,13 @@
       "skinDir": "figma/skins/Masthead",
       "skins": 12,
       "skinPulledAt": "2026-09-29T13:19:08-04:00",
-      "sourceUpdatedAt": "2026-09-29T14:05:30-04:00",
-      "stale": true,
+      "sourceUpdatedAt": "2026-10-01T13:29:38.674Z",
+      "stale": false,
       "check": {
         "skins": 12,
         "mean": 4.44,
         "worst": 7,
-        "checkedAt": "2026-09-30T01:40:41.531Z"
+        "checkedAt": "2026-10-01T13:39:13.591Z"
       }
     },
     "ProofStrip": {
@@ -282,13 +282,13 @@
       "skinDir": "figma/skins/PageHero",
       "skins": 1,
       "skinPulledAt": "2026-09-29T13:42:30-04:00",
-      "sourceUpdatedAt": "2026-09-29T14:05:30-04:00",
-      "stale": true,
+      "sourceUpdatedAt": "2026-10-01T13:29:38.674Z",
+      "stale": false,
       "check": {
         "skins": 1,
         "mean": 3.01,
         "worst": 3.01,
-        "checkedAt": "2026-09-30T01:40:41.531Z"
+        "checkedAt": "2026-10-01T13:39:13.591Z"
       }
     },
     "SiteFooter": {
@@ -299,13 +299,13 @@
       "skinDir": "figma/skins/SiteFooter",
       "skins": 1,
       "skinPulledAt": "2026-09-29T14:05:30-04:00",
-      "sourceUpdatedAt": "2026-09-29T14:05:30-04:00",
+      "sourceUpdatedAt": "2026-10-01T13:29:38.674Z",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 4.32,
         "worst": 4.32,
-        "checkedAt": "2026-09-30T01:40:41.531Z"
+        "checkedAt": "2026-10-01T13:39:13.591Z"
       }
     },
     "ArrowCta": {
@@ -333,30 +333,30 @@
       "skinDir": "figma/skins/Button",
       "skins": 36,
       "skinPulledAt": "2026-09-29T11:23:57-04:00",
-      "sourceUpdatedAt": "2026-09-29T14:05:30-04:00",
-      "stale": true,
+      "sourceUpdatedAt": "2026-10-01T13:29:38.674Z",
+      "stale": false,
       "check": {
         "skins": 9,
         "mean": 6.92,
         "worst": 14.01,
-        "checkedAt": "2026-09-30T01:40:41.531Z"
+        "checkedAt": "2026-10-01T13:39:13.591Z"
       }
     },
     "HeroCarousel": {
-      "node": "79:210",
-      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=79-210",
+      "node": "135:760",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=135-760",
       "story": "05-patterns-05-hero-carousel--onion-skin",
       "source": "src/react/patterns/marketing.tsx",
       "skinDir": "figma/skins/HeroCarousel",
-      "skins": 1,
-      "skinPulledAt": "2026-09-29T14:42:56-04:00",
+      "skins": 3,
+      "skinPulledAt": "2026-09-30T16:39:46-04:00",
       "sourceUpdatedAt": "2026-09-21T17:54:41-04:00",
       "stale": false,
       "check": {
-        "skins": 1,
-        "mean": 1.6,
-        "worst": 1.6,
-        "checkedAt": "2026-09-30T01:40:41.531Z"
+        "skins": 3,
+        "mean": 1.93,
+        "worst": 2.15,
+        "checkedAt": "2026-09-30T20:39:19.115Z"
       }
     },
     "TileGrid": {
@@ -468,7 +468,7 @@
       "source": "src/react/patterns/catalog.tsx",
       "skinDir": "figma/skins/EventList",
       "skins": 1,
-      "skinPulledAt": "2026-09-30T01:45:22.140Z",
+      "skinPulledAt": "2026-09-29T21:45:50-04:00",
       "sourceUpdatedAt": "2026-09-20T14:02:46-04:00",
       "stale": false,
       "check": {
@@ -476,6 +476,227 @@
         "mean": 3.73,
         "worst": 3.73,
         "checkedAt": "2026-09-30T01:45:26.123Z"
+      }
+    },
+    "LeadForm": {
+      "node": "114:519",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=114-519",
+      "story": "05-patterns-12-lead-form--onion-skin",
+      "source": "src/react/patterns/templates.tsx",
+      "skinDir": "figma/skins/LeadForm",
+      "skins": 1,
+      "skinPulledAt": "2026-09-30T10:16:43-04:00",
+      "sourceUpdatedAt": "2026-09-20T12:50:50-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 4.83,
+        "worst": 4.83,
+        "checkedAt": "2026-09-30T14:14:16.327Z"
+      }
+    },
+    "ApplyForm": {
+      "node": "115:582",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=115-582",
+      "story": "05-patterns-25-apply-form--onion-skin",
+      "source": "src/react/patterns/templates.tsx",
+      "skinDir": "figma/skins/ApplyForm",
+      "skins": 1,
+      "skinPulledAt": "2026-09-30T10:16:43-04:00",
+      "sourceUpdatedAt": "2026-09-20T12:50:50-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 7.72,
+        "worst": 7.72,
+        "checkedAt": "2026-09-30T14:16:22.803Z"
+      }
+    },
+    "SegmentPage": {
+      "node": "118:533",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=118-533",
+      "story": "05-patterns-21-segment-page--onion-skin",
+      "source": "src/react/patterns/templates.tsx",
+      "skinDir": "figma/skins/SegmentPage",
+      "skins": 1,
+      "skinPulledAt": "2026-09-30T10:19:20-04:00",
+      "sourceUpdatedAt": "2026-09-20T12:50:50-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 2.48,
+        "worst": 2.48,
+        "checkedAt": "2026-09-30T14:19:03.471Z"
+      }
+    },
+    "SubBrandPage": {
+      "node": "119:549",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=119-549",
+      "story": "05-patterns-22-sub-brand-page--onion-skin",
+      "source": "src/react/patterns/templates.tsx",
+      "skinDir": "figma/skins/SubBrandPage",
+      "skins": 1,
+      "skinPulledAt": "2026-09-30T10:20:44-04:00",
+      "sourceUpdatedAt": "2026-09-20T12:50:50-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 1.93,
+        "worst": 1.93,
+        "checkedAt": "2026-09-30T14:20:38.238Z"
+      }
+    },
+    "ArticlePage": {
+      "node": "120:679",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=120-679",
+      "story": "05-patterns-23-article-page--onion-skin",
+      "source": "src/react/patterns/templates.tsx",
+      "skinDir": "figma/skins/ArticlePage",
+      "skins": 1,
+      "skinPulledAt": "2026-09-30T10:23:07-04:00",
+      "sourceUpdatedAt": "2026-09-20T12:50:50-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 3.68,
+        "worst": 3.68,
+        "checkedAt": "2026-09-30T14:22:42.983Z"
+      }
+    },
+    "FeatureGrid": {
+      "node": "129:584",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=129-584",
+      "story": "05-patterns-09-feature-grid--onion-skin",
+      "source": "src/react/patterns/marketing.tsx",
+      "skinDir": "figma/skins/FeatureGrid",
+      "skins": 1,
+      "skinPulledAt": "2026-09-30T16:29:35-04:00",
+      "sourceUpdatedAt": "2026-09-21T17:54:41-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 5.35,
+        "worst": 5.35,
+        "checkedAt": "2026-09-30T20:29:23.900Z"
+      }
+    },
+    "EventPromo": {
+      "node": "131:589",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=131-589",
+      "story": "05-patterns-11-event-promo--onion-skin",
+      "source": "src/react/patterns/marketing.tsx",
+      "skinDir": "figma/skins/EventPromo",
+      "skins": 1,
+      "skinPulledAt": "2026-09-30T16:30:59-04:00",
+      "sourceUpdatedAt": "2026-09-21T17:54:41-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 5.62,
+        "worst": 5.62,
+        "checkedAt": "2026-09-30T20:30:46.150Z"
+      }
+    },
+    "ArticleFeed": {
+      "node": "132:606",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=132-606",
+      "story": "05-patterns-10-article-feed--onion-skin",
+      "source": "src/react/patterns/marketing.tsx",
+      "skinDir": "figma/skins/ArticleFeed",
+      "skins": 1,
+      "skinPulledAt": "2026-09-30T16:34:16-04:00",
+      "sourceUpdatedAt": "2026-09-21T17:54:41-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 4.61,
+        "worst": 4.61,
+        "checkedAt": "2026-09-30T20:34:01.646Z"
+      }
+    },
+    "HeaderSearch": {
+      "node": "137:740",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=137-740",
+      "story": "05-patterns-04-header-search--onion-skin",
+      "source": "src/react/patterns/chrome.tsx",
+      "skinDir": "figma/skins/HeaderSearch",
+      "skins": 2,
+      "skinPulledAt": "2026-09-30T16:41:37-04:00",
+      "sourceUpdatedAt": "2026-10-01T13:29:38.674Z",
+      "stale": false,
+      "check": {
+        "skins": 2,
+        "mean": 0.32,
+        "worst": 0.43,
+        "checkedAt": "2026-10-01T13:39:13.591Z"
+      }
+    },
+    "SectionNav": {
+      "node": "148:230",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=148-230",
+      "story": "04-primitives-26-section-nav--onion-skin",
+      "source": "src/react/primitives/SectionNav.tsx",
+      "skinDir": "figma/skins/SectionNav",
+      "skins": 1,
+      "skinPulledAt": "2026-10-01T13:37:09.923Z",
+      "sourceUpdatedAt": "2026-10-01T13:31:41.188Z",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 6.3,
+        "worst": 6.3,
+        "checkedAt": "2026-10-01T13:37:42.592Z"
+      }
+    },
+    "OnThisPage": {
+      "node": "148:250",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=148-250",
+      "story": "04-primitives-27-on-this-page--onion-skin",
+      "source": "src/react/primitives/OnThisPage.tsx",
+      "skinDir": "figma/skins/OnThisPage",
+      "skins": 1,
+      "skinPulledAt": "2026-10-01T13:37:09.923Z",
+      "sourceUpdatedAt": "2026-10-01T13:31:41.213Z",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 3.18,
+        "worst": 3.18,
+        "checkedAt": "2026-10-01T13:37:42.592Z"
+      }
+    },
+    "MenuButton": {
+      "node": "148:299",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=148-299",
+      "story": "04-primitives-28-menu-button--onion-skin",
+      "source": "src/react/primitives/MenuButton.tsx",
+      "skinDir": "figma/skins/MenuButton",
+      "skins": 2,
+      "skinPulledAt": "2026-10-01T13:37:09.923Z",
+      "sourceUpdatedAt": "2026-10-01T13:44:53.016Z",
+      "stale": false,
+      "check": {
+        "skins": 2,
+        "mean": 4.9,
+        "worst": 7.15,
+        "checkedAt": "2026-10-01T13:52:35.176Z"
+      }
+    },
+    "MegaMenu": {
+      "node": "151:753",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=151-753",
+      "story": "05-patterns-02-mega-menu--onion-skin",
+      "source": "src/react/patterns/chrome.tsx",
+      "skinDir": "figma/skins/MegaMenu",
+      "skins": 1,
+      "skinPulledAt": "2026-10-01T13:46:33.007Z",
+      "sourceUpdatedAt": "2026-10-01T13:29:38.674Z",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 2.12,
+        "worst": 2.12,
+        "checkedAt": "2026-10-01T13:46:40.696Z"
       }
     }
   }

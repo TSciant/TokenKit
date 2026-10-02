@@ -85,3 +85,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: "Apply form",
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at its own width (the form's measure, 517px): a heading over one column of fields, a file Field, a consent checkbox and a solid button. The file input and checkbox are the browser's own controls; the design draws stand-ins. Switch Onion in the toolbar." } },
+    onion: {
+      component: "ApplyForm",
+      target: "root",
+      skin: () => "default.png",
+    },
+  },
+};

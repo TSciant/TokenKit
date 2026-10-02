@@ -1,1 +1,1 @@
-{ "component": "HeroCarousel", "node": "79:210", "skins": { "default.png": { "w": 1024, "h": 608 } } }
+{"component": "HeroCarousel", "node": "135:760", "skins": {"default.png": {"w": 1024, "h": 608}, "slide2.png": {"w": 1024, "h": 608}, "slide3.png": {"w": 1024, "h": 608}}}

@@ -347,6 +347,8 @@ export type MastheadProps = {
   megaTrigger?: string;
   megaActions?: string[];
   megaColumns?: Cols;
+  /** The mega panel open on first render (wide header only). */
+  megaInitialOpen?: boolean;
   showSearch?: boolean;
   showContactCta?: boolean;
 };
@@ -365,6 +367,7 @@ export function Masthead({
   megaTrigger = MEGA_TRIGGER,
   megaActions = MEGA_ACTIONS,
   megaColumns = 3,
+  megaInitialOpen = false,
   showSearch = true,
   showContactCta = true,
 }: MastheadProps = {}) {
@@ -387,6 +390,7 @@ export function Masthead({
               trigger={megaTrigger}
               actions={megaActions}
               columns={megaColumns}
+              initialOpen={megaInitialOpen}
             />
           ) : (
             <ul>
@@ -441,6 +445,8 @@ export type MegaMenuProps = {
   trigger?: string;
   actions?: string[];
   columns?: Cols;
+  /** Open on first render, so the panel can be looked at without a click. */
+  initialOpen?: boolean;
 };
 
 /** 02 — the mega menu, opened by click and closed by Escape. */
@@ -450,8 +456,9 @@ function MegaMenu({
   trigger = MEGA_TRIGGER,
   actions = MEGA_ACTIONS,
   columns = 3,
+  initialOpen = false,
 }: MegaMenuProps = {}) {
-  const [open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState<string | null>(initialOpen ? trigger : null);
   const wrap = useRef<HTMLDivElement>(null);
   const panelId = useId();
 
@@ -487,7 +494,10 @@ function MegaMenu({
   }, [open]);
 
   return (
-    <div ref={wrap} style={{ position: "relative" }}>
+    /* No positioning here on purpose. The panel is anchored to the header (which is
+       position: relative), not to this cell of it: anchored to the cell, a panel
+       is as wide as the nav column and its groups fold into one tall stack. */
+    <div ref={wrap}>
       <ul data-shell="inline" data-gap="5" style={{ justifyContent: "center" }}>
         {navItems.map((item) => {
           const hasPanel = item === trigger;

@@ -1,6 +1,6 @@
 import { createElement as h, useEffect, useState } from "react";
 import { AddonPanel } from "storybook/internal/components";
-import { addons, types, useChannel, useGlobals, useParameter } from "storybook/manager-api";
+import { addons, types, useChannel, useGlobals, useParameter, useStorybookState } from "storybook/manager-api";
 import { create } from "storybook/theming";
 import keys from "../figma/keys.json";
 import meta from "../figma/meta.json";
@@ -39,6 +39,7 @@ function FigmaLink() {
       target: "_blank",
       rel: "noreferrer",
       title: `Open ${onion.component} in Figma`,
+      "aria-label": `Open ${onion.component} in Figma (opens in a new tab)`,
       style: { alignSelf: "center", padding: "4px 10px", font: "600 12px/1.2 system-ui, sans-serif", color: "inherit", textDecoration: "none", border: "1px solid currentColor", borderRadius: 999, opacity: 0.85 },
     },
     "Figma ↗",
@@ -68,12 +69,14 @@ const row = (k: string, v: unknown) => h("tr", { key: k }, h("th", { style: { te
 function DesignPanel({ active }: { active: boolean }) {
   const onion = useParameter<{ component?: string }>("onion", {});
   const [globals, updateGlobals] = useGlobals();
-  const [live, setLive] = useState<{ component: string; file: string; skin: number[] | null; live: number[] | null } | null>(null);
+  const { storyId } = useStorybookState();
+  const [live, setLive] = useState<{ storyId?: string; component: string; file: string; skin: number[] | null; live: number[] | null } | null>(null);
   useChannel({ "tokenkit/onion": setLive });
   const name = onion.component;
   const m = name ? components[name] : undefined;
   const mode = (globals.onion as string) ?? "off";
-  const skin = live && live.component === name ? live : null;
+  /* What the preview last said is about the story it was said for, not necessarily this one. */
+  const skin = live && live.component === name && live.storyId === storyId ? live : null;
 
   if (!name || !m) return h(AddonPanel, { active }, h("div", { style: { ...ink, ...muted } }, "This story has no frame in the Figma file. Stories with an Onion skin story do."));
 
@@ -81,7 +84,7 @@ function DesignPanel({ active }: { active: boolean }) {
     "div",
     { style: { display: "flex", flexDirection: "column", gap: 10, minWidth: 260 } },
     h("div", { style: { fontWeight: 600 } }, "Onion skin"),
-    h("div", { style: { display: "flex", gap: 6, flexWrap: "wrap" } }, ["off", "overlay", "difference", "split"].map((v) => h("button", { key: v, type: "button", style: chip(mode === v), onClick: () => updateGlobals({ onion: v }) }, h("span", { style: { mixBlendMode: "normal", filter: mode === v ? "invert(1)" : undefined } }, v)))),
+    h("div", { style: { display: "flex", gap: 6, flexWrap: "wrap" } }, ["off", "overlay", "difference", "split"].map((v) => h("button", { key: v, type: "button", "aria-pressed": mode === v, style: chip(mode === v), onClick: () => updateGlobals({ onion: v }) }, h("span", { style: { mixBlendMode: "normal", filter: mode === v ? "invert(1)" : undefined } }, v)))),
     mode === "overlay" &&
       h("label", { style: { display: "flex", gap: 8, alignItems: "center" } }, "opacity", h("input", { type: "range", min: 0, max: 100, value: Number(globals.onionOpacity ?? 60), onChange: (e: { target: { value: string } }) => updateGlobals({ onionOpacity: +e.target.value }) }), h("span", { style: mono }, `${globals.onionOpacity ?? 60}%`)),
     mode === "overlay" &&
@@ -97,7 +100,7 @@ function DesignPanel({ active }: { active: boolean }) {
     { style: { borderCollapse: "collapse" } },
     h("tbody", null,
       row("Component", h("strong", null, name)),
-      row("Figma frame", h("a", { href: figmaUrl(m.node), target: "_blank", rel: "noreferrer", style: { color: "inherit" } }, `node ${m.node} ↗`)),
+      row("Figma frame", h("a", { href: figmaUrl(m.node), target: "_blank", rel: "noreferrer", style: { color: "inherit" } }, `node ${m.node} ↗`, h("span", { style: { position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" } }, " (opens in a new tab)"))),
       row("Design pulled", when(m.skinPulledAt)),
       row("Code updated", h("span", null, when(m.sourceUpdatedAt), m.stale ? h("strong", { style: { marginInlineStart: 8, color: "#b45309" } }, "newer than the design — re-pull") : null)),
       row("Last check", m.check ? h("span", null, `mean Δ ${m.check.mean} (worst ${m.check.worst}) over ${m.check.skins} skin${m.check.skins === 1 ? "" : "s"} · ${when(m.check.checkedAt)}`) : "—"),
@@ -122,9 +125,20 @@ const group = (n: string) => n.replace(/^--tk-/, "").split("-")[0];
 function TokensPanel({ active }: { active: boolean }) {
   const [data, setData] = useState<{ storyId: string; pack: string; density: string; root: string; tokens: Token[] } | null>(null);
   const [filter, setFilter] = useState("");
+  const { storyId } = useStorybookState();
   const emit = useChannel({ "tokenkit/tokens": setData });
-  useEffect(() => { if (active) emit("tokenkit/tokens-request"); }, [active]);
-  if (!data) return h(AddonPanel, { active }, h("div", { style: { ...ink, ...muted } }, "Reading the tokens this story uses…"));
+  /* Ask when the tab opens or the story changes, and ask again a few times until the
+     preview has answered: the preview may still be mounting the story. */
+  const current = data && data.storyId === storyId;
+  useEffect(() => {
+    if (!active || current) return;
+    let tries = 0;
+    emit("tokenkit/tokens-request");
+    const t = setInterval(() => { if (++tries > 6) clearInterval(t); else emit("tokenkit/tokens-request"); }, 700);
+    return () => clearInterval(t);
+  }, [active, storyId, current]);
+  /* The last answer may be for the story you just left. */
+  if (!data || data.storyId !== storyId) return h(AddonPanel, { active }, h("div", { style: { ...ink, ...muted } }, "Reading the tokens this story uses…"));
   const shown = data.tokens.filter((t) => t.name.includes(filter));
   const groups = [...new Set(shown.map((t) => group(t.name)))];
   return h(
@@ -134,7 +148,7 @@ function TokensPanel({ active }: { active: boolean }) {
       h("div", { style: { display: "flex", gap: 16, alignItems: "center", marginBottom: 12, flexWrap: "wrap" } },
         h("strong", null, `${data.tokens.length} tokens`),
         h("span", { style: muted }, `resolved under ${data.pack} · ${data.density} density · ${data.root}px root`),
-        h("input", { placeholder: "filter", value: filter, onChange: (e: { target: { value: string } }) => setFilter(e.target.value), style: { marginInlineStart: "auto", padding: "3px 8px" } })),
+        h("input", { placeholder: "filter", "aria-label": "Filter tokens", value: filter, onChange: (e: { target: { value: string } }) => setFilter(e.target.value), style: { marginInlineStart: "auto", padding: "3px 8px" } })),
       groups.map((g) =>
         h("section", { key: g, style: { marginBottom: 14 } },
           h("div", { style: { fontWeight: 600, textTransform: "capitalize", marginBottom: 4 } }, g),

@@ -28,6 +28,7 @@ const STEPS = [
   { name: "contrast", cmd: "node tools/contrast-gate.mjs" },
   { name: "type", cmd: "node tools/type-gate.mjs" },
   { name: "storybook build", cmd: "npm run -s build-storybook", required: true },
+  { name: "figma", cmd: "node tools/figma-gate.mjs" },
   { name: "browser gates", cmd: "node tools/browser-gates.mjs" },
 ];
 

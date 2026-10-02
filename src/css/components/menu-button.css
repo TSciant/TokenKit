@@ -1,0 +1,94 @@
+/* ---------------------------------------------------------------------------
+   Menu button — a button that opens a short list of links or actions.
+
+   The small alternative to a mega menu: one trigger, one list, no columns. It
+   is the disclosure pattern (a button with aria-expanded and a list that is
+   shown or hidden), not role="menu", so every item is an ordinary link or
+   button and Tab works as it does everywhere else.
+
+   The panel's corner is concentric with the item's: outer radius minus the gap
+   between them, never inverted. The panel is positioned against the trigger's
+   own wrapper, so it needs no knowledge of the page around it.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="menu-button"]) {
+    position: relative;
+    display: inline-block;
+  }
+
+  :where([data-tk="menu-button-chevron"]) {
+    inline-size: 1rem;
+    block-size: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--tk-icon-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: rotate var(--tk-motion-transform);
+  }
+  :where([data-tk="menu-button"][data-open] [data-tk="menu-button-chevron"]) {
+    rotate: 180deg;
+  }
+
+  :where([data-tk="menu-button-panel"]) {
+    --_gap: var(--tk-space-2);
+    --_radius: var(--tk-radius-lg);
+    position: absolute;
+    inset-block-start: calc(100% + var(--tk-space-2));
+    inset-inline-start: 0;
+    z-index: 10;
+    /* As wide as its longest item, within reason: left to shrink-to-fit it would be
+       as wide as the trigger it hangs from, and every label would wrap. */
+    inline-size: max-content;
+    min-inline-size: 12rem;
+    max-inline-size: 24rem;
+    margin: 0;
+    padding: var(--_gap);
+    list-style: none;
+    border: 1px solid var(--tk-line-default);
+    border-radius: var(--_radius);
+    background-color: var(--tk-surface-raised);
+    box-shadow: var(--tk-shadow-md);
+  }
+  :where([data-tk="menu-button"][data-align="end"] [data-tk="menu-button-panel"]) {
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+  }
+  :where([data-tk="menu-button-panel"][hidden]) {
+    display: none;
+  }
+
+  :where([data-tk="menu-button-item"]) {
+    display: block;
+    inline-size: 100%;
+    padding: var(--tk-space-2) var(--tk-space-3);
+    border: 0;
+    border-radius: max(0px, calc(var(--_radius) - var(--_gap)));
+    background: none;
+    color: var(--tk-text-primary);
+    font: inherit;
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    line-height: var(--tk-leading-normal);
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  :where([data-tk="menu-button-item"]:hover) {
+    background-color: var(--tk-surface-sunken);
+  }
+  :where([data-tk="menu-button-item"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: calc(var(--tk-focus-offset) * -1);
+  }
+  :where([data-tk="menu-button-item"][aria-current="page"]) {
+    font-weight: var(--tk-weight-bold);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="menu-button-chevron"]) {
+      transition: none;
+    }
+  }
+}

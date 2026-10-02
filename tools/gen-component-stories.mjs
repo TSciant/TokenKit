@@ -326,22 +326,28 @@ ${argLines.join("\n")}
 `
     : "";
 
-  const onionDef = onionMap[comp];
+  /* A story that is a configuration of another component (02 Mega menu is the masthead
+     with its panel open) has its own entry, keyed by its title. */
+  const onionKey = extraArgs ? pascal(label) : comp;
+  const onionDef = onionMap[onionKey];
   /* A pattern's container is the box it is given, which the story cannot pass as an
      arg: the skin is chosen by the measured width, 56rem being the query threshold. */
   const viewportContainer = onionDef?.containerFrom === "viewport";
   /* One skin, no axes: `single` in onion.json. */
   const singleSkin = onionDef?.single === true;
   const onionStory =
-    onionDef && onionDef.pattern && !extraArgs
+    onionDef && onionDef.pattern
       ? `
 export const OnionSkin: Story = {
   name: "Onion skin (Figma)",${onionDef.args ? `
-  args: ${JSON.stringify(onionDef.args)},` : ""}
+  args: ${JSON.stringify(onionDef.args)},` : ""}${onionDef.pad ? `
+  /* Room below, for something that opens over the page: the skin is measured from
+     the first box in the story, so the box has to be as tall as the open panel. */
+  decorators: [(Story) => <div style={{ paddingBlockEnd: ${onionDef.pad} }}><Story /></div>],` : ""}
   parameters: {
     docs: { description: { story: ${JSON.stringify(onionDef.doc ?? ("The Figma component laid over this one, at the 1024px section width it was drawn at. Switch Onion in the toolbar. " + (singleSkin ? "There is one skin." : "The arguments that pick the skin are " + onionDef.pattern.join(", ") + ".")))} } },
     onion: {
-      component: ${JSON.stringify(onionDef.component ?? comp)},${onionDef.target ? `
+      component: ${JSON.stringify(onionDef.component ?? onionKey)},${onionDef.target ? `
       target: ${JSON.stringify(onionDef.target)},` : ""}
       skin: ${singleSkin ? '() => "default.png"' : `(a: Record<string, unknown>${viewportContainer ? ", ctx: { width: number }" : ""}) => \`${onionDef.pattern.map((x) => (onionDef.fixed && x in onionDef.fixed ? onionDef.fixed[x] : x === "container" && viewportContainer ? '${ctx.width < 896 ? "narrow" : "wide"}' : onionDef.defaults && x in onionDef.defaults ? "${a." + x + " ?? " + JSON.stringify(onionDef.defaults[x]) + "}" : "${a." + x + "}")).join("-")}.png\``},
     },

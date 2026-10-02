@@ -1,0 +1,65 @@
+/* ---------------------------------------------------------------------------
+   Section nav — the pages beside this one.
+
+   A row of links to the siblings in the section you are in, under a hairline,
+   with the current one marked. It is local navigation: it answers "what else is
+   here" without asking the masthead to carry the whole site, which is the job
+   the mega menu ends up doing when nothing else exists.
+
+   Container-first: it is as wide as the box it is put in, and when the links do
+   not fit the row scrolls rather than wraps, so one line of tabs stays one line.
+   The current page is aria-current="page", which is also what marks it, so the
+   look cannot drift from what a screen reader hears.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="section-nav"]) {
+    display: block;
+    border-block-end: 1px solid var(--tk-line-default);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+
+  :where([data-tk="section-nav-list"]) {
+    display: flex;
+    gap: var(--tk-space-5);
+    margin: 0;
+    padding: 0 var(--tk-space-4);
+    list-style: none;
+    min-inline-size: max-content;
+  }
+
+  :where([data-tk="section-nav-link"]) {
+    display: block;
+    padding-block: var(--tk-space-3);
+    /* The mark sits on the nav's own hairline, so it replaces it under the current link. */
+    margin-block-end: -1px;
+    border-block-end: 2px solid transparent;
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    line-height: var(--tk-leading-normal);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--tk-motion-ink);
+  }
+  :where([data-tk="section-nav-link"]:hover) {
+    color: var(--tk-text-primary);
+  }
+  :where([data-tk="section-nav-link"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: calc(var(--tk-focus-offset) * -1);
+  }
+  :where([data-tk="section-nav-link"][aria-current="page"]) {
+    color: var(--tk-text-primary);
+    font-weight: var(--tk-weight-semibold);
+    border-block-end-color: currentColor;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="section-nav-link"]) {
+      transition: none;
+    }
+  }
+}

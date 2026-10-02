@@ -47,6 +47,13 @@ function touched(rel) {
   return new Date(newest(abs)).toISOString();
 }
 
+/* The public copy has a history of its own and freshly copied files, so dates read there
+   would say when it was published. Its meta.json is the snapshot that came with it. */
+if (existsSync(resolve(ROOT, ".tokenkit-export")) || !git("log", "-1", "--format=%H", "--", "figma")) {
+  console.log("figma meta: no site history here; figma/meta.json is a committed snapshot, left as it is");
+  process.exit(0);
+}
+
 const out = {};
 for (const [name, node] of Object.entries(keys.components)) {
   if (name.includes("/")) continue; // RailNav/Item is part of RailNav
@@ -66,7 +73,9 @@ for (const [name, node] of Object.entries(keys.components)) {
     skins,
     skinPulledAt,
     sourceUpdatedAt,
-    stale: !!(sourceUpdatedAt && skinPulledAt && new Date(sourceUpdatedAt) > new Date(skinPulledAt)),
+    /* The code moved on after the design was pulled, and nothing has compared them
+       since: a check run after the change clears it, because it says the two still agree. */
+    stale: !!(sourceUpdatedAt && skinPulledAt && new Date(sourceUpdatedAt) > new Date(skinPulledAt) && !(checks[name]?.checkedAt && new Date(checks[name].checkedAt) > new Date(sourceUpdatedAt))),
     check: checks[name] ?? null,
   };
 }
