@@ -103,8 +103,11 @@ export function LogoLadder({
      `display: contents` has a history of dropping elements from the
      accessibility tree in ways that differ by browser — not something to put
      on the path between a logo and its accessible name. */
+  /* `logo-body` is the box the stages rearrange. The wrapper is the container,
+     and a container query cannot style the container it asks, so the layout
+     lives one level in. */
   const inner = (
-    <>
+    <span data-tk="logo-body">
       <span data-tk="logo-mark" aria-hidden="true">
         {mark ?? <PlaceholderMark />}
       </span>
@@ -112,7 +115,7 @@ export function LogoLadder({
         <span data-tk="logo-word">{word}</span>
         {tagline ? <span data-tk="logo-tagline">{tagline}</span> : null}
       </span>
-    </>
+    </span>
   );
 
   const shared = {

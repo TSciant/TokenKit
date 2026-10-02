@@ -45,6 +45,20 @@
    Everything here is sized from the container, not from tokens: a logo has to
    fill the box it was given. Colour is the exception and comes from the pack
    like everything else, so a brand arriving is a pack arriving.
+
+   TWO THINGS THAT WERE WRONG, and are why there is a `logo-body`.
+
+   A container query cannot style the container it asks. The wrapper is the
+   container, so a stage rule written against the wrapper (a column for STACK,
+   a different size per band) never matched: an unpinned
+   logo stayed a row at every width and every stage drew at the same 7% of its
+   box. The layout and the size now live on `logo-body`, one element in, which
+   the query can reach.
+
+   One size for six stages is the wrong size for most of them. A wordmark at
+   0.62 of a 14px mark is 8px type, which nobody can read; each stage has its
+   own size range, from a 24px tile at ICON to a 64px mark at FULL, still read
+   from the container so a brand arriving changes nothing here.
 --------------------------------------------------------------------------- */
 
 @layer components {
@@ -53,22 +67,26 @@
        container that queries both axes cannot be sized by its contents. */
     container-type: inline-size;
     container-name: logo;
+    display: block;
+    inline-size: 100%;
 
+    /* Pack-facing. A brand fills these; nothing else should set them. */
+    color: var(--tk-logo-ink, var(--tk-text-primary));
+  }
+
+  /* The box the stages rearrange. The default is the floor, ICON; each band
+     below raises the unit and changes the arrangement. */
+  :where([data-tk="logo-body"]) {
     display: flex;
     align-items: center;
     /* Alignment belongs to whatever placed the logo, not to the logo. */
     justify-content: flex-start;
     gap: var(--_gap);
-    inline-size: 100%;
 
-    /* Scales with the container, floors at a legible size, caps so a very
-       wide slot does not produce a billboard. cqi is 1% of the container's
-       inline size — the whole point of the exercise. */
-    --_unit: clamp(0.75rem, 7cqi, 2.5rem);
+    --_unit: clamp(1rem, 32cqi, 1.5rem);
     --_gap: calc(var(--_unit) * 0.45);
-
-    /* Pack-facing. A brand fills these; nothing else should set them. */
-    color: var(--tk-logo-ink, var(--tk-text-primary));
+    --_pad: calc(var(--_unit) * 0.18);
+    --_tile-radius: var(--tk-radius-sm);
   }
 
   /* The parts. Each is present in every stage and hidden by band. */
@@ -82,7 +100,7 @@
 
     /* The colour a mark knocks its own detail out in.
 
-       A one-colour mark with interior detail — a face, a counter, a hole —
+       A one-colour mark with interior detail (a face, a counter, a hole)
        has to paint that detail in the GROUND, not in a second ink, or it
        stops being a one-colour mark. Which ground that is changes by stage:
        everywhere above ICON the mark sits directly on the surface, and at
@@ -109,7 +127,8 @@
 
   :where([data-tk="logo-tagline"]) {
     display: block;
-    font-size: calc(var(--_unit) * 0.26);
+    /* Never smaller than 11px: a tagline you cannot read is not a tagline. */
+    font-size: max(0.6875rem, calc(var(--_unit) * 0.28));
     line-height: 1.2;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -132,11 +151,6 @@
      radius less the padding, so the mark's own silhouette stays concentric
      with the tile around it.
   ------------------------------------------------------------------------- */
-  :where([data-tk="logo"]) {
-    --_pad: calc(var(--_unit) * 0.18);
-    --_tile-radius: var(--tk-radius-sm);
-  }
-
   :where([data-tk="logo"]) :where([data-tk="logo-text"]) {
     display: none;
   }
@@ -156,6 +170,10 @@
      is no third value, and "never both" is enforced by there being only one
      rule. */
   @container logo (min-width: 80px) {
+    :where([data-tk="logo-body"]) {
+      --_unit: clamp(1.5rem, 28cqi, 2.5rem);
+    }
+
     :where([data-tk="logo"]) :where([data-tk="logo-mark"]) {
       background: none;
       padding: 0;
@@ -175,7 +193,8 @@
 
   /* ---- >= 160px : STACK — mark above wordmark ---- */
   @container logo (min-width: 160px) {
-    :where([data-tk="logo"]) {
+    :where([data-tk="logo-body"]) {
+      --_unit: clamp(2rem, 18cqi, 3rem);
       flex-direction: column;
       align-items: center;
       text-align: center;
@@ -198,7 +217,8 @@
 
   /* ---- >= 280px : LOCKUP — mark beside wordmark ---- */
   @container logo (min-width: 280px) {
-    :where([data-tk="logo"]) {
+    :where([data-tk="logo-body"]) {
+      --_unit: clamp(2rem, 11cqi, 3rem);
       flex-direction: row;
       align-items: center;
       text-align: start;
@@ -212,6 +232,10 @@
 
   /* ---- >= 420px : FULL — the tagline earns its place ---- */
   @container logo (min-width: 420px) {
+    :where([data-tk="logo-body"]) {
+      --_unit: clamp(2.5rem, 9cqi, 4rem);
+    }
+
     :where([data-tk="logo"]) :where([data-tk="logo-tagline"]) {
       display: block;
     }
@@ -221,26 +245,45 @@
      Forced stage.
 
      A filmstrip has to show all six stages at once, in six boxes that are all
-     the same width — so the container query, which is right about everything
-     else, is exactly wrong here. `data-stage` pins one.
+     the same width, so the container query, which is right about everything
+     else, is exactly wrong here. `data-stage` pins one, with the same unit and
+     arrangement the band would have given it.
 
      It has to beat the rules above and container queries add no specificity
      of their own, so these carry one extra attribute and win on specificity
      rather than on order. That is also why they are not wrapped in `:where()`
      the way everything above is.
   ------------------------------------------------------------------------- */
-  [data-tk="logo"][data-stage] {
-    --_unit: clamp(0.75rem, 7cqi, 2.5rem);
+  [data-tk="logo"][data-stage] [data-tk="logo-mark"] {
+    display: grid;
+    flex: 0 0 auto;
+    inline-size: var(--_unit);
+    block-size: var(--_unit);
+    padding: 0;
+    background: none;
+    --_mark-ground: var(--tk-surface-default);
+  }
+  [data-tk="logo"][data-stage] [data-tk="logo-text"] {
+    display: grid;
+    justify-items: start;
+  }
+  [data-tk="logo"][data-stage] [data-tk="logo-tagline"] {
+    display: none;
+  }
+  [data-tk="logo"][data-stage] [data-tk="logo-body"] {
+    flex-direction: row;
+    align-items: center;
+    text-align: start;
+    gap: var(--_gap);
   }
 
-  [data-tk="logo"][data-stage="icon"] {
-    flex-direction: row;
+  [data-tk="logo"][data-stage="icon"] [data-tk="logo-body"] {
+    --_unit: clamp(1rem, 32cqi, 1.5rem);
   }
   [data-tk="logo"][data-stage="icon"] [data-tk="logo-text"] {
     display: none;
   }
   [data-tk="logo"][data-stage="icon"] [data-tk="logo-mark"] {
-    display: grid;
     --_mark-ground: var(--tk-logo-tile, var(--tk-surface-default));
     background: var(--tk-logo-tile, transparent);
     padding: var(--_pad);
@@ -249,96 +292,37 @@
     block-size: calc(var(--_unit) + var(--_pad) * 2);
   }
 
-  [data-tk="logo"][data-stage="mark"] {
-    flex-direction: row;
+  [data-tk="logo"][data-stage="mark"] [data-tk="logo-body"] {
+    --_unit: clamp(1.5rem, 28cqi, 2.5rem);
   }
   [data-tk="logo"][data-stage="mark"] [data-tk="logo-text"] {
     display: none;
   }
-  [data-tk="logo"][data-stage="mark"] [data-tk="logo-mark"] {
-    display: grid;
-    --_mark-ground: var(--tk-surface-default);
-    background: none;
-    padding: 0;
-    inline-size: var(--_unit);
-    block-size: var(--_unit);
-  }
 
-  [data-tk="logo"][data-stage="word"] {
-    flex-direction: row;
+  [data-tk="logo"][data-stage="word"] [data-tk="logo-body"] {
+    --_unit: clamp(1.5rem, 28cqi, 2.5rem);
   }
   [data-tk="logo"][data-stage="word"] [data-tk="logo-mark"] {
     display: none;
   }
-  [data-tk="logo"][data-stage="word"] [data-tk="logo-text"] {
-    display: grid;
-    justify-items: start;
-  }
-  [data-tk="logo"][data-stage="word"] [data-tk="logo-tagline"] {
-    display: none;
-  }
 
-  [data-tk="logo"][data-stage="stack"] {
+  [data-tk="logo"][data-stage="stack"] [data-tk="logo-body"] {
+    --_unit: clamp(2rem, 18cqi, 3rem);
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: calc(var(--_unit) * 0.3);
   }
-  [data-tk="logo"][data-stage="stack"] [data-tk="logo-mark"] {
-    display: grid;
-    --_mark-ground: var(--tk-surface-default);
-    background: none;
-    padding: 0;
-    inline-size: var(--_unit);
-    block-size: var(--_unit);
-  }
   [data-tk="logo"][data-stage="stack"] [data-tk="logo-text"] {
-    display: grid;
     justify-items: center;
   }
-  [data-tk="logo"][data-stage="stack"] [data-tk="logo-tagline"] {
-    display: none;
+
+  [data-tk="logo"][data-stage="lockup"] [data-tk="logo-body"] {
+    --_unit: clamp(2rem, 11cqi, 3rem);
   }
 
-  [data-tk="logo"][data-stage="lockup"] {
-    flex-direction: row;
-    align-items: center;
-    text-align: start;
-    gap: var(--_gap);
-  }
-  [data-tk="logo"][data-stage="lockup"] [data-tk="logo-mark"] {
-    display: grid;
-    --_mark-ground: var(--tk-surface-default);
-    background: none;
-    padding: 0;
-    inline-size: var(--_unit);
-    block-size: var(--_unit);
-  }
-  [data-tk="logo"][data-stage="lockup"] [data-tk="logo-text"] {
-    display: grid;
-    justify-items: start;
-  }
-  [data-tk="logo"][data-stage="lockup"] [data-tk="logo-tagline"] {
-    display: none;
-  }
-
-  [data-tk="logo"][data-stage="full"] {
-    flex-direction: row;
-    align-items: center;
-    text-align: start;
-    gap: var(--_gap);
-  }
-  [data-tk="logo"][data-stage="full"] [data-tk="logo-mark"] {
-    display: grid;
-    --_mark-ground: var(--tk-surface-default);
-    background: none;
-    padding: 0;
-    inline-size: var(--_unit);
-    block-size: var(--_unit);
-  }
-  [data-tk="logo"][data-stage="full"] [data-tk="logo-text"] {
-    display: grid;
-    justify-items: start;
+  [data-tk="logo"][data-stage="full"] [data-tk="logo-body"] {
+    --_unit: clamp(2.5rem, 9cqi, 4rem);
   }
   [data-tk="logo"][data-stage="full"] [data-tk="logo-tagline"] {
     display: block;

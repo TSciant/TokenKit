@@ -78,6 +78,12 @@
       "worst": 30.76,
       "checkedAt": "2026-09-30T01:40:41.531Z"
     },
+    "Faq": {
+      "skins": 1,
+      "mean": 3.51,
+      "worst": 3.51,
+      "checkedAt": "2026-10-02T10:59:29.207Z"
+    },
     "FeatureGrid": {
       "skins": 1,
       "mean": 5.35,
@@ -137,6 +143,12 @@
       "mean": 4.83,
       "worst": 4.83,
       "checkedAt": "2026-09-30T14:14:16.327Z"
+    },
+    "LogoLadder": {
+      "skins": 6,
+      "mean": 6.72,
+      "worst": 20.38,
+      "checkedAt": "2026-10-02T11:57:14.255Z"
     },
     "Masthead": {
       "skins": 12,
@@ -209,6 +221,12 @@
       "mean": 2.17,
       "worst": 2.17,
       "checkedAt": "2026-09-30T01:40:41.531Z"
+    },
+    "SearchResults": {
+      "skins": 1,
+      "mean": 1.29,
+      "worst": 1.29,
+      "checkedAt": "2026-10-02T11:02:02.383Z"
     },
     "SectionNav": {
       "skins": 1,

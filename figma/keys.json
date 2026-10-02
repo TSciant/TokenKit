@@ -52,7 +52,13 @@
     "OnThisPage": "148:250",
     "OnThisPage/Item": "148:249",
     "MenuButton": "148:299",
-    "MegaMenu": "151:753"
+    "MegaMenu": "151:753",
+    "Faq": "170:1051",
+    "Faq/Item": "170:1050",
+    "SearchResults": "172:308",
+    "SearchResults/Row": "172:287",
+    "LogoLadder": "173:513",
+    "LogoLadder/Mark": "173:476"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -105,7 +111,13 @@
     "OnThisPage": "04-primitives-27-on-this-page--onion-skin",
     "OnThisPage/Item": "04-primitives-27-on-this-page--onion-skin",
     "MenuButton": "04-primitives-28-menu-button--onion-skin",
-    "MegaMenu": "05-patterns-02-mega-menu--onion-skin"
+    "MegaMenu": "05-patterns-02-mega-menu--onion-skin",
+    "Faq": "04-primitives-10-faq--onion-skin",
+    "Faq/Item": "04-primitives-10-faq--onion-skin",
+    "SearchResults": "04-primitives-11-search-results--onion-skin",
+    "SearchResults/Row": "04-primitives-11-search-results--onion-skin",
+    "LogoLadder": "04-primitives-22-logo-ladder--onion-skin",
+    "LogoLadder/Mark": "04-primitives-22-logo-ladder--onion-skin"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -158,6 +170,12 @@
     "OnThisPage": "src/react/primitives/OnThisPage.tsx",
     "OnThisPage/Item": "src/react/primitives/OnThisPage.tsx",
     "MenuButton": "src/react/primitives/MenuButton.tsx",
-    "MegaMenu": "src/react/patterns/chrome.tsx"
+    "MegaMenu": "src/react/patterns/chrome.tsx",
+    "Faq": "src/react/primitives/Faq.tsx",
+    "Faq/Item": "src/react/primitives/Faq.tsx",
+    "SearchResults": "src/react/primitives/SearchResults.tsx",
+    "SearchResults/Row": "src/react/primitives/SearchResults.tsx",
+    "LogoLadder": "src/react/primitives/LogoLadder.tsx",
+    "LogoLadder/Mark": "src/react/primitives/LogoLadder.tsx"
   }
 }

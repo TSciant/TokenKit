@@ -75,3 +75,12 @@ export const Playground: Story = {};
 export const Prefiltered: Story = {
   args: { defaultQuery: "corners" },
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, at the 640px it is drawn at. Switch Onion in the toolbar." } },
+    onion: { component: "SearchResults", skin: () => "default.png" },
+  },
+  decorators: [(Story) => <div style={{ inlineSize: 640 }}><Story /></div>],
+};

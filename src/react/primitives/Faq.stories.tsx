@@ -87,3 +87,12 @@ export const SingleExpand: Story = {
     items: DEMO.map((d, i) => ({ ...d, defaultOpen: i === 0 })),
   },
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { tone: "faq", singleExpand: false, items: DEMO },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, at the 44rem it fills: a heading and four entries, the first open. Switch Onion in the toolbar." } },
+    onion: { component: "Faq", skin: () => "default.png" },
+  },
+};

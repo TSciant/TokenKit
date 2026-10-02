@@ -494,6 +494,34 @@
       },
       "pad": 550,
       "settle": 600
+    },
+    "Faq": {
+      "story": "04-primitives-10-faq--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "doc": "The Figma component laid over this one at its own width (44rem): a heading and four entries, the first open. Switch Onion in the toolbar."
+    },
+    "SearchResults": {
+      "story": "04-primitives-11-search-results--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "doc": "The Figma component laid over this one at the 640px it is drawn at: the toolbar (a search field and six type chips, All pressed), the count and six results. Switch Onion in the toolbar."
+    },
+    "LogoLadder": {
+      "story": "04-primitives-22-logo-ladder--onion-skin",
+      "pattern": [
+        "stage"
+      ],
+      "target": "root",
+      "doc": "The Figma component laid over this one, a stage at a time, each in a box of the width its band starts at: 64, 120, 200, 320 and 480px. Switch Onion in the toolbar."
     }
   }
 }

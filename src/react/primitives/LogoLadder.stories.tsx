@@ -188,3 +188,23 @@ export const TypeLed: Story = {
     </div>
   ),
 };
+
+/* One box per stage, in the band the stage answers to, so the pinned stage and the
+   unpinned logo draw the same thing. The skin is the box, not just the logo. */
+const BOX: Record<LogoStage, number> = { icon: 64, mark: 120, word: 120, stack: 200, lockup: 320, full: 480 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { stage: "full", word: "tokenkit", tagline: "bending the rules" },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one, a stage at a time, each in a box of the width its band starts at: 64, 120, 200, 320 and 480px. Switch Onion in the toolbar." } },
+    onion: { component: "LogoLadder", target: "root", skin: (a: Record<string, unknown>) => `${a.stage}.png` },
+  },
+  decorators: [
+    (Story, context) => (
+      <div style={{ inlineSize: BOX[(context.args.stage ?? "full") as LogoStage] }}>
+        <Story />
+      </div>
+    ),
+  ],
+};

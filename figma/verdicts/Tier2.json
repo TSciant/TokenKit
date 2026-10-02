@@ -188,6 +188,24 @@
       "mean": "2.1",
       "result": "Aligned",
       "note": "1024x617, exact: the masthead (wide, mega menu on) and its panel open 16px under it: an inverse promo rail of two outline buttons beside three groups of links, in two columns. The new megaInitialOpen prop is what lets the open state be photographed"
+    },
+    "Faq": {
+      "skins": 1,
+      "mean": "3.5",
+      "result": "Aligned",
+      "note": "704x479 against 479.5; a heading (sparkles eyebrow and title) over four numbered entries, the first open: Faq/Item Open=false/true, a hairline above each and a closing rule. The open mark is a filled circle with a minus in the on-action ink"
+    },
+    "SearchResults": {
+      "skins": 1,
+      "mean": "1.3",
+      "result": "Aligned",
+      "note": "640x1014, exact; the toolbar (a search Field with its control at the concentric 16px, six interactive Chips with type icons, All pressed), the count and six SearchResults/Row instances; the Icon property sets both the mark and the tag icon"
+    },
+    "LogoLadder": {
+      "skins": 6,
+      "mean": "icon 6.3, mark 1.2, word 20.4 (7.2 shifted), stack 2.0, lockup 6.2, full 4.3",
+      "result": "Aligned",
+      "note": "six stages, each in a box of the width its band starts at (64, 120, 120, 200, 320, 480): the neutral stand-in mark (the kit's own, scaling with its box), the wordmark, the tagline. The word stage's high number is a 1px text-baseline offset on a frame that holds nothing else"
     }
   },
   "findings": [
@@ -386,6 +404,20 @@
       "diff": "the panel was anchored to the nav's cell of the header, not to the header: at a 1024 header it was 692px wide and its three groups fell into one 700px-tall column. Separately the trigger's open and closed marks are the characters ▲ and ▼, not the kit's chevron icons",
       "pull": "Align (anchor), Accept (marks)",
       "result": "the nav wrapper no longer positions itself, so the panel anchors to the header (position: relative) and takes its full width: 534px tall in two columns. columns is a minimum width, so three groups do not fit beside a 224px rail at 1024; that is the grid doing what it was asked. The trigger's glyphs are drawn as the chevron icon in the design"
+    },
+    {
+      "component": "LogoLadder",
+      "driftType": "Live execution != live intent",
+      "diff": "a container query cannot style the container it asks, so the stage rules written against the logo wrapper never matched: an unpinned logo stayed a row at every width. And one size for six stages (7% of the box, floored at 12px) drew the wordmark at 8px at the 200px band",
+      "pull": "Align",
+      "result": "layout and size moved to a logo-body inside the container, each stage has its own size range (24px tile at ICON to a 64px mark at FULL), a tagline is never under 11px; the Figma stages are drawn at the sizes the code now computes"
+    },
+    {
+      "component": "LogoLadder",
+      "driftType": "Design execution != live execution",
+      "diff": "scaling a mark instance in Figma does not scale its stroke weights (the code scales them with the viewBox), so a 20px mark drew with a 32px mark's strokes; and a variable name written without its collection prefix silently bound nothing (black)",
+      "pull": "Align",
+      "result": "each stage's mark is built from the SVG at its own size, so the strokes scale as the viewBox does, then bound to text/primary; the icon tile is surface/base; the mean of the icon stage fell from 15 to 6"
     }
   ],
   "promotion": [
@@ -411,6 +443,10 @@
     "An absolutely positioned panel is as wide as its anchor unless told otherwise: give it max-content with a floor and a cap, or every label wraps.",
     "A story that decorates the component with padding and flex will stretch a wrapper to the decorator's height: align-items flex-start, or an absolutely positioned panel lands below the stretched box instead of the trigger.",
     "A panel that opens over the page anchors to the element whose edges it follows (the header), not to the cell of it that holds the trigger: anchor it to the cell and it is as wide as the cell.",
-    "A state that only exists after a click needs a prop (initialOpen) before it can be photographed: the design cannot be compared with something the story cannot show."
+    "A state that only exists after a click needs a prop (initialOpen) before it can be photographed: the design cannot be compared with something the story cannot show.",
+    "A hairline that sits above every item and below the last is the item's top border plus one closing rule in the list: the last item does not get a different border, the list closes itself.",
+    "One instance-swap property can drive two layers: a row's mark and its tag show the same icon, so one Icon property sets both, and the row cannot be configured into disagreeing with itself.",
+    "Resizing a vector instance does not scale its stroke weight: for a mark that is drawn at several sizes, build each from the SVG at that size (stroke weights scale with the viewBox) rather than resizing one component.",
+    "setBoundVariableForPaint with a variable that was not found does not throw: it binds nothing and the paint goes black. Look the variable up and throw when it is missing, every time."
   ]
 }
