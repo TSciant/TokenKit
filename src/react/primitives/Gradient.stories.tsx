@@ -253,3 +253,12 @@ export const Legibility: Story = {
    the toolbar hands every story; the reader above uses no globals of its own
    because it reads whatever the decorator resolved. */
 export type _Globals = ContextGlobals;
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at 480 by 192 (12rem): the shape and direction controls pick the skin, in the kit's wireframe pair. Switch Onion in the toolbar." } },
+    onion: { component: "Gradient", target: "root", skin: (a: Record<string, unknown>) => `${a.shape ?? "linear"}-${String(a.direction ?? "block-end").replace(/-/g, "")}.png` },
+  },
+  decorators: [(Story) => <div style={{ inlineSize: 480 }}><Story /></div>],
+};

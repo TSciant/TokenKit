@@ -108,6 +108,12 @@
       "worst": 2.83,
       "checkedAt": "2026-09-30T01:40:41.531Z"
     },
+    "Gradient": {
+      "skins": 19,
+      "mean": 1.05,
+      "worst": 3.39,
+      "checkedAt": "2026-10-02T12:52:57.921Z"
+    },
     "Guidance": {
       "skins": 2,
       "mean": 3.78,
@@ -227,6 +233,12 @@
       "mean": 2.17,
       "worst": 2.17,
       "checkedAt": "2026-09-30T01:40:41.531Z"
+    },
+    "Search": {
+      "skins": 2,
+      "mean": 0.23,
+      "worst": 0.43,
+      "checkedAt": "2026-10-02T12:59:11.545Z"
     },
     "SearchResults": {
       "skins": 1,

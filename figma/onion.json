@@ -530,6 +530,53 @@
       ],
       "doc": "The Figma component laid over this one at the 512px it is drawn at, one ratio at a time. The height is capped at 22rem, so 4:3, 1:1 and 3:4 are the same height. Switch Onion in the toolbar.",
       "still": true
+    },
+    "Gradient": {
+      "story": "04-primitives-23-gradient--onion-skin",
+      "pattern": [
+        "shape",
+        "state"
+      ],
+      "target": "root",
+      "states": {
+        "blockend": {
+          "direction": "block-end"
+        },
+        "blockstart": {
+          "direction": "block-start"
+        },
+        "inlineend": {
+          "direction": "inline-end"
+        },
+        "inlinestart": {
+          "direction": "inline-start"
+        },
+        "diagonal": {
+          "direction": "diagonal"
+        },
+        "diagonalup": {
+          "direction": "diagonal-up"
+        }
+      },
+      "doc": "The Figma component laid over this one at 480 by 192 (12rem), a shape and a direction at a time, in the kit's wireframe pair. Switch Onion in the toolbar."
+    },
+    "Search": {
+      "story": "04-primitives-19-search--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "skinsFrom": "HeaderSearch",
+      "component": "HeaderSearch",
+      "target": "root",
+      "states": {
+        "closed": {
+          "open": false
+        },
+        "open": {
+          "open": true
+        }
+      },
+      "doc": "The Figma HeaderSearch laid over this one (they are the same control: a quiet icon button that opens a 224px input), closed and open, in the 1024px box the story gives it. Switch Onion in the toolbar."
     }
   }
 }

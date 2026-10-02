@@ -45,3 +45,12 @@ export const Collapsible: Story = {
   ),
 };
 
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { open: false },
+  parameters: {
+    docs: { description: { story: "The Figma HeaderSearch laid over this one (the same control: a quiet icon button that opens a 224px input), closed and open, in the 1024px box it is drawn in. Switch Onion in the toolbar." } },
+    onion: { component: "HeaderSearch", target: "root", skin: (a: Record<string, unknown>) => (a.open ? "open.png" : "closed.png") },
+  },
+  decorators: [(Story) => <div style={{ inlineSize: 1024 }}><Story /></div>],
+};

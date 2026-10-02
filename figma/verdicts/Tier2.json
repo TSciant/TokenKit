@@ -212,6 +212,18 @@
       "mean": "0.0 (21x9: 1.2)",
       "result": "Aligned",
       "note": "six ratios at 512 wide, seed 1, hatch: the live plate captured at 1x over the checker's ground and placed as an image fill, so what is compared is the box, its corner (radius-nested) and the height cap. The image is the live drawing by construction, so the number says the box and corner agree, not that Figma can draw the texture"
+    },
+    "Gradient": {
+      "skins": 19,
+      "mean": "linear 1.0, fade 0.0, radial 1.0, conic 1.5 (diagonals 3.1, 3.4)",
+      "result": "Aligned",
+      "note": "480x192 (12rem), the kit's wireframe pair (surface-default to surface-sunken): linear and fade in six directions, conic in six, radial once (it ignores direction). Emphasis (subtle 35%, strong full) is a coordinate on the code and is not drawn: the stop it moves is a literal in a Figma gradient anyway"
+    },
+    "Search": {
+      "skins": 2,
+      "mean": "0.0, 0.4",
+      "result": "Aligned",
+      "note": "the same control as HeaderSearch (a quiet icon button that opens a 224px input), so it borrows HeaderSearch's skins (skinsFrom): closed and open, 1024x42"
     }
   },
   "findings": [
@@ -438,6 +450,27 @@
       "diff": "a live element captured to become a design image carries the ground it was photographed on: the first plates were captured over Storybook's page grey (244) and the checker composites over white (255), a uniform difference of 8.4 across the whole frame",
       "pull": "Align",
       "result": "capture over the same ground the checker uses (surface-default); the mean fell from 8.4 to 0.0"
+    },
+    {
+      "component": "Gradient",
+      "driftType": "Design execution != live execution",
+      "diff": "a conic gradient in CSS sweeps a circle in pixels; in Figma an angular gradient sweeps in the frame's normalised space, so on a frame that is not square the sweep is elliptical and the diagonals land a few degrees apart. And a Figma gradient stop cannot be bound to a variable",
+      "pull": "Accept",
+      "result": "the two colours are literals (the wireframe pair; a brand replaces them), noted on the component; the conic diagonals come out at 3.1 and 3.4 and the rest within 1.5"
+    },
+    {
+      "component": "Tachometer, Map, SegmentList",
+      "driftType": "Paused",
+      "diff": "the Tachometer is a canvas drawn and animated in script, and the Map is a MapLibre canvas of live tiles; neither is a layout Figma can draw, and SegmentList carries the map",
+      "pull": "Pause",
+      "result": "left out of the design on purpose. If they are wanted, they are an image stand-in with a box, a corner and a caption, like Plate: the comparison would say the frame agrees, not the drawing"
+    },
+    {
+      "component": "GuidancePair, ModalTrigger",
+      "driftType": "Covered",
+      "diff": "GuidancePair is two Guidance side by side and ModalTrigger is a Button that opens a Modal: neither has a surface of its own",
+      "pull": "Accept",
+      "result": "covered by Guidance (the Do and Don't variants), Modal and Button; no component of their own in the design"
     }
   ],
   "promotion": [
@@ -468,6 +501,7 @@
     "One instance-swap property can drive two layers: a row's mark and its tag show the same icon, so one Icon property sets both, and the row cannot be configured into disagreeing with itself.",
     "Resizing a vector instance does not scale its stroke weight: for a mark that is drawn at several sizes, build each from the SVG at that size (stroke weights scale with the viewBox) rather than resizing one component.",
     "setBoundVariableForPaint with a variable that was not found does not throw: it binds nothing and the paint goes black. Look the variable up and throw when it is missing, every time.",
-    "Capture a live element for the design over the ground the comparison will use (surface-default), or the whole frame differs by the difference between the two grounds."
+    "Capture a live element for the design over the ground the comparison will use (surface-default), or the whole frame differs by the difference between the two grounds.",
+    "A Figma gradient is placed by a transform from the frame's normalised space: for a linear one, put the start and end of the CSS gradient line at their normalised positions and invert the matrix; for radial, scale by the farthest-corner radius over the frame's width and height; for angular, rotate by the CSS angle less 90 degrees, because Figma starts at three o'clock and CSS at twelve."
   ]
 }
