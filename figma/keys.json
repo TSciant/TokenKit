@@ -66,7 +66,8 @@
     "Arrow": "180:1042",
     "Map": "183:476",
     "SegmentList": "185:476",
-    "Tachometer": "186:485"
+    "Tachometer": "186:485",
+    "Shell": "190:523"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -133,7 +134,8 @@
     "Arrow": "04-primitives-29-arrow--onion-skin",
     "Map": "04-primitives-15-map--onion-skin",
     "SegmentList": "05-patterns-08-segment-list--onion-skin",
-    "Tachometer": "04-primitives-14-tachometer--onion-skin"
+    "Tachometer": "04-primitives-14-tachometer--onion-skin",
+    "Shell": "03-foundations-03-composition--onion-skin"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -200,6 +202,7 @@
     "Arrow": "src/react/primitives/Arrow.tsx",
     "Map": "src/react/primitives/Map.tsx",
     "SegmentList": "src/react/patterns/marketing.tsx",
-    "Tachometer": "src/react/primitives/Tachometer.tsx"
+    "Tachometer": "src/react/primitives/Tachometer.tsx",
+    "Shell": "src/react/shells/Shell.tsx"
   }
 }

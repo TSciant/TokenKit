@@ -22,13 +22,13 @@
       "skins": 9,
       "mean": 4.82,
       "worst": 9.39,
-      "checkedAt": "2026-09-30T01:40:41.531Z"
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "ArticleFeed": {
       "skins": 1,
       "mean": 4.61,
       "worst": 4.61,
-      "checkedAt": "2026-09-30T20:34:01.646Z"
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "ArticlePage": {
       "skins": 1,
@@ -58,7 +58,7 @@
       "skins": 9,
       "mean": 6.92,
       "worst": 14.01,
-      "checkedAt": "2026-10-01T13:39:13.591Z"
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "CtaBlocks": {
       "skins": 1,
@@ -76,7 +76,7 @@
       "skins": 1,
       "mean": 5.62,
       "worst": 5.62,
-      "checkedAt": "2026-09-30T20:30:46.150Z"
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "Eyebrow": {
       "skins": 2,
@@ -92,9 +92,9 @@
     },
     "FeatureGrid": {
       "skins": 1,
-      "mean": 5.35,
-      "worst": 5.35,
-      "checkedAt": "2026-09-30T20:29:23.900Z"
+      "mean": 5.32,
+      "worst": 5.32,
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "Field": {
       "skins": 9,
@@ -130,13 +130,13 @@
       "skins": 2,
       "mean": 0.32,
       "worst": 0.43,
-      "checkedAt": "2026-10-01T13:39:13.591Z"
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "HeroCarousel": {
       "skins": 3,
       "mean": 1.93,
       "worst": 2.15,
-      "checkedAt": "2026-09-30T20:39:19.115Z"
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "HubCards": {
       "skins": 1,
@@ -172,7 +172,7 @@
       "skins": 12,
       "mean": 4.44,
       "worst": 7,
-      "checkedAt": "2026-10-01T13:39:13.591Z"
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "Media": {
       "skins": 6,
@@ -220,7 +220,7 @@
       "skins": 1,
       "mean": 3.01,
       "worst": 3.01,
-      "checkedAt": "2026-10-01T13:39:13.591Z"
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "PeopleDirectory": {
       "skins": 1,
@@ -238,7 +238,7 @@
       "skins": 1,
       "mean": 3.58,
       "worst": 3.58,
-      "checkedAt": "2026-09-30T01:40:41.531Z"
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "RailNav": {
       "skins": 1,
@@ -276,11 +276,17 @@
       "worst": 2.48,
       "checkedAt": "2026-09-30T14:19:03.471Z"
     },
+    "Shell": {
+      "skins": 5,
+      "mean": 0.11,
+      "worst": 0.21,
+      "checkedAt": "2026-10-03T15:03:33.509Z"
+    },
     "SiteFooter": {
       "skins": 1,
       "mean": 4.32,
       "worst": 4.32,
-      "checkedAt": "2026-10-01T13:39:13.591Z"
+      "checkedAt": "2026-10-03T14:31:58.684Z"
     },
     "SiteHeader": {
       "skins": 4,

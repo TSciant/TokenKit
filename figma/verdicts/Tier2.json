@@ -492,6 +492,34 @@
       "diff": "Disclosure is an animation wrapper with nothing of its own to draw; GuidancePair is two Guidance side by side; ModalTrigger is a Button that opens a Modal",
       "pull": "Accept",
       "result": "covered by Guidance, Modal and Button; no component of their own in the design"
+    },
+    {
+      "component": "Button (sm), ContactCta, ArrowCta",
+      "driftType": "Design execution != live execution",
+      "diff": "the small solid button reads 12 to 14 against 3 to 6 for medium and large. The design is exact (12px Manrope Medium, same padding); what differs is 12px light text on a dark ground, which Chromium hints to the pixel grid and Figma does not, plus a 0.7px width the browser keeps and Figma rounds up. Setting the Figma width to the live 64.31 only moved it to 12.2, and disabling subpixel text and hinting in the checker made wrapped text elsewhere worse (FeatureGrid 5.3 to 10.5, Eyebrow 27 to 26 by luck)",
+      "pull": "Accept",
+      "result": "left as drawn; every other size and the 11 components that had gone stale since the last check were re-checked at their old numbers (Masthead 1.9 to 7.0, ProofStrip 3.6, PageHero 3.0, SiteFooter 4.3, FeatureGrid 5.3, EventPromo 5.6, ArticleFeed 4.6, HeroCarousel 1.6 to 2.2, HeaderSearch 0.2 and 0.4), so nothing needed re-aligning"
+    },
+    {
+      "component": "Gauge",
+      "driftType": "Covered",
+      "diff": "Gauge is a deprecated re-export of Tachometer under its old name; it has no surface of its own",
+      "pull": "Accept",
+      "result": "covered by the Tachometer stand-in; no component of its own in the design"
+    },
+    {
+      "component": "Shell",
+      "driftType": "New design",
+      "diff": "the shells had no design at all, though every pattern is built from them; they paint nothing, so there is no look to compare, only how children sit",
+      "pull": "Align",
+      "result": "drawn as auto-layout frames with the gap bound to space/4 and the docs’ placeholder cells: stack, row, grid (three fixed columns), split and sidebar, all within 0.2 of the live shells. Split and sidebar are drawn at 800 because below their wrap point they stack, which a Figma frame does not do; inline (a row, centre-aligned) and center (a width cap) draw nothing the others do not"
+    },
+    {
+      "component": "MotionFx, PresencePanel",
+      "driftType": "Not drawn",
+      "diff": "motion is a change over time (reveal, parallax, a panel that opens and closes); a still frame has nothing to compare, and the kit’s own rule is that nothing moves on scroll-in",
+      "pull": "Accept",
+      "result": "left out of the design on purpose; the durations and easings are the tk-motion tokens, which the Tokens panel already shows, and the onion check already photographs components with motion switched off"
     }
   ],
   "promotion": [

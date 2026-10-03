@@ -96,3 +96,40 @@ export const GridCollapses: Story = {
     </div>
   ),
 };
+
+/* The five shells that draw something, each in a 480px box (split and sidebar in 800, where they stop wrapping) with the same
+   placeholder cells the docs use, so the Figma component can be laid over it.
+   Inline and center are the same boxes with a different alignment and a width
+   cap, which at 480px draw nothing the others do not. */
+const ONION_KINDS = {
+  stack: { count: 3, props: {} },
+  row: { count: 3, props: {}, cell: { inlineSize: "8rem" } },
+  grid: { count: 6, props: { cols: 3 as const, fixed: true } },
+  split: { count: 2, props: {}, width: 800 },
+  sidebar: { count: 2, props: {}, width: 800 },
+} as const;
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { kind: "stack", gap: 4 },
+  parameters: {
+    layout: "padded",
+    docs: { description: { story: "The Figma Shell laid over this one at 480px (800 for split and sidebar): stack, row, grid (three fixed columns), split and sidebar, each holding the same placeholder cells at gap 4. Switch Onion in the toolbar; kind in Controls picks the skin." } },
+    onion: { component: "Shell", target: "root", skin: (a: Record<string, unknown>) => `${(a.kind as string) ?? "stack"}.png` },
+  },
+  render: (args) => {
+    const k = ONION_KINDS[(args.kind as keyof typeof ONION_KINDS) ?? "stack"] ?? ONION_KINDS.stack;
+    const cell = "cell" in k ? k.cell : undefined;
+    return (
+      <div style={{ inlineSize: "width" in k ? k.width : 480 }}>
+        <Shell kind={args.kind} gap={args.gap} {...k.props}>
+          {Array.from({ length: k.count }, (_, i) => (
+            <div className="tk-cell" key={i} style={cell}>
+              {i + 1}
+            </div>
+          ))}
+        </Shell>
+      </div>
+    );
+  },
+};

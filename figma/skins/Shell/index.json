@@ -1,0 +1,1 @@
+{ "component": "Shell", "node": "190:523", "skins": { "stack.png": { "w": 480, "h": 188 }, "row.png": { "w": 480, "h": 52 }, "grid.png": { "w": 480, "h": 120 }, "split.png": { "w": 800, "h": 52 }, "sidebar.png": { "w": 800, "h": 52 } } }

@@ -647,6 +647,14 @@
       "target": "root",
       "settle": 600,
       "doc": "A picture of the live dial laid over the live dial: a canvas drawn in script is not a layout Figma can draw, so the Figma component is a frozen capture in two states (72% ALIGN, and pegged at 92% MEANT). It proves the frame, size and ground, not the drawing. Switch Onion in the toolbar."
+    },
+    "Shell": {
+      "story": "03-foundations-03-composition--onion-skin",
+      "pattern": [
+        "kind"
+      ],
+      "target": "root",
+      "doc": "The Figma Shell laid over this one at 480px (800 for split and sidebar): stack, row, grid with three fixed columns, split and sidebar, each holding the same placeholder cells at gap 4. Switch Onion in the toolbar; kind in Controls picks the skin."
     }
   }
 }
