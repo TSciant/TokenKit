@@ -577,6 +577,76 @@
         }
       },
       "doc": "The Figma HeaderSearch laid over this one (they are the same control: a quiet icon button that opens a 224px input), closed and open, in the 1024px box the story gives it. Switch Onion in the toolbar."
+    },
+    "SkipLink": {
+      "story": "04-primitives-21-skip-link--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma component laid over this one in its focused state (the only state there is to see): a raised box with a focus-colour border and the focus ring outside it, 8px in from the corner. The story forces the state with an inline style, because a screenshot cannot Tab. Switch Onion in the toolbar."
+    },
+    "Arrow": {
+      "story": "04-primitives-29-arrow--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "target": "root",
+      "doc": "The Figma component laid over this one at the 16px it is drawn at."
+    },
+    "Map": {
+      "story": "04-primitives-15-map--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "settle": 1500,
+      "doc": "The Figma Map laid over this one at 480px wide. The basemap is a flat stand-in, so what is compared is the frame, its corner and the controls (zoom, fullscreen, scale, attribution, marker); a real basemap is the tile server’s drawing. Switch Onion in the toolbar."
+    },
+    "SegmentList": {
+      "story": "05-patterns-08-segment-list--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "settle": 1500,
+      "args": {
+        "mapStyle": "data:application/json,%7B%22version%22%3A8%2C%22sources%22%3A%7B%22flat%22%3A%7B%22type%22%3A%22raster%22%2C%22tiles%22%3A%5B%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP49esnAAXfAu7EA17oAAAAAElFTkSuQmCC%22%5D%2C%22tileSize%22%3A256%2C%22attribution%22%3A%22%5Cu00a9%20CARTO%2C%20%5Cu00a9%20OpenStreetMap%20contributors%22%7D%7D%2C%22layers%22%3A%5B%7B%22id%22%3A%22ground%22%2C%22type%22%3A%22raster%22%2C%22source%22%3A%22flat%22%7D%5D%7D"
+      },
+      "doc": "The Figma SegmentList laid over this one at 1024px: the copy and the audiences list on the left, the map and the reach list on the right. The map is a flat stand-in basemap (no tiles are fetched), so what is compared is the layout and the controls. Switch Onion in the toolbar."
+    },
+    "Tachometer": {
+      "story": "04-primitives-14-tachometer--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {},
+        "pegged": {
+          "value": 0.92,
+          "label": "MEANT",
+          "reading": "≈Got"
+        }
+      },
+      "target": "root",
+      "settle": 600,
+      "doc": "A picture of the live dial laid over the live dial: a canvas drawn in script is not a layout Figma can draw, so the Figma component is a frozen capture in two states (72% ALIGN, and pegged at 92% MEANT). It proves the frame, size and ground, not the drawing. Switch Onion in the toolbar."
     }
   }
 }

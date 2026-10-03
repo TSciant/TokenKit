@@ -12,6 +12,12 @@
       "worst": 7.72,
       "checkedAt": "2026-09-30T14:16:22.803Z"
     },
+    "Arrow": {
+      "skins": 1,
+      "mean": 0.72,
+      "worst": 0.72,
+      "checkedAt": "2026-10-03T13:31:43.054Z"
+    },
     "ArrowCta": {
       "skins": 9,
       "mean": 4.82,
@@ -156,6 +162,12 @@
       "worst": 20.38,
       "checkedAt": "2026-10-02T11:57:14.255Z"
     },
+    "Map": {
+      "skins": 1,
+      "mean": 1.2,
+      "worst": 1.2,
+      "checkedAt": "2026-10-03T13:37:54.271Z"
+    },
     "Masthead": {
       "skins": 12,
       "mean": 4.44,
@@ -252,6 +264,12 @@
       "worst": 6.3,
       "checkedAt": "2026-10-01T13:37:42.592Z"
     },
+    "SegmentList": {
+      "skins": 1,
+      "mean": 1.7,
+      "worst": 1.7,
+      "checkedAt": "2026-10-03T13:41:50.118Z"
+    },
     "SegmentPage": {
       "skins": 1,
       "mean": 2.48,
@@ -270,11 +288,23 @@
       "worst": 4.93,
       "checkedAt": "2026-09-30T01:40:41.531Z"
     },
+    "SkipLink": {
+      "skins": 1,
+      "mean": 6.55,
+      "worst": 6.55,
+      "checkedAt": "2026-10-03T13:31:11.516Z"
+    },
     "SubBrandPage": {
       "skins": 1,
       "mean": 1.93,
       "worst": 1.93,
       "checkedAt": "2026-09-30T14:20:38.238Z"
+    },
+    "Tachometer": {
+      "skins": 2,
+      "mean": 1.45,
+      "worst": 2.89,
+      "checkedAt": "2026-10-03T13:43:55.235Z"
     },
     "TileGrid": {
       "skins": 1,

@@ -1,0 +1,1 @@
+{ "component": "Tachometer", "node": "186:485", "skins": { "default.png": { "w": 448, "h": 352 }, "pegged.png": { "w": 448, "h": 352 } } }

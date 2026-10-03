@@ -47,3 +47,17 @@ export const Pegged: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { value: 0.72, label: "ALIGN", reading: "72%", animated: false },
+  parameters: {
+    docs: { description: { story: "The Figma stand-in laid over this one: a picture of the dial at rest (needle at 72%, then pegged at 92%), because a canvas drawn in script is not a layout Figma can draw. Needle and glow are frozen so the picture is repeatable. Switch Onion in the toolbar." } },
+    onion: { component: "Tachometer", target: "root", skin: (a: Record<string, unknown>) => (a.value === 0.92 ? "pegged.png" : "default.png") },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: "28rem", blockSize: "22rem" }}>
+      <Tachometer {...args} />
+    </div>
+  ),
+};

@@ -414,6 +414,8 @@ export type SegmentListProps = {
   mapLabel?: string;
   /** false drops the map and gives the copy the full width. */
   showMap?: boolean;
+  /** A MapLibre style URL or JSON, passed to the map. Leave it out for the pack's basemap; set it for an offline or house basemap. */
+  mapStyle?: string;
 };
 
 export const SEGMENT_HEADING = ipsumHeadline("segment-list-heading");
@@ -433,6 +435,7 @@ export function SegmentList({
   reachLabel = SEGMENT_REACH_LABEL,
   mapLabel = SEGMENT_MAP_LABEL,
   showMap = true,
+  mapStyle,
 }: SegmentListProps = {}) {
   return (
     <section
@@ -478,6 +481,7 @@ export function SegmentList({
             scale={false}
             marker={false}
             ratio="1 / 1"
+            mapStyle={mapStyle}
           />
           <ul
             data-shell="stack"
@@ -503,12 +507,12 @@ export function SegmentList({
                 key={item}
                 data-shell="row"
                 data-gap="2"
-                style={{ alignItems: "baseline" }}
+                style={{ alignItems: "baseline", flexWrap: "nowrap" }}
               >
                 <span aria-hidden="true" style={{ color: "var(--tk-text-tertiary)" }}>
                   ·
                 </span>
-                <span style={{ color: "var(--tk-text-secondary)" }}>{item}</span>
+                <span style={{ color: "var(--tk-text-secondary)", minInlineSize: 0 }}>{item}</span>
               </li>
             ))}
           </ul>

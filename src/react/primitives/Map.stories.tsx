@@ -112,3 +112,28 @@ export const Compact: Story = {
     </div>
   ),
 };
+
+/* A basemap that needs no network: one flat tile and the attribution a real one
+   carries, so the skin compares the map's frame and controls and not whichever
+   tiles the tile server returned that day. */
+const FLAT_TILE =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP49esnAAXfAu7EA17oAAAAAElFTkSuQmCC";
+const STAND_IN_STYLE =
+  "data:application/json," +
+  encodeURIComponent(
+    JSON.stringify({
+      version: 8,
+      sources: { flat: { type: "raster", tiles: [FLAT_TILE], tileSize: 256, attribution: "© CARTO, © OpenStreetMap contributors" } },
+      layers: [{ id: "ground", type: "raster", source: "flat" }],
+    }),
+  );
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: { scheme: "light", mapStyle: STAND_IN_STYLE, navigation: true, scale: true, fullscreen: true, marker: true, zoom: 11, label: "Metro area map" },
+  parameters: {
+    docs: { description: { story: "The Figma component laid over this one at 480px wide. The basemap is a flat stand-in (no tiles are fetched), so what is compared is the frame, its corner and the controls; a real basemap is the tile server's drawing. Switch Onion in the toolbar." } },
+    onion: { component: "Map", skin: () => "default.png", settle: 1500 },
+  },
+  decorators: [(Story) => <div style={{ inlineSize: 480 }}><Story /></div>],
+};

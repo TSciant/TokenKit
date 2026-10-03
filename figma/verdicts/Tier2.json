@@ -459,18 +459,39 @@
       "result": "the two colours are literals (the wireframe pair; a brand replaces them), noted on the component; the conic diagonals come out at 3.1 and 3.4 and the rest within 1.5"
     },
     {
-      "component": "Tachometer, Map, SegmentList",
-      "driftType": "Paused",
-      "diff": "the Tachometer is a canvas drawn and animated in script, and the Map is a MapLibre canvas of live tiles; neither is a layout Figma can draw, and SegmentList carries the map",
-      "pull": "Pause",
-      "result": "left out of the design on purpose. If they are wanted, they are an image stand-in with a box, a corner and a caption, like Plate: the comparison would say the frame agrees, not the drawing"
+      "component": "Tachometer",
+      "driftType": "Stand-in",
+      "diff": "the dial is a canvas drawn and animated in script, which Figma cannot draw",
+      "pull": "Accept",
+      "result": "the Figma component is a frozen capture of the live dial in two states (72% ALIGN, pegged 92% MEANT), photographed over the checker ground with the needle still; the check says the frame, size and ground agree (mean 0.0 and 2.9), not the drawing. Change the code, then re-capture"
     },
     {
-      "component": "GuidancePair, ModalTrigger",
-      "driftType": "Covered",
-      "diff": "GuidancePair is two Guidance side by side and ModalTrigger is a Button that opens a Modal: neither has a surface of its own",
+      "component": "Map",
+      "driftType": "Stand-in",
+      "diff": "the basemap is the tile server’s drawing, not the design; the controls are MapLibre’s own DOM in an Arial-family face, and Figma has no Arial (Arimo, its metric twin, is used)",
       "pull": "Accept",
-      "result": "covered by Guidance (the Do and Don't variants), Modal and Button; no component of their own in the design"
+      "result": "drawn at 480 by 270 over a flat basemap the story also uses (no tiles fetched): the frame, its nested corner, zoom group, fullscreen, scale, attribution and marker agree (mean 1.2)"
+    },
+    {
+      "component": "SegmentList",
+      "driftType": "Live execution != live intent",
+      "diff": "measuring the list found a real bug: each reach item was a wrapping row, so its bullet sat alone on one line and the text dropped under it",
+      "pull": "Align",
+      "result": "the rows no longer wrap (flex-wrap: nowrap, text min-inline-size 0) and a mapStyle prop passes a basemap through so the check is repeatable; drawn at 1024 with Arrow instances and the Map frame at 472 square (mean 1.7)"
+    },
+    {
+      "component": "Arrow, SkipLink",
+      "driftType": "Design execution != live execution",
+      "diff": "Arrow was fifteen hand-drawn copies across the design; SkipLink was never drawn because it is hidden until focused",
+      "pull": "Align",
+      "result": "Arrow is one component (stroke bound to ink) used as instances everywhere, identical to the old drawings (HubCards 0.0; Arrow 0.7); SkipLink is drawn in its focused state (mean 6.6, text weight only)"
+    },
+    {
+      "component": "Disclosure, GuidancePair, ModalTrigger",
+      "driftType": "Covered",
+      "diff": "Disclosure is an animation wrapper with nothing of its own to draw; GuidancePair is two Guidance side by side; ModalTrigger is a Button that opens a Modal",
+      "pull": "Accept",
+      "result": "covered by Guidance, Modal and Button; no component of their own in the design"
     }
   ],
   "promotion": [

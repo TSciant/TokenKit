@@ -73,6 +73,10 @@ const meta = {
       control: "boolean",
       description: "false drops the map and gives the copy the full width.",
     },
+    mapStyle: {
+      control: "text",
+      description: "A MapLibre style URL or JSON, passed to the map. Leave it out for the pack's basemap; set it for an offline or house basemap.",
+    },
   },
   args: {
     heading: marketing.SEGMENT_HEADING,
@@ -90,4 +94,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   name: "Segment list",
+};
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  args: {"mapStyle":"data:application/json,%7B%22version%22%3A8%2C%22sources%22%3A%7B%22flat%22%3A%7B%22type%22%3A%22raster%22%2C%22tiles%22%3A%5B%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP49esnAAXfAu7EA17oAAAAAElFTkSuQmCC%22%5D%2C%22tileSize%22%3A256%2C%22attribution%22%3A%22%5Cu00a9%20CARTO%2C%20%5Cu00a9%20OpenStreetMap%20contributors%22%7D%7D%2C%22layers%22%3A%5B%7B%22id%22%3A%22ground%22%2C%22type%22%3A%22raster%22%2C%22source%22%3A%22flat%22%7D%5D%7D"},
+  parameters: {
+    docs: { description: { story: "The Figma SegmentList laid over this one at 1024px: the copy and the audiences list on the left, the map and the reach list on the right. The map is a flat stand-in basemap (no tiles are fetched), so what is compared is the layout and the controls. Switch Onion in the toolbar." } },
+    onion: {
+      component: "SegmentList",
+      target: "root",
+      skin: () => "default.png",
+    },
+  },
 };
