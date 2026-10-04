@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "./Button";
 
@@ -64,16 +65,19 @@ const meta = {
     docs: {
       description: {
         component:
-          "05.01 — Primary actions. Variants solid / outline / quiet. Size sm|md|lg. Bound icon: pass `icon` + `iconPosition` (leading|trailing); or compose with `leading` / `trailing`. Icon-only when there is no label — set `aria-label`. On a scrim, pack tokens supply the pair. Prefer solid for the single conversion on a hero; quiet for tertiary. Use for: Primary and secondary actions, form submits, in-page CTAs, header Contact, icon CTAs and icon-only chrome. Don't use for: Navigation between pages (use a link), long explanatory copy, more than one solid CTA in the same cluster, or icon-only without an accessible name.",
+          "05.01 — Primary actions. Variants solid / outline / quiet, crossed with tone neutral / danger. Size sm|md|lg. `pressed` makes a toggle (aria-pressed). Bound icon: pass `icon` + `iconPosition` (leading|trailing); or compose with `leading` / `trailing`. Icon-only when there is no label — set `aria-label`. On a scrim, pack tokens supply the pair. Prefer solid for the single conversion on a hero; quiet for tertiary. Use for: Primary and secondary actions, form submits, in-page CTAs, header Contact, icon CTAs and icon-only chrome. Don't use for: Navigation between pages (use a link), long explanatory copy, more than one solid CTA in the same cluster, or icon-only without an accessible name.",
       },
     },
   },
   argTypes: {
     variant: { control: "inline-radio", options: ["solid", "outline", "quiet"] },
+    tone: { control: "inline-radio", options: ["neutral", "danger"] },
+    pressed: { control: "boolean", description: "Set (true or false) to make a toggle; leave unset for an ordinary button." },
     size: { control: "inline-radio", options: ["sm", "md", "lg"] },
     full: { control: "boolean" },
     disabled: { control: "boolean" },
     busy: { control: "boolean" },
+    reason: { control: "text", description: "Why a disabled button is unavailable; shown on hover and focus, read as its description." },
     href: { control: "text" },
     iconPosition: {
       control: "inline-radio",
@@ -104,7 +108,7 @@ export const OnionSkin: Story = {
     onion: {
       component: "Button",
       skin: (a: Record<string, unknown>) =>
-        `${(a.variant as string) ?? "solid"}-${(a.size as string) ?? "md"}-${a.disabled ? "disabled" : "default"}.png`,
+        `${(a.variant as string) ?? "solid"}-${(a.size as string) ?? "md"}-${a.disabled ? "disabled" : a.pressed ? "pressed" : "default"}${a.tone === "danger" ? "-danger" : ""}.png`,
     },
   },
 };
@@ -215,6 +219,93 @@ export const Variants: Story = {
       <Button variant="quiet">Quiet</Button>
       <Button disabled>Disabled</Button>
     </div>
+  ),
+};
+
+export const Danger: Story = {
+  name: "Tone: danger",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Tone is crossed with variant, not a fourth variant: solid danger for the final, irreversible confirmation; outline or quiet danger for a destructive action that is not the main one (a Remove beside each row). The colour comes from the pack (`--tk-action-danger-*`); the wireframe has none, so there a danger button looks like any other and the label carries the consequence, which it has to anyway. Switch Pack in the toolbar to see the brands' danger colours. Wanda's danger is ink, because red is already its primary action.",
+      },
+    },
+  },
+  render: () => (
+    <div data-shell="stack" data-gap="3">
+      <div data-shell="inline" data-gap="2">
+        <Button variant="quiet">Cancel</Button>
+        <Button tone="danger">Delete project</Button>
+      </div>
+      <div data-shell="inline" data-gap="2">
+        <Button variant="outline" tone="danger">Remove</Button>
+        <Button variant="quiet" tone="danger">Remove</Button>
+        <Button tone="danger" disabled>Delete project</Button>
+      </div>
+    </div>
+  ),
+};
+
+function ToggleDemo() {
+  const [bold, setBold] = useState(true);
+  const [italic, setItalic] = useState(false);
+  const [view, setView] = useState<"grid" | "list">("grid");
+  return (
+    <div data-shell="stack" data-gap="3">
+      <div data-shell="inline" data-gap="2" role="group" aria-label="Text style">
+        <Button pressed={bold} onClick={() => setBold(!bold)}>Bold</Button>
+        <Button pressed={italic} onClick={() => setItalic(!italic)}>Italic</Button>
+      </div>
+      <div data-shell="inline" data-gap="2" role="group" aria-label="Text style, quiet">
+        <Button variant="quiet" pressed={bold} onClick={() => setBold(!bold)}>Bold</Button>
+        <Button variant="quiet" pressed={italic} onClick={() => setItalic(!italic)}>Italic</Button>
+      </div>
+      <div data-shell="inline" data-gap="2" role="group" aria-label="View">
+        <Button pressed={view === "grid"} onClick={() => setView("grid")}>Grid</Button>
+        <Button pressed={view === "list"} onClick={() => setView("list")}>List</Button>
+      </div>
+    </div>
+  );
+}
+
+export const Pressed: Story = {
+  name: "Pressed (toggle)",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`pressed` makes a toggle: true or false renders `aria-pressed`, unset is an ordinary button. On, an outline or quiet toggle takes the inverse surface, the same look as a pressed Chip, so the kit has one way of saying \"this is on\". A toggle defaults to outline. Two independent toggles (Bold, Italic) and a pair where one is always on (Grid, List): for more than two exclusive choices, use a radio group or segmented control instead, because a toggle announces on and off, not one of many.",
+      },
+    },
+  },
+  render: () => <ToggleDemo />,
+};
+
+export const DisabledWithReason: Story = {
+  name: "Disabled, with a reason",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A disabled button stays in the tab order: it is `aria-disabled`, never the native attribute, so a keyboard or screen-reader user can still reach it and find out why it does nothing. Clicks, Enter, Space and a form's implicit submit are all blocked at the click. `reason` is shown under the button on hover and on keyboard focus (Tab to it), and is read as the button's description whether or not it is showing. Busy buttons stay focusable the same way. Better still is not disabling at all and validating on submit, which is what GOV.UK and Atlassian both advise; this is for when the action really cannot happen yet.",
+      },
+    },
+  },
+  render: () => (
+    <form data-shell="stack" data-gap="3" style={{ paddingBlockEnd: "var(--tk-space-7)" }} onSubmit={(e) => e.preventDefault()}>
+      <div data-shell="inline" data-gap="2">
+        <Button type="submit" disabled reason="Fill in your name and email first.">
+          Send
+        </Button>
+        <Button variant="outline" disabled reason="Nothing has changed since you last saved.">
+          Save
+        </Button>
+        <Button variant="quiet" tone="danger" disabled reason="Only the owner can delete this project.">
+          Delete
+        </Button>
+      </div>
+    </form>
   ),
 };
 

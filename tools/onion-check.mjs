@@ -38,6 +38,11 @@ for (const [name, def] of Object.entries(map)) {
   const dir = resolve(ROOT, `figma/skins/${def.skinsFrom ?? name}`);
   for (const f of readdirSync(dir).filter((x) => x.endsWith(".png"))) {
     const parts = f.slice(0, -4).split("-");
+    /* A trailing axis is optional: Button's `tone` is only in the file name
+       when it is not the default (solid-md-default.png, solid-md-default-
+       danger.png). A component that borrows those skins with a shorter
+       pattern skips the longer names instead of misreading them. */
+    if (parts.length > def.pattern.length) continue;
     const args = {};
     let skip = false;
     let viewport = def.viewport ?? 1000;
@@ -49,7 +54,7 @@ for (const [name, def] of Object.entries(map)) {
       if (axis === "state") {
         const st = def.states?.[val];
         if (!st) skip = true; else Object.assign(args, st);
-      } else args[axis] = parse(val);
+      } else if (val !== undefined) args[axis] = parse(val);
     });
     if (!skip) cases.push({ name, story: def.story, file: f, args, viewport, target: def.target, settle: def.settle ?? 0, still: !!def.still, skin: readFileSync(resolve(dir, f)).toString("base64") });
   }

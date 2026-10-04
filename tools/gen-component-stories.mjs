@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Generate the Storybook stories for the 25 composed patterns.
+ * Generate the Storybook stories for the 26 composed patterns.
  *
  * Storybook shows a Controls panel when a story declares what its component
  * takes. These twenty-five started life as fixed compositions — no props at
@@ -91,6 +91,7 @@ const STORIES = [
   ["23", "Article page", "templates", "ArticlePage"],
   ["24", "Event list", "catalog", "EventList"],
   ["25", "Apply form", "templates", "ApplyForm"],
+  ["26", "Hero", "marketing", "Hero"],
 ];
 
 const MODULES = ["chrome", "marketing", "catalog", "templates"];

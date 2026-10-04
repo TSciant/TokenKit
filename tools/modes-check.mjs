@@ -49,7 +49,7 @@ export const MODES = [
   ["density-compact", "wireframe", "compact"],
   ["density-comfortable", "wireframe", "comfortable"],
 ];
-const PRIMITIVE_SLOTS = { Button: [24, 24, 120, 50], Chip: [24, 96, 120, 40], Card: [24, 160, 340, 260], Alert: [400, 24, 400, 110], Field: [400, 160, 340, 90], Meter: [400, 300, 260, 60] };
+const PRIMITIVE_SLOTS = { Button: [24, 24, 120, 50], ButtonDanger: [160, 24, 120, 50], Chip: [24, 96, 120, 40], Card: [24, 160, 340, 260], Alert: [400, 24, 400, 110], Field: [400, 160, 340, 90], Meter: [400, 300, 260, 60] };
 
 const only = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 const b = await chromium.launch();

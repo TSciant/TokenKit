@@ -548,6 +548,27 @@
       "diff": "the primitive sheets pass under every pack; patterns are where a pack’s typography and proportions show",
       "pull": "Align",
       "result": "ten more frames, compared by the same tool (figma/modes/patterns-<mode>.png): seven of ten read 3.3 to 7.3. Three are accepted with ceilings and reasons in figma/modes/ceilings.json: door-shop (13: its display face and case are not carried per pack), muncheese (20: plate/min is 128 there and the drawn plate is a fixed square) and compact (10: footer links wrap in the file and not in the code)"
+    },
+    {
+      "component": "Hero",
+      "driftType": "New pattern",
+      "diff": "token-kit had a scrim carousel and an inner-page band but no static hero; a one-slide carousel was the only way to get one, and it drew a pager for a deck of one",
+      "pull": "Align",
+      "result": "Hero (pattern 26), from the ds-corpus hero brief: eyebrow, title, lede, actions and a visual, all optional but the title; layout stacked or split (split wraps to stacked by the box, copy first in the DOM either way); the plate loads eagerly at high priority and holds its ratio. Figma set Layout=stacked/split with Eyebrow, ArrowCta and Button instances and a captured plate; onion 1.25 and 2.40. HeroCarousel no longer draws a pager for one slide"
+    },
+    {
+      "component": "HeroCarousel, section lists, SearchResults, motion defaults",
+      "driftType": "Live execution != live intent",
+      "diff": "the kit animated things in: the hero copy rose in a four-step stagger and its photograph settled from a 1.04 zoom on load, list children landed in sequence (data-tk=\"stagger\"), search results rose in row by row, and every inferred fx recipe revealed on scroll-in. The rule is that nothing moves because it arrived",
+      "pull": "Align",
+      "result": "all removed: the keyframes are gone, data-tk=\"stagger\" is gone from the patterns, and fx={true} now infers parallax only (scroll-linked, not scroll-triggered). An explicit fx=\"rise\" still works for a product that asks. Final states are unchanged, so no skin moved; one side effect fixed: under reduced motion the hero photograph had lost its grayscale filter"
+    },
+    {
+      "component": "InlineForm",
+      "driftType": "New primitive",
+      "diff": "the hero brief’s input-capture pattern needed one field and a submit on one line, and the kit had Field and Button but nothing that put them in a row with one height, a shared label and a wrap that keeps reading order",
+      "pull": "Align",
+      "result": "InlineForm (primitive 30): a real form (Enter submits, works without JavaScript given an action, native validation from type and required), a label that is always present (hideLabel only takes it off screen), hint and error on aria-describedby, and a row that wraps field-first. It reuses field.css and the Button, so the only new CSS is the row. Hero takes actions=\"capture\" to host it with the CTA as the submit. Figma set InlineForm (State=default, error) with a Button instance; onion 2.8 and 3.4, after drawing the invalid field 2px taller, as the code makes it (the 2px border grows the input and the button stretches with it)"
     }
   ],
   "promotion": [

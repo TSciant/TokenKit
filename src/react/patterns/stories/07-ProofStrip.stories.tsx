@@ -20,6 +20,7 @@ const meta = {
   argTypes: {
     heading: {
       control: "text",
+      description: "Leave empty (with deck) for the facts alone, as a strip under a hero.",
       table: {
         defaultValue: {
           summary: "PROOF_HEADING",

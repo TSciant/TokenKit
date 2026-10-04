@@ -55,9 +55,12 @@
     --house-ink-faint: #798697;
     --house-violet: #7C3AED;
     --house-ink-quiet: #5A687D;
+    --house-danger: #B91C1C;
     --house-violet-dark: #6D28D9;
     --house-ink-soft: #475569;
+    --house-danger-dark: #991B1B;
     --house-violet-darker: #5B21B6;
+    --house-danger-darker: #7F1D1D;
     --house-ink: #0F172A;
     --house-wash: #000000;
 
@@ -92,6 +95,17 @@
     --tk-action-quiet-fill-hover: var(--house-fog);
     --tk-action-quiet-fill-active: var(--house-rule-faint);
     --tk-action-quiet-text: var(--house-violet);
+
+    /* action, danger tone — a second axis on the button, not a fourth
+       variant: danger-text clears 4.5:1 on all three fills, and
+       danger-quiet-text (outline and quiet) clears 4.5:1 on every surface.
+       Optional in the contract: a pack without them gets its action
+       colours, which is what the grayscale wireframe wants. */
+    --tk-action-danger-fill: var(--house-danger);
+    --tk-action-danger-fill-hover: var(--house-danger-dark);
+    --tk-action-danger-fill-active: var(--house-danger-darker);
+    --tk-action-danger-text: var(--house-paper);
+    --tk-action-danger-quiet-text: var(--house-danger);
 
     /* focus — clears 3:1 against every surface it can land on */
     --tk-focus-color: var(--house-violet);
@@ -277,6 +291,14 @@
     --tk-action-quiet-fill-active: color-mix(in srgb, var(--house-paper) 22%, transparent);
     --tk-action-quiet-text: var(--house-paper);
 
+    /* A brand's danger red has no guarantee on the inverse plate, so danger
+       here is the plate's own action colour; the label carries the meaning. */
+    --tk-action-danger-fill: var(--tk-action-fill);
+    --tk-action-danger-fill-hover: var(--tk-action-fill-hover);
+    --tk-action-danger-fill-active: var(--tk-action-fill-active);
+    --tk-action-danger-text: var(--tk-action-text);
+    --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
+
     --tk-focus-color: var(--house-paper);
     --tk-data-ink: var(--house-paper);
 
@@ -335,6 +357,12 @@
     --tk-action-quiet-fill-hover: color-mix(in srgb, var(--tk-scrim-ink) 88%, transparent);
     --tk-action-quiet-fill-active: color-mix(in srgb, var(--tk-scrim-ink) 94%, transparent);
     --tk-action-quiet-text: #ffffff;
+
+    --tk-action-danger-fill: var(--tk-action-fill);
+    --tk-action-danger-fill-hover: var(--tk-action-fill-hover);
+    --tk-action-danger-fill-active: var(--tk-action-fill-active);
+    --tk-action-danger-text: var(--tk-action-text);
+    --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
 
     --tk-focus-color: #ffffff;
 

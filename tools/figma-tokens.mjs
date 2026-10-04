@@ -46,7 +46,16 @@ const DENSITY_MODES = {
 
 /* The variables Figma holds that a probe can read. Name -> css custom property. */
 const css = (n) => "--tk-" + n.replace(/\//g, "-");
+/* Optional tokens resolve through the fallback the component uses, so the
+   variable holds what a pack without them actually paints. */
+const FALLBACK = {
+  "action/danger-fill": "--tk-action-fill", "action/danger-fill-hover": "--tk-action-fill-hover",
+  "action/danger-fill-active": "--tk-action-fill-active", "action/danger-text": "--tk-action-text",
+  "action/danger-quiet-text": "--tk-action-quiet-text",
+};
+const prop = (n) => (FALLBACK[n] ? `${css(n)}, var(${FALLBACK[n]})` : css(n));
 const COLOR = `action/fill action/fill-active action/fill-hover action/text action/quiet-fill action/quiet-fill-hover action/quiet-text
+ action/danger-fill action/danger-fill-hover action/danger-fill-active action/danger-text action/danger-quiet-text
  data/ink focus/color glass/fill glass/ink glass/line line/default line/strong line/subtle logo/ink logo/mark-ink logo/tagline-ink logo/tile logo/word-ink
  scrim/ink surface/base surface/default surface/inverse surface/raised surface/sunken text/disabled text/inverse text/on-scrim text/primary text/secondary text/tertiary
  texture/ink texture/paint status/danger-line status/danger-surface status/danger-text status/info-line status/info-surface status/info-text
@@ -79,7 +88,7 @@ async function read(mode, names, kind) {
       }
     }
     wrap.remove(); return out;
-  }, { names: names.map((n) => [n, css(n)]), kind, inverse: !!mode.inverse });
+  }, { names: names.map((n) => [n, prop(n)]), kind, inverse: !!mode.inverse });
 }
 
 const tk = {}, density = {}, type = {};

@@ -60,11 +60,14 @@
     --bagel-pink: #E11D7A;
     --bagel-pink-ui: #CE1B70; /* solved */
     --bagel-pink-ui-dark: #B71864; /* solved */
+    --bagel-danger: #B42318;
     --bagel-pink-ui-darker: #AC175E; /* solved */
     --bagel-ink-quiet: #8C4A34;
     --bagel-brown: #9A3412;
+    --bagel-danger-dark: #912018;
     --bagel-ink-soft: #7A3A2A;
     --bagel-brown-dark: #7C2A0E;
+    --bagel-danger-darker: #7A1A14;
     --bagel-brown-darker: #63220B;
     --bagel-ink: #5C1A1A;
     --bagel-wash: #000000;
@@ -100,6 +103,17 @@
     --tk-action-quiet-fill-hover: var(--bagel-cream);
     --tk-action-quiet-fill-active: var(--bagel-rule-faint);
     --tk-action-quiet-text: var(--bagel-brown);
+
+    /* action, danger tone — a second axis on the button, not a fourth
+       variant: danger-text clears 4.5:1 on all three fills, and
+       danger-quiet-text (outline and quiet) clears 4.5:1 on every surface.
+       Optional in the contract: a pack without them gets its action
+       colours, which is what the grayscale wireframe wants. */
+    --tk-action-danger-fill: var(--bagel-danger);
+    --tk-action-danger-fill-hover: var(--bagel-danger-dark);
+    --tk-action-danger-fill-active: var(--bagel-danger-darker);
+    --tk-action-danger-text: var(--bagel-paper);
+    --tk-action-danger-quiet-text: var(--bagel-danger);
 
     /* focus — clears 3:1 against every surface it can land on */
     --tk-focus-color: var(--bagel-pink-ui);
@@ -306,6 +320,14 @@
     --tk-action-quiet-fill-active: color-mix(in srgb, var(--bagel-paper) 22%, transparent);
     --tk-action-quiet-text: var(--bagel-paper);
 
+    /* A brand's danger red has no guarantee on the inverse plate, so danger
+       here is the plate's own action colour; the label carries the meaning. */
+    --tk-action-danger-fill: var(--tk-action-fill);
+    --tk-action-danger-fill-hover: var(--tk-action-fill-hover);
+    --tk-action-danger-fill-active: var(--tk-action-fill-active);
+    --tk-action-danger-text: var(--tk-action-text);
+    --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
+
     --tk-focus-color: var(--bagel-paper);
     --tk-data-ink: var(--bagel-paper);
 
@@ -364,6 +386,12 @@
     --tk-action-quiet-fill-hover: color-mix(in srgb, var(--tk-scrim-ink) 88%, transparent);
     --tk-action-quiet-fill-active: color-mix(in srgb, var(--tk-scrim-ink) 94%, transparent);
     --tk-action-quiet-text: #ffffff;
+
+    --tk-action-danger-fill: var(--tk-action-fill);
+    --tk-action-danger-fill-hover: var(--tk-action-fill-hover);
+    --tk-action-danger-fill-active: var(--tk-action-fill-active);
+    --tk-action-danger-text: var(--tk-action-text);
+    --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
 
     --tk-focus-color: #ffffff;
 

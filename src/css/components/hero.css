@@ -1,20 +1,69 @@
-/* Hero — cinematic cluster choreography + on-scrim control glass. */
+/* Hero — the scrim layout and its on-scrim controls.
+
+   Nothing here animates in. The copy used to rise in a four-step stagger and
+   the photograph used to settle from a 1.04 zoom on load; both are gone (an
+   entrance is a reveal whether it waits for scroll or not, and the kit does
+   not do reveals). What still moves is what the reader caused: the plate
+   cross-fades when they change slide. */
 @layer components {
-  @keyframes tk-hero-in {
-    from {
-      opacity: 0;
-      transform: translateY(0.65rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* --- the static hero ----------------------------------------------------
+     data-tk="hero" data-layout=split */
+  /* tk-default: data-layout=stacked */
+  :where([data-tk="hero"]) {
+    padding-block: var(--tk-space-8) var(--tk-space-7);
   }
 
-  @keyframes tk-hero-plate {
-    from { transform: scale(1.04); filter: grayscale(1) contrast(0.92) brightness(0.9); }
-    to { transform: scale(1); filter: grayscale(1) contrast(0.92) brightness(1.02); }
+  :where([data-tk="hero-body"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-7);
   }
+
+  :where([data-tk="hero-title"]) {
+    margin: 0;
+    font-size: var(--tk-size-4xl);
+    line-height: var(--tk-leading-tight);
+    max-inline-size: 18ch;
+    text-wrap: balance;
+  }
+
+  :where([data-tk="hero-lede"]) {
+    margin: 0;
+    max-inline-size: var(--tk-measure);
+    font-size: var(--tk-size-md);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="hero"] [data-tk="hero-actions"]) {
+    margin-block-start: var(--tk-space-2);
+    align-items: center;
+  }
+
+  :where([data-tk="hero-text"]),
+  :where([data-tk="hero-visual"]) {
+    min-inline-size: 0;
+  }
+
+  /* Split: copy and visual share the row, each at least a narrow measure,
+     and wrap to stacked when the box cannot hold two, so a split hero in a
+     narrow column stacks too. The copy stays first in the DOM, so the wrap
+     never reorders reading. */
+  :where([data-tk="hero"][data-layout="split"] [data-tk="hero-body"]) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  :where([data-tk="hero"][data-layout="split"] [data-tk="hero-text"]),
+  :where([data-tk="hero"][data-layout="split"] [data-tk="hero-visual"]) {
+    flex: 1 1 var(--tk-measure-narrow);
+  }
+
+  :where([data-tk="hero"][data-layout="split"] [data-tk="hero-title"]) {
+    font-size: var(--tk-size-3xl);
+  }
+
+  /* --- the scrim hero (HeroCarousel) ------------------------------------ */
 
     /* Hero: photo fills the frame; wash anchors from the bottom so the upper
      photograph stays clear and the text band gets the guarantee — no hard
@@ -28,22 +77,6 @@
     padding-block-end: var(--tk-space-7);
   }
 
-  :where([data-tk="hero-copy"]) {
-    animation: tk-hero-in var(--tk-duration-slow) var(--tk-ease-entrance) both;
-  }
-
-  :where([data-tk="hero-copy"] > *) {
-    animation: tk-hero-in var(--tk-duration-slow) var(--tk-ease-entrance) both;
-  }
-
-  :where([data-tk="hero-copy"] > *:nth-child(1)) { animation-delay: 0ms; }
-  :where([data-tk="hero-copy"] > *:nth-child(2)) { animation-delay: 70ms; }
-  :where([data-tk="hero-copy"] > *:nth-child(3)) { animation-delay: 130ms; }
-  :where([data-tk="hero-copy"] > *:nth-child(4)) { animation-delay: 200ms; }
-
-
-
-  
   /* Per-slide stock: plates stack in the scrim grid; only the active one shows. */
   :where([data-tk="hero-plate"]) {
     z-index: 0;
@@ -73,19 +106,6 @@
   :where([data-tk="hero-plate"][data-active]) {
     opacity: 1;
   }
-
-  :where([data-tk="hero-plate"][data-active] [data-tk="plate-media"]) {
-    animation: tk-hero-plate var(--tk-duration-slow) var(--tk-ease-entrance) both;
-    transform-origin: center;
-  }
-
-  :where([data-tk="scrim"] > [data-tk="plate"][data-stock] [data-tk="plate-media"]) {
-    animation: tk-hero-plate var(--tk-duration-slow) var(--tk-ease-entrance) both;
-    transform-origin: center;
-  }
-
-
-
 
   :where([data-tk="hero-actions"]) {
     margin-block-start: var(--tk-space-3);
@@ -189,13 +209,6 @@
       transition: none;
     }
 
-    :where([data-tk="hero-copy"]),
-    :where([data-tk="hero-copy"] > *),
-    :where([data-tk="scrim"] > [data-tk="plate"][data-stock] [data-tk="plate-media"]),
-    :where([data-tk="hero-plate"] [data-tk="plate-media"]) {
-      animation: none;
-      filter: none;
-    }
     :where([data-tk="hero-dot"])::before {
       transition: none;
     }

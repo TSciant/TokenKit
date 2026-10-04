@@ -6,6 +6,8 @@ export { Chip } from "./Chip";
 export type { ChipProps } from "./Chip";
 export { Field, VisuallyHidden } from "./Field";
 export type { FieldProps } from "./Field";
+export { InlineForm } from "./InlineForm";
+export type { InlineFormProps } from "./InlineForm";
 export { Meter } from "./Meter";
 export type { MeterProps } from "./Meter";
 export { Tachometer } from "./Tachometer";

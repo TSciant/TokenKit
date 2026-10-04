@@ -72,7 +72,7 @@ export function TileGrid({
       }
     >
       {heading ? <h2 style={{ margin: 0 }}>{heading}</h2> : null}
-      <ul data-tk="stagger" data-shell="grid" data-cols={String(columns)} data-gap="5">
+      <ul data-shell="grid" data-cols={String(columns)} data-gap="5">
         {tiles.map((s, idx) => (
           <li key={s}>
             <a

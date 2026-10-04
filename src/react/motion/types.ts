@@ -37,22 +37,24 @@ export type FxProps = {
  */
 export type FxProp = boolean | FxReveal | FxProps;
 
+/* What `fx={true}` means in each place. No context reveals.
+
+   Every recipe here used to enter (rise, fade, blur-rise) as it scrolled into
+   view. The kit no longer does that: something that animates because it
+   arrived is a reveal, and reveals cost the reader a beat on every section
+   while proving nothing about the layout. What stays is parallax, which is
+   scroll-LINKED (it moves exactly as far as you scroll, and stops when you
+   do) rather than scroll-TRIGGERED. An explicit `fx="rise"` still works for
+   a product that wants one; the kit's own patterns never ask. */
 const INFER: Record<FxContext, FxProps> = {
-  /** Cards: crisp rise, light drift. */
-  card: { reveal: "rise", parallax: 0.1, once: true },
-  /** Media objects: softer rise. */
-  media: { reveal: "rise", parallax: 0.08, once: true },
-  /** Figures: photographic — blur-rise + medium parallax. */
-  figure: { reveal: "blur-rise", parallax: 0.12, once: true },
-  /** Synthetic plate (no photo). */
-  plate: { reveal: "fade", parallax: 0.06, once: true },
-  /** Stock photo plate in a grid/card. */
-  "plate-stock": { reveal: "rise", parallax: 0.14, once: true },
-  /** Full-bleed hero / scrim plate — drama. */
-  "plate-hero": { reveal: "blur-rise", parallax: 0.2, once: true },
-  /** Page sections. */
-  section: { reveal: "rise", parallax: 0.08, once: true },
-  default: { reveal: "rise", parallax: 0.1, once: true },
+  card: { reveal: false, parallax: 0.1, once: true },
+  media: { reveal: false, parallax: 0.08, once: true },
+  figure: { reveal: false, parallax: 0.12, once: true },
+  plate: { reveal: false, parallax: 0.06, once: true },
+  "plate-stock": { reveal: false, parallax: 0.14, once: true },
+  "plate-hero": { reveal: false, parallax: 0.2, once: true },
+  section: { reveal: false, parallax: 0.08, once: true },
+  default: { reveal: false, parallax: 0.1, once: true },
 };
 
 /** Infer a recipe from where the host lives. */

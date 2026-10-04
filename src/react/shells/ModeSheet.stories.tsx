@@ -42,6 +42,9 @@ export const Sheet: Story = {
       <div style={slot(24, 24)}>
         <Button>Button</Button>
       </div>
+      <div style={slot(160, 24)}>
+        <Button tone="danger">Button</Button>
+      </div>
       <div style={slot(24, 96)}>
         <Chip>Chip</Chip>
       </div>

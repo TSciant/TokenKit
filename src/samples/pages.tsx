@@ -533,7 +533,7 @@ export function CaseStudiesPage({ title = "Case studies", header }: SamplePagePr
               because the hero deck already says it. So the level exists for
               the outline and is hidden from the page. */}
           <h2 data-tk="visually-hidden">Selected work</h2>
-          <div data-tk="stagger" data-shell="grid" data-cols="2" data-gap="5">
+          <div data-shell="grid" data-cols="2" data-gap="5">
             {CASE_STUDIES.map(function (c, i) {
               return (
                 <a

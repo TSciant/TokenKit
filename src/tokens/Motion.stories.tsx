@@ -284,10 +284,11 @@ export const Motion: Story = {
         <p className="tk-doc-note">
           Hosts that accept <code>fx</code> (Card, Media, Figure, Plate, and the{" "}
           <code>MotionFx</code> wrapper) take a shorthand:{" "}
-          <code>true</code> infers reveal + parallax from composition context; a
-          string is that reveal only; an object is an explicit recipe. Prefer the
-          boolean in product pages so the kit picks the drama, not every call
-          site.
+          <code>true</code> infers a parallax amount from composition context and
+          never a reveal: nothing in the kit animates because it arrived. A string
+          (<code>{'fx="rise"'}</code>) or an object asks for a reveal explicitly,
+          for a product that wants one. Prefer the boolean so the kit picks the
+          amount, not every call site.
         </p>
         <Sub>{"fx={true} by host"}</Sub>
         <p className="tk-doc-note">
@@ -301,14 +302,14 @@ export const Motion: Story = {
         <div data-shell="stack" data-gap="1">
           {(
             [
-              ["card", "rise", "0.10", "Card roots"],
-              ["media", "rise", "0.08", "Media layout objects"],
-              ["figure", "blur-rise", "0.12", "Figure (photo + caption)"],
-              ["plate", "fade", "0.06", "Synthetic Plate (no photo)"],
-              ["plate-stock", "rise", "0.14", "Plate with stock or src"],
-              ["plate-hero", "blur-rise", "0.20", "Stock/src Plate with bleed"],
-              ["section", "rise", "0.08", "MotionFx wrapper default"],
-              ["default", "rise", "0.10", "Fallback context"],
+              ["card", "none", "0.10", "Card roots"],
+              ["media", "none", "0.08", "Media layout objects"],
+              ["figure", "none", "0.12", "Figure (photo + caption)"],
+              ["plate", "none", "0.06", "Synthetic Plate (no photo)"],
+              ["plate-stock", "none", "0.14", "Plate with stock or src"],
+              ["plate-hero", "none", "0.20", "Stock/src Plate with bleed"],
+              ["section", "none", "0.08", "MotionFx wrapper default"],
+              ["default", "none", "0.10", "Fallback context"],
             ] as const
           ).map(([ctx, reveal, para, where]) => (
             <div

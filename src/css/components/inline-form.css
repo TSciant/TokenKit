@@ -1,0 +1,35 @@
+/* Inline form — one field and its submit on one line.
+   data-tk="inline-form" > label, data-tk="inline-form-row" (input + button),
+   then the field's own hint and error. The label, input, hint and error are
+   the Field's (field.css) and the button is the Button's: this file only lays
+   them out. */
+@layer components {
+  :where([data-tk="inline-form"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+    max-inline-size: var(--tk-measure-narrow);
+  }
+
+  /* The field takes the room, the button takes what its label needs, and
+     both stretch to the taller of the two so the row has one height (the
+     field's, which is the taller by a few pixels). When the box cannot hold
+     a usable field beside the button, the button wraps under it: field first,
+     so reading order holds. */
+  :where([data-tk="inline-form-row"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="inline-form-row"] > [data-tk="input"]) {
+    flex: 1 1 12rem;
+    inline-size: auto;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="inline-form-row"] > [data-tk="button"]) {
+    flex: 0 0 auto;
+  }
+}

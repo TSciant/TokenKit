@@ -1,5 +1,6 @@
 /* Button — the interactive primitive. Props in, attributes out.
    data-tk="button" data-variant=solid|outline|quiet data-size=sm|md|lg
+   data-tone=danger (an axis crossed with variant, not a fourth variant)
    data-icon = icon-only (square padding; require accessible name) */
 @layer components {
   /* tk-default: data-variant=solid, data-size=md
@@ -73,6 +74,121 @@
     --_fill-active: var(--tk-action-quiet-fill-active, var(--tk-surface-sunken));
     --_text: var(--tk-action-quiet-text);
     --_line: transparent;
+  }
+
+  /* Tone — crossed with emphasis.
+
+     Danger is a second axis rather than a fourth variant, because emphasis
+     and consequence are separate questions: the final "Delete" in a
+     confirmation is solid danger, a "Remove" beside each row is quiet
+     danger, and both are still the variant they were. Three systems that
+     started with a danger variant (Carbon, Base Web, PatternFly) ended up
+     crossing it with emphasis for the same reason.
+
+     The colours are the pack's (--tk-action-danger-*), and optional: a pack
+     that does not define them falls back to its action colours. That is the
+     wireframe's answer on purpose. The grayscale contract proves layout
+     without hue, so in the wireframe a danger button looks like any other
+     and the label carries the consequence, which it should anyway: colour
+     alone is not allowed to (WCAG 1.4.1).
+
+     Every rule here is compound with the variant so it lands on the same
+     zero specificity and wins on order, after the variant rules above. */
+  /* tk-default: data-tone=neutral */
+  :where([data-tk="button"][data-tone="danger"]:not([data-variant="outline"], [data-variant="quiet"])) {
+    --_fill: var(--tk-action-danger-fill, var(--tk-action-fill));
+    --_fill-hover: var(--tk-action-danger-fill-hover, var(--tk-action-fill-hover));
+    --_fill-active: var(--tk-action-danger-fill-active, var(--tk-action-fill-active));
+    --_text: var(--tk-action-danger-text, var(--tk-action-text));
+  }
+
+  :where([data-tk="button"][data-tone="danger"][data-variant="outline"]) {
+    --_text: var(--tk-action-danger-quiet-text, var(--tk-action-quiet-text));
+    /* The danger ink clears 4.5:1 on every surface, so it clears the 3:1 a
+       boundary needs (1.4.11) with room to spare. Without a pack danger the
+       line falls back to the quiet ink, not line-strong: in the wireframe
+       that makes a danger outline the one outline drawn in full ink, which
+       is a cue that does not depend on hue. */
+    --_line: var(--tk-action-danger-quiet-text, var(--tk-action-quiet-text));
+  }
+
+  :where([data-tk="button"][data-tone="danger"][data-variant="quiet"]) {
+    --_text: var(--tk-action-danger-quiet-text, var(--tk-action-quiet-text));
+  }
+
+  /* Unavailable, with a reason.
+
+     Button.tsx never sets the native `disabled`: an unavailable button is
+     aria-disabled and stays focusable, so it can say why. The rules above
+     already paint [aria-disabled="true"] exactly as they paint :disabled.
+
+     The reason is a small inverse label under the button, shown on hover and
+     on keyboard focus, and read by assistive technology as the button's
+     description whether or not it is showing. It appears in place (opacity,
+     at the kit's opacity pace) and does not move: nothing in the kit slides
+     into view. */
+  :where([data-tk="button"][data-reason]) {
+    position: relative;
+  }
+
+  :where([data-tk="button-reason"]) {
+    position: absolute;
+    inset-block-start: calc(100% + var(--tk-space-2));
+    /* Start-aligned, not centred: a centred label under a button at the
+       start of a row runs off the page, and rows of buttons start at the
+       start. */
+    inset-inline-start: 0;
+    z-index: 1;
+    inline-size: max-content;
+    max-inline-size: 16rem;
+    padding: var(--tk-space-1) var(--tk-space-2);
+    border-radius: var(--tk-radius-sm);
+    background-color: var(--tk-surface-inverse);
+    color: var(--tk-text-inverse);
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-normal);
+    line-height: var(--tk-leading-snug);
+    text-align: start;
+    white-space: normal;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity var(--tk-motion-opacity),
+      visibility var(--tk-motion-opacity);
+  }
+
+  :where([data-tk="button"][data-reason]:is(:hover, :focus-visible) [data-tk="button-reason"]) {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Pressed — a toggle, switched on.
+
+     The state is the ARIA attribute itself, not a data-* copy of it: what
+     assistive technology is told and what the eye sees cannot disagree when
+     they are the same attribute. Button.tsx only renders it for a toggle.
+
+     On, an outline or quiet toggle takes the inverse surface, which is what a
+     pressed Chip does: the kit has one look for "this is on". The change is
+     a whole fill, not a shade, so it clears 1.4.11 in every pack without
+     relying on hue. Hover keeps it on; the lift on hover still says it can be
+     pressed again. */
+  :where([data-tk="button"][aria-pressed="true"][data-variant="outline"]),
+  :where([data-tk="button"][aria-pressed="true"][data-variant="quiet"]) {
+    --_fill: var(--tk-surface-inverse);
+    --_fill-hover: var(--tk-surface-inverse);
+    --_fill-active: var(--tk-surface-inverse);
+    --_text: var(--tk-text-inverse);
+    --_line: var(--tk-surface-inverse);
+  }
+
+  /* A solid toggle is already filled, so on cannot be a fill. It is an inner
+     ring in the label colour, which clears 4.5:1 against the fill in every
+     pack by contract. Possible, not recommended: Button.tsx makes a toggle
+     outline unless told otherwise. */
+  :where([data-tk="button"][aria-pressed="true"]:not([data-variant="outline"], [data-variant="quiet"])) {
+    box-shadow: inset 0 0 0 2px var(--_text);
   }
 
   :where([data-tk="button"][data-size="sm"]) {

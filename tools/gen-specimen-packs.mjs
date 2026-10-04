@@ -117,6 +117,9 @@ const BRANDS = [
       "ring, and is never asked to.",
     ],
     ramp: {
+      danger: "#B91C1C",
+      "danger-dark": "#991B1B",
+      "danger-darker": "#7F1D1D",
       ink: "#0F172A",
       wash: "#000000",
       mint: "#10B981",
@@ -159,6 +162,9 @@ const BRANDS = [
       "where it sits under ink and has no floor to clear.",
     ],
     ramp: {
+      danger: "#B91C1C",
+      "danger-dark": "#991B1B",
+      "danger-darker": "#7F1D1D",
       ink: "#111827",
       wash: "#000000",
       blue: "#0B5CAD",
@@ -233,6 +239,9 @@ const BRANDS = [
       "stopped pretending one colour can do every job.",
     ],
     ramp: {
+      danger: "#B91C1C",
+      "danger-dark": "#991B1B",
+      "danger-darker": "#7F1D1D",
       ink: "#1B2430",
       wash: "#000000",
       slate: "#485563",
@@ -312,6 +321,9 @@ const BRANDS = [
       "both, and each slot takes the one its own rules allow.",
     ],
     ramp: {
+      danger: "#B42318",
+      "danger-dark": "#912018",
+      "danger-darker": "#7A1A14",
       ink: "#5C1A1A",
       wash: "#000000",
       brown: "#9A3412",
@@ -380,6 +392,7 @@ const BRANDS = [
       "with contrast in mind rather than corrected for it afterwards.",
     ],
     ramp: {
+      "ink-lift": "#3A3330",
       ink: "#1C1917",
       wash: "#000000",
       brown: "#7C2D12",
@@ -435,6 +448,9 @@ const BRANDS = [
       "asked to be one.",
     ],
     ramp: {
+      danger: "#B91C1C",
+      "danger-dark": "#991B1B",
+      "danger-darker": "#7F1D1D",
       ink: "#1C1917",
       wash: "#000000",
       beaver: "#6B4423",
@@ -494,6 +510,7 @@ const MAP = {
     lineSubtle: "rule-faint", lineDefault: "rule", lineStrong: "ink-faint",
     fill: "violet", hover: "violet-dark", active: "violet-darker", actionText: "paper",
     quietHover: "fog", quietActive: "rule-faint", quietText: "violet",
+    danger: "danger", dangerHover: "danger-dark", dangerActive: "danger-darker", dangerText: "paper", dangerQuiet: "danger",
     focus: "violet",
     data: "violet",
     logoInk: "mint", logoMark: "mint", logoWord: "ink", logoTagline: "ink-quiet", logoTile: "ink",
@@ -505,6 +522,7 @@ const MAP = {
     lineSubtle: "rule-faint", lineDefault: "rule", lineStrong: "ink-faint",
     fill: "blue", hover: "blue-dark", active: "blue-darker", actionText: "snow",
     quietHover: "fog", quietActive: "rule-faint", quietText: "blue",
+    danger: "danger", dangerHover: "danger-dark", dangerActive: "danger-darker", dangerText: "snow", dangerQuiet: "danger",
     focus: "blue",
     data: "blue",
     logoInk: "blue", logoMark: "yellow", logoWord: "blue", logoTagline: "ink-quiet", logoTile: "blue",
@@ -516,6 +534,7 @@ const MAP = {
     lineSubtle: "rule-faint", lineDefault: "rule", lineStrong: "ink-faint",
     fill: "orange", hover: "orange-dark", active: "orange-darker", actionText: "ink",
     quietHover: "fog", quietActive: "rule-faint", quietText: "slate",
+    danger: "danger", dangerHover: "danger-dark", dangerActive: "danger-darker", dangerText: "snow", dangerQuiet: "danger",
     focus: "slate",
     data: "slate",
     logoInk: "ink", logoMark: "orange", logoWord: "ink", logoTagline: "ink-quiet", logoTile: "ink",
@@ -534,6 +553,7 @@ const MAP = {
     lineSubtle: "rule-faint", lineDefault: "rule", lineStrong: "ink-faint",
     fill: "pink-ui", hover: "pink-ui-dark", active: "pink-ui-darker", actionText: "cream",
     quietHover: "cream", quietActive: "rule-faint", quietText: "brown",
+    danger: "danger", dangerHover: "danger-dark", dangerActive: "danger-darker", dangerText: "paper", dangerQuiet: "danger",
     focus: "pink-ui",
     data: "pink-ui",
     /* The mark keeps the stated hex. A logotype has no floor. */
@@ -546,6 +566,7 @@ const MAP = {
     lineSubtle: "rule-faint", lineDefault: "rule", lineStrong: "ink-faint",
     fill: "red", hover: "red-dark", active: "red-darker", actionText: "fog",
     quietHover: "cream", quietActive: "rule-faint", quietText: "red",
+    danger: "ink", dangerHover: "ink-lift", dangerActive: "wash", dangerText: "paper", dangerQuiet: "ink",
     focus: "red",
     data: "red",
     logoInk: "red", logoMark: "red", logoWord: "red", logoTagline: "ink-quiet", logoTile: "cream",
@@ -557,6 +578,7 @@ const MAP = {
     lineSubtle: "rule-faint", lineDefault: "rule", lineStrong: "ink-faint",
     fill: "forest", hover: "forest-dark", active: "forest-darker", actionText: "cream",
     quietHover: "cream", quietActive: "rule-faint", quietText: "forest",
+    danger: "danger", dangerHover: "danger-dark", dangerActive: "danger-darker", dangerText: "cream-light", dangerQuiet: "danger",
     focus: "forest",
     data: "forest",
     logoInk: "beaver", logoMark: "beaver", logoWord: "ink", logoTagline: "ink-quiet", logoTile: "yellow",
@@ -880,6 +902,17 @@ ${ramps}
     --tk-action-quiet-fill-active: ${v(m.quietActive)};
     --tk-action-quiet-text: ${v(m.quietText)};
 
+    /* action, danger tone — a second axis on the button, not a fourth
+       variant: danger-text clears 4.5:1 on all three fills, and
+       danger-quiet-text (outline and quiet) clears 4.5:1 on every surface.
+       Optional in the contract: a pack without them gets its action
+       colours, which is what the grayscale wireframe wants. */
+    --tk-action-danger-fill: ${v(m.danger)};
+    --tk-action-danger-fill-hover: ${v(m.dangerHover)};
+    --tk-action-danger-fill-active: ${v(m.dangerActive)};
+    --tk-action-danger-text: ${v(m.dangerText)};
+    --tk-action-danger-quiet-text: ${v(m.dangerQuiet)};
+
     /* focus — clears 3:1 against every surface it can land on */
     --tk-focus-color: ${v(m.focus)};
 
@@ -1061,6 +1094,14 @@ ${postureLines.length ? postureLines.join("\n") : "    /* (colour only) */"}
     --tk-action-quiet-fill-active: color-mix(in srgb, ${v(m.raised)} 22%, transparent);
     --tk-action-quiet-text: ${v(m.raised)};
 
+    /* A brand's danger red has no guarantee on the inverse plate, so danger
+       here is the plate's own action colour; the label carries the meaning. */
+    --tk-action-danger-fill: var(--tk-action-fill);
+    --tk-action-danger-fill-hover: var(--tk-action-fill-hover);
+    --tk-action-danger-fill-active: var(--tk-action-fill-active);
+    --tk-action-danger-text: var(--tk-action-text);
+    --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
+
     --tk-focus-color: ${v(m.raised)};
     --tk-data-ink: ${v(m.raised)};
 
@@ -1119,6 +1160,12 @@ ${postureLines.length ? postureLines.join("\n") : "    /* (colour only) */"}
     --tk-action-quiet-fill-hover: color-mix(in srgb, var(--tk-scrim-ink) 88%, transparent);
     --tk-action-quiet-fill-active: color-mix(in srgb, var(--tk-scrim-ink) 94%, transparent);
     --tk-action-quiet-text: #ffffff;
+
+    --tk-action-danger-fill: var(--tk-action-fill);
+    --tk-action-danger-fill-hover: var(--tk-action-fill-hover);
+    --tk-action-danger-fill-active: var(--tk-action-fill-active);
+    --tk-action-danger-text: var(--tk-action-text);
+    --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
 
     --tk-focus-color: #ffffff;
 

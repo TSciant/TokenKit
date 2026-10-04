@@ -37,7 +37,12 @@ import { resolve } from "node:path";
 import { ROOT, VIEWPORTS, isMain, runChecks } from "./lib/stories.mjs";
 
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"];
-const EXCLUDE = [['[data-tk="scrim-content"]']];
+/* Nested iframes too. A story that frames other stories (08 Prototype, side
+   by side) is two documents, each with its one banner, main and contentinfo;
+   axe aggregates landmark-unique across frames and calls them duplicates of
+   each other. Every framed page is its own story and is checked there, alone,
+   which is the only place its landmarks mean anything. */
+const EXCLUDE = [['[data-tk="scrim-content"]'], ["iframe"]];
 
 export function a11yCheck(argv = process.argv.slice(2)) {
   const verbose = argv.includes("--verbose");

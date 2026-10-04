@@ -145,6 +145,30 @@
   "quiet-lg-disabled.png": {
    "w": 102,
    "h": 44
+  },
+  "solid-md-default-danger.png": {
+   "w": 79,
+   "h": 36
+  },
+  "outline-md-default-danger.png": {
+   "w": 79,
+   "h": 36
+  },
+  "quiet-md-default-danger.png": {
+   "w": 79,
+   "h": 36
+  },
+  "solid-md-pressed.png": {
+   "w": 79,
+   "h": 36
+  },
+  "outline-md-pressed.png": {
+   "w": 79,
+   "h": 36
+  },
+  "quiet-md-pressed.png": {
+   "w": 79,
+   "h": 36
   }
  }
 }

@@ -53,6 +53,7 @@
     --wanda-brown: #7C2D12;
     --wanda-red-darker: #860A1F;
     --wanda-ink-soft: #5A3A22;
+    --wanda-ink-lift: #3A3330;
     --wanda-ink: #1C1917;
     --wanda-wash: #000000;
 
@@ -87,6 +88,17 @@
     --tk-action-quiet-fill-hover: var(--wanda-cream);
     --tk-action-quiet-fill-active: var(--wanda-rule-faint);
     --tk-action-quiet-text: var(--wanda-red);
+
+    /* action, danger tone — a second axis on the button, not a fourth
+       variant: danger-text clears 4.5:1 on all three fills, and
+       danger-quiet-text (outline and quiet) clears 4.5:1 on every surface.
+       Optional in the contract: a pack without them gets its action
+       colours, which is what the grayscale wireframe wants. */
+    --tk-action-danger-fill: var(--wanda-ink);
+    --tk-action-danger-fill-hover: var(--wanda-ink-lift);
+    --tk-action-danger-fill-active: var(--wanda-wash);
+    --tk-action-danger-text: var(--wanda-paper);
+    --tk-action-danger-quiet-text: var(--wanda-ink);
 
     /* focus — clears 3:1 against every surface it can land on */
     --tk-focus-color: var(--wanda-red);
@@ -296,6 +308,14 @@
     --tk-action-quiet-fill-active: color-mix(in srgb, var(--wanda-paper) 22%, transparent);
     --tk-action-quiet-text: var(--wanda-paper);
 
+    /* A brand's danger red has no guarantee on the inverse plate, so danger
+       here is the plate's own action colour; the label carries the meaning. */
+    --tk-action-danger-fill: var(--tk-action-fill);
+    --tk-action-danger-fill-hover: var(--tk-action-fill-hover);
+    --tk-action-danger-fill-active: var(--tk-action-fill-active);
+    --tk-action-danger-text: var(--tk-action-text);
+    --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
+
     --tk-focus-color: var(--wanda-paper);
     --tk-data-ink: var(--wanda-paper);
 
@@ -354,6 +374,12 @@
     --tk-action-quiet-fill-hover: color-mix(in srgb, var(--tk-scrim-ink) 88%, transparent);
     --tk-action-quiet-fill-active: color-mix(in srgb, var(--tk-scrim-ink) 94%, transparent);
     --tk-action-quiet-text: #ffffff;
+
+    --tk-action-danger-fill: var(--tk-action-fill);
+    --tk-action-danger-fill-hover: var(--tk-action-fill-hover);
+    --tk-action-danger-fill-active: var(--tk-action-fill-active);
+    --tk-action-danger-text: var(--tk-action-text);
+    --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
 
     --tk-focus-color: #ffffff;
 

@@ -7,6 +7,7 @@
 import { useId, useState } from "react";
 import { Arrow } from "../primitives/Arrow";
 import { Plate } from "../primitives/Plate";
+import { InlineForm } from "../primitives/InlineForm";
 import { Icon } from "../primitives/Icon";
 import type { Cols } from "./types";
 /* MapLazy: SegmentList puts a map on the homepage, and a static import of
@@ -225,7 +226,6 @@ export function HeroCarousel({
           <div
             id={regionId}
             key={i}
-            data-tk="hero-copy"
             aria-live="polite"
             data-shell="stack"
             data-gap="3"
@@ -260,6 +260,8 @@ export function HeroCarousel({
                 <ArrowCta variant="solid">{slide.cta}</ArrowCta>
               </div>
 
+              {/* A deck of one is a hero, not a carousel: no pager for it. */}
+              {deck.length > 1 ? (
               <div
                 data-tk="hero-pager"
                 role="group"
@@ -302,9 +304,117 @@ export function HeroCarousel({
                   <span data-tk="visually-hidden">Next slide</span>
                 </button>
               </div>
+              ) : null}
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+export type HeroProps = {
+  /** A short line above the title. Leave empty for none. */
+  eyebrow?: string;
+  title?: string;
+  /** One or two sentences under the title. Leave empty for none. */
+  lede?: string;
+  /** The primary action's label. Leave empty for no primary action. */
+  cta?: string;
+  /** A second, quieter action beside the first. Leave empty for none. */
+  secondary?: string;
+  /** buttons: the CTA and the secondary. capture: an inline form (one field, `cta` as its submit) in their place. */
+  actions?: "buttons" | "capture";
+  /** The capture field's label (capture only). */
+  captureLabel?: string;
+  /** A line under the capture field: what they are signing up for, how often (capture only). */
+  captureHint?: string;
+  /** stacked: the visual under the copy. split: copy and visual side by side, stacking when the box cannot hold two. */
+  layout?: "stacked" | "split";
+  /** plate draws the stand-in photograph; none leaves the hero as copy only. */
+  media?: "plate" | "none";
+  /** Aspect ratio of the visual. */
+  ratio?: string;
+  /** 1-6. Picks the stand-in photograph; deterministic so screenshots match. */
+  seed?: number;
+  /** What the photograph is of, named on the plate while no stock is registered. */
+  category?: string;
+};
+
+export const HERO_EYEBROW = ipsumEyebrow("hero-eyebrow");
+export const HERO_TITLE = ipsumHeadline("hero-title");
+export const HERO_LEDE = ipsumDeck("hero-lede");
+export const HERO_CTA = ipsumLabel("hero-cta");
+export const HERO_SECONDARY = ipsumLabel("hero-secondary");
+/* Plain words, like the map label: a field's name is the one string a
+   screen-reader user cannot skim past. */
+export const HERO_CAPTURE_LABEL = "Email address";
+export const HERO_CAPTURE_HINT = "One email a month. Unsubscribe from any of them.";
+
+/**
+ * 26 — the static hero: the top of a page that is not a carousel.
+ *
+ * Eyebrow, title, lede, actions and a visual, every one optional but the
+ * title, so the minimal hero is this component with less in it. `layout` is
+ * the one coordinate: stacked puts the visual under the copy, split puts it
+ * beside. The copy comes first in the DOM either way, so reading order is
+ * title, lede, actions, visual on both sides of the wrap. The visual is the
+ * page's largest paint, so the plate loads eagerly at high priority and holds
+ * its ratio so nothing shifts. Nothing animates in.
+ */
+export function Hero({
+  eyebrow = HERO_EYEBROW,
+  title = HERO_TITLE,
+  lede = HERO_LEDE,
+  cta = HERO_CTA,
+  secondary = HERO_SECONDARY,
+  actions = "buttons",
+  captureLabel = HERO_CAPTURE_LABEL,
+  captureHint = HERO_CAPTURE_HINT,
+  layout = "stacked",
+  media = "plate",
+  ratio = "16 / 9",
+  seed = 2,
+  category,
+}: HeroProps = {}) {
+  const split = layout === "split";
+  return (
+    <section
+      data-tk="hero"
+      data-layout={split ? "split" : undefined}
+      data-shell="center"
+      data-width="wide"
+    >
+      <div data-tk="hero-body">
+        <div data-tk="hero-text" data-shell="stack" data-gap="4">
+          {eyebrow ? <span data-tk="eyebrow">{eyebrow}</span> : null}
+          <h1 data-tk="hero-title">{title}</h1>
+          {lede ? <p data-tk="hero-lede">{lede}</p> : null}
+          {actions === "capture" ? (
+            <div data-tk="hero-actions">
+              <InlineForm
+                label={captureLabel}
+                submitLabel={cta || HERO_CTA}
+                hint={captureHint || undefined}
+                onSubmit={(e) => e.preventDefault()}
+              />
+            </div>
+          ) : cta || secondary ? (
+            <div data-tk="hero-actions" data-shell="inline" data-gap="3">
+              {cta ? <ArrowCta variant="solid">{cta}</ArrowCta> : null}
+              {secondary ? (
+                <button data-tk="button" data-variant="quiet" data-size="lg" type="button">
+                  {secondary}
+                </button>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+        {media === "plate" ? (
+          <div data-tk="hero-visual">
+            <Plate fx={false} stock ratio={ratio} seed={seed} category={category} priority />
+          </div>
+        ) : null}
       </div>
     </section>
   );
@@ -315,6 +425,7 @@ export type Stat = { value: string; label: string };
 export const PROOF_STATS: Stat[] = ipsumStats(3, "proof-strip-stats");
 
 export type ProofStripProps = {
+  /** Leave empty (with deck) for the facts alone, as a strip under a hero. */
   heading?: string;
   deck?: string;
   stats?: Stat[];
@@ -341,27 +452,34 @@ export function ProofStrip({
     <section
       data-tk="section"
       data-section="proof"
+      data-strip={heading || deck ? undefined : ""}
       data-shell="center"
       data-width="wide"
       data-gap="6"
     >
-      <header
-        data-shell="stack"
-        data-gap="3"
-        style={{
-          maxInlineSize: "var(--tk-measure)",
-          textAlign: "center",
-          marginInline: "auto",
-        }}
-      >
-        <h2 style={{ margin: 0 }}>{heading}</h2>
-        <p data-tk="card-body" style={{ margin: 0 }}>
-          {deck}
-        </p>
-      </header>
+      {/* Heading and deck are optional: without them the strip is just the
+          facts, which is the post-hero utility strip (a hero above already
+          said what the page is). */}
+      {heading || deck ? (
+        <header
+          data-shell="stack"
+          data-gap="3"
+          style={{
+            maxInlineSize: "var(--tk-measure)",
+            textAlign: "center",
+            marginInline: "auto",
+          }}
+        >
+          {heading ? <h2 style={{ margin: 0 }}>{heading}</h2> : null}
+          {deck ? (
+            <p data-tk="card-body" style={{ margin: 0 }}>
+              {deck}
+            </p>
+          ) : null}
+        </header>
+      ) : null}
 
       <dl
-        data-tk="stagger"
         data-shell="grid"
         data-cols={String(columns)}
         data-gap="6"
@@ -457,7 +575,7 @@ export function SegmentList({
             </p>
           </header>
 
-          <ul data-tk="stagger" data-shell="stack" data-gap="4">
+          <ul data-shell="stack" data-gap="4">
             {audiences.map((a) => (
               <li key={a.label} data-shell="row" data-gap="3" style={{ flexWrap: "nowrap" }}>
                 <Arrow />
@@ -574,7 +692,7 @@ export function FeatureGrid({
           {deck}
         </p>
       </header>
-      <div data-tk="stagger" data-shell="grid" data-cols={String(columns)} data-gap="5">
+      <div data-shell="grid" data-cols={String(columns)} data-gap="5">
         {items.map((t, idx) => (
           <a
             key={t}
@@ -652,7 +770,6 @@ export function ArticleFeed({
         </p>
       </header>
       <div
-        data-tk="stagger"
         data-shell="grid"
         data-cols={String(columns)}
         data-gap="5"

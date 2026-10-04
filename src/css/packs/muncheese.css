@@ -50,9 +50,12 @@
     --munch-rule: #E3D3B5;
     --munch-yellow: #F4C430;
     --munch-ink-faint: #948162;
+    --munch-danger: #B91C1C;
     --munch-ink-quiet: #6B5439;
+    --munch-danger-dark: #991B1B;
     --munch-forest: #2F5D3A;
     --munch-beaver: #6B4423;
+    --munch-danger-darker: #7F1D1D;
     --munch-ink-soft: #54402B;
     --munch-forest-dark: #23472C;
     --munch-forest-darker: #1A3520;
@@ -90,6 +93,17 @@
     --tk-action-quiet-fill-hover: var(--munch-cream);
     --tk-action-quiet-fill-active: var(--munch-rule-faint);
     --tk-action-quiet-text: var(--munch-forest);
+
+    /* action, danger tone — a second axis on the button, not a fourth
+       variant: danger-text clears 4.5:1 on all three fills, and
+       danger-quiet-text (outline and quiet) clears 4.5:1 on every surface.
+       Optional in the contract: a pack without them gets its action
+       colours, which is what the grayscale wireframe wants. */
+    --tk-action-danger-fill: var(--munch-danger);
+    --tk-action-danger-fill-hover: var(--munch-danger-dark);
+    --tk-action-danger-fill-active: var(--munch-danger-darker);
+    --tk-action-danger-text: var(--munch-cream-light);
+    --tk-action-danger-quiet-text: var(--munch-danger);
 
     /* focus — clears 3:1 against every surface it can land on */
     --tk-focus-color: var(--munch-forest);
@@ -300,6 +314,14 @@
     --tk-action-quiet-fill-active: color-mix(in srgb, var(--munch-paper) 22%, transparent);
     --tk-action-quiet-text: var(--munch-paper);
 
+    /* A brand's danger red has no guarantee on the inverse plate, so danger
+       here is the plate's own action colour; the label carries the meaning. */
+    --tk-action-danger-fill: var(--tk-action-fill);
+    --tk-action-danger-fill-hover: var(--tk-action-fill-hover);
+    --tk-action-danger-fill-active: var(--tk-action-fill-active);
+    --tk-action-danger-text: var(--tk-action-text);
+    --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
+
     --tk-focus-color: var(--munch-paper);
     --tk-data-ink: var(--munch-paper);
 
@@ -358,6 +380,12 @@
     --tk-action-quiet-fill-hover: color-mix(in srgb, var(--tk-scrim-ink) 88%, transparent);
     --tk-action-quiet-fill-active: color-mix(in srgb, var(--tk-scrim-ink) 94%, transparent);
     --tk-action-quiet-text: #ffffff;
+
+    --tk-action-danger-fill: var(--tk-action-fill);
+    --tk-action-danger-fill-hover: var(--tk-action-fill-hover);
+    --tk-action-danger-fill-active: var(--tk-action-fill-active);
+    --tk-action-danger-text: var(--tk-action-text);
+    --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
 
     --tk-focus-color: #ffffff;
 

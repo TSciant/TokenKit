@@ -1,19 +1,82 @@
 {
   "id": "Button",
   "figmaNode": "37:332",
-  "checked": ["solid/md/default 37:76", "outline/md/default 37:172", "quiet/lg/default 37:300"],
+  "checked": [
+    "solid/md/default 37:76",
+    "outline/md/default 37:172",
+    "quiet/lg/default 37:300"
+  ],
   "date": "2026-09-29",
   "method": "Figma node exported at 1x; browser element screenshot at dpr 1 from src/css/index.css, wireframe pack; overlaid, difference blend",
   "driftType": "Design execution != live execution",
   "diffs": [
-    { "type": "spacing", "observation": "solid, quiet and disabled variants were 2px narrower than the DOM (79 vs 77): CSS reserves a 1px transparent border, Figma had none", "pull": "Align", "result": "stroke bound to action/quiet-fill (transparent) with strokes included in layout; widths now 79/79/102 against 78.7/78.7/101.1" },
-    { "type": "font", "observation": "text raster differs: Chromium draws LCD-subpixel antialiasing (coloured fringes), Figma draws greyscale; glyph positions and weights coincide", "pull": "Accept", "result": "renderer difference, not a design difference" },
-    { "type": "spacing", "observation": "lg height 44 vs 44.39: 115% of 16px is 18.4, Figma rounds the line box to 18", "pull": "Accept", "result": "0.39px, below anything a designer can place" }
+    {
+      "type": "spacing",
+      "observation": "solid, quiet and disabled variants were 2px narrower than the DOM (79 vs 77): CSS reserves a 1px transparent border, Figma had none",
+      "pull": "Align",
+      "result": "stroke bound to action/quiet-fill (transparent) with strokes included in layout; widths now 79/79/102 against 78.7/78.7/101.1"
+    },
+    {
+      "type": "font",
+      "observation": "text raster differs: Chromium draws LCD-subpixel antialiasing (coloured fringes), Figma draws greyscale; glyph positions and weights coincide",
+      "pull": "Accept",
+      "result": "renderer difference, not a design difference"
+    },
+    {
+      "type": "spacing",
+      "observation": "lg height 44 vs 44.39: 115% of 16px is 18.4, Figma rounds the line box to 18",
+      "pull": "Accept",
+      "result": "0.39px, below anything a designer can place"
+    },
+    {
+      "type": "variation",
+      "observation": "tone=\"danger\", from the ds-corpus Button brief (nine systems). Six of the nine have a destructive button; three (Carbon, Base Web, PatternFly) cross it with emphasis rather than adding a variant. token-kit takes the crossed shape: tone is a coordinate, variant stays emphasis, and the colour is the pack’s (--tk-action-danger-fill, -fill-hover, -fill-active, -text, -quiet-text), optional, falling back to the action colours",
+      "pull": "Align",
+      "result": "built in code, packs (generated, each solved for contrast: danger fill against its label 6.2 to 17.5, danger ink on every surface 5.2 or more), the contrast fixture (every pack and the inverse plates), Figma (five action/danger-* variables; Tone=danger variants of solid, outline and quiet at md, default) and the mode sheet. Onion 5.2, 6.0, 4.3 for solid, outline and quiet danger; the mode sheet’s danger button reads 1.7 to 5.6 across the six brands"
+    },
+    {
+      "type": "variation",
+      "observation": "the wireframe has no hue for danger by design (the grayscale contract), so a danger button there could only be told apart by its label",
+      "pull": "Accept",
+      "result": "accepted and used: without pack danger tokens the outline danger line falls back to the quiet ink rather than line-strong, so in the wireframe a danger outline is the one outline drawn in full ink, a cue that does not depend on colour. Solid and quiet danger look like their neutral selves there, and the label carries the consequence, as WCAG 1.4.1 asks it to anyway"
+    },
+    {
+      "type": "variation",
+      "observation": "Wanda’s primary action is already red, so a red danger would be indistinguishable from its yes",
+      "pull": "Align",
+      "result": "Wanda’s danger is ink (#1C1917, hover a lifted ink, active black): the pack decides what danger looks like, and for a red brand it is not red"
+    },
+    {
+      "type": "variation",
+      "observation": "pressed (a toggle), from the ds-corpus Button brief: Atlassian and Base Web have a selected state on Button, and token-kit’s Chip already had pressed",
+      "pull": "Align",
+      "result": "pressed renders aria-pressed (true or false makes a toggle, unset is an ordinary button; never on a link), and the CSS reads aria-pressed itself rather than a data-* copy, so what assistive technology hears and what the eye sees cannot disagree. A toggle defaults to outline. On, outline and quiet take the inverse surface, the same look as a pressed Chip; solid, which has no fill to change to, gets an inner ring in its label colour. Contrast clean in every pack and on inverse plates; onion 5.7, 5.7, 6.2"
+    },
+    {
+      "type": "tooling",
+      "observation": "Figma’s export drew no inner shadow at zero offset (not the bound variable, not a literal red), so the solid pressed ring did not reach the skin and read 34.6",
+      "pull": "Align",
+      "result": "the ring is an absolutely positioned rectangle with a 2px inside stroke bound to action/text, inset 1px for the CSS’s transparent border; 6.2"
+    },
+    {
+      "type": "behaviour",
+      "observation": "disabled used the native attribute, which removes the button from the tab order: a keyboard or screen-reader user could not reach it or learn why it did nothing. Primer, Atlassian and GOV.UK all warn against it; Primer and PatternFly offer a focusable unavailable state",
+      "pull": "Align",
+      "result": "disabled and busy now render aria-disabled and stay focusable (links get tabIndex 0 back); activation is blocked at the click, which covers Enter, Space and a form’s implicit submit (checked: no submit fires). A new `reason` prop is shown under the button on hover and keyboard focus and read as its description: name stays the label, description is the reason, the AX tree reports disabled and focusable. Looks unchanged, so the disabled skins still read 1.4 to 4.6. The reason label is not yet drawn in Figma"
+    }
   ],
   "result": "Aligned",
-  "meanDiff": { "solid/md": 5.12, "outline/md": 4.52, "quiet/lg": 2.37, "scale": "0-255 per channel, mean over the box, text antialiasing included" },
+  "meanDiff": {
+    "solid/md": 5.12,
+    "outline/md": 4.52,
+    "quiet/lg": 2.37,
+    "scale": "0-255 per channel, mean over the box, text antialiasing included"
+  },
   "remainingMiss": "text antialiasing only",
-  "acceptedDrift": ["LCD vs greyscale text", "0.39px line-box rounding at lg"],
+  "acceptedDrift": [
+    "LCD vs greyscale text",
+    "0.39px line-box rounding at lg"
+  ],
   "promotion": "An invisible stroke must be a variable that is transparent (action/quiet-fill), never a paint at opacity 0: Figma drops the opacity and draws the line. Also: a page background in the file must be white or the export composites onto canvas grey.",
   "rollUp": "Button | Aligned | box, colour, radius and glyph placement match; text antialiasing accepted | invisible-border-as-variable"
 }

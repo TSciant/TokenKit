@@ -6,14 +6,19 @@
       "pattern": [
         "variant",
         "size",
-        "state"
+        "state",
+        "tone"
       ],
       "states": {
         "default": {},
         "disabled": {
           "disabled": true
+        },
+        "pressed": {
+          "pressed": true
         }
-      }
+      },
+      "doc": ""
     },
     "Chip": {
       "story": "04-primitives-02-chip--onion-skin",
@@ -655,6 +660,30 @@
       ],
       "target": "root",
       "doc": "The Figma Shell laid over this one at 480px (800 for split and sidebar): stack, row, grid with three fixed columns, split and sidebar, each holding the same placeholder cells at gap 4. Switch Onion in the toolbar; kind in Controls picks the skin."
+    },
+    "Hero": {
+      "story": "05-patterns-26-hero--onion-skin",
+      "pattern": [
+        "layout"
+      ],
+      "viewport": 1072,
+      "target": "root",
+      "settle": 800,
+      "doc": "The Figma Hero laid over this one at 1024px, stacked and split. The plate is a captured stand-in with its corner drawn in Figma. Switch Onion in the toolbar; layout in Controls picks the skin."
+    },
+    "InlineForm": {
+      "story": "04-primitives-30-inline-form--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {},
+        "error": {
+          "error": "Enter an email address like name@example.com."
+        }
+      },
+      "target": "root",
+      "doc": "The Figma InlineForm laid over this one at 400px, without and with an error."
     }
   }
 }

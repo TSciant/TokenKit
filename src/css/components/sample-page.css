@@ -28,6 +28,13 @@
   :where([data-tk="section"][data-section="proof"]) {
     padding-block: var(--tk-space-8);
   }
+  /* The facts alone, under a hero: a strip, not a section. Tight padding and
+     a hairline above say "this belongs to what is above it" rather than
+     "here is the next thing to read". */
+  :where([data-tk="section"][data-section="proof"][data-strip]) {
+    padding-block: var(--tk-space-5);
+    border-block-start: 1px solid var(--tk-line-subtle);
+  }
   :where([data-tk="section"][data-section="audience"]) {
     padding-block: var(--tk-space-8) var(--tk-space-7);
   }
@@ -41,34 +48,9 @@
     padding-block: var(--tk-space-9);
   }
 
-  @keyframes tk-stagger-in {
-    from {
-      opacity: 0;
-      transform: translateY(0.75rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Cascade after the section MotionFx reveals — children land in sequence. */
-  :where([data-tk="stagger"] > *) {
-    animation: tk-stagger-in var(--tk-duration-slow) var(--tk-ease-entrance) both;
-  }
-
-  :where([data-tk="stagger"] > *:nth-child(1)) { animation-delay: 40ms; }
-  :where([data-tk="stagger"] > *:nth-child(2)) { animation-delay: 100ms; }
-  :where([data-tk="stagger"] > *:nth-child(3)) { animation-delay: 160ms; }
-  :where([data-tk="stagger"] > *:nth-child(4)) { animation-delay: 220ms; }
-  :where([data-tk="stagger"] > *:nth-child(5)) { animation-delay: 280ms; }
-  :where([data-tk="stagger"] > *:nth-child(6)) { animation-delay: 340ms; }
-
-  @media (prefers-reduced-motion: reduce) {
-    :where([data-tk="stagger"] > *) {
-      animation: none;
-    }
-  }
+  /* data-tk="stagger" used to land a list's children in sequence on load.
+     The kit does not animate things in, so the name now marks nothing; the
+     attribute is gone from the patterns. */
 }
 
 /* CTAs in vertical stacks should hug content — full-bleed solid buttons feel like banners. */
