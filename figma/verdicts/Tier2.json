@@ -520,6 +520,34 @@
       "diff": "motion is a change over time (reveal, parallax, a panel that opens and closes); a still frame has nothing to compare, and the kit’s own rule is that nothing moves on scroll-in",
       "pull": "Accept",
       "result": "left out of the design on purpose; the durations and easings are the tk-motion tokens, which the Tokens panel already shows, and the onion check already photographs components with motion switched off"
+    },
+    {
+      "component": "tk-density (Figma modes)",
+      "driftType": "Design execution != live execution",
+      "diff": "the file had colour and corner modes per pack but density only as three fixed steps, and brand packs set their own --tk-density (0.85 to 1.3), so a brand’s spacing was never in the design; control heights (the code’s max(target-min, 2.25rem * density)) were fixed at 36 and 40; the measure variables were the old font’s",
+      "pull": "Align",
+      "result": "five pack densities added as modes, space ramp and measure set from the live values, control/min and field/min added and bound to Button (sm, md) and Field (input, select); the wireframe, dark and tk sheets read 1.0, compact 1.6, comfortable 1.0, and the five brand sheets 1.6 to 3.9"
+    },
+    {
+      "component": "Modes (ModeSheet)",
+      "driftType": "New check",
+      "diff": "nothing photographed the file under a mode, so “the design follows the pack” was a claim",
+      "pull": "Align",
+      "result": "one story draws Button, Chip, Card, Alert, Field and Meter in fixed slots; ten Figma frames (eight packs, two densities) are compared to it under the matching toolbar settings (tools/modes-check.mjs, figma/modes/checks.json, gated at 8). Worst single slot is mohave’s Alert at 9.6 (the live panel is 4px taller); Chip reads 5 to 8 in the brand packs, where a pack’s letter-spacing is not a variable the file carries"
+    },
+    {
+      "component": "SiteFooter",
+      "driftType": "Design execution != live execution",
+      "diff": "the footer was drawn by putting the whole component into the wireframe-inverse mode, which is right in the light wireframe and wrong everywhere else: under wireframe-dark (where the code’s inverse is white) and in every brand pack (where inverse is the pack’s own dark colour) it stayed wireframe grey. The first pattern sheet read 157 for the footer in wireframe-dark",
+      "pull": "Align",
+      "result": "no explicit mode: the fill is surface/inverse, the text is text/on-scrim, the chips take an inverse ink mode and an on-scrim label. The footer reads 5 to 6 in every pack, and 7.7 against its default skin (it was 4.3: the copyright and chip lines were #d0d0d0 and are now white, as they are in the brand packs)"
+    },
+    {
+      "component": "Pattern sheets (Masthead, PageHero, SiteFooter)",
+      "driftType": "New check",
+      "diff": "the primitive sheets pass under every pack; patterns are where a pack’s typography and proportions show",
+      "pull": "Align",
+      "result": "ten more frames, compared by the same tool (figma/modes/patterns-<mode>.png): seven of ten read 3.3 to 7.3. Three are accepted with ceilings and reasons in figma/modes/ceilings.json: door-shop (13: its display face and case are not carried per pack), muncheese (20: plate/min is 128 there and the drawn plate is a fixed square) and compact (10: footer links wrap in the file and not in the code)"
     }
   ],
   "promotion": [

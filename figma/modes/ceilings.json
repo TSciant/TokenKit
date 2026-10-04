@@ -1,0 +1,6 @@
+{
+  "note": "Accepted ceilings for mode sheets that read over the default 8, with the reason; the figma gate fails above them.",
+  "patterns-door-shop": { "max": 13, "why": "the pack's display face (a heavy uppercase grotesque) is a font family and a text case the file does not carry per pack; the hero heading wraps differently" },
+  "patterns-muncheese": { "max": 20, "why": "the footer's plate has a pack minimum height (plate/min 128) and the drawn plate is a fixed square" },
+  "patterns-density-compact": { "max": 10, "why": "at 0.75 the footer's legal links fit one row in the code and wrap in the file, and the plate is a flat fill where the code draws a gradient" }
+}

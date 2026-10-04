@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-03T15:04:00.857Z",
+  "generated": "2026-10-04T11:27:43.165Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -298,14 +298,14 @@
       "source": "src/react/patterns/chrome.tsx",
       "skinDir": "figma/skins/SiteFooter",
       "skins": 1,
-      "skinPulledAt": "2026-09-29T14:05:30-04:00",
+      "skinPulledAt": "2026-10-04T11:26:10.497Z",
       "sourceUpdatedAt": "2026-10-01T09:52:48-04:00",
       "stale": false,
       "check": {
         "skins": 1,
-        "mean": 4.32,
-        "worst": 4.32,
-        "checkedAt": "2026-10-03T14:31:58.684Z"
+        "mean": 7.73,
+        "worst": 7.73,
+        "checkedAt": "2026-10-04T11:26:47.825Z"
       }
     },
     "ArrowCta": {
@@ -322,7 +322,7 @@
         "skins": 9,
         "mean": 4.82,
         "worst": 9.39,
-        "checkedAt": "2026-10-03T14:31:58.684Z"
+        "checkedAt": "2026-10-04T11:27:21.306Z"
       }
     },
     "ContactCta": {
@@ -356,7 +356,7 @@
         "skins": 3,
         "mean": 1.93,
         "worst": 2.15,
-        "checkedAt": "2026-10-03T14:31:58.684Z"
+        "checkedAt": "2026-10-04T11:27:21.306Z"
       }
     },
     "TileGrid": {
@@ -893,7 +893,7 @@
       "source": "src/react/shells/Shell.tsx",
       "skinDir": "figma/skins/Shell",
       "skins": 5,
-      "skinPulledAt": "2026-10-03T15:03:28.083Z",
+      "skinPulledAt": "2026-10-03T11:09:14-04:00",
       "sourceUpdatedAt": "2026-09-21T15:16:24-04:00",
       "stale": false,
       "check": {

@@ -72,6 +72,22 @@ for (const n of top) {
   if (meta[n]?.stale) warn(`${n}: the source changed after the skins were pulled`);
 }
 
+/* The mode sheets: a Figma sheet per pack and per density, each photographed
+   against the page under the same toolbar settings (tools/modes-check.mjs). */
+const modesDir = resolve(ROOT, "figma/modes");
+if (existsSync(modesDir)) {
+  const mchecks = existsSync(resolve(modesDir, "checks.json")) ? JSON.parse(readFileSync(resolve(modesDir, "checks.json"), "utf8")).modes ?? {} : {};
+  const ceilings = existsSync(resolve(modesDir, "ceilings.json")) ? JSON.parse(readFileSync(resolve(modesDir, "ceilings.json"), "utf8")) : {};
+  for (const f of readdirSync(modesDir).filter((x) => x.endsWith(".png"))) {
+    const m = f.slice(0, -4), c = mchecks[m];
+    if (!c) err(`modes/${m}: no modes-check result in figma/modes/checks.json`);
+    else {
+      const ceiling = ceilings[m]?.max ?? 8;
+      if (c.mean > ceiling) err(`modes/${m}: last modes-check mean ${c.mean} is over its ceiling ${ceiling} (figma/modes/ceilings.json records an accepted higher number)`);
+    }
+  }
+}
+
 /* The story ids must exist, when there is a build to ask. */
 const built = resolve(ROOT, "storybook-static/index.json");
 if (existsSync(built)) {
