@@ -22,13 +22,13 @@
       "skins": 9,
       "mean": 4.82,
       "worst": 9.39,
-      "checkedAt": "2026-10-04T18:44:17.817Z"
+      "checkedAt": "2026-10-04T19:50:18.921Z"
     },
     "ArticleFeed": {
       "skins": 1,
       "mean": 5.02,
       "worst": 5.02,
-      "checkedAt": "2026-10-04T18:44:17.817Z"
+      "checkedAt": "2026-10-04T19:50:18.921Z"
     },
     "ArticlePage": {
       "skins": 1,
@@ -41,6 +41,18 @@
       "mean": 4.94,
       "worst": 14.01,
       "checkedAt": "2026-10-04T16:57:20.982Z"
+    },
+    "ButtonGroup": {
+      "skins": 1,
+      "mean": 2.74,
+      "worst": 2.74,
+      "checkedAt": "2026-10-05T00:32:00.509Z"
+    },
+    "ButtonReason": {
+      "skins": 1,
+      "mean": 2.49,
+      "worst": 2.49,
+      "checkedAt": "2026-10-05T00:33:53.151Z"
     },
     "Card": {
       "skins": 6,
@@ -74,9 +86,9 @@
     },
     "EventPromo": {
       "skins": 1,
-      "mean": 5.7,
-      "worst": 5.7,
-      "checkedAt": "2026-10-04T18:44:17.817Z"
+      "mean": 5.68,
+      "worst": 5.68,
+      "checkedAt": "2026-10-04T19:50:18.921Z"
     },
     "Eyebrow": {
       "skins": 2,
@@ -94,7 +106,7 @@
       "skins": 1,
       "mean": 5.35,
       "worst": 5.35,
-      "checkedAt": "2026-10-04T18:44:17.817Z"
+      "checkedAt": "2026-10-04T19:50:18.921Z"
     },
     "Field": {
       "skins": 9,
@@ -136,13 +148,13 @@
       "skins": 2,
       "mean": 1.83,
       "worst": 2.4,
-      "checkedAt": "2026-10-04T18:38:31.268Z"
+      "checkedAt": "2026-10-04T19:50:18.921Z"
     },
     "HeroCarousel": {
       "skins": 3,
       "mean": 1.95,
       "worst": 2.17,
-      "checkedAt": "2026-10-04T18:44:17.817Z"
+      "checkedAt": "2026-10-04T19:50:18.921Z"
     },
     "HubCards": {
       "skins": 1,
@@ -208,7 +220,7 @@
       "skins": 2,
       "mean": 4.9,
       "worst": 7.15,
-      "checkedAt": "2026-10-01T13:52:35.176Z"
+      "checkedAt": "2026-10-05T00:32:00.509Z"
     },
     "Meter": {
       "skins": 5,
@@ -250,7 +262,7 @@
       "skins": 1,
       "mean": 3.63,
       "worst": 3.63,
-      "checkedAt": "2026-10-04T18:38:31.268Z"
+      "checkedAt": "2026-10-04T19:50:18.921Z"
     },
     "RailNav": {
       "skins": 1,
@@ -280,7 +292,7 @@
       "skins": 1,
       "mean": 2.12,
       "worst": 2.12,
-      "checkedAt": "2026-10-04T18:44:17.817Z"
+      "checkedAt": "2026-10-04T19:50:18.921Z"
     },
     "SegmentPage": {
       "skins": 1,

@@ -684,6 +684,30 @@
       },
       "target": "root",
       "doc": "The Figma InlineForm laid over this one at 400px, without and with an error."
+    },
+    "ButtonGroup": {
+      "story": "04-primitives-31-button-group--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma ButtonGroup laid over this one: the dialog footer at 480px, end-aligned, equal widths."
+    },
+    "ButtonReason": {
+      "story": "04-primitives-01-button--onion-skin-reason",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma ButtonReason laid over a disabled button with its reason label pinned open."
     }
   }
 }

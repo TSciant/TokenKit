@@ -69,7 +69,9 @@
     "Tachometer": "186:485",
     "Shell": "190:523",
     "Hero": "213:747",
-    "InlineForm": "215:1393"
+    "InlineForm": "215:1393",
+    "ButtonGroup": "217:142",
+    "ButtonReason": "220:142"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -139,7 +141,9 @@
     "Tachometer": "04-primitives-14-tachometer--onion-skin",
     "Shell": "03-foundations-03-composition--onion-skin",
     "Hero": "05-patterns-26-hero--onion-skin",
-    "InlineForm": "04-primitives-30-inline-form--onion-skin"
+    "InlineForm": "04-primitives-30-inline-form--onion-skin",
+    "ButtonGroup": "04-primitives-31-button-group--onion-skin",
+    "ButtonReason": "04-primitives-01-button--onion-skin-reason"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -209,6 +213,8 @@
     "Tachometer": "src/react/primitives/Tachometer.tsx",
     "Shell": "src/react/shells/Shell.tsx",
     "Hero": "src/react/patterns/marketing.tsx",
-    "InlineForm": "src/react/primitives/InlineForm.tsx"
+    "InlineForm": "src/react/primitives/InlineForm.tsx",
+    "ButtonGroup": "src/react/primitives/ButtonGroup.tsx",
+    "ButtonReason": "src/react/primitives/Button.tsx"
   }
 }

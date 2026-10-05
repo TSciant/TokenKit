@@ -49,6 +49,8 @@ export { OnThisPage } from "./OnThisPage";
 export type { OnThisPageProps, OnThisPageItem } from "./OnThisPage";
 export { MenuButton } from "./MenuButton";
 export type { MenuButtonProps, MenuButtonItem } from "./MenuButton";
+export { ButtonGroup } from "./ButtonGroup";
+export type { ButtonGroupProps, ButtonGroupAction } from "./ButtonGroup";
 export { Search } from "./Search";
 export type { SearchProps } from "./Search";
 export { SiteHeader } from "./SiteHeader";

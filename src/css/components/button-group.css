@@ -1,0 +1,49 @@
+/* Button group — two or three related actions in a row.
+   data-tk="button-group" data-align=end data-equal > data-tk="button-group-row"
+   The buttons are Buttons and the overflow is a MenuButton; this file only
+   lays them out.
+
+   Two boxes because of one rule of container queries: a container cannot be
+   sized by its content. The group is the container (block, as wide as where
+   it sits, so the narrow stack follows the card or dialog it is in, not the
+   window); the row inside is what is sized by the buttons. */
+@layer components {
+  /* tk-default: data-align=start */
+  :where([data-tk="button-group"]) {
+    container: button-group / inline-size;
+    display: flex;
+  }
+
+  :where([data-tk="button-group"][data-align="end"]) {
+    justify-content: flex-end;
+  }
+
+  :where([data-tk="button-group-row"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-2);
+  }
+
+  /* Equal: one column per control, each the width of the widest label. */
+  :where([data-tk="button-group"][data-equal] > [data-tk="button-group-row"]) {
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+
+  /* Narrow: one control per row, full width, in the order written. */
+  @container button-group (max-width: 22rem) {
+    :where([data-tk="button-group-row"]) {
+      display: grid;
+      grid-auto-flow: row;
+      grid-auto-columns: auto;
+      inline-size: 100%;
+    }
+
+    :where([data-tk="button-group-row"] > [data-tk="button"]),
+    :where([data-tk="button-group-row"] > [data-tk="menu-button"] > [data-tk="button"]) {
+      inline-size: 100%;
+    }
+  }
+}

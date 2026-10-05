@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "./Button";
+import { ButtonGroup } from "./ButtonGroup";
+import { Guidance, GuidancePair } from "./Guidance";
 
 const Arrow = () => (
   <svg
@@ -306,6 +308,159 @@ export const DisabledWithReason: Story = {
         </Button>
       </div>
     </form>
+  ),
+};
+
+const Rule = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <section data-shell="stack" data-gap="3">
+    <h2 style={{ margin: 0, fontSize: "var(--tk-size-lg)" }}>{title}</h2>
+    {children}
+  </section>
+);
+
+/**
+ * How to use a button: emphasis, labels, button or link, disabled, danger.
+ *
+ * Written from the nine systems in the ds-corpus Button brief, and put here
+ * rather than in a document beside the code: guidance kept away from the
+ * component is guidance nobody reads when they are using it. Every example is
+ * the live component, so the guidance stays true when the button changes.
+ */
+export const UsingButtons: Story = {
+  name: "Using buttons",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The rules for putting buttons on a page, each with the reason, as Do and Don't pairs of live components. Drawn from the ds-corpus Button brief: GOV.UK's labels, Carbon's emphasis and groups, Primer's and Atlassian's advice on disabled buttons.",
+      },
+    },
+  },
+  render: () => (
+    <div data-shell="stack" data-gap="7" style={{ maxInlineSize: "56rem" }}>
+      <Rule title="One solid button per area">
+        <GuidancePair>
+          <Guidance tone="do" note="Give each area (a form, a dialog, a card, a hero) at most one solid button: the thing most people came to do. The alternatives are outline or quiet. Not every area needs a solid button at all.">
+            <ButtonGroup label="Form actions" actions={[{ label: "Cancel", variant: "quiet" }, { label: "Save changes" }]} />
+          </Guidance>
+          <Guidance tone="dont" note="Don't make two actions solid because both matter. Two equal weights is no emphasis: the reader has to read both to find the one they want, which is the job emphasis was supposed to do for them.">
+            <div data-shell="inline" data-gap="2">
+              <Button>Save changes</Button>
+              <Button>Publish</Button>
+            </div>
+          </Guidance>
+        </GuidancePair>
+      </Rule>
+
+      <Rule title="Say what happens">
+        <GuidancePair>
+          <Guidance tone="do" note="Start with a verb and name the result: Save changes, Send message, Add another address. A label someone can read on its own, without the form around it, is a label a screen-reader user can find in a list of buttons.">
+            <div data-shell="inline" data-gap="2">
+              <Button>Save changes</Button>
+              <Button variant="outline">Add another address</Button>
+            </div>
+          </Guidance>
+          <Guidance tone="dont" note="Don't use Submit, OK, Continue on its own or Click here. They describe the act of pressing, which the reader already knows, and not what pressing does, which is the only thing they need.">
+            <div data-shell="inline" data-gap="2">
+              <Button>Submit</Button>
+              <Button variant="outline">OK</Button>
+            </div>
+          </Guidance>
+        </GuidancePair>
+      </Rule>
+
+      <Rule title="Answer the question in its own words">
+        <GuidancePair>
+          <Guidance tone="do" note="When a dialog asks a question, label the buttons with its answer: Delete this project? is answered by Delete project and Keep project. The reader can act without re-reading the question.">
+            <div data-shell="stack" data-gap="3">
+              <strong>Delete this project?</strong>
+              <ButtonGroup label="Confirm" actions={[{ label: "Keep project", variant: "quiet" }, { label: "Delete project", tone: "danger" }]} />
+            </div>
+          </Guidance>
+          <Guidance tone="dont" note="Don't answer with Yes and No. Taken alone they mean nothing, and a reader who skimmed the question has a coin to toss.">
+            <div data-shell="stack" data-gap="3">
+              <strong>Delete this project?</strong>
+              <div data-shell="inline" data-gap="2">
+                <Button variant="quiet">No</Button>
+                <Button>Yes</Button>
+              </div>
+            </div>
+          </Guidance>
+        </GuidancePair>
+      </Rule>
+
+      <Rule title="Short, and in sentence case">
+        <GuidancePair>
+          <Guidance tone="do" note="One to three words, written in sentence case. Casing is the pack's styling: an uppercase CTA (ArrowCta) is still written Save and continue, and the CSS does the rest, so the words stay right if the style changes.">
+            <Button>Save and continue</Button>
+          </Guidance>
+          <Guidance tone="dont" note="Don't write a sentence on a button, and don't Title Case it. Long labels wrap or truncate in narrow places, and capitals at every word slow reading without adding emphasis.">
+            <Button>Save And Continue To The Next Step</Button>
+          </Guidance>
+        </GuidancePair>
+      </Rule>
+
+      <Rule title="A button does, a link goes">
+        <GuidancePair>
+          <Guidance tone="do" note="If it changes something here (saves, sends, opens a panel), it is a button. If it takes the reader somewhere, it is a link: give Button an href and it renders a real link, which shows its address, can be opened in a new tab and can be copied.">
+            <div data-shell="inline" data-gap="2">
+              <Button>Save changes</Button>
+              <Button href="#pricing" variant="outline">See pricing</Button>
+            </div>
+          </Guidance>
+          <Guidance tone="dont" note="Don't navigate from a button's click handler. It looks the same and behaves worse: no address on hover, no new tab, no copy link, and a screen reader announces a button where there is a destination.">
+            <Button onClick={() => undefined}>Go to pricing</Button>
+          </Guidance>
+        </GuidancePair>
+      </Rule>
+
+      <Rule title="Disable as a last resort, and say why">
+        <GuidancePair>
+          <Guidance tone="do" note="Prefer leaving the button on and explaining what is missing when it is pressed. When the action really cannot happen yet, disable it with a reason: it stays reachable by keyboard and says why on focus and hover.">
+            <Button disabled reason="Add at least one recipient first.">Send</Button>
+          </Guidance>
+          <Guidance tone="dont" note="Don't disable a button and leave the reader to work out why. A grey button with no explanation is a dead end, and before this kit kept disabled buttons focusable, a keyboard user could not even find it.">
+            <Button disabled>Send</Button>
+          </Guidance>
+        </GuidancePair>
+      </Rule>
+
+      <Rule title="Solid danger is for the final step">
+        <GuidancePair>
+          <Guidance tone="do" note="Use quiet danger for a destructive action that repeats (Remove beside each row) and save solid danger for the one confirmation that cannot be undone. The weight should match how final it is.">
+            <div data-shell="stack" data-gap="2">
+              <div data-shell="split"><span>Invoice 1042</span><Button variant="quiet" tone="danger" size="sm">Remove</Button></div>
+              <div data-shell="split"><span>Invoice 1043</span><Button variant="quiet" tone="danger" size="sm">Remove</Button></div>
+            </div>
+          </Guidance>
+          <Guidance tone="dont" note="Don't put a solid danger button on every row. A page of loud red buttons trains people to stop seeing them, which is the opposite of what danger is for.">
+            <div data-shell="stack" data-gap="2">
+              <div data-shell="split"><span>Invoice 1042</span><Button tone="danger" size="sm">Delete</Button></div>
+              <div data-shell="split"><span>Invoice 1043</span><Button tone="danger" size="sm">Delete</Button></div>
+            </div>
+          </Guidance>
+        </GuidancePair>
+      </Rule>
+    </div>
+  ),
+};
+
+/* The reason label shows on hover and focus, which a screenshot cannot do;
+   this story pins it open so the Figma drawing can be laid over it. The rule
+   is scoped to this story's wrapper and does nothing anywhere else. */
+export const OnionSkinReason: Story = {
+  name: "Onion skin: reason (Figma)",
+  parameters: {
+    docs: { description: { story: "A disabled button with its reason label pinned open, for the Figma ButtonReason component to be laid over. In use the label appears on hover and keyboard focus." } },
+    onion: { component: "ButtonReason", target: "root", skin: () => "default.png" },
+  },
+  render: () => (
+    <div data-reason-pinned style={{ inlineSize: 280, blockSize: 68 }}>
+      <style>{"[data-reason-pinned] [data-tk=\"button-reason\"]{opacity:1;visibility:visible;transition:none}"}</style>
+      <Button disabled reason="Add at least one recipient first.">
+        Send
+      </Button>
+    </div>
   ),
 };
 

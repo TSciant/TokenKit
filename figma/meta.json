@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-04T18:44:25.016Z",
+  "generated": "2026-10-05T00:34:07.847Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -265,13 +265,13 @@
       "skinDir": "figma/skins/ProofStrip",
       "skins": 1,
       "skinPulledAt": "2026-09-29T12:47:48-04:00",
-      "sourceUpdatedAt": "2026-10-04T18:38:14.177Z",
+      "sourceUpdatedAt": "2026-10-04T14:44:25-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 3.63,
         "worst": 3.63,
-        "checkedAt": "2026-10-04T18:38:31.268Z"
+        "checkedAt": "2026-10-04T19:50:18.921Z"
       }
     },
     "PageHero": {
@@ -316,13 +316,13 @@
       "skinDir": "figma/skins/ArrowCta",
       "skins": 9,
       "skinPulledAt": "2026-09-29T14:22:55-04:00",
-      "sourceUpdatedAt": "2026-10-04T18:38:14.177Z",
+      "sourceUpdatedAt": "2026-10-04T14:44:25-04:00",
       "stale": false,
       "check": {
         "skins": 9,
         "mean": 4.82,
         "worst": 9.39,
-        "checkedAt": "2026-10-04T18:44:17.817Z"
+        "checkedAt": "2026-10-04T19:50:18.921Z"
       }
     },
     "ContactCta": {
@@ -350,13 +350,13 @@
       "skinDir": "figma/skins/HeroCarousel",
       "skins": 3,
       "skinPulledAt": "2026-09-30T16:39:46-04:00",
-      "sourceUpdatedAt": "2026-10-04T18:38:14.177Z",
+      "sourceUpdatedAt": "2026-10-04T14:44:25-04:00",
       "stale": false,
       "check": {
         "skins": 3,
         "mean": 1.95,
         "worst": 2.17,
-        "checkedAt": "2026-10-04T18:44:17.817Z"
+        "checkedAt": "2026-10-04T19:50:18.921Z"
       }
     },
     "TileGrid": {
@@ -571,13 +571,13 @@
       "skinDir": "figma/skins/FeatureGrid",
       "skins": 1,
       "skinPulledAt": "2026-09-30T16:29:35-04:00",
-      "sourceUpdatedAt": "2026-10-04T18:38:14.177Z",
+      "sourceUpdatedAt": "2026-10-04T14:44:25-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 5.35,
         "worst": 5.35,
-        "checkedAt": "2026-10-04T18:44:17.817Z"
+        "checkedAt": "2026-10-04T19:50:18.921Z"
       }
     },
     "EventPromo": {
@@ -588,13 +588,13 @@
       "skinDir": "figma/skins/EventPromo",
       "skins": 1,
       "skinPulledAt": "2026-09-30T16:30:59-04:00",
-      "sourceUpdatedAt": "2026-10-04T18:38:14.177Z",
+      "sourceUpdatedAt": "2026-10-04T14:44:25-04:00",
       "stale": false,
       "check": {
         "skins": 1,
-        "mean": 5.7,
-        "worst": 5.7,
-        "checkedAt": "2026-10-04T18:44:17.817Z"
+        "mean": 5.68,
+        "worst": 5.68,
+        "checkedAt": "2026-10-04T19:50:18.921Z"
       }
     },
     "ArticleFeed": {
@@ -605,13 +605,13 @@
       "skinDir": "figma/skins/ArticleFeed",
       "skins": 1,
       "skinPulledAt": "2026-09-30T16:34:16-04:00",
-      "sourceUpdatedAt": "2026-10-04T18:38:14.177Z",
+      "sourceUpdatedAt": "2026-10-04T14:44:25-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 5.02,
         "worst": 5.02,
-        "checkedAt": "2026-10-04T18:44:17.817Z"
+        "checkedAt": "2026-10-04T19:50:18.921Z"
       }
     },
     "HeaderSearch": {
@@ -673,13 +673,13 @@
       "skinDir": "figma/skins/MenuButton",
       "skins": 2,
       "skinPulledAt": "2026-10-01T09:52:48-04:00",
-      "sourceUpdatedAt": "2026-10-01T09:52:48-04:00",
+      "sourceUpdatedAt": "2026-10-04T15:56:39-04:00",
       "stale": false,
       "check": {
         "skins": 2,
         "mean": 4.9,
         "worst": 7.15,
-        "checkedAt": "2026-10-01T13:52:35.176Z"
+        "checkedAt": "2026-10-05T00:32:00.509Z"
       }
     },
     "MegaMenu": {
@@ -860,13 +860,13 @@
       "skinDir": "figma/skins/SegmentList",
       "skins": 1,
       "skinPulledAt": "2026-10-03T09:49:50-04:00",
-      "sourceUpdatedAt": "2026-10-04T18:38:14.177Z",
+      "sourceUpdatedAt": "2026-10-04T14:44:25-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.12,
         "worst": 2.12,
-        "checkedAt": "2026-10-04T18:44:17.817Z"
+        "checkedAt": "2026-10-04T19:50:18.921Z"
       }
     },
     "Tachometer": {
@@ -911,13 +911,13 @@
       "skinDir": "figma/skins/Hero",
       "skins": 2,
       "skinPulledAt": "2026-10-04T13:03:00-04:00",
-      "sourceUpdatedAt": "2026-10-04T18:38:14.177Z",
+      "sourceUpdatedAt": "2026-10-04T14:44:25-04:00",
       "stale": false,
       "check": {
         "skins": 2,
         "mean": 1.83,
         "worst": 2.4,
-        "checkedAt": "2026-10-04T18:38:31.268Z"
+        "checkedAt": "2026-10-04T19:50:18.921Z"
       }
     },
     "InlineForm": {
@@ -935,6 +935,40 @@
         "mean": 3.09,
         "worst": 3.38,
         "checkedAt": "2026-10-04T18:23:46.837Z"
+      }
+    },
+    "ButtonGroup": {
+      "node": "217:142",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=217-142",
+      "story": "04-primitives-31-button-group--onion-skin",
+      "source": "src/react/primitives/ButtonGroup.tsx",
+      "skinDir": "figma/skins/ButtonGroup",
+      "skins": 1,
+      "skinPulledAt": "2026-10-04T15:50:26-04:00",
+      "sourceUpdatedAt": "2026-10-04T15:56:39-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 2.74,
+        "worst": 2.74,
+        "checkedAt": "2026-10-05T00:32:00.509Z"
+      }
+    },
+    "ButtonReason": {
+      "node": "220:142",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=220-142",
+      "story": "04-primitives-01-button--onion-skin-reason",
+      "source": "src/react/primitives/Button.tsx",
+      "skinDir": "figma/skins/ButtonReason",
+      "skins": 1,
+      "skinPulledAt": "2026-10-05T00:33:51.355Z",
+      "sourceUpdatedAt": "2026-10-04T11:25:15-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 2.49,
+        "worst": 2.49,
+        "checkedAt": "2026-10-05T00:33:53.151Z"
       }
     }
   }

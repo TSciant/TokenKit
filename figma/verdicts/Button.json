@@ -63,6 +63,12 @@
       "observation": "disabled used the native attribute, which removes the button from the tab order: a keyboard or screen-reader user could not reach it or learn why it did nothing. Primer, Atlassian and GOV.UK all warn against it; Primer and PatternFly offer a focusable unavailable state",
       "pull": "Align",
       "result": "disabled and busy now render aria-disabled and stay focusable (links get tabIndex 0 back); activation is blocked at the click, which covers Enter, Space and a form’s implicit submit (checked: no submit fires). A new `reason` prop is shown under the button on hover and keyboard focus and read as its description: name stays the label, description is the reason, the AX tree reports disabled and focusable. Looks unchanged, so the disabled skins still read 1.4 to 4.6. The reason label is not yet drawn in Figma"
+    },
+    {
+      "type": "variation",
+      "observation": "the reason label for a disabled button only appears on hover and keyboard focus, which a screenshot cannot produce, so it had no drawing",
+      "pull": "Align",
+      "result": "an onion story pins it open with a rule scoped to its own wrapper; Figma ButtonReason draws a disabled solid md Button instance with the label 8px below, start-aligned, padding space/1 and space/2, radius/sm, inverse surface and text; onion 2.5"
     }
   ],
   "result": "Aligned",

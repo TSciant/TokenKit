@@ -24,6 +24,7 @@ const meta = {
     items: { control: "object" },
     align: { control: "inline-radio", options: ["start", "end"] },
     variant: { control: "inline-radio", options: ["solid", "outline", "quiet"] },
+    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
     initialOpen: { control: "boolean" },
   },
   args: { label: "More", items: ITEMS, align: "start", variant: "outline", initialOpen: false },

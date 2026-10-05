@@ -17,6 +17,12 @@ export type MenuButtonProps = Omit<HTMLAttributes<HTMLDivElement>, "onSelect"> &
   // tk-vocab: align omits center, stretch — a list hangs from one edge of its trigger; those values belong to the shells' data-align
   align?: "start" | "end";
   variant?: "solid" | "outline" | "quiet";
+  /**
+   * The trigger's size, as Button's. Small by default, which is where a More
+   * usually sits (a card corner, a toolbar); match the buttons beside it when
+   * it is one of a row.
+   */
+  size?: "sm" | "md" | "lg";
   /** Open on first render, so the list can be looked at without a click. */
   initialOpen?: boolean;
 };
@@ -36,6 +42,7 @@ export function MenuButton({
   items,
   align = "start",
   variant = "outline",
+  size = "sm",
   initialOpen = false,
   ...rest
 }: MenuButtonProps) {
@@ -95,7 +102,7 @@ export function MenuButton({
       <button
         data-tk="button"
         data-variant={variant}
-        data-size="sm"
+        data-size={size === "md" ? undefined : size}
         type="button"
         aria-expanded={open}
         aria-controls={panelId}

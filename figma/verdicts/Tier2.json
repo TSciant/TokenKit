@@ -569,6 +569,20 @@
       "diff": "the hero brief’s input-capture pattern needed one field and a submit on one line, and the kit had Field and Button but nothing that put them in a row with one height, a shared label and a wrap that keeps reading order",
       "pull": "Align",
       "result": "InlineForm (primitive 30): a real form (Enter submits, works without JavaScript given an action, native validation from type and required), a label that is always present (hideLabel only takes it off screen), hint and error on aria-describedby, and a row that wraps field-first. It reuses field.css and the Button, so the only new CSS is the row. Hero takes actions=\"capture\" to host it with the CTA as the submit. Figma set InlineForm (State=default, error) with a Button instance; onion 2.8 and 3.4, after drawing the invalid field 2px taller, as the code makes it (the 2px border grows the input and the button stretches with it)"
+    },
+    {
+      "component": "ButtonGroup",
+      "driftType": "New primitive",
+      "diff": "the Button brief found Carbon alone writes down the rules for a row of buttons (two or three, then a menu; one high-emphasis button; equal widths for a set), and token-kit had nothing between a single Button and a hand-made row",
+      "pull": "Align",
+      "result": "ButtonGroup (primitive 31): actions as data, the first max (3 at most) as Buttons and the rest behind a MenuButton; align start or end; equal widths by an inline grid; a narrow box (container query on the group, not the window) stacks the controls full width in the order written, never reversed, so reading and focus order agree. Two boxes because a container cannot be sized by its content. Figma ButtonGroup (end-aligned, equal, Button instances, gap space/2); onion 2.7. The More trigger is MenuButton’s own, fixed at sm"
+    },
+    {
+      "component": "MenuButton",
+      "driftType": "Live execution != live intent",
+      "diff": "the trigger was fixed at sm, so a More at the end of a ButtonGroup of md buttons had smaller type than its neighbours",
+      "pull": "Align",
+      "result": "size (sm, md, lg) as Button’s, default sm so every existing use and its skins are unchanged; ButtonGroup passes its own size (md by default). The Figma MenuButton still draws only sm"
     }
   ],
   "promotion": [
