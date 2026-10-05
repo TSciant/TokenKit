@@ -26,7 +26,29 @@ type Shared = {
   error?: string;
   /** Progressive required marking — text + asterisk, not colour alone. */
   required?: boolean;
+  /**
+   * Marks the label "(optional)" instead. Mark the minority: when most of a
+   * form's fields are required, mark the few that are optional; when most are
+   * optional, mark the required ones. Ignored if `required` is set.
+   */
+  optional?: boolean;
   control?: FieldControl;
+  /**
+   * How many characters the answer is expected to be. Sizes the control to
+   * fit it (a year is 4, a postcode 10, a phone number 20), because the box's
+   * size is a hint about the answer's size. Leave it out to fill the
+   * container. Never wider than the container.
+   */
+  chars?: 2 | 3 | 4 | 5 | 10 | 20 | 30;
+  /**
+   * A short unit before the input ("$", "£") or after it ("kg", "%"). Drawn
+   * attached to the input but outside it, and hidden from screen readers so
+   * it is not read as part of the value: say the unit in the label or hint
+   * too ("Price, in dollars"). Short only; anything longer is a hint. Inputs
+   * and selects, not textareas.
+   */
+  prefix?: string;
+  suffix?: string;
   options?: FieldOption[];
   children?: ReactNode;
 };
@@ -58,7 +80,11 @@ export function Field({
   hint,
   error,
   required,
+  optional,
   control = "input",
+  chars,
+  prefix,
+  suffix,
   options,
   children,
   ...rest
@@ -72,6 +98,7 @@ export function Field({
     id,
     "aria-describedby": describedBy,
     "aria-invalid": error ? true : undefined,
+    "data-chars": chars,
     required,
     ...rest,
   };
@@ -95,11 +122,29 @@ export function Field({
     controlNode = <input data-tk="input" {...controlProps} />;
   }
 
+  if ((prefix || suffix) && !children && control !== "textarea") {
+    controlNode = (
+      <div data-tk="field-control">
+        {prefix ? (
+          <span data-tk="field-affix" data-side="prefix" aria-hidden="true">
+            {prefix}
+          </span>
+        ) : null}
+        {controlNode}
+        {suffix ? (
+          <span data-tk="field-affix" data-side="suffix" aria-hidden="true">
+            {suffix}
+          </span>
+        ) : null}
+      </div>
+    );
+  }
+
   return (
     <div data-tk="field">
       <label data-tk="field-label" htmlFor={id}>
         {label}
-        {required ? <RequiredMark /> : null}
+        {required ? <RequiredMark /> : optional ? <span data-tk="field-optional"> (optional)</span> : null}
       </label>
       {controlNode}
       {hint ? (

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T11:51:05.866Z",
+  "generated": "2026-10-05T12:33:56.273Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -111,14 +111,14 @@
       "source": "src/react/primitives/Field.tsx",
       "skinDir": "figma/skins/Field",
       "skins": 9,
-      "skinPulledAt": "2026-09-29T11:45:52-04:00",
-      "sourceUpdatedAt": "2026-09-20T00:42:57-04:00",
+      "skinPulledAt": "2026-10-05T08:02:37-04:00",
+      "sourceUpdatedAt": "2026-10-05T12:33:22.230Z",
       "stale": false,
       "check": {
         "skins": 9,
-        "mean": 2.34,
-        "worst": 7.32,
-        "checkedAt": "2026-09-30T01:40:41.531Z"
+        "mean": 2.05,
+        "worst": 7.22,
+        "checkedAt": "2026-10-05T12:33:48.432Z"
       }
     },
     "Meter": {
@@ -927,14 +927,14 @@
       "source": "src/react/primitives/InlineForm.tsx",
       "skinDir": "figma/skins/InlineForm",
       "skins": 2,
-      "skinPulledAt": "2026-10-04T14:29:34-04:00",
+      "skinPulledAt": "2026-10-05T08:02:37-04:00",
       "sourceUpdatedAt": "2026-10-04T14:29:34-04:00",
       "stale": false,
       "check": {
         "skins": 2,
-        "mean": 3.09,
-        "worst": 3.38,
-        "checkedAt": "2026-10-04T18:23:46.837Z"
+        "mean": 2.63,
+        "worst": 2.99,
+        "checkedAt": "2026-10-05T11:57:12.566Z"
       }
     },
     "ButtonGroup": {
@@ -1003,6 +1003,23 @@
         "mean": 2.56,
         "worst": 2.56,
         "checkedAt": "2026-10-05T11:21:15.081Z"
+      }
+    },
+    "FieldAffix": {
+      "node": "228:1393",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=228-1393",
+      "story": "04-primitives-03-field--onion-skin-affix",
+      "source": "src/react/primitives/Field.tsx",
+      "skinDir": "figma/skins/FieldAffix",
+      "skins": 1,
+      "skinPulledAt": "2026-10-05T08:32:11-04:00",
+      "sourceUpdatedAt": "2026-10-05T12:33:22.230Z",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 1.3,
+        "worst": 1.3,
+        "checkedAt": "2026-10-05T12:33:48.432Z"
       }
     }
   }

@@ -732,6 +732,18 @@
       "single": true,
       "target": "root",
       "doc": "The Figma ChoiceCard pair (unchecked, checked) laid over the live pair at 280px."
+    },
+    "FieldAffix": {
+      "story": "04-primitives-03-field--onion-skin-affix",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma FieldAffix laid over a prefixed and a suffixed field at 320px."
     }
   }
 }

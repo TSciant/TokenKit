@@ -15,7 +15,6 @@ const meta = {
   args: {
     label: "Email address",
     submitLabel: "Subscribe",
-    placeholder: "you@example.com",
     onSubmit: (e) => e.preventDefault(),
   },
   argTypes: {

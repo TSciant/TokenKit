@@ -44,6 +44,85 @@
     font-size: var(--tk-size-base);
   }
 
+  /* Width by expected answer.
+     data-chars=2|3|4|5|10|20|30 on the control.
+     The box's size is a hint about the answer's size (GOV.UK's fixed widths,
+     from the ds-corpus input brief). Measured in ch, the width of a zero in
+     the control's own font, so it follows the pack's type; plus the padding
+     and border the control already has. Never wider than its container. */
+  :where([data-tk="input"][data-chars], [data-tk="textarea"][data-chars], [data-tk="select"][data-chars]) {
+    inline-size: calc(var(--_chars) * 1ch + 2 * var(--tk-space-3) + 2px);
+    max-inline-size: 100%;
+  }
+  /* A select also carries its arrow. */
+  :where([data-tk="select"][data-chars]) {
+    inline-size: calc(var(--_chars) * 1ch + 2 * var(--tk-space-3) + 2px + 1.5rem);
+  }
+  :where([data-chars="2"]) { --_chars: 2; }
+  :where([data-chars="3"]) { --_chars: 3; }
+  :where([data-chars="4"]) { --_chars: 4; }
+  :where([data-chars="5"]) { --_chars: 5; }
+  :where([data-chars="10"]) { --_chars: 10; }
+  :where([data-chars="20"]) { --_chars: 20; }
+  :where([data-chars="30"]) { --_chars: 30; }
+
+  /* --- prefix and suffix -------------------------------------------------
+     data-tk="field-control" > [field-affix data-side=prefix] input [field-affix data-side=suffix]
+     The unit is attached to the input but is not inside it: it is a separate
+     box with the input's border, on the sunken ground, aria-hidden so a
+     screen reader does not read "$" as part of the value (GOV.UK's reason for
+     putting it outside; the ds-corpus input brief). The pair shares one
+     outline: the outer corners round, the corners where they meet are square. */
+  :where([data-tk="field-control"]) {
+    display: flex;
+    align-items: stretch;
+    max-inline-size: 100%;
+  }
+
+  :where([data-tk="field-control"] > [data-tk="input"], [data-tk="field-control"] > [data-tk="select"]) {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="field-control"] > [data-chars]) {
+    flex: 0 1 auto;
+  }
+
+  /* tk-default: data-side=prefix */
+  :where([data-tk="field-affix"]) {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    padding-inline: var(--tk-space-3);
+    border: 1px solid var(--tk-line-strong);
+    border-inline-end: 0;
+    border-start-start-radius: var(--tk-radius-nested);
+    border-end-start-radius: var(--tk-radius-nested);
+    background-color: var(--tk-surface-sunken);
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-base);
+    white-space: nowrap;
+  }
+
+  :where([data-tk="field-affix"][data-side="suffix"]) {
+    border-inline-end: 1px solid var(--tk-line-strong);
+    border-inline-start: 0;
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    border-start-end-radius: var(--tk-radius-nested);
+    border-end-end-radius: var(--tk-radius-nested);
+  }
+
+  :where([data-tk="field-affix"][data-side="prefix"] + :is([data-tk="input"], [data-tk="select"])) {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+
+  :where([data-tk="field-control"] > :is([data-tk="input"], [data-tk="select"]):has(+ [data-side="suffix"])) {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
   :where([data-tk="textarea"]) {
     min-block-size: 6rem;
     resize: vertical;
@@ -59,6 +138,24 @@
          [data-tk="select"][aria-invalid="true"]) {
     border-width: 2px;
     border-color: var(--tk-status-danger-line);
+  }
+
+  /* "(optional)" is part of the label and reads with it; quieter, not smaller. */
+  :where([data-tk="field-optional"]) {
+    font-weight: var(--tk-weight-normal);
+    color: var(--tk-text-secondary);
+  }
+
+  /* Read-only: there to be read, not changed. Full-contrast text (unlike
+     disabled), still focusable and still submitted, and visibly not an input:
+     no ground of its own and a dashed edge, so it does not invite typing.
+     Prefer it to disabled whenever the reader needs the value (GOV.UK, Carbon;
+     the ds-corpus input brief). Selects have no read-only state in HTML. */
+  :where([data-tk="input"][readonly], [data-tk="textarea"][readonly]) {
+    background-color: transparent;
+    border-style: dashed;
+    color: var(--tk-text-primary);
+    cursor: default;
   }
 
   :where([data-tk="input"]:disabled,

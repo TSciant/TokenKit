@@ -122,9 +122,15 @@
     },
     "Field": {
       "skins": 9,
-      "mean": 2.34,
-      "worst": 7.32,
-      "checkedAt": "2026-09-30T01:40:41.531Z"
+      "mean": 2.05,
+      "worst": 7.22,
+      "checkedAt": "2026-10-05T12:33:48.432Z"
+    },
+    "FieldAffix": {
+      "skins": 1,
+      "mean": 1.3,
+      "worst": 1.3,
+      "checkedAt": "2026-10-05T12:33:48.432Z"
     },
     "Figure": {
       "skins": 5,
@@ -182,9 +188,9 @@
     },
     "InlineForm": {
       "skins": 2,
-      "mean": 3.09,
-      "worst": 3.38,
-      "checkedAt": "2026-10-04T18:23:46.837Z"
+      "mean": 2.63,
+      "worst": 2.99,
+      "checkedAt": "2026-10-05T11:57:12.566Z"
     },
     "LeadForm": {
       "skins": 1,

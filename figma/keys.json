@@ -73,7 +73,8 @@
     "ButtonGroup": "217:142",
     "ButtonReason": "220:142",
     "CardHeader": "222:150",
-    "ChoiceCard": "224:1407"
+    "ChoiceCard": "224:1407",
+    "FieldAffix": "228:1393"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -147,7 +148,8 @@
     "ButtonGroup": "04-primitives-31-button-group--onion-skin",
     "ButtonReason": "04-primitives-01-button--onion-skin-reason",
     "CardHeader": "04-primitives-05-card--onion-skin-header",
-    "ChoiceCard": "04-primitives-32-choice-card--onion-skin"
+    "ChoiceCard": "04-primitives-32-choice-card--onion-skin",
+    "FieldAffix": "04-primitives-03-field--onion-skin-affix"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -221,6 +223,7 @@
     "ButtonGroup": "src/react/primitives/ButtonGroup.tsx",
     "ButtonReason": "src/react/primitives/Button.tsx",
     "CardHeader": "src/react/primitives/Card.tsx",
-    "ChoiceCard": "src/react/primitives/ChoiceCard.tsx"
+    "ChoiceCard": "src/react/primitives/ChoiceCard.tsx",
+    "FieldAffix": "src/react/primitives/Field.tsx"
   }
 }

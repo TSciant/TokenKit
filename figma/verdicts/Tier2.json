@@ -618,6 +618,34 @@
       "diff": "PatternFly’s selectable cards and tiles (choose a plan, pick extras) had no counterpart; the kit’s Chip pressed is for filters, not form answers",
       "pull": "Align",
       "result": "ChoiceCard (primitive 32) on a native radio or checkbox: the whole card is the label; the group, arrow keys, Space, required and submission are the browser’s (checked: a click anywhere on a card selects it, ArrowLeft moves the selection, the group is named by its legend). The radio is named by title and meta, with the description as its description (the label wrapping the card had made the description part of the name, read twice). Selection keeps the native dot visible and thickens the border with an inset, so nothing moves; hover darkens the edge. ChoiceCardGroup is a fieldset with a legend on the grid shell. Figma ChoiceCard (unchecked, checked) with the browser’s radio drawn at its size; onion 2.6"
+    },
+    {
+      "component": "Field, InlineForm (placeholders)",
+      "driftType": "Live execution != live intent",
+      "diff": "every Field story and its Figma skins, and the InlineForm stories and skins, showed placeholder text (“Placeholder”, “Acme Design Systems Group”, “you@example.com”): the kit was demonstrating what Carbon, GOV.UK and Base Web warn against (it vanishes on typing, is not read by every screen reader, usually fails contrast). From the ds-corpus input brief",
+      "pull": "Align",
+      "result": "no placeholders in the Field or InlineForm stories; the Figma input and textarea variants and the InlineForm variants draw an empty field, and the select draws its real first option, Choose one. Field reads 0.4 to 1.1 for input and textarea (was up to 7.3 overall), the select as before; InlineForm 2.3 and 3.0. Search fields (HeaderSearch, PeopleDirectory) still use one and are a separate decision"
+    },
+    {
+      "component": "Field (chars)",
+      "driftType": "New coordinate",
+      "diff": "every Field filled its container, so a year, a security code and a full address all looked like the same size of question; GOV.UK sizes the box to the expected answer (from the ds-corpus input brief)",
+      "pull": "Align",
+      "result": "chars = 2, 3, 4, 5, 10, 20 or 30 on Field sizes the control in ch of its own font plus its padding and border (a select adds its arrow), never wider than the container; unset fills as before. Checked: 1990, 123, SW1A 1AA and +44 20 7946 0958 each fit their box without clipping, in the wireframe and Wanda’s packs. Not drawn in Figma yet (the Field set has no width axis)"
+    },
+    {
+      "component": "Field (prefix, suffix), FieldAffix",
+      "driftType": "New part",
+      "diff": "units ($, kg, %) had nowhere to go; Base Web and Primer put them inside the input, GOV.UK outside so a screen reader does not read the unit as part of the value (from the ds-corpus input brief)",
+      "pull": "Align",
+      "result": "prefix and suffix on Field (inputs and selects): a separate box attached to the input, sunken ground, one shared outline (outer corners rounded, the meeting corners square), aria-hidden. Checked: the accessibility tree names the field by its label and its value is the number alone. Stories say the unit in the label. Figma FieldAffix; onion 1.3"
+    },
+    {
+      "component": "Field (optional, read-only)",
+      "driftType": "New state",
+      "diff": "Field could only mark required, and read-only had no look of its own, so it read as an empty editable box or was replaced by disabled, which hides the value from keyboard and screen-reader users (from the ds-corpus input brief)",
+      "pull": "Align",
+      "result": "optional marks the label (optional) in quieter type; the guidance is to mark the minority. Read-only inputs and textareas draw a dashed edge on no ground with full-contrast text, stay focusable and are announced read-only (checked in the accessibility tree). Not drawn in Figma yet"
     }
   ],
   "promotion": [
