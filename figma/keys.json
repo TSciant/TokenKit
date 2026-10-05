@@ -71,7 +71,9 @@
     "Hero": "213:747",
     "InlineForm": "215:1393",
     "ButtonGroup": "217:142",
-    "ButtonReason": "220:142"
+    "ButtonReason": "220:142",
+    "CardHeader": "222:150",
+    "ChoiceCard": "224:1407"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -143,7 +145,9 @@
     "Hero": "05-patterns-26-hero--onion-skin",
     "InlineForm": "04-primitives-30-inline-form--onion-skin",
     "ButtonGroup": "04-primitives-31-button-group--onion-skin",
-    "ButtonReason": "04-primitives-01-button--onion-skin-reason"
+    "ButtonReason": "04-primitives-01-button--onion-skin-reason",
+    "CardHeader": "04-primitives-05-card--onion-skin-header",
+    "ChoiceCard": "04-primitives-32-choice-card--onion-skin"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -215,6 +219,8 @@
     "Hero": "src/react/patterns/marketing.tsx",
     "InlineForm": "src/react/primitives/InlineForm.tsx",
     "ButtonGroup": "src/react/primitives/ButtonGroup.tsx",
-    "ButtonReason": "src/react/primitives/Button.tsx"
+    "ButtonReason": "src/react/primitives/Button.tsx",
+    "CardHeader": "src/react/primitives/Card.tsx",
+    "ChoiceCard": "src/react/primitives/ChoiceCard.tsx"
   }
 }

@@ -75,11 +75,9 @@ export function TileGrid({
       <ul data-shell="grid" data-cols={String(columns)} data-gap="5">
         {tiles.map((s, idx) => (
           <li key={s}>
-            <a
-              href="#main"
+            <div
               data-tk="card"
               data-interactive
-              style={{ textDecoration: "none", blockSize: "100%" }}
             >
               <Plate
                 fx={true}
@@ -96,9 +94,9 @@ export function TileGrid({
                   paddingBlockEnd: "var(--tk-space-4)",
                 }}
               >
-                {s}
+                <a data-tk="card-link" href="#main">{s}</a>
               </h3>
-            </a>
+            </div>
           </li>
         ))}
       </ul>
@@ -140,7 +138,7 @@ export function HubCards({
       <ul data-shell="grid" data-cols={String(columns)} data-gap="5">
         {items.map((it) => (
           <li key={it.title}>
-            <article data-tk="card" style={{ blockSize: "100%" }}>
+            <article data-tk="card">
               <h3 data-tk="card-title">{it.title}</h3>
               <p data-tk="card-body">{it.body}</p>
               <div data-tk="card-footer">
@@ -327,7 +325,7 @@ export function MediaCards({
       <ul data-shell="grid" data-cols={String(columns)} data-gap="5">
         {items.map((it, i) => (
           <li key={it.title}>
-            <article data-tk="card" style={{ blockSize: "100%" }}>
+            <article data-tk="card">
               <Plate fx={true} stock ratio={ratio} seed={(i % 6) + 1} />
               <div data-shell="inline" data-gap="2">
                 <Chip leading={<Icon name={icons[it.kind] ?? "image"} size="sm" />}>{it.kind}</Chip>
@@ -456,7 +454,7 @@ export function PeopleDirectory({
         <ul data-shell="grid" data-cols={String(columns)} data-gap="4" style={{ ["--_min" as string]: "12rem" }}>
           {people.map((p, i) => (
             <li key={p.name}>
-              <article data-tk="card" style={{ blockSize: "100%" }}>
+              <article data-tk="card">
                 <Plate fx={true} stock ratio="1 / 1" crop="portrait" seed={(i % 6) + 1} />
                 <h3 data-tk="card-title" style={{ fontSize: "var(--tk-size-base)" }}>
                   <a href="#main">{p.name}</a>

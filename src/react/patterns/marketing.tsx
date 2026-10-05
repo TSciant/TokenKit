@@ -694,12 +694,10 @@ export function FeatureGrid({
       </header>
       <div data-shell="grid" data-cols={String(columns)} data-gap="5">
         {items.map((t, idx) => (
-          <a
+          <div
             key={t}
-            href="#main"
             data-tk="card"
             data-interactive
-            style={{ textDecoration: "none" }}
           >
             <Plate
               fx={true}
@@ -710,8 +708,10 @@ export function FeatureGrid({
               category={categories?.length ? categories[idx % categories.length] : undefined}
               placement={false}
             />
-            <h3 data-tk="card-title">{t}</h3>
-          </a>
+            <h3 data-tk="card-title">
+              <a data-tk="card-link" href="#main">{t}</a>
+            </h3>
+          </div>
         ))}
       </div>
     </section>
@@ -776,13 +776,11 @@ export function ArticleFeed({
         style={{ ["--_min" as string]: "14rem" }}
       >
         {cards.map((c, i) => (
-          <a
+          <div
             key={c}
-            href="#main"
             data-tk="card"
             data-variant="bare"
             data-interactive
-            style={{ textDecoration: "none" }}
           >
             {/* The title sits over the photograph. An earlier pass moved it
                 below the plate, because text on an unknown image cannot be
@@ -821,11 +819,11 @@ export function ArticleFeed({
                   {kinds.length ? kinds[i % kinds.length] : ARTICLE_KINDS[0]}
                 </span>
                 <h3 data-tk="card-title" style={{ fontSize: "var(--tk-size-base)" }}>
-                  {c}
+                  <a data-tk="card-link" href="#main">{c}</a>
                 </h3>
               </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </section>

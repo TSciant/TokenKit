@@ -47,14 +47,66 @@ export function Card({
   );
 }
 
+/**
+ * The card's heading. Give it `href` and the card becomes clickable the
+ * accessible way: the title is the link, stretched over the whole card, so
+ * the link's name is the title (not the card's every word) and buttons inside
+ * the card still work. Don't also wrap the card in a link.
+ */
 export const CardTitle = ({
   as: Tag = "h3",
+  href,
   children,
   ...rest
-}: { as?: ElementType; children?: ReactNode } & HTMLAttributes<HTMLElement>) => (
+}: { as?: ElementType; href?: string; children?: ReactNode } & HTMLAttributes<HTMLElement>) => (
   <Tag data-tk="card-title" {...rest}>
-    {children}
+    {href ? (
+      <a data-tk="card-link" href={href}>
+        {children}
+      </a>
+    ) : (
+      children
+    )}
   </Tag>
+);
+
+/**
+ * The top of a card: an eyebrow above the title, a subtitle under it, and
+ * one small action at the end (a MenuButton, a toggle). Lightning and
+ * PatternFly both put status and an action here; a card without them does
+ * not need a header and can use CardTitle on its own.
+ *
+ * The action sits above a stretched title link, so a clickable card can
+ * still have its own menu, and a card with an action stops clipping its
+ * overflow so the menu can open past the card's edge.
+ */
+export const CardHeader = ({
+  eyebrow,
+  subtitle,
+  action,
+  children,
+  ...rest
+}: {
+  /** A short label above the title: a kind, a status, a date. */
+  eyebrow?: ReactNode;
+  /** One line under the title. */
+  subtitle?: ReactNode;
+  /** One small control at the end of the header. */
+  action?: ReactNode;
+  /** The CardTitle. */
+  children?: ReactNode;
+} & Omit<HTMLAttributes<HTMLElement>, "children">) => (
+  /* A div, not <header>: outside an article or section a <header> is the
+     page's banner landmark, and a grid of cards would announce a dozen of
+     them. */
+  <div data-tk="card-header" {...rest}>
+    <div data-tk="card-header-text">
+      {eyebrow ? <span data-tk="eyebrow">{eyebrow}</span> : null}
+      {children}
+      {subtitle ? <p data-tk="card-subtitle">{subtitle}</p> : null}
+    </div>
+    {action ? <div data-tk="card-header-action">{action}</div> : null}
+  </div>
 );
 
 export const CardBody = ({ children, ...rest }: HTMLAttributes<HTMLElement>) => (

@@ -62,10 +62,6 @@
     cursor: pointer;
   }
 
-  :where([data-tk="card"][data-interactive]:hover) {
-    background-color: var(--tk-surface-base);
-  }
-
   /* Type follows the box, not the window.
 
      42rem is measured, not chosen. tools/type-gate.mjs lays a representative
@@ -77,6 +73,50 @@
     :where([data-tk="card"]) > :where([data-tk="card-title"]) {
       font-size: var(--tk-size-xl);
     }
+  }
+
+  /* --- header ---------------------------------------------------------------
+     Eyebrow, title and subtitle on the start side, one action on the end. */
+  :where([data-tk="card-header"]) {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--tk-space-3);
+  }
+
+  :where([data-tk="card-header-text"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-1);
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="card-subtitle"]) {
+    margin: 0;
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  /* The action is a control in its own right: above the stretched link, and
+     its menu above the next card along. */
+  :where([data-tk="card-header-action"]) {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* A menu in the header has to be able to open past the card. Clipping is
+     there for one thing, a bled picture's corner, so a card with an action
+     stops clipping and a bled picture rounds its own top corners instead. */
+  :where([data-tk="card"]:has([data-tk="card-header-action"])) {
+    overflow: visible;
+  }
+
+  :where([data-tk="card"]:has([data-tk="card-header-action"]) > [data-tk="plate"][data-bleed]),
+  :where([data-tk="card"]:has([data-tk="card-header-action"]) > [data-tk="card-media"][data-bleed]) {
+    border-start-start-radius: calc(var(--_radius) - 1px);
+    border-start-end-radius: calc(var(--_radius) - 1px);
+    overflow: clip;
   }
 
   :where([data-tk="card-title"]) {
@@ -146,52 +186,76 @@
     margin-block-end: calc(var(--_pad) * -1);
   }
 
+  /* --- full height in a grid ---------------------------------------------
+     Cards in a row match heights, so their footers line up and the row
+     reads as a set. A card that is itself a grid cell stretches already
+     (grid items do); a card one element in, which is how lists are written
+     (ul > li > card), does not, and every pattern used to patch that with an
+     inline block-size. This is the one place that says it. The footer's
+     auto margin then puts every footer on the same line. */
+  :where([data-shell="grid"] > * > [data-tk="card"]:only-child) {
+    block-size: 100%;
+  }
+
   :where([data-tk="card-footer"]) {
     margin-block-start: auto;
     padding-block-start: var(--tk-space-3);
     border-block-start: 1px solid var(--tk-line-subtle);
   }
 
-  :where([data-tk="card"]:not([data-variant="bare"], [data-variant="flat"])) {
-    transition:
-      background-color var(--tk-motion-surface),
-      border-color var(--tk-motion-line),
-      box-shadow var(--tk-motion-elevation),
-      transform var(--tk-motion-transform);
-  }
-
+  /* --- hover and focus: the edge, and nothing else ------------------------
+     A card under the pointer darkens its border. It does not lift, its
+     shadow does not deepen and its picture does not zoom: movement on hover
+     makes a grid of cards shift under the eye as the pointer crosses it, and
+     a zoom crops the picture someone is trying to look at. The edge says
+     "this is the one you are on" without moving anything. */
   :where(a:hover [data-tk="card"]:not([data-variant="bare"]),
     a:focus-visible [data-tk="card"]:not([data-variant="bare"]),
     [data-tk="card"][data-interactive]:hover,
-    [data-tk="card"][data-interactive]:focus-visible) {
-    border-color: var(--tk-line-strong);
-    transform: translateY(-2px);
-    box-shadow:
-      0 1px 0 color-mix(in srgb, var(--tk-text-primary) 6%, transparent),
-      0 12px 28px color-mix(in srgb, var(--tk-text-primary) 10%, transparent);
+    [data-tk="card"]:has([data-tk="card-link"]):hover) {
+    border-color: var(--tk-text-primary);
   }
 
-  :where(a:hover [data-tk="card"] [data-tk="plate-media"],
-    a:focus-visible [data-tk="card"] [data-tk="plate-media"],
-    [data-tk="card"][data-interactive]:hover [data-tk="plate-media"],
-    [data-tk="card"][data-interactive]:focus-visible [data-tk="plate-media"]) {
-    transform: scale(1.04);
+  /* --- the stretched link --------------------------------------------------
+     A clickable card is its title's link, stretched over the card by a
+     pseudo-element. The link's name is the title alone, not every word in
+     the card; anything else interactive inside sits above the stretch and
+     keeps working; and the whole card is still the target.
+
+     Focus rings the card rather than the title, because the card is what the
+     pointer target looks like. The link's own outline is withdrawn only when
+     the card has drawn one, so a forced-colours user still gets the system's
+     ring on the title. */
+  :where([data-tk="card"]:has([data-tk="card-link"])) {
+    position: relative;
   }
 
-  :where([data-tk="card"] [data-tk="plate-media"]) {
-    transition: transform var(--tk-duration-slow) var(--tk-ease-standard);
+  :where([data-tk="card-link"]) {
+    color: inherit;
+    text-decoration: none;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    :where([data-tk="card"]:not([data-variant="bare"], [data-variant="flat"])) {
-      transition: border-color var(--tk-motion-line), background-color var(--tk-motion-surface);
-    }
-    :where(a:hover [data-tk="card"], [data-tk="card"][data-interactive]:hover) {
-      transform: none;
-    }
-    :where([data-tk="card"] [data-tk="plate-media"]) {
-      transition: none;
-      transform: none !important;
+  :where([data-tk="card-link"])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  :where([data-tk="card"]:has([data-tk="card-link"]) :is(a, button, input, select, textarea, summary, [tabindex]):not([data-tk="card-link"])) {
+    position: relative;
+    z-index: 2;
+  }
+
+  :where([data-tk="card"]:has([data-tk="card-link"]:focus-visible)) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+    border-color: var(--tk-text-primary);
+  }
+
+  @media not (forced-colors: active) {
+    :where([data-tk="card-link"]:focus-visible) {
+      outline: none;
     }
   }
 }

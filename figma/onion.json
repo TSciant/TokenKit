@@ -708,6 +708,30 @@
       "single": true,
       "target": "root",
       "doc": "The Figma ButtonReason laid over a disabled button with its reason label pinned open."
+    },
+    "CardHeader": {
+      "story": "04-primitives-05-card--onion-skin-header",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma CardHeader laid over a card with a header at 320px."
+    },
+    "ChoiceCard": {
+      "story": "04-primitives-32-choice-card--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma ChoiceCard pair (unchecked, checked) laid over the live pair at 280px."
     }
   }
 }

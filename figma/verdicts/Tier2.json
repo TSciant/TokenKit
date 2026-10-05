@@ -583,6 +583,41 @@
       "diff": "the trigger was fixed at sm, so a More at the end of a ButtonGroup of md buttons had smaller type than its neighbours",
       "pull": "Align",
       "result": "size (sm, md, lg) as Button’s, default sm so every existing use and its skins are unchanged; ButtonGroup passes its own size (md by default). The Figma MenuButton still draws only sm"
+    },
+    {
+      "component": "Card (hover)",
+      "driftType": "Live execution != live intent",
+      "diff": "an interactive card lifted 2px, deepened its shadow, lightened its fill and zoomed its picture to 1.04 on hover; the rule for pictures is that a pointer darkens the edge and nothing else",
+      "pull": "Align",
+      "result": "hover now darkens the border to text-primary and changes nothing else, in code and in the Figma hover variants (default, flat, bare). No transform, no shadow, no fill change, no zoom"
+    },
+    {
+      "component": "Card (stretched link), TileGrid, FeatureGrid, ArticleFeed, Insights page",
+      "driftType": "Live execution != live intent",
+      "diff": "clickable cards were one <a> wrapped round the whole card: the link’s name was every word on the card, and nothing else inside could be interactive. From the ds-corpus card brief: Lightning says not to make a whole card clickable, PatternFly does it but forbids anything else inside",
+      "pull": "Align",
+      "result": "CardTitle takes href and renders the title as the link, stretched over the card by a pseudo-element: the card is still the target, the link is named by the title alone, other controls inside sit above the stretch and work, and keyboard focus rings the whole card (the link’s own outline is withdrawn only outside forced colours). The four wrap-around cards are moved onto it; checked: a click in the card’s corner reaches the link, a click on an inner button reaches the button, link names are the titles"
+    },
+    {
+      "component": "Card (full height in grids)",
+      "driftType": "Live execution != live intent",
+      "diff": "cards in a grid row only matched heights when they were the grid’s cells; written as lists (ul > li > card) they did not, and four card patterns patched it with an inline block-size",
+      "pull": "Align",
+      "result": "one rule in card.css: a card that is the only child of a grid cell fills it, so footers share a line. The four inline styles are gone (TileGrid, HubCards, MediaCards, PeopleDirectory); every pattern’s cards still fill their cells and the skins read as before"
+    },
+    {
+      "component": "CardHeader",
+      "driftType": "New part",
+      "diff": "Lightning and PatternFly both put status and an action in a card’s header; token-kit had only a title",
+      "pull": "Align",
+      "result": "CardHeader: an eyebrow above the CardTitle, a one-line subtitle under it, one action at the end. The action sits above a stretched title link (opening a More menu on a clickable card does not follow the link), and a card with an action stops clipping so its menu can open past the edge; a bled picture in such a card rounds its own top corners instead. Figma CardHeader (Eyebrow and MenuButton instances); onion 4.15 once the title and body were drawn at the browser’s own line breaks (7.29 with guessed ones: the title is balance-wrapped)"
+    },
+    {
+      "component": "ChoiceCard, ChoiceCardGroup",
+      "driftType": "New primitive",
+      "diff": "PatternFly’s selectable cards and tiles (choose a plan, pick extras) had no counterpart; the kit’s Chip pressed is for filters, not form answers",
+      "pull": "Align",
+      "result": "ChoiceCard (primitive 32) on a native radio or checkbox: the whole card is the label; the group, arrow keys, Space, required and submission are the browser’s (checked: a click anywhere on a card selects it, ArrowLeft moves the selection, the group is named by its legend). The radio is named by title and meta, with the description as its description (the label wrapping the card had made the description part of the name, read twice). Selection keeps the native dot visible and thickens the border with an inset, so nothing moves; hover darkens the edge. ChoiceCardGroup is a fieldset with a legend on the grid shell. Figma ChoiceCard (unchecked, checked) with the browser’s radio drawn at its size; onion 2.6"
     }
   ],
   "promotion": [

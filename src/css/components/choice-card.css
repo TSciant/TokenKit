@@ -1,0 +1,122 @@
+/* Choice card — a native radio or checkbox laid out as a card.
+   data-tk="choice-card" (a label) > input, then title, meta and description.
+   State is read from the input itself (:checked, :disabled, :focus-visible)
+   with :has(), so there is no data-* copy of it to fall out of step. */
+@layer components {
+  :where([data-tk="choice-card-group"]) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    /* The base fieldset subtracts its padding from the concentric chain;
+       this one has no padding, so it subtracts nothing and the cards round
+       at what the group was handed. */
+    --_radius-gap: 0px;
+    min-inline-size: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-3);
+  }
+
+  :where([data-tk="choice-card-legend"]) {
+    padding: 0;
+    margin-block-end: var(--tk-space-3);
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    color: var(--tk-text-primary);
+  }
+
+  /* The card. One pixel of border always; selection adds a second pixel
+     inside it with an inset shadow, so the box does not grow and the row
+     does not shift when the choice changes. */
+  :where([data-tk="choice-card"]) {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--tk-space-3);
+    block-size: 100%;
+    padding: var(--tk-space-4);
+    border: 1px solid var(--tk-line-strong);
+    border-radius: var(--tk-radius-nested);
+    background-color: var(--tk-surface-raised);
+    cursor: pointer;
+    transition:
+      border-color var(--tk-motion-line),
+      box-shadow var(--tk-motion-line);
+  }
+
+  :where([data-tk="choice-card"]:hover) {
+    border-color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="choice-card"]:has(> [data-tk="choice-card-input"]:checked)) {
+    border-color: var(--tk-text-primary);
+    box-shadow: inset 0 0 0 1px var(--tk-text-primary);
+  }
+
+  :where([data-tk="choice-card"]:has(> [data-tk="choice-card-input"]:focus-visible)) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+
+  :where([data-tk="choice-card"]:has(> [data-tk="choice-card-input"]:disabled)) {
+    border-color: var(--tk-line-default);
+    background-color: var(--tk-surface-sunken);
+    color: var(--tk-text-disabled);
+    cursor: not-allowed;
+  }
+
+  /* The native control, kept: the dot or tick is the cue that does not
+     depend on the border's colour. Its focus ring is the card's. */
+  :where([data-tk="choice-card-input"]) {
+    flex: 0 0 auto;
+    inline-size: 1.125rem;
+    block-size: 1.125rem;
+    margin: 0.15em 0 0;
+    accent-color: var(--tk-action-fill);
+  }
+
+  :where([data-tk="choice-card-input"]:focus-visible) {
+    outline: none;
+  }
+
+  :where([data-tk="choice-card-text"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-1);
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="choice-card-head"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--tk-space-1) var(--tk-space-3);
+  }
+
+  :where([data-tk="choice-card-title"]) {
+    font-weight: var(--tk-weight-semibold);
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="choice-card-meta"]) {
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="choice-card-description"]) {
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="choice-card"]:has(> [data-tk="choice-card-input"]:disabled)) :where([data-tk="choice-card-title"], [data-tk="choice-card-meta"], [data-tk="choice-card-description"]) {
+    color: var(--tk-text-disabled);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="choice-card"]:has(> [data-tk="choice-card-input"]:checked)) {
+      border-width: 2px;
+    }
+  }
+}

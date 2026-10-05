@@ -536,12 +536,10 @@ export function CaseStudiesPage({ title = "Case studies", header }: SamplePagePr
           <div data-shell="grid" data-cols="2" data-gap="5">
             {CASE_STUDIES.map(function (c, i) {
               return (
-                <a
+                <div
                   key={c.title}
-                  href="#main"
                   data-tk="card"
                   data-interactive
-                  style={{ textDecoration: "none" }}
                 >
                   <Plate
                     fx={true}
@@ -566,13 +564,13 @@ export function CaseStudiesPage({ title = "Case studies", header }: SamplePagePr
                   >
                     <span data-tk="eyebrow">{c.meta}</span>
                     <h3 data-tk="card-title" style={{ margin: 0 }}>
-                      {c.title}
+                      <a data-tk="card-link" href="#main">{c.title}</a>
                     </h3>
                     <p data-tk="card-body" style={{ margin: 0 }}>
                       {c.body}
                     </p>
                   </div>
-                </a>
+                </div>
               );
             })}
           </div>

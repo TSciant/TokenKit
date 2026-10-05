@@ -1,6 +1,6 @@
 ﻿export { Button } from "./Button";
 export type { ButtonProps, ButtonIconPosition } from "./Button";
-export { Card, CardTitle, CardBody, CardFooter } from "./Card";
+export { Card, CardTitle, CardBody, CardFooter, CardHeader } from "./Card";
 export type { CardProps } from "./Card";
 export { Chip } from "./Chip";
 export type { ChipProps } from "./Chip";
@@ -8,6 +8,8 @@ export { Field, VisuallyHidden } from "./Field";
 export type { FieldProps } from "./Field";
 export { InlineForm } from "./InlineForm";
 export type { InlineFormProps } from "./InlineForm";
+export { ChoiceCard, ChoiceCardGroup } from "./ChoiceCard";
+export type { ChoiceCardProps, ChoiceCardGroupProps, ChoiceCardOption } from "./ChoiceCard";
 export { Meter } from "./Meter";
 export type { MeterProps } from "./Meter";
 export { Tachometer } from "./Tachometer";
