@@ -19,6 +19,23 @@
  *      reported 812 passing pairs against a file the build rejected outright.
  *      A lint that reads CSS with regexes cannot see this; a parser can, and
  *      it costs one pass over files this tool was already reading.
+ *   5. No type literals outside src/css/packs/: font-size, font-weight,
+ *      line-height and letter-spacing take tokens. The type twin of rule 1,
+ *      from the ds-corpus type brief (Primer: "don't use arbitrary numeric
+ *      weight values"). A size in em is allowed, because it is a ratio to
+ *      the text around it rather than a size of its own (code at 0.9em);
+ *      so are line-height: 0 (the icon-box trick), keywords, and arithmetic
+ *      over tokens with plain multipliers. Artwork that draws text to its
+ *      own geometry (a wordmark) says so on the line: `/* type-literal: why *\/`.
+ *   6. No spacing literals outside src/css/packs/: margin, padding, gap and
+ *      inset take tokens, in the CSS and in the React files' inline styles.
+ *      The spacing twin of rules 1 and 5 (the ds-corpus spacing brief;
+ *      Carbon: "deviating from spacing scales should be avoided"). Allowed
+ *      without a token: 0, auto and keywords; percentages (division of a
+ *      box); em and ch (an offset that is a ratio to the text, an affix two
+ *      characters wide); 1px and -1px (the width of the border being
+ *      compensated for); and arithmetic over tokens with plain numbers. A
+ *      literal fallback inside var() counts as a literal.
  *
  *   node tools/lint-tokens.mjs
  *
@@ -73,6 +90,38 @@ const COLOR_LITERAL =
 /* Colour words that are structural rather than chosen: these carry no brand. */
 const ALLOWED_KEYWORDS = new Set(["transparent", "currentColor", "inherit"]);
 
+/* What a type declaration may say without a token behind it. Tokens are
+   stripped first (bare, or with a token as their fallback); what is left may
+   only be operators, plain multipliers and the structural forms named in
+   rule 5. A fallback that is a literal, var(--tk-x, 0.04em), is a literal. */
+const TYPE_KEYWORDS = /^(inherit|initial|unset|revert|normal)$/;
+/* Rule 6. A spacing value is fine when, with its tokens taken out, nothing is
+   left that states a length: no px (bar a 1px border compensation), rem, vw,
+   vh or pt, and no var() whose fallback is one. */
+const SPACING_PROP = /^(margin|padding|gap|row-gap|column-gap|inset)(-[a-z-]+)?$/;
+function SPACING_OK(value) {
+  let rest = value.replace(/\/\*.*?\*\//g, "").trim();
+  for (let k = 0; k < 4; k++) rest = rest.replace(/var\(\s*--(?:tk|_)[a-z0-9-]+\s*(?:,\s*T\s*)?\)/g, "T");
+  if (/var\(/.test(rest)) return false;
+  rest = rest.replace(/(^|[\s(,*/+-])-?1px\b/g, "$1");
+  return !/\d*\.?\d+(px|rem|vw|vh|vmin|vmax|svh|dvh|lvh|pt|cm|mm|in)\b/.test(rest);
+}
+
+function TYPE_OK(prop, value) {
+  if (TYPE_KEYWORDS.test(value)) return true;
+  if (prop === "font-size" && /^\d*\.?\d+em$/.test(value)) return true;
+  if (prop === "line-height" && value === "0") return true;
+  let rest = value;
+  for (let k = 0; k < 4; k++) rest = rest.replace(/var\(\s*--(?:tk|_)[a-z0-9-]+\s*(?:,\s*TOKEN\s*)?\)/g, "TOKEN");
+  if (rest === "TOKEN") return true;
+  /* calc(), min(), max(), clamp() over tokens: numbers may only multiply. */
+  if (/^(calc|min|max|clamp)\(/.test(rest)) {
+    const bare = rest.replace(/(calc|min|max|clamp)\(/g, "(").replace(/TOKEN/g, "");
+    return !/\d*\.?\d+(px|rem|em|%|ch|vw|vh)/.test(bare) && !/[a-z]/i.test(bare);
+  }
+  return false;
+}
+
 const declared = new Set();
 const referenced = new Map(); // name -> [file...]
 const packSlots = new Map(); // packFile -> Set(slot)
@@ -107,6 +156,34 @@ for (const file of files) {
         );
       }
     });
+  }
+
+  // --- rule 5: type literals ---------------------------------------------
+  if (!inPacks && !isProperty && !rel.includes("/fonts/")) {
+    src.split("\n").forEach((line, i) => {
+      const m = line.match(/^\s*(font-size|font-weight|line-height|letter-spacing)\s*:\s*([^;]+);/);
+      if (!m) return;
+      if (/\/\*\s*type-literal:/.test(line)) return;
+      const [, prop, raw] = m;
+      const value = raw.replace(/\/\*.*?\*\//g, "").trim();
+      if (TYPE_OK(prop, value)) return;
+      errors.push(`${rel}:${i + 1}  type literal outside packs/ — ${prop}: ${value}`);
+    });
+  }
+
+  // --- rule 6: spacing literals (CSS) --------------------------------------
+  /* Parsed, not read line by line: a padding written over two lines is one
+     declaration. Line numbers come from the parser. */
+  if (!inPacks && !isProperty && !rel.includes("/fonts/")) {
+    try {
+      postcss.parse(src, { from: file }).walkDecls(SPACING_PROP, (d) => {
+        if (d.prop.startsWith("--")) return;
+        if (SPACING_OK(d.value)) return;
+        errors.push(`${rel}:${d.source.start.line}  spacing literal outside packs/ — ${d.prop}: ${d.value.replace(/\s+/g, " ")}`);
+      });
+    } catch {
+      /* rule 4 has already reported a file that does not parse */
+    }
   }
 
   // --- collect declarations and references --------------------------------
@@ -194,7 +271,37 @@ for (const name of declared) {
   warnings.push(`${name} is declared but never read`);
 }
 
-console.log(`\ntokenkit token lint — ${files.length} files, ${declared.size} tokens\n`);
+/* --- rule 6: spacing literals (React inline styles) -------------------------
+   The patterns compose bands in JSX, and a band's padding written in a style
+   object is the same decision as one in a stylesheet. Stories are left out:
+   they are documentation frames, not the kit. A number in a style object
+   (padding: 8) is React's px, so it is a literal too. */
+async function walkTsx(dir) {
+  const out = [];
+  for (const entry of await readdir(dir, { withFileTypes: true })) {
+    const p = join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...(await walkTsx(p)));
+    else if (entry.name.endsWith(".tsx") && !entry.name.endsWith(".stories.tsx")) out.push(p);
+  }
+  return out;
+}
+const TSX_KEY = /\b(margin|padding|gap|rowGap|columnGap|inset)(Block|Inline|Top|Right|Bottom|Left)?(Start|End)?\s*:\s*("[^"]*"|'[^']*'|-?\d+(\.\d+)?)/g;
+let tsxFiles = 0;
+for (const file of await walkTsx(resolve(ROOT, "src/react"))) {
+  tsxFiles++;
+  const rel = relative(ROOT, file).split(sep).join("/");
+  const lines = (await readFile(file, "utf8")).split("\n");
+  lines.forEach((line, i) => {
+    for (const m of line.matchAll(TSX_KEY)) {
+      const raw = m[4];
+      const value = /^["']/.test(raw) ? raw.slice(1, -1) : raw;
+      if (/^-?\d/.test(raw) ? Number(raw) === 0 : SPACING_OK(value)) continue;
+      errors.push(`${rel}:${i + 1}  spacing literal in an inline style — ${m[0].split(":")[0].trim()}: ${value}`);
+    }
+  });
+}
+
+console.log(`\ntokenkit token lint — ${files.length} files and ${tsxFiles} React files, ${declared.size} tokens\n`);
 
 for (const w of warnings) console.log(`  warn   ${w}`);
 for (const e of errors) console.log(`  ERROR  ${e}`);

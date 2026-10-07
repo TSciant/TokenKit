@@ -109,6 +109,8 @@
 @property --tk-radius-none { syntax: "<length>"; inherits: true; initial-value: 0px; }
 @property --tk-radius-sm { syntax: "<length>"; inherits: true; initial-value: 4px; }
 @property --tk-radius-md { syntax: "<length>"; inherits: true; initial-value: 8px; }
+@property --tk-radius-control { syntax: "<length>"; inherits: true; initial-value: 8px; }
+@property --tk-radius-button { syntax: "<length>"; inherits: true; initial-value: 9999px; }
 @property --tk-radius-lg { syntax: "<length>"; inherits: true; initial-value: 16px; }
 @property --tk-radius-xl { syntax: "<length>"; inherits: true; initial-value: 32px; }
 @property --tk-radius-full { syntax: "<length>"; inherits: true; initial-value: 9999px; }

@@ -315,15 +315,16 @@
     inset-block-end: auto;
 
     font-family: var(--tk-font-mono);
-    font-size: 0.5625rem;
+    /* On the ramp: it was 9px and 0.08em, below the smallest step. */
+    font-size: var(--tk-size-xs);
     font-weight: var(--tk-weight-medium);
-    letter-spacing: 0.08em;
+    letter-spacing: var(--tk-tracking-wide);
     text-transform: uppercase;
     color: color-mix(in srgb, var(--tk-text-on-scrim) 55%, transparent);
     background: color-mix(in srgb, var(--tk-scrim-ink) 28%, transparent);
     border: 1px solid color-mix(in srgb, var(--tk-text-on-scrim) 12%, transparent);
 
-    padding: 0.1rem 0.4rem;
+    padding: calc(var(--tk-space-1) / 2) var(--tk-space-2);
     border-radius: var(--tk-radius-full);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);

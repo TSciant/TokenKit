@@ -28,7 +28,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  decorators: [(Story) => <div style={{ inlineSize: 320 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ maxInlineSize: 320 }}><Story /></div>],
 };
 
 export const OnionSkin: Story = {

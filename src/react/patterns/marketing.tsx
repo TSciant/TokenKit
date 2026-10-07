@@ -496,16 +496,7 @@ export function ProofStrip({
             >
               {s.label}
             </dt>
-            <dd
-              style={{
-                order: 1,
-                margin: 0,
-                fontSize: "var(--tk-size-3xl)",
-                fontWeight: "var(--tk-weight-bold)",
-                fontVariantNumeric: "tabular-nums",
-                lineHeight: "var(--tk-leading-tight)",
-              }}
-            >
+            <dd data-text="metric" style={{ order: 1, margin: 0 }}>
               {s.value}
             </dd>
           </div>
@@ -867,7 +858,7 @@ export function EventPromo({
       data-shell="split"
       data-gap="7"
       data-align="center"
-      style={{ paddingInline: "var(--tk-space-6)" }}
+      style={{ paddingInline: "var(--tk-gutter)" }}
     >
       <Plate fx={true} stock ratio={ratio} seed={seed} category={category} placement="quiet" />
       <div data-shell="stack" data-gap="4" style={{ maxInlineSize: "var(--tk-measure-narrow)" }}>

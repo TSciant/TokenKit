@@ -114,13 +114,17 @@
     display: block;
   }
 
+  /* The wordmark and its tagline are artwork: drawn to the lockup's own
+     unit, with the weight and tracking a pack's logo slots set (falling back
+     to the drawing's). They are marked type-literal for the token lint
+     (rule 5), which otherwise keeps type on the ramp. */
   :where([data-tk="logo-word"]) {
     display: block;
     min-inline-size: 0;
     font-size: calc(var(--_unit) * 0.62);
-    line-height: 1.05;
-    font-weight: var(--tk-logo-word-weight, 700);
-    letter-spacing: var(--tk-logo-word-tracking, -0.02em);
+    line-height: 1.05; /* type-literal: wordmark geometry */
+    font-weight: var(--tk-logo-word-weight, 700); /* type-literal: wordmark geometry */
+    letter-spacing: var(--tk-logo-word-tracking, -0.02em); /* type-literal: wordmark geometry */
     color: var(--tk-logo-word-ink, currentColor);
     white-space: nowrap;
   }
@@ -128,10 +132,10 @@
   :where([data-tk="logo-tagline"]) {
     display: block;
     /* Never smaller than 11px: a tagline you cannot read is not a tagline. */
-    font-size: max(0.6875rem, calc(var(--_unit) * 0.28));
-    line-height: 1.2;
-    font-weight: 500;
-    letter-spacing: 0.08em;
+    font-size: max(0.6875rem, calc(var(--_unit) * 0.28)); /* type-literal: wordmark geometry */
+    line-height: 1.2; /* type-literal: wordmark geometry */
+    font-weight: 500; /* type-literal: wordmark geometry */
+    letter-spacing: 0.08em; /* type-literal: wordmark geometry */
     text-transform: uppercase;
     color: var(--tk-logo-tagline-ink, var(--tk-text-secondary));
     white-space: nowrap;

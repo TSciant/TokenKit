@@ -75,7 +75,7 @@ export const SideBySide: Story = {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(26rem, 1fr))",
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(26rem, 100%), 1fr))",
         gap: "1rem",
         padding: "1rem",
         background: "#f4f4f4",

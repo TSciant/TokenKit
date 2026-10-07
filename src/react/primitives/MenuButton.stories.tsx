@@ -50,21 +50,33 @@ export const AlignedToTheEnd: Story = {
   name: "Aligned to the end",
   args: { initialOpen: true, align: "end", variant: "quiet" },
   parameters: { docs: { description: { story: "At the end of a row, the list lines up with the trigger's right edge so it opens inward instead of off the page." } } },
-  decorators: [(Story) => <div style={{ padding: 24, minBlockSize: 280, display: "flex", alignItems: "flex-start", justifyContent: "flex-end", inlineSize: 480 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ padding: 24, minBlockSize: 280, display: "flex", alignItems: "flex-start", justifyContent: "flex-end", maxInlineSize: 480 }}><Story /></div>],
 };
 
 export const OnionSkin: Story = {
   name: "Onion skin (Figma)",
   args: { initialOpen: false },
   parameters: {
-    docs: { description: { story: "The Figma component laid over this one, closed and open. The open skin includes the list, so the frame is as tall as the list under the trigger. Switch Onion in the toolbar." } },
-    onion: { component: "MenuButton", target: "root", skin: (a: Record<string, unknown>) => (a.initialOpen ? "open.png" : "closed.png") },
+    docs: { description: { story: "The Figma component laid over this one, closed and open, and closed at md and lg. The open skin includes the list, so the frame is as tall as the list under the trigger. Switch Onion in the toolbar." } },
+    onion: {
+      component: "MenuButton",
+      target: "root",
+      skin: (a: Record<string, unknown>) => {
+        const size = (a.size as string) ?? "sm";
+        return `${a.initialOpen ? "open" : "closed"}${size === "sm" ? "" : `-${size}`}.png`;
+      },
+    },
   },
   decorators: [
-    (Story, context) => (
-      <div style={{ inlineSize: context.args.initialOpen ? 203 : 79, blockSize: context.args.initialOpen ? 210 : 36 }}>
-        <Story />
-      </div>
-    ),
+    (Story, context) => {
+      /* The Figma frame for each skin: the trigger, or the trigger and the list. */
+      const box: Record<string, [number, number]> = { sm: [79, 36], md: [92, 36], lg: [113, 44] };
+      const [w, h] = box[(context.args.size as string) ?? "sm"] ?? box.sm;
+      return (
+        <div style={{ inlineSize: context.args.initialOpen ? 203 : w, blockSize: context.args.initialOpen ? h + 8 + 166 : h }}>
+          <Story />
+        </div>
+      );
+    },
   ],
 };

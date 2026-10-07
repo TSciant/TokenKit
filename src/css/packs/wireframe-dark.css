@@ -28,6 +28,12 @@
     --tk-text-tertiary: var(--wf-400); /*  6.93:1  AAA */
     --tk-text-inverse: var(--wf-900);
     --tk-text-disabled: var(--wf-500); /*  1.4.3 exempts disabled */
+    /* link — currentColor, so a link is its text's colour and its underline
+       carries it, until a pack chooses a link colour. A pack that does fills
+       all three here and in its inverse block; the contrast gate checks them. */
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     /* line */
     /* Decorative strokes — soft on dark paper. */
@@ -152,6 +158,9 @@
     --tk-text-tertiary: var(--wf-600);
     --tk-text-inverse: var(--wf-0);
     --tk-text-disabled: var(--wf-500);
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     --tk-line-subtle: color-mix(in srgb, var(--wf-500) 22%, transparent);
     --tk-line-default: color-mix(in srgb, var(--wf-500) 34%, transparent);
@@ -231,6 +240,9 @@
     --tk-text-tertiary: var(--wf-0);
     --tk-text-inverse: var(--wf-1000);
     --tk-text-disabled: var(--wf-300);
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     /* A boundary on a wash has to clear 3:1 against the wash's worst case,
        which is a light composite. White is the only value that always does. */

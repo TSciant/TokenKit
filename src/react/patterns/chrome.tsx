@@ -5,6 +5,7 @@
    without it is a server component and may not use hooks at all. */
 
 import { useEffect, useId, useRef, useState } from "react";
+import type { ReactNode } from "react";
 import { flushSync } from "react-dom";
 /* The animated panel is loaded on demand — Motion is ~43 KB gzipped and this
    is the only place in the kit that needs it. See PresencePanelLazy.tsx. */
@@ -75,6 +76,10 @@ export function ContactCta({
 export type HeaderSearchProps = {
   /** Accessible name for the field. */
   label?: string;
+  /** The one placeholder the kit keeps. The label is hidden here, so once the
+      field opens this is its only visible cue; it echoes the label and never
+      replaces it. Text tertiary on the input's surface is in the contrast gate
+      (input/placeholder). Every other field has a visible label and none. */
   placeholder?: string;
   /** Name of the submit button while collapsed, and once open. */
   openLabel?: string;
@@ -192,6 +197,7 @@ function NavSheet({
   menu,
   trigger,
   actions,
+  cta,
 }: {
   id: string;
   open: boolean;
@@ -201,6 +207,8 @@ function NavSheet({
   menu: MegaMenu;
   trigger: string;
   actions: string[];
+  /** The contact action, shown at the foot of the sheet when the header is too narrow to hold it. */
+  cta?: ReactNode;
 }) {
   const wrap = useRef<HTMLDivElement>(null);
 
@@ -300,6 +308,7 @@ function NavSheet({
             </ul>
           </nav>
         )}
+        {cta ? <div data-tk="site-header-sheet-cta">{cta}</div> : null}
       </div>
     </div>
   );
@@ -420,7 +429,11 @@ export function Masthead({
 
         <div data-tk="site-header-actions">
           {showSearch ? <HeaderSearch /> : null}
-          {showContactCta ? <ContactCta /> : null}
+          {showContactCta ? (
+            <span data-header-cta="">
+              <ContactCta />
+            </span>
+          ) : null}
         </div>
       </div>
 
@@ -433,6 +446,7 @@ export function Masthead({
         menu={megaMenu}
         trigger={megaTrigger}
         actions={megaActions}
+        cta={showContactCta ? <ContactCta variant="solid" size="md" /> : undefined}
       />
     </header>
   );
@@ -640,7 +654,7 @@ export function PageHero({
         aria-label={breadcrumbLabel}
         style={{
           background: "var(--tk-surface-inverse)",
-          padding: "var(--tk-space-3) var(--tk-space-5)",
+          padding: "var(--tk-space-3) var(--tk-gutter)",
         }}
       >
         <div data-on="inverse" style={{ background: "transparent", padding: 0 }}>
@@ -659,7 +673,10 @@ export function PageHero({
       <div
         style={{
           background: "var(--tk-surface-sunken)",
-          padding: "var(--tk-space-7) var(--tk-space-5)",
+          /* Block padding only: the center shell inside carries the gutter.
+             This band used to pad inline as well, and a title on a phone
+             lost two gutters to it. */
+          paddingBlock: "var(--tk-space-7)",
         }}
       >
         <div data-shell="center" data-width="wide" data-gap="3">
@@ -706,7 +723,7 @@ export function SiteFooter({
   seed = 4,
 }: SiteFooterProps = {}) {
   return (
-    <footer data-on="inverse" style={{ padding: "var(--tk-space-7) var(--tk-space-5)" }}>
+    <footer data-on="inverse" style={{ padding: "var(--tk-space-7) var(--tk-gutter)" }}>
       <div data-shell="sidebar" data-gap="6" data-side="start">
         <div data-shell="stack" data-gap="3" style={{ flexBasis: "12rem" }}>
           <Plate ratio="1 / 1" texture="none" seed={seed} style={{ inlineSize: "5rem" }} />

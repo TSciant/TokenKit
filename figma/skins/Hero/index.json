@@ -1,1 +1,1 @@
-{ "component": "Hero", "node": "213:747", "skins": { "stacked.png": { "w": 1024, "h": 851 }, "split.png": { "w": 1024, "h": 450 } } }
+{ "component": "Hero", "node": "213:747", "skins": { "stacked-buttons.png": { "w": 1024, "h": 851 }, "split-buttons.png": { "w": 1024, "h": 450 }, "stacked-capture.png": { "w": 1024, "h": 907 }, "split-capture.png": { "w": 1024, "h": 505 } } }

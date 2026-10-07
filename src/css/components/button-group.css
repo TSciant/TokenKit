@@ -32,8 +32,11 @@
     grid-auto-columns: 1fr;
   }
 
-  /* Narrow: one control per row, full width, in the order written. */
-  @container button-group (max-width: 22rem) {
+  /* Narrow: one control per row, full width, in the order written.
+     20rem, not wider: a small dialog's footer (about 21rem) holds two
+     buttons side by side comfortably, and stacking them there read as a
+     mistake. A phone-width dialog (about 18.5rem inside) still stacks. */
+  @container button-group (max-width: 20rem) {
     :where([data-tk="button-group-row"]) {
       display: grid;
       grid-auto-flow: row;

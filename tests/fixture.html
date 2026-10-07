@@ -63,6 +63,32 @@
         >
           Tertiary body text.
         </p>
+        <!-- The one placeholder the kit keeps (HeaderSearch), on the input's own surface. -->
+        <span
+          data-tk="input"
+          data-check="textNormal"
+          data-label="input/placeholder"
+          style="display: block; color: var(--tk-text-tertiary)"
+        >
+          Search
+        </span>
+        <p>
+          <a href="#link-probe" data-check="textNormal" data-label="link/text">Link text</a>
+        </p>
+        <p
+          data-check="textNormal"
+          data-label="link/hover"
+          style="color: var(--tk-link-hover)"
+        >
+          Link, hovered.
+        </p>
+        <p
+          data-check="textNormal"
+          data-label="link/visited"
+          style="color: var(--tk-link-visited)"
+        >
+          Link, visited (a browser will not report :visited, so the slot is read directly).
+        </p>
 
         <div data-shell="inline" data-gap="3">
           <button data-tk="button" data-check="textNormal" data-label="button/solid ink">

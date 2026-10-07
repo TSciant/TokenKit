@@ -29,6 +29,7 @@ const meta = {
     },
     placeholder: {
       control: "text",
+      description: "The one placeholder the kit keeps. The label is hidden here, so once the field opens this is its only visible cue; it echoes the label and never replaces it. Text tertiary on the input's surface is in the contrast gate (input/placeholder). Every other field has a visible label and none.",
     },
     openLabel: {
       control: "text",

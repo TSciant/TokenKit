@@ -4,7 +4,7 @@
    Vite/Storybook and load-bearing under the Next.js App Router, where a module
    without it is a server component and may not use hooks at all. */
 
-import { useId } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type {
   InputHTMLAttributes,
   ReactNode,
@@ -49,6 +49,20 @@ type Shared = {
    */
   prefix?: string;
   suffix?: string;
+  /**
+   * For `type="password"`: a Show / Hide button beside the field, on by
+   * default. Seeing what you typed is how you catch the typo before the form
+   * rejects it. Set false only where the value must never be shown.
+   */
+  reveal?: boolean;
+  /**
+   * A character limit, shown as a count under the field ("You have 12
+   * characters remaining"). Not the native maxlength: typing past it is
+   * allowed and shown as too many, never silently cut off. The count is
+   * announced to screen readers when typing pauses, and only near or over the
+   * limit. Inputs and textareas.
+   */
+  maxChars?: number;
   options?: FieldOption[];
   children?: ReactNode;
 };
@@ -85,6 +99,8 @@ export function Field({
   chars,
   prefix,
   suffix,
+  reveal = true,
+  maxChars,
   options,
   children,
   ...rest
@@ -92,15 +108,68 @@ export function Field({
   const id = useId();
   const hintId = hint ? `${id}-hint` : undefined;
   const errorId = error ? `${id}-error` : undefined;
-  const describedBy = [hintId, errorId].filter(Boolean).join(" ") || undefined;
+  /* Character count. */
+  const counts = Boolean(maxChars) && control !== "select" && !children;
+  const countId = counts ? `${id}-count` : undefined;
+  const initialLength = String(rest.value ?? rest.defaultValue ?? "").length;
+  const [length, setLength] = useState(initialLength);
+  const [spoken, setSpoken] = useState("");
+  /* Nothing is announced until someone types: a field that loads over its
+     limit says so visibly, and its error will say so on submit. */
+  const [typed, setTyped] = useState(false);
+  const remaining = (maxChars ?? 0) - length;
+  const over = counts && remaining < 0;
+  const countText = !counts
+    ? ""
+    : length === 0
+      ? `You can enter up to ${maxChars} characters`
+      : remaining >= 0
+        ? `You have ${remaining} character${remaining === 1 ? "" : "s"} remaining`
+        : `You have ${-remaining} character${remaining === -1 ? "" : "s"} too many`;
+  /* Spoken once typing pauses, and only in the last fifth or over: a live
+     region that talks on every keystroke is noise. */
+  useEffect(() => {
+    if (!counts) return;
+    const near = remaining <= Math.ceil((maxChars ?? 0) * 0.2);
+    if (!typed) return;
+    const t = setTimeout(() => setSpoken(length > 0 && near ? countText : ""), 800);
+    return () => clearTimeout(t);
+  }, [counts, typed, length, remaining, maxChars, countText]);
+
+  const describedBy = [hintId, errorId, countId].filter(Boolean).join(" ") || undefined;
+
+  /* Password reveal. The button's words change (Show, Hide) and its name says
+     what it does to what ("Show password"); it is not a pressed toggle, because
+     a control whose name and pressed state both change contradicts itself. A
+     polite status line says what happened. The field goes back to hidden when
+     its form is submitted, so a browser never stores or sends it as plain
+     text, and spellcheck and autocorrect stay off while it is shown. */
+  const isPassword = control === "input" && rest.type === "password" && reveal && !children;
+  const [shown, setShown] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const form = inputRef.current?.form;
+    if (!isPassword || !form) return;
+    const hide = () => setShown(false);
+    form.addEventListener("submit", hide);
+    return () => form.removeEventListener("submit", hide);
+  }, [isPassword]);
 
   const controlProps = {
     id,
     "aria-describedby": describedBy,
     "aria-invalid": error ? true : undefined,
     "data-chars": chars,
+    "data-over": over ? "" : undefined,
     required,
     ...rest,
+    onChange: counts
+      ? (e: { currentTarget: { value: string } }) => {
+          setLength(e.currentTarget.value.length);
+          setTyped(true);
+          (rest.onChange as ((e: unknown) => void) | undefined)?.(e);
+        }
+      : rest.onChange,
   };
 
   let controlNode: ReactNode;
@@ -117,6 +186,34 @@ export function Field({
           </option>
         ))}
       </select>
+    );
+  } else if (isPassword) {
+    controlNode = (
+      <div data-tk="field-control">
+        <input
+          data-tk="input"
+          ref={inputRef}
+          {...controlProps}
+          type={shown ? "text" : "password"}
+          spellCheck={false}
+          autoCapitalize="none"
+          autoCorrect="off"
+        />
+        <button
+          type="button"
+          data-tk="button"
+          data-variant="outline"
+          data-reveal=""
+          aria-controls={id}
+          aria-label={shown ? "Hide password" : "Show password"}
+          onClick={() => setShown(!shown)}
+        >
+          {shown ? "Hide" : "Show"}
+        </button>
+        <span data-tk="visually-hidden" aria-live="polite">
+          {shown ? "Your password is visible" : ""}
+        </span>
+      </div>
     );
   } else {
     controlNode = <input data-tk="input" {...controlProps} />;
@@ -156,6 +253,22 @@ export function Field({
         <p data-tk="field-error" id={errorId}>
           {error}
         </p>
+      ) : null}
+      {counts ? (
+        <>
+          {/* The visible count updates on every keystroke and is hidden from
+              the accessibility tree; the field is described by the limit, and
+              the live line below speaks the count when it matters. */}
+          <p data-tk="field-count" data-over={over ? "" : undefined} aria-hidden="true">
+            {countText}
+          </p>
+          <span data-tk="visually-hidden" id={countId}>
+            You can enter up to {maxChars} characters
+          </span>
+          <span data-tk="visually-hidden" aria-live="polite">
+            {spoken}
+          </span>
+        </>
       ) : null}
     </div>
   );

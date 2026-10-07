@@ -27,6 +27,12 @@ export interface ShellProps {
   cols?: 1 | 2 | 3 | 4;
   /** grid only — hold the column count instead of collapsing. */
   fixed?: boolean;
+  /**
+   * grid only — two unequal columns: each pair of children splits the row
+   * 2:1, 1:2, 3:1 or 1:3 while the shell is wide enough (36rem, 44rem for
+   * the quarters), and stacks when it is not. Takes over from `cols`.
+   */
+  ratio?: "2:1" | "1:2" | "3:1" | "1:3";
   /** sidebar only — which edge the rail sits on. */
   side?: "start" | "end";
   /** center only */
@@ -45,6 +51,7 @@ export function Shell({
   gap,
   cols,
   fixed,
+  ratio,
   side,
   width,
   align,
@@ -73,6 +80,9 @@ export function Shell({
       data-gap={gap}
       data-cols={isGrid ? cols : undefined}
       data-fixed={isGrid && fixed ? "" : undefined}
+      /* With a ratio the grid is a wrapping flex row, so cols and fixed have
+         nothing to act on; they are left alone rather than suppressed. */
+      data-ratio={isGrid ? ratio : undefined}
       data-side={side}
       /* The base value of each of these renders no attribute, which is the
          kit's idiom everywhere else and was not being followed here.

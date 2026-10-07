@@ -1,7 +1,7 @@
 {
   "modes": {
     "wireframe": {
-      "mean": 1.07,
+      "mean": 1.14,
       "worst": 3.27,
       "slots": {
         "Button": 2.42,
@@ -9,13 +9,13 @@
         "Chip": 3.27,
         "Card": 2.25,
         "Alert": 1.73,
-        "Field": 0.78,
+        "Field": 1.61,
         "Meter": 1.31
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "wireframe-dark": {
-      "mean": 1.13,
+      "mean": 1.15,
       "worst": 3.6,
       "slots": {
         "Button": 1.92,
@@ -23,13 +23,13 @@
         "Chip": 3.6,
         "Card": 2.23,
         "Alert": 2.14,
-        "Field": 0.99,
+        "Field": 1.2,
         "Meter": 1.42
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "tk": {
-      "mean": 1,
+      "mean": 1.07,
       "worst": 3,
       "slots": {
         "Button": 1.24,
@@ -37,13 +37,13 @@
         "Chip": 3,
         "Card": 2.2,
         "Alert": 1.65,
-        "Field": 0.76,
+        "Field": 1.56,
         "Meter": 1.18
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "door-shop": {
-      "mean": 2.96,
+      "mean": 2.99,
       "worst": 7.62,
       "slots": {
         "Button": 5.26,
@@ -51,13 +51,13 @@
         "Chip": 7.62,
         "Card": 3.08,
         "Alert": 4.29,
-        "Field": 3.77,
+        "Field": 4.25,
         "Meter": 2.16
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "mohave": {
-      "mean": 4.09,
+      "mean": 4.12,
       "worst": 9.61,
       "slots": {
         "Button": 2.6,
@@ -65,13 +65,13 @@
         "Chip": 7.74,
         "Card": 4.92,
         "Alert": 9.61,
-        "Field": 6.35,
+        "Field": 6.74,
         "Meter": 6.53
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "bathing-bagels": {
-      "mean": 2.35,
+      "mean": 2.4,
       "worst": 3.64,
       "slots": {
         "Button": 2.08,
@@ -79,13 +79,13 @@
         "Chip": 3.64,
         "Card": 2.26,
         "Alert": 2.97,
-        "Field": 2.83,
+        "Field": 3.42,
         "Meter": 3.35
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "wandas": {
-      "mean": 1.62,
+      "mean": 1.68,
       "worst": 7.92,
       "slots": {
         "Button": 2.56,
@@ -93,13 +93,13 @@
         "Chip": 7.92,
         "Card": 2.81,
         "Alert": 2.17,
-        "Field": 3.26,
+        "Field": 3.87,
         "Meter": 3.52
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "muncheese": {
-      "mean": 2.46,
+      "mean": 2.51,
       "worst": 5.46,
       "slots": {
         "Button": 5.2,
@@ -107,13 +107,13 @@
         "Chip": 4.95,
         "Card": 4.78,
         "Alert": 4.29,
-        "Field": 2.67,
+        "Field": 3.22,
         "Meter": 2.28
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "density-compact": {
-      "mean": 1.62,
+      "mean": 1.7,
       "worst": 4.57,
       "slots": {
         "Button": 2.46,
@@ -121,13 +121,13 @@
         "Chip": 4.03,
         "Card": 4.57,
         "Alert": 1.73,
-        "Field": 0.77,
+        "Field": 1.61,
         "Meter": 1.31
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "density-comfortable": {
-      "mean": 1.11,
+      "mean": 1.18,
       "worst": 4.97,
       "slots": {
         "Button": 3.92,
@@ -135,20 +135,20 @@
         "Chip": 4.97,
         "Card": 2.24,
         "Alert": 1.73,
-        "Field": 0.82,
+        "Field": 1.61,
         "Meter": 1.31
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "patterns-wireframe": {
       "mean": 3.49,
       "worst": 5.55,
       "slots": {
-        "Masthead": 2.95,
+        "Masthead": 2.96,
         "PageHero": 1.98,
         "SiteFooter": 5.55
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "patterns-wireframe-dark": {
       "mean": 3.98,
@@ -158,7 +158,7 @@
         "PageHero": 2.6,
         "SiteFooter": 5.98
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "patterns-tk": {
       "mean": 3.26,
@@ -168,57 +168,57 @@
         "PageHero": 1.95,
         "SiteFooter": 5.05
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "patterns-door-shop": {
       "mean": 12.35,
-      "worst": 18.13,
+      "worst": 18.12,
       "slots": {
         "Masthead": 7.33,
-        "PageHero": 18.13,
+        "PageHero": 18.12,
         "SiteFooter": 6.52
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "patterns-mohave": {
-      "mean": 7.18,
+      "mean": 7.17,
       "worst": 7.48,
       "slots": {
-        "Masthead": 6.36,
+        "Masthead": 6.41,
         "PageHero": 7.48,
-        "SiteFooter": 5.75
+        "SiteFooter": 5.74
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "patterns-bathing-bagels": {
       "mean": 6.84,
-      "worst": 8.26,
+      "worst": 8.25,
       "slots": {
-        "Masthead": 2.94,
-        "PageHero": 8.26,
+        "Masthead": 2.93,
+        "PageHero": 8.25,
         "SiteFooter": 5.35
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "patterns-wandas": {
       "mean": 7.32,
       "worst": 9.38,
       "slots": {
-        "Masthead": 3.63,
+        "Masthead": 3.65,
         "PageHero": 9.38,
-        "SiteFooter": 6.17
+        "SiteFooter": 6.16
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "patterns-muncheese": {
-      "mean": 19.42,
-      "worst": 38.1,
+      "mean": 19.44,
+      "worst": 38.14,
       "slots": {
-        "Masthead": 5.4,
-        "PageHero": 7.84,
-        "SiteFooter": 38.1
+        "Masthead": 5.44,
+        "PageHero": 7.83,
+        "SiteFooter": 38.14
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "patterns-density-compact": {
       "mean": 9,
@@ -228,7 +228,7 @@
         "PageHero": 1.98,
         "SiteFooter": 18.21
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     },
     "patterns-density-comfortable": {
       "mean": 4.09,
@@ -238,7 +238,7 @@
         "PageHero": 1.98,
         "SiteFooter": 5.86
       },
-      "checkedAt": "2026-10-04T13:54:24.030Z"
+      "checkedAt": "2026-10-06T11:11:23.347Z"
     }
   }
 }

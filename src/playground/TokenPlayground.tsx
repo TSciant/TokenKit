@@ -156,7 +156,7 @@ export function TokenPlayground() {
     <div data-shell="stack" data-gap="5" style={{ padding: "var(--tk-space-5)" }}>
       <div data-shell="split" data-gap="5" style={{ alignItems: "start" }}>
         {/* --- the knobs ---------------------------------------------------- */}
-        <div data-shell="stack" data-gap="4" style={{ minInlineSize: "20rem" }}>
+        <div data-shell="stack" data-gap="4" style={{ minInlineSize: "min(20rem, 100%)" }}>
           {KNOBS.map((knob) => (
             <div key={knob.key} data-shell="stack" data-gap="1">
               <label

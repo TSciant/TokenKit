@@ -885,6 +885,12 @@ ${ramps}
     --tk-text-tertiary: ${v(m.tertiary)};
     --tk-text-inverse: ${v(m.default)};
     --tk-text-disabled: ${v(m.disabled)};
+    /* link — currentColor, so a link is its text's colour and its underline
+       carries it, until a pack chooses a link colour. A pack that does fills
+       all three here and in its inverse block; the contrast gate checks them. */
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     /* line — line-strong clears 3:1 against every surface above */
     --tk-line-subtle: ${v(m.lineSubtle)};
@@ -1075,6 +1081,9 @@ ${postureLines.length ? postureLines.join("\n") : "    /* (colour only) */"}
     --tk-text-tertiary: ${v(m.raised)};
     --tk-text-inverse: ${v(m.inverse)};
     --tk-text-disabled: color-mix(in srgb, ${v(m.raised)} 62%, transparent);
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     --tk-line-subtle: color-mix(in srgb, ${v(m.raised)} 14%, transparent);
     --tk-line-default: color-mix(in srgb, ${v(m.raised)} 22%, transparent);
@@ -1146,6 +1155,9 @@ ${postureLines.length ? postureLines.join("\n") : "    /* (colour only) */"}
     --tk-text-tertiary: #ffffff;
     --tk-text-inverse: ${v(m.inverse)};
     --tk-text-disabled: color-mix(in srgb, #ffffff 70%, transparent);
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     --tk-line-subtle: color-mix(in srgb, #ffffff 58%, transparent);
     --tk-line-default: #ffffff;

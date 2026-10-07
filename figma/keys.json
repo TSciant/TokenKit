@@ -74,7 +74,14 @@
     "ButtonReason": "220:142",
     "CardHeader": "222:150",
     "ChoiceCard": "224:1407",
-    "FieldAffix": "228:1393"
+    "FieldAffix": "228:1393",
+    "FieldPassword": "229:1393",
+    "FieldCount": "230:1396",
+    "ModalDescription": "240:2219",
+    "FieldWidths": "241:144",
+    "FieldReadOnly": "242:2291",
+    "TextStyles": "254:157",
+    "ShellRatio": "262:145"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -149,7 +156,14 @@
     "ButtonReason": "04-primitives-01-button--onion-skin-reason",
     "CardHeader": "04-primitives-05-card--onion-skin-header",
     "ChoiceCard": "04-primitives-32-choice-card--onion-skin",
-    "FieldAffix": "04-primitives-03-field--onion-skin-affix"
+    "FieldAffix": "04-primitives-03-field--onion-skin-affix",
+    "FieldPassword": "04-primitives-03-field--onion-skin-password",
+    "FieldCount": "04-primitives-03-field--onion-skin-count",
+    "ModalDescription": "04-primitives-09-modal--onion-skin-description",
+    "FieldWidths": "04-primitives-03-field--onion-skin-widths",
+    "FieldReadOnly": "04-primitives-03-field--onion-skin-read-only",
+    "TextStyles": "04-primitives-33-heading--onion-skin-text-styles",
+    "ShellRatio": "03-foundations-03-composition--onion-skin-ratio"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -224,6 +238,13 @@
     "ButtonReason": "src/react/primitives/Button.tsx",
     "CardHeader": "src/react/primitives/Card.tsx",
     "ChoiceCard": "src/react/primitives/ChoiceCard.tsx",
-    "FieldAffix": "src/react/primitives/Field.tsx"
+    "FieldAffix": "src/react/primitives/Field.tsx",
+    "FieldPassword": "src/react/primitives/Field.tsx",
+    "FieldCount": "src/react/primitives/Field.tsx",
+    "ModalDescription": "src/react/primitives/Modal.tsx",
+    "FieldWidths": "src/react/primitives/Field.tsx",
+    "FieldReadOnly": "src/react/primitives/Field.tsx",
+    "TextStyles": "src/css/04-elements.css",
+    "ShellRatio": "src/css/shells/index.css"
   }
 }

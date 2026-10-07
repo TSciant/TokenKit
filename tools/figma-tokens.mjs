@@ -60,8 +60,8 @@ const COLOR = `action/fill action/fill-active action/fill-hover action/text acti
  scrim/ink surface/base surface/default surface/inverse surface/raised surface/sunken text/disabled text/inverse text/on-scrim text/primary text/secondary text/tertiary
  texture/ink texture/paint status/danger-line status/danger-surface status/danger-text status/info-line status/info-surface status/info-text
  status/success-line status/success-surface status/success-text status/warning-line status/warning-surface status/warning-text gradient/from gradient/to`.split(/\s+/);
-const LENGTH_TK = `focus/offset focus/width icon/lg icon/md icon/sm plate/bleed-pad plate/max plate/max-portrait plate/min radius/full radius/lg radius/md radius/nested radius/none radius/sm radius/xl target/comfortable target/min`.split(/\s+/);
-const LENGTH_DENSITY = `measure measure/narrow space/0 space/1 space/2 space/3 space/4 space/5 space/6 space/7 space/8 space/9`.split(/\s+/);
+const LENGTH_TK = `focus/offset focus/width icon/lg icon/md icon/sm plate/bleed-pad plate/max plate/max-portrait plate/min radius/control radius/full radius/lg radius/md radius/nested radius/none radius/sm radius/xl target/comfortable target/min`.split(/\s+/);
+const LENGTH_DENSITY = `gutter measure measure/narrow space/0 space/1 space/2 space/3 space/4 space/5 space/6 space/7 space/8 space/9`.split(/\s+/);
 const LENGTH_TYPE = `size/xs size/sm size/base size/md size/lg size/xl size/2xl size/3xl size/4xl`.split(/\s+/);
 
 const b = await chromium.launch();

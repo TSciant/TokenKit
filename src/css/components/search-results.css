@@ -160,7 +160,7 @@
   :where([data-tk="search-results-type"]) {
     font-size: var(--tk-size-xs);
     font-weight: var(--tk-weight-semibold);
-    letter-spacing: var(--tk-tracking-wide, 0.04em);
+    letter-spacing: var(--tk-tracking-wide);
     text-transform: uppercase;
     color: var(--tk-text-secondary);
   }

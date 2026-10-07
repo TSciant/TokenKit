@@ -352,6 +352,7 @@ type Story = StoryObj<typeof meta>;
 
 export const CharactersPerLine: Story = {
   name: "Characters per line",
+  parameters: { reflow: { skip: "sets lines at each measure's own width, wider than a phone, to count their characters" } },
   render: (_args, ctx) => (
     <MeasureStory {...(ctx.globals as unknown as ContextGlobals)} />
   ),

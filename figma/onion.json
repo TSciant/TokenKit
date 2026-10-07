@@ -469,7 +469,8 @@
     "MenuButton": {
       "story": "04-primitives-28-menu-button--onion-skin",
       "pattern": [
-        "state"
+        "state",
+        "size"
       ],
       "states": {
         "closed": {
@@ -479,7 +480,7 @@
           "initialOpen": true
         }
       },
-      "doc": "The Figma component laid over this one, closed and open. Open includes the list, so the box is as tall as the list under the trigger.",
+      "doc": "The Figma component laid over this one, closed and open, and at md and lg. Open includes the list, so the box is as tall as the list under the trigger.",
       "target": "root"
     },
     "MegaMenu": {
@@ -664,12 +665,16 @@
     "Hero": {
       "story": "05-patterns-26-hero--onion-skin",
       "pattern": [
-        "layout"
+        "layout",
+        "actions"
       ],
       "viewport": 1072,
       "target": "root",
       "settle": 800,
-      "doc": "The Figma Hero laid over this one at 1024px, stacked and split. The plate is a captured stand-in with its corner drawn in Figma. Switch Onion in the toolbar; layout in Controls picks the skin."
+      "doc": "The Figma Hero laid over this one at 1024px: stacked and split, with buttons or with the capture form. The plate is a captured stand-in with its corner drawn in Figma. Switch Onion in the toolbar; layout and actions in Controls pick the skin.",
+      "defaults": {
+        "actions": "buttons"
+      }
     },
     "InlineForm": {
       "story": "04-primitives-30-inline-form--onion-skin",
@@ -744,6 +749,90 @@
       "single": true,
       "target": "root",
       "doc": "The Figma FieldAffix laid over a prefixed and a suffixed field at 320px."
+    },
+    "FieldPassword": {
+      "story": "04-primitives-03-field--onion-skin-password",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma FieldPassword laid over a password field at 320px."
+    },
+    "FieldCount": {
+      "story": "04-primitives-03-field--onion-skin-count",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma FieldCount laid over a textarea with a 200-character limit at 320px."
+    },
+    "ModalDescription": {
+      "story": "04-primitives-09-modal--onion-skin-description",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma ModalDescription (a small Modal with Description on) laid over a ModalPanel with a description, in place at 384px."
+    },
+    "FieldWidths": {
+      "story": "04-primitives-03-field--onion-skin-widths",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma FieldWidths laid over one field at each chars width (2, 3, 4, 5, 10, 20, 30) at 320px."
+    },
+    "FieldReadOnly": {
+      "story": "04-primitives-03-field--onion-skin-read-only",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma FieldReadOnly laid over an optional field, a read-only input and a read-only textarea at 320px."
+    },
+    "TextStyles": {
+      "story": "04-primitives-33-heading--onion-skin-text-styles",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma TextStyles (one text in each tk/ text style) laid over one line in each data-text style at 768px."
+    },
+    "ShellRatio": {
+      "story": "03-foundations-03-composition--onion-skin-ratio",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma ShellRatio laid over two ratio grids at 800px: 2:1 over 1:3, gap 4, the shells' placeholder cells."
     }
   }
 }

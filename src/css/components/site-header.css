@@ -19,14 +19,17 @@
     flex-wrap: nowrap;
     align-items: center;
     gap: var(--tk-space-4);
-    padding: var(--tk-space-3) var(--tk-space-5);
+    padding: var(--tk-space-3) var(--tk-gutter);
     min-block-size: max(var(--tk-target-comfortable), 3rem);
   }
 
   :where([data-tk="site-header-brand"]) {
     flex: 0 0 auto;
     font-family: var(--tk-font-sans);
-    font-size: var(--tk-size-2xl);
+    /* The heading size, which gives way on a narrow screen like a title does
+       (2xl from 960px up, unchanged): a brand with a heavy display face
+       still overran a 320px header by 32px once the CTA had moved. */
+    font-size: var(--tk-size-heading);
     font-weight: var(--tk-weight-bold);
     letter-spacing: var(--tk-tracking-tight);
     text-decoration: none;
@@ -156,6 +159,39 @@
     :where([data-header-menu]) {
       display: inline-flex;
       margin-inline-start: auto;
+    }
+  }
+
+  /* The contact action lives in the bar, and moves to the foot of the menu
+     sheet when the header is too narrow to hold it beside the brand, the
+     menu and search; the menu button keeps its icon and drops its word
+     (its accessible name stays). Below 24rem a phone's header ran 88px past
+     the screen (the ds-corpus grid brief's reflow measurement). */
+  :where([data-tk="site-header-sheet-cta"]) {
+    display: none;
+  }
+
+  :where([data-header-cta]) {
+    display: contents;
+  }
+
+  @container site-header (max-width: 24rem) {
+    :where([data-header-cta]) {
+      display: none;
+    }
+
+    :where([data-tk="site-header-sheet-cta"]) {
+      display: block;
+      padding-block-start: var(--tk-space-4);
+    }
+
+    :where([data-header-menu] > span) {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
   }
 

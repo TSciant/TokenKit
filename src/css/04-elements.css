@@ -35,46 +35,128 @@
     text-wrap: balance;
   }
 
-  :where(h1) {
-    /* The display slots, not the body ones. A brand that shouts does it
-       here, and does it by filling tokens rather than by a component
-       learning which brand it is rendering. */
+  /* --- text styles -------------------------------------------------------
+     A text style is size, leading, tracking and weight together, and it is
+     not the heading level. The level is the outline (one h1, no skipped
+     levels, what a screen reader lists); the style is how it looks. Each
+     level's default look IS a style, so they share one rule:
+
+       :where(h2:not([data-text]), [data-text="heading-l"])
+
+     An h2 with no data-text looks like an h2. An h2 with data-text="heading-s"
+     drops its level's look entirely and takes that style, so there is no
+     ordering between the two to get wrong. Every style states all four
+     properties for the same reason. (Primer's separation of semantic tag from
+     visual class; Atlassian's composite tokens; the ds-corpus type brief.)
+
+     Type only, never colour. And in the elements layer, so a component that
+     styles its own parts still does: data-text is for content and page
+     composition. */
+
+  /* The page's top line on a landing page; larger than any title. */
+  :where([data-text="display"]) {
     font-family: var(--tk-font-display);
     text-transform: var(--tk-display-case);
-    font-size: var(--tk-size-3xl);
+    font-size: var(--tk-size-display);
     line-height: var(--tk-leading-display);
     letter-spacing: var(--tk-tracking-display);
     font-weight: var(--tk-weight-bold);
   }
 
-  :where(h2) {
-    font-size: var(--tk-size-2xl);
+  :where(h1:not([data-text]), [data-text="title"]) {
+    /* The display slots, not the body ones. A brand that shouts does it
+       here, and does it by filling tokens rather than by a component
+       learning which brand it is rendering. */
+    font-family: var(--tk-font-display);
+    text-transform: var(--tk-display-case);
+    font-size: var(--tk-size-title);
+    line-height: var(--tk-leading-display);
+    letter-spacing: var(--tk-tracking-display);
+    font-weight: var(--tk-weight-bold);
+  }
+
+  :where(h2:not([data-text]), [data-text="heading-l"]) {
+    font-size: var(--tk-size-heading);
     line-height: var(--tk-leading-tight);
     letter-spacing: var(--tk-tracking-tight);
+    font-weight: var(--tk-weight-semibold);
   }
 
-  :where(h3) {
+  :where(h3:not([data-text]), [data-text="heading-m"]) {
     font-size: var(--tk-size-xl);
+    line-height: var(--tk-leading-tight);
     letter-spacing: var(--tk-tracking-tight);
+    font-weight: var(--tk-weight-semibold);
   }
 
-  :where(h4) { font-size: var(--tk-size-lg); }
+  :where(h4:not([data-text]), [data-text="heading-s"]) {
+    font-size: var(--tk-size-lg);
+    line-height: var(--tk-leading-tight);
+    letter-spacing: var(--tk-tracking-snug);
+    font-weight: var(--tk-weight-semibold);
+  }
 
-  :where(h5) {
+  :where(h5:not([data-text]), [data-text="heading-xs"]) {
     font-size: var(--tk-size-md);
     line-height: var(--tk-leading-snug);
+    letter-spacing: var(--tk-tracking-snug);
+    font-weight: var(--tk-weight-semibold);
   }
 
   /* The eyebrow. Uppercase at body size needs the opposite correction —
      capitals set tight are the hardest thing on a page to read. */
-  :where(h6) {
+  :where(h6:not([data-text]), [data-text="eyebrow"]) {
     font-size: var(--tk-size-sm);
     line-height: var(--tk-leading-snug);
     letter-spacing: var(--tk-tracking-wide);
     font-weight: var(--tk-weight-medium);
     text-transform: uppercase;
-    color: var(--tk-text-secondary);
     font-feature-settings: "case" 1;
+  }
+
+  /* h6 is quieter by default; colour is not part of a style. */
+  :where(h6:not([data-text])) {
+    color: var(--tk-text-secondary);
+  }
+
+  /* The paragraph under a title that says what the page is for. */
+  :where([data-text="lead"]) {
+    font-size: var(--tk-size-md);
+    line-height: var(--tk-leading-relaxed);
+    letter-spacing: var(--tk-tracking-normal);
+    font-weight: var(--tk-weight-normal);
+  }
+
+  :where([data-text="body"]) {
+    font-size: var(--tk-size-base);
+    line-height: var(--tk-leading-relaxed);
+    letter-spacing: var(--tk-tracking-normal);
+    font-weight: var(--tk-weight-normal);
+  }
+
+  :where([data-text="small"]) {
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-normal);
+    letter-spacing: var(--tk-tracking-normal);
+    font-weight: var(--tk-weight-normal);
+  }
+
+  /* Fine print, timestamps, a figure's credit. Use it sparingly. */
+  :where([data-text="caption"]) {
+    font-size: var(--tk-size-xs);
+    line-height: var(--tk-leading-normal);
+    letter-spacing: var(--tk-tracking-normal);
+    font-weight: var(--tk-weight-normal);
+  }
+
+  /* A number that is the point (Atlassian's metric): a stat in a proof
+     strip, a total. Figures line up. */
+  :where([data-text="metric"]) {
+    font-size: var(--tk-size-3xl);
+    line-height: var(--tk-leading-tight);
+    letter-spacing: var(--tk-tracking-normal);
+    font-weight: var(--tk-weight-bold);
+    font-variant-numeric: tabular-nums;
   }
 
   :where(p) {
@@ -98,13 +180,21 @@
     font-size: 0.9em;
   }
 
+  /* Link colour is three pack slots, currentColor in every pack today: the
+     underline is the signal and colour is a second channel, never the only
+     one. Visited before hover, so hovering a visited link still answers. */
   :where(a[href]) {
-    color: currentColor;
+    color: var(--tk-link-text);
     text-decoration-thickness: 1px;
     text-underline-offset: 0.2em;
   }
 
+  :where(a[href]:visited) {
+    color: var(--tk-link-visited);
+  }
+
   :where(a[href]:hover) {
+    color: var(--tk-link-hover);
     text-decoration-thickness: 2px;
   }
 

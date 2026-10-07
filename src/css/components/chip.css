@@ -18,7 +18,7 @@
     color: var(--tk-text-secondary);
     font-size: var(--tk-size-xs);
     font-weight: var(--tk-weight-semibold);
-    letter-spacing: var(--tk-tracking-wide, 0.04em);
+    letter-spacing: var(--tk-tracking-wide);
     line-height: var(--tk-leading-tight);
     white-space: nowrap;
     box-shadow:
@@ -68,7 +68,7 @@
     border-color: transparent;
     box-shadow: none;
     color: var(--tk-text-tertiary);
-    letter-spacing: var(--tk-tracking-wide, 0.04em);
+    letter-spacing: var(--tk-tracking-wide);
   }
 
   :where([data-tk="chip"][data-interactive]) {
@@ -77,7 +77,7 @@
     font: inherit;
     font-size: var(--tk-size-xs);
     font-weight: var(--tk-weight-semibold);
-    letter-spacing: var(--tk-tracking-wide, 0.04em);
+    letter-spacing: var(--tk-tracking-wide);
   }
 
   :where([data-tk="chip"][data-interactive]:hover) {
@@ -113,6 +113,20 @@
     :where([data-tk="chip"][data-interactive]:hover),
     :where([data-tk="chip"][data-interactive]:active) {
       transform: none;
+    }
+  }
+
+  /* Forced colours drop the fill that says a chip is pressed, which left on
+     and off the same chip. On takes the reader's own selection colours
+     instead (Highlight, HighlightText), the way the system draws a selected
+     item. tools/forced-colors-gate.mjs, STATE. */
+  @media (forced-colors: active) {
+    :where([data-tk="chip"][data-pressed]),
+    :where([data-tk="chip"][aria-pressed="true"]) {
+      forced-color-adjust: none;
+      background-color: Highlight;
+      border-color: Highlight;
+      color: HighlightText;
     }
   }
 }

@@ -21,7 +21,7 @@
 
   :where([data-tk="hero-title"]) {
     margin: 0;
-    font-size: var(--tk-size-4xl);
+    font-size: var(--tk-size-display);
     line-height: var(--tk-leading-tight);
     max-inline-size: 18ch;
     text-wrap: balance;
@@ -60,7 +60,7 @@
   }
 
   :where([data-tk="hero"][data-layout="split"] [data-tk="hero-title"]) {
-    font-size: var(--tk-size-3xl);
+    font-size: var(--tk-size-title);
   }
 
   /* --- the scrim hero (HeroCarousel) ------------------------------------ */
@@ -184,6 +184,11 @@
     inline-size: 0.4rem;
     block-size: 0.4rem;
     border-radius: 999px;
+    /* A transparent border the fill covers: invisible here, and in forced
+       colours (which drop the fill) repainted in the reader's text colour,
+       so the dots stay on screen as rings and the current one as a long
+       ring. Without it they vanished. */
+    border: 1px solid transparent;
     background: color-mix(in srgb, var(--tk-text-on-scrim) 45%, transparent);
     transition:
       inline-size var(--tk-motion-transform),

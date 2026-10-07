@@ -52,6 +52,12 @@
     --tk-text-tertiary: var(--<brand>-ink);
     --tk-text-inverse: var(--<brand>-paper);
     --tk-text-disabled: var(--<brand>-ink);
+    /* link — currentColor, so a link is its text's colour and its underline
+       carries it, until a pack chooses a link colour. A pack that does fills
+       all three here and in its inverse block; the contrast gate checks them. */
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     /* line — line-strong must clear 3:1 against the surface behind it */
     --tk-line-subtle: var(--<brand>-rule);
@@ -187,6 +193,9 @@
     --tk-text-tertiary: var(--<brand>-paper);
     --tk-text-inverse: var(--<brand>-ink);
     --tk-text-disabled: var(--<brand>-paper);
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     --tk-line-subtle: var(--<brand>-rule);
     --tk-line-default: var(--<brand>-rule);

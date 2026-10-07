@@ -456,7 +456,7 @@ export const OnionSkinReason: Story = {
   },
   render: () => (
     <div data-reason-pinned style={{ inlineSize: 280, blockSize: 68 }}>
-      <style>{"[data-reason-pinned] [data-tk=\"button-reason\"]{opacity:1;visibility:visible;transition:none}"}</style>
+      <style>{"[data-reason-pinned] [data-tk=\"button-reason\"]{display:block;opacity:1;transition:none}"}</style>
       <Button disabled reason="Add at least one recipient first.">
         Send
       </Button>

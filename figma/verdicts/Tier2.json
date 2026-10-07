@@ -5,9 +5,9 @@
   "summary": {
     "Modal": {
       "skins": 3,
-      "mean": "4.7-7.1",
+      "mean": "4.5-6.9",
       "result": "Aligned",
-      "note": "sizes exact at sm, md, lg; best shift (0,1) drops the mean to 2.6-3.8, a one-pixel text-baseline rounding"
+      "note": "sizes exact at sm, md, lg; best shift (0,1) drops the mean to 2.9-4.4, a one-pixel text-baseline rounding"
     },
     "SiteHeader": {
       "skins": 4,
@@ -103,7 +103,7 @@
       "skins": 1,
       "mean": "1.9",
       "result": "Aligned",
-      "note": "1024x532 against 531.8; an inverse band and filter form (Name, Location, Company Fields and an outline ArrowCta), four portrait cards with the live plates as image fills"
+      "note": "1024x532 against 531.8; an inverse band and filter form (an empty Name input, no placeholder; Location, Company Fields and an outline ArrowCta), four portrait cards with the live plates as image fills"
     },
     "EventList": {
       "skins": 1,
@@ -344,7 +344,7 @@
       "driftType": "Design execution != live execution",
       "diff": "three: (1) the code shows a select's chosen option in the value colour and an input's placeholder in the quiet one, while the Field variants draw one value colour per control; (2) the native select draws its own chevron and sits its text 4px further in; (3) the role is italic in the code and Manrope has no italic",
       "pull": "Align (1), Accept (2, 3)",
-      "result": "(1) the value text on the instances is overridden: text/tertiary on the input, text/primary on the selects; (2) a native control's chrome is the browser's, not the design's; (3) drawn upright, noted on the card's description"
+      "result": "(1) the value text on the instances is overridden: text/primary on the selects; the input had a text/tertiary placeholder until 2026-10-06, when the kit dropped it (the field has a visible label) and the instance went back to the empty input; (2) a native control's chrome is the browser's, not the design's; (3) drawn upright, noted on the card's description"
     },
     {
       "component": "ApplyForm",
@@ -646,6 +646,139 @@
       "diff": "Field could only mark required, and read-only had no look of its own, so it read as an empty editable box or was replaced by disabled, which hides the value from keyboard and screen-reader users (from the ds-corpus input brief)",
       "pull": "Align",
       "result": "optional marks the label (optional) in quieter type; the guidance is to mark the minority. Read-only inputs and textareas draw a dashed edge on no ground with full-contrast text, stay focusable and are announced read-only (checked in the accessibility tree). Not drawn in Figma yet"
+    },
+    {
+      "component": "Field (password reveal), FieldPassword",
+      "driftType": "New part",
+      "diff": "a password field had no way to see what was typed; Carbon and Base Web both add a show/hide control (from the ds-corpus input brief)",
+      "pull": "Align",
+      "result": "type=password Fields get a Show / Hide button beside the field (reveal, on by default). Following GOV.UK rather than a pressed toggle: the words change and the name says what it does (Show password / Hide password), with a polite status line; spellcheck, autocapitalise and autocorrect off; the form hides it again on submit. Checked: hidden, shown and status text, and back to hidden after requestSubmit. Figma FieldPassword; onion 1.4"
+    },
+    {
+      "component": "Field (maxChars), FieldCount",
+      "driftType": "New part",
+      "diff": "no character limit could be shown; Carbon and Primer count, GOV.UK has a character-count component (from the ds-corpus input brief)",
+      "pull": "Align",
+      "result": "maxChars on Field (inputs, textareas): a visible count where a hint sits (the limit until something is typed, then remaining, then too many), the control described by the limit, and a polite live line that speaks once typing pauses, only in the last fifth or over, and never before someone has typed. Over the limit draws the error border and weight but cuts nothing off (no native maxlength). Checked: 150, 170 and 205 of 200 behave as described, a field that loads over its limit says so visibly and stays quiet. Figma FieldCount (a Field textarea instance); onion 1.4"
+    },
+    {
+      "component": "Modal (close button order)",
+      "driftType": "Live execution != live intent",
+      "diff": "Close was the first focusable element, so showModal() focused Close rather than the field or the action, and a screen reader heard Close before the content (from the ds-corpus modal brief: USWDS puts Close at the end of the code, Carbon focuses the first input or the primary button)",
+      "pull": "Align",
+      "result": "Close comes last in the markup and is positioned top right; the header keeps its room and its height. Checked: opening the modal focuses the first footer button, not Close; the layout is unchanged (header 36, close top right) and the skins read 4.8, 5.7 and 7.2 (were up to 6.8)"
+    },
+    {
+      "component": "Modal (backdrop, scrolling body)",
+      "driftType": "Live execution != live intent",
+      "diff": "every modal closed on a backdrop click by default, including forms and confirmations, so a stray click could throw away what was typed; and with no height cap a long body scrolled the whole dialog, taking the footer and its actions out of view (from the ds-corpus modal brief)",
+      "pull": "Align",
+      "result": "closeOnBackdrop is unset by default and resolves to true only when there is no footer (a passive modal); a set value still wins. The panel is capped at the viewport less space-6 a side, the dialog element’s own cap is lifted, and only the body scrolls (overscroll contained). Checked at a 600px window: panel 32–568, title and footer fixed while the body scrolls to its end, backdrop click leaves a modal with actions open. A text-only scrolling body is what receives focus on open (Chrome makes a scroller with nothing focusable in it focusable), which lets the arrow keys scroll it; a body with a field or link focuses that instead"
+    },
+    {
+      "component": "Modal (description, alert)",
+      "driftType": "New part",
+      "diff": "a modal had only a title, so nothing said what was at stake when it opened, and there was no alert dialog for confirmations (Primer’s subtitle and role, USWDS’s aria-describedby, Carbon’s modal description; the ds-corpus modal brief)",
+      "pull": "Align",
+      "result": "description under the title, wired to aria-describedby; alert sets role=alertdialog and, with no description, is described by its body. A modal with no body no longer renders an empty one. Checked: the accessibility tree reads alertdialog, Delete this project?, with the consequence as its description, and focus opens on Keep project. Not drawn in Figma yet"
+    },
+    {
+      "component": "Modal (footer on ButtonGroup)",
+      "driftType": "Live execution != live intent",
+      "diff": "the footer was a free flex row of Buttons, so order, alignment and width were up to each modal (Carbon puts the action last, Lightning puts Cancel and the action on the right; the ds-corpus modal brief)",
+      "pull": "Align",
+      "result": "actions on Modal renders a ButtonGroup in the footer: end-aligned, equal widths, Cancel first and the action last, and it stacks in that order when the dialog is narrow; footer stays for anything that is not a row of buttons, and either one counts as a footer for the backdrop default. ButtonGroup's narrow breakpoint moved from 22rem to 20rem so a small dialog (about 21rem of footer) keeps its buttons side by side. Figma footer gap rebound from space/3 to space/2 to match the group. Checked: the alertdialog still opens on Keep project, the narrow ButtonGroup story still stacks; skins read 4.5, 5.4 and 6.9 (were 4.7, 5.6, 7.2), ButtonGroup 2.7"
+    },
+    {
+      "component": "Modal (dismissible)",
+      "driftType": "New part",
+      "diff": "every modal could be dismissed by Close, Escape or (without a footer) a click outside, so there was no way to ask a question that must be answered, like a session about to time out (USWDS's forced action; the ds-corpus modal brief)",
+      "pull": "Align",
+      "result": "dismissible={false} drops Close, ignores a click outside and stops Escape at keydown as well as at cancel (Chrome lets a second Escape without a click in between close a dialog whatever cancel says); the header gives back the room it kept for Close. Default true, so nothing else changes. Figma: Dismissible boolean on the Modal set, bound to Close's visibility; off, the header is 28 tall and the title takes the full width, as in the code. Checked: three Escapes and a backdrop click leave it open, focus opens on the first action, an action closes it; default skins unchanged"
+    },
+    {
+      "component": "Field, FieldAffix, FieldCount, FieldPassword, InlineForm, HeaderSearch (control radius)",
+      "driftType": "Live execution != live intent",
+      "diff": "inputs took the nested radius, which at page level is radius/xl, so on a 40px control they were capsules in every pack whose xl is over 20px (five of seven); no token let a brand say what corner its inputs have",
+      "pull": "Align",
+      "result": "--tk-radius-control, default radius/md (restated on [data-brand], so each pack's own md resolves: 8, 12 mohave, 16 muncheese, 22 bathing-bagels, 2 door-shop, 0 wandas), capped by the nested radius so a control is never rounder than its container. Buttons get --tk-radius-button, unset by default so they keep the nested radius (pill); a pack sets it to match its inputs. The radius gate treats controls as shapes, like capsules: at or under the concentric value passes, rounder fails. Figma: radius/control in tk, aliased to radius/md in every mode, bound on Field, FieldAffix, FieldPassword, InlineForm and HeaderSearch inputs; tokens.json carries it. Skins re-pulled: Field 0.26-7.33 (as before), FieldAffix 1.48, FieldCount 1.33, FieldPassword 1.30, InlineForm 2.27 and 2.98, HeaderSearch open 0.40; the ten primitive mode sheets re-pulled, Field 1.2-6.7"
+    },
+    {
+      "component": "Modal (description drawn), ModalDescription",
+      "driftType": "Live intent != Figma intent",
+      "diff": "description was built in the code (aria-describedby, under the title) but the Figma Modal had no place for it",
+      "pull": "Align",
+      "result": "Description boolean (off by default) and Description text on the Modal set: the header's title now sits in a titles column with the description under it (space/1, size/sm, text/secondary, 150% line), Close beside them, so the description is the title's width as in the code (286 in sm). Off, every variant keeps its size and the Modal skins read as before. ModalDescription is a small Modal with it on, laid over a ModalPanel in place: 384x249 against 384x248.6, onion 3.15"
+    },
+    {
+      "component": "Field (widths drawn), FieldWidths",
+      "driftType": "Live intent != Figma intent",
+      "diff": "chars (2, 3, 4, 5, 10, 20, 30) sized the input to its expected answer in the code, but Figma's Field had only the full width",
+      "pull": "Align",
+      "result": "FieldWidths: one field at each width, stacked at space/5 in 320, the inputs at the widths the code computes under tk (45.52, 55.27, 65.03, 74.8, 123.59, 221.19, 318.8: n ch of the pack font plus padding and border). The fields are detached from Field because an instance cannot override a child's width or max width; their tokens (radius/control, padding, line) stay bound. Figma has no ch, so the widths are tk's; other packs differ by a few pixels (2ch is 41.9 in door-shop, 52.7 in mohave). Onion 0.54"
+    },
+    {
+      "component": "Field (optional, read-only drawn), FieldReadOnly",
+      "driftType": "Live intent != Figma intent",
+      "diff": "optional (the label marked in words) and readOnly (dashed edge, no ground, full-contrast value) were built in the code but the Figma Field had neither",
+      "pull": "Align",
+      "result": "Optional boolean on the Field set: an (optional) text after the label, regular weight, text/secondary, same size as the label. State=readonly for input and textarea (the HTML select has none): no fill, a 1px [3, 3] dashed stroke on line/strong, the value in text/primary. Cloned variants lose their property references, so they were relinked from the default variants. FieldReadOnly: an optional field, a read-only input and a read-only textarea at 320; onion 2.29, the rest being where Chrome starts its dashes at each corner ([4, 4] read 2.33). Existing Field skins unchanged"
+    },
+    {
+      "component": "MenuButton (sizes drawn)",
+      "driftType": "Live intent != Figma intent",
+      "diff": "size (sm, md, lg) on MenuButton matched the trigger to the buttons beside it in the code, but the Figma MenuButton had only sm",
+      "pull": "Align",
+      "result": "Size axis on the MenuButton set (sm, md, lg) for both Open states. The md and lg triggers are detached outline Buttons because the code's chevron is a fixed 1rem at every size and Figma cannot resize an icon inside an instance (Button's md and lg carry 20px icons); padding, label size and tokens follow Button's md and lg. Triggers 92x36 and 113x44 against 91.6x36 and 112.4x44.4; the list opens space/2 under the trigger at each size. New skins closed-md 3.36, closed-lg 4.86, open-lg 2.64; sm unchanged (closed 7.15, open 2.65)"
+    },
+    {
+      "component": "Hero (capture drawn)",
+      "driftType": "Live intent != Figma intent",
+      "diff": "actions=\"capture\" put an InlineForm in the hero in place of the buttons in the code, but the Figma Hero had only the buttons",
+      "pull": "Align",
+      "result": "Actions axis on the Hero set (buttons, capture) for both layouts. The capture variants carry the InlineForm where the buttons were, at the code's 429.44 width (input 331.16, the CTA as its submit, the hint under it), detached because InlineForm's Figma component has no text properties; the input keeps radius/control. Stacked: the plate moves down by the form's extra 56; split: the hero is 505 tall and the plate stays centred (y 127.69). Skins renamed to layout-actions (stacked-buttons, split-buttons) and two added: stacked-capture 2.34, split-capture 3.06; buttons unchanged at 1.25 and 2.40"
+    },
+    {
+      "component": "Templates (LeadForm, ApplyForm, PeopleDirectory, SubBrandPage, SegmentPage, ArticlePage)",
+      "driftType": "Figma intent != saved skin",
+      "diff": "the template skins were pulled before the SiteFooter change (6fae1ff) and before the control radius (b34bbb1); a template whose components changed in Figma no longer matched its own saved export",
+      "pull": "Align",
+      "result": "None of the six Figma templates holds a SiteFooter, so the footer change left them as they were. The control radius did reach the three with Field instances: re-exported and pixel-compared with the saved skins, LeadForm, ApplyForm and PeopleDirectory had changed (2948, 1468 and 1085 pixels, the input corners) and were replaced; SubBrandPage was identical. SegmentPage and ArticlePage hold no fields or footer and export over 1024 tall, which the screenshot tool scales down, so their 1x skins stay. Onion back to where they were: PeopleDirectory 1.86, LeadForm 4.86, ApplyForm 7.79 (its 2px height difference, 667 against 665, predates this)"
+    },
+    {
+      "component": "ApplyForm (height), Field (file input)",
+      "driftType": "Live execution != live intent",
+      "diff": "the code's ApplyForm was 2px taller than the design (667 against 665): the file input was 43 where every control is 42, because the browser's file button keeps 1px of block padding and so stood a pixel taller than the line; and Figma rounds a 115% line on 30px type to 34, so the two-line heading was 68 where the code's is 69",
+      "pull": "Align",
+      "result": "Code: the file button loses its block padding (field.css), so a file input is 42 like every other control; the button is still the browser's own. Figma: the heading's line height set to 34.5px, so two lines are 69 as in the code. ApplyForm is 666 in both and the onion went from 7.79 to 2.62. Other Field skins unchanged"
+    },
+    {
+      "component": "Text styles (tk/ text styles), TextStyles",
+      "driftType": "New part",
+      "diff": "the code gained twelve data-text styles (display to metric) and the design file had no text styles at all, only the tk-type sizes as variables",
+      "pull": "Align",
+      "result": "Twelve Figma text styles named tk/<data-text value>, Manrope at the style's weight, font size bound to the tk-type size variable, leading and tracking as percentages of the default pack's ratios (Figma binds line height and letter spacing only to pixel variables, so a pack that changes leading or tracking changes it in code), eyebrow set to upper case. Each description names its data-text value and use. TextStyles is one line in each style at 768, stacked at space/4, laid over the same twelve lines in code: 768x524 against 768x524.8 (Figma rounds a percentage line height per line), onion 2.88. Existing components' text is not yet moved onto the styles"
+    },
+    {
+      "component": "Page gutter: SiteHeader, Masthead, PageHero, SiteFooter, CtaBlocks, PeopleDirectory, SegmentPage, SubBrandPage, ArticlePage, EventPromo, MegaMenu",
+      "driftType": "Live execution != live intent",
+      "diff": "the space between the screen's edge and the content was two numbers applied inconsistently: the center shell padded 16px, page bands padded themselves 24px (header, footer, CTA blocks, directory, lead form) or 32px (promo), and PageHero's band padded around a center shell, so its title lost both (40px a side, 128px of a 412px phone with Storybook's frame). Primer: padding on the content, not its parent (the ds-corpus spacing brief)",
+      "pull": "Align",
+      "result": "--tk-gutter, space-4 up to 80rem and space-5 above (Primer's numbers), applied once: by the center shell, the site header, and every band that meets the edge; PageHero's band pads block only. Measured both breakpoints first: 48rem would have moved 17 components (the center shell sits inside most patterns), 80rem moved 11. Figma: a gutter variable in tk-density (alias of space/4) bound to the edge paddings of SiteHeader (4), Masthead (12), PageHero's breadcrumb and copy (its panel now pads block only, as in code), SiteFooter, CtaBlocks, PeopleDirectory's band and filters, SegmentPage's CTA band and EventPromo (whose plate grew to the code's 514.6). 23 skins re-pulled and the two tall templates exported in halves and stitched; every one reads at or under where it was (PageHero 3.01, SegmentPage 2.48, SubBrandPage 1.93, ArticlePage 3.21 from 3.68, EventPromo 4.02 from 5.68, PeopleDirectory 2.34). Ten pattern mode sheets re-pulled, back to their earlier figures. On a phone, page and article titles get 332px of 412 (was 284)"
+    },
+    {
+      "component": "Shell (grid ratio), ShellRatio",
+      "driftType": "New part",
+      "diff": "the grid shell drew equal columns only, so a content-and-aside layout at 2:1 or 3:1 (BBC GEL's halves, thirds and quarters; the ds-corpus grid brief) needed hand-written CSS",
+      "pull": "Align",
+      "result": "data-ratio 2:1, 1:2, 3:1, 1:3 on the grid shell (ratio on Shell): each pair of children shares the row in the ratio while the shell is wider than its switch (36rem, 44rem for the quarters, keeping the narrow column at about a four-column cell), and stacks below it, with no breakpoint (the flex-basis is (switch - 100%) * 999). Measured: 601/301 and 677/226 in a 918px shell; at 618px 2:1 holds and 3:1 stacks; at 330px all stack. Figma: ShellRatio, 2:1 over 1:3 at 800, the shells' placeholder cells at the exact widths (522.67/261.33, 196/588), onion 0.07. The other Shell skins are unchanged"
+    },
+    {
+      "component": "Component text on the tk/ text styles (28 components)",
+      "driftType": "Figma intent != Figma structure",
+      "diff": "after the twelve tk/ text styles existed, the components' text still carried its own settings, so a style could not be traced to where it is used and a change to one would not reach them",
+      "pull": "Align",
+      "result": "Of 580 text layers in main components, the 109 whose face, weight, size, line height, tracking and case equal a style exactly now use it (small 84, heading-l 11, caption 6, heading-m 4, metric 3, title 1) across 28 components; the other 466 are components' own treatments with no data-text counterpart in code (field labels at 14 medium 150%, component body at 150% where the body style is 160%, mono captions) and are left as they are rather than bent to a style. Applying a style resets text decoration, which the match had not compared: the footer's seven link texts lost their underline, found by comparing a fresh export with its skin (410 pixels), and got it back as an override. Then every touched component was exported and compared with its saved skin: all identical (MediaCards 8 pixels and RailNav 1, export noise in the photographs and a hairline), so nothing a designer sees changed"
     }
   ],
   "promotion": [

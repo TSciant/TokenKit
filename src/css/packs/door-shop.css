@@ -77,6 +77,12 @@
     --tk-text-tertiary: var(--door-ink-quiet);
     --tk-text-inverse: var(--door-snow);
     --tk-text-disabled: var(--door-ink-faint);
+    /* link — currentColor, so a link is its text's colour and its underline
+       carries it, until a pack chooses a link colour. A pack that does fills
+       all three here and in its inverse block; the contrast gate checks them. */
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     /* line — line-strong clears 3:1 against every surface above */
     --tk-line-subtle: var(--door-rule-faint);
@@ -302,6 +308,9 @@
     --tk-text-tertiary: var(--door-snow);
     --tk-text-inverse: var(--door-ink);
     --tk-text-disabled: color-mix(in srgb, var(--door-snow) 62%, transparent);
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     --tk-line-subtle: color-mix(in srgb, var(--door-snow) 14%, transparent);
     --tk-line-default: color-mix(in srgb, var(--door-snow) 22%, transparent);
@@ -373,6 +382,9 @@
     --tk-text-tertiary: #ffffff;
     --tk-text-inverse: var(--door-ink);
     --tk-text-disabled: color-mix(in srgb, #ffffff 70%, transparent);
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     --tk-line-subtle: color-mix(in srgb, #ffffff 58%, transparent);
     --tk-line-default: #ffffff;

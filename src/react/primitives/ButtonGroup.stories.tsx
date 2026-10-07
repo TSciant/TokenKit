@@ -43,7 +43,7 @@ export const Playground: Story = {};
 export const DialogFooter: Story = {
   name: "End-aligned, equal (a dialog footer)",
   args: { align: "end", equal: true },
-  decorators: [(Story) => <div style={{ inlineSize: 480, padding: "var(--tk-space-4)", border: "1px dashed var(--tk-line-default)" }}><Story /></div>],
+  decorators: [(Story) => <div style={{ maxInlineSize: 480, padding: "var(--tk-space-4)", border: "1px dashed var(--tk-line-default)" }}><Story /></div>],
 };
 
 export const Overflow: Story = {
@@ -77,5 +77,5 @@ export const OnionSkin: Story = {
     docs: { description: { story: "The Figma component laid over this one: the dialog-footer group at 480px. Switch Onion in the toolbar." } },
     onion: { component: "ButtonGroup", target: "root", skin: () => "default.png" },
   },
-  decorators: [(Story) => <div style={{ inlineSize: 480 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ maxInlineSize: 480 }}><Story /></div>],
 };

@@ -42,7 +42,17 @@ const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-prac
    axe aggregates landmark-unique across frames and calls them duplicates of
    each other. Every framed page is its own story and is checked there, alone,
    which is the only place its landmarks mean anything. */
-const EXCLUDE = [['[data-tk="scrim-content"]'], ["iframe"]];
+/* And a picture of a failure. A Don't panel sometimes has to SHOW the thing
+   it warns against (a faded button, text straight on a picture), and that
+   picture fails contrast because that is the point. It is aria-hidden, so it
+   is no one's content, and the note beside it says in words what is wrong.
+   Narrow on purpose: only aria-hidden content inside a Don't panel; a Do
+   panel and everything outside guidance are checked as ever. */
+const EXCLUDE = [
+  ['[data-tk="scrim-content"]'],
+  ["iframe"],
+  ['[data-tk="guidance"][data-tone="dont"] [aria-hidden="true"]'],
+];
 
 export function a11yCheck(argv = process.argv.slice(2)) {
   const verbose = argv.includes("--verbose");

@@ -68,7 +68,11 @@ export const ReadMe: Story = {
         What goes where
       </h2>
       {/* Bare table: the `elements` layer styles it, and a doc page that
-          invents its own class is a doc page proving the layer does not work. */}
+          invents its own class is a doc page proving the layer does not work.
+          The region around it scrolls on a narrow screen (WCAG 1.4.10 lets a
+          table scroll; the page itself must not), and is focusable so a
+          keyboard can scroll it. */}
+      <div role="region" aria-label="What goes where" tabIndex={0} style={{ overflowX: "auto" }}>
       <table>
         <thead>
           <tr>
@@ -94,6 +98,7 @@ export const ReadMe: Story = {
           ))}
         </tbody>
       </table>
+      </div>
       <p className="tk-doc-note">
         The test for deciding: would you build this again for the next client?
         If yes it is a primitive or a pattern and it belongs to the kit. If it

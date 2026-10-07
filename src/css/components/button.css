@@ -22,13 +22,13 @@
     gap: var(--tk-space-2);
 
     /* WCAG 2.5.8 — the floor, not the aspiration. */
-    min-block-size: max(var(--tk-target-min), calc(2.25rem * var(--tk-density)));
+    min-block-size: var(--tk-control-min);
     min-inline-size: var(--tk-target-min);
 
     padding: var(--_pad-y) var(--_pad-x);
     border: 1px solid var(--_line);
     /* Leaf of the concentric chain: rounds by what the host handed down. */
-    border-radius: var(--tk-radius-nested);
+    border-radius: min(var(--tk-radius-button), var(--tk-radius-nested));
     background-color: var(--_fill);
     color: var(--_text);
     font: inherit;
@@ -140,7 +140,7 @@
     inset-inline-start: 0;
     z-index: 1;
     inline-size: max-content;
-    max-inline-size: 16rem;
+    max-inline-size: min(16rem, 100vw - 2 * var(--tk-gutter));
     padding: var(--tk-space-1) var(--tk-space-2);
     border-radius: var(--tk-radius-sm);
     background-color: var(--tk-surface-inverse);
@@ -151,16 +151,26 @@
     text-align: start;
     white-space: normal;
     pointer-events: none;
+    /* Out of the layout while hidden, not just invisible: a hidden label
+       still has a width, and one under a button near the edge made a 320px
+       page scroll sideways (the grid brief's reflow measurement). It fades in
+       from display: none with @starting-style. */
+    display: none;
     opacity: 0;
-    visibility: hidden;
     transition:
       opacity var(--tk-motion-opacity),
-      visibility var(--tk-motion-opacity);
+      display var(--tk-motion-opacity) allow-discrete;
   }
 
   :where([data-tk="button"][data-reason]:is(:hover, :focus-visible) [data-tk="button-reason"]) {
+    display: block;
     opacity: 1;
-    visibility: visible;
+  }
+
+  @starting-style {
+    :where([data-tk="button"][data-reason]:is(:hover, :focus-visible) [data-tk="button-reason"]) {
+      opacity: 0;
+    }
   }
 
   /* Pressed — a toggle, switched on.
@@ -288,6 +298,20 @@
   @keyframes tk-button-spin {
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  /* A pressed toggle is a fill (outline, quiet) or an inset shadow (solid),
+     and forced colours drop both. On takes the reader's selection colours
+     (Highlight, HighlightText), so on and off still differ.
+     tools/forced-colors-gate.mjs, STATE. */
+  @media (forced-colors: active) {
+    :where([data-tk="button"][aria-pressed="true"]) {
+      forced-color-adjust: none;
+      background-color: Highlight;
+      border-color: Highlight;
+      color: HighlightText;
+      box-shadow: none;
     }
   }
 }

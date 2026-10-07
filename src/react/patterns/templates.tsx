@@ -144,7 +144,7 @@ export function LeadForm({
   return (
     <section
       data-on="inverse"
-      style={{ padding: "var(--tk-space-7) var(--tk-space-5)" }}
+      style={{ padding: "var(--tk-space-7) var(--tk-gutter)" }}
     >
       <form
         data-shell="stack"
@@ -360,7 +360,7 @@ export function SegmentPage({
         data-on="inverse"
         data-shell="split"
         data-gap="4"
-        style={{ padding: "var(--tk-space-6) var(--tk-space-5)" }}
+        style={{ padding: "var(--tk-space-6) var(--tk-gutter)" }}
       >
         <h2 style={{ margin: 0, fontSize: "var(--tk-size-xl)" }}>
           {ctaHeading}

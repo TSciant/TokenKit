@@ -111,6 +111,13 @@ const probe = () => {
     if (gap >= host.r) continue;
     const expect = host.r - gap;
 
+    /* Controls are shapes. An input, a select, a textarea or a button takes
+       its brand's control corner (--tk-radius-control, --tk-radius-button),
+       capped by the nested radius, so it may be squarer than the concentric
+       value but never rounder: the rule that matters, never inverted, still
+       holds. */
+    const shape = el.matches('input, select, textarea, button, [data-tk="field-affix"]');
+
     out.push({
       what: el.getAttribute("data-tk") || el.tagName.toLowerCase(),
       host: host.el.getAttribute("data-tk") || host.el.tagName.toLowerCase(),
@@ -118,7 +125,7 @@ const probe = () => {
       outer: Math.round(host.r * 10) / 10,
       gap: Math.round(gap * 10) / 10,
       expect: Math.round(expect * 10) / 10,
-      ok: Math.abs(inner - expect) <= 1.5,
+      ok: shape ? inner <= expect + 1.5 : Math.abs(inner - expect) <= 1.5,
     });
   }
   return out;

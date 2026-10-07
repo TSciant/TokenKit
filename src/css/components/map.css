@@ -4,8 +4,13 @@
     --_ratio: 16 / 9;
     position: relative;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     overflow: clip;
     isolation: isolate;
+    /* An explicit width, so the ratio sets the height and the minimum height
+       only ever makes the map taller. Without it, a narrow container (288px)
+       met the 14rem minimum, and the ratio widened the map to 398px. */
+    inline-size: 100%;
     aspect-ratio: var(--_ratio);
     min-block-size: 14rem;
     border: 1px solid var(--tk-line-subtle);

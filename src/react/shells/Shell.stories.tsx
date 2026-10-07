@@ -30,6 +30,7 @@ const meta = {
     gap: { control: { type: "range", min: 0, max: 9, step: 1 } },
     cols: { control: "inline-radio", options: [1, 2, 3, 4] },
     fixed: { control: "boolean" },
+    ratio: { control: "inline-radio", options: [undefined, "2:1", "1:2", "3:1", "1:3"] },
     side: { control: "inline-radio", options: [undefined, "start", "end"] },
     width: { control: "inline-radio", options: [undefined, "narrow", "wide"] },
     container: { control: "boolean" },
@@ -93,6 +94,58 @@ export const GridCollapses: Story = {
           </Shell>
         </div>
       </div>
+    </div>
+  ),
+};
+
+/** Two unequal columns: content and an aside, at a ratio. */
+export const GridRatio: Story = {
+  name: "Grid — ratio columns",
+  args: { kind: "grid", gap: 4 },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`ratio` splits each pair of children 2:1, 1:2, 3:1 or 1:3 while the shell is wide enough (36rem, 44rem for the quarters), and stacks them when it is not; narrow the window to see it switch. There is no breakpoint: the switch is the shell's own width.",
+      },
+    },
+  },
+  render: (args) => (
+    <div data-shell="stack" data-gap="5">
+      {(["2:1", "1:2", "3:1", "1:3"] as const).map((r) => (
+        <div key={r}>
+          <p className="tk-doc-sub">ratio=&quot;{r}&quot;</p>
+          <div className="tk-stage">
+            <Shell kind="grid" gap={args.gap} ratio={r}>
+              <div className="tk-cell">{r.split(":")[0]}</div>
+              <div className="tk-cell">{r.split(":")[1]}</div>
+            </Shell>
+          </div>
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+/** The Figma ShellRatio laid over 2:1 and 1:3 at 800px. */
+export const OnionSkinRatio: Story = {
+  name: "Onion skin: ratio (Figma)",
+  args: { kind: "grid", gap: 4 },
+  parameters: {
+    layout: "padded",
+    docs: { description: { story: "Two ratio grids at 800px, 2:1 over 1:3, gap 4, with the placeholder cells the other shells use, for the Figma ShellRatio component to be laid over." } },
+    onion: { component: "ShellRatio", target: "root", skin: () => "default.png" },
+  },
+  render: () => (
+    <div data-shell="stack" data-gap="4" style={{ inlineSize: 800 }}>
+      <Shell kind="grid" gap={4} ratio="2:1">
+        <div className="tk-cell">1</div>
+        <div className="tk-cell">2</div>
+      </Shell>
+      <Shell kind="grid" gap={4} ratio="1:3">
+        <div className="tk-cell">3</div>
+        <div className="tk-cell">4</div>
+      </Shell>
     </div>
   ),
 };

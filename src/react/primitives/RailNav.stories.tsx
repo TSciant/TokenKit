@@ -39,7 +39,7 @@ export const Playground: Story = {};
 export const InAWiderRail: Story = {
   name: "Wider container",
   parameters: { docs: { description: { story: "The same component in a 420px container. Nothing about the viewport changed: the rail is as wide as it is put." } } },
-  decorators: [(Story) => <div style={{ inlineSize: 420 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ maxInlineSize: 420 }}><Story /></div>],
 };
 
 export const OnionSkin: Story = {

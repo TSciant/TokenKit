@@ -298,6 +298,60 @@
        around it rounds at --tk-radius-xl (was lg; lg is now a mid step). Re-stated here because the space
        ramp changes with density and so does every subtraction downstream. */
     --tk-radius-nested: var(--tk-radius-xl);
+
+    /* Control shapes: the corner a brand gives its inputs and its buttons.
+       Shapes, like capsules, not steps in the concentric chain: a control
+       takes its brand's corner wherever it sits, capped by the nested radius
+       so it is never rounder than what holds it. Inputs default to md, which
+       is a rounded rectangle in every pack; before this they took the nested
+       radius, which at page level is xl, and on a 40px control that is a
+       capsule in every pack with an xl over 20px. Buttons keep the nested
+       radius (the 9999px initial value loses every min()); a pack that wants
+       its buttons to match its inputs sets --tk-radius-button. Restated on
+       [data-brand] so a pack's own md is the one that resolves. */
+    --tk-radius-control: var(--tk-radius-md);
+
+    /* Display sizes that give way on a phone. Measured before they existed
+       (the ds-corpus type brief said: measure first): at 412px, nine of the
+       kit's page and hero titles ran to four lines at their desktop sizes.
+       So the three top styles are fluid between the step below and their
+       own step: the step below at a 360px viewport, rising until their own
+       at 960px, fixed above. The bounds are the pack's own sizes (restated
+       on [data-brand], so a brand's 4xl is the one that resolves); only the
+       slope is the kit's, and it is set by the widest step any pack has
+       (door-shop's 3xl to 4xl is 28px), so every pack reaches its own size
+       by 960px: display covers a 30px step, title 18px, heading 12px. CSS
+       cannot divide a width by a width yet, or the slope would be the
+       pack's. Every onion skin is taken at 1000px or wider, so the design
+       file's fixed sizes are still exact there. */
+    --tk-size-display: clamp(var(--tk-size-3xl), calc(var(--tk-size-3xl) + (100vw - 22.5rem) * 0.05), var(--tk-size-4xl));
+    --tk-size-title: clamp(var(--tk-size-2xl), calc(var(--tk-size-2xl) + (100vw - 22.5rem) * 0.03), var(--tk-size-3xl));
+    --tk-size-heading: clamp(var(--tk-size-xl), calc(var(--tk-size-xl) + (100vw - 22.5rem) * 0.02), var(--tk-size-2xl));
+
+    /* The page gutter: the one space between the screen's edge and the
+       content, applied once (the center shell, and any band that meets the
+       edge) and never by a band AND the content inside it. Space-4 on a
+       phone and up to 80rem; space-5 from 80rem (see below), Primer's numbers. The
+       ds-corpus spacing brief; Primer's content padding. Before this, the
+       center shell padded 16px and the bands 24px, and PageHero's band
+       padded around a center shell, so a title lost both. */
+    --tk-gutter: var(--tk-space-4);
+
+    /* Control heights: a button or an icon button, and a field. Scaled by
+       density, never below the pointer-target floor. They were the same
+       formula written out in button.css and twice in modal.css (the room
+       its header keeps for Close), and once in field.css. Figma has them as
+       control/min and field/min, per density mode. */
+    --tk-control-min: max(var(--tk-target-min), calc(2.25rem * var(--tk-density)));
+    --tk-field-min: max(var(--tk-target-min), calc(2.5rem * var(--tk-density)));
+  }
+
+  @media (min-width: 80rem) {
+    :root,
+    [data-density],
+    [data-brand] {
+      --tk-gutter: var(--tk-space-5);
+    }
   }
 }
 

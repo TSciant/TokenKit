@@ -30,7 +30,7 @@ const meta = {
   },
   argTypes: { label: { control: "text" }, items: { control: "object" } },
   args: { label: "In this section", items: ITEMS },
-  decorators: [(Story) => <div style={{ inlineSize: 720 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ maxInlineSize: 720 }}><Story /></div>],
 } satisfies Meta<typeof SectionNav>;
 
 export default meta;
@@ -42,7 +42,7 @@ export const Overflowing: Story = {
   name: "Too many to fit",
   args: { items: MANY },
   parameters: { docs: { description: { story: "Nine links in a 420px box. The row scrolls sideways; it does not wrap and it does not truncate a label." } } },
-  decorators: [(Story) => <div style={{ inlineSize: 420 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ maxInlineSize: 420 }}><Story /></div>],
 };
 
 export const OnionSkin: Story = {

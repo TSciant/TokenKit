@@ -179,7 +179,7 @@ export function CtaBlocks({
       data-shell="grid"
       data-cols={String(columns)}
       data-gap="4"
-      style={{ paddingBlock: "var(--tk-space-7)", paddingInline: "var(--tk-space-5)" }}
+      style={{ paddingBlock: "var(--tk-space-7)", paddingInline: "var(--tk-gutter)" }}
     >
       {blocks.map((b, i) => (
         <div
@@ -401,7 +401,7 @@ export function PeopleDirectory({
       <div
         style={{
           background: "var(--tk-surface-inverse)",
-          padding: "var(--tk-space-3) var(--tk-space-5)",
+          padding: "var(--tk-space-3) var(--tk-gutter)",
         }}
       >
         <div data-on="inverse" style={{ background: "transparent", padding: 0 }}>
@@ -414,14 +414,14 @@ export function PeopleDirectory({
         data-shell="inline"
         data-gap="3"
         onSubmit={(e) => e.preventDefault()}
-        style={{ padding: "var(--tk-space-5)", alignItems: "flex-end" }}
+        style={{ padding: "var(--tk-space-5) var(--tk-gutter)", alignItems: "flex-end" }}
         aria-label={filterLabel}
       >
         <div data-tk="field" style={{ flex: "1 1 12rem" }}>
           <label data-tk="field-label" htmlFor={nameId}>
             Name
           </label>
-          <input data-tk="input" id={nameId} type="search" placeholder="Search by name" />
+          <input data-tk="input" id={nameId} type="search" />
         </div>
         <div data-tk="field" style={{ flex: "1 1 10rem" }}>
           <label data-tk="field-label" htmlFor={locId}>

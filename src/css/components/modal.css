@@ -87,15 +87,64 @@
       0 24px 48px color-mix(in srgb, var(--tk-scrim-ink) 18%, transparent);
   }
 
+  /* A panel on its own, in the page (ModalPanel in guidance and docs), takes
+     the width its dialog would have given it. */
+  :where(:not([data-tk="modal"]) > [data-tk="modal-panel"]) {
+    inline-size: 100%;
+    max-inline-size: 36rem;
+    /* In the page it sits inside something, so it rounds by what it is
+       given, never past its own radius. */
+    --_radius: min(var(--tk-radius-xl), var(--tk-radius-nested, var(--tk-radius-xl)));
+  }
+
+  /* Only a panel on its own carries a size; in a dialog the dialog does. */
+  :where([data-tk="modal-panel"][data-size="sm"]) {
+    max-inline-size: 24rem;
+  }
+
+  :where([data-tk="modal-panel"][data-size="lg"]) {
+    max-inline-size: 44rem;
+  }
+
   :where([data-tk="modal-panel"] > *) {
     --tk-radius-nested: var(--_modal-out);
   }
 
+  :where([data-tk="modal-panel"]) {
+    position: relative;
+  }
+
+  /* The header keeps room on its end for Close, which is positioned there
+     but comes last in the markup (see Modal.tsx). The reserve is the icon
+     button's own size (a square at the control height) plus the gap the
+     header used to put between them. */
   :where([data-tk="modal-header"]) {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--tk-space-3);
+    flex-direction: column;
+    gap: var(--tk-space-1);
+    padding-inline-end: calc(var(--tk-control-min) + var(--tk-space-3));
+    /* Close used to set the header's height (it is taller than one line of
+       title); out of the flow it does not, so the header keeps it. */
+    min-block-size: var(--tk-control-min);
+  }
+
+  /* A forced decision has no Close, so its header keeps no room for one. */
+  :where([data-tk="modal-panel"][data-dismissible="false"] > [data-tk="modal-header"]) {
+    padding-inline-end: 0;
+    min-block-size: 0;
+  }
+
+  :where([data-tk="modal-panel"] > [data-modal-close]) {
+    position: absolute;
+    inset-block-start: var(--tk-space-5);
+    inset-inline-end: var(--tk-space-5);
+  }
+
+  :where([data-tk="modal-description"]) {
+    margin: 0;
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+    max-inline-size: var(--tk-measure);
   }
 
   :where([data-tk="modal-title"]) {
@@ -106,9 +155,27 @@
     line-height: var(--tk-leading-tight);
   }
 
+  /* The body scrolls; the title and the actions stay on screen. The dialog
+     element's own height cap (the browser's) is lifted so the panel's is the
+     one that applies, and the body is the only thing that scrolls. Carbon,
+     Primer and Lightning all do this; before it, a long body scrolled the
+     whole dialog and took the footer out of view. */
+  :where([data-tk="modal"]) {
+    max-block-size: none;
+    overflow: visible;
+  }
+
+  :where([data-tk="modal-panel"]) {
+    max-block-size: calc(100dvh - 2 * var(--tk-space-6));
+  }
+
   :where([data-tk="modal-body"]) {
     font-size: var(--tk-size-base);
     color: var(--tk-text-secondary);
+    flex: 1 1 auto;
+    min-block-size: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   :where([data-tk="modal-footer"]) {
@@ -118,6 +185,13 @@
     gap: var(--tk-space-3);
     padding-block-start: var(--tk-space-2);
     border-block-start: 1px solid var(--tk-line-default);
+  }
+
+  /* A ButtonGroup in the footer takes the footer's width, so its end
+     alignment and its narrow stack answer to the dialog, not to its own
+     content (a container sized by its content would collapse). */
+  :where([data-tk="modal-footer"] > [data-tk="button-group"]) {
+    flex: 1 1 100%;
   }
 
   /* Trigger affordance - optional data-attr on the opener button. */

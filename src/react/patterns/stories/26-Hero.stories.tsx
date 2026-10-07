@@ -142,11 +142,11 @@ export const Default: Story = {
 export const OnionSkin: Story = {
   name: "Onion skin (Figma)",
   parameters: {
-    docs: { description: { story: "The Figma Hero laid over this one at 1024px, stacked and split. The plate is a captured stand-in with its corner drawn in Figma. Switch Onion in the toolbar; layout in Controls picks the skin." } },
+    docs: { description: { story: "The Figma Hero laid over this one at 1024px: stacked and split, with buttons or with the capture form. The plate is a captured stand-in with its corner drawn in Figma. Switch Onion in the toolbar; layout and actions in Controls pick the skin." } },
     onion: {
       component: "Hero",
       target: "root",
-      skin: (a: Record<string, unknown>) => `${a.layout}.png`,
+      skin: (a: Record<string, unknown>) => `${a.layout}-${a.actions ?? "buttons"}.png`,
     },
   },
 };

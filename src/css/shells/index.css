@@ -84,6 +84,34 @@
   :where([data-shell="grid"][data-fixed][data-cols="3"]) { --_cols: 3; }
   :where([data-shell="grid"][data-fixed][data-cols="4"]) { --_cols: 4; }
 
+  /* --- grid with a ratio: two columns of unequal width --------------------
+     data-ratio="2:1" | "1:2" | "3:1" | "1:3". The children pair up, and each
+     pair splits the row in that ratio while the shell is wider than its
+     switch width; narrower, every child takes the whole row. No breakpoint:
+     the switch is the box's own width (the flex-basis is negative above it,
+     so the grow factors share the row exactly, and huge below it, so each
+     child wraps). Equal columns stay the grid's job; this is for the halves,
+     thirds and quarters a content-and-aside layout needs (the ds-corpus grid
+     brief; BBC GEL's ratio columns). The switch keeps the narrow column at
+     about a four-column cell or wider: 36rem for 2:1, 44rem for 3:1. */
+  :where([data-shell="grid"][data-ratio]) {
+    --_switch: 36rem;
+    --_a: 2;
+    --_b: 1;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  :where([data-shell="grid"][data-ratio]) > * {
+    flex-basis: calc((var(--_switch) - 100%) * 999);
+    min-inline-size: 0;
+  }
+  :where([data-shell="grid"][data-ratio]) > :nth-child(odd) { flex-grow: var(--_a); }
+  :where([data-shell="grid"][data-ratio]) > :nth-child(even) { flex-grow: var(--_b); }
+  :where([data-shell="grid"][data-ratio="2:1"]) { --_a: 2; --_b: 1; }
+  :where([data-shell="grid"][data-ratio="1:2"]) { --_a: 1; --_b: 2; }
+  :where([data-shell="grid"][data-ratio="3:1"]) { --_a: 3; --_b: 1; --_switch: 44rem; }
+  :where([data-shell="grid"][data-ratio="1:3"]) { --_a: 1; --_b: 3; --_switch: 44rem; }
+
   /* --- split: two children, second sized to content --------------------- */
   :where([data-shell="split"]) {
     display: flex;
@@ -144,7 +172,7 @@
     gap: var(--_gap);
     max-inline-size: var(--tk-measure);
     margin-inline: auto;
-    padding-inline: var(--tk-space-4);
+    padding-inline: var(--tk-gutter);
   }
 
   :where([data-shell="center"][data-width="narrow"]) {

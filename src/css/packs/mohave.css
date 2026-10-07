@@ -86,6 +86,12 @@
     --tk-text-tertiary: var(--mohave-ink-quiet);
     --tk-text-inverse: var(--mohave-snow);
     --tk-text-disabled: var(--mohave-ink-faint);
+    /* link — currentColor, so a link is its text's colour and its underline
+       carries it, until a pack chooses a link colour. A pack that does fills
+       all three here and in its inverse block; the contrast gate checks them. */
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     /* line — line-strong clears 3:1 against every surface above */
     --tk-line-subtle: var(--mohave-rule-faint);
@@ -310,6 +316,9 @@
     --tk-text-tertiary: var(--mohave-snow);
     --tk-text-inverse: var(--mohave-ink);
     --tk-text-disabled: color-mix(in srgb, var(--mohave-snow) 62%, transparent);
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     --tk-line-subtle: color-mix(in srgb, var(--mohave-snow) 14%, transparent);
     --tk-line-default: color-mix(in srgb, var(--mohave-snow) 22%, transparent);
@@ -381,6 +390,9 @@
     --tk-text-tertiary: #ffffff;
     --tk-text-inverse: var(--mohave-ink);
     --tk-text-disabled: color-mix(in srgb, #ffffff 70%, transparent);
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
 
     --tk-line-subtle: color-mix(in srgb, #ffffff 58%, transparent);
     --tk-line-default: #ffffff;

@@ -6,7 +6,7 @@
  *   npm run gates -- --verbose
  *
  * The checks are the same ones `npm run a11y`, `radius`, `properties`,
- * `attrs` and `controls` run on their own; see each file for what it checks
+ * `attrs`, `controls`, `titles`, `reflow` and `forced-colors` run on their own; see each file for what it checks
  * and why. Together they open each story once per viewport instead of once
  * per gate. Every report prints, and the exit code is 1 if any check failed.
  */
@@ -17,9 +17,14 @@ import { propertyCheck } from "./property-gate.mjs";
 import { radiusCheck } from "./radius-gate.mjs";
 import { attributeCheck } from "./attribute-gate.mjs";
 import { a11yCheck } from "./a11y-gate.mjs";
+import { forcedColorsCheck } from "./forced-colors-gate.mjs";
+import { titlesCheck } from "./titles-gate.mjs";
+import { reflowCheck } from "./reflow-gate.mjs";
 
-/* Read-only probes first on each page, axe last: the checks share one settled
-   page, and none of them should see anything another one injected. */
-const checks = [controlsCheck(), propertyCheck(), radiusCheck(), attributeCheck(), a11yCheck()];
+/* Read-only probes first on each page, axe after them: the checks share one
+   settled page, and none of them should see anything another one injected.
+   Forced colours last of all, because it changes the media emulation and
+   moves focus (it resets both when it is done). */
+const checks = [controlsCheck(), propertyCheck(), radiusCheck(), attributeCheck(), titlesCheck(), a11yCheck(), reflowCheck(), forcedColorsCheck()];
 
 process.exit((await runChecks(checks)) ? 0 : 1);
