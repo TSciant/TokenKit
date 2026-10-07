@@ -83,7 +83,8 @@
     "TextStyles": "254:157",
     "ShellRatio": "262:145",
     "ScenePricing": "283:156",
-    "SceneSettings": "287:236"
+    "SceneSettings": "287:236",
+    "ChatPanel": "289:1464"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -167,7 +168,8 @@
     "TextStyles": "04-primitives-33-heading--onion-skin-text-styles",
     "ShellRatio": "03-foundations-03-composition--onion-skin-ratio",
     "ScenePricing": "04-primitives-34-scene--onion-skin-pricing",
-    "SceneSettings": "04-primitives-34-scene--onion-skin-settings"
+    "SceneSettings": "04-primitives-34-scene--onion-skin-settings",
+    "ChatPanel": "04-primitives-36-chat-panel--onion-skin"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -251,6 +253,7 @@
     "TextStyles": "src/css/04-elements.css",
     "ShellRatio": "src/css/shells/index.css",
     "ScenePricing": "src/react/scene/Scene.tsx",
-    "SceneSettings": "src/react/scene/Scene.tsx"
+    "SceneSettings": "src/react/scene/Scene.tsx",
+    "ChatPanel": "src/react/primitives/ChatPanel.tsx"
   }
 }

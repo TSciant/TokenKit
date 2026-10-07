@@ -31,6 +31,8 @@ export { Modal, ModalPanel } from "./Modal";
 export type { ModalProps, ModalPanelProps } from "./Modal";
 export { SearchResults } from "./SearchResults";
 export type { SearchResultsProps, SearchResultItem } from "./SearchResults";
+export { ChatPanel } from "./ChatPanel";
+export type { ChatPanelProps, ChatTurn, ChatRespond } from "./ChatPanel";
 export { Faq } from "./Faq";
 export type { FaqProps, FaqEntry } from "./Faq";
 /* The barrel exports the lazy Map. A barrel is imported for one symbol and

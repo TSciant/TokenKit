@@ -236,6 +236,12 @@
       "mean": "2.5",
       "result": "Aligned",
       "note": "1024x1077 against 1077.5; the settings form scene built the same way: a sidebar, a centred measure (44ch, measured in Figma as ten zeros of tk/body), Field, Alert and ChoiceCard instances, a grid of flat cards and a button group with a danger action"
+    },
+    "ChatPanel": {
+      "skins": 1,
+      "mean": "1.7",
+      "result": "Aligned",
+      "note": "448x743, exact; built from the kit's parts: tk/small note and count, tk/caption semibold speaker labels, message text on tk/body at the component leading (16/24, as the kit's other component body text), the reader's turn on surface/sunken at radius/md, a detached warning Alert with an outline Retry, the Field textarea and a disabled solid Send; every gap and inset bound to space variables"
     }
   },
   "findings": [
@@ -826,6 +832,13 @@
       "diff": "an hr has no width of its own, so in a stack aligned to start it shrank to nothing",
       "pull": "Align",
       "result": "a rule in a stack stretches across it whatever the stack's align"
+    },
+    {
+      "component": "ChatPanel",
+      "driftType": "Live execution != design intent",
+      "diff": "the first build in Figma came out 30px shorter, and the difference was the CSS: the rule spacing a reply's paragraphs also put 8px between the speaker label and the first paragraph, and the rule spacing the failed reply's alert also changed the alert title's own spacing",
+      "pull": "Align",
+      "result": "the paragraph rule spaces paragraph from paragraph only, and the alert keeps its own title spacing with Retry a step below the reason; then the Figma component matched to the pixel"
     }
   ],
   "promotion": [

@@ -4,7 +4,7 @@
       "skins": 4,
       "mean": 2.21,
       "worst": 2.24,
-      "checkedAt": "2026-10-07T01:23:31.076Z"
+      "checkedAt": "2026-10-07T02:21:40.079Z"
     },
     "ApplyForm": {
       "skins": 1,
@@ -66,6 +66,12 @@
       "worst": 4.15,
       "checkedAt": "2026-10-07T01:23:31.076Z"
     },
+    "ChatPanel": {
+      "skins": 1,
+      "mean": 1.74,
+      "worst": 1.74,
+      "checkedAt": "2026-10-07T02:45:38.783Z"
+    },
     "Chip": {
       "skins": 12,
       "mean": 10.84,
@@ -76,7 +82,7 @@
       "skins": 1,
       "mean": 2.56,
       "worst": 2.56,
-      "checkedAt": "2026-10-07T01:23:31.076Z"
+      "checkedAt": "2026-10-07T02:21:53.638Z"
     },
     "ContactCta": {
       "skins": 9,
@@ -304,7 +310,7 @@
       "skins": 6,
       "mean": 0.2,
       "worst": 1.2,
-      "checkedAt": "2026-10-07T01:23:31.076Z"
+      "checkedAt": "2026-10-07T02:21:51.465Z"
     },
     "ProofStrip": {
       "skins": 1,
@@ -370,7 +376,7 @@
       "skins": 1,
       "mean": 0.07,
       "worst": 0.07,
-      "checkedAt": "2026-10-07T01:23:31.076Z"
+      "checkedAt": "2026-10-07T02:21:56.151Z"
     },
     "SiteFooter": {
       "skins": 1,

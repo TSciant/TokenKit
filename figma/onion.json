@@ -858,6 +858,18 @@
       "viewport": 1072,
       "target": "root",
       "doc": "The settings form scene drawn in Figma by tools/scene-figma.mjs, laid over the same scene drawn by <Scene> at 1024px."
+    },
+    "ChatPanel": {
+      "story": "04-primitives-36-chat-panel--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma ChatPanel (note, two questions, an answer and a failed reply with Retry, the composer) laid over the same conversation at 448px."
     }
   }
 }

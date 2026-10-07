@@ -1,0 +1,119 @@
+/* Chat panel — a transcript, a standing note and a composer.
+   data-tk="chat" fills what it is given (a dialog at the page's edge, a
+   drawer, a page) and lets the transcript take the room: the note and the
+   composer keep their size, the log scrolls between them.
+
+   Turns are plain blocks with the speaker named in text. The reader's sit on
+   the sunken surface so a long conversation can be scanned by shape; the
+   replies sit on none, because they are the long part and the reading part. */
+@layer components {
+  :where([data-tk="chat"]) {
+    display: grid;
+    /* The transcript keeps its minimum: a panel given too little height grows
+       past it rather than letting the composer cover the conversation. */
+    grid-template-rows: auto minmax(8rem, 1fr) auto;
+    gap: var(--tk-space-4);
+    min-block-size: 0;
+    block-size: 100%;
+  }
+
+  :where([data-tk="chat"]:not(:has(> [data-tk="chat-note"]))) {
+    grid-template-rows: minmax(8rem, 1fr) auto;
+  }
+
+  :where([data-tk="chat-note"]) {
+    margin: 0;
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="chat-log"]) {
+    display: grid;
+    align-content: start;
+    gap: var(--tk-space-4);
+    min-block-size: 8rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-inline-end: var(--tk-space-1);
+  }
+
+  :where([data-tk="chat-log"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+
+  :where([data-tk="chat-empty"]) {
+    display: grid;
+    gap: var(--tk-space-3);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="chat-empty"] > p) {
+    margin: 0;
+  }
+
+  /* tk-default: data-role=assistant */
+  :where([data-tk="chat-message"]) {
+    display: grid;
+    gap: var(--tk-space-1);
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="chat-message"] > p) {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  :where([data-tk="chat-message"] > p:not([data-tk]) + p:not([data-tk])) {
+    margin-block-start: var(--tk-space-2);
+  }
+
+  :where([data-tk="chat-message"][data-role="user"]) {
+    padding: var(--tk-space-3);
+    /* The control radius family, not a pill: a turn is a block of text. */
+    border-radius: var(--tk-radius-md);
+    background-color: var(--tk-surface-sunken);
+  }
+
+  /* The speaker, in text: the label everyone gets, where an avatar would be
+     a second and weaker one. */
+  :where([data-tk="chat-who"]) {
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-semibold);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="chat-pending"], [data-tk="chat-flag"]) {
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-tertiary);
+  }
+
+  :where([data-tk="chat-message"] [data-tk="alert"]) {
+    margin-block-start: var(--tk-space-2);
+  }
+
+  /* A failed reply's alert: the alert's own title spacing, then the reason,
+     then Retry a step below it. */
+  :where([data-tk="chat-message"] [data-tk="alert"] p:not([data-tk])) {
+    margin: 0;
+  }
+
+  :where([data-tk="chat-message"] [data-tk="alert"] [data-tk="button"]) {
+    margin-block-start: var(--tk-space-2);
+  }
+
+  :where([data-tk="chat-composer"]) {
+    display: grid;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="chat-composer"] [data-tk="textarea"]) {
+    max-block-size: 10rem;
+  }
+
+  :where([data-tk="chat-actions"]) {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--tk-space-2);
+  }
+}
