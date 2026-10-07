@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
-export interface AlertProps {
+export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, "title" | "children"> {
   status?: "info" | "success" | "warning" | "danger";
   title?: string;
   /** Announce changes to assistive tech. Use for errors and async results. */
@@ -8,9 +8,10 @@ export interface AlertProps {
   children?: ReactNode;
 }
 
-export function Alert({ status, title, live, children }: AlertProps) {
+export function Alert({ status, title, live, children, ...rest }: AlertProps) {
   return (
     <div
+      {...rest}
       data-tk="alert"
       data-status={status === "info" ? undefined : status}
       role={status === "danger" ? "alert" : live ? "status" : undefined}

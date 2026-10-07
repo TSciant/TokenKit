@@ -4,7 +4,7 @@
    Vite/Storybook and load-bearing under the Next.js App Router, where a module
    without it is a server component and may not use hooks at all. */
 
-import { type CSSProperties } from "react";
+import { type CSSProperties, type HTMLAttributes } from "react";
 import { useMotionFx } from "../motion/useMotionFx";
 import { useInView } from "../motion/useInView";
 import type { FxProp } from "../motion/types";
@@ -91,6 +91,7 @@ export function Plate({
   priority = false,
   fx,
   style,
+  ...rest
 }: {
   ratio?: string;
   label?: string;
@@ -154,7 +155,7 @@ export function Plate({
   /** Motion FX. `true` infers plate / plate-stock / plate-hero from stock+bleed. */
   fx?: FxProp;
   style?: CSSProperties;
-}) {
+} & Omit<HTMLAttributes<HTMLDivElement>, "style" | "children">) {
   /* Category first, then seed. A brand that asked for a storefront and a slot
      that asked for composition four are two different requests, and the
      specific one wins. Within a category the seed picks which of them, so a
@@ -201,6 +202,7 @@ export function Plate({
         (motion.ref as (n: HTMLElement | null) => void)(node);
         (viewRef as { current: HTMLDivElement | null }).current = node;
       }}
+      {...rest}
       aria-hidden="true"
       data-tk="plate"
       /* Keyed on showMedia, not on stockSrc: until the photograph is actually

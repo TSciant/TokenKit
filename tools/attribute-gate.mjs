@@ -66,6 +66,7 @@ const SCRIPT_ONLY = new Map([
   ["data-faq-panel", "disclosure hook read by the accordion script"],
   ["data-header-menu", "hook for the header's outside-click close"],
   ["data-state", "written by script to reflect open/closed for the hook above; the CSS reads data-open"],
+  ["data-scene-node", "a scene part's place in its scene, read by Scene and SceneLayers to light it; the CSS reads data-scene-active"],
 ]);
 
 export function attributeCheck(argv = process.argv.slice(2)) {

@@ -1,5 +1,5 @@
 import { useId } from "react";
-import type { InputHTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 
 export type ChoiceCardProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "title"> & {
   /** radio: one of a set (share a `name`). checkbox: any number. */
@@ -59,7 +59,7 @@ export type ChoiceCardOption = {
   disabled?: boolean;
 };
 
-export type ChoiceCardGroupProps = {
+export type ChoiceCardGroupProps = Omit<HTMLAttributes<HTMLFieldSetElement>, "onChange" | "defaultValue"> & {
   /** The question the cards answer. Rendered as the fieldset's legend. */
   legend: ReactNode;
   /** Visually hide the legend (it is still the group's name). */
@@ -95,12 +95,13 @@ export function ChoiceCardGroup({
   required,
   columns = 3,
   hint,
+  ...rest
 }: ChoiceCardGroupProps) {
   const has = (set: string | string[] | undefined, v: string) =>
     set === undefined ? undefined : Array.isArray(set) ? set.includes(v) : set === v;
   const hintId = useId();
   return (
-    <fieldset data-tk="choice-card-group" aria-describedby={hint ? hintId : undefined}>
+    <fieldset {...rest} data-tk="choice-card-group" aria-describedby={hint ? hintId : undefined}>
       <legend data-tk={hideLegend ? "visually-hidden" : "choice-card-legend"}>{legend}</legend>
       {hint ? (
         <p data-tk="field-hint" id={hintId}>

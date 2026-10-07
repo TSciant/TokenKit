@@ -224,6 +224,18 @@
       "mean": "0.0, 0.4",
       "result": "Aligned",
       "note": "the same control as HeaderSearch (a quiet icon button that opens a 224px input), so it borrows HeaderSearch's skins (skinsFrom): closed and open, 1024x42"
+    },
+    "ScenePricing": {
+      "skins": 1,
+      "mean": "3.0",
+      "result": "Aligned",
+      "note": "480x399, exact; not drawn by hand: tools/scene-figma.mjs builds it from the pricing card scene with the kit's components (Card detached so its fill, stroke, corner and padding stay bound; Eyebrow, Chip and Button instances; card text from the Card's own title and body) and the tk pack's variable modes"
+    },
+    "SceneSettings": {
+      "skins": 1,
+      "mean": "2.5",
+      "result": "Aligned",
+      "note": "1024x1077 against 1077.5; the settings form scene built the same way: a sidebar, a centred measure (44ch, measured in Figma as ten zeros of tk/body), Field, Alert and ChoiceCard instances, a grid of flat cards and a button group with a danger action"
     }
   },
   "findings": [
@@ -779,6 +791,41 @@
       "diff": "after the twelve tk/ text styles existed, the components' text still carried its own settings, so a style could not be traced to where it is used and a change to one would not reach them",
       "pull": "Align",
       "result": "Of 580 text layers in main components, the 109 whose face, weight, size, line height, tracking and case equal a style exactly now use it (small 84, heading-l 11, caption 6, heading-m 4, metric 3, title 1) across 28 components; the other 466 are components' own treatments with no data-text counterpart in code (field labels at 14 medium 150%, component body at 150% where the body style is 160%, mono captions) and are left as they are rather than bent to a style. Applying a style resets text decoration, which the match had not compared: the footer's seven link texts lost their underline, found by comparing a fresh export with its skin (410 pixels), and got it back as an override. Then every touched component was exported and compared with its saved skin: all identical (MediaCards 8 pixels and RailNav 1, export noise in the photographs and a hairline), so nothing a designer sees changed"
+    },
+    {
+      "component": "Scene (renderer) / Chip",
+      "driftType": "Live execution != design intent",
+      "diff": "the first build of the pricing card came out 4px shorter in Figma: Scene drew a chip's leading icon at md (20px), making the chip 32px, where the Figma Chip draws a 28px chip with a small icon and the Chip API says to prefer a small Icon",
+      "pull": "Align the renderer",
+      "result": "Scene passes size=\"sm\" for a chip's leading icon, as the kit's own patterns do; the pricing card is then exact at 480x399. The Chip's skins never covered a leading icon, which is how this went unchecked"
+    },
+    {
+      "component": "Button (Figma)",
+      "driftType": "Figma intent != Figma structure",
+      "diff": "six variants (danger in solid, outline and quiet; pressed in all three) had a label text and icon slots bound to nothing, so an instance could not change its label: the settings scene's \"Turn everything off\" drew as \"Button\"",
+      "pull": "Align",
+      "result": "the label is bound to Label and the slots to Show leading, Leading, Show trailing and Trailing in all six, as in every other variant; their existing instances (the mode sheets' danger buttons, which say \"Button\" in code too) are unchanged"
+    },
+    {
+      "component": "Shell: align start",
+      "driftType": "Live execution != design intent",
+      "diff": "data-align=\"start\" was answered on split only, so a stack told to align its children to the start stretched them anyway (the settings scene's rail buttons were 414px wide); the attribute gate passed because some selector answered the value",
+      "pull": "Align",
+      "result": "[data-shell][data-align=\"start\"] aligns to flex-start on every shell; scoped to shells because a button group's data-align is its own. Only marketing.tsx used it, on a split, which already had the rule"
+    },
+    {
+      "component": "Shell: center",
+      "driftType": "Live execution != design intent",
+      "diff": "inside a stack, a center shell shrank to its content (319px for a 429px measure): its auto margins turn a flex column's stretching off. And a center as a sidebar's body fought the sidebar's 55% floor, so the rail took the rest",
+      "pull": "Align, and recompose the example",
+      "result": "center takes inline-size 100% and caps at its measure, so it fills up to the measure wherever it sits; the settings example puts the center inside a stack in the sidebar's body. The Figma builder models the sidebar's flex arithmetic and the center's gutter padding, and the two agree to half a pixel"
+    },
+    {
+      "component": "Shell: stack > hr",
+      "driftType": "Live execution != design intent",
+      "diff": "an hr has no width of its own, so in a stack aligned to start it shrank to nothing",
+      "pull": "Align",
+      "result": "a rule in a stack stretches across it whatever the stack's align"
     }
   ],
   "promotion": [

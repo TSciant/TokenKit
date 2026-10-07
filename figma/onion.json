@@ -833,6 +833,31 @@
       "single": true,
       "target": "root",
       "doc": "The Figma ShellRatio laid over two ratio grids at 800px: 2:1 over 1:3, gap 4, the shells' placeholder cells."
+    },
+    "ScenePricing": {
+      "story": "04-primitives-34-scene--onion-skin-pricing",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The pricing card scene drawn in Figma by tools/scene-figma.mjs from the kit's components and variables, laid over the same scene drawn by <Scene> at 480px."
+    },
+    "SceneSettings": {
+      "story": "04-primitives-34-scene--onion-skin-settings",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "viewport": 1072,
+      "target": "root",
+      "doc": "The settings form scene drawn in Figma by tools/scene-figma.mjs, laid over the same scene drawn by <Scene> at 1024px."
     }
   }
 }

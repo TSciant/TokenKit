@@ -8,7 +8,8 @@
   "exports": {
     "./css": "./src/css/index.css",
     "./react": "./src/react/index.ts",
-    "./contrast": "./src/lib/contrast.ts"
+    "./contrast": "./src/lib/contrast.ts",
+    "./scene": "./src/scene/scene.mjs"
   },
   "files": [
     "src",

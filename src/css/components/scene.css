@@ -1,0 +1,110 @@
+/* Scene — a component described as data, drawn by the kit's own components.
+   data-tk="scene" is the stage: it wears the scene's pack and gives the
+   component room. data-scene-node marks each drawn part with its place in
+   the scene ("0.1.2"), and data-scene-active is the part a layers panel is
+   pointing at.
+
+   The highlight is an outline, not a border or a background: it must not
+   move or recolour the part it is pointing at, and an outline takes no
+   space. Dashed so it does not read as the part's own focus ring. */
+@layer components {
+  :where([data-tk="scene"]) {
+    display: block;
+    padding: var(--tk-space-6) var(--tk-gutter);
+    background-color: var(--tk-surface-base);
+    color: var(--tk-text-primary);
+    container-type: inline-size;
+  }
+
+  :where([data-tk="scene"] [data-scene-active]) {
+    outline: var(--tk-focus-width) dashed var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+
+  /* A field is marked on its control, which is the element its props reach;
+     the light goes round the whole field, label and hint included. */
+  :where([data-tk="scene"] [data-tk="field"]:has([data-scene-active])) {
+    outline: var(--tk-focus-width) dashed var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+
+  :where([data-tk="scene"] [data-tk="field"] [data-scene-active]) {
+    outline: none;
+  }
+
+  /* Layers: the scene's tree as nested lists. Each level steps in by one
+     space step, and a line down the left shows which parts belong together. */
+  :where([data-tk="scene-layers"]) {
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="scene-layers"] ul) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  :where([data-tk="scene-layers"] ul ul) {
+    margin-inline-start: var(--tk-space-3);
+    padding-inline-start: var(--tk-space-2);
+    border-inline-start: 1px solid var(--tk-line-subtle);
+  }
+
+  :where([data-tk="scene-layer"]) {
+    display: flex;
+    align-items: baseline;
+    gap: var(--tk-space-2);
+    inline-size: 100%;
+    min-block-size: var(--tk-control-min);
+    padding: var(--tk-space-1) var(--tk-space-2);
+    /* Transparent until forced colours repaint it: a lit layer is marked by
+       its fill, and a fill is the first thing forced colours throw away. */
+    border: 1px solid transparent;
+    border-radius: var(--tk-radius-sm);
+    background: transparent;
+    color: var(--tk-text-primary);
+    font: inherit;
+    font-size: var(--tk-size-sm);
+    text-align: start;
+    cursor: pointer;
+  }
+
+  :where([data-tk="scene-layer"]:hover, [data-tk="scene-layer"][data-active]) {
+    background-color: var(--tk-surface-sunken);
+  }
+
+  :where([data-tk="scene-layer"][aria-pressed="true"]) {
+    box-shadow: inset 2px 0 0 var(--tk-focus-color);
+  }
+
+  :where([data-tk="scene-layer"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: calc(var(--tk-focus-width) * -1);
+  }
+
+  :where([data-tk="scene-layer-name"]) {
+    font-weight: var(--tk-weight-medium);
+    white-space: nowrap;
+  }
+
+  /* The summary takes what room is left and ellipses the rest. Contained, so
+     its one long line is not the panel's minimum width: without it the
+     longest summary in the tree sets how narrow the panel can get, and the
+     panel ran off a phone screen. */
+  :where([data-tk="scene-layer-summary"]) {
+    flex: 1 1 0;
+    min-inline-size: 0;
+    contain: inline-size;
+    color: var(--tk-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="scene-layer"][data-active], [data-tk="scene-layer"][aria-pressed="true"]) {
+      outline: 2px solid Highlight;
+      outline-offset: -2px;
+    }
+  }
+}

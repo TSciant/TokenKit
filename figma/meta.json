@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-06T23:20:40.801Z",
+  "generated": "2026-10-07T01:23:59.325Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -16,7 +16,7 @@
         "skins": 24,
         "mean": 4.94,
         "worst": 14.01,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Chip": {
@@ -33,7 +33,7 @@
         "skins": 12,
         "mean": 10.84,
         "worst": 14.51,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Eyebrow": {
@@ -50,7 +50,7 @@
         "skins": 2,
         "mean": 28.91,
         "worst": 30.76,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Card": {
@@ -67,7 +67,7 @@
         "skins": 6,
         "mean": 4.24,
         "worst": 8.73,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Alert": {
@@ -78,13 +78,13 @@
       "skinDir": "figma/skins/Alert",
       "skins": 4,
       "skinPulledAt": "2026-09-29T11:45:52-04:00",
-      "sourceUpdatedAt": "2026-09-18T09:52:41-04:00",
+      "sourceUpdatedAt": "2026-10-07T00:52:48.107Z",
       "stale": false,
       "check": {
         "skins": 4,
         "mean": 2.21,
         "worst": 2.24,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Guidance": {
@@ -101,7 +101,7 @@
         "skins": 2,
         "mean": 3.78,
         "worst": 5.81,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Field": {
@@ -118,7 +118,7 @@
         "skins": 9,
         "mean": 1.99,
         "worst": 7.33,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Meter": {
@@ -135,7 +135,7 @@
         "skins": 5,
         "mean": 2.07,
         "worst": 2.86,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Modal": {
@@ -152,7 +152,7 @@
         "skins": 3,
         "mean": 5.63,
         "worst": 6.94,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Figure": {
@@ -169,7 +169,7 @@
         "skins": 5,
         "mean": 1.27,
         "worst": 1.66,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Media": {
@@ -186,7 +186,7 @@
         "skins": 6,
         "mean": 3.92,
         "worst": 6.56,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Icon": {
@@ -203,7 +203,7 @@
         "skins": 3,
         "mean": 13.29,
         "worst": 15.96,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "RailNav": {
@@ -220,7 +220,7 @@
         "skins": 1,
         "mean": 2.17,
         "worst": 2.17,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "SiteHeader": {
@@ -237,7 +237,7 @@
         "skins": 4,
         "mean": 2.76,
         "worst": 4.93,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Masthead": {
@@ -248,13 +248,13 @@
       "skinDir": "figma/skins/Masthead",
       "skins": 12,
       "skinPulledAt": "2026-10-06T06:04:16-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.855Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 12,
         "mean": 4.44,
         "worst": 7,
-        "checkedAt": "2026-10-06T23:19:40.632Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ProofStrip": {
@@ -271,7 +271,7 @@
         "skins": 1,
         "mean": 3.63,
         "worst": 3.63,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "PageHero": {
@@ -282,13 +282,13 @@
       "skinDir": "figma/skins/PageHero",
       "skins": 1,
       "skinPulledAt": "2026-10-06T06:04:16-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.855Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 3.01,
         "worst": 3.01,
-        "checkedAt": "2026-10-06T23:19:43.028Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "SiteFooter": {
@@ -299,13 +299,13 @@
       "skinDir": "figma/skins/SiteFooter",
       "skins": 1,
       "skinPulledAt": "2026-10-06T06:04:16-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.855Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 7.73,
         "worst": 7.73,
-        "checkedAt": "2026-10-06T23:19:45.308Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ArrowCta": {
@@ -322,7 +322,7 @@
         "skins": 9,
         "mean": 4.82,
         "worst": 9.39,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ContactCta": {
@@ -333,13 +333,13 @@
       "skinDir": "figma/skins/Button",
       "skins": 42,
       "skinPulledAt": "2026-10-04T10:51:40-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.855Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 9,
         "mean": 6.92,
         "worst": 14.01,
-        "checkedAt": "2026-10-06T23:19:54.541Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "HeroCarousel": {
@@ -356,7 +356,7 @@
         "skins": 3,
         "mean": 1.95,
         "worst": 2.17,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "TileGrid": {
@@ -367,13 +367,13 @@
       "skinDir": "figma/skins/TileGrid",
       "skins": 1,
       "skinPulledAt": "2026-09-29T15:01:19-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.493Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 3.31,
         "worst": 3.31,
-        "checkedAt": "2026-10-06T23:19:58.254Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "HubCards": {
@@ -384,13 +384,13 @@
       "skinDir": "figma/skins/HubCards",
       "skins": 1,
       "skinPulledAt": "2026-09-29T15:57:53-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.493Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 4.51,
         "worst": 4.51,
-        "checkedAt": "2026-10-06T23:20:00.660Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "CtaBlocks": {
@@ -401,13 +401,13 @@
       "skinDir": "figma/skins/CtaBlocks",
       "skins": 1,
       "skinPulledAt": "2026-10-06T06:04:16-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.493Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 1.27,
         "worst": 1.27,
-        "checkedAt": "2026-10-06T23:20:03.069Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "MediaCards": {
@@ -418,13 +418,13 @@
       "skinDir": "figma/skins/MediaCards",
       "skins": 1,
       "skinPulledAt": "2026-09-29T21:41:02-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.493Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 3.31,
         "worst": 3.31,
-        "checkedAt": "2026-10-06T23:20:05.915Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "FilterBar": {
@@ -435,13 +435,13 @@
       "skinDir": "figma/skins/FilterBar",
       "skins": 1,
       "skinPulledAt": "2026-09-29T21:41:02-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.493Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.83,
         "worst": 2.83,
-        "checkedAt": "2026-10-06T23:20:08.462Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "PeopleDirectory": {
@@ -451,14 +451,14 @@
       "source": "src/react/patterns/catalog.tsx",
       "skinDir": "figma/skins/PeopleDirectory",
       "skins": 1,
-      "skinPulledAt": "2026-10-06T23:03:47.308Z",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.493Z",
+      "skinPulledAt": "2026-10-06T19:28:07-04:00",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.3,
         "worst": 2.3,
-        "checkedAt": "2026-10-06T23:03:50.500Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "EventList": {
@@ -469,13 +469,13 @@
       "skinDir": "figma/skins/EventList",
       "skins": 1,
       "skinPulledAt": "2026-09-29T21:45:50-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.493Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 3.73,
         "worst": 3.73,
-        "checkedAt": "2026-10-06T23:20:10.926Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "LeadForm": {
@@ -492,7 +492,7 @@
         "skins": 1,
         "mean": 4.86,
         "worst": 4.86,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ApplyForm": {
@@ -509,7 +509,7 @@
         "skins": 1,
         "mean": 2.62,
         "worst": 2.62,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "SegmentPage": {
@@ -526,7 +526,7 @@
         "skins": 1,
         "mean": 2.48,
         "worst": 2.48,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "SubBrandPage": {
@@ -543,7 +543,7 @@
         "skins": 1,
         "mean": 1.93,
         "worst": 1.93,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ArticlePage": {
@@ -560,7 +560,7 @@
         "skins": 1,
         "mean": 3.21,
         "worst": 3.21,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "FeatureGrid": {
@@ -577,7 +577,7 @@
         "skins": 1,
         "mean": 5.35,
         "worst": 5.35,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "EventPromo": {
@@ -594,7 +594,7 @@
         "skins": 1,
         "mean": 4.02,
         "worst": 4.02,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ArticleFeed": {
@@ -611,7 +611,7 @@
         "skins": 1,
         "mean": 5.02,
         "worst": 5.02,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "HeaderSearch": {
@@ -622,13 +622,13 @@
       "skinDir": "figma/skins/HeaderSearch",
       "skins": 2,
       "skinPulledAt": "2026-10-05T11:21:10-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.855Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 2,
         "mean": 0.3,
         "worst": 0.4,
-        "checkedAt": "2026-10-06T23:19:28.280Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "SectionNav": {
@@ -645,7 +645,7 @@
         "skins": 1,
         "mean": 6.3,
         "worst": 6.3,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "OnThisPage": {
@@ -662,7 +662,7 @@
         "skins": 1,
         "mean": 3.18,
         "worst": 3.18,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "MenuButton": {
@@ -679,7 +679,7 @@
         "skins": 5,
         "mean": 4.13,
         "worst": 7.15,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "MegaMenu": {
@@ -690,13 +690,13 @@
       "skinDir": "figma/skins/MegaMenu",
       "skins": 1,
       "skinPulledAt": "2026-10-06T06:04:16-04:00",
-      "sourceUpdatedAt": "2026-10-06T23:02:43.855Z",
+      "sourceUpdatedAt": "2026-10-06T19:28:07-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.12,
         "worst": 2.12,
-        "checkedAt": "2026-10-06T23:20:13.992Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Faq": {
@@ -713,7 +713,7 @@
         "skins": 1,
         "mean": 3.51,
         "worst": 3.51,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "SearchResults": {
@@ -730,7 +730,7 @@
         "skins": 1,
         "mean": 1.76,
         "worst": 1.76,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "LogoLadder": {
@@ -747,7 +747,7 @@
         "skins": 6,
         "mean": 6.72,
         "worst": 20.38,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Plate": {
@@ -758,13 +758,13 @@
       "skinDir": "figma/skins/Plate",
       "skins": 6,
       "skinPulledAt": "2026-10-02T08:33:36-04:00",
-      "sourceUpdatedAt": "2026-09-21T17:54:41-04:00",
+      "sourceUpdatedAt": "2026-10-07T00:52:55.321Z",
       "stale": false,
       "check": {
         "skins": 6,
         "mean": 0.2,
         "worst": 1.2,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Gradient": {
@@ -781,7 +781,7 @@
         "skins": 19,
         "mean": 1.05,
         "worst": 3.39,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Search": {
@@ -798,7 +798,7 @@
         "skins": 2,
         "mean": 0.21,
         "worst": 0.4,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "SkipLink": {
@@ -815,7 +815,7 @@
         "skins": 1,
         "mean": 6.55,
         "worst": 6.55,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Arrow": {
@@ -832,7 +832,7 @@
         "skins": 1,
         "mean": 0.72,
         "worst": 0.72,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Map": {
@@ -849,7 +849,7 @@
         "skins": 1,
         "mean": 1.2,
         "worst": 1.2,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "SegmentList": {
@@ -866,7 +866,7 @@
         "skins": 1,
         "mean": 2.12,
         "worst": 2.12,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Tachometer": {
@@ -883,7 +883,7 @@
         "skins": 2,
         "mean": 1.45,
         "worst": 2.89,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Shell": {
@@ -900,7 +900,7 @@
         "skins": 5,
         "mean": 0.11,
         "worst": 0.21,
-        "checkedAt": "2026-10-06T12:31:04.870Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "Hero": {
@@ -917,7 +917,7 @@
         "skins": 4,
         "mean": 2.26,
         "worst": 3.06,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "InlineForm": {
@@ -934,7 +934,7 @@
         "skins": 2,
         "mean": 2.62,
         "worst": 2.98,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ButtonGroup": {
@@ -951,7 +951,7 @@
         "skins": 1,
         "mean": 2.74,
         "worst": 2.74,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ButtonReason": {
@@ -968,7 +968,7 @@
         "skins": 1,
         "mean": 2.49,
         "worst": 2.49,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "CardHeader": {
@@ -985,7 +985,7 @@
         "skins": 1,
         "mean": 4.15,
         "worst": 4.15,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ChoiceCard": {
@@ -996,13 +996,13 @@
       "skinDir": "figma/skins/ChoiceCard",
       "skins": 1,
       "skinPulledAt": "2026-10-05T07:34:10-04:00",
-      "sourceUpdatedAt": "2026-10-05T07:34:10-04:00",
+      "sourceUpdatedAt": "2026-10-07T00:52:48.115Z",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.56,
         "worst": 2.56,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "FieldAffix": {
@@ -1019,7 +1019,7 @@
         "skins": 1,
         "mean": 1.48,
         "worst": 1.48,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "FieldPassword": {
@@ -1036,7 +1036,7 @@
         "skins": 1,
         "mean": 1.3,
         "worst": 1.3,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "FieldCount": {
@@ -1053,7 +1053,7 @@
         "skins": 1,
         "mean": 1.33,
         "worst": 1.33,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ModalDescription": {
@@ -1070,7 +1070,7 @@
         "skins": 1,
         "mean": 3.15,
         "worst": 3.15,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "FieldWidths": {
@@ -1087,7 +1087,7 @@
         "skins": 1,
         "mean": 0.54,
         "worst": 0.54,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "FieldReadOnly": {
@@ -1104,7 +1104,7 @@
         "skins": 1,
         "mean": 2.29,
         "worst": 2.29,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "TextStyles": {
@@ -1121,7 +1121,7 @@
         "skins": 1,
         "mean": 2.88,
         "worst": 2.88,
-        "checkedAt": "2026-10-06T11:37:10.643Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     },
     "ShellRatio": {
@@ -1132,13 +1132,47 @@
       "skinDir": "figma/skins/ShellRatio",
       "skins": 1,
       "skinPulledAt": "2026-10-06T07:44:11-04:00",
-      "sourceUpdatedAt": "2026-10-06T07:44:11-04:00",
+      "sourceUpdatedAt": "2026-10-07T01:18:32.135Z",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 0.07,
         "worst": 0.07,
-        "checkedAt": "2026-10-06T12:31:04.870Z"
+        "checkedAt": "2026-10-07T01:23:31.076Z"
+      }
+    },
+    "ScenePricing": {
+      "node": "283:156",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=283-156",
+      "story": "04-primitives-34-scene--onion-skin-pricing",
+      "source": "src/react/scene/Scene.tsx",
+      "skinDir": "figma/skins/ScenePricing",
+      "skins": 1,
+      "skinPulledAt": "2026-10-07T01:11:54.413Z",
+      "sourceUpdatedAt": "2026-10-07T01:12:35.457Z",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 2.97,
+        "worst": 2.97,
+        "checkedAt": "2026-10-07T01:23:31.076Z"
+      }
+    },
+    "SceneSettings": {
+      "node": "287:236",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=287-236",
+      "story": "04-primitives-34-scene--onion-skin-settings",
+      "source": "src/react/scene/Scene.tsx",
+      "skinDir": "figma/skins/SceneSettings",
+      "skins": 1,
+      "skinPulledAt": "2026-10-07T01:19:48.215Z",
+      "sourceUpdatedAt": "2026-10-07T01:12:35.457Z",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 2.54,
+        "worst": 2.54,
+        "checkedAt": "2026-10-07T01:23:31.076Z"
       }
     }
   }

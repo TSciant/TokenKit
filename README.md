@@ -128,6 +128,26 @@ import { Stack, Card, CardTitle, CardBody, Button } from "tokenkit/react";
 </Stack>
 ```
 
+## Scenes
+
+A scene is a component described as data: `{ title, brand, root }`, each part
+a `kind` (card, field, button, the shells…) with its words and its options.
+The kinds and the options each takes are generated from the components' own
+prop types (`tools/gen-scene-vocabulary.mjs`), so a scene can only say what the
+kit can draw. Whatever comes in, from a model's function call, pasted JSON or
+a file, is sanitized first, and what the kit doesn't have is named in the notes.
+
+```tsx
+import { Scene, SceneLayers, cleanScene } from "tokenkit/react";
+import { sceneSchema } from "tokenkit/scene";   // a JSON Schema for any function-calling API
+
+<Scene scene={json} />   // drawn with the real Card, Field, Button…
+```
+
+`node tools/scene-figma.mjs <scene> --width 480` prints the script that builds
+the same scene in Figma from the kit's components and variables, and the onion
+check lays one over the other.
+
 ## Onion skin
 
 The Figma file and the code are meant to be the same object, and a claim like
