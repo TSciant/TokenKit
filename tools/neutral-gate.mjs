@@ -61,6 +61,7 @@ const files = execSync("git ls-files -co --exclude-standard", { cwd: ROOT, encod
       f &&
       /\.(tsx?|jsx?|mjs|css|md|html|json|txt)$/.test(f) &&
       !f.startsWith("src/client/") && // the client's own section: their words belong there
+      !f.startsWith("clients/") && // clients' private snapshots: likewise, and never exported
       f !== "tools/neutral-terms.json", // the wordlist names the terms by definition
   );
 

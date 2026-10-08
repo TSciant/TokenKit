@@ -1,1 +1,1 @@
-{"component": "MenuButton", "node": "148:299", "skins": {"closed.png": {"w": 79, "h": 36}, "open.png": {"w": 203, "h": 210}, "closed-md.png": {"w": 92, "h": 36}, "closed-lg.png": {"w": 113, "h": 44}, "open-lg.png": {"w": 203, "h": 218}}}
+{"component": "MenuButton", "node": "148:299", "skins": {"closed.png": {"w": 79, "h": 36}, "open.png": {"w": 227, "h": 210}, "closed-md.png": {"w": 92, "h": 36}, "closed-lg.png": {"w": 113, "h": 44}, "open-lg.png": {"w": 227, "h": 218}}}

@@ -61,6 +61,20 @@ right, the four things to reach for, in order:
 What is never on the list is editing a kit file to suit one client. That is the
 change that cannot be delivered without delivering everything.
 
+## When the work lives in the client's repository
+
+Often it should. When the kit is the method a client's own project is built
+with, rather than the place the work is delivered from, keep their pack,
+components and pages in their repository and preview them against the kit:
+
+```sh
+npm run storybook -- --client ../Their-Repo/design
+```
+
+Their stories appear under their own titles for that session only. Nothing is
+copied here, and `storybook build`, which is what the site deploys, never sees
+them. Their files import the kit as `tokenkit/react` and `tokenkit/css`.
+
 ## Brand
 
 `src/css/packs/_template.css` is the handoff artifact: the list of slots a

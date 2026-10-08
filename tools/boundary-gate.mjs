@@ -91,10 +91,13 @@ for (const rel of files) {
        package specifiers alone, since none of them can be client code. */
     let target;
     if (spec.startsWith(".")) target = relative(ROOT, resolve(dirname(join(ROOT, rel)), spec));
-    else if (spec.includes("src/client/")) target = spec;
+    else if (spec.includes("src/client/") || spec.includes("clients/")) target = spec;
     else continue;
 
-    if (!target.replace(/\\/g, "/").includes("src/client/")) continue;
+    // clients/ at the repo root holds private snapshots of clients' work; the
+    // kit depending on one would ship it, or break where it is not there.
+    const t = target.replace(/\\/g, "/");
+    if (!t.includes("src/client/") && !t.startsWith("clients/") && !t.includes("/clients/")) continue;
 
     /* The pattern's leading (?:^|\s) can swallow the newline before the
        statement, which would report the line above the one at fault. */

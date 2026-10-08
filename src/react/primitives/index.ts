@@ -31,6 +31,8 @@ export { Modal, ModalPanel } from "./Modal";
 export type { ModalProps, ModalPanelProps } from "./Modal";
 export { SearchResults } from "./SearchResults";
 export type { SearchResultsProps, SearchResultItem } from "./SearchResults";
+export { Drawer, DrawerPanel } from "./Drawer";
+export type { DrawerProps, DrawerPanelProps, DrawerSide, DrawerSize } from "./Drawer";
 export { ChatPanel } from "./ChatPanel";
 export type { ChatPanelProps, ChatTurn, ChatRespond } from "./ChatPanel";
 export { Faq } from "./Faq";

@@ -242,6 +242,12 @@
       "mean": "1.7",
       "result": "Aligned",
       "note": "448x743, exact; built from the kit's parts: tk/small note and count, tk/caption semibold speaker labels, message text on tk/body at the component leading (16/24, as the kit's other component body text), the reader's turn on surface/sunken at radius/md, a detached warning Alert with an outline Retry, the Field textarea and a disabled solid Send; every gap and inset bound to space variables"
+    },
+    "Drawer": {
+      "skins": 1,
+      "mean": "1.2",
+      "result": "Aligned",
+      "note": "448x560, exact; DrawerPanel in place: the Figma Modal (md) detached and set to the drawer's shape (448 by 560, radius/xl on the two corners facing the page, square on the edge, a border on the page side only, no shadow, as the in-page panel draws none), a select Field in a body that fills, Clear (outline) and Show 24 results (solid) at equal widths"
     }
   },
   "findings": [
@@ -839,6 +845,13 @@
       "diff": "the first build in Figma came out 30px shorter, and the difference was the CSS: the rule spacing a reply's paragraphs also put 8px between the speaker label and the first paragraph, and the rule spacing the failed reply's alert also changed the alert title's own spacing",
       "pull": "Align",
       "result": "the paragraph rule spaces paragraph from paragraph only, and the alert keeps its own title spacing with Retry a step below the reason; then the Figma component matched to the pixel"
+    },
+    {
+      "component": "MenuButton",
+      "driftType": "Design intent change",
+      "diff": "items can carry a small icon before the label (icon, from the kit's set, hidden from screen readers since the label says the same); the list in the stories and the Figma open variants gained newspaper, accessibility, scroll and mail",
+      "pull": "Align",
+      "result": "each Figma item takes a 16px Icon instance at 12,11 with an 8px gap bound to space/2, the panel 24px wider (227), exactly the live list; the open skins re-taken and onion-checked at 3.1"
     }
   ],
   "promotion": [

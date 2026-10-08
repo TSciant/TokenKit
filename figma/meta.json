@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T02:46:01.784Z",
+  "generated": "2026-10-07T12:38:05.559Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -672,14 +672,14 @@
       "source": "src/react/primitives/MenuButton.tsx",
       "skinDir": "figma/skins/MenuButton",
       "skins": 5,
-      "skinPulledAt": "2026-10-05T13:52:21-04:00",
-      "sourceUpdatedAt": "2026-10-04T15:56:39-04:00",
+      "skinPulledAt": "2026-10-07T12:37:01.579Z",
+      "sourceUpdatedAt": "2026-10-07T12:35:17.450Z",
       "stale": false,
       "check": {
         "skins": 5,
-        "mean": 4.13,
+        "mean": 4.31,
         "worst": 7.15,
-        "checkedAt": "2026-10-07T01:23:31.076Z"
+        "checkedAt": "2026-10-07T12:37:32.431Z"
       }
     },
     "MegaMenu": {
@@ -1190,6 +1190,23 @@
         "mean": 1.74,
         "worst": 1.74,
         "checkedAt": "2026-10-07T02:45:38.783Z"
+      }
+    },
+    "Drawer": {
+      "node": "292:1547",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=292-1547",
+      "story": "04-primitives-37-drawer--onion-skin",
+      "source": "src/react/primitives/Drawer.tsx",
+      "skinDir": "figma/skins/Drawer",
+      "skins": 1,
+      "skinPulledAt": "2026-10-07T08:34:09-04:00",
+      "sourceUpdatedAt": "2026-10-07T08:34:09-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 1.21,
+        "worst": 1.21,
+        "checkedAt": "2026-10-07T12:33:28.721Z"
       }
     }
   }

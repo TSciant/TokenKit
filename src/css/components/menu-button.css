@@ -59,8 +59,11 @@
     display: none;
   }
 
+  /* A row: an optional icon, then the label, on one baseline-ish centre. */
   :where([data-tk="menu-button-item"]) {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: var(--tk-space-2);
     inline-size: 100%;
     padding: var(--tk-space-2) var(--tk-space-3);
     border: 0;

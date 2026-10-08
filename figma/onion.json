@@ -870,6 +870,18 @@
       "single": true,
       "target": "root",
       "doc": "The Figma ChatPanel (note, two questions, an answer and a failed reply with Retry, the composer) laid over the same conversation at 448px."
+    },
+    "Drawer": {
+      "story": "04-primitives-37-drawer--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Drawer (title, description, a select, two equal actions; flush to the end edge, rounded toward the page) laid over DrawerPanel in place at 448 by 560."
     }
   }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type HTMLAttributes } from "react";
+import { Icon, type IconName } from "./Icon";
 
 export type MenuButtonItem = {
   label: string;
@@ -7,6 +8,12 @@ export type MenuButtonItem = {
   onSelect?: () => void;
   /** The page you are on, when the list is navigation. */
   current?: boolean;
+  /**
+   * A small icon before the label, from the kit's set. Decorative: the label
+   * says what the item is, so the icon is hidden from screen readers. Give
+   * every item one or none, so the labels stay in a line.
+   */
+  icon?: IconName;
 };
 
 export type MenuButtonProps = Omit<HTMLAttributes<HTMLDivElement>, "onSelect"> & {
@@ -118,6 +125,7 @@ export function MenuButton({
           <li key={item.label}>
             {item.href ? (
               <a data-tk="menu-button-item" href={item.href} aria-current={item.current ? "page" : undefined}>
+                {item.icon ? <Icon name={item.icon} size="sm" aria-hidden="true" /> : null}
                 {item.label}
               </a>
             ) : (
@@ -129,6 +137,7 @@ export function MenuButton({
                   setOpen(false);
                 }}
               >
+                {item.icon ? <Icon name={item.icon} size="sm" aria-hidden="true" /> : null}
                 {item.label}
               </button>
             )}

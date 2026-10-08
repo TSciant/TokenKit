@@ -2,10 +2,10 @@ import type { Decorator, Meta, StoryObj } from "@storybook/react-vite";
 import { MenuButton, type MenuButtonItem } from "./MenuButton";
 
 const ITEMS: MenuButtonItem[] = [
-  { label: "Release notes", href: "#release-notes" },
-  { label: "Accessibility statement", href: "#accessibility", current: true },
-  { label: "Licensing", href: "#licensing" },
-  { label: "Contact support", href: "#support" },
+  { label: "Release notes", href: "#release-notes", icon: "newspaper" },
+  { label: "Accessibility statement", href: "#accessibility", current: true, icon: "accessibility" },
+  { label: "Licensing", href: "#licensing", icon: "scroll" },
+  { label: "Contact support", href: "#support", icon: "mail" },
 ];
 
 const meta = {
@@ -69,11 +69,12 @@ export const OnionSkin: Story = {
   },
   decorators: [
     (Story, context) => {
-      /* The Figma frame for each skin: the trigger, or the trigger and the list. */
+      /* The Figma frame for each skin: the trigger, or the trigger and the
+         list (227 wide: the longest label, its icon and the padding). */
       const box: Record<string, [number, number]> = { sm: [79, 36], md: [92, 36], lg: [113, 44] };
       const [w, h] = box[(context.args.size as string) ?? "sm"] ?? box.sm;
       return (
-        <div style={{ inlineSize: context.args.initialOpen ? 203 : w, blockSize: context.args.initialOpen ? h + 8 + 166 : h }}>
+        <div style={{ inlineSize: context.args.initialOpen ? 227 : w, blockSize: context.args.initialOpen ? h + 8 + 166 : h }}>
           <Story />
         </div>
       );

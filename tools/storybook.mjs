@@ -9,6 +9,16 @@
  *   npm run storybook
  *   npm run storybook -- --why     print the port, start nothing
  *   npm run storybook -- --port N  pin it
+ *   npm run storybook -- --client ../Acme/design
+ *                                  also show a client's own stories, from
+ *                                  their repository, for this session only
+ *
+ * --client is how an engagement that lives in the CLIENT'S repository is
+ * previewed against the kit without any of it entering this one. It sets
+ * TK_CLIENT_DIR for the Storybook process and nothing else: nothing is
+ * copied, nothing is written here, and `storybook build` (which is what the
+ * site deploys) never sees it, so a client's work cannot ride along on a
+ * deploy of the site. See .storybook/main.ts.
  *
  * Implementation note, because the obvious version is broken on Windows:
  * this resolves Storybook's own JS entry point and runs it with the current
@@ -41,6 +51,16 @@ if (argv.includes("--why")) {
   console.log(`storybook port ${derived}`);
   console.log(`in use         ${(await inUse(derived)) ? "yes" : "no"}`);
   process.exit(0);
+}
+
+const clientArg = arg("--client");
+let clientDir = null;
+if (clientArg) {
+  clientDir = resolve(process.cwd(), clientArg);
+  if (!existsSync(clientDir)) {
+    console.error(`--client: no folder at ${clientDir}`);
+    process.exit(1);
+  }
 }
 
 const pinned = arg("--port") ? Number(arg("--port")) : null;
@@ -78,8 +98,9 @@ function resolveStorybookCli() {
 
 const port = pinned ?? (await findPort(derived));
 
-// Drop our own --port pair; pass anything else straight through.
-const passthrough = argv.filter((a, i) => a !== "--port" && argv[i - 1] !== "--port");
+// Drop our own --port and --client pairs; pass anything else straight through.
+const OURS = new Set(["--port", "--client"]);
+const passthrough = argv.filter((a, i) => !OURS.has(a) && !OURS.has(argv[i - 1]));
 
 const cli = resolveStorybookCli();
 
@@ -88,7 +109,11 @@ console.log(`\n  storybook on http://localhost:${port}  (derived from "${name}")
 const child = spawn(
   process.execPath,
   [cli, "dev", "-p", String(port), ...passthrough],
-  { stdio: "inherit", cwd: ROOT },
+  {
+    stdio: "inherit",
+    cwd: ROOT,
+    env: clientDir ? { ...process.env, TK_CLIENT_DIR: clientDir } : process.env,
+  },
 );
 
 child.on("error", (err) => {
