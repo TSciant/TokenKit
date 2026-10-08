@@ -127,6 +127,7 @@ export const KIND_MAP = {
       leading: "icon and iconPosition say the same with a name",
       trailing: "icon and iconPosition say the same with a name",
       type: "a scene does not submit",
+      busyLabel: "a busy state is behaviour a scene does not carry",
     },
     about: "a button; tone danger for destructive actions; with an icon and no text it is icon-only",
   },
@@ -161,7 +162,10 @@ export const KIND_MAP = {
     name: "Alert",
     from: ["src/react/primitives/Alert.tsx", "Alert"],
     text: "children",
-    omit: { live: "a preview should not speak up the moment it is drawn" },
+    omit: {
+      live: "a preview should not speak up the moment it is drawn",
+      action: "an Undo or a Retry needs behaviour a scene does not carry",
+    },
     about: "a message with a status",
   },
   "choice-group": {

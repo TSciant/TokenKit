@@ -470,6 +470,13 @@ export const KINDS = {
         "strong",
         "quiet"
       ],
+      "tone": [
+        "info",
+        "success",
+        "warning",
+        "neutral",
+        "danger"
+      ],
       "interactive": "flag",
       "pressed": "flag",
       "icon": "icon"

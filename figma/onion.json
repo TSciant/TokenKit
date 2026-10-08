@@ -882,6 +882,51 @@
       "single": true,
       "target": "root",
       "doc": "The Figma Drawer (title, description, a select, two equal actions; flush to the end edge, rounded toward the page) laid over DrawerPanel in place at 448 by 560."
+    },
+    "Pager": {
+      "story": "04-primitives-41-pager--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Pager (page 6 of 12 with numbers, 640 wide) laid over the same."
+    },
+    "AlertAction": {
+      "story": "04-primitives-08-alert--onion-skin-action",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Alert with an action (a success with Undo, 480 wide) laid over the same."
+    },
+    "Avatar": {
+      "story": "04-primitives-40-avatar--onion-skin",
+      "pattern": [
+        "size",
+        "shape"
+      ],
+      "states": {
+        "default": {}
+      },
+      "maxMean": 12
+    },
+    "ChipTone": {
+      "story": "04-primitives-02-chip--onion-skin-tone",
+      "pattern": [
+        "tone"
+      ],
+      "states": {
+        "default": {}
+      },
+      "maxMean": 12
     }
   }
 }

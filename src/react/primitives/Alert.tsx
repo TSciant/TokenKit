@@ -5,10 +5,16 @@ export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"
   title?: string;
   /** Announce changes to assistive tech. Use for errors and async results. */
   live?: boolean;
+  /**
+   * One action beside the message: Undo after something was done, Retry
+   * after something failed, a link to what changed. For an action that can
+   * be undone, do it and offer Undo here rather than asking first.
+   */
+  action?: ReactNode;
   children?: ReactNode;
 }
 
-export function Alert({ status, title, live, children, ...rest }: AlertProps) {
+export function Alert({ status, title, live, action, children, ...rest }: AlertProps) {
   return (
     <div
       {...rest}
@@ -17,10 +23,11 @@ export function Alert({ status, title, live, children, ...rest }: AlertProps) {
       role={status === "danger" ? "alert" : live ? "status" : undefined}
       aria-live={live && status !== "danger" ? "polite" : undefined}
     >
-      <div>
+      <div data-tk="alert-body">
         {title ? <p data-tk="alert-title">{title}</p> : null}
         {children}
       </div>
+      {action ? <div data-tk="alert-action">{action}</div> : null}
     </div>
   );
 }

@@ -32,6 +32,13 @@ export interface ButtonProps
   /** Progressive busy state — disables activation and announces to AT. */
   busy?: boolean;
   /**
+   * The words while it is busy: "Posting…", "Saving…". The label changes to
+   * them and back, in a polite live region that is there from the first
+   * render, so a screen reader hears the change while focus stays put. Say
+   * what is happening, with the -ing verb.
+   */
+  busyLabel?: ReactNode;
+  /**
    * Why a disabled button is unavailable. Shown beside it on hover and on
    * focus, and read as its description. A disabled button stays in the tab
    * order so it can say this; without a reason it is still focusable, but
@@ -72,6 +79,7 @@ export function Button({
   pressed,
   full,
   busy,
+  busyLabel,
   reason,
   icon,
   iconPosition = "leading",
@@ -145,7 +153,11 @@ export function Button({
   return (
     <Tag {...attrs}>
       {lead ? <span data-tk="button-affix" data-side="leading">{lead}</span> : null}
-      {hasLabel ? <span data-tk="button-label">{children}</span> : null}
+      {hasLabel ? (
+        <span data-tk="button-label" aria-live={busyLabel != null ? "polite" : undefined}>
+          {busy && busyLabel != null ? busyLabel : children}
+        </span>
+      ) : null}
       {trail ? (
         <span data-tk="button-affix" data-side="trailing">
           {trail}

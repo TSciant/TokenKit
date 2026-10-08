@@ -4,7 +4,13 @@
       "skins": 4,
       "mean": 2.21,
       "worst": 2.24,
-      "checkedAt": "2026-10-07T02:21:40.079Z"
+      "checkedAt": "2026-10-08T18:08:06.401Z"
+    },
+    "AlertAction": {
+      "skins": 1,
+      "mean": 2.55,
+      "worst": 2.55,
+      "checkedAt": "2026-10-08T18:12:43.742Z"
     },
     "ApplyForm": {
       "skins": 1,
@@ -36,11 +42,17 @@
       "worst": 3.21,
       "checkedAt": "2026-10-07T01:23:31.076Z"
     },
+    "Avatar": {
+      "skins": 6,
+      "mean": 7.21,
+      "worst": 10.69,
+      "checkedAt": "2026-10-08T18:15:57.055Z"
+    },
     "Button": {
       "skins": 24,
       "mean": 4.94,
       "worst": 14.01,
-      "checkedAt": "2026-10-07T01:23:31.076Z"
+      "checkedAt": "2026-10-08T18:08:29.410Z"
     },
     "ButtonGroup": {
       "skins": 1,
@@ -52,7 +64,7 @@
       "skins": 1,
       "mean": 2.49,
       "worst": 2.49,
-      "checkedAt": "2026-10-07T01:23:31.076Z"
+      "checkedAt": "2026-10-08T18:23:49.904Z"
     },
     "Card": {
       "skins": 6,
@@ -70,13 +82,19 @@
       "skins": 1,
       "mean": 1.74,
       "worst": 1.74,
-      "checkedAt": "2026-10-07T02:45:38.783Z"
+      "checkedAt": "2026-10-08T18:08:08.355Z"
     },
     "Chip": {
       "skins": 12,
       "mean": 10.84,
       "worst": 14.51,
-      "checkedAt": "2026-10-07T01:23:31.076Z"
+      "checkedAt": "2026-10-08T18:08:40.424Z"
+    },
+    "ChipTone": {
+      "skins": 4,
+      "mean": 8.23,
+      "worst": 9.16,
+      "checkedAt": "2026-10-08T18:12:54.044Z"
     },
     "ChoiceCard": {
       "skins": 1,
@@ -305,6 +323,12 @@
       "mean": 3.01,
       "worst": 3.01,
       "checkedAt": "2026-10-07T01:23:31.076Z"
+    },
+    "Pager": {
+      "skins": 1,
+      "mean": 3.68,
+      "worst": 3.68,
+      "checkedAt": "2026-10-08T18:14:38.937Z"
     },
     "PeopleDirectory": {
       "skins": 1,

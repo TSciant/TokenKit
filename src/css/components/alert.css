@@ -51,4 +51,20 @@
     font-weight: var(--tk-weight-semibold);
     margin: 0 0 var(--tk-space-1);
   }
+
+  /* With an action (Undo, Retry), the message takes the room and the action
+     sits at the end of the line; on a narrow alert it drops below. */
+  :where([data-tk="alert"]:has(> [data-tk="alert-action"])) {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  :where([data-tk="alert-body"]) {
+    flex: 1 1 16rem;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="alert-action"]) {
+    flex: none;
+  }
 }

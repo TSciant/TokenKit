@@ -1,0 +1,112 @@
+/* Pager — back, where you are, on. The ends hold their place when they are
+   absent, so "Page 3 of 12" stays in the middle on the first and last pages
+   too. With numbers, the count steps aside for them, and comes back when the
+   pager is too narrow to hold them. */
+@layer components {
+  /* The nav is the container; the row inside it lays out against it. */
+  :where([data-tk="pager"]) {
+    container-type: inline-size;
+  }
+
+  :where([data-tk="pager-row"]) {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--tk-space-4);
+  }
+
+  :where([data-tk="pager-prev"]) {
+    justify-self: start;
+  }
+
+  :where([data-tk="pager-next"]) {
+    justify-self: end;
+  }
+
+  :where([data-tk="pager-count"]) {
+    margin: 0;
+    color: var(--tk-text-secondary);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  :where([data-tk="pager"][data-numbers] [data-tk="pager-count"]) {
+    display: none;
+  }
+
+  :where([data-tk="pager-pages"]) {
+    display: flex;
+    align-items: center;
+    gap: var(--tk-space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :where([data-tk="pager-page"]) {
+    display: inline-grid;
+    place-items: center;
+    min-inline-size: var(--tk-control-min);
+    min-block-size: var(--tk-control-min);
+    padding-inline: var(--tk-space-2);
+    /* Transparent until forced colours draw it: the current page is marked
+       by its fill, and forced colours drop fills. */
+    border: 1px solid transparent;
+    border-radius: var(--tk-radius-control);
+    color: var(--tk-link-text);
+    font-variant-numeric: tabular-nums;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  :where([data-tk="pager-page"]:hover) {
+    background-color: var(--tk-surface-sunken);
+  }
+
+  :where([data-tk="pager-page"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+
+  /* Where you are: not a link to here in looks, though it stays one. */
+  :where([data-tk="pager-page"][aria-current="page"]) {
+    background-color: var(--tk-surface-inverse);
+    color: var(--tk-text-inverse);
+    font-weight: var(--tk-weight-semibold);
+    text-decoration: none;
+  }
+
+  :where([data-tk="pager-gap"]) {
+    color: var(--tk-text-tertiary);
+    padding-inline: var(--tk-space-1);
+  }
+
+  /* Too narrow for back, count and on in one line: the count first, then
+     each link on a line of its own, back at the start and on at the end. */
+  @container (max-width: 30rem) {
+    :where([data-tk="pager-row"]) {
+      grid-template-columns: 1fr;
+      gap: var(--tk-space-3);
+    }
+
+    :where([data-tk="pager-row"] > [data-tk="pager-count"]) {
+      order: -1;
+    }
+  }
+
+  @container (max-width: 34rem) {
+    :where([data-tk="pager"][data-numbers] [data-tk="pager-pages"]) {
+      display: none;
+    }
+
+    :where([data-tk="pager"][data-numbers] [data-tk="pager-count"]) {
+      display: block;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="pager-page"][aria-current="page"]) {
+      outline: 2px solid CanvasText;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { Chip } from "./Chip";
+import { Icon } from "./Icon";
 
 const meta = {
   title: "04 Primitives/02 Chip",
@@ -15,6 +16,7 @@ const meta = {
   },
   argTypes: {
     emphasis: { control: "inline-radio", options: ["default", "strong", "quiet"] },
+    tone: { control: "inline-radio", options: ["neutral", "info", "success", "warning", "danger"] },
     interactive: { control: "boolean" },
     pressed: { control: "boolean" },
   },
@@ -89,6 +91,44 @@ export const Emphasis: Story = {
       </Chip>
     </div>
   ),
+};
+
+/** Status: a tone, a word and an icon. */
+export const StatusTones: Story = {
+  name: "Status tones",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A status chip: the pack's status colours, always a word, with an icon where it helps, and never a control. Colour alone means nothing to some readers, so \"Closed\" says closed in words and with its icon in any pack, in forced colours and in greyscale. Drawn from a members' message board's thread marks and GOV.UK's and Primer's tags.",
+      },
+    },
+  },
+  render: () => (
+    <div data-shell="inline" data-gap="2">
+      <Chip tone="info" leading={<Icon name="calendar" size="sm" />}>12 March</Chip>
+      <Chip tone="success" leading={<Icon name="check" size="sm" />}>Open</Chip>
+      <Chip tone="warning" leading={<Icon name="barChart" size="sm" />}>Poll</Chip>
+      <Chip tone="danger" leading={<Icon name="ban" size="sm" />}>Closed to replies</Chip>
+      <Chip leading={<Icon name="pin" size="sm" />}>Pinned</Chip>
+    </div>
+  ),
+};
+
+const TONE_ICON = { info: "calendar", success: "check", warning: "barChart", danger: "ban" } as const;
+
+/** A status chip per tone, for the Figma status chips to be laid over. */
+export const OnionSkinTone: Story = {
+  name: "Onion skin: tones (Figma)",
+  args: { tone: "warning", children: "Poll" },
+  parameters: {
+    docs: { description: { story: "The Figma status chips laid over this one: tone in Controls picks the matching variant. Each carries its icon." } },
+    onion: { component: "ChipTone", skin: (a: Record<string, unknown>) => `${(a.tone as string) ?? "info"}.png` },
+  },
+  render: (args) => {
+    const tone = (args.tone ?? "info") as keyof typeof TONE_ICON;
+    return <Chip {...args} tone={tone} leading={<Icon name={TONE_ICON[tone] ?? "info"} size="sm" />} />;
+  },
 };
 
 export const OnionSkin: Story = {

@@ -6,6 +6,13 @@ import type {
 
 type ChipBase = {
   emphasis?: "default" | "strong" | "quiet";
+  /**
+   * A status: info, success, warning, danger, on the pack's status colours.
+   * Always a word ("Closed", "Overdue"), with an icon where it helps, since
+   * colour alone means nothing to some readers; and never a control (a
+   * status is read, not pressed). Neutral renders no attribute.
+   */
+  tone?: "neutral" | "info" | "success" | "warning" | "danger";
   /** Makes the chip a control (24px target). Prefer with pressed for filters. */
   interactive?: boolean;
   /** Toggle / filter selected state. Progressive: absent = plain label. */
@@ -27,6 +34,7 @@ export type ChipProps = ChipBase &
  */
 export function Chip({
   emphasis,
+  tone,
   interactive,
   pressed,
   leading,
@@ -36,6 +44,7 @@ export function Chip({
   const common = {
     "data-tk": "chip",
     "data-emphasis": emphasis === "default" ? undefined : emphasis,
+    "data-tone": tone === "neutral" ? undefined : tone,
     "data-interactive": interactive ? "" : undefined,
     "data-pressed": pressed ? "" : undefined,
     "data-leading": leading ? "" : undefined,

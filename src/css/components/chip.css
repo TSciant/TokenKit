@@ -63,6 +63,40 @@
       0 0 0 1px color-mix(in srgb, var(--tk-text-primary) 12%, transparent);
   }
 
+  /* tk-default: data-tone=neutral
+     A status chip: the pack's status surface, line and text for its tone,
+     read like an Alert's, so "warning" looks the same in both. */
+  :where([data-tk="chip"][data-tone]) {
+    background-color: var(--_tone-surface);
+    border-color: var(--_tone-line);
+    color: var(--_tone-text);
+    box-shadow: none;
+  }
+
+  :where([data-tk="chip"][data-tone="info"]) {
+    --_tone-surface: var(--tk-status-info-surface);
+    --_tone-line: var(--tk-status-info-line);
+    --_tone-text: var(--tk-status-info-text);
+  }
+
+  :where([data-tk="chip"][data-tone="success"]) {
+    --_tone-surface: var(--tk-status-success-surface);
+    --_tone-line: var(--tk-status-success-line);
+    --_tone-text: var(--tk-status-success-text);
+  }
+
+  :where([data-tk="chip"][data-tone="warning"]) {
+    --_tone-surface: var(--tk-status-warning-surface);
+    --_tone-line: var(--tk-status-warning-line);
+    --_tone-text: var(--tk-status-warning-text);
+  }
+
+  :where([data-tk="chip"][data-tone="danger"]) {
+    --_tone-surface: var(--tk-status-danger-surface);
+    --_tone-line: var(--tk-status-danger-line);
+    --_tone-text: var(--tk-status-danger-text);
+  }
+
   :where([data-tk="chip"][data-emphasis="quiet"]) {
     background-color: transparent;
     border-color: transparent;

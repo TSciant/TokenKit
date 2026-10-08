@@ -1,8 +1,14 @@
 ﻿export { Button } from "./Button";
 export type { ButtonProps, ButtonIconPosition } from "./Button";
+export { SubmitButton } from "./SubmitButton";
+export type { SubmitButtonProps } from "./SubmitButton";
 export { Card, CardTitle, CardBody, CardFooter, CardHeader } from "./Card";
 export type { CardProps } from "./Card";
 export { Chip } from "./Chip";
+export { Avatar, initials } from "./Avatar";
+export type { AvatarProps } from "./Avatar";
+export { Pager, pagerSlots } from "./Pager";
+export type { PagerProps } from "./Pager";
 export { Heading } from "./Heading";
 export type { HeadingProps, HeadingLevel, TextStyle } from "./Heading";
 export type { ChipProps } from "./Chip";

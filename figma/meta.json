@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T12:38:05.559Z",
+  "generated": "2026-10-08T18:24:01.028Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -10,13 +10,13 @@
       "skinDir": "figma/skins/Button",
       "skins": 42,
       "skinPulledAt": "2026-10-04T10:51:40-04:00",
-      "sourceUpdatedAt": "2026-10-04T11:25:15-04:00",
+      "sourceUpdatedAt": "2026-10-08T17:44:56.646Z",
       "stale": false,
       "check": {
         "skins": 24,
         "mean": 4.94,
         "worst": 14.01,
-        "checkedAt": "2026-10-07T01:23:31.076Z"
+        "checkedAt": "2026-10-08T18:08:29.410Z"
       }
     },
     "Chip": {
@@ -27,13 +27,13 @@
       "skinDir": "figma/skins/Chip",
       "skins": 24,
       "skinPulledAt": "2026-09-29T14:05:30-04:00",
-      "sourceUpdatedAt": "2026-09-19T22:45:14-04:00",
+      "sourceUpdatedAt": "2026-10-08T17:45:18.046Z",
       "stale": false,
       "check": {
         "skins": 12,
         "mean": 10.84,
         "worst": 14.51,
-        "checkedAt": "2026-10-07T01:23:31.076Z"
+        "checkedAt": "2026-10-08T18:08:40.424Z"
       }
     },
     "Eyebrow": {
@@ -78,13 +78,13 @@
       "skinDir": "figma/skins/Alert",
       "skins": 4,
       "skinPulledAt": "2026-09-29T11:45:52-04:00",
-      "sourceUpdatedAt": "2026-10-06T21:30:50-04:00",
+      "sourceUpdatedAt": "2026-10-08T17:44:33.021Z",
       "stale": false,
       "check": {
         "skins": 4,
         "mean": 2.21,
         "worst": 2.24,
-        "checkedAt": "2026-10-07T02:21:40.079Z"
+        "checkedAt": "2026-10-08T18:08:06.401Z"
       }
     },
     "Guidance": {
@@ -672,8 +672,8 @@
       "source": "src/react/primitives/MenuButton.tsx",
       "skinDir": "figma/skins/MenuButton",
       "skins": 5,
-      "skinPulledAt": "2026-10-07T12:37:01.579Z",
-      "sourceUpdatedAt": "2026-10-07T12:35:17.450Z",
+      "skinPulledAt": "2026-10-07T08:45:12-04:00",
+      "sourceUpdatedAt": "2026-10-07T08:45:12-04:00",
       "stale": false,
       "check": {
         "skins": 5,
@@ -962,13 +962,13 @@
       "skinDir": "figma/skins/ButtonReason",
       "skins": 1,
       "skinPulledAt": "2026-10-04T20:39:02-04:00",
-      "sourceUpdatedAt": "2026-10-04T11:25:15-04:00",
+      "sourceUpdatedAt": "2026-10-08T17:44:56.646Z",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.49,
         "worst": 2.49,
-        "checkedAt": "2026-10-07T01:23:31.076Z"
+        "checkedAt": "2026-10-08T18:23:49.904Z"
       }
     },
     "CardHeader": {
@@ -1189,7 +1189,7 @@
         "skins": 1,
         "mean": 1.74,
         "worst": 1.74,
-        "checkedAt": "2026-10-07T02:45:38.783Z"
+        "checkedAt": "2026-10-08T18:08:08.355Z"
       }
     },
     "Drawer": {
@@ -1207,6 +1207,74 @@
         "mean": 1.21,
         "worst": 1.21,
         "checkedAt": "2026-10-07T12:33:28.721Z"
+      }
+    },
+    "Pager": {
+      "node": "311:1608",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=311-1608",
+      "story": "04-primitives-41-pager--onion-skin",
+      "source": "src/react/primitives/Pager.tsx",
+      "skinDir": "figma/skins/Pager",
+      "skins": 1,
+      "skinPulledAt": "2026-10-08T18:14:37.107Z",
+      "sourceUpdatedAt": "2026-10-08T17:59:10.567Z",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 3.68,
+        "worst": 3.68,
+        "checkedAt": "2026-10-08T18:14:38.937Z"
+      }
+    },
+    "AlertAction": {
+      "node": "311:1654",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=311-1654",
+      "story": "04-primitives-08-alert--onion-skin-action",
+      "source": "src/react/primitives/Alert.tsx",
+      "skinDir": "figma/skins/AlertAction",
+      "skins": 1,
+      "skinPulledAt": "2026-10-08T18:12:40.049Z",
+      "sourceUpdatedAt": "2026-10-08T17:44:33.021Z",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 2.55,
+        "worst": 2.55,
+        "checkedAt": "2026-10-08T18:12:43.742Z"
+      }
+    },
+    "Avatar": {
+      "node": "311:1565",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=311-1565",
+      "story": "04-primitives-40-avatar--onion-skin",
+      "source": "src/react/primitives/Avatar.tsx",
+      "skinDir": "figma/skins/Avatar",
+      "skins": 6,
+      "skinPulledAt": "2026-10-08T18:15:51.087Z",
+      "sourceUpdatedAt": "2026-10-08T17:45:42.130Z",
+      "stale": false,
+      "check": {
+        "skins": 6,
+        "mean": 7.21,
+        "worst": 10.69,
+        "checkedAt": "2026-10-08T18:15:57.055Z"
+      }
+    },
+    "ChipTone": {
+      "node": "311:1607",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=311-1607",
+      "story": "04-primitives-02-chip--onion-skin-tone",
+      "source": "src/react/primitives/Chip.tsx",
+      "skinDir": "figma/skins/ChipTone",
+      "skins": 4,
+      "skinPulledAt": "2026-10-08T18:12:40.050Z",
+      "sourceUpdatedAt": "2026-10-08T17:45:18.046Z",
+      "stale": false,
+      "check": {
+        "skins": 4,
+        "mean": 8.23,
+        "worst": 9.16,
+        "checkedAt": "2026-10-08T18:12:54.044Z"
       }
     }
   }

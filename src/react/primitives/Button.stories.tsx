@@ -79,6 +79,7 @@ const meta = {
     full: { control: "boolean" },
     disabled: { control: "boolean" },
     busy: { control: "boolean" },
+    busyLabel: { control: "text", description: "The words while it is busy (\"Posting…\"), announced politely." },
     reason: { control: "text", description: "Why a disabled button is unavailable; shown on hover and focus, read as its description." },
     href: { control: "text" },
     iconPosition: {
@@ -462,6 +463,37 @@ export const OnionSkinReason: Story = {
       </Button>
     </div>
   ),
+};
+
+/** Busy, in words: the label changes to what is happening and is heard. */
+export const BusyLabel: Story = {
+  name: "Busy, in words",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "busyLabel: while it works the label says so (\"Posting…\"), in a polite live region that is there from the start, so a screen reader hears the change while focus stays on the button. A second press does nothing. Press it: it is busy for two seconds. For a form, SubmitButton does this on its own.",
+      },
+    },
+  },
+  render: () => {
+    function Demo() {
+      const [busy, setBusy] = useState(false);
+      return (
+        <Button
+          busy={busy}
+          busyLabel="Posting…"
+          onClick={() => {
+            setBusy(true);
+            setTimeout(() => setBusy(false), 2000);
+          }}
+        >
+          Post it
+        </Button>
+      );
+    }
+    return <Demo />;
+  },
 };
 
 export const Sizes: Story = {

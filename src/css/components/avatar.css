@@ -1,0 +1,53 @@
+/* Avatar — a photo, or initials on the inverse surface. A circle is a
+   person; a square (an organisation, a team, a bot) rounds by the control
+   radius so it reads as a thing, not a face. */
+@layer components {
+  /* tk-default: data-size=md */
+  /* tk-default: data-shape=circle */
+  :where([data-tk="avatar"]) {
+    --_size: 3rem;
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    inline-size: var(--_size);
+    block-size: var(--_size);
+    overflow: clip;
+    border-radius: var(--tk-radius-full);
+    background-color: var(--tk-surface-inverse);
+    color: var(--tk-text-inverse);
+    font-size: calc(var(--_size) * 0.4);
+    font-weight: var(--tk-weight-semibold);
+    line-height: var(--tk-leading-tight);
+    letter-spacing: var(--tk-tracking-normal);
+    user-select: none;
+  }
+
+  :where([data-tk="avatar"][data-size="sm"]) {
+    --_size: 2rem;
+  }
+
+  :where([data-tk="avatar"][data-size="lg"]) {
+    --_size: 4rem;
+  }
+
+  :where([data-tk="avatar"][data-shape="square"]) {
+    border-radius: var(--tk-radius-md);
+  }
+
+  /* Initials sit on one line however long the name was. */
+  :where([data-tk="avatar-initials"]) {
+    white-space: nowrap;
+  }
+
+  :where([data-tk="avatar-photo"]) {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="avatar"]) {
+      border: 1px solid CanvasText;
+    }
+  }
+}

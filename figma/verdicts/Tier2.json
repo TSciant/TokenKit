@@ -248,6 +248,30 @@
       "mean": "1.2",
       "result": "Aligned",
       "note": "448x560, exact; DrawerPanel in place: the Figma Modal (md) detached and set to the drawer's shape (448 by 560, radius/xl on the two corners facing the page, square on the edge, a border on the page side only, no shadow, as the in-page panel draws none), a select Field in a body that fills, Clear (outline) and Show 24 results (solid) at equal widths"
+    },
+    "AlertAction": {
+      "skins": 1,
+      "mean": "2.6",
+      "result": "Aligned",
+      "note": "480x70, exact; the Figma Alert (success) detached and laid out as a row: the message in a column that takes the room (the title's space/1 under it, as its margin in code), Undo (outline sm) at the end, centred, space/3 between"
+    },
+    "Pager": {
+      "skins": 1,
+      "mean": "3.7",
+      "result": "Aligned",
+      "note": "640x36, exact; page 6 of 12 with numbers: outline Previous and Next with 16px arrows (the Button instances detached, because Figma keeps an icon slot at 20px through a swap and the code uses the small icon beside 14px text), the numbers centred between two equal growing frames as the grid's 1fr auto 1fr does, 36px squares on radius/control, the current one on surface/inverse"
+    },
+    "Avatar": {
+      "skins": 6,
+      "mean": "5.0-10.7",
+      "result": "Aligned",
+      "note": "32, 48, 64 in circle and square, exact sizes; initials MD in Manrope SemiBold at 40% of the size, 115% leading, on surface/inverse. The 32px pair reads 10: one pixel of anti-aliasing on 12.8px light-on-dark text is a large share of so small a square, as with Chip (maxMean 12 for both)"
+    },
+    "ChipTone": {
+      "skins": 4,
+      "mean": "7.9-9.2",
+      "result": "Aligned",
+      "note": "69x28, exact; a Chip instance with its leading icon, re-coloured with each tone's status surface, line and text and without the default chip's inset shadow, as the code drops it for a tone; within Chip's own accepted range"
     }
   },
   "findings": [
@@ -852,6 +876,13 @@
       "diff": "items can carry a small icon before the label (icon, from the kit's set, hidden from screen readers since the label says the same); the list in the stories and the Figma open variants gained newspaper, accessibility, scroll and mail",
       "pull": "Align",
       "result": "each Figma item takes a 16px Icon instance at 12,11 with an 8px gap bound to space/2, the panel 24px wider (227), exactly the live list; the open skins re-taken and onion-checked at 3.1"
+    },
+    {
+      "component": "Pager (Figma)",
+      "driftType": "Design execution != live execution",
+      "diff": "the first Pager read 20: Figma's Button keeps its icon slot at 20px (so each button was 4px wider and 2px taller than the code's, which uses the small icon), and space-between put the numbers off centre where the code's grid centres them",
+      "pull": "Align",
+      "result": "the two buttons detached with 16px arrows, the numbers between two equal growing frames; then 3.7"
     }
   ],
   "promotion": [

@@ -85,7 +85,11 @@
     "ScenePricing": "283:156",
     "SceneSettings": "287:236",
     "ChatPanel": "289:1464",
-    "Drawer": "292:1547"
+    "Drawer": "292:1547",
+    "Pager": "311:1608",
+    "AlertAction": "311:1654",
+    "Avatar": "311:1565",
+    "ChipTone": "311:1607"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -171,7 +175,11 @@
     "ScenePricing": "04-primitives-34-scene--onion-skin-pricing",
     "SceneSettings": "04-primitives-34-scene--onion-skin-settings",
     "ChatPanel": "04-primitives-36-chat-panel--onion-skin",
-    "Drawer": "04-primitives-37-drawer--onion-skin"
+    "Drawer": "04-primitives-37-drawer--onion-skin",
+    "Pager": "04-primitives-41-pager--onion-skin",
+    "AlertAction": "04-primitives-08-alert--onion-skin-action",
+    "Avatar": "04-primitives-40-avatar--onion-skin",
+    "ChipTone": "04-primitives-02-chip--onion-skin-tone"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -257,6 +265,10 @@
     "ScenePricing": "src/react/scene/Scene.tsx",
     "SceneSettings": "src/react/scene/Scene.tsx",
     "ChatPanel": "src/react/primitives/ChatPanel.tsx",
-    "Drawer": "src/react/primitives/Drawer.tsx"
+    "Drawer": "src/react/primitives/Drawer.tsx",
+    "Pager": "src/react/primitives/Pager.tsx",
+    "AlertAction": "src/react/primitives/Alert.tsx",
+    "Avatar": "src/react/primitives/Avatar.tsx",
+    "ChipTone": "src/react/primitives/Chip.tsx"
   }
 }
