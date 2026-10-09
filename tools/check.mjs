@@ -21,7 +21,7 @@ const STEPS = [
     name: "generated files",
     cmd:
       "node tools/gen-specimen-packs.mjs --check && node tools/gen-icon-set.mjs --check" +
-      " && node tools/gen-component-stories.mjs --check && node tools/gen-scene-vocabulary.mjs --check",
+      " && node tools/gen-component-stories.mjs --check && node tools/gen-scene-vocabulary.mjs --check && node tools/figma-guidelines.mjs --check",
   },
   { name: "scene", cmd: "node tools/scene-gate.mjs" },
   { name: "boundary", cmd: "node tools/boundary-gate.mjs" },

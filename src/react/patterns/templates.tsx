@@ -7,7 +7,7 @@
 import { useId } from "react";
 import { Arrow } from "../primitives/Arrow";
 import { Plate } from "../primitives/Plate";
-import { ArrowCta } from "./marketing";
+import { ArrowCta } from "./ArrowCta";
 import type { Cols } from "./types";
 import { PageHero } from "./chrome";
 import {

@@ -92,6 +92,14 @@ export function Scene({ scene, brand, active, onActive, ...rest }: SceneProps) {
       );
     }
     switch (k) {
+      case "section":
+        /* A section of a page from the wireframe library: its parts were
+           expanded from the template before sanitize, so this only frames them. */
+        return (
+          <Shell as="section" kind="stack" gap={5} data-section={n.type} data-section-variant={n.variant} {...m}>
+            {kids()}
+          </Shell>
+        );
       case "card":
         return <Card variant={n.variant} {...m}>{kids()}</Card>;
       case "card-header":

@@ -1,0 +1,88 @@
+/* Pricing — one card per plan, as many columns as fit. The recommended plan
+   is named in words and given a stronger edge; its button is the solid one.
+   Prices in figures that line up; features as ticked lines. */
+@layer components {
+  :where([data-tk="pricing"]) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    align-items: stretch;
+    gap: var(--tk-space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :where([data-tk="pricing"] > [data-tk="card"][data-recommended]) {
+    border-color: var(--tk-line-strong);
+    box-shadow: inset 0 0 0 1px var(--tk-line-strong), var(--tk-shadow-sm);
+  }
+
+  :where([data-tk="pricing-head"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="pricing-head"] :is(h3, h4)) {
+    margin: 0;
+  }
+
+  :where([data-tk="pricing-price"]) {
+    margin: 0;
+  }
+
+  :where([data-tk="pricing-amount"]) {
+    font-size: var(--tk-size-2xl);
+    font-weight: var(--tk-weight-semibold);
+    line-height: var(--tk-leading-tight);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :where([data-tk="pricing-period"]) {
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-tk="pricing-summary"]) {
+    margin: 0;
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="pricing-features"]) {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+    margin: 0;
+    padding: var(--tk-space-3) 0 0;
+    list-style: none;
+    border-block-start: 1px solid var(--tk-line-subtle);
+  }
+
+  :where([data-tk="pricing-features"] li) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: var(--tk-space-2);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-tk="pricing-features"] [data-tk="icon"]) {
+    margin-block-start: 0.15em;
+  }
+
+  :where([data-tk="pricing-action"]) {
+    display: flex;
+  }
+
+  :where([data-tk="pricing-action"] > [data-tk="button"]) {
+    flex: 1 1 auto;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="pricing"] > [data-tk="card"][data-recommended]) {
+      border: 3px solid CanvasText;
+    }
+  }
+}

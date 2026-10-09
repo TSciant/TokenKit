@@ -1,0 +1,47 @@
+/* SectionHeading — the heading of one section: an eyebrow, the heading, a
+   sentence or two of introduction, and a link to everything of its kind at
+   the end of the row. It owns no surface; the section it heads does. */
+@layer components {
+  :where([data-tk="section-heading"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--tk-space-3) var(--tk-space-5);
+  }
+
+  :where([data-tk="section-heading-text"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+    min-inline-size: 0;
+    max-inline-size: var(--tk-measure);
+  }
+
+  :where([data-tk="section-heading-text"] :is(h2, h3)) {
+    margin: 0;
+  }
+
+  :where([data-tk="section-heading-intro"]) {
+    margin: 0;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="section-heading-action"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    font-weight: var(--tk-weight-semibold);
+    white-space: nowrap;
+  }
+
+  :where([data-tk="section-heading"][data-align="center"]) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  :where([data-tk="section-heading"][data-align="center"] [data-tk="section-heading-text"]) {
+    align-items: center;
+  }
+}

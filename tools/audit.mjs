@@ -8,6 +8,7 @@
  * is made from memory of a few screenshots.
  *
  *   node tools/audit.mjs --slug acme
+ *   node tools/audit.mjs --out ../acme-site/audit   (where capture --out wrote)
  *
  * Writes audits/<slug>/audit.md
  */
@@ -21,7 +22,9 @@ const ROOT = resolve(__dirname, "..");
 
 const argv = process.argv.slice(2);
 const slug = argv[argv.indexOf("--slug") + 1] || "audit";
-const dir = resolve(ROOT, "audits", slug);
+/* --out: the folder capture wrote to, when it was not audits/<slug>. */
+const outArg = argv.includes("--out") ? argv[argv.indexOf("--out") + 1] : null;
+const dir = outArg ? resolve(process.cwd(), outArg) : resolve(ROOT, "audits", slug);
 
 const site = JSON.parse(await readFile(resolve(dir, "inventory.json"), "utf8"));
 
@@ -186,4 +189,4 @@ ${table(
 `;
 
 await writeFile(resolve(dir, "audit.md"), md);
-console.log(`Wrote audits/${slug}/audit.md`);
+console.log(`Wrote ${resolve(dir, "audit.md")}`);

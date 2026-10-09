@@ -16,6 +16,55 @@
     container-type: inline-size;
   }
 
+  /* Sections from the wireframe library (src/scene/sections.mjs): a page of
+     them reads as a stack of bands, each with room, a hairline between, and
+     the site's header and footer on the sunken surface. */
+  /* Every type is named, so a new one cannot arrive without a decision about
+     how it sits on the page (the attribute gate holds the list to it). */
+  :where([data-tk="scene"]) :where(
+    [data-section="page-header"],
+    [data-section="hero"],
+    [data-section="card-collection"],
+    [data-section="feature-list"],
+    [data-section="media-with-text"],
+    [data-section="article-body"],
+    [data-section="call-to-action"],
+    [data-section="newsletter-signup"]
+  ) {
+    padding-block: var(--tk-space-6);
+  }
+
+  :where([data-tk="scene"] [data-section="hero"]) {
+    padding-block: var(--tk-space-7);
+  }
+
+  /* Bands that ask for something stand off the page. */
+  :where([data-tk="scene"] [data-section="call-to-action"]),
+  :where([data-tk="scene"] [data-section="newsletter-signup"]) {
+    padding-inline: var(--tk-gutter);
+    margin-inline: calc(-1 * var(--tk-gutter));
+    background-color: var(--tk-surface-raised);
+  }
+
+  :where([data-tk="scene"] [data-section] + [data-section]) {
+    border-block-start: 1px solid var(--tk-line-subtle);
+  }
+
+  :where([data-tk="scene"] [data-section="site-header"]),
+  :where([data-tk="scene"] [data-section="site-footer"]) {
+    padding: var(--tk-space-4) var(--tk-gutter);
+    margin-inline: calc(-1 * var(--tk-gutter));
+    background-color: var(--tk-surface-sunken);
+  }
+
+  :where([data-tk="scene"] [data-section="site-header"]) {
+    margin-block-start: calc(-1 * var(--tk-space-6));
+  }
+
+  :where([data-tk="scene"] [data-section="site-footer"]) {
+    margin-block-end: calc(-1 * var(--tk-space-6));
+  }
+
   :where([data-tk="scene"] [data-scene-active]) {
     outline: var(--tk-focus-width) dashed var(--tk-focus-color);
     outline-offset: var(--tk-focus-offset);

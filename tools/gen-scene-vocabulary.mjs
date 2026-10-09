@@ -129,6 +129,9 @@ for (const [kind, spec] of Object.entries(KIND_MAP)) {
     if (t == null) unsorted.push(`${kind}.${name} (${typeName})`);
     else props[name] = t;
   }
+  /* Props a kind declares outright: the section kind's types and variants
+     come from the wireframe library itself, not from a component's types. */
+  for (const [name, allowed] of Object.entries(spec.fixed ?? {})) props[name] = allowed;
   for (const name of Object.keys(spec.omit ?? {})) {
     if (spec.from && !checker.getPropertiesOfType(propsOf(...spec.from)).some((p) => p.name === name)) unsorted.push(`${kind}.${name}: omitted, but ${spec.from[1]} has no such prop`);
   }

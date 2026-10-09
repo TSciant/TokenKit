@@ -12,6 +12,12 @@ export type SiteHeaderProps = {
   /** Mega-menu sheet on small boxes instead of a stacked restructure. */
   withMegaMenu?: boolean;
   actions?: ReactNode;
+  /**
+   * A PhaseBanner (or any one-line strip) above the header: the site's state,
+   * where you are. Drawn before the header, not inside it, so a sticky banner
+   * stays at the top of the page rather than only the top of the header.
+   */
+  banner?: ReactNode;
 };
 
 const DEFAULT_NAV = [
@@ -30,59 +36,66 @@ export function SiteHeader({
   nav = DEFAULT_NAV,
   withMegaMenu = false,
   actions,
+  banner,
 }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuId = useId();
 
   return (
-    <header data-tk="site-header" data-mega={withMegaMenu ? "" : undefined}>
-      <div data-tk="site-header-bar">
-        <a href="#main" data-tk="site-header-brand">
-          {brand}
-        </a>
+    <>
+      {banner}
+      <header data-tk="site-header" data-mega={withMegaMenu ? "" : undefined}>
+        <div data-tk="site-header-bar">
+          <a href="#main" data-tk="site-header-brand">
+            {brand}
+          </a>
 
-        <nav aria-label="Primary" data-tk="site-header-nav">
-          <ul>
-            {nav.map((item) => (
-              <li key={item.label}>
-                <a href={item.href ?? "#main"}>{item.label}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <nav aria-label="Primary" data-tk="site-header-nav">
+            <ul>
+              {nav.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href ?? "#main"}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div data-tk="site-header-actions">
-          {actions}
-          {withMegaMenu ? (
-            <button
-              type="button"
-              data-tk="button"
-              data-variant="quiet"
-              data-size="sm"
-              aria-expanded={menuOpen}
-              aria-controls={menuId}
-              onClick={() => setMenuOpen((v) => !v)}
-            >
-              Menu
-            </button>
-          ) : null}
+          <div data-tk="site-header-actions">
+            {actions}
+            {withMegaMenu ? (
+              <button
+                type="button"
+                data-tk="button"
+                data-variant="quiet"
+                data-size="sm"
+                aria-expanded={menuOpen}
+                aria-controls={menuId}
+                onClick={() => setMenuOpen((v) => !v)}
+              >
+                Menu
+              </button>
+            ) : null}
+          </div>
         </div>
-      </div>
 
-      {withMegaMenu && menuOpen ? (
-        <div data-tk="site-header-sheet" id={menuId}>
-          <p data-tk="site-header-sheet-heading">Explore</p>
-          <ul data-tk="site-header-sheet-list">
-            {nav.map((item) => (
-              <li key={item.label}>
-                <a href={item.href ?? "#main"} onClick={() => setMenuOpen(false)}>
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-    </header>
+        {withMegaMenu && menuOpen ? (
+          <div data-tk="site-header-sheet" id={menuId}>
+            <p data-tk="site-header-sheet-heading">Explore</p>
+            <ul data-tk="site-header-sheet-list">
+              {nav.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href ?? "#main"}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </header>
+    </>
   );
 }

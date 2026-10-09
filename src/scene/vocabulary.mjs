@@ -571,5 +571,53 @@ export const KINDS = {
       "meta": "text",
       "disabled": "flag"
     }
+  },
+  "section": {
+    "name": "Section",
+    "about": "a whole section of a page from the wireframe library: give its type and variant, and its heading, body, eyebrow, actions (labels), items (how many) and media (what the picture is); it is drawn from the kit's parts",
+    "children": true,
+    "props": {
+      "type": [
+        "site-header",
+        "page-header",
+        "hero",
+        "call-to-action",
+        "card-collection",
+        "feature-list",
+        "media-with-text",
+        "newsletter-signup",
+        "article-body",
+        "site-footer"
+      ],
+      "variant": [
+        "inline",
+        "stacked",
+        "title",
+        "intro",
+        "split",
+        "centred",
+        "text-only",
+        "band",
+        "grid-3",
+        "grid-4",
+        "text-cards",
+        "list",
+        "grid",
+        "picture-left",
+        "picture-right",
+        "field",
+        "link",
+        "prose",
+        "columns",
+        "simple"
+      ],
+      "heading": "text",
+      "body": "text",
+      "eyebrow": "text",
+      "actions": "list",
+      "items": "integer",
+      "media": "text",
+      "label": "text"
+    }
   }
 };

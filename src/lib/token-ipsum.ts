@@ -8,11 +8,12 @@
    nothing to react to, and the thing they were supposed to be reviewing — the
    rhythm, the measure, the wrap — goes unexamined.
 
-   So this filler has a subject: the kit's own argument. Tokens, container
-   queries, cascade layers, concentric radii, density as a multiplier. It
-   reads like real copy because it is real copy, which means it wraps like
-   real copy, and anyone who does stop to read it learns why the thing they
-   are looking at is built the way it is.
+   So this filler has a subject, and a neutral one: the ordinary website of
+   an ordinary organisation. Services, visits, bookings, accounts, events,
+   opening hours, help. It reads like real copy because it is shaped like
+   the copy a client's pages actually carry, which means it wraps like it,
+   and it says nothing about this kit or any client, so it can sit in any
+   engagement's wireframes without explaining itself.
 
    Two properties that matter more than the prose:
 
@@ -75,103 +76,164 @@ function one<T>(pool: readonly T[], seed: string): T {
 
 /** Short, headline-shaped. Six to eleven words. */
 const HEADLINES = [
-  "A token is a decision you only make once",
-  "The browser already knows how wide the box is",
-  "Container queries ask the parent, not the page",
-  "Breakpoints describe a device nobody is holding",
-  "One contract, two packs, no exceptions",
-  "Density is a multiplier, not a redesign",
-  "Inner radius equals outer radius minus the gap",
-  "Layers decide who wins before specificity is consulted",
-  "A component that knows a hex value cannot be rethemed",
-  "Measure the page, do not describe it",
-  "Every scale step is a published decision",
-  "The cascade is an API, not an accident",
-  "Composition beats configuration at every size",
-  "Intrinsic sizing is the layout doing its own arithmetic",
-  "A wireframe should answer revisions, not generate them",
+  "Find the right service in a few steps",
+  "Everything you need to know before your first visit",
+  "New opening hours start at the beginning of May",
+  "How we use your feedback to improve what we offer",
+  "Book, change or cancel an appointment online",
+  "A simpler way to manage your account",
+  "Meet the team behind this year's programme",
+  "What changes for members from the spring onwards",
+  "Our guide to getting started, step by step",
+  "Answers to the questions we are asked most",
+  "Five things to check before you apply",
+  "Local projects that made a difference this year",
+  "Support is now available in more places than before",
+  "Planning ahead makes the whole process faster",
+  "We have updated how we look after your information",
 ] as const;
 
 /** Deck / standfirst length — one long sentence or two short ones. */
 const DECKS = [
-  "A token names a decision so the decision stops being retyped. Change the name's value and everything that read it changes with it, which is the only kind of consistency that survives a deadline.",
-  "Container queries let a component size itself from the space it was handed rather than from the width of the window. The same card works in a sidebar, a three-up grid and a full-bleed row without knowing which one it is in.",
-  "Breakpoints encode a guess about hardware. Containers encode a fact about layout, and facts age better than guesses — a component built against its own box keeps working on a screen that did not exist when it was written.",
-  "Cascade layers settle precedence before specificity is ever consulted, so a utility can override a component without a selector arms race and a brand pack can override both without touching either.",
-  "Density is one multiplier applied to a private spacing ramp. A comfortable page and a compact page are the same markup, the same components and the same tokens, resolving differently.",
-  "Two rounded boxes whose arcs do not share a centre look approximate no matter how careful the rest of the page is. Inner radius is outer radius less the gap, and the eye catches the difference long before anyone can name it.",
-  "Everything here is drawn from a grayscale contract on purpose. Colour arrives as a pack, late, and the layout has already been proved without it.",
+  "Most requests can be made online in a few minutes. If you would rather talk to someone, our team is available by phone on weekdays and will call you back the same day.",
+  "Before you start, gather the documents listed below. Having them to hand means you can finish in one sitting instead of saving your progress and coming back to it later in the week.",
+  "We have changed our opening hours to fit around the times people actually visit. Evenings are longer during the week, we now open on Saturday mornings, and the first hour of each day is kept quiet for those who prefer it.",
+  "This guide explains what happens after you apply, how long each stage usually takes, and who to contact if something does not go the way you expected or you need to change your details.",
+  "Members can now manage bookings, payments and preferences in one place. Your existing details have been carried across, so there is nothing to set up again.",
+  "Every year we ask the people who use our services what we should change. Here is what you told us, what we have done about it so far, and what comes next, with dates where we have them.",
+  "Our events are free unless stated otherwise. Places are limited, so we recommend booking ahead, and we will send a reminder the day before.",
 ] as const;
 
 /** Body-copy sentences. Combine for paragraphs. */
 const SENTENCES = [
-  "A token is a named decision, and naming it is what stops it being made again.",
-  "The value lives in one place; everything downstream reads it rather than repeats it.",
-  "Container queries resolve against the element's own box, so a component can be honest about the space it was actually given.",
-  "A media query asks how wide the window is, which is rarely the question the component needs answered.",
-  "The same card in a sidebar and in a four-up grid is the same component, resolving twice.",
-  "Cascade layers put the precedence argument in one line at the top of the file instead of in every selector.",
-  "An unlayered rule beats every layered rule regardless of specificity, which is either a useful escape hatch or a silent bug depending on whether it was deliberate.",
-  "Custom properties are substituted at computed-value time and inherited as values, so a derivation has to be restated wherever its input can change.",
-  "Density multiplies a private spacing ramp rather than being applied at each call site, which is what lets a nested region actually nest.",
-  "Pointer targets have a floor that density is not allowed to argue with.",
-  "Intrinsic sizing lets the content do the arithmetic, and the content is the only party that knows how long it is.",
-  "Type scales with the box it sits in, because a heading that is right at one width is wrong at another.",
-  "Concentric corners are not a preference; there is exactly one inner radius that shares a centre with a given outer one.",
-  "Contrast is a property of a pair in a context, so it is checked in context rather than asserted from a palette.",
-  "A grayscale wireframe proves the structure before anyone can be distracted by the colour.",
-  "The brand arrives as a pack of values, late, and nothing in the component layer has to be rewritten to receive it.",
-  "Motion reads its pace from the same tokens as everything else, so the whole interface moves at one speed.",
-  "Reduced motion is a preference the system honours rather than an option it offers.",
-  "Every claim the system makes about itself is checked by something that runs, because a claim nobody measures is a claim that quietly stops being true.",
-  "What renders in the browser is the artifact; everything before it was a description of the artifact.",
+  "You can apply online at any time, and most applications take about ten minutes.",
+  "We will send a confirmation email as soon as your request has been received.",
+  "If you need to change your appointment, you can do it from your account up to a day before it is due.",
+  "Our team is available by phone from nine in the morning until five in the afternoon, Monday to Friday.",
+  "Parking is available on site, with spaces reserved near the entrance.",
+  "Bring a form of identification and any letters we have sent you about your request.",
+  "Most decisions are made within ten working days, and we will let you know straight away if yours is going to take longer than that.",
+  "You do not need an account to make a general enquiry, but having one lets you follow its progress and see every message in one place.",
+  "Prices are reviewed once a year, and members are told about any change at least a month before it takes effect, by email and by post.",
+  "The building is step-free throughout, with lifts to every floor.",
+  "We publish a summary of the feedback we receive every quarter, along with what we changed as a result of it.",
+  "Children under twelve are welcome when they are accompanied by an adult, and there is a quiet room on the ground floor.",
+  "If something has gone wrong, tell us and we will do our best to put it right as quickly as we can, and explain what happened.",
+  "Information about upcoming events is updated every Monday, and you can sign up to hear about new dates as soon as they are announced.",
+  "You can choose how we contact you, and change your mind whenever you like.",
+  "Some services are only available to members, and these are marked clearly on each page where they appear.",
+  "Large print, audio and translated versions of this information are available on request.",
+  "We keep your details only for as long as we need them.",
+  "Our volunteers give their time freely, and we are always glad to hear from people who would like to join them, whatever experience they have.",
+  "Opening times can change on public holidays, so check this page before you travel.",
 ] as const;
 
 /** Short labels — nav items, chips, filters, tile titles. */
 const LABELS = [
-  "Tokens", "Contract", "Packs", "Scales", "Density", "Layers",
-  "Shells", "Containers", "Measure", "Contrast", "Motion", "Corners",
-  "Primitives", "Patterns", "Composition", "Surfaces", "Typography", "Texture",
+  "Services", "Events", "Guides", "About", "Contact", "News",
+  "Visit", "Membership", "Support", "Account", "Bookings", "Locations",
+  "Opening hours", "Volunteering", "Careers", "Policies", "Help", "Resources",
 ] as const;
 
 /** Slightly longer labels — card titles, list headings. */
 const TITLES = [
-  "Naming the decision once",
-  "Asking the box, not the window",
-  "Precedence before specificity",
-  "One ramp, one multiplier",
-  "Arcs that share a centre",
-  "Proving it in context",
-  "Colour arrives last",
-  "The measure sets the column",
-  "Shells within shells",
-  "Everything is a published step",
-  "Pace from the same tokens",
-  "Structure before surface",
+  "Getting started with us",
+  "Planning your first visit",
+  "Managing your account",
+  "Booking an appointment",
+  "Opening hours and holidays",
+  "Ways to get involved locally",
+  "Help with the cost of membership",
+  "Accessibility information",
+  "Upcoming events this season",
+  "Questions people often ask",
+  "Contact the support team",
+  "Latest updates and news",
 ] as const;
 
 /** Eyebrow / kicker words. */
 const EYEBROWS = [
-  "Foundations", "Contract", "Method", "Reference", "Principle",
-  "Pattern", "Doctrine", "Rationale", "Specimen", "Note",
+  "Guide", "News", "Event", "Service", "Update",
+  "Feature", "Case study", "How to", "Notice", "Resource",
 ] as const;
 
-/** Person-shaped names for directory placeholders — invented, not real. */
+/** Person-shaped names for directory placeholders: plainly invented, so a
+    placeholder card can never be mistaken for a real person. */
 const NAMES = [
-  "Avery Cascade", "Rowan Gutter", "Sasha Leading", "Micah Baseline",
-  "Noor Tracking", "Quinn Kerning", "Sky Measure", "Ellis Ramp",
-  "Reese Container", "Harper Token", "Frankie Layer", "Jules Viewport",
+  "Alex Example", "Jordan Sample", "Sam Placeholder", "Taylor Draft",
+  "Robin Standin", "Casey Template", "Morgan Mockup", "Jamie Example",
+  "Riley Sample", "Drew Placeholder", "Charlie Draft", "Avery Standin",
 ] as const;
 
 const ROLES = [
-  "Systems lead", "Principal, layout", "Type and measure",
-  "Contrast and colour", "Motion", "Accessibility",
-  "Tokens and packs", "Composition", "Documentation",
+  "Director", "Operations manager", "Programme lead",
+  "Customer support", "Communications", "Finance",
+  "Volunteer coordinator", "Research", "Partnerships",
 ] as const;
 
 const PLACES = [
-  "Remote", "Studio", "Atelier", "Workshop", "Annex", "Loft",
+  "Head office", "North branch", "City centre", "Online", "Riverside", "Community hall",
 ] as const;
+
+/** Figures for a proof strip: deliberately round and obviously invented. */
+const STAT_VALUES = ["90%", "3x", "24/7", "1,200", "15 min", "4.8/5", "40", "12"];
+const STAT_LABELS = [
+  "Of requests answered in a day",
+  "More bookings made online",
+  "Help available online",
+  "Members across the region",
+  "Average wait on the phone",
+  "Average visitor rating",
+  "Volunteers this year",
+  "Locations",
+];
+
+/* ---------------------------------------------------------------------------
+   Voices.
+
+   A voice is every pool the functions below draw from. Each voice has the
+   same pools at the same sizes, so a seed lands on the same slot whichever is
+   in force: switching voice changes the words, never the shape of a page.
+
+   The neutral voice above is the default. The kit's Storybook switches to
+   the kit's own (token-ipsum-kit.ts) for its pages and the stories its Figma
+   components are checked against; nothing else imports that file.
+--------------------------------------------------------------------------- */
+
+export interface IpsumVoice {
+  headlines: readonly string[];
+  decks: readonly string[];
+  sentences: readonly string[];
+  labels: readonly string[];
+  titles: readonly string[];
+  eyebrows: readonly string[];
+  names: readonly string[];
+  roles: readonly string[];
+  places: readonly string[];
+  statValues: readonly string[];
+  statLabels: readonly string[];
+}
+
+export const NEUTRAL_VOICE: IpsumVoice = {
+  headlines: HEADLINES,
+  decks: DECKS,
+  sentences: SENTENCES,
+  labels: LABELS,
+  titles: TITLES,
+  eyebrows: EYEBROWS,
+  names: NAMES,
+  roles: ROLES,
+  places: PLACES,
+  statValues: STAT_VALUES,
+  statLabels: STAT_LABELS,
+};
+
+let voice: IpsumVoice = NEUTRAL_VOICE;
+
+/** Use this voice for every call from now on. Set it once, before anything renders. */
+export function setIpsumVoice(next: IpsumVoice): void {
+  voice = next;
+}
 
 /* ---------------------------------------------------------------------------
    The API.
@@ -182,42 +244,42 @@ const PLACES = [
 
 /** One headline. Six to eleven words. */
 export function ipsumHeadline(seed = "headline"): string {
-  return one(HEADLINES, seed);
+  return one(voice.headlines, seed);
 }
 
 /** One deck / standfirst. One long sentence or two short ones. */
 export function ipsumDeck(seed = "deck"): string {
-  return one(DECKS, seed);
+  return one(voice.decks, seed);
 }
 
 /** A card title — shorter than a headline, longer than a label. */
 export function ipsumTitle(seed = "title"): string {
-  return one(TITLES, seed);
+  return one(voice.titles, seed);
 }
 
 /** A single short label: nav item, chip, filter, tile. */
 export function ipsumLabel(seed = "label"): string {
-  return one(LABELS, seed);
+  return one(voice.labels, seed);
 }
 
 /** An eyebrow / kicker. */
 export function ipsumEyebrow(seed = "eyebrow"): string {
-  return one(EYEBROWS, seed);
+  return one(voice.eyebrows, seed);
 }
 
 /** `count` distinct labels. */
 export function ipsumLabels(count: number, seed = "labels"): string[] {
-  return pick(LABELS, count, seed);
+  return pick(voice.labels, count, seed);
 }
 
 /** `count` distinct titles. */
 export function ipsumTitles(count: number, seed = "titles"): string[] {
-  return pick(TITLES, count, seed);
+  return pick(voice.titles, count, seed);
 }
 
 /** A paragraph of `sentences` sentences. Two is a card; four is an article. */
 export function ipsumBody(sentences = 2, seed = "body"): string {
-  return pick(SENTENCES, sentences, seed).join(" ");
+  return pick(voice.sentences, sentences, seed).join(" ");
 }
 
 /** `count` paragraphs, each of two to four sentences. */
@@ -230,7 +292,7 @@ export function ipsumParagraphs(count = 3, seed = "paragraphs"): string[] {
 
 /** `count` list items — one sentence each. */
 export function ipsumList(count = 4, seed = "list"): string[] {
-  return pick(SENTENCES, count, seed);
+  return pick(voice.sentences, count, seed);
 }
 
 /**
@@ -240,7 +302,7 @@ export function ipsumPairs(
   count = 4,
   seed = "pairs",
 ): { label: string; body: string }[] {
-  const labels = pick(TITLES, count, `${seed}-l`);
+  const labels = pick(voice.titles, count, `${seed}-l`);
   return labels.map((label, i) => ({
     label,
     body: ipsumBody(1, `${seed}-b-${i}`),
@@ -256,23 +318,12 @@ export function ipsumStats(
   count = 3,
   seed = "stats",
 ): { value: string; label: string }[] {
-  const values = ["100%", "3x", "24px", "1.25", "0ms", "4.5:1", "7", "12"];
-  const labels = [
-    "Of decisions named once",
-    "Contexts, one component",
-    "Minimum pointer target",
-    "Comfortable density",
-    "Layout shift budget",
-    "Normal-text contrast floor",
-    "Layers in the cascade",
-    "Steps in the space ramp",
-  ];
   const idx = pick(
-    values.map((_, i) => i),
+    voice.statValues.map((_, i) => i),
     count,
     seed,
   );
-  return idx.map((i) => ({ value: values[i], label: labels[i] }));
+  return idx.map((i) => ({ value: voice.statValues[i], label: voice.statLabels[i] }));
 }
 
 /** Invented people for a directory. Not real, and not meant to look real. */
@@ -280,12 +331,12 @@ export function ipsumPeople(
   count = 4,
   seed = "people",
 ): { name: string; role: string; place: string }[] {
-  const names = pick(NAMES, count, `${seed}-n`);
+  const names = pick(voice.names, count, `${seed}-n`);
   const next = rng(`${seed}-r`);
   return names.map((name) => ({
     name,
-    role: ROLES[Math.floor(next() * ROLES.length)],
-    place: PLACES[Math.floor(next() * PLACES.length)],
+    role: voice.roles[Math.floor(next() * voice.roles.length)],
+    place: voice.places[Math.floor(next() * voice.places.length)],
   }));
 }
 
@@ -295,5 +346,5 @@ export function ipsumWhen(seed = "when"): string {
   const months = ["March", "April", "May", "June", "September", "October"];
   const d = 1 + Math.floor(next() * 27);
   const m = months[Math.floor(next() * months.length)];
-  return `${d}–${d + 1} ${m} · ${one(PLACES, `${seed}-p`)}`;
+  return `${d}–${d + 1} ${m} · ${one(voice.places, `${seed}-p`)}`;
 }

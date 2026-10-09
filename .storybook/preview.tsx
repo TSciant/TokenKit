@@ -1,4 +1,7 @@
 import type { Preview, Decorator } from "@storybook/react-vite";
+/* First: the sample-text voice has to be set before any module below builds
+   its placeholders (src/samples builds some as it loads). */
+import "./ipsum-voice";
 import { useEffect } from "react";
 
 import { ContentProvider } from "../src/samples/content";
@@ -7,6 +10,7 @@ import { withTokens } from "./tokens";
 
 import "../src/css/index.css";
 import "../src/css/specimens.css";
+import "../src/tokens/doc.css";
 import "./storybook.css";
 
 /**

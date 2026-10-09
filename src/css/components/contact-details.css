@@ -1,0 +1,44 @@
+/* ContactDetails — how to reach someone, a line each: address, phone, email,
+   hours, directions. A small icon starts each line; the line's kind is also
+   spoken as a word, so the icon is never the only label. */
+@layer components {
+  :where([data-tk="contact-details"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+    font-style: normal;
+  }
+
+  :where([data-tk="contact-details-name"]) {
+    margin: 0;
+    font-weight: var(--tk-weight-semibold);
+  }
+
+  :where([data-tk="contact-details-list"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :where([data-tk="contact-details-row"]) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: var(--tk-space-2);
+    line-height: var(--tk-leading-normal);
+    overflow-wrap: anywhere;
+  }
+
+  /* The icon sits on the first line of its text, not the middle of the block. */
+  :where([data-tk="contact-details-row"] > [data-tk="icon"]) {
+    margin-block-start: 0.2em;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="contact-details-line"]) {
+    display: block;
+  }
+}

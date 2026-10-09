@@ -67,6 +67,7 @@ const SCRIPT_ONLY = new Map([
   ["data-header-menu", "hook for the header's outside-click close"],
   ["data-state", "written by script to reflect open/closed for the hook above; the CSS reads data-open"],
   ["data-scene-node", "a scene part's place in its scene, read by Scene and SceneLayers to light it; the CSS reads data-scene-active"],
+  ["data-section-variant", "a library section's layout, named for layers panels and audits; its shells draw the layout, so the CSS has nothing to add"],
 ]);
 
 export function attributeCheck(argv = process.argv.slice(2)) {

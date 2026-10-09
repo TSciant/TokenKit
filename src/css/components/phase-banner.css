@@ -1,0 +1,43 @@
+/* PhaseBanner — a quiet strip above the site header: the site's state (a
+   prototype, a beta), where you are, one line of context. Sticky by default
+   so the caveat stays in view. It reads as a statement, not an alert: the
+   surface and a hairline, nothing louder. */
+@layer components {
+  :where([data-tk="phase-banner"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-1) var(--tk-space-3);
+    padding: var(--tk-space-2) var(--tk-space-4);
+    border-block-end: 1px solid var(--tk-line-subtle);
+    background-color: var(--tk-surface-default);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-tk="phase-banner"][data-sticky]) {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 20;
+    /* Content passes underneath: keep it legible but let it show it moved. */
+    background-color: color-mix(in srgb, var(--tk-surface-default) 92%, transparent);
+    backdrop-filter: blur(var(--tk-scrim-blur-base));
+  }
+
+  :where([data-tk="phase-banner"] [data-tk="eyebrow"]) {
+    margin: 0;
+  }
+
+  :where([data-tk="phase-banner-title"]) {
+    font-weight: var(--tk-weight-semibold);
+  }
+
+  :where([data-tk="phase-banner-text"]) {
+    color: var(--tk-text-secondary);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="phase-banner"]) {
+      border-block-end-color: CanvasText;
+    }
+  }
+}

@@ -24,6 +24,8 @@
  * class name, a callback, a URL, markup. A scene says what the kit can draw.
  */
 
+import { SECTION_TYPES, SECTION_VARIANTS } from "./sections.mjs";
+
 const SHELL_OMIT = {
   as: "the element is the shell's business",
   kind: "fixed by the scene kind",
@@ -191,5 +193,27 @@ export const KIND_MAP = {
     textProps: ["description", "meta"],
     omit: { value: "the renderer gives each choice its value" },
     about: "one choice card: its text is the option's name; description and meta (a price, Recommended) are optional",
+  },
+
+  /* A whole section of a page from the wireframe library (sections.mjs): a
+     type and a layout, and the words it should carry. It expands into the
+     parts above before the scene is sanitized, so it draws nothing the kit
+     would not; written with its own children, it is drawn as written. */
+  section: {
+    name: "Section",
+    element: "section",
+    children: true,
+    fixed: {
+      type: SECTION_TYPES,
+      variant: SECTION_VARIANTS,
+      heading: "text",
+      body: "text",
+      eyebrow: "text",
+      actions: "list",
+      items: "integer",
+      media: "text",
+      label: "text",
+    },
+    about: "a whole section of a page from the wireframe library: give its type and variant, and its heading, body, eyebrow, actions (labels), items (how many) and media (what the picture is); it is drawn from the kit's parts",
   },
 };

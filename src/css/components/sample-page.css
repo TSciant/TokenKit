@@ -93,50 +93,11 @@
   }
 
   /* --- the clickable prototype's own chrome --------------------------------
-     These three were written as inline styles on elements that carried kit
-     names. Both halves of that were wrong: an inline style is the one thing a
-     pack cannot override, so the prototype — the artefact a client actually
-     looks at — was the one page in the kit that did not fully respond to a
-     brand; and a data-tk that no selector answers is a hook the CSS does not
-     honour, which is what tools/attribute-gate.mjs is for.
-
-     The rail is a Storybook affordance rather than page furniture, so it is
-     deliberately quiet: it says which route you are on and gets out of the
-     way.
+     Its sticky rail is the kit's PhaseBanner (phase-banner.css); what stays
+     here is the wrapper.
      -------------------------------------------------------------------- */
   :where([data-tk="prototype"]) {
     display: block;
-  }
-
-  :where([data-tk="prototype-rail"]) {
-    position: sticky;
-    inset-block-start: 0;
-    z-index: 20;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--tk-space-3);
-    padding: var(--tk-space-2) var(--tk-space-4);
-    border-block-end: 1px solid var(--tk-line-subtle);
-    background-color: color-mix(
-      in srgb,
-      var(--tk-surface-default) 92%,
-      transparent
-    );
-    backdrop-filter: blur(8px);
-    font-size: var(--tk-size-sm);
-  }
-
-  :where([data-tk="prototype-rail"] [data-tk="eyebrow"]) {
-    margin: 0;
-  }
-
-  :where([data-tk="prototype-route"]) {
-    font-weight: var(--tk-weight-semibold);
-  }
-
-  :where([data-tk="prototype-spine"]) {
-    color: var(--tk-text-secondary);
   }
 
   /* A route button that has to read as a link. `font: inherit` and no chrome

@@ -7,7 +7,7 @@
 import { useId, useState } from "react";
 import { Arrow } from "../primitives/Arrow";
 import { Plate } from "../primitives/Plate";
-import { ArrowCta } from "./marketing";
+import { ArrowCta } from "./ArrowCta";
 import type { Cols } from "./types";
 import { Icon, type IconName } from "../primitives/Icon";
 import { Chip } from "../primitives/Chip";
@@ -22,7 +22,6 @@ import {
   ipsumList,
   ipsumPeople,
   ipsumTitles,
-  ipsumWhen,
 } from "../../lib/token-ipsum";
 
 /* ---------------------------------------------------------------------------
@@ -350,8 +349,9 @@ export const PEOPLE_DIRECTORY_HEADING = ipsumHeadline(
   "people-directory-heading",
 );
 
-/* The names are invented on purpose — Avery Cascade, Micah Baseline — so a
-   placeholder card can never be mistaken for a real person. */
+/* The names are invented on purpose — Alex Example, or Avery Cascade in the
+   kit's own voice — so a placeholder card can never be mistaken for a real
+   person. */
 export const STAFF: Person[] = ipsumPeople(4, "people-directory").map(
   ({ name, role }) => ({ name, role }),
 );
@@ -474,70 +474,7 @@ export function PeopleDirectory({
   );
 }
 
-export type EventRow = { date: string; title: string; place: string };
-
-export const EVENT_LIST_HEADING = ipsumHeadline("event-list-heading");
-
-/* ipsumWhen returns one "date · place" line; the row renders the two halves
-   in separate slots, so it is split back apart here. */
-export const EVENT_ROWS: EventRow[] = ipsumTitles(3, "event-list-titles").map(
-  (title, i) => {
-    const [date, place] = ipsumWhen(`event-list-when-${i}`).split(" · ");
-    return { date, title, place };
-  },
-);
-
-export type EventListProps = {
-  heading?: string;
-  events?: EventRow[];
-  ctaLabel?: string;
-};
-
-/** 24 — event rows: date, title, location, action. */
-export function EventList({
-  heading = EVENT_LIST_HEADING,
-  events = EVENT_ROWS,
-  ctaLabel = "Register",
-}: EventListProps = {}) {
-  return (
-    <section data-shell="center" data-width="wide" data-gap="4" style={{ paddingBlock: "var(--tk-space-7)" }}>
-      <h2 style={{ margin: 0 }}>{heading}</h2>
-      <ul data-shell="stack" data-gap="0">
-        {events.map((e) => (
-          <li
-            key={e.title}
-            data-shell="split"
-            data-gap="4"
-            style={{
-              paddingBlock: "var(--tk-space-4)",
-              borderBlockEnd: "1px solid var(--tk-line-default)",
-            }}
-          >
-            <div data-shell="stack" data-gap="1">
-              <p
-                style={{
-                  margin: 0,
-                  fontFamily: "var(--tk-font-mono)",
-                  fontSize: "var(--tk-size-xs)",
-                  color: "var(--tk-text-tertiary)",
-                  fontVariantNumeric: "tabular-nums",
-                }}
-              >
-                {e.date} · {e.place}
-              </p>
-              <h3 style={{ margin: 0, fontSize: "var(--tk-size-lg)" }}>
-                <a href="#main">{e.title}</a>
-              </h3>
-            </div>
-            <div style={{ flex: "0 0 auto" }}>
-              <ArrowCta size="sm" variant="outline">
-                {ctaLabel}
-                <span data-tk="visually-hidden"> for {e.title}</span>
-              </ArrowCta>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
+/* 24 — the event list is its own file, so a client cut can take it alone;
+   re-exported here so nothing that imported it from here moves. */
+export { EventList, EVENT_LIST_HEADING, EVENT_ROWS } from "./EventList";
+export type { EventRow, EventListProps } from "./EventList";

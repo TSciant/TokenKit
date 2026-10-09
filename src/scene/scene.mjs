@@ -15,10 +15,12 @@
  */
 
 import { KINDS, PACKS } from "./vocabulary.mjs";
+import { expandSections } from "./sections.mjs";
 
 export { KINDS, PACKS };
 
-export const LIMITS = { nodes: 150, depth: 10, text: 240, title: 80, options: 12 };
+/* A page of sections runs to a few hundred parts once they are expanded. */
+export const LIMITS = { nodes: 400, depth: 14, text: 240, title: 80, options: 12 };
 
 /* Words a kind needs to make sense when a scene leaves them out. */
 const FALLBACK_TEXT = { "button-group": "Actions", "choice-group": "Choose one", choice: "Option" };
@@ -112,10 +114,12 @@ export function sanitize(input, { icons } = {}) {
     }
   }
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw new Error("A scene is an object with a root part.");
-  const root = raw.root ?? (raw.kind ? raw : null);
+  /* Short sections become their parts first (sections.mjs), so what is checked is what is drawn. */
+  const sectionNotes = [];
+  const root = expandSections(raw.root ?? (raw.kind ? raw : null), sectionNotes);
   if (!root || typeof root !== "object") throw new Error('A scene needs a root part: { "root": { "kind": "card", … } }.');
 
-  const notes = new Set();
+  const notes = new Set(sectionNotes);
   let count = 0;
 
   function clean(node, depth, parent) {

@@ -1,0 +1,40 @@
+/* QuestionList — questions and answers, all shown. Each question a heading,
+   each answer under it at reading measure, a hairline between pairs. */
+@layer components {
+  :where([data-tk="question-list"]) {
+    display: flex;
+    flex-direction: column;
+    border-block-start: 1px solid var(--tk-line-subtle);
+  }
+
+  :where([data-tk="question"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+    padding-block: var(--tk-space-4);
+    border-block-end: 1px solid var(--tk-line-subtle);
+  }
+
+  :where([data-tk="question-text"]) {
+    margin: 0;
+  }
+
+  :where([data-tk="question-answer"]) {
+    max-inline-size: var(--tk-measure);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="question-answer"] > :first-child) {
+    margin-block-start: 0;
+  }
+
+  :where([data-tk="question-answer"] > :last-child) {
+    margin-block-end: 0;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="question-list"], [data-tk="question"]) {
+      border-color: CanvasText;
+    }
+  }
+}

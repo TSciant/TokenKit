@@ -1,6 +1,6 @@
 {
   "name": "tokenkit",
-  "version": "0.2.0",
+  "version": "0.3.2",
   "private": true,
   "type": "module",
   "description": "A token-driven CSS design system. Primitives, layout shells, and a headless accessibility gate.",
@@ -21,6 +21,10 @@
     "gate:report": "node tools/contrast-gate.mjs --report",
     "capture": "node tools/capture.mjs",
     "audit": "node tools/audit.mjs",
+    "plan-urls": "node tools/plan-urls.mjs",
+    "regions": "node tools/regions.mjs",
+    "name-regions": "node tools/name-regions.mjs",
+    "scorecard": "node tools/scorecard.mjs",
     "onionskin": "node tools/onionskin.mjs",
     "lint:css": "node tools/lint-tokens.mjs",
     "check": "node tools/check.mjs",
@@ -55,6 +59,7 @@
     "icons": "node tools/gen-icon-set.mjs",
     "icons:check": "node tools/gen-icon-set.mjs --check",
     "figma:manifest": "node tools/figma-manifest.mjs",
+    "figma:guidelines": "node tools/figma-guidelines.mjs",
     "figma:onion": "node tools/onion-check.mjs",
     "figma:meta": "node tools/figma-meta.mjs"
   },

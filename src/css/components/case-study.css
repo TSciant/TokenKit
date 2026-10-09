@@ -1,0 +1,94 @@
+/* CaseStudy — one piece of work as a story: the head (client, title,
+   summary), the parts as label and paragraph, the results as a row of
+   figures, and a link to the whole story. */
+@layer components {
+  :where([data-tk="case-study"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-5);
+  }
+
+  :where([data-tk="case-study-head"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+    max-inline-size: var(--tk-measure);
+  }
+
+  :where([data-tk="case-study-head"] :is(h2, h3)) {
+    margin: 0;
+  }
+
+  :where([data-tk="case-study-summary"]) {
+    margin: 0;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="case-study-parts"]) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: var(--tk-space-4) var(--tk-space-5);
+    margin: 0;
+  }
+
+  :where([data-tk="case-study-part"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-1);
+    padding-block-start: var(--tk-space-3);
+    border-block-start: 1px solid var(--tk-line-default);
+  }
+
+  :where([data-tk="case-study-part"] dt) {
+    font-family: var(--tk-font-mono);
+    font-size: var(--tk-size-xs);
+    letter-spacing: var(--tk-tracking-wide);
+    text-transform: uppercase;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="case-study-part"] dd) {
+    margin: 0;
+  }
+
+  :where([data-tk="case-study-results"]) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tk-space-4) var(--tk-space-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :where([data-tk="case-study-results"] li) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-1);
+  }
+
+  :where([data-tk="case-study-value"]) {
+    font-size: var(--tk-size-2xl);
+    font-weight: var(--tk-weight-semibold);
+    line-height: var(--tk-leading-tight);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :where([data-tk="case-study-measure"]) {
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="case-study-link"]) {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: var(--tk-space-2);
+    font-weight: var(--tk-weight-semibold);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="case-study-part"]) {
+      border-color: CanvasText;
+    }
+  }
+}

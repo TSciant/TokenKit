@@ -71,7 +71,7 @@ const STORIES = [
   ["03", "Contact CTA", "chrome", "ContactCta"],
   ["04", "Header search", "chrome", "HeaderSearch"],
   ["05", "Hero carousel", "marketing", "HeroCarousel"],
-  ["06", "Arrow CTA", "marketing", "ArrowCta"],
+  ["06", "Arrow CTA", "ArrowCta", "ArrowCta"],
   ["07", "Proof strip", "marketing", "ProofStrip"],
   ["08", "Segment list", "marketing", "SegmentList"],
   ["09", "Feature grid", "marketing", "FeatureGrid"],
@@ -89,12 +89,14 @@ const STORIES = [
   ["21", "Segment page", "templates", "SegmentPage"],
   ["22", "Sub-brand page", "templates", "SubBrandPage"],
   ["23", "Article page", "templates", "ArticlePage"],
-  ["24", "Event list", "catalog", "EventList"],
+  ["24", "Event list", "EventList", "EventList"],
   ["25", "Apply form", "templates", "ApplyForm"],
   ["26", "Hero", "marketing", "Hero"],
 ];
 
-const MODULES = ["chrome", "marketing", "catalog", "templates"];
+/* ArrowCta and EventList are files of their own, so a client cut can take one
+   without the module it came from. */
+const MODULES = ["chrome", "marketing", "catalog", "templates", "ArrowCta", "EventList"];
 
 /** `Mega menu` -> `MegaMenu`, so the filename is greppable from the title. */
 const pascal = (s) =>

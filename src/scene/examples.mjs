@@ -237,4 +237,28 @@ export const EXAMPLES = [
       ],
     },
   },
+  {
+    title: "Landing page",
+    brand: "wireframe",
+    root: {
+      kind: "stack",
+      gap: 0,
+      children: [
+        { kind: "section", type: "site-header", variant: "inline" },
+        {
+          kind: "section",
+          type: "hero",
+          variant: "split",
+          eyebrow: "New",
+          heading: "Plan the whole project in one place",
+          body: "Budgets, people and deadlines side by side, so nothing waits on a spreadsheet.",
+          actions: ["Start free", "See a demo"],
+          media: "Product screen",
+        },
+        { kind: "section", type: "card-collection", variant: "grid-3", heading: "What teams use it for" },
+        { kind: "section", type: "call-to-action", variant: "split", heading: "Ready when you are", body: "Set up takes ten minutes.", actions: ["Start free"] },
+        { kind: "section", type: "site-footer", variant: "simple" },
+      ],
+    },
+  },
 ];

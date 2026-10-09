@@ -1,0 +1,79 @@
+/* Agenda — an event's sessions in order. Times in a column of their own, in
+   figures that line up; on a narrow screen the time sits above its session. */
+@layer components {
+  :where([data-tk="agenda"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-3);
+    container-type: inline-size;
+  }
+
+  :where([data-tk="agenda-note"]) {
+    margin: 0;
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="agenda-list"]) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-block-start: 1px solid var(--tk-line-subtle);
+  }
+
+  :where([data-tk="agenda-session"]) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--tk-space-1) var(--tk-space-5);
+    padding-block: var(--tk-space-4);
+    border-block-end: 1px solid var(--tk-line-subtle);
+  }
+
+  @container (min-width: 36rem) {
+    :where([data-tk="agenda-session"]) {
+      grid-template-columns: 7rem minmax(0, 1fr);
+    }
+  }
+
+  :where([data-tk="agenda-time"]) {
+    margin: 0;
+    font-family: var(--tk-font-mono);
+    font-size: var(--tk-size-sm);
+    font-variant-numeric: tabular-nums;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="agenda-body"]) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--tk-space-1);
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="agenda-title"]) {
+    margin: 0;
+  }
+
+  :where([data-tk="agenda-speakers"]) {
+    margin: 0;
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+  }
+
+  :where([data-tk="agenda-detail"]) {
+    margin: 0;
+    max-inline-size: var(--tk-measure);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="agenda-action"]) {
+    margin-block-start: var(--tk-space-2);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="agenda-list"], [data-tk="agenda-session"]) {
+      border-color: CanvasText;
+    }
+  }
+}

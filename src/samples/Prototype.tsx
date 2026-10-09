@@ -17,6 +17,7 @@ import {
   TeamPage,
 } from "./pages";
 import { PrototypeHeader } from "./PrototypeHeader";
+import { PhaseBanner } from "../react/primitives/PhaseBanner";
 import { ROUTE_TITLE, STORY, type ProtoRoute } from "./nav";
 
 export type PrototypeProps = {
@@ -48,9 +49,7 @@ export function Prototype({
     }
   }, []);
 
-  const header = (
-    <PrototypeHeader current={route} onNavigate={onNavigate} />
-  );
+  const header = <PrototypeHeader current={route} onNavigate={onNavigate} />;
 
   const pageProps = { header, onNavigate };
 
@@ -87,13 +86,9 @@ export function Prototype({
   return (
     <div data-tk="prototype">
       {showRail ? (
-      <div data-tk="prototype-rail" role="status" aria-live="polite">
-        <span data-tk="eyebrow">Prototype</span>
-        <strong data-tk="prototype-route">{ROUTE_TITLE[route]}</strong>
-        <span data-tk="prototype-spine">
+        <PhaseBanner label="Prototype" title={ROUTE_TITLE[route]}>
           Spine: {STORY.engagement} for {STORY.client} — {STORY.outcome}.
-        </span>
-      </div>
+        </PhaseBanner>
       ) : null}
       {page}
     </div>

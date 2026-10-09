@@ -6,6 +6,10 @@
 
 import { useId, useState } from "react";
 import { Arrow } from "../primitives/Arrow";
+/* ArrowCta is its own file so a client cut can take it without the rest of
+   this module; re-exported here so nothing that imported it from here moves. */
+import { ArrowCta } from "./ArrowCta";
+export { ArrowCta, ARROW_CTA_LABEL } from "./ArrowCta";
 import { Plate } from "../primitives/Plate";
 import { InlineForm } from "../primitives/InlineForm";
 import { Icon } from "../primitives/Icon";
@@ -55,36 +59,6 @@ import {
 --------------------------------------------------------------------------- */
 
 
-export const ARROW_CTA_LABEL = ipsumLabel("arrow-cta-label");
-
-/** 06 — the repeated conversion pattern. Uppercase label, trailing arrow. */
-export function ArrowCta({
-  children = ARROW_CTA_LABEL,
-  variant,
-  size = "lg",
-}: {
-  children?: React.ReactNode;
-  variant?: "solid" | "outline" | "quiet";
-  size?: "sm" | "md" | "lg";
-}) {
-  return (
-    <button
-      data-tk="button"
-      data-arrow-cta=""
-      data-variant={variant}
-      data-size={size}
-      type="button"
-      style={{
-        textTransform: "uppercase",
-        letterSpacing: "var(--tk-tracking-wide)",
-        fontWeight: "var(--tk-weight-semibold)",
-      }}
-    >
-      {children}
-      <Arrow />
-    </button>
-  );
-}
 
 export type HeroSlide = {
   eyebrow: string;

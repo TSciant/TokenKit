@@ -16,14 +16,23 @@
  * Usage:
  *   node tools/capture.mjs --slug acme --urls urls.txt
  *   node tools/capture.mjs --slug acme --url https://example.com/ --url https://example.com/about
+ *   node tools/capture.mjs --slug acme --urls urls.txt --out ../acme-site/audit
+ *
+ * --out writes there instead of audits/<slug>. Use it for any client's site:
+ * audits/ is part of the public kit.
+ *
+ * --merge re-captures the URLs given and keeps every other page already in
+ * the inventory, so one page that failed can be taken again on its own.
  *
  * urls.txt is one URL per line, blank lines and # comments ignored.
  */
 
 import { chromium } from "playwright";
 import { mkdir, writeFile, readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { wake } from "./lib/wake.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -43,7 +52,9 @@ function parseArgs(argv) {
     else if (a === "--url") out.urls.push(argv[++i]);
     else if (a === "--urls") out.urlFile = argv[++i];
     else if (a === "--wait") out.wait = Number(argv[++i]);
+    else if (a === "--out") out.out = argv[++i];
     else if (a === "--no-full") out.full = false;
+    else if (a === "--merge") out.merge = true;
   }
   return out;
 }
@@ -191,7 +202,9 @@ if (opts.urls.length === 0) {
   process.exit(1);
 }
 
-const outDir = resolve(ROOT, "audits", opts.slug);
+/* A client's audit belongs in their repository: --out puts it there. The
+   default, audits/<slug>, is inside the kit, which the public export copies. */
+const outDir = opts.out ? resolve(process.cwd(), opts.out) : resolve(ROOT, "audits", opts.slug);
 const shotDir = resolve(outDir, "captures");
 await mkdir(shotDir, { recursive: true });
 
@@ -210,30 +223,28 @@ for (const url of opts.urls) {
       viewport: { width: bp.width, height: bp.height },
     });
     try {
-      await page.goto(url, { waitUntil: "networkidle", timeout: 45000 });
+      /* One retry, waiting only for load: some pages never fall network-idle
+         (a polling widget), and would otherwise never be captured. */
+      await page.goto(url, { waitUntil: "networkidle", timeout: 45000 }).catch(() => page.goto(url, { waitUntil: "load", timeout: 60000 }));
       await page.waitForTimeout(opts.wait);
-      // Settle lazy content without capturing a half-scrolled page.
-      await page.evaluate(async () => {
-        await new Promise((res) => {
-          let y = 0;
-          const step = () => {
-            window.scrollTo(0, y);
-            y += window.innerHeight;
-            if (y < document.body.scrollHeight) setTimeout(step, 60);
-            else {
-              window.scrollTo(0, 0);
-              setTimeout(res, 200);
-            }
-          };
-          step();
-        });
-      });
+      /* Wake it as a visitor would: delayed scripts run, lazy iframes load, and
+         a consent banner is recorded and declined rather than photographed
+         over the content (tools/lib/wake.mjs). */
+      const woke = await wake(page);
+      if (woke.consent) record.consent = woke.consent;
 
       const file = `${slug}@${bp.name}.png`;
-      await page.screenshot({
-        path: resolve(shotDir, file),
-        fullPage: opts.full,
-      });
+      await page
+        .screenshot({ path: resolve(shotDir, file), fullPage: opts.full })
+        .catch(async () => {
+          /* Chromium sometimes cannot stitch a full page (a tall page with
+             transformed or embedded content): grow the viewport to the page
+             and take it as one ordinary screenshot instead. */
+          const h = await page.evaluate(() => document.documentElement.scrollHeight);
+          await page.setViewportSize({ width: bp.width, height: Math.min(h, 16000) });
+          await page.waitForTimeout(400);
+          await page.screenshot({ path: resolve(shotDir, file) });
+        });
       record.breakpoints[bp.name] = file;
       console.log(`  ${bp.name.padEnd(5)} ${file}`);
 
@@ -253,6 +264,17 @@ for (const url of opts.urls) {
 }
 
 await browser.close();
+
+/* --merge: these pages replace their earlier selves in an existing
+   inventory, and the rest are kept, so one page can be re-captured alone. */
+const invPath = resolve(outDir, "inventory.json");
+if (opts.merge && existsSync(invPath)) {
+  const before = JSON.parse(await readFile(invPath, "utf8")).pages || [];
+  const fresh = new Map(pages.map((p) => [p.url, p]));
+  const kept = before.filter((p) => !fresh.has(p.url));
+  const order = before.map((p) => p.url);
+  pages.splice(0, pages.length, ...[...kept, ...fresh.values()].sort((a, b) => (order.indexOf(a.url) + 1 || 1e9) - (order.indexOf(b.url) + 1 || 1e9)));
+}
 
 /* Roll the per-page inventories into one site-level view. Frequency across
    pages is the signal: a structure on one page is a page, a structure on six
@@ -298,5 +320,5 @@ const site = {
 await writeFile(resolve(outDir, "inventory.json"), JSON.stringify(site, null, 2));
 
 console.log(`\nCaptured ${pages.length} pages x ${BREAKPOINTS.length} breakpoints`);
-console.log(`Inventory: audits/${opts.slug}/inventory.json`);
-console.log(`Next: node tools/audit.mjs --slug ${opts.slug}\n`);
+console.log(`Inventory: ${resolve(outDir, "inventory.json")}`);
+console.log(`Next: node tools/audit.mjs ${opts.out ? `--out ${opts.out}` : `--slug ${opts.slug}`}\n`);
