@@ -532,9 +532,10 @@
     "Plate": {
       "story": "04-primitives-16-plate--onion-skin",
       "pattern": [
-        "ratio"
+        "ratio",
+        "subject"
       ],
-      "doc": "The Figma component laid over this one at the 512px it is drawn at, one ratio at a time. The height is capped at 22rem, so 4:3, 1:1 and 3:4 are the same height. Switch Onion in the toolbar.",
+      "doc": "The Figma component laid over this one at the 512px it is drawn at, one variant at a time: six ratios with no subject, and a person at 3:4 and 4:5. Without a subject the height is capped at 22rem, so 4:3, 1:1 and 3:4 are the same height; a person is never capped. The person is drawn natively in Figma with the plate's light, ground and hatch behind it, so it follows the modes. Switch Onion in the toolbar.",
       "still": true
     },
     "Gradient": {

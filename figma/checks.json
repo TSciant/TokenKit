@@ -337,10 +337,10 @@
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
     "Plate": {
-      "skins": 6,
-      "mean": 0.2,
-      "worst": 1.2,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "skins": 8,
+      "mean": 0.4,
+      "worst": 1.74,
+      "checkedAt": "2026-10-10T20:30:05.897Z"
     },
     "ProofStrip": {
       "skins": 1,
