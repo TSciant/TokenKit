@@ -66,37 +66,37 @@ const onionMap = existsSync(resolve(ROOT, "figma/onion.json"))
    at and a different set of controls to drive, and so gets its own page.
 --------------------------------------------------------------------------- */
 const STORIES = [
-  ["01", "Masthead", "chrome", "Masthead"],
-  ["02", "Mega menu", "chrome", "Masthead", { withMegaMenu: true }],
-  ["03", "Contact CTA", "chrome", "ContactCta"],
-  ["04", "Header search", "chrome", "HeaderSearch"],
-  ["05", "Hero carousel", "marketing", "HeroCarousel"],
+  ["01", "Masthead", "Masthead", "Masthead"],
+  ["02", "Mega menu", "Masthead", "Masthead", { withMegaMenu: true }],
+  ["03", "Contact CTA", "Masthead", "ContactCta"],
+  ["04", "Header search", "Masthead", "HeaderSearch"],
+  ["05", "Hero carousel", "HeroCarousel", "HeroCarousel"],
   ["06", "Arrow CTA", "ArrowCta", "ArrowCta"],
   ["07", "Proof strip", "marketing", "ProofStrip"],
-  ["08", "Segment list", "marketing", "SegmentList"],
+  ["08", "Segment list", "SegmentList", "SegmentList"],
   ["09", "Feature grid", "marketing", "FeatureGrid"],
-  ["10", "Article feed", "marketing", "ArticleFeed"],
+  ["10", "Article feed", "ArticleFeed", "ArticleFeed"],
   ["11", "Event promo", "marketing", "EventPromo"],
-  ["12", "Lead form", "templates", "LeadForm"],
-  ["13", "Site footer", "chrome", "SiteFooter"],
+  ["12", "Lead form", "LeadForm", "LeadForm"],
+  ["13", "Site footer", "SiteFooter", "SiteFooter"],
   ["14", "Page hero", "chrome", "PageHero"],
-  ["15", "Tile grid", "catalog", "TileGrid"],
+  ["15", "Tile grid", "TileGrid", "TileGrid"],
   ["16", "Hub cards", "catalog", "HubCards"],
   ["17", "CTA blocks", "catalog", "CtaBlocks"],
   ["18", "Filter bar", "catalog", "FilterBar"],
   ["19", "Media cards", "catalog", "MediaCards"],
-  ["20", "People directory", "catalog", "PeopleDirectory"],
+  ["20", "People directory", "PeopleDirectory", "PeopleDirectory"],
   ["21", "Segment page", "templates", "SegmentPage"],
   ["22", "Sub-brand page", "templates", "SubBrandPage"],
   ["23", "Article page", "templates", "ArticlePage"],
   ["24", "Event list", "EventList", "EventList"],
-  ["25", "Apply form", "templates", "ApplyForm"],
+  ["25", "Apply form", "ApplyForm", "ApplyForm"],
   ["26", "Hero", "marketing", "Hero"],
 ];
 
-/* ArrowCta and EventList are files of their own, so a client cut can take one
-   without the module it came from. */
-const MODULES = ["chrome", "marketing", "catalog", "templates", "ArrowCta", "EventList"];
+/* Patterns in files of their own (ArrowCta, EventList, Masthead and the rest), so
+   a client cut can take one without the module it came from. */
+const MODULES = ["chrome", "marketing", "catalog", "templates", "ArrowCta", "EventList", "Masthead", "SiteFooter", "SegmentList", "ArticleFeed", "TileGrid", "LeadForm", "ApplyForm", "HeroCarousel", "PeopleDirectory"];
 
 /** `Mega menu` -> `MegaMenu`, so the filename is greppable from the title. */
 const pascal = (s) =>

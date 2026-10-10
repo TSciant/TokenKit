@@ -49,14 +49,15 @@
     min-inline-size: var(--tk-control-min);
     min-block-size: var(--tk-control-min);
     padding-inline: var(--tk-space-2);
-    /* Transparent until forced colours draw it: the current page is marked
-       by its fill, and forced colours drop fills. */
-    border: 1px solid transparent;
-    border-radius: var(--tk-radius-control);
-    color: var(--tk-link-text);
+    /* Every page is the same outlined circle: the button's shape on a square
+       cell (a pill radius makes it round), one size for every number up to
+       three digits, so 7 and 40 match. The ring says "press me" without the
+       underline a run of numbers would otherwise need. */
+    border: 1px solid var(--tk-line-default);
+    border-radius: min(var(--tk-radius-button), var(--tk-radius-nested));
+    color: var(--tk-text-primary);
     font-variant-numeric: tabular-nums;
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
+    text-decoration: none;
   }
 
   :where([data-tk="pager-page"]:hover) {
@@ -70,6 +71,7 @@
 
   /* Where you are: not a link to here in looks, though it stays one. */
   :where([data-tk="pager-page"][aria-current="page"]) {
+    border-color: var(--tk-surface-inverse);
     background-color: var(--tk-surface-inverse);
     color: var(--tk-text-inverse);
     font-weight: var(--tk-weight-semibold);

@@ -1,0 +1,220 @@
+/* VideoPlayer — a poster with a play button until it is pressed, then the
+   player in the same box. The frame holds the ratio, so the poster, the
+   native <video> and an embedded iframe are all the same size and nothing on
+   the page moves when one replaces another. */
+@layer components {
+  :where([data-tk="video-player"]) {
+    --_ratio: 16 / 9;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+    max-inline-size: 100%;
+  }
+
+  /* The frame. Positioned so the play button's hit area (below) can cover
+     it; isolated so the poster can sit under the button without a z-index
+     race with anything outside. */
+  :where([data-tk="video-player-frame"]) {
+    container: video-player / inline-size;
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    aspect-ratio: var(--_ratio);
+    inline-size: 100%;
+    overflow: clip;
+    border-radius: var(--tk-radius-nested);
+    background-color: var(--tk-surface-sunken);
+  }
+
+  /* --- the poster ---------------------------------------------------------- */
+  :where([data-tk="video-player-poster"]) {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    display: grid;
+  }
+
+  :where([data-tk="video-player-poster"] > :is(img, picture, video)) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  :where([data-tk="video-player-poster"] > picture > img) {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  /* The default poster is a Plate, and a plate caps its own height
+     (--tk-plate-max) so a wide column does not grow a tall grey box. Here the
+     frame already decides the height and the plate has to fill it.
+
+     Not wrapped whole in :where(), on purpose: this file is imported before
+     plate.css, so a zero-specificity rule here loses to the plate's own base
+     rule on source order. The one attribute outside :where() is the smallest
+     amount of specificity that wins, the way logo-ladder's pinned stages do. */
+  :where([data-tk="video-player-poster"]) > [data-tk="plate"] {
+    block-size: 100%;
+    max-block-size: none;
+    aspect-ratio: auto;
+  }
+
+  /* The plate's label goes to the top corner; the middle is the button's. */
+  :where([data-tk="video-player-poster"] [data-tk="plate-label"]) {
+    align-self: start;
+    justify-self: start;
+    margin: var(--tk-space-3);
+  }
+
+  /* --- the play button ----------------------------------------------------
+     Round, centred, in the pack's action colours, with a light edge so it
+     reads on a dark photograph as well as on a pale plate. The button itself
+     is not positioned: its ::after is, and so stretches over the whole frame,
+     which makes the entire poster press play while the focus ring stays on
+     the round button where the eye expects it. */
+  :where([data-tk="video-player-play"]) {
+    --_size: var(--tk-space-8);
+
+    display: inline-grid;
+    place-items: center;
+    inline-size: var(--_size);
+    block-size: var(--_size);
+    padding: 0;
+    border: 2px solid var(--tk-surface-default);
+    border-radius: var(--tk-radius-full);
+    background-color: var(--tk-action-fill);
+    color: var(--tk-action-text);
+    box-shadow: var(--tk-shadow-md);
+    cursor: pointer;
+    transition:
+      background-color var(--tk-motion-surface),
+      border-color var(--tk-motion-line);
+  }
+
+  :where([data-tk="video-player-play"])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  /* A filled triangle, nudged towards the point so it looks centred. */
+  :where([data-tk="video-player-play"] [data-tk="icon"]) {
+    fill: currentColor;
+    margin-inline-start: 0.15em;
+  }
+
+  /* Hover darkens the edge and the fill; nothing moves. */
+  :where([data-tk="video-player-play"]:hover:not([aria-disabled="true"])) {
+    background-color: var(--tk-action-fill-hover);
+    border-color: var(--tk-line-strong);
+  }
+
+  :where([data-tk="video-player-play"]:active:not([aria-disabled="true"])) {
+    background-color: var(--tk-action-fill-active);
+  }
+
+  :where([data-tk="video-player-play"][aria-disabled="true"]) {
+    background-color: var(--tk-surface-raised);
+    color: var(--tk-text-disabled);
+    border-color: var(--tk-line-default);
+    cursor: not-allowed;
+  }
+
+  /* --- running time and captions, in the corner --------------------------- */
+  :where([data-tk="video-player-meta"]) {
+    position: absolute;
+    inset-block-end: var(--tk-space-3);
+    inset-inline-end: var(--tk-space-3);
+    display: flex;
+    gap: var(--tk-space-1);
+    pointer-events: none;
+  }
+
+  :where([data-tk="video-player-badge"]) {
+    padding: calc(var(--tk-space-1) / 2) var(--tk-space-2);
+    /* A pill: a label laid on the picture, not a box in its corner, so it
+       takes no part in the frame's concentric radii. */
+    border-radius: var(--tk-radius-full);
+    background-color: var(--tk-surface-inverse);
+    color: var(--tk-text-inverse);
+    font-family: var(--tk-font-mono);
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-medium);
+    line-height: var(--tk-leading-normal);
+    letter-spacing: var(--tk-tracking-wide);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* --- the player, once pressed ------------------------------------------- */
+  :where([data-tk="video-player-media"]) {
+    position: absolute;
+    inset: 0;
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    border: 0;
+    background-color: var(--tk-surface-inverse);
+  }
+
+  :where(video[data-tk="video-player-media"]) {
+    object-fit: contain;
+  }
+
+  :where([data-tk="video-player-transcript"]) {
+    margin: 0;
+    font-size: var(--tk-size-sm);
+  }
+
+  /* A small player (a card, a column of three) keeps the same parts, a size
+     down, so the button does not crowd the label and the corner marks. */
+  @container video-player (max-width: 24rem) {
+    :where([data-tk="video-player-play"]) {
+      --_size: var(--tk-space-7);
+    }
+
+    :where([data-tk="video-player-poster"] [data-tk="plate-label"]) {
+      margin: var(--tk-space-2);
+    }
+
+    :where([data-tk="video-player-meta"]) {
+      inset-block-end: var(--tk-space-2);
+      inset-inline-end: var(--tk-space-2);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="video-player-play"]) {
+      transition: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="video-player-frame"]) {
+      border: 1px solid CanvasText;
+    }
+
+    :where([data-tk="video-player-play"]) {
+      border-color: ButtonText;
+      background-color: ButtonFace;
+      color: ButtonText;
+      forced-color-adjust: none;
+    }
+
+    :where([data-tk="video-player-play"]:hover:not([aria-disabled="true"])) {
+      border-color: Highlight;
+    }
+
+    :where([data-tk="video-player-play"][aria-disabled="true"]) {
+      border-color: GrayText;
+      color: GrayText;
+    }
+
+    :where([data-tk="video-player-badge"]) {
+      border: 1px solid CanvasText;
+    }
+  }
+}

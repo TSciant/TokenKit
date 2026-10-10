@@ -59,6 +59,12 @@ const card = (i, { media = true, action } = {}) => ({
   ],
 });
 
+/* The menu button a site header carries for a narrow page. scene.css shows it
+   only there, where it stands in for the links (and the bar's links fold
+   away); the menu-open variant draws what it opens. */
+const menuButton = { kind: "button", text: "Menu", variant: "outline", size: "sm", icon: "menu", iconPosition: "leading" };
+const brandOf = (s) => (words(s, "heading") === DEFAULT.heading ? "Brand" : words(s, "heading"));
+
 /* ---------- the library ---------------------------------------------------- */
 
 export const SECTIONS = {
@@ -74,9 +80,9 @@ export const SECTIONS = {
           align: "center",
           justify: "between",
           children: [
-            t("heading", words(s, "heading") === DEFAULT.heading ? "Brand" : words(s, "heading"), { level: 2, look: "heading-s" }),
+            t("heading", brandOf(s), { level: 2, look: "heading-s" }),
             { kind: "inline", gap: 4, children: actionsOf(s, ["About", "Services", "Insights", "Events", "Contact"]).slice(0, 7).map((l) => ({ kind: "button", text: l, variant: "quiet", size: "sm" })) },
-            { kind: "row", gap: 2, align: "center", children: [{ kind: "icon", icon: "search", label: "Search" }, { kind: "button", text: "Contact us", size: "sm" }] },
+            { kind: "row", gap: 2, align: "center", children: [{ kind: "icon", icon: "search", label: "Search" }, { kind: "button", text: "Contact us", size: "sm" }, menuButton] },
           ],
         }),
       },
@@ -91,9 +97,28 @@ export const SECTIONS = {
               gap: 4,
               align: "center",
               justify: "between",
-              children: [t("heading", words(s, "heading") === DEFAULT.heading ? "Brand" : words(s, "heading"), { level: 2, look: "heading-s" }), { kind: "button", text: "Contact us", size: "sm" }],
+              children: [t("heading", brandOf(s), { level: 2, look: "heading-s" }), { kind: "row", gap: 2, align: "center", children: [{ kind: "button", text: "Contact us", size: "sm" }, menuButton] }],
             },
             { kind: "inline", gap: 4, children: actionsOf(s, ["About", "Team", "Services", "Case studies", "Insights", "Events"]).slice(0, 9).map((l) => ({ kind: "button", text: l, variant: "quiet", size: "sm" })) },
+          ],
+        }),
+      },
+      "menu-open": {
+        about: "a narrow page's menu, open: brand and Close above, the links listed down the page, then search and the action",
+        build: (s) => ({
+          kind: "stack",
+          gap: 4,
+          children: [
+            {
+              kind: "row",
+              gap: 4,
+              align: "center",
+              justify: "between",
+              children: [t("heading", brandOf(s), { level: 2, look: "heading-s" }), { ...menuButton, text: "Close", icon: "close" }],
+            },
+            { kind: "stack", gap: 1, align: "start", children: actionsOf(s, ["About", "Services", "Insights", "Events", "Contact"]).slice(0, 9).map((l) => ({ kind: "button", text: l, variant: "quiet" })) },
+            { kind: "divider" },
+            { kind: "row", gap: 3, align: "center", children: [{ kind: "icon", icon: "search", label: "Search" }, { kind: "button", text: "Contact us", size: "sm" }] },
           ],
         }),
       },
@@ -156,14 +181,25 @@ export const SECTIONS = {
     about: "a short band that asks the reader to do one thing",
     variants: {
       band: {
-        about: "heading, a sentence and one action, in a card",
+        about: "heading, a sentence and one action, in a card; a label above when given",
+        /* The band is a section of the page, so its heading is the section's
+           h2, not a card's title: a card title is an h3, which skipped a
+           level straight after a hero's h1. A label shows only when one is
+           given; a band has none by default. */
         build: (s) => ({
           kind: "card",
           variant: "flat",
           children: [
-            { kind: "card-header", children: [t("card-title", words(s, "heading"))] },
-            t("card-body", words(s, "body")),
-            { kind: "card-footer", children: buttons(actionsOf(s, ["Talk to us"]).slice(0, 2)) },
+            {
+              kind: "stack",
+              gap: 3,
+              children: [
+                ...(typeof s.eyebrow === "string" && s.eyebrow.trim() ? [t("eyebrow", s.eyebrow.trim())] : []),
+                t("heading", words(s, "heading"), { level: 2, look: "heading-m" }),
+                ...(s.body !== false ? [t("text", words(s, "body"))] : []),
+                { kind: "row", gap: 3, children: buttons(actionsOf(s, ["Talk to us"]).slice(0, 2)) },
+              ],
+            },
           ],
         }),
       },

@@ -16,6 +16,8 @@
  *   rename    scene name for a prop whose own name means something else here
  *   textProps ReactNode props that take words in a scene
  *   iconProps ReactNode props that take one of the kit's icons by name
+ *   numbers   number props that are measures, not counts (a longitude, a zoom):
+ *             kept with their decimals instead of rounded to a whole number
  *   values    allowed values for a prop whose type is wider than the kit's
  *             CSS answers (a string the stylesheet only knows four of)
  *   omit      prop -> why it is not in scenes
@@ -44,7 +46,7 @@ const shell = (kind, about) => ({
 
 export const KIND_MAP = {
   stack: shell("stack", "children in a column"),
-  row: shell("row", "children in one line, no wrapping"),
+  row: shell("row", "children side by side, wrapping to a new line when they run out of room"),
   inline: shell("inline", "children in a line that wraps: a set of tags"),
   grid: shell("grid", "children in up to cols columns that fold on a narrow width; ratio makes two unequal columns"),
   split: shell("split", "two equal halves"),
@@ -95,7 +97,7 @@ export const KIND_MAP = {
   media: {
     name: "Media",
     from: ["src/react/primitives/Plate.tsx", "Plate"],
-    values: { ratio: ["16 / 9", "4 / 3", "1 / 1", "3 / 4", "21 / 9"] },
+    values: { ratio: ["16 / 9", "4 / 3", "1 / 1", "3 / 4", "4 / 5", "21 / 9"] },
     omit: {
       crop: "a crop belongs to a photograph, and a scene has none",
       bleed: "flush edges depend on the parent's padding, which a scene does not set",
@@ -193,6 +195,68 @@ export const KIND_MAP = {
     textProps: ["description", "meta"],
     omit: { value: "the renderer gives each choice its value" },
     about: "one choice card: its text is the option's name; description and meta (a price, Recommended) are optional",
+  },
+
+  pagination: {
+    name: "Pagination",
+    from: ["src/react/primitives/Pager.tsx", "Pager"],
+    omit: { href: "no links in a scene: the renderer gives each page its own address" },
+    about: "the way through a long list: worded links back and on, and with numbers the pages between them, each the same round size",
+  },
+  map: {
+    name: "Map",
+    from: ["src/react/scene/SceneMap.tsx", "SceneMap"],
+    numbers: ["longitude", "latitude", "zoom"],
+    about: "a place on a map, drawn by the kit's Map on the pack's basemap; label says what it shows, marker pins the centre",
+  },
+
+  video: {
+    name: "Video",
+    from: ["src/react/primitives/VideoPlayer.tsx", "VideoPlayer"],
+    text: "title",
+    values: { ratio: ["16 / 9", "4 / 3", "1 / 1", "9 / 16", "21 / 9"] },
+    omit: {
+      poster: "the renderer draws the poster as a plate; posterLabel says what it shows",
+      src: "no URLs in a scene",
+      embed: "no URLs in a scene",
+      transcriptHref: "no links in a scene",
+    },
+    about: "a video as its poster with a play button; its text is the video's title, posterLabel what the poster shows, duration its running time",
+  },
+  quote: {
+    name: "Quote",
+    from: ["src/react/primitives/Quote.tsx", "Quote"],
+    text: "text",
+    omit: { portrait: "a portrait is a picture, and a scene draws pictures as media" },
+    about: "a quotation and who said it: its text is the words (no quotation marks), name, role and organisation the speaker; pull for an article, testimonial in a card",
+  },
+
+  table: {
+    name: "Table",
+    from: ["src/react/primitives/DataTable.tsx", "DataTable"],
+    text: "caption",
+    children: ["table-row"],
+    fixed: { rowHeaders: "flag" },
+    omit: {
+      columns: "the first table-row is the header",
+      rows: "the rows are the table's table-row children",
+      rowHeader: "rowHeaders says the first column heads its row",
+    },
+    about: "data that is a table: its text is the caption; the first table-row holds the column headings, each later one a row; rowHeaders makes the first cell of each row its heading",
+  },
+  "table-row": {
+    name: "Table row",
+    element: "tr",
+    children: ["table-cell"],
+    within: ["table"],
+    about: "one row of a table: its cells, in column order",
+  },
+  "table-cell": {
+    name: "Table cell",
+    element: "td",
+    text: "children",
+    within: ["table-row"],
+    about: "one cell's words",
   },
 
   /* A whole section of a page from the wireframe library (sections.mjs): a

@@ -81,6 +81,7 @@ export function Plate({
   bleed,
   seed,
   category,
+  subject,
   /** Use a stand-in photograph from STOCK_BY_SEED — empty here, so the plate
       draws its own; honesty chip defaults to quiet. */
   stock = false,
@@ -138,6 +139,13 @@ export function Plate({
    * same place.
    */
   category?: string;
+  /**
+   * Who the plate draws. "person" draws a head and shoulders in silhouette,
+   * for a portrait, a bio, a speaker or a directory entry, in place of the
+   * light and horizon a plate otherwise draws. Give it a tall ratio
+   * ("3 / 4" or "4 / 5"): a person is taller than wide.
+   */
+  subject?: "person";
   /** Stock honesty: quiet whisper (default), loud legacy, or hidden. */
   placement?: boolean | "quiet" | "loud";
   /**
@@ -213,6 +221,7 @@ export function Plate({
       data-stock={showMedia ? "" : undefined}
       data-texture={showMedia ? "none" : texture}
       data-crop={crop}
+      data-subject={showMedia ? undefined : subject}
       data-seed={seed}
       data-bleed={bleed === "full" ? "full" : bleed ? "" : undefined}
       {...motion.props}
@@ -234,6 +243,13 @@ export function Plate({
             </span>
           ) : null}
         </>
+      ) : null}
+      {/* A person, drawn: a head and shoulders standing on the plate's foot. */}
+      {subject === "person" && !showMedia ? (
+        <svg data-tk="plate-subject" viewBox="0 0 100 100" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">
+          <circle cx="50" cy="36" r="17" />
+          <path d="M12 100 C12 73 29 59 50 59 C71 59 88 73 88 100 Z" />
+        </svg>
       ) : null}
       {/* The label says the subject when nothing else has. With a photograph
           in place the picture speaks for itself and the honesty chip covers

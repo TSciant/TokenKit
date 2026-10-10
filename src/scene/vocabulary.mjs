@@ -2,8 +2,9 @@
    components' own prop types. Do not edit: change the component or kinds.mjs
    and run the generator; `--check` fails when this file has drifted.
 
-   A kind's props: an array is its allowed values; "text", "flag", "integer",
-   "list" and "icon" are kinds of value. */
+   A kind's props: an array is its allowed values; "text", "flag", "integer"
+   (a count), "number" (a measure, decimals kept), "list" and "icon" are kinds
+   of value. */
 
 export const PACKS = {
   "bathing-bagels": "Bathing Bagels",
@@ -50,7 +51,7 @@ export const KINDS = {
   },
   "row": {
     "name": "Row",
-    "about": "children in one line, no wrapping",
+    "about": "children side by side, wrapping to a new line when they run out of room",
     "children": true,
     "props": {
       "gap": [
@@ -366,6 +367,7 @@ export const KINDS = {
         "4 / 3",
         "1 / 1",
         "3 / 4",
+        "4 / 5",
         "21 / 9"
       ],
       "label": "text",
@@ -386,6 +388,9 @@ export const KINDS = {
         "brand",
         "signature",
         "none"
+      ],
+      "subject": [
+        "person"
       ]
     }
   },
@@ -572,6 +577,100 @@ export const KINDS = {
       "disabled": "flag"
     }
   },
+  "pagination": {
+    "name": "Pagination",
+    "about": "the way through a long list: worded links back and on, and with numbers the pages between them, each the same round size",
+    "props": {
+      "page": "integer",
+      "total": "integer",
+      "prevLabel": "text",
+      "nextLabel": "text",
+      "numbers": "flag",
+      "label": "text"
+    }
+  },
+  "map": {
+    "name": "Map",
+    "about": "a place on a map, drawn by the kit's Map on the pack's basemap; label says what it shows, marker pins the centre",
+    "props": {
+      "label": "text",
+      "longitude": "number",
+      "latitude": "number",
+      "zoom": "number",
+      "marker": "flag",
+      "ratio": [
+        "16 / 9",
+        "4 / 3",
+        "1 / 1",
+        "3 / 4",
+        "21 / 9"
+      ]
+    }
+  },
+  "video": {
+    "name": "Video",
+    "about": "a video as its poster with a play button; its text is the video's title, posterLabel what the poster shows, duration its running time",
+    "text": "title",
+    "props": {
+      "posterLabel": "text",
+      "ratio": [
+        "16 / 9",
+        "4 / 3",
+        "1 / 1",
+        "9 / 16",
+        "21 / 9"
+      ],
+      "duration": "text",
+      "captions": "flag"
+    }
+  },
+  "quote": {
+    "name": "Quote",
+    "about": "a quotation and who said it: its text is the words (no quotation marks), name, role and organisation the speaker; pull for an article, testimonial in a card",
+    "text": "text",
+    "props": {
+      "name": "text",
+      "role": "text",
+      "organisation": "text",
+      "variant": [
+        "plain",
+        "pull",
+        "testimonial"
+      ]
+    }
+  },
+  "table": {
+    "name": "Table",
+    "about": "data that is a table: its text is the caption; the first table-row holds the column headings, each later one a row; rowHeaders makes the first cell of each row its heading",
+    "text": "caption",
+    "children": [
+      "table-row"
+    ],
+    "props": {
+      "captionHidden": "flag",
+      "striped": "flag",
+      "dense": "flag",
+      "rowHeaders": "flag"
+    }
+  },
+  "table-row": {
+    "name": "Table row",
+    "about": "one row of a table: its cells, in column order",
+    "children": [
+      "table-cell"
+    ],
+    "within": [
+      "table"
+    ]
+  },
+  "table-cell": {
+    "name": "Table cell",
+    "about": "one cell's words",
+    "text": "children",
+    "within": [
+      "table-row"
+    ]
+  },
   "section": {
     "name": "Section",
     "about": "a whole section of a page from the wireframe library: give its type and variant, and its heading, body, eyebrow, actions (labels), items (how many) and media (what the picture is); it is drawn from the kit's parts",
@@ -592,6 +691,7 @@ export const KINDS = {
       "variant": [
         "inline",
         "stacked",
+        "menu-open",
         "title",
         "intro",
         "split",

@@ -75,6 +75,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Drawn: Story = { name: "Drawn" };
 
+/* A person in silhouette, tall: for a portrait, a bio, a speaker or a directory
+   entry. The label still says whose picture goes there. */
+export const Person: Story = {
+  name: "Person",
+  args: { subject: "person", ratio: "3 / 4", label: "Portrait of a speaker" },
+  render: (args) => (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(10rem, 1fr))", gap: "var(--tk-space-4)", maxInlineSize: "40rem" }}>
+      <Plate {...args} />
+      <Plate {...args} ratio="4 / 5" label="Portrait, 4:5" />
+      <Plate {...args} ratio="1 / 1" label={undefined} />
+    </div>
+  ),
+};
+
 /* Six seeds side by side. The point is that they differ and that each one is
    the same on every run — a placeholder that reshuffles makes every screenshot
    diff a false positive. */

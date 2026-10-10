@@ -50,6 +50,7 @@ export function sceneSchema({ icons } = {}) {
           allowed === "icon" ? (icons ? { type: "string", enum: [...icons] } : { type: "string" })
           : allowed === "flag" ? { type: "boolean" }
           : allowed === "integer" ? { type: "integer" }
+          : allowed === "number" ? { type: "number" }
           : allowed === "list" ? { type: "array", items: { type: "string" } }
           : { type: "string" };
       }
@@ -147,10 +148,17 @@ export function sanitize(input, { icons } = {}) {
       return null;
     }
 
+    /* Words past the limit are cut, and the cut is named: a sentence that
+       silently lost its last word read as a typo on the page. */
+    const cut = (v, what) => {
+      const text = clip(v, Infinity);
+      if (text.length > LIMITS.text) notes.add(`cut ${what} to ${LIMITS.text} characters (it had ${text.length})`);
+      return text.slice(0, LIMITS.text);
+    };
     const out = { kind: node.kind };
     const name = spec.name.toLowerCase();
     if (node.text != null && String(node.text).trim()) {
-      if (spec.text) out.text = clip(node.text, LIMITS.text);
+      if (spec.text) out.text = cut(node.text, name);
       else notes.add(`ignored text on ${name}, which has no words`);
     }
     for (const [prop, allowed] of Object.entries(spec.props ?? {})) {
@@ -166,6 +174,10 @@ export function sanitize(input, { icons } = {}) {
       } else if (allowed === "flag") {
         if (v === true || v === "true") out[prop] = true;
         else if (v !== false && v !== "false") notes.add(`ignored ${prop} “${clip(v, 24)}” on ${name}: it is on or off`);
+      } else if (allowed === "number") {
+        const n = Number(v);
+        if (Number.isFinite(n)) out[prop] = n;
+        else notes.add(`ignored ${prop} “${clip(v, 24)}” on ${name}: it is a number`);
       } else if (allowed === "integer") {
         const n = Math.round(Number(v));
         if (Number.isFinite(n) && n > 0) out[prop] = Math.min(n, 10000);
@@ -175,7 +187,7 @@ export function sanitize(input, { icons } = {}) {
         if (list.length) out[prop] = list.slice(0, LIMITS.options);
         if (list.length > LIMITS.options) notes.add(`kept the first ${LIMITS.options} ${prop} on ${name}`);
       } else {
-        out[prop] = clip(v, LIMITS.text);
+        out[prop] = cut(v, `${name}’s ${prop}`);
       }
     }
     for (const key of Object.keys(node)) {

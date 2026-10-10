@@ -95,3 +95,18 @@ export { Gradient } from "./Gradient";
 export type { GradientProps } from "./Gradient";
 export { Guidance, GuidancePair } from "./Guidance";
 export type { GuidanceProps, GuidanceTone } from "./Guidance";
+
+export { VideoPlayer } from "./VideoPlayer";
+export type { VideoPlayerProps } from "./VideoPlayer";
+export { Quote } from "./Quote";
+export type { QuoteProps } from "./Quote";
+export { DataTable } from "./DataTable";
+export type { DataTableProps } from "./DataTable";
+export { ArticleMeta } from "./ArticleMeta";
+export type { ArticleMetaProps } from "./ArticleMeta";
+export { ProfileHeader } from "./ProfileHeader";
+export type { ProfileHeaderProps } from "./ProfileHeader";
+export { CookieConsent } from "./CookieConsent";
+export type { CookieConsentProps } from "./CookieConsent";
+export { FloatingAction } from "./FloatingAction";
+export type { FloatingActionProps } from "./FloatingAction";

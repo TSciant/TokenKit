@@ -1,0 +1,153 @@
+/* ProfileHeader — the top of a person's page. A back link above; then the
+   portrait and the details. The portrait sits in a narrow column beside the
+   details when the container has room, and above them, smaller, when it does
+   not.
+
+   The query container is the header and the grid is the body inside it: an
+   element never matches a container query it establishes itself (see
+   guidance.css for the time that went wrong). */
+@layer components {
+  :where([data-tk="profile-header"]) {
+    container-type: inline-size;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-5);
+  }
+
+  :where([data-tk="profile-header-back"]) {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: var(--tk-space-2);
+    min-block-size: var(--tk-target-min);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-tk="profile-header-body"]) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: var(--tk-space-5) var(--tk-space-6);
+  }
+
+  /* Stacked, the portrait is a headshot above the name, not a full-width
+     poster. */
+  :where([data-tk="profile-header-portrait"]) {
+    inline-size: 100%;
+    max-inline-size: 10rem;
+  }
+
+  /* 12rem at most: a 4:5 plate that wide is as tall as the portrait cap
+     allows, so it keeps its shape instead of being cut square. */
+  @container (min-width: 40rem) {
+    :where([data-tk="profile-header-body"]) {
+      grid-template-columns: minmax(9rem, 12rem) minmax(0, 1fr);
+    }
+
+    :where([data-tk="profile-header-portrait"]) {
+      max-inline-size: none;
+    }
+  }
+
+  /* A name is long for a plate's label; let it wrap inside the plate's
+     edges rather than run to them. */
+  :where([data-tk="profile-header-portrait"] [data-tk="plate-label"]) {
+    margin-inline: var(--tk-space-3);
+    text-align: center;
+  }
+
+  :where([data-tk="profile-header-details"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-4);
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="profile-header-head"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="profile-header-head"] :is(h1, h2)) {
+    margin: 0;
+  }
+
+  /* The letters after a name belong to it, but are not the name. */
+  :where([data-tk="profile-header-credentials"]) {
+    color: var(--tk-text-secondary);
+    font-weight: var(--tk-weight-normal);
+  }
+
+  :where([data-tk="profile-header-role"]) {
+    margin: 0;
+    font-size: var(--tk-size-md);
+    line-height: var(--tk-leading-snug);
+  }
+
+  /* Organisation and location; and, as a second row, the ways to reach them.
+     An icon starts each, spoken as a word, never the only label. */
+  :where([data-tk="profile-header-facts"]) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tk-space-2) var(--tk-space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-tk="profile-header-facts"][data-kind="contacts"]) {
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="profile-header-fact"]) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: var(--tk-space-2);
+    line-height: var(--tk-leading-normal);
+    overflow-wrap: anywhere;
+  }
+
+  :where([data-tk="profile-header-fact"] > [data-tk="icon"]) {
+    margin-block-start: 0.2em;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="profile-header-bio"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-3);
+  }
+
+  :where([data-tk="profile-header-bio"] p) {
+    margin: 0;
+  }
+
+  :where([data-tk="profile-header-expertise"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="profile-header-label"]) {
+    margin: 0;
+    font-family: var(--tk-font-mono);
+    font-size: var(--tk-size-xs);
+    letter-spacing: var(--tk-tracking-wide);
+    text-transform: uppercase;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="profile-header-expertise"] > ul) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tk-space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}

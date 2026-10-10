@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.2. A token-driven design system: components draw only from
+token-kit 0.3.15. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -507,7 +507,7 @@ Figma: node `39:118`.
 
 *Use for:* where a picture goes, drawn in the pack; label says what it stands in for.
 
-*Properties:* `ratio`: `16 / 9` · `4 / 3` · `1 / 1` · `3 / 4` · `21 / 9`; `label`: text; `texture`: `hatch` · `dots` · `rule` · `grid` · `noise` · `weave` · `chevron` · `grain` · `paper` · `stone` · `mist` · `grit` · `halftone` · `brand` · `signature` · `none`.
+*Properties:* `ratio`: `16 / 9` · `4 / 3` · `1 / 1` · `3 / 4` · `4 / 5` · `21 / 9`; `label`: text; `texture`: `hatch` · `dots` · `rule` · `grid` · `noise` · `weave` · `chevron` · `grain` · `paper` · `stone` · `mist` · `grit` · `halftone` · `brand` · `signature` · `none`; `subject`: `person`.
 
 Figma: node `39:173`.
 
@@ -758,6 +758,10 @@ Inline SVG rather than an icon-font glyph or an Icon lookup: it is one path, it 
 Figma: node `180:1042`.
 
 ### Map
+
+*Use for:* a place on a map, drawn by the kit's Map on the pack's basemap; label says what it shows, marker pins the centre.
+
+*Properties:* `label`: text; `longitude`: number; `latitude`: number; `zoom`: number; `marker`: flag; `ratio`: `16 / 9` · `4 / 3` · `1 / 1` · `3 / 4` · `21 / 9`.
 
 Figma: node `183:476`.
 

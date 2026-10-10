@@ -76,19 +76,27 @@
     );
   }
 
-  :where([data-shell="grid"][data-cols="1"]) { --_min: 100%; }
-  :where([data-shell="grid"][data-cols="2"]) { --_min: 18rem; }
-  :where([data-shell="grid"][data-cols="3"]) { --_min: 14rem; }
-  :where([data-shell="grid"][data-cols="4"]) { --_min: 11rem; }
+  /* cols is the most columns, not a hint. A column is never narrower than
+     the minimum (so the grid folds on a narrow width) nor narrower than a
+     cols-th of the row (so a wide one stops at cols): without the second
+     bound, auto-fit filled a wide page with as many columns as fit, and
+     four people to a row came out six. */
+  :where([data-shell="grid"][data-cols]) {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, max(var(--_min), (100% - (var(--_cols) - 1) * var(--_gap)) / var(--_cols))), 1fr)
+    );
+  }
+  :where([data-shell="grid"][data-cols="1"]) { --_cols: 1; --_min: 100%; }
+  :where([data-shell="grid"][data-cols="2"]) { --_cols: 2; --_min: 18rem; }
+  :where([data-shell="grid"][data-cols="3"]) { --_cols: 3; --_min: 14rem; }
+  :where([data-shell="grid"][data-cols="4"]) { --_cols: 4; --_min: 11rem; }
 
-  /* Fixed-column grid when the composition genuinely needs it. */
+  /* Fixed-column grid when the composition genuinely needs it: cols at any
+     width, never folding. */
   :where([data-shell="grid"][data-fixed]) {
     grid-template-columns: repeat(var(--_cols), minmax(0, 1fr));
   }
-  :where([data-shell="grid"][data-fixed][data-cols="1"]) { --_cols: 1; }
-  :where([data-shell="grid"][data-fixed][data-cols="2"]) { --_cols: 2; }
-  :where([data-shell="grid"][data-fixed][data-cols="3"]) { --_cols: 3; }
-  :where([data-shell="grid"][data-fixed][data-cols="4"]) { --_cols: 4; }
 
   /* --- grid with a ratio: two columns of unequal width --------------------
      data-ratio="2:1" | "1:2" | "3:1" | "1:3". The children pair up, and each
@@ -169,6 +177,10 @@
   :where([data-shell="sidebar"][data-side="end"]) > :last-child {
     flex-basis: var(--_side);
     flex-grow: 1;
+    /* The rail, so not the content's floor: it kept the 55% the rule above
+       gives the last child, and 55% twice never fits on one line, so a
+       trailing rail always wrapped under its content. */
+    min-inline-size: auto;
   }
 
   /* --- center: measure-bounded prose column ----------------------------- */

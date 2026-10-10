@@ -5,14 +5,19 @@ import { Button } from "../primitives/Button";
 import { ButtonGroup } from "../primitives/ButtonGroup";
 import { Card, CardBody, CardFooter, CardHeader, CardTitle } from "../primitives/Card";
 import { Chip } from "../primitives/Chip";
+import { DataTable } from "../primitives/DataTable";
 import { ChoiceCardGroup } from "../primitives/ChoiceCard";
 import { Eyebrow } from "../primitives/Eyebrow";
 import { Field } from "../primitives/Field";
 import { Heading } from "../primitives/Heading";
 import { Icon, type IconName } from "../primitives/Icon";
 import { icons } from "../primitives/icon-set";
+import { Pager } from "../primitives/Pager";
 import { Plate } from "../primitives/Plate";
+import { Quote } from "../primitives/Quote";
+import { VideoPlayer } from "../primitives/VideoPlayer";
 import { Shell, type ShellKind } from "../shells/Shell";
+import { SceneMap } from "./SceneMap";
 
 /** A part of a clean scene: a kind, its words, its options, its parts. */
 export type SceneNode = { kind: string; text?: string; children?: SceneNode[] } & Record<string, unknown>;
@@ -117,9 +122,51 @@ export function Scene({ scene, brand, active, onActive, ...rest }: SceneProps) {
       case "eyebrow":
         return <Eyebrow emphasis={n.emphasis} {...m}>{node.text}</Eyebrow>;
       case "media":
-        return <Plate ratio={n.ratio} label={n.label} texture={n.texture} seed={seedOf(path)} {...m} />;
+        return <Plate ratio={n.ratio} label={n.label} texture={n.texture} subject={n.subject} seed={seedOf(path)} {...m} />;
       case "divider":
         return <hr {...m} />;
+      case "pagination":
+        return (
+          <Pager
+            page={n.page ?? 1}
+            total={n.total ?? n.page ?? 1}
+            href={(p) => `#page-${p}`}
+            numbers={n.numbers}
+            prevLabel={n.prevLabel}
+            nextLabel={n.nextLabel}
+            label={n.label}
+            {...m}
+          />
+        );
+      case "table": {
+        /* The first row holds the headings; the rest are the rows. */
+        const [head, ...body] = (node.children ?? []).map((r) => (r.children ?? []).map((c) => c.text ?? ""));
+        const columns = (head ?? []).map((label, i) => ({ key: `c${i}`, label }));
+        const rows = body.map((cells) => Object.fromEntries(columns.map((c, i) => [c.key, cells[i] ?? ""])));
+        return (
+          <DataTable
+            caption={node.text ?? "Table"}
+            captionHidden={n.captionHidden}
+            columns={columns}
+            rows={rows}
+            rowHeader={n.rowHeaders && columns.length ? "c0" : undefined}
+            striped={n.striped}
+            dense={n.dense}
+            {...m}
+          />
+        );
+      }
+      case "video":
+        return <VideoPlayer title={node.text ?? "Video"} posterLabel={n.posterLabel} ratio={n.ratio} duration={n.duration} captions={n.captions} {...m} />;
+      case "quote":
+        return <Quote text={node.text ?? ""} name={n.name ?? ""} role={n.role} organisation={n.organisation} variant={n.variant} {...m} />;
+      case "map":
+        /* The marks go on a wrapper: the Map takes no attributes of its own. */
+        return (
+          <div {...m}>
+            <SceneMap label={n.label} longitude={n.longitude} latitude={n.latitude} zoom={n.zoom} marker={n.marker} ratio={n.ratio} />
+          </div>
+        );
       case "icon":
         return <Icon name={n.icon as IconName} size={n.size} label={n.label} {...m} />;
       case "button": {

@@ -8,6 +8,8 @@
  *   regions.json    regions.mjs: pages, titles, stylesheets, classes (for fingerprints)
  *   urls.txt        the plan: the "# comment" above each URL names its page type
  *   inventory.json  capture.mjs, optional: heading order and image findings
+ *   findings.json   optional, kept by hand: what review noticed, as
+ *                   { findings: [{ kind, url (one or a list), what }] }
  *
  * Writes scorecard.md and scorecard.html beside them. The HTML is one file
  * with the crops linked relatively, so it opens from the folder as it is.
@@ -97,6 +99,9 @@ const pathOf = (url) => {
   }
 };
 
+/* One page or several, as paths. */
+const pathsOf = (url) => (Array.isArray(url) ? url.map((u) => pathOf(u)).join(", ") : pathOf(url));
+
 /** The reference a row shows: the site's own system first, else the best documented one. */
 function bestRef(refs, site) {
   if (site.system) return { label: `${site.system.name} (site's own system)`, url: site.system.docs, inCorpus: false, own: true };
@@ -111,6 +116,7 @@ function build(dir, title) {
   const regionsData = JSON.parse(readFileSync(resolve(dir, "regions.json"), "utf8"));
   const types = pageTypes(resolve(dir, "urls.txt"));
   const inventory = existsSync(resolve(dir, "inventory.json")) ? JSON.parse(readFileSync(resolve(dir, "inventory.json"), "utf8")) : null;
+  const noticed = existsSync(resolve(dir, "findings.json")) ? JSON.parse(readFileSync(resolve(dir, "findings.json"), "utf8")) : null;
   const site = fingerprint(regionsData);
   const taxPath = named.taxonomy?.path;
   const taxonomy = taxPath && existsSync(resolve(process.cwd(), taxPath)) ? JSON.parse(readFileSync(resolve(process.cwd(), taxPath), "utf8")) : null;
@@ -158,13 +164,18 @@ function build(dir, title) {
   const docGaps = rollup.filter((e) => !e.refs.length);
   const notInCorpus = rollup.filter((e) => e.refs.length && !e.refs.some((r) => r.inCorpus));
 
-  /* Findings the capture measured on the way. */
+  /* Findings: what review noticed (kept by hand, first: a person saw each
+     one), then what the capture measured on the way. A finding's url is one
+     page or a list of them. */
   const findings = [];
+  for (const f of (Array.isArray(noticed) ? noticed : noticed?.findings) || []) {
+    if (f?.what) findings.push({ url: f.url, what: String(f.what), kind: f.kind || "content", by: "review" });
+  }
   for (const p of inventory?.pages || []) {
     const inv = p.inventory;
     if (!inv) continue;
-    if (inv.headingOrderIssues?.length) findings.push({ url: p.url, what: `heading levels skipped: ${inv.headingOrderIssues.slice(0, 3).join("; ")}` });
-    if (inv.imagesMissingAlt) findings.push({ url: p.url, what: `${inv.imagesMissingAlt} of ${inv.imageCount} images have no alt attribute` });
+    if (inv.headingOrderIssues?.length) findings.push({ url: p.url, kind: "accessibility", by: "capture", what: `heading levels skipped: ${inv.headingOrderIssues.slice(0, 3).join("; ")}` });
+    if (inv.imagesMissingAlt) findings.push({ url: p.url, kind: "accessibility", by: "capture", what: `${inv.imagesMissingAlt} of ${inv.imageCount} images have no alt attribute` });
   }
 
   const name = (t) => typeName.get(t)?.name || t;
@@ -245,7 +256,7 @@ function data(s) {
     onePage: s.onePage.map((e) => e.type),
     gaps: { kit: s.kitGaps.map((e) => e.type), docs: s.docGaps.map((e) => e.type), notInCorpus: s.notInCorpus.map((e) => e.type) },
     pageTypes: s.pageTypeList,
-    findings: s.findings.map((f) => ({ ...f, path: pathOf(f.url) })),
+    findings: s.findings.map((f) => ({ ...f, path: pathsOf(f.url) })),
     diagrams: { inventory: s.mindmap, templates: s.flow },
     anatomy: s.anatomy.map((p) => ({ ...p, path: pathOf(p.url) })),
     pages: s.pages.map((p) => ({
@@ -299,7 +310,7 @@ function markdown(s) {
   L.push(`- **Documented, not yet in the corpus:** ${s.notInCorpus.map((e) => s.name(e.type)).join(", ") || "none"}.`, "");
   if (s.findings.length) {
     L.push("## Findings on the way", "");
-    for (const f of s.findings) L.push(`- ${pathOf(f.url)}: ${f.what}`);
+    for (const f of s.findings) L.push(`- **${f.kind}** ${pathsOf(f.url)}: ${f.what}`);
     L.push("");
   }
   L.push("## Page by page", "");
@@ -490,7 +501,7 @@ ${(() => {
   <li><strong>No documentation anywhere:</strong> ${esc(s.docGaps.map((e) => s.name(e.type)).join(", ") || "none")}.</li>
   <li><strong>Documented, not yet in the corpus:</strong> ${esc(s.notInCorpus.map((e) => s.name(e.type)).join(", ") || "none")}.</li>
 </ul>
-${s.findings.length ? `<h2>Findings on the way</h2><ul>${s.findings.map((f) => `<li>${esc(pathOf(f.url))}: ${esc(f.what)}</li>`).join("")}</ul>` : ""}
+${s.findings.length ? `<h2>Findings on the way</h2><ul>${s.findings.map((f) => `<li><strong>${esc(f.kind)}</strong> ${esc(pathsOf(f.url))}: ${esc(f.what)}</li>`).join("")}</ul>` : ""}
 
 <h2>Page by page</h2>
 <nav class="toc" aria-label="Pages"><ol>${s.pages.map((p, i) => `<li><a href="#p${i + 1}">${esc(pathOf(p.url))}</a> <span class="muted">${esc(p.type)}</span></li>`).join("")}</ol></nav>
@@ -517,16 +528,45 @@ function main() {
   const arg = (n) => (argv.includes(n) ? argv[argv.indexOf(n) + 1] : null);
   const dir = resolve(process.cwd(), arg("--dir") || ".");
   if (!existsSync(resolve(dir, "named.json")) || !existsSync(resolve(dir, "regions.json"))) {
-    console.error("Usage: node tools/scorecard.mjs --dir <audit dir with named.json and regions.json> [--title <title>]");
+    console.error("Usage: node tools/scorecard.mjs --dir <audit dir with named.json and regions.json> [--title <title>] [--note <what this run was for>]");
     process.exit(1);
   }
   const s = build(dir, arg("--title") || "Site audit");
   writeFileSync(resolve(dir, "scorecard.md"), markdown(s));
   writeFileSync(resolve(dir, "scorecard.html"), html(s));
   /* The same, as data: what a Storybook (or anything else) renders the audit from. */
-  writeFileSync(resolve(dir, "scorecard.json"), JSON.stringify(data(s), null, 2));
+  const json = data(s);
+  writeFileSync(resolve(dir, "scorecard.json"), JSON.stringify(json, null, 2));
+  /* The run, added to the audit's history when anything in it moved, so the
+     audit's progress over its re-splits and namings can be read back: the
+     numbers each time, and what the run was for (--note). */
+  const c = json.counts;
+  const cov = json.pages.map((p) => p.coverage).filter((x) => typeof x === "number").sort((a, b) => a - b);
+  const run = {
+    at: json.generatedAt,
+    pages: c.pages,
+    regions: c.total,
+    types: c.types,
+    recurring: c.recurring,
+    high: c.high,
+    toConfirm: c.toConfirm,
+    byAgent: c.byAgent,
+    unknown: c.unknown,
+    open: c.open,
+    coverage: cov.length ? cov[cov.length >> 1] : null,
+    findings: s.findings.length,
+    ...(arg("--note") ? { note: arg("--note") } : {}),
+  };
+  const historyPath = resolve(dir, "scorecard-history.json");
+  const history = existsSync(historyPath) ? JSON.parse(readFileSync(historyPath, "utf8")) : [];
+  const last = history[history.length - 1];
+  const moved = !last || Object.keys(run).some((k) => k !== "at" && k !== "note" && last[k] !== run[k]);
+  if (moved) history.push(run);
+  /* Nothing moved: the note joins the last run's rather than replacing it. */
+  else if (run.note && !(last.note || "").includes(run.note)) last.note = last.note ? `${last.note}; ${run.note}` : run.note;
+  writeFileSync(historyPath, JSON.stringify(history, null, 2));
   console.log(`${s.counts.pages} pages, ${s.counts.total} regions, ${s.counts.types} types (${s.recurring.length} recurring). Site: ${s.siteLine}`);
-  console.log(`Wrote ${resolve(dir, "scorecard.md")} and scorecard.html`);
+  console.log(`Wrote ${resolve(dir, "scorecard.md")} and scorecard.html; ${moved ? `run ${history.length} added to` : "no change to"} scorecard-history.json`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();

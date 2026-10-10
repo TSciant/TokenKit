@@ -1,0 +1,135 @@
+/* CookieConsent — the banner asking whether non-essential cookies may be set.
+   data-tk="cookie-consent" data-position=top (bottom is the default)
+   data-contained = in the flow instead of fixed (docs, stories)
+
+   A bar across the viewport's edge: square, full width, a hairline on the
+   side that faces the page. The content keeps to a readable width inside it.
+   Accept and reject are kit Buttons of one variant and one size; the banner
+   adds nothing to them, so nothing here can make one louder than the other.
+
+   Nothing moves. It is there when the page is, and goes when it is hidden:
+   a banner that slides in is asking for attention it already has, so there
+   is no transition to take away under reduced motion. */
+@layer components {
+  /* tk-default: data-position=bottom */
+  :where([data-tk="cookie-consent"]) {
+    /* A phone's home indicator and notch. env() is 0 everywhere else. The
+       inline insets are physical (left, right), so the larger one is used on
+       both sides and the bar is right in either direction. */
+    --_safe-inline: max(env(safe-area-inset-left), env(safe-area-inset-right));
+
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    /* Above the page's own sticky chrome (20) and a floating action (15):
+       the question comes first. Dialogs are in the top layer, above this. */
+    z-index: 30;
+    /* Never the whole screen: at 200% zoom on a phone the rest of the page
+       is still there above it, and the banner scrolls inside itself. */
+    max-block-size: 60dvh;
+    overflow-y: auto;
+    padding-block: var(--tk-space-5) calc(var(--tk-space-5) + env(safe-area-inset-bottom));
+    padding-inline: calc(var(--tk-gutter) + var(--_safe-inline));
+    border-block-start: 1px solid var(--tk-line-default);
+    background-color: var(--tk-surface-raised);
+    color: var(--tk-text-primary);
+    box-shadow: var(--tk-shadow-md);
+  }
+
+  :where([data-tk="cookie-consent"][data-position="top"]) {
+    inset-block-start: 0;
+    inset-block-end: auto;
+    padding-block: calc(var(--tk-space-5) + env(safe-area-inset-top)) var(--tk-space-5);
+    border-block-start: 0;
+    border-block-end: 1px solid var(--tk-line-default);
+  }
+
+  /* In the flow: a panel on the page rather than a bar on the screen, so it
+     takes a whole border and no shadow, and the safe areas are not its
+     business. */
+  :where([data-tk="cookie-consent"][data-contained]) {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    max-block-size: none;
+    overflow-y: visible;
+    padding: var(--tk-space-5) var(--tk-gutter);
+    border: 1px solid var(--tk-line-default);
+    box-shadow: none;
+  }
+
+  :where([data-tk="cookie-consent-inner"]) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--tk-space-3);
+    max-inline-size: 80rem;
+    margin-inline: auto;
+  }
+
+  :where([data-tk="cookie-consent-title"]) {
+    margin: 0;
+  }
+
+  /* The words keep to the measure; the actions below them do not have to. */
+  :where([data-tk="cookie-consent-message"]),
+  :where([data-tk="cookie-consent-confirmation"]),
+  :where([data-tk="cookie-consent-policy"]) {
+    max-inline-size: var(--tk-measure);
+    margin: 0;
+  }
+
+  :where([data-tk="cookie-consent-message"] > p) {
+    margin: 0;
+  }
+
+  :where([data-tk="cookie-consent-message"] > p + p) {
+    margin-block-start: var(--tk-space-2);
+  }
+
+  :where([data-tk="cookie-consent-policy"]) {
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-tk="cookie-consent-actions"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-3);
+    margin-block-start: var(--tk-space-2);
+  }
+
+  /* On a phone the two answers stack at full width, still one above the
+     other at the same size, rather than wrapping into a big one and a small
+     one. Settings follows, as wide as its words. */
+  @media (max-width: 40rem) {
+    :where([data-tk="cookie-consent-actions"]) {
+      flex-direction: column;
+      align-items: stretch;
+      align-self: stretch;
+    }
+
+    :where([data-tk="cookie-consent-actions"] > [data-tk="button"]:not([data-variant="quiet"])) {
+      inline-size: 100%;
+    }
+
+    :where([data-tk="cookie-consent-actions"] > [data-tk="button"][data-variant="quiet"]) {
+      align-self: flex-start;
+    }
+  }
+
+  /* Focus lands here after a choice, by script; the outline is the reset's,
+     drawn only when the reader is using the keyboard. It is offset outwards
+     so it does not crowd the text. */
+  :where([data-tk="cookie-consent-confirmation"]:focus-visible) {
+    outline-offset: var(--tk-space-1);
+  }
+
+  /* The bar's edge is a border, which forced colours keep; the shadow and
+     the raised fill go, so the edge is drawn in the reader's text colour. */
+  @media (forced-colors: active) {
+    :where([data-tk="cookie-consent"]) {
+      border-color: CanvasText;
+    }
+  }
+}

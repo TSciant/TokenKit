@@ -85,6 +85,9 @@ if (existsSync(stockSrc)) {
 const workerSrc = require.resolve("maplibre-gl/dist/maplibre-gl-worker.mjs");
 await cp(workerSrc, join(PUBLIC, "maplibre-gl-worker.mjs"));
 console.log("  maplibre-gl-worker.mjs");
+/* The worker imports the shared chunk from beside itself. */
+await cp(require.resolve("maplibre-gl/dist/maplibre-gl-shared.mjs"), join(PUBLIC, "maplibre-gl-shared.mjs"));
+console.log("  maplibre-gl-shared.mjs");
 
 /* A permissive robots.txt, deliberately.
  

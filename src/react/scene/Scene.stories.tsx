@@ -6,7 +6,7 @@ import { Scene, cleanScene } from "./Scene";
 import { SceneLayers } from "./SceneLayers";
 
 const PACK_NAMES = PACKS as Record<string, string>;
-const [PRICING, HERO, SETTINGS] = EXAMPLES as unknown[];
+const [PRICING, HERO, SETTINGS, , OFFICE] = EXAMPLES as unknown[];
 
 const meta = {
   title: "04 Primitives/34 Scene",
@@ -61,6 +61,12 @@ export const SettingsForm: Story = {
   name: "Settings form",
   parameters: { docs: { description: { story: "A sidebar of sections beside a narrow form: fields sized to their answers, a choice group, flat cards in a grid and a button group with a danger action." } } },
   render: () => <WithLayers scene={SETTINGS} />,
+};
+
+export const FindAnOffice: Story = {
+  name: "Find an office",
+  parameters: { docs: { description: { story: "A map and a pager, the kit's own: the map on the pack's basemap with a pin (its empty state when there is no network), the pager with its pages in circles of one size." } } },
+  render: () => <WithLayers scene={OFFICE} />,
 };
 
 export const EveryPack: Story = {

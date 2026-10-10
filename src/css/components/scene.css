@@ -38,6 +38,41 @@
     padding-block: var(--tk-space-7);
   }
 
+  /* One column for the page. Each section's content sits in the same
+     centred column (the bands and the header and footer still run edge to
+     edge), so a page of sections shares one left edge at any width: without
+     it, a title ran from the gutter while a centred measure of prose began
+     halfway across, and a wide screen read as two pages. 80rem, the wide
+     centre's width. The full width is stated because auto margins in the
+     section's flex column would otherwise shrink each to its content. A
+     centre shell already bounds and centres itself (narrow, measure, wide),
+     so it is left to its own width. */
+  :where([data-tk="scene"] [data-section] > :not([data-shell="center"])) {
+    inline-size: 100%;
+    max-inline-size: 80rem;
+    margin-inline: auto;
+  }
+
+  /* A mark beside words: in a row that leads with an icon (a bulleted line,
+     a list item), the words take the rest of the line and wrap there. A row
+     wraps its children, so a sentence longer than the line otherwise
+     dropped below its own chevron. */
+  :where([data-tk="scene"] [data-shell="row"] > [data-tk="icon"]:first-child + *) {
+    flex: 1 1 0;
+    min-inline-size: 0;
+  }
+
+  /* A column of quiet buttons is a list of links (an article's contents, an
+     open menu): their words start at the column's edge, pulled out by the
+     button's own padding, and a long one wraps from the left. Centred, a
+     wrapped entry hung its second line in the middle, and every entry sat
+     a padding's width in from everything above it. */
+  :where([data-tk="scene"] [data-shell="stack"] > [data-tk="button"][data-variant="quiet"]) {
+    margin-inline-start: calc(-1 * var(--_pad-x));
+    justify-content: flex-start;
+    text-align: start;
+  }
+
   /* Bands that ask for something stand off the page. */
   :where([data-tk="scene"] [data-section="call-to-action"]),
   :where([data-tk="scene"] [data-section="newsletter-signup"]) {
@@ -63,6 +98,38 @@
 
   :where([data-tk="scene"] [data-section="site-footer"]) {
     margin-block-end: calc(-1 * var(--tk-space-6));
+  }
+
+  /* The site header on a narrow page: the links fold away and the Menu
+     button stands in for them (the menu-open variant draws what it opens).
+     Wider, the button is not there. Measured on the scene, not the window,
+     so a phone frame in a story folds it too. Positions are the library's
+     own (sections.mjs builds both bars): the inline bar is a row of brand,
+     links and actions; the stacked bar is the brand row over the links. */
+  @container (min-width: 48rem) {
+    :where([data-tk="scene"] [data-section="site-header"][data-section-variant="inline"] > [data-shell="row"] > :nth-child(3) > :last-child),
+    :where([data-tk="scene"] [data-section="site-header"][data-section-variant="stacked"] > [data-shell="stack"] > :first-child > :last-child > :last-child) {
+      display: none;
+    }
+  }
+  @container (max-width: 47.99rem) {
+    :where([data-tk="scene"] [data-section="site-header"][data-section-variant="inline"] > [data-shell="row"] > :nth-child(2)),
+    :where([data-tk="scene"] [data-section="site-header"][data-section-variant="stacked"] > [data-shell="stack"] > :nth-child(2)) {
+      display: none;
+    }
+  }
+
+  /* A section in two columns, a narrow one for its heading (or an article's
+     summary and contents) beside the wide body: the narrow column stays in
+     view while the body scrolls past it, so a long body does not leave an
+     empty column beside it. Only side by side; stacked on a narrow page it
+     would sit over the body. Not stretched, so it has room to move. */
+  @container (min-width: 48rem) {
+    :where([data-tk="scene"] [data-section] > [data-shell="grid"][data-ratio="1:2"] > :first-child) {
+      position: sticky;
+      inset-block-start: var(--tk-space-5);
+      align-self: flex-start;
+    }
   }
 
   :where([data-tk="scene"] [data-scene-active]) {

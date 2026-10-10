@@ -1,0 +1,176 @@
+/* FloatingAction — one primary action floating over the page.
+   data-tk="floating-action"
+   data-variant=tab   a tab on the page's edge, label set vertically
+                      (the round button is the default)
+   data-position=start  the inline-start side (end is the default)
+   data-extended      the label shows beside the icon
+   data-contained     inside its nearest positioned ancestor, not the viewport
+
+   The round button is the base rule. The tab is written only for screens
+   wider than 40rem, so on a phone a tab simply is the round button: the
+   same element, the same name, no second piece of markup to keep in step.
+
+   It changes colour on hover and focus and does not move: it is already the
+   one thing on the page that floats. */
+@layer components {
+  /* tk-default: data-variant=button, data-position=end */
+  :where([data-tk="floating-action"]) {
+    /* Material's 56px, from the kit's own target and spacing. */
+    --_size: calc(var(--tk-target-comfortable) + var(--tk-space-3));
+    --_offset: var(--tk-space-5);
+    /* A phone's notch and home indicator; env() is 0 everywhere else. The
+       inline insets are physical, so the larger serves both sides. */
+    --_safe-block: env(safe-area-inset-bottom);
+    --_safe-inline: max(env(safe-area-inset-left), env(safe-area-inset-right));
+    --_fill: var(--tk-action-fill);
+
+    position: fixed;
+    inset-block-end: calc(var(--_offset) + var(--_safe-block));
+    inset-inline-end: calc(var(--_offset) + var(--_safe-inline));
+    /* Above the page, below its sticky header and a non-modal drawer (20):
+       a drawer at the same edge is the thing in use. */
+    z-index: 15;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--tk-space-2);
+    box-sizing: border-box;
+    min-inline-size: var(--_size);
+    block-size: var(--_size);
+    margin: 0;
+    padding: 0;
+    /* Transparent until forced colours paint it: the round shape is a fill,
+       and a fill alone does not survive them. */
+    border: 1px solid transparent;
+    border-radius: var(--tk-radius-full);
+    background-color: var(--_fill);
+    color: var(--tk-action-text);
+    box-shadow: var(--tk-shadow-md);
+    font: inherit;
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    line-height: var(--tk-leading-tight);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color var(--tk-motion-surface),
+      box-shadow var(--tk-motion-elevation);
+  }
+
+  :where([data-tk="floating-action"]:hover) {
+    --_fill: var(--tk-action-fill-hover);
+  }
+
+  :where([data-tk="floating-action"]:active) {
+    --_fill: var(--tk-action-fill-active);
+  }
+
+  :where([data-tk="floating-action"][data-position="start"]) {
+    inset-inline-end: auto;
+    inset-inline-start: calc(var(--_offset) + var(--_safe-inline));
+  }
+
+  /* Inside a frame: the frame's corner, not the screen's, so the safe areas
+     are not its business. */
+  :where([data-tk="floating-action"][data-contained]) {
+    --_safe-block: 0px;
+    --_safe-inline: 0px;
+    position: absolute;
+  }
+
+  :where([data-tk="floating-action"][data-extended]) {
+    padding-inline: var(--tk-space-5);
+  }
+
+  :where([data-tk="floating-action"][data-extended] [data-tk="icon"]) {
+    margin-inline-start: calc(-1 * var(--tk-space-1));
+  }
+
+  /* Hidden from sight, never from the accessibility tree: the label is the
+     name, on screen or not. */
+  :where([data-tk="floating-action"]:not([data-extended]) [data-tk="floating-action-label"]) {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  /* --- the tab, on screens with room for it -------------------------------- */
+  @media (width > 40rem) {
+    :where([data-tk="floating-action"][data-variant="tab"]) {
+      /* A control's corner, not a capsule: a capsule's ends on a tall tab
+         would be one long curve. Square on the screen's edge, which is its
+         edge; round on the two corners that face the page. */
+      --_radius: min(var(--tk-radius-control), var(--tk-radius-nested));
+      inset-block-start: 50%;
+      inset-block-end: auto;
+      inset-inline-end: var(--_safe-inline);
+      translate: 0 -50%;
+      flex-direction: column;
+      min-inline-size: var(--tk-target-comfortable);
+      block-size: auto;
+      padding: var(--tk-space-4) var(--tk-space-2);
+      border-radius: 0;
+      border-start-start-radius: var(--_radius);
+      border-end-start-radius: var(--_radius);
+    }
+
+    :where([data-tk="floating-action"][data-variant="tab"][data-position="start"]) {
+      inset-inline-start: var(--_safe-inline);
+      inset-inline-end: auto;
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
+      border-start-end-radius: var(--_radius);
+      border-end-end-radius: var(--_radius);
+    }
+
+    :where([data-tk="floating-action"][data-variant="tab"] [data-tk="icon"]) {
+      margin: 0;
+    }
+
+    /* Set along the edge, with the tops of the letters towards it: top to
+       bottom on the right-hand edge, bottom to top on the left. */
+    :where([data-tk="floating-action"][data-variant="tab"] [data-tk="floating-action-label"]) {
+      position: static;
+      inline-size: auto;
+      block-size: auto;
+      margin: 0;
+      overflow: visible;
+      clip-path: none;
+      writing-mode: vertical-rl;
+    }
+
+    :where([data-tk="floating-action"][data-variant="tab"][data-position="start"]:not(:dir(rtl)) [data-tk="floating-action-label"]),
+    :where([data-tk="floating-action"][data-variant="tab"]:not([data-position="start"]):dir(rtl) [data-tk="floating-action-label"]) {
+      rotate: 180deg;
+    }
+  }
+
+  /* Room for it. A link tabbed to near the bottom of the page is scrolled
+     clear of the button rather than under it (WCAG 2.4.11): the button's
+     height and its offset, added to the page's scroll padding while it is
+     on the page and fixed. */
+  :where(:root:has([data-tk="floating-action"]:not([data-contained]))) {
+    scroll-padding-block-end: calc(var(--tk-target-comfortable) + var(--tk-space-3) + 2 * var(--tk-space-5));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="floating-action"]) {
+      transition: none;
+    }
+  }
+
+  /* The fill goes; the border stays and takes the button colours, so the
+     shape is still a button. */
+  @media (forced-colors: active) {
+    :where([data-tk="floating-action"]) {
+      border-color: ButtonText;
+      background-color: ButtonFace;
+      color: ButtonText;
+    }
+  }
+}

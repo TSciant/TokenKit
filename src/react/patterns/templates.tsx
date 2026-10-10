@@ -4,11 +4,10 @@
    Vite/Storybook and load-bearing under the Next.js App Router, where a module
    without it is a server component and may not use hooks at all. */
 
-import { useId } from "react";
 import { Arrow } from "../primitives/Arrow";
 import { Plate } from "../primitives/Plate";
 import { ArrowCta } from "./ArrowCta";
-import type { Cols } from "./types";
+
 import { PageHero } from "./chrome";
 import {
   ipsumBody,
@@ -23,6 +22,12 @@ import {
   ipsumTitle,
   ipsumTitles,
 } from "../../lib/token-ipsum";
+/* Patterns now in files of their own, so a client cut can take one alone; re-exported here so no import moves. */
+export type { FormField } from "./form-parts";
+export { LEAD_FIELDS, LEAD_CATEGORIES, LEAD_HEADING, LeadForm } from "./LeadForm";
+export type { LeadFormProps } from "./LeadForm";
+export { APPLY_FIELDS, APPLY_ROLES, APPLY_HEADING, ApplyForm } from "./ApplyForm";
+export type { ApplyFormProps } from "./ApplyForm";
 
 /* ---------------------------------------------------------------------------
    12, 21-23, 25 — forms and page templates.
@@ -43,254 +48,6 @@ import {
    whose fields read as nonsense cannot be reviewed as a form, and `type` is
    load-bearing: it picks the mobile keyboard and the autocomplete token.
 --------------------------------------------------------------------------- */
-
-/** Required is stated in text as well as marked, because 1.4.1 forbids
-    carrying meaning by colour or glyph alone. */
-function Required() {
-  return (
-    <>
-      <span aria-hidden="true"> *</span>
-      <span data-tk="visually-hidden"> (required)</span>
-    </>
-  );
-}
-
-/** One text input in a form's field set. `type` goes straight to the input,
-    so it also picks the mobile keyboard and the autocomplete token. */
-export type FormField = {
-  label: string;
-  required?: boolean;
-  type?: string;
-  hint?: string;
-};
-
-function Text({ label, required, type = "text", hint }: FormField) {
-  const id = useId();
-  const hintId = hint ? `${id}-hint` : undefined;
-  return (
-    <div data-tk="field">
-      <label data-tk="field-label" htmlFor={id}>
-        {label}
-        {required ? <Required /> : null}
-      </label>
-      <input
-        data-tk="input"
-        id={id}
-        type={type}
-        required={required}
-        aria-describedby={hintId}
-        autoComplete={type === "email" ? "email" : undefined}
-      />
-      {hint ? (
-        <p data-tk="field-hint" id={hintId}>
-          {hint}
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
-export const LEAD_FIELDS: FormField[] = [
-  { label: "First name", required: true },
-  { label: "Last name", required: true },
-  { label: "Email", type: "email", required: true },
-  { label: "Phone", type: "tel" },
-  { label: "Organisation", required: true },
-  { label: "Job title", required: true },
-];
-
-export const LEAD_CATEGORIES = ipsumLabels(6, "lead-form-categories");
-
-export const LEAD_HEADING = ipsumHeadline("lead-form-heading");
-
-export type LeadFormProps = {
-  heading?: string;
-  deck?: string;
-  fields?: FormField[];
-  columns?: Cols;
-  industryLabel?: string;
-  /** The disabled first option, which is what makes the select required-able. */
-  industryPlaceholder?: string;
-  industries?: string[];
-  detailLabel?: string;
-  /** Visible rows on the detail textarea. */
-  detailRows?: number;
-  /** false drops the verification note. */
-  showVerification?: boolean;
-  verificationTitle?: string;
-  verificationBody?: string;
-  submitLabel?: string;
-};
-
-/** 12 — the lead capture form. */
-export function LeadForm({
-  heading = LEAD_HEADING,
-  deck = "Fields marked required must be completed before the form can be sent.",
-  fields = LEAD_FIELDS,
-  columns = 2,
-  industryLabel = "Category",
-  industryPlaceholder = "Choose a category",
-  industries = LEAD_CATEGORIES,
-  detailLabel = "What are you working on",
-  detailRows = 5,
-  showVerification = true,
-  verificationTitle = "Verification",
-  verificationBody = "A challenge sits here in production. Any challenge used must offer a non-cognitive alternative — 3.3.8 does not accept a puzzle as the only route through.",
-  submitLabel = "Send",
-}: LeadFormProps = {}) {
-  const industryId = useId();
-  const detailId = useId();
-
-  return (
-    <section
-      data-on="inverse"
-      style={{ padding: "var(--tk-space-7) var(--tk-gutter)" }}
-    >
-      <form
-        data-shell="stack"
-        data-gap="5"
-        onSubmit={(e) => e.preventDefault()}
-        style={{ maxInlineSize: "48rem", marginInline: "auto" }}
-      >
-        <div data-shell="stack" data-gap="2">
-          <h2 style={{ margin: 0 }}>{heading}</h2>
-          <p data-tk="card-body">{deck}</p>
-        </div>
-
-        <div data-shell="grid" data-cols={String(columns)} data-gap="4">
-          {fields.map((f) => (
-            <Text key={f.label} {...f} />
-          ))}
-        </div>
-
-        <div data-tk="field">
-          <label data-tk="field-label" htmlFor={industryId}>
-            {industryLabel}
-            <Required />
-          </label>
-          <select data-tk="select" id={industryId} required defaultValue="">
-            <option value="" disabled>
-              {industryPlaceholder}
-            </option>
-            {industries.map((o) => (
-              <option key={o}>{o}</option>
-            ))}
-          </select>
-        </div>
-
-        <div data-tk="field">
-          <label data-tk="field-label" htmlFor={detailId}>
-            {detailLabel}
-            <Required />
-          </label>
-          <textarea data-tk="textarea" id={detailId} required rows={detailRows} />
-        </div>
-
-        {showVerification ? (
-          <div data-tk="alert">
-            <div>
-              <p data-tk="alert-title">{verificationTitle}</p>
-              {verificationBody}
-            </div>
-          </div>
-        ) : null}
-
-        <div>
-          <ArrowCta size="md" variant="outline">
-            {submitLabel}
-          </ArrowCta>
-        </div>
-      </form>
-    </section>
-  );
-}
-
-export const APPLY_FIELDS: FormField[] = [
-  { label: "Full name", required: true },
-  { label: "Email", type: "email", required: true },
-];
-
-export const APPLY_ROLES = ipsumLabels(3, "apply-form-roles");
-
-export const APPLY_HEADING = ipsumHeadline("apply-form-heading");
-
-export type ApplyFormProps = {
-  heading?: string;
-  fields?: FormField[];
-  roleLabel?: string;
-  rolePlaceholder?: string;
-  roles?: string[];
-  resumeLabel?: string;
-  resumeHint?: string;
-  /** Value of the file input's accept attribute. */
-  resumeAccept?: string;
-  consentLabel?: string;
-  submitLabel?: string;
-};
-
-/** 25 — single-column form with a file input and a consent checkbox. */
-export function ApplyForm({
-  heading = APPLY_HEADING,
-  fields = APPLY_FIELDS,
-  roleLabel = "Role of interest",
-  rolePlaceholder = "Choose a role",
-  roles = APPLY_ROLES,
-  resumeLabel = "Résumé",
-  resumeHint = "PDF or Word, up to 5 MB.",
-  resumeAccept = ".pdf,.doc,.docx",
-  consentLabel = "I agree to this application being stored for recruitment purposes",
-  submitLabel = "Submit application",
-}: ApplyFormProps = {}) {
-  const fileId = useId();
-  const consentId = useId();
-  const roleId = useId();
-
-  return (
-    <section data-shell="center" data-gap="5" style={{ paddingBlock: "var(--tk-space-7)" }}>
-      <h2 style={{ margin: 0 }}>{heading}</h2>
-      <form data-shell="stack" data-gap="4" onSubmit={(e) => e.preventDefault()}>
-        {fields.map((f) => (
-          <Text key={f.label} {...f} />
-        ))}
-        <div data-tk="field">
-          <label data-tk="field-label" htmlFor={roleId}>
-            {roleLabel}
-            <Required />
-          </label>
-          <select data-tk="select" id={roleId} required defaultValue="">
-            <option value="" disabled>
-              {rolePlaceholder}
-            </option>
-            {roles.map((r) => (
-              <option key={r}>{r}</option>
-            ))}
-          </select>
-        </div>
-
-        <div data-tk="field">
-          <label data-tk="field-label" htmlFor={fileId}>
-            {resumeLabel}
-            <Required />
-          </label>
-          <input data-tk="input" id={fileId} type="file" required accept={resumeAccept} />
-          <p data-tk="field-hint">{resumeHint}</p>
-        </div>
-
-        <label data-tk="choice" htmlFor={consentId}>
-          <input id={consentId} type="checkbox" required />
-          <span>
-            {consentLabel}
-            <Required />
-          </span>
-        </label>
-
-        <div>
-          <ArrowCta size="md">{submitLabel}</ArrowCta>
-        </div>
-      </form>
-    </section>
-  );
-}
 
 export const SEGMENT_CRUMBS = ["Home", ...ipsumLabels(1, "segment-page-crumbs")];
 

@@ -1,0 +1,155 @@
+/* DataTable — data that is a table. A real <table> inside a region that
+   scrolls sideways when the container is narrower than the table, so the
+   page never does. Figures line up and end-align; the header row sits on a
+   stronger rule than the rows; striped and dense are options, not defaults. */
+@layer components {
+  :where([data-tk="data-table"]) {
+    --_cell-block: var(--tk-space-3);
+    --_cell-inline: var(--tk-space-4);
+
+    max-inline-size: 100%;
+    overflow-x: auto;
+    /* No radius: on a scroll container it clips the content, and the first
+       letter of the caption and the ends of the last rule went with it. */
+  }
+
+  /* Focusable so a keyboard can scroll it; the ring says it has focus and
+     the table is what the arrow keys will move. */
+  :where([data-tk="data-table"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+
+  :where([data-tk="data-table"][data-dense]) {
+    --_cell-block: var(--tk-space-2);
+    --_cell-inline: var(--tk-space-3);
+  }
+
+  :where([data-tk="data-table-table"]) {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+    line-height: var(--tk-leading-normal);
+  }
+
+  :where([data-tk="data-table"][data-dense] [data-tk="data-table-table"]) {
+    font-size: var(--tk-size-sm);
+  }
+
+  /* The caption is the table's name, so it reads as one: the primary ink,
+     not the secondary of a figure's credit. */
+  :where([data-tk="data-table-caption"]) {
+    caption-side: top;
+    padding-block-end: var(--tk-space-3);
+    text-align: start;
+    color: var(--tk-text-primary);
+    font-size: var(--tk-size-base);
+    font-weight: var(--tk-weight-semibold);
+  }
+
+  :where([data-tk="data-table-caption"][data-hidden]) {
+    padding: 0;
+  }
+
+  :where([data-tk="data-table-table"] :is(th, td)) {
+    padding: var(--_cell-block) var(--_cell-inline);
+    border-block-end: 1px solid var(--tk-line-subtle);
+    text-align: start;
+    vertical-align: top;
+  }
+
+  :where([data-tk="data-table-table"] thead th) {
+    vertical-align: bottom;
+    border-block-end: 1px solid var(--tk-line-strong);
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-semibold);
+  }
+
+  :where([data-tk="data-table-table"] tbody th) {
+    color: var(--tk-text-primary);
+    font-weight: var(--tk-weight-semibold);
+  }
+
+  /* Figures: end-aligned so their places line up, and never broken across
+     lines, which would make two numbers out of one. */
+  :where([data-tk="data-table-table"] [data-align="end"]) {
+    text-align: end;
+    white-space: nowrap;
+  }
+
+  :where([data-tk="data-table"][data-striped] tbody tr:nth-child(even)) {
+    background-color: var(--tk-surface-sunken);
+  }
+
+  /* The first cell of each row on the start edge, the last on the end:
+     a table flush with the text around it, not inset by its own padding.
+     Striped rows keep it, so the shading has somewhere to sit. */
+  :where([data-tk="data-table"]:not([data-striped]) :is(th, td):first-child) {
+    padding-inline-start: 0;
+  }
+
+  :where([data-tk="data-table"]:not([data-striped]) :is(th, td):last-child) {
+    padding-inline-end: 0;
+  }
+
+  /* The edge that has more table behind it fades out, so a table cut off at
+     the container's edge does not look like a table that ends there. Each
+     edge fades only while there is more to scroll to on that side: a
+     scroll-driven animation moves the two fade lengths as the region
+     scrolls, and a region with nothing to scroll has no active timeline, so
+     no fade. Where scroll timelines are not supported, there is no fade and
+     nothing else changes. The mask is alpha only, so its colour is any
+     opaque one. */
+  @supports (animation-timeline: scroll()) {
+    :where([data-tk="data-table"]) {
+      mask-image: linear-gradient(
+        var(--_fade-dir, to right),
+        transparent,
+        black var(--_fade-start, 0px),
+        black calc(100% - var(--_fade-end, 0px)),
+        transparent
+      );
+      animation: tk-data-table-edges linear both;
+      animation-timeline: scroll(self inline);
+    }
+
+    :where([data-tk="data-table"]:dir(rtl)) {
+      --_fade-dir: to left;
+    }
+
+    /* A mask clips the focus ring with everything else, so a focused
+       region drops it: the ring is what says this scrolls, then. */
+    :where([data-tk="data-table"]:focus-visible) {
+      mask-image: none;
+    }
+  }
+
+  /* Forced colours drop the stripes; the rules between rows still carry
+     them, and the header's rule stays the heavier one. */
+  @media (forced-colors: active) {
+    :where([data-tk="data-table-table"] :is(th, td)) {
+      border-block-end-color: CanvasText;
+    }
+
+    :where([data-tk="data-table-table"] thead th) {
+      border-block-end-width: 2px;
+    }
+  }
+
+  @keyframes tk-data-table-edges {
+    0% {
+      --_fade-start: 0px;
+      --_fade-end: var(--tk-space-7);
+    }
+    1%,
+    99% {
+      --_fade-start: var(--tk-space-7);
+      --_fade-end: var(--tk-space-7);
+    }
+    100% {
+      --_fade-start: var(--tk-space-7);
+      --_fade-end: 0px;
+    }
+  }
+}

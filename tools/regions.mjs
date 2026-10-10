@@ -203,7 +203,7 @@ export function splitRegions() {
     const head = describe(els[0]);
     /* A run is prose, or a collection: like siblings (a listing's items). */
     const leadIn = Array.isArray(target) && (target.leadIn || target.leadOut);
-    const asCollection = !leadIn && els.length > 1 && !els.every(isProse);
+    const asCollection = !leadIn && els.length > 1 && !els.every(isFlow);
     const summary = els.length > 1 ? summariseRun(els) : summarise(els[0]);
     if (asCollection) summary.collection = { count: els.length, item: skeleton(els[0]).slice(0, 160), sample: text(els[0], 60) };
     if (leadIn) {
@@ -332,7 +332,21 @@ export function splitRegions() {
      stretch of prose, not a region each: consecutive ones become a run. An
      h1 is a page title and stands alone; an h2 joins the prose it heads. */
   const PROSE = new Set(["P", "UL", "OL", "LI", "DL", "H2", "H3", "H4", "H5", "H6", "BLOCKQUOTE", "PRE", "HR"]);
-  const isProse = (el) => PROSE.has(el.tagName) && !el.querySelector("img, video, iframe, form, table");
+  /* By the element as it sits in the text, not as unwrapped: a bold title in
+     its own paragraph (<p><strong>) is a paragraph of the prose, not a block
+     that breaks it. */
+  const isProse = (el) => (PROSE.has(el.tagName) || PROSE.has(outerOf(el).tagName)) && !el.querySelector("img, video, iframe, form, table");
+  /* A lone action: one link or button and a few words, no heading or picture. */
+  const ACTIONS = "a[href], button, [role=button]";
+  const isAction = (el) => {
+    /* Counted by element: a link styled as a button is one action, not two. */
+    const count = (el.matches(ACTIONS) ? 1 : 0) + el.querySelectorAll(ACTIONS).length;
+    const words = (el.innerText || "").trim().split(/\s+/).filter(Boolean).length;
+    return count === 1 && words <= 6 && !el.querySelector("h1, h2, h3, h4, h5, h6, img, svg[role=img], video, iframe, input, select, textarea");
+  };
+  /* Prose and the lone actions set in it ("Download the slides" after each
+     session of a programme) are one stretch of text. */
+  const isFlow = (el) => isProse(el) || isAction(el);
   /* The container a block really sits in, past single-child wrappers (a
      one-item list around a question is still in the same stretch of text). */
   const outerOf = (el) => {
@@ -350,7 +364,9 @@ export function splitRegions() {
       run = [];
     };
     for (const b of blocks) {
-      if (isProse(b) && (!run.length || containerOf(run[run.length - 1]) === containerOf(b))) run.push(b);
+      const same = run.length && containerOf(run[run.length - 1]) === containerOf(b);
+      if (isProse(b) && (!run.length || same)) run.push(b);
+      else if (same && isAction(b)) run.push(b);
       else {
         flush();
         if (isProse(b)) run.push(b);
@@ -404,7 +420,7 @@ export function splitRegions() {
       return s.words > 0 && s.words <= 70 && !s.links && !s.media && !s.fields.length && !s.collection;
     };
     const introduces = (b) => {
-      if (Array.isArray(b)) return !b.every(isProse);
+      if (Array.isArray(b)) return !b.every(isFlow);
       const s = summarise(b);
       return Boolean(s.collection) || s.media > 0 || s.links >= 3;
     };
@@ -415,7 +431,7 @@ export function splitRegions() {
       if (next && isLeadIn(b) && introduces(next) && containerOf(Array.isArray(b) ? b[0] : b) === containerOf(Array.isArray(next) ? next[0] : next)) {
         const run = [...(Array.isArray(b) ? b : [b]), ...(Array.isArray(next) ? next : [next])];
         run.leadIn = Array.isArray(b) ? b.length : 1;
-        run.collectionOf = Array.isArray(next) && !next.every(isProse) ? next.length : 0;
+        run.collectionOf = Array.isArray(next) && !next.every(isFlow) ? next.length : 0;
         merged.push(run);
         i++;
       } else merged.push(b);
@@ -432,7 +448,7 @@ export function splitRegions() {
     for (const b of merged) {
       const prev = out2[out2.length - 1];
       const prevEl = Array.isArray(prev) ? prev[prev.length - 1] : prev;
-      if (prev && isLeadOut(b) && containerOf(prevEl) === containerOf(b) && !(Array.isArray(prev) && prev.every(isProse))) {
+      if (prev && isLeadOut(b) && containerOf(prevEl) === containerOf(b) && !(Array.isArray(prev) && prev.every(isFlow))) {
         const run = [...(Array.isArray(prev) ? prev : [prev]), b];
         run.leadIn = Array.isArray(prev) ? prev.leadIn || 0 : 0;
         /* A listing's run keeps its count; a lead-in section keeps what it had. */
@@ -645,9 +661,13 @@ async function main() {
            region is scrolled into view before it is cropped: Chromium paints
            a cross-origin iframe (an embedded form) only near the viewport,
            and nothing floating should sit over the content. */
+        /* As tall as Chromium will draw in one screenshot (16384px, less a
+           margin), so a long region (a programme, a policy page) is pictured
+           whole rather than its first screens only. */
+        const MAX_CROP = 16000;
         const crop = async (r) => {
           const file = `${String(r.n).padStart(2, "0")}@${width}.png`;
-          const clip = { x: Math.max(0, r.box.x), y: Math.max(0, r.box.y), width: Math.min(r.box.w, width), height: Math.min(r.box.h, 4000) };
+          const clip = { x: Math.max(0, r.box.x), y: Math.max(0, r.box.y), width: Math.min(r.box.w, width), height: Math.min(r.box.h, MAX_CROP) };
           try {
             await page.screenshot({ path: resolve(dir, file), clip, fullPage: true });
             r.crop = `regions/${slug}/${file}`;

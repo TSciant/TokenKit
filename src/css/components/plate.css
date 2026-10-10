@@ -42,6 +42,11 @@
     position: relative;
     isolation: isolate;
     overflow: clip;
+    /* A plate draws its texture on its own ::after, behind its label and its
+       figure. The texture utility answers data-texture by masking the whole
+       element, which on a plate cut its label and its figure into stripes;
+       this layer outranks that one, so the plate is never masked as a whole. */
+    mask-image: none;
 
     display: grid;
     place-items: center;
@@ -217,6 +222,44 @@
     --_horizon: 82%;
 
     max-block-size: var(--tk-plate-max-portrait);
+  }
+
+  /* A person in silhouette: head and shoulders standing on the plate's foot,
+     a solid shape mixed from the pack's ink and surface, so it reads as a
+     stand-in in light and dark alike. The light source is put out (a portrait
+     has no sun); the figure stands in front of the texture; the label, when
+     there is one, sits at the top, clear of the face. */
+  :where([data-tk="plate"][data-subject="person"]) {
+    --_subject-r: 0%;
+    /* Its ratio is the point: a person is taller than wide. A height cap
+       would square it off in a wide card, so the ratio decides. */
+    max-block-size: none;
+  }
+  :where([data-tk="plate-subject"]) {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline: 0;
+    margin-inline: auto;
+    inline-size: 80%;
+    block-size: 88%;
+    z-index: 1;
+    fill: color-mix(in oklab, var(--tk-text-primary) 30%, var(--tk-surface-sunken));
+    pointer-events: none;
+  }
+  /* The label goes to the top, clear of the face. */
+  :where([data-tk="plate"][data-subject="person"]) {
+    align-items: start;
+  }
+  :where([data-tk="plate"][data-subject="person"] [data-tk="plate-label"]) {
+    position: relative;
+    z-index: 2;
+    margin-block-start: var(--tk-space-3);
+    max-inline-size: calc(100% - 2 * var(--tk-space-3));
+  }
+  @media (forced-colors: active) {
+    :where([data-tk="plate-subject"]) {
+      fill: GrayText;
+    }
   }
 
   /* Flush to a parent's edge: the parent's corners, and the parent clips. */

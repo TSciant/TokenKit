@@ -1,0 +1,75 @@
+/* ArticleMeta — the line under an article's title. One row of small,
+   secondary text that wraps, the pieces parted by quiet dots.
+
+   The dots are shapes, not characters, so a screen reader has nothing to
+   read between the pieces. Each piece after the first draws its dot half a
+   gap before itself. When the row wraps, the first piece on the new line
+   would start with a dot; it sits outside the row's start edge instead, and
+   the row clips its inline overflow, so it is never seen. The row keeps a
+   sliver of padding on each side (pulled back with a matching negative
+   margin) so a focus ring on a link at the edge is not clipped with it. */
+@layer components {
+  :where([data-tk="article-meta"]) {
+    --_gap: var(--tk-space-4);
+    --_edge: var(--tk-space-1);
+    --_dot: var(--tk-space-1);
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-2) var(--_gap);
+    margin: 0 calc(-1 * var(--_edge));
+    padding: 0 var(--_edge);
+    list-style: none;
+    overflow-x: clip;
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-normal);
+  }
+
+  /* Each piece is a block of running text, not a flex row: a byline is
+     words and links with commas between them, and flex would trim the
+     spaces at the edges of each run of text. */
+  :where([data-tk="article-meta"] > li) {
+    position: relative;
+    min-inline-size: 0;
+  }
+
+  /* The dot: a ring with no inside, so forced colours keep it (a filled
+     background would be painted out). */
+  :where([data-tk="article-meta"] > li + li)::before {
+    content: "";
+    position: absolute;
+    inset-block-start: calc(50% - var(--_dot) / 2);
+    inset-inline-start: calc(var(--_gap) / -2 - var(--_dot) / 2);
+    inline-size: 0;
+    block-size: 0;
+    border: calc(var(--_dot) / 2) solid var(--tk-line-strong);
+    border-radius: var(--tk-radius-full);
+  }
+
+  :where([data-tk="article-meta"] time) {
+    white-space: nowrap;
+  }
+
+  /* Topics: a list of their own inside the row, chips or links. */
+  :where([data-tk="article-meta-topics"] > ul) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :where([data-tk="article-meta-topics"] > ul > li) {
+    display: inline-flex;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="article-meta"] > li + li)::before {
+      border-color: CanvasText;
+    }
+  }
+}

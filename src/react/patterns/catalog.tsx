@@ -4,7 +4,7 @@
    Vite/Storybook and load-bearing under the Next.js App Router, where a module
    without it is a server component and may not use hooks at all. */
 
-import { useId, useState } from "react";
+import { useState } from "react";
 import { Arrow } from "../primitives/Arrow";
 import { Plate } from "../primitives/Plate";
 import { ArrowCta } from "./ArrowCta";
@@ -16,13 +16,13 @@ import { Chip } from "../primitives/Chip";
    skipping it. Every call is seeded from the component and the slot, so the
    same words come back on every run and two screenshots stay comparable.
    See src/lib/token-ipsum.ts. */
-import {
-  ipsumHeadline,
-  ipsumLabels,
-  ipsumList,
-  ipsumPeople,
-  ipsumTitles,
-} from "../../lib/token-ipsum";
+import { ipsumHeadline, ipsumLabels, ipsumList, ipsumTitles } from "../../lib/token-ipsum";
+/* Patterns now in files of their own, so a client cut can take one alone; re-exported here so no import moves. */
+export { PEOPLE_DIRECTORY_HEADING, STAFF, PEOPLE_PLACES, PEOPLE_TEAMS, PeopleDirectory } from "./PeopleDirectory";
+export type { Person, PeopleDirectoryProps } from "./PeopleDirectory";
+
+export { TILE_GRID_HEADING, TILES, TileGrid } from "./TileGrid";
+export type { TileGridProps } from "./TileGrid";
 
 /* ---------------------------------------------------------------------------
    15-20, 24 — the catalogue, directory and listing patterns.
@@ -31,77 +31,6 @@ import {
    below, which hold seeded Token Ipsum placeholder content, on the
    conventions marketing.tsx sets out.
 --------------------------------------------------------------------------- */
-
-export const TILE_GRID_HEADING = ipsumHeadline("tile-grid-heading");
-
-/* Drawn in one call so the nine are distinct: the tile label is the React key
-   for the row, and two tiles sharing one would collapse into a single child. */
-export const TILES = ipsumLabels(9, "tile-grid-tiles");
-
-export type TileGridProps = {
-  /** false drops the heading, for a page that already names the section. */
-  heading?: string | false;
-  /** Tighter padding when nested in a sample page that already has a hero. */
-  compact?: boolean;
-  tiles?: string[];
-  columns?: Cols;
-  /** Aspect ratio of each tile's stand-in photograph. */
-  ratio?: string;
-};
-
-/** 15 — dense catalogue grid, a short label over a plate. */
-export function TileGrid({
-  heading = TILE_GRID_HEADING,
-  compact = false,
-  tiles = TILES,
-  columns = 3,
-  ratio = "16 / 9",
-}: TileGridProps = {}) {
-  return (
-    <section
-      data-tk="section"
-      data-section="feature"
-      data-shell="center"
-      data-width="wide"
-      data-gap="5"
-      style={
-        compact
-          ? { paddingBlock: "var(--tk-space-5)" }
-          : { paddingBlock: "var(--tk-space-7)" }
-      }
-    >
-      {heading ? <h2 style={{ margin: 0 }}>{heading}</h2> : null}
-      <ul data-shell="grid" data-cols={String(columns)} data-gap="5">
-        {tiles.map((s, idx) => (
-          <li key={s}>
-            <div
-              data-tk="card"
-              data-interactive
-            >
-              <Plate
-                fx={true}
-                stock
-                ratio={ratio}
-                seed={(idx % 6) + 1}
-                placement={false}
-              />
-              <h3
-                data-tk="card-title"
-                style={{
-                  fontSize: "var(--tk-size-base)",
-                  paddingInline: "var(--tk-space-4)",
-                  paddingBlockEnd: "var(--tk-space-4)",
-                }}
-              >
-                <a data-tk="card-link" href="#main">{s}</a>
-              </h3>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
 
 export type HubCard = { title: string; body: string };
 
@@ -339,137 +268,6 @@ export function MediaCards({
           </li>
         ))}
       </ul>
-    </section>
-  );
-}
-
-export type Person = { name: string; role: string };
-
-export const PEOPLE_DIRECTORY_HEADING = ipsumHeadline(
-  "people-directory-heading",
-);
-
-/* The names are invented on purpose — Alex Example, or Avery Cascade in the
-   kit's own voice — so a placeholder card can never be mistaken for a real
-   person. */
-export const STAFF: Person[] = ipsumPeople(4, "people-directory").map(
-  ({ name, role }) => ({ name, role }),
-);
-
-/* Both selects render one <option> per entry keyed on its own text, so each
-   list has to stay free of duplicates. */
-export const PEOPLE_PLACES = ["Remote", "Studio", "Workshop"];
-
-export const PEOPLE_TEAMS = [
-  "Cascade & Co.",
-  "Gutter Partners",
-  "Baseline Group",
-];
-
-export type PeopleDirectoryProps = {
-  heading?: string;
-  people?: Person[];
-  columns?: Cols;
-  locations?: string[];
-  companies?: string[];
-  /** Selected on first render; "" leaves the any-value option showing. */
-  initialLocation?: string;
-  initialCompany?: string;
-  ctaLabel?: string;
-  /** Aria label for the filter form. */
-  filterLabel?: string;
-};
-
-/** 20 — filter bar over a four-up person grid. */
-export function PeopleDirectory({
-  heading = PEOPLE_DIRECTORY_HEADING,
-  people = STAFF,
-  columns = 4,
-  locations = PEOPLE_PLACES,
-  companies = PEOPLE_TEAMS,
-  initialLocation = "",
-  initialCompany = "",
-  ctaLabel = "View all people",
-  filterLabel = "Filter the directory",
-}: PeopleDirectoryProps = {}) {
-  const nameId = useId();
-  const locId = useId();
-  const coId = useId();
-
-  return (
-    <section>
-      <div
-        style={{
-          background: "var(--tk-surface-inverse)",
-          padding: "var(--tk-space-3) var(--tk-gutter)",
-        }}
-      >
-        <div data-on="inverse" style={{ background: "transparent", padding: 0 }}>
-          <h2 style={{ margin: 0, fontSize: "var(--tk-size-lg)" }}>{heading}</h2>
-        </div>
-      </div>
-
-      <form
-        data-on="inverse"
-        data-shell="inline"
-        data-gap="3"
-        onSubmit={(e) => e.preventDefault()}
-        style={{ padding: "var(--tk-space-5) var(--tk-gutter)", alignItems: "flex-end" }}
-        aria-label={filterLabel}
-      >
-        <div data-tk="field" style={{ flex: "1 1 12rem" }}>
-          <label data-tk="field-label" htmlFor={nameId}>
-            Name
-          </label>
-          <input data-tk="input" id={nameId} type="search" />
-        </div>
-        <div data-tk="field" style={{ flex: "1 1 10rem" }}>
-          <label data-tk="field-label" htmlFor={locId}>
-            Location
-          </label>
-          <select data-tk="select" id={locId} defaultValue={initialLocation}>
-            <option value="">Any location</option>
-            {locations.map((l) => (
-              <option key={l}>{l}</option>
-            ))}
-          </select>
-        </div>
-        <div data-tk="field" style={{ flex: "1 1 10rem" }}>
-          <label data-tk="field-label" htmlFor={coId}>
-            Company
-          </label>
-          <select data-tk="select" id={coId} defaultValue={initialCompany}>
-            <option value="">Any company</option>
-            {companies.map((c) => (
-              <option key={c}>{c}</option>
-            ))}
-          </select>
-        </div>
-        <ArrowCta size="md" variant="outline">
-          {ctaLabel}
-        </ArrowCta>
-      </form>
-
-      <div data-shell="center" data-width="wide" data-gap="5" style={{ paddingBlock: "var(--tk-space-6)" }}>
-        <ul data-shell="grid" data-cols={String(columns)} data-gap="4" style={{ ["--_min" as string]: "12rem" }}>
-          {people.map((p, i) => (
-            <li key={p.name}>
-              <article data-tk="card">
-                <Plate fx={true} stock ratio="1 / 1" crop="portrait" seed={(i % 6) + 1} />
-                <h3 data-tk="card-title" style={{ fontSize: "var(--tk-size-base)" }}>
-                  <a href="#main">{p.name}</a>
-                </h3>
-                <p
-                  data-tk="card-body"
-                  style={{ fontStyle: "italic", fontSize: "var(--tk-size-sm)" }}
-                >
-                  {p.role}
-                </p>
-              </article>
-            </li>
-          ))}
-        </ul>
-      </div>
     </section>
   );
 }

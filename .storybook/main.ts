@@ -49,6 +49,12 @@ const config: StorybookConfig = {
       from: "../node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs",
       to: "/maplibre-gl-worker.mjs",
     },
+    /* The worker imports maplibre's shared chunk from beside itself; without
+       it the worker never starts, and the map draws its pin over no tiles. */
+    {
+      from: "../node_modules/maplibre-gl/dist/maplibre-gl-shared.mjs",
+      to: "/maplibre-gl-shared.mjs",
+    },
   ],
 
   core: { disableTelemetry: true },

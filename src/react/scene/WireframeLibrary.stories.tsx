@@ -49,7 +49,7 @@ export const EverySection: StoryObj = {
               <figcaption>
                 <strong>{variant}</strong> <span style={{ color: "var(--tk-text-secondary)" }}>· {v.about}</span>
               </figcaption>
-              <div style={{ border: "1px solid var(--tk-line-subtle)", overflow: "hidden" }}>
+              <div style={{ border: "1px solid var(--tk-line-subtle)", overflow: "clip" }}>
                 <Scene scene={one(type, variant)} />
               </div>
             </figure>
@@ -92,7 +92,7 @@ export const APage: StoryObj = {
     const [active, setActive] = useState<string | null>(null);
     return (
       <div data-shell="sidebar" data-gap="4" data-side="end" style={{ padding: "var(--tk-space-4)" }}>
-        <div style={{ border: "1px solid var(--tk-line-subtle)", overflow: "hidden" }}>
+        <div style={{ border: "1px solid var(--tk-line-subtle)", overflow: "clip" }}>
           <Scene scene={PAGE} active={active} onActive={setActive} />
         </div>
         <SceneLayers scene={PAGE} active={active} onActive={setActive} />
@@ -104,7 +104,7 @@ export const APage: StoryObj = {
 type PlayArgs = { type: string; variant: string; heading: string; body: string; actions: string; items: number };
 
 export const Playground: StoryObj<PlayArgs> = {
-  args: { type: "hero", variant: "inline", heading: "A heading for this secsafdtion", body: "A sentence or two of what it is for.", actions: "Get started, Learn more", items: 3 },
+  args: { type: "hero", variant: "inline", heading: "A heading for this section", body: "A sentence or two of what it is for.", actions: "Get started, Learn more", items: 3 },
   argTypes: {
     type: { control: "select", options: SECTION_TYPES },
     variant: { control: "select", options: [...new Set(Object.values(LIB).flatMap((s) => Object.keys(s.variants)))], description: "A layout the type has; another falls back to its first, with a note." },

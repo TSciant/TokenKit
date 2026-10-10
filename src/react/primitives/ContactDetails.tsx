@@ -43,7 +43,7 @@ export function ContactDetails({ name, address, phone, email, hours, directions,
       {name ? <p data-tk="contact-details-name">{name}</p> : null}
       <ul data-tk="contact-details-list">
         {address?.length ? (
-          <Row icon="pin" label="Address">
+          <Row icon="mapPin" label="Address">
             {address.map((line, i) => (
               <span key={i} data-tk="contact-details-line">
                 {line}

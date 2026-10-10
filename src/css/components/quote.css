@@ -1,0 +1,152 @@
+/* Quote — a figure: the quotation (a blockquote) and who said it (the
+   figcaption). The quotation marks are generated here, in the reader's
+   language (quotes: auto), so the text carries none of its own. Three
+   settings: plain in running text, pull for breaking up an article, and
+   testimonial inside a Card with a small round portrait. */
+@layer components {
+  /* tk-default: data-variant=plain
+     Plain is what this rule and the two below it paint: a rule down the
+     start edge holding the words and the attribution together. pull and
+     testimonial replace the rule. */
+  :where([data-tk="quote"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-3);
+    margin: 0;
+    padding-inline-start: var(--tk-space-4);
+    border-inline-start: 2px solid var(--tk-line-strong);
+    max-inline-size: var(--tk-measure);
+    quotes: auto;
+  }
+
+  /* The element default draws its own rule and greys the words; the figure
+     owns both here. */
+  :where([data-tk="quote-text"]) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: var(--tk-text-primary);
+    font-size: var(--tk-size-lg);
+    line-height: var(--tk-leading-normal);
+  }
+
+  :where([data-tk="quote-text"] > p) {
+    margin: 0;
+  }
+
+  :where([data-tk="quote-text"] > p + p) {
+    margin-block-start: var(--tk-space-3);
+  }
+
+  /* Every paragraph opens a quotation and only the last one closes it, which
+     is how a quotation over several paragraphs is set. no-close-quote keeps
+     the nesting count right without printing a mark, so the second
+     paragraph opens with a double mark, not a single one. */
+  :where([data-tk="quote-text"] > p)::before {
+    content: open-quote;
+  }
+
+  :where([data-tk="quote-text"] > p:not(:last-child))::after {
+    content: no-close-quote;
+  }
+
+  :where([data-tk="quote-text"] > p:last-child)::after {
+    content: close-quote;
+  }
+
+  /* --- attribution --------------------------------------------------------- */
+  :where([data-tk="quote-attribution"]) {
+    display: flex;
+    align-items: center;
+    gap: var(--tk-space-3);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-snug);
+  }
+
+  :where([data-tk="quote-source"]) {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--tk-space-1) / 2);
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="quote-name"]) {
+    font-weight: var(--tk-weight-semibold);
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="quote-role"]) {
+    color: var(--tk-text-secondary);
+  }
+
+  /* The portrait: a 48px circle whatever is put in it. A Plate in here may
+     be smaller than the plate's own floor, so the floor is lifted for this
+     box only (a custom property inherits, whatever order the files load). */
+  :where([data-tk="quote-portrait"]) {
+    --tk-plate-min: 0px;
+
+    display: grid;
+    place-items: center;
+    flex: none;
+    inline-size: var(--tk-space-7);
+    block-size: var(--tk-space-7);
+    overflow: clip;
+    border-radius: var(--tk-radius-full);
+    background-color: var(--tk-surface-sunken);
+  }
+
+  :where([data-tk="quote-portrait"] > img) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  /* --- pull: large, ruled above and below, for breaking up an article ----- */
+  :where([data-tk="quote"][data-variant="pull"]) {
+    gap: var(--tk-space-4);
+    padding-block: var(--tk-space-5);
+    padding-inline-start: 0;
+    border-inline-start: 0;
+    border-block: 1px solid var(--tk-line-strong);
+  }
+
+  :where([data-tk="quote"][data-variant="pull"] [data-tk="quote-text"]) {
+    font-family: var(--tk-font-display);
+    font-size: var(--tk-size-2xl);
+    font-weight: var(--tk-weight-medium);
+    line-height: var(--tk-leading-snug);
+    letter-spacing: var(--tk-tracking-tight);
+    text-wrap: balance;
+  }
+
+  /* --- testimonial: inside a Card, the portrait beside the name ----------- */
+  :where([data-tk="quote"][data-variant="testimonial"]) {
+    flex: 1 1 auto;
+    gap: var(--tk-space-4);
+    padding-inline-start: 0;
+    border-inline-start: 0;
+    max-inline-size: none;
+  }
+
+  :where([data-tk="quote"][data-variant="testimonial"] [data-tk="quote-text"]) {
+    font-size: var(--tk-size-md);
+  }
+
+  /* In a row of cards the words run to different lengths; the names line up
+     along the bottom anyway. */
+  :where([data-tk="quote"][data-variant="testimonial"] [data-tk="quote-attribution"]) {
+    margin-block-start: auto;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="quote"]),
+    :where([data-tk="quote"][data-variant="pull"]) {
+      border-color: CanvasText;
+    }
+
+    :where([data-tk="quote-portrait"]) {
+      border: 1px solid CanvasText;
+    }
+  }
+}

@@ -261,4 +261,57 @@ export const EXAMPLES = [
       ],
     },
   },
+  {
+    title: "Find an office",
+    brand: "wireframe",
+    root: {
+      kind: "stack",
+      gap: 5,
+      children: [
+        { kind: "heading", text: "Find an office", level: 1, look: "title" },
+        {
+          kind: "grid",
+          ratio: "1:2",
+          gap: 6,
+          children: [
+            {
+              kind: "stack",
+              gap: 3,
+              children: [
+                { kind: "heading", text: "Greenwich", level: 2, look: "heading-m" },
+                { kind: "text", text: "Beside the observatory, ten minutes from the station." },
+                { kind: "text", text: "Open weekdays, nine to six.", look: "small" },
+              ],
+            },
+            { kind: "map", label: "Map of the Greenwich office", longitude: 0, latitude: 51.4779, zoom: 15, marker: true, ratio: "16 / 9" },
+          ],
+        },
+        { kind: "pagination", page: 2, total: 9, numbers: true, label: "Offices" },
+      ],
+    },
+  },
+  {
+    title: "Article with media",
+    brand: "wireframe",
+    root: {
+      kind: "stack",
+      gap: 5,
+      children: [
+        { kind: "heading", text: "What the pilot taught us", level: 1, look: "title" },
+        { kind: "video", text: "The pilot in four minutes", posterLabel: "Volunteers sorting parcels in a hall", duration: "4:12", captions: true, ratio: "16 / 9" },
+        { kind: "text", text: "Twelve towns took part over a winter. The numbers below are what each kept up by the end." },
+        {
+          kind: "table",
+          text: "Weekly visits by town, start and end of the pilot",
+          rowHeaders: true,
+          children: [
+            { kind: "table-row", children: [{ kind: "table-cell", text: "Town" }, { kind: "table-cell", text: "First week" }, { kind: "table-cell", text: "Last week" }] },
+            { kind: "table-row", children: [{ kind: "table-cell", text: "Northfield" }, { kind: "table-cell", text: "40" }, { kind: "table-cell", text: "95" }] },
+            { kind: "table-row", children: [{ kind: "table-cell", text: "Easton" }, { kind: "table-cell", text: "25" }, { kind: "table-cell", text: "61" }] },
+          ],
+        },
+        { kind: "quote", text: "We stopped guessing who needed us and started asking.", name: "A volunteer lead", role: "Coordinator", variant: "pull" },
+      ],
+    },
+  },
 ];
