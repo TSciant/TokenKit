@@ -41,6 +41,24 @@
    backdrop it can be given, or over a stop the pack has judged at both ends.
    02 Tokens/01 Colour/06 Gradient shows both ends measured.
 
+   ---------------------------------------------------------------------------
+   THE SPACE IT BLENDS IN. Every gradient here names `in oklab`.
+
+   A gradient whose stops are hex, rgb or hsl colours blends in gamma-encoded
+   sRGB unless it says otherwise (CSS Color 4 §13), and the packs fill both
+   ends with hex. sRGB is not perceptually even: the middle of a blend comes
+   out darker than either end would suggest, and between two saturated
+   colours it goes muddy (door-shop's blue to yellow passes through olive).
+   Oklab blends at an even lightness and holds hue (Ottosson 2020; Levien
+   2021). OKLCH was the other candidate and was not taken: between two
+   distant hues it sweeps round the wheel (blue to yellow through green),
+   which is a design choice a pack should make on purpose, not a default.
+
+   The delivered wireframe does not change: between white and light grey
+   the two spaces land one 8-bit step apart. The brand packs do, and are
+   evener for it. The evidence is in ds-corpus
+   briefs/gradients-and-colour-research.md.
+
    `prefers-contrast: more` flattens every gradient to its `from` colour, for
    the same reason the textures drop their masks: a reader who has asked for
    contrast has asked for fewer things happening at once.
@@ -73,7 +91,7 @@
      three lines rather than a third gradient system. */
   :where([data-gradient]) {
     background-image: linear-gradient(
-      var(--tk-gradient-angle),
+      var(--tk-gradient-angle) in oklab,
       var(--tk-gradient-from) 0%,
       var(--tk-gradient-to) var(--tk-gradient-stop)
     );
@@ -81,7 +99,7 @@
 
   :where([data-gradient="radial"]) {
     background-image: radial-gradient(
-      circle at var(--tk-gradient-origin),
+      circle at var(--tk-gradient-origin) in oklab,
       var(--tk-gradient-from) 0%,
       var(--tk-gradient-to) var(--tk-gradient-stop)
     );
@@ -89,7 +107,7 @@
 
   :where([data-gradient="conic"]) {
     background-image: conic-gradient(
-      from var(--tk-gradient-angle) at var(--tk-gradient-origin),
+      from var(--tk-gradient-angle) at var(--tk-gradient-origin) in oklab,
       var(--tk-gradient-from) 0%,
       var(--tk-gradient-to) var(--tk-gradient-stop)
     );
@@ -97,14 +115,21 @@
 
   /* A fade to nothing rather than to a second colour. The one shape that
      cannot be expressed by swapping the two slots, because the second colour
-     has to be the FIRST one at zero alpha — fading to `transparent` in sRGB
-     travels through grey and leaves a dirty band in the middle, which is the
-     oldest gradient bug there is. */
+     is the FIRST one at zero alpha.
+
+     Fading to plain `transparent` (black at zero alpha) used to pass through
+     grey and leave a dirty band in the middle. Gradients now interpolate with
+     premultiplied alpha (CSS Images 4), which removes that band in a browser
+     that follows the spec; ending on the same colour at zero alpha keeps the
+     fade clean in one that does not, and says what is meant. It is written
+     with relative colour syntax, as the scrim's is: the color-mix() at 0% it
+     replaced computed to transparent black, not the first colour, so it never
+     said what it meant. */
   :where([data-gradient="fade"]) {
     background-image: linear-gradient(
-      var(--tk-gradient-angle),
+      var(--tk-gradient-angle) in oklab,
       var(--tk-gradient-from) 0%,
-      color-mix(in srgb, var(--tk-gradient-from) 0%, transparent) var(--tk-gradient-stop)
+      rgb(from var(--tk-gradient-from) r g b / 0) var(--tk-gradient-stop)
     );
   }
 

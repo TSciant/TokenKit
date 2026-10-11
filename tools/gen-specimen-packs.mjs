@@ -956,11 +956,14 @@ ${ramps}
        usually the pack's surface, but is a photograph often enough that
        assuming the surface would be wrong.
  
+       In oklab, as every gradient in 06-gradient.css is: the same pair
+       blending the same way on a textured surface and a gradient one.
+
        The wireframe packs do NOT get this. They stay flat ink: the delivered
        prototype is grayscale, and a gradient is not grey just because both
        of its stops are. */
     --tk-texture-paint: linear-gradient(
-      135deg,
+      135deg in oklab,
       color-mix(in srgb, ${v(m.paint[0])} ${m.paintAlpha?.[0] ?? 55}%, transparent) 0%,
       color-mix(in srgb, ${v(m.paint[1])} ${m.paintAlpha?.[1] ?? 28}%, transparent) 100%
     );

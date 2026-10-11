@@ -200,9 +200,9 @@
     },
     "Gradient": {
       "skins": 19,
-      "mean": 1.05,
-      "worst": 3.39,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "mean": 1.02,
+      "worst": 3.37,
+      "checkedAt": "2026-10-11T19:57:08.090Z"
     },
     "Guidance": {
       "skins": 2,
