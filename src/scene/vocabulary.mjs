@@ -671,6 +671,79 @@ export const KINDS = {
       "table-row"
     ]
   },
+  "tabs": {
+    "name": "Tabs",
+    "about": "views of one thing, one at a time: its text names the set (Event details); each tab child is one view, its text the tab's label and its children the panel",
+    "text": "label",
+    "children": [
+      "tab"
+    ]
+  },
+  "tab": {
+    "name": "Tab",
+    "about": "one view in a set of tabs: its text is the label, its children what the panel holds",
+    "text": "label",
+    "children": true,
+    "within": [
+      "tabs"
+    ]
+  },
+  "accordion": {
+    "name": "Accordion",
+    "about": "sections a reader opens one at a time, each behind its heading: each accordion-item child is one section; level is the headings' level",
+    "children": [
+      "accordion-item"
+    ],
+    "props": {
+      "level": [
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "accordion-item": {
+    "name": "Accordion item",
+    "about": "one section of an accordion: its text is the heading, its children what opens under it; open shows it on first paint",
+    "text": "heading",
+    "children": true,
+    "within": [
+      "accordion"
+    ],
+    "props": {
+      "open": "flag"
+    }
+  },
+  "breadcrumbs": {
+    "name": "Breadcrumbs",
+    "about": "where the page sits: crumbs are the pages above it by name, from the top down; its text is this page's name, left out when the heading under it says the same",
+    "text": "current",
+    "props": {
+      "crumbs": "list",
+      "label": "text",
+      "collapse": "flag"
+    }
+  },
+  "download": {
+    "name": "Download",
+    "about": "a file to take away: its text is the file's title (the link), format what it is (PDF, PowerPoint, MP3), size and length what the reader is in for, description a sentence on what is in it",
+    "text": "title",
+    "props": {
+      "format": "text",
+      "size": "text",
+      "length": "text",
+      "date": "text",
+      "dateLabel": "text",
+      "description": "text",
+      "download": "flag",
+      "level": [
+        2,
+        3,
+        4
+      ],
+      "locale": "text"
+    }
+  },
   "section": {
     "name": "Section",
     "about": "a whole section of a page from the wireframe library: give its type and variant, and its heading, body, eyebrow, actions (labels), items (how many) and media (what the picture is); it is drawn from the kit's parts",

@@ -1,5 +1,6 @@
 import { Fragment, useId, useMemo, type HTMLAttributes, type ReactNode } from "react";
 import { sanitize } from "../../scene/scene.mjs";
+import { Accordion } from "../primitives/Accordion";
 import { Alert } from "../primitives/Alert";
 import { Button } from "../primitives/Button";
 import { ButtonGroup } from "../primitives/ButtonGroup";
@@ -15,8 +16,11 @@ import { icons } from "../primitives/icon-set";
 import { Pager } from "../primitives/Pager";
 import { Plate } from "../primitives/Plate";
 import { Quote } from "../primitives/Quote";
+import { ResourceDownload } from "../primitives/ResourceDownload";
+import { Tabs } from "../primitives/Tabs";
 import { VideoPlayer } from "../primitives/VideoPlayer";
 import { Shell, type ShellKind } from "../shells/Shell";
+import { SceneBreadcrumbs } from "./SceneBreadcrumbs";
 import { SceneMap } from "./SceneMap";
 
 /** A part of a clean scene: a kind, its words, its options, its parts. */
@@ -123,6 +127,66 @@ export function Scene({ scene, brand, active, onActive, ...rest }: SceneProps) {
         return <Eyebrow emphasis={n.emphasis} {...m}>{node.text}</Eyebrow>;
       case "media":
         return <Plate ratio={n.ratio} label={n.label} texture={n.texture} subject={n.subject} seed={seedOf(path)} {...m} />;
+      case "tabs": {
+        /* Each tab child is one view: its text the label, its children the panel. */
+        const tabs = (node.children ?? []).filter((c) => c.kind === "tab");
+        return (
+          <Tabs
+            label={node.text ?? "Views"}
+            items={tabs.map((t, i) => ({
+              id: `tab-${i}`,
+              label: t.text ?? `Tab ${i + 1}`,
+              content: (t.children ?? []).map((c, j) => <Fragment key={j}>{part(c, `${path}.${i}.${j}`)}</Fragment>),
+            }))}
+            {...m}
+          />
+        );
+      }
+      case "tab":
+        /* Drawn by its tabs; alone, it is its panel. */
+        return <div {...m}>{kids()}</div>;
+      case "accordion": {
+        /* Each accordion-item child is one section: its text the heading, its children the content. */
+        const sections = (node.children ?? []).filter((c) => c.kind === "accordion-item");
+        return (
+          <Accordion
+            level={n.level}
+            items={sections.map((s, i) => ({
+              heading: s.text ?? `Section ${i + 1}`,
+              defaultOpen: Boolean((s as Record<string, unknown>).open),
+              content: (s.children ?? []).map((c, j) => <Fragment key={j}>{part(c, `${path}.${i}.${j}`)}</Fragment>),
+            }))}
+            {...m}
+          />
+        );
+      }
+      case "accordion-item":
+        /* Drawn by its accordion; alone, it is its content. */
+        return <div {...m}>{kids()}</div>;
+      case "breadcrumbs":
+        /* The marks go on a wrapper: the trail is a nav of its own. */
+        return (
+          <div {...m}>
+            <SceneBreadcrumbs crumbs={n.crumbs} current={node.text} label={n.label} collapse={n.collapse} />
+          </div>
+        );
+      case "download":
+        return (
+          <ResourceDownload
+            title={node.text ?? "File"}
+            href="#download"
+            format={n.format ?? "PDF"}
+            size={n.size}
+            length={n.length}
+            date={n.date}
+            dateLabel={n.dateLabel}
+            description={n.description}
+            download={n.download}
+            level={n.level}
+            locale={n.locale}
+            {...m}
+          />
+        );
       case "divider":
         return <hr {...m} />;
       case "pagination":

@@ -1,0 +1,93 @@
+/* ---------------------------------------------------------------------------
+   Tabs — views of one thing, one at a time.
+
+   The row is section nav's row on purpose: a line of labels under a hairline,
+   the chosen one marked just above it. The two sit in the same places, and a
+   reader should not have to learn a second look for "one of these at a time".
+   What differs is underneath: these are buttons that change the view, and the
+   mark follows aria-selected, so the look cannot drift from what a screen
+   reader hears.
+
+   Container-first, like section nav: the row is as wide as its box and scrolls
+   sideways when the labels do not fit, so one line of tabs stays one line.
+   The panel starts a step below the row and has no frame of its own; it is
+   part of the page, not a card.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="tabs"]) {
+    display: block;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="tabs-list"]) {
+    display: flex;
+    gap: var(--tk-space-5);
+    padding: 0 var(--tk-space-1);
+    border-block-end: 1px solid var(--tk-line-default);
+    /* Sideways only: a row that scrolls one way must not grow a scrollbar the other. */
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+
+  :where([data-tk="tabs-tab"]) {
+    flex: none;
+    min-block-size: var(--tk-control-min);
+    margin: 0;
+    padding: var(--tk-space-3) 0;
+    border: 0;
+    /* The mark sits just above the row's hairline. Pulled down onto it, it
+       overflowed the scrolling row and gave it a vertical scrollbar. */
+    border-block-end: 2px solid transparent;
+    background: none;
+    color: var(--tk-text-secondary);
+    font: inherit;
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    line-height: var(--tk-leading-normal);
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      color var(--tk-motion-ink),
+      border-color var(--tk-motion-ink);
+  }
+  /* Hover darkens the edge the mark will take. */
+  :where([data-tk="tabs-tab"]:hover) {
+    color: var(--tk-text-primary);
+    border-block-end-color: var(--tk-line-default);
+  }
+  :where([data-tk="tabs-tab"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: calc(var(--tk-focus-offset) * -1);
+  }
+  :where([data-tk="tabs-tab"][aria-selected="true"]) {
+    color: var(--tk-text-primary);
+    font-weight: var(--tk-weight-semibold);
+    border-block-end-color: currentColor;
+  }
+
+  :where([data-tk="tabs-panel"]) {
+    padding-block-start: var(--tk-space-5);
+  }
+  :where([data-tk="tabs-panel"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+  :where([data-tk="tabs-panel"][hidden]) {
+    display: none;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="tabs-tab"][aria-selected="true"]) {
+      border-block-end-color: Highlight;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="tabs-tab"]) {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+/* ---------------------------------------------------------------------------
+   Accordion — sections of a page, each behind its heading.
+
+   A stack of rows between hairlines. Each row is its heading's button, the
+   full width of the box, with a chevron at the end that turns when the
+   section opens. The open section's content sits under its heading, indented
+   by nothing: it is part of the page, not a card.
+
+   Hover darkens the row's lower edge, the edge a reader is about to open
+   past. The chevron follows aria-expanded, so the look cannot drift from
+   what a screen reader hears.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="accordion"]) {
+    display: block;
+    border-block-start: 1px solid var(--tk-line-default);
+  }
+
+  :where([data-tk="accordion-item"]) {
+    border-block-end: 1px solid var(--tk-line-default);
+    transition: border-color var(--tk-motion-ink);
+  }
+  :where([data-tk="accordion-item"]:has(> [data-tk="accordion-heading"] > button:hover)) {
+    border-block-end-color: var(--tk-line-strong);
+  }
+
+  :where([data-tk="accordion-heading"]) {
+    margin: 0;
+    font-size: var(--tk-size-md);
+    font-weight: var(--tk-weight-semibold);
+    line-height: var(--tk-leading-snug);
+  }
+
+  :where([data-tk="accordion-trigger"]) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tk-space-4);
+    inline-size: 100%;
+    min-block-size: var(--tk-control-min);
+    margin: 0;
+    padding: var(--tk-space-3) 0;
+    border: 0;
+    background: none;
+    color: var(--tk-text-primary);
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+  }
+  :where([data-tk="accordion-trigger"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+
+  :where([data-tk="accordion-mark"]) {
+    display: inline-flex;
+    flex: none;
+    color: var(--tk-text-secondary);
+    transition: rotate var(--tk-motion-transform);
+  }
+  :where([data-tk="accordion-trigger"][aria-expanded="true"] [data-tk="accordion-mark"]) {
+    rotate: 180deg;
+  }
+
+  :where([data-tk="accordion-panel"]) {
+    padding-block-end: var(--tk-space-4);
+  }
+  :where([data-tk="accordion-panel"][hidden]) {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="accordion-item"], [data-tk="accordion-mark"]) {
+      transition: none;
+    }
+  }
+}

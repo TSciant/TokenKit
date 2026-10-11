@@ -314,4 +314,48 @@ export const EXAMPLES = [
       ],
     },
   },
+  {
+    title: "An event's page",
+    brand: "wireframe",
+    root: {
+      kind: "stack",
+      gap: 5,
+      children: [
+        { kind: "breadcrumbs", crumbs: ["Home", "Events"] },
+        { kind: "heading", text: "A year of shorter waits", level: 1, look: "title" },
+        { kind: "text", text: "A morning on what changed when three services planned by the hour.", look: "lead" },
+        {
+          kind: "tabs",
+          text: "Event details",
+          children: [
+            {
+              kind: "tab",
+              text: "Agenda",
+              children: [
+                { kind: "text", text: "9:00 Welcome and the year in numbers" },
+                { kind: "text", text: "9:30 What changed when the schedule followed demand" },
+              ],
+            },
+            {
+              kind: "tab",
+              text: "Resources",
+              children: [
+                { kind: "download", text: "Opening session slides", format: "PowerPoint", size: "8.1 MB", length: "22 slides" },
+                { kind: "download", text: "The full report", format: "PDF", size: "2.4 MB", length: "36 pages", description: "The method, the numbers by month, and what each service changed." },
+              ],
+            },
+          ],
+        },
+        { kind: "heading", text: "Previous sessions", level: 2, look: "heading-m" },
+        {
+          kind: "accordion",
+          level: 3,
+          children: [
+            { kind: "accordion-item", text: "2025", children: [{ kind: "text", text: "Four sessions, each with its recording and slides." }] },
+            { kind: "accordion-item", text: "2024", children: [{ kind: "text", text: "Three sessions; the recordings were not kept." }] },
+          ],
+        },
+      ],
+    },
+  },
 ];

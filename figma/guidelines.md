@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.16. A token-driven design system: components draw only from
+token-kit 0.3.19. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows

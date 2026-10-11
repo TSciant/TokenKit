@@ -58,6 +58,10 @@
 @import url("./components/profile-header.css");
 @import url("./components/cookie-consent.css");
 @import url("./components/floating-action.css");
+@import url("./components/tabs.css");
+@import url("./components/breadcrumbs.css");
+@import url("./components/resource-download.css");
+@import url("./components/accordion.css");
 @import url("./components/menu-button.css");
 @import url("./components/button-group.css");
 @import url("./components/field.css");

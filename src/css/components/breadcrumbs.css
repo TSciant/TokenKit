@@ -1,0 +1,96 @@
+/* ---------------------------------------------------------------------------
+   Breadcrumbs — the pages above this one.
+
+   One line of small links that wraps, parted by a chevron drawn as two edges
+   of a turned square: a shape, not a character, so a screen reader has
+   nothing to read between the crumbs, and forced colours keep it (it is a
+   border, not a background). The current page, when it is given, is plain
+   text at the end.
+
+   Folding. The nav is its own query container, so the trail answers to the
+   box it is in, not the window. Under 30rem a collapsing trail shows only the
+   parent, turned into a back link: the chevron flips to point the way up and
+   moves in front of it. Everything else is display: none, so a screen reader
+   hears the one link that is on screen, in a list of one.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="breadcrumbs"]) {
+    --_mark: 0.4em;
+
+    display: block;
+    container-type: inline-size;
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-normal);
+  }
+
+  :where([data-tk="breadcrumbs-list"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-1) var(--tk-space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :where([data-tk="breadcrumbs-item"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    min-inline-size: 0;
+    color: var(--tk-text-secondary);
+  }
+
+  /* The chevron after every crumb but the last. */
+  :where([data-tk="breadcrumbs-item"]:not(:last-child))::after {
+    content: "";
+    flex: none;
+    inline-size: var(--_mark);
+    block-size: var(--_mark);
+    border-block-start: 1.5px solid currentColor;
+    border-inline-end: 1.5px solid currentColor;
+    rotate: 45deg;
+    opacity: 0.7;
+  }
+  :where([data-tk="breadcrumbs"]:dir(rtl) [data-tk="breadcrumbs-item"]:not(:last-child))::after {
+    rotate: -45deg;
+  }
+
+  :where([data-tk="breadcrumbs-item"] > a) {
+    color: var(--tk-text-primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  :where([data-tk="breadcrumbs-item"] > a:hover) {
+    text-decoration-thickness: 2px;
+  }
+
+  :where([data-tk="breadcrumbs-item"][aria-current="page"]) {
+    color: var(--tk-text-secondary);
+  }
+
+  @container (inline-size < 30rem) {
+    :where([data-tk="breadcrumbs"][data-collapse] [data-tk="breadcrumbs-item"]:not([data-parent])) {
+      display: none;
+    }
+    :where([data-tk="breadcrumbs"][data-collapse] [data-tk="breadcrumbs-item"][data-parent])::after {
+      content: none;
+    }
+    /* The parent as a back link: a chevron pointing up the trail, in front. */
+    :where([data-tk="breadcrumbs"][data-collapse] [data-tk="breadcrumbs-item"][data-parent])::before {
+      content: "";
+      flex: none;
+      inline-size: var(--_mark);
+      block-size: var(--_mark);
+      border-block-start: 1.5px solid currentColor;
+      border-inline-start: 1.5px solid currentColor;
+      rotate: -45deg;
+      opacity: 0.7;
+    }
+    :where([data-tk="breadcrumbs"][data-collapse]:dir(rtl) [data-tk="breadcrumbs-item"][data-parent])::before {
+      rotate: 45deg;
+    }
+  }
+}

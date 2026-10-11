@@ -1,0 +1,127 @@
+/* ---------------------------------------------------------------------------
+   Resource download — a file a reader can take away.
+
+   A tile and a block of text side by side. The tile is a picture of a file
+   (an icon over the format, on the sunken surface, in the pack's hairline),
+   the same size whatever the file, so a list of them lines up. The text is
+   the title as a link, then the format, size and length in small secondary
+   type parted by drawn dots (shapes, so nothing is read between them), then
+   a sentence on what is in it.
+
+   On a narrow box the tile shrinks rather than going away: it is how a
+   reader scanning a list tells a file from a page.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="resource-download"]) {
+    --_tile: 4.5rem;
+    --_dot: var(--tk-space-1);
+    --_gap: var(--tk-space-4);
+
+    display: flex;
+    align-items: flex-start;
+    gap: var(--tk-space-4);
+    container-type: inline-size;
+  }
+
+  :where([data-tk="resource-download-tile"]) {
+    flex: none;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: var(--tk-space-1);
+    inline-size: var(--_tile);
+    aspect-ratio: 3 / 4;
+    border: 1px solid var(--tk-line-default);
+    /* A small mark, so a small corner: never rounder than where it sits. */
+    border-radius: min(var(--tk-radius-md), var(--tk-radius-nested));
+    background: var(--tk-surface-sunken);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="resource-download-format"]) {
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-semibold);
+    letter-spacing: var(--tk-tracking-wide);
+    text-transform: uppercase;
+    line-height: var(--tk-leading-tight);
+    max-inline-size: calc(var(--_tile) - 2 * var(--tk-space-1));
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+
+  :where([data-tk="resource-download-body"]) {
+    display: grid;
+    gap: var(--tk-space-2);
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="resource-download-title"]) {
+    margin: 0;
+    font-size: var(--tk-size-md);
+    font-weight: var(--tk-weight-semibold);
+    line-height: var(--tk-leading-snug);
+  }
+  :where([data-tk="resource-download-title"] > a) {
+    color: var(--tk-text-primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  :where([data-tk="resource-download-title"] > a:hover) {
+    text-decoration-thickness: 2px;
+  }
+
+  :where([data-tk="resource-download-meta"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-1) var(--_gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: clip;
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-normal);
+  }
+  :where([data-tk="resource-download-meta"] > li) {
+    position: relative;
+  }
+  :where([data-tk="resource-download-meta"] > li + li)::before {
+    content: "";
+    position: absolute;
+    inset-block-start: calc(50% - var(--_dot) / 2);
+    inset-inline-start: calc(var(--_gap) / -2 - var(--_dot) / 2);
+    inline-size: 0;
+    block-size: 0;
+    border: calc(var(--_dot) / 2) solid var(--tk-line-strong);
+    border-radius: var(--tk-radius-full);
+  }
+
+  :where([data-tk="resource-download-description"], [data-tk="resource-download-alternative"]) {
+    margin: 0;
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-normal);
+  }
+  :where([data-tk="resource-download-alternative"] > a) {
+    color: var(--tk-text-primary);
+  }
+
+  /* The article is the container, so the query reaches its parts, not itself. */
+  @container (inline-size < 22rem) {
+    :where([data-tk="resource-download-tile"]) {
+      inline-size: 3rem;
+    }
+    :where([data-tk="resource-download-format"]) {
+      display: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="resource-download-meta"] > li + li)::before {
+      border-color: CanvasText;
+    }
+  }
+}

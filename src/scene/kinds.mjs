@@ -259,6 +259,61 @@ export const KIND_MAP = {
     about: "one cell's words",
   },
 
+  tabs: {
+    name: "Tabs",
+    from: ["src/react/primitives/Tabs.tsx", "Tabs"],
+    text: "label",
+    children: ["tab"],
+    omit: {
+      items: "the views are the tabs' tab children",
+      selected: "the first tab is selected; choosing is the reader's",
+      defaultSelected: "the first tab is selected; choosing is the reader's",
+      onSelect: "a scene carries no behaviour",
+    },
+    about: "views of one thing, one at a time: its text names the set (Event details); each tab child is one view, its text the tab's label and its children the panel",
+  },
+  tab: {
+    name: "Tab",
+    element: "div",
+    text: "label",
+    children: true,
+    within: ["tabs"],
+    about: "one view in a set of tabs: its text is the label, its children what the panel holds",
+  },
+  accordion: {
+    name: "Accordion",
+    from: ["src/react/primitives/Accordion.tsx", "Accordion"],
+    children: ["accordion-item"],
+    omit: { items: "the sections are the accordion's accordion-item children" },
+    about: "sections a reader opens one at a time, each behind its heading: each accordion-item child is one section; level is the headings' level",
+  },
+  "accordion-item": {
+    name: "Accordion item",
+    element: "div",
+    text: "heading",
+    children: true,
+    within: ["accordion"],
+    fixed: { open: "flag" },
+    about: "one section of an accordion: its text is the heading, its children what opens under it; open shows it on first paint",
+  },
+  breadcrumbs: {
+    name: "Breadcrumbs",
+    from: ["src/react/scene/SceneBreadcrumbs.tsx", "SceneBreadcrumbs"],
+    text: "current",
+    about: "where the page sits: crumbs are the pages above it by name, from the top down; its text is this page's name, left out when the heading under it says the same",
+  },
+  download: {
+    name: "Download",
+    from: ["src/react/primitives/ResourceDownload.tsx", "ResourceDownload"],
+    text: "title",
+    omit: {
+      href: "no links in a scene",
+      alternativeHref: "no links in a scene",
+      alternativeLabel: "goes with alternativeHref, which a scene has no link for",
+    },
+    about: "a file to take away: its text is the file's title (the link), format what it is (PDF, PowerPoint, MP3), size and length what the reader is in for, description a sentence on what is in it",
+  },
+
   /* A whole section of a page from the wireframe library (sections.mjs): a
      type and a layout, and the words it should carry. It expands into the
      parts above before the scene is sanitized, so it draws nothing the kit

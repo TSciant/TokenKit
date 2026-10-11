@@ -9,14 +9,17 @@
    Container-first: it is as wide as the box it is put in, and when the links do
    not fit the row scrolls rather than wraps, so one line of tabs stays one line.
    The current page is aria-current="page", which is also what marks it, so the
-   look cannot drift from what a screen reader hears.
+   look cannot drift from what a screen reader hears. The mark sits just above
+   the hairline, as the tabs' does.
 --------------------------------------------------------------------------- */
 
 @layer components {
   :where([data-tk="section-nav"]) {
     display: block;
     border-block-end: 1px solid var(--tk-line-default);
+    /* Sideways only: a row that scrolls one way must not grow a scrollbar the other. */
     overflow-x: auto;
+    overflow-y: hidden;
     overscroll-behavior-x: contain;
     scrollbar-width: thin;
   }
@@ -32,9 +35,11 @@
 
   :where([data-tk="section-nav-link"]) {
     display: block;
-    padding-block: var(--tk-space-3);
-    /* The mark sits on the nav's own hairline, so it replaces it under the current link. */
-    margin-block-end: -1px;
+    /* The mark sits just above the nav's hairline. Pulled down onto it with a
+       -1px margin, it overflowed the scrolling row by a pixel and gave it a
+       vertical scrollbar. The pixel comes out of the padding instead, so the
+       row keeps its height and the words stay where they were. */
+    padding-block: var(--tk-space-3) calc(var(--tk-space-3) - 1px);
     border-block-end: 2px solid transparent;
     color: var(--tk-text-secondary);
     font-size: var(--tk-size-sm);
