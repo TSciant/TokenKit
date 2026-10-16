@@ -928,6 +928,42 @@
         "default": {}
       },
       "maxMean": 12
+    },
+    "Code": {
+      "story": "04-primitives-64-code--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Code (the default snippet, 480 wide) laid over the same."
+    },
+    "Timeline": {
+      "story": "04-primitives-63-timeline--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Timeline (the product year in lanes, Wireframes current, today at week 22, 960 wide) laid over the same."
+    },
+    "TimelineJourney": {
+      "story": "04-primitives-63-timeline--onion-skin-journey",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Timeline journey (week 20 told, the line at 20.6, weeks 8 to 32, 960 wide) laid over the same."
     }
   }
 }

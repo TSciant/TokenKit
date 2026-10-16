@@ -11,8 +11,9 @@
  *
  * The third answer is to keep the colour and move it. A brand colour is a
  * HUE plus a specific rendition of it; the hue is what anyone recognises and
- * the last few points of lightness are not. So this holds hue exactly, walks
- * lightness (and saturation, reluctantly) until every constraint is
+ * the last few points of lightness are not. So this holds hue exactly (in
+ * OkLCh, the hue a reader sees), walks lightness (and chroma, reluctantly)
+ * until every constraint is
  * satisfied, and returns the passing colour closest to the original in OKLab
  * — which is a perceptual distance, not an sRGB one, so "closest" means what
  * a person would say it means rather than what the arithmetic finds
@@ -23,17 +24,26 @@
  *
  *   --on    <hex:ratio>   this colour is the INK, drawn on that ground
  *   --under <hex:ratio>   that colour is the ink, drawn on THIS one
- *   --hold-s              refuse to move saturation, lightness only
+ *   --hold-s              no deliberate chroma move, lightness only (the gamut
+ *                         can still lower chroma at a lightness that cannot
+ *                         hold it)
  *
  * WHAT THE OUTPUT MEANS, and the part worth reading before trusting it.
  *
- * ΔE is reported in OKLab units, where roughly 0.02 is the threshold a
+ * ΔE is reported in OKLab units (ΔEOK), where roughly 0.02 is the threshold a
  * careful eye starts to notice on adjacent swatches and 0.10 is plainly a
  * different colour. A nudge under ~0.03 is a rendition; a nudge over ~0.10 is
  * a rebrand and should be sent back to whoever owns the brand rather than
  * quietly shipped. The tool does not refuse large nudges — it prints them
  * with a verdict, because the decision is the designer's and the number is
  * only there so the decision is an informed one.
+ *
+ * ΔE2 beside it is ΔEOK2 (CSS Color 4 §20): the same distance with chroma
+ * doubled, which plain ΔEOK undercounts. The verdict stays on ΔEOK, which its
+ * thresholds were set against; read ΔE2 when the move was mostly chroma.
+ *
+ * L and C are the move in OkLCh: lightness in points (L × 100), chroma in
+ * OkLCh units, including whatever the gamut took at the new lightness.
  *
  * Hue is never moved. A hue shift is the one change that reads as "wrong
  * colour" rather than "same colour, different light", and no contrast floor
@@ -59,7 +69,7 @@ function report(label, r) {
   const sign = (n) => (n >= 0 ? "+" : "") + n.toFixed(1);
   console.log(
     `${label.padEnd(26)} ${r.from} → ${r.to}   ΔE ${r.delta.toFixed(4)} ` +
-      `(${r.verdict})   L ${sign(r.dl)}  S ${sign(r.ds)}`,
+      `(${r.verdict})   ΔE2 ${r.delta2.toFixed(4)}   L ${sign(r.dl)}  C ${r.dc >= 0 ? "+" : ""}${r.dc.toFixed(3)}`,
   );
   for (const c of r.ratios) {
     console.log(

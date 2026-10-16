@@ -40,7 +40,7 @@
  * brand does not apply to the parts of the page people actually use.
  *
  * So every constrained colour below went through tools/nudge-color.mjs first.
- * That holds the hue exactly, walks lightness (then saturation, reluctantly)
+ * That holds the hue exactly (in OkLCh), walks lightness (then chroma, reluctantly)
  * until every constraint is met, and returns the passing colour closest to
  * the original in OKLab. ΔE is a perceptual distance: under ~0.03 is a
  * rendition of the same colour, over ~0.10 is a different one. The rule this
@@ -145,6 +145,9 @@ const BRANDS = [
         "sees on day one before their brand book arrives.",
       ],
     },
+    /* Mint as an ink, for code's literals (the tk-code set): mint itself
+       cannot be read as text on fog, the code's surface. */
+    nudges: { "mint-ink": { from: "mint", on: [["fog", 4.5], ["surface", 4.5]] } },
     rejected: [["mint as a ring", "mint", { on: [["surface", 3], ["fog", 3]] }]],
   },
   {
@@ -515,6 +518,8 @@ const MAP = {
     data: "violet",
     logoInk: "mint", logoMark: "mint", logoWord: "ink", logoTagline: "ink-quiet", logoTile: "ink",
     dangerLine: "ink-faint", texture: "rule", paint: ["violet", "mint"],
+    /* code: violet for the words of the language, mint for the values written in it */
+    code: { keyword: "violet-dark", tag: "ink", property: "ink-soft", string: "mint-ink", number: "mint-ink", comment: "ink-quiet", punctuation: "ink-quiet" },
   },
   "door-shop": {
     base: "fog", default: "snow", raised: "snow", sunken: "fog", inverse: "ink",
@@ -925,7 +930,12 @@ ${ramps}
     /* data ink — a bare graphic against its own track. Usually the action
        fill; separate wherever the action fill only works under a label. */
     --tk-data-ink: ${v(m.data)};
-
+${m.code ? `
+    /* code — the tk-code set, optional in the contract (a pack without it
+       paints code in its text inks). Each kind clears 4.5:1 on the code's
+       sunken surface; the contrast gate measures every one. */
+${"keyword tag property string number comment punctuation".split(" ").map((k) => `    --tk-code-${k}: ${v(m.code[k])};`).join("\n")}
+` : ""}
     /* scrim and texture. The alphas are arithmetic and live in the scale;
        the ink is a colour and lives here.
 
@@ -1116,7 +1126,17 @@ ${postureLines.length ? postureLines.join("\n") : "    /* (colour only) */"}
 
     --tk-focus-color: ${v(m.raised)};
     --tk-data-ink: ${v(m.raised)};
-
+${m.code ? `
+    /* code on the dark plate: the brand's code hues were solved for light
+       ground, so here it reads in the plate's own inks, by weight */
+    --tk-code-keyword: var(--tk-text-primary);
+    --tk-code-tag: var(--tk-text-primary);
+    --tk-code-property: var(--tk-text-secondary);
+    --tk-code-string: var(--tk-text-secondary);
+    --tk-code-number: var(--tk-text-secondary);
+    --tk-code-comment: var(--tk-text-tertiary);
+    --tk-code-punctuation: var(--tk-text-tertiary);
+` : ""}
     /* On inverse the logo drops to paper. A brand colour that cleared the
        light ground has no guarantee on the dark one, and a logo is the one
        element nobody wants to see half-legible. */
@@ -1183,7 +1203,9 @@ ${postureLines.length ? postureLines.join("\n") : "    /* (colour only) */"}
     --tk-action-danger-quiet-text: var(--tk-action-quiet-text);
 
     --tk-focus-color: #ffffff;
-
+${m.code ? `
+${"keyword tag property string number comment punctuation".split(" ").map((k) => `    --tk-code-${k}: #ffffff;`).join("\n")}
+` : ""}
     --tk-logo-ink: #ffffff;
     --tk-logo-mark-ink: #ffffff;
     --tk-logo-word-ink: #ffffff;

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-10T23:10:55.397Z",
+  "generated": "2026-10-16T14:59:26.164Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -643,9 +643,9 @@
       "stale": false,
       "check": {
         "skins": 1,
-        "mean": 6.3,
-        "worst": 6.3,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "mean": 6.94,
+        "worst": 6.94,
+        "checkedAt": "2026-10-10T23:48:49.071Z"
       }
     },
     "OnThisPage": {
@@ -779,9 +779,9 @@
       "stale": false,
       "check": {
         "skins": 19,
-        "mean": 1.05,
-        "worst": 3.39,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "mean": 1.02,
+        "worst": 3.37,
+        "checkedAt": "2026-10-11T19:57:08.090Z"
       }
     },
     "Search": {
@@ -1149,7 +1149,7 @@
       "skinDir": "figma/skins/ScenePricing",
       "skins": 1,
       "skinPulledAt": "2026-10-06T21:30:50-04:00",
-      "sourceUpdatedAt": "2026-10-10T23:03:23.908Z",
+      "sourceUpdatedAt": "2026-10-10T19:20:09-04:00",
       "stale": true,
       "check": {
         "skins": 1,
@@ -1166,7 +1166,7 @@
       "skinDir": "figma/skins/SceneSettings",
       "skins": 1,
       "skinPulledAt": "2026-10-06T21:30:50-04:00",
-      "sourceUpdatedAt": "2026-10-10T23:03:23.908Z",
+      "sourceUpdatedAt": "2026-10-10T19:20:09-04:00",
       "stale": true,
       "check": {
         "skins": 1,
@@ -1275,6 +1275,57 @@
         "mean": 8.23,
         "worst": 9.16,
         "checkedAt": "2026-10-10T01:59:48.374Z"
+      }
+    },
+    "Code": {
+      "node": "402:1585",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=402-1585",
+      "story": "04-primitives-64-code--onion-skin",
+      "source": "src/react/primitives/Code.tsx",
+      "skinDir": "figma/skins/Code",
+      "skins": 1,
+      "skinPulledAt": "2026-10-16T09:06:40-04:00",
+      "sourceUpdatedAt": "2026-10-16T09:06:40-04:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 2.13,
+        "worst": 2.13,
+        "checkedAt": "2026-10-16T14:58:57.350Z"
+      }
+    },
+    "Timeline": {
+      "node": "403:1585",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=403-1585",
+      "story": "04-primitives-63-timeline--onion-skin",
+      "source": "src/react/primitives/Timeline.tsx",
+      "skinDir": "figma/skins/Timeline",
+      "skins": 1,
+      "skinPulledAt": "2026-10-16T14:58:52.924Z",
+      "sourceUpdatedAt": "2026-10-16T14:54:58.861Z",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 1.07,
+        "worst": 1.07,
+        "checkedAt": "2026-10-16T14:58:57.350Z"
+      }
+    },
+    "TimelineJourney": {
+      "node": "409:2590",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=409-2590",
+      "story": "04-primitives-63-timeline--onion-skin-journey",
+      "source": "src/react/primitives/Timeline.tsx",
+      "skinDir": "figma/skins/TimelineJourney",
+      "skins": 1,
+      "skinPulledAt": "2026-10-16T14:58:53.207Z",
+      "sourceUpdatedAt": "2026-10-16T14:54:58.861Z",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 1.72,
+        "worst": 1.72,
+        "checkedAt": "2026-10-16T14:58:57.350Z"
       }
     }
   }

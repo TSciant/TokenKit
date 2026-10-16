@@ -32,7 +32,10 @@ export interface LCh {
 export const oklab = impl.oklab as (rgb: RGB) => Lab;
 export const srgb = impl.srgb as (lab: Lab) => RGB;
 export const oklch = impl.oklch as (rgb: RGB) => LCh;
+/** OKLCh → sRGB, mapped into gamut by reducing chroma (CSS Color 4 §14), never clipped per channel. */
 export const fromOklch = impl.fromOklch as (lch: LCh) => RGB;
+export const gamutMap = impl.gamutMap as (lch: LCh, opts?: { strict?: boolean }) => RGB;
+export const inGamut = impl.inGamut as (lab: Lab, eps?: number) => boolean;
 export const deltaE = impl.deltaE as (a: RGB, b: RGB) => number;
 export const hex = impl.hex as (rgb: RGB) => string;
 export const parseHex = impl.parseHex as (input: string) => RGB | null;

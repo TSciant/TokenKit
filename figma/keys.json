@@ -89,7 +89,12 @@
     "Pager": "311:1608",
     "AlertAction": "311:1654",
     "Avatar": "311:1565",
-    "ChipTone": "311:1607"
+    "ChipTone": "311:1607",
+    "Code": "402:1585",
+    "Timeline": "403:1585",
+    "TimelineJourney": "409:2590",
+    "Timeline/Item": "402:1603",
+    "Timeline/Milestone": "404:1625"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -179,7 +184,12 @@
     "Pager": "04-primitives-41-pager--onion-skin",
     "AlertAction": "04-primitives-08-alert--onion-skin-action",
     "Avatar": "04-primitives-40-avatar--onion-skin",
-    "ChipTone": "04-primitives-02-chip--onion-skin-tone"
+    "ChipTone": "04-primitives-02-chip--onion-skin-tone",
+    "Code": "04-primitives-64-code--onion-skin",
+    "Timeline": "04-primitives-63-timeline--onion-skin",
+    "TimelineJourney": "04-primitives-63-timeline--onion-skin-journey",
+    "Timeline/Item": "04-primitives-63-timeline--onion-skin",
+    "Timeline/Milestone": "04-primitives-63-timeline--onion-skin-journey"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -269,6 +279,11 @@
     "Pager": "src/react/primitives/Pager.tsx",
     "AlertAction": "src/react/primitives/Alert.tsx",
     "Avatar": "src/react/primitives/Avatar.tsx",
-    "ChipTone": "src/react/primitives/Chip.tsx"
+    "ChipTone": "src/react/primitives/Chip.tsx",
+    "Code": "src/react/primitives/Code.tsx",
+    "Timeline": "src/react/primitives/Timeline.tsx",
+    "TimelineJourney": "src/react/primitives/Timeline.tsx",
+    "Timeline/Item": "src/react/primitives/Timeline.tsx",
+    "Timeline/Milestone": "src/react/primitives/Timeline.tsx"
   }
 }

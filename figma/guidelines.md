@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.20. A token-driven design system: components draw only from
+token-kit 0.3.23. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -1024,3 +1024,23 @@ Figma: node `311:1565`.
 ### ChipTone
 
 Figma: node `311:1607`.
+
+### Code
+
+Code — a short piece of source, labelled.
+
+Use for: a snippet that illustrates a point (a few lines, not a file). Don't use for: code a reader is meant to copy whole (give them the file), or a single token inside a sentence (that is inline code, the plain code element).
+
+Figma: node `402:1585`.
+
+### Timeline
+
+Timeline — things across time, in lanes: spans (a start and an end) and milestones (a single point), on one scale.
+
+Use for: how several threads ran side by side and overlapped (eras, a project's phases, a release history). Don't use for: a list of dated events with no duration and one thread (an event list), or exact values a reader must compare (a table).
+
+Figma: node `403:1585`.
+
+### TimelineJourney
+
+Figma: node `409:2590`.

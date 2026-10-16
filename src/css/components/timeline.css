@@ -1,0 +1,766 @@
+/* ---------------------------------------------------------------------------
+   Timeline — things across time, in lanes.
+
+   Two columns: the lane names, then the track. Every position on the track is
+   one formula, the item's place on the scale against the window in view:
+
+     (value − from) ÷ (to − from) × 100%
+
+   from and to are registered numbers (02-property.css), so changing the view
+   is a transition in the kit's motion, and a timeline pans and zooms by
+   moving two numbers. The track clips, so what falls outside the window is
+   simply out of view.
+
+   A span is a bar with its label above it, starting where the bar starts. A
+   milestone is a mark with its label beside it. Items that overlap in time
+   stack into rows (the component packs them), so labels do not collide.
+
+   The current item, aria-current, is drawn in the action ink; the rest stay
+   in line ink. The axis, the ticks and the now line are drawing and are
+   hidden from assistive technology; the lists under them carry everything.
+
+   Under 40rem of box the drawing goes: lanes become plain lists with their
+   dates written out, which is what the markup always was.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="timeline"]) {
+    --_row-size: calc(var(--tk-space-6) + var(--tk-space-3));
+    /* One width for the lane names, so the now line can find where the track starts. */
+    --_lanes-w: clamp(7rem, 20%, 11rem);
+
+    display: grid;
+    gap: var(--tk-space-5);
+    container: tk-timeline / inline-size;
+    min-inline-size: 0;
+    transition:
+      --tk-timeline-from var(--tk-motion-transform),
+      --tk-timeline-to var(--tk-motion-transform);
+  }
+
+  :where([data-tk="timeline-chart"]) {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--_lanes-w) minmax(0, 1fr);
+    row-gap: var(--tk-space-3);
+  }
+
+  /* --- the axis ------------------------------------------------------------ */
+  :where([data-tk="timeline-axis"]) {
+    grid-column: 2;
+    position: relative;
+    block-size: var(--tk-space-6);
+    border-block-end: 1px solid var(--tk-line-subtle);
+    overflow: clip;
+  }
+  :where([data-tk="timeline-tick"]) {
+    position: absolute;
+    inset-block-end: 0;
+    border-inline-start-color: var(--tk-line-subtle);
+    inset-inline-start: calc(
+      (var(--_at) - var(--tk-timeline-from)) / (var(--tk-timeline-to) - var(--tk-timeline-from)) * 100%
+    );
+    padding-inline-start: var(--tk-space-1);
+    padding-block-end: var(--tk-space-1);
+    border-inline-start: 1px solid;
+    color: var(--tk-text-tertiary);
+    font-size: var(--tk-size-xs);
+    font-variant-numeric: tabular-nums;
+    line-height: var(--tk-leading-tight);
+    white-space: nowrap;
+  }
+
+  /* --- a lane -------------------------------------------------------------- */
+  :where([data-tk="timeline-lane"]) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: start;
+    padding-block: var(--tk-space-2);
+  }
+  /* Lane names as small capitals: the lanes are context, the items the content. */
+  :where([data-tk="timeline-lane-label"]) {
+    margin: 0;
+    padding-inline-end: var(--tk-space-4);
+    color: var(--tk-text-tertiary);
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-semibold);
+    letter-spacing: var(--tk-tracking-wide);
+    text-transform: uppercase;
+    line-height: var(--tk-leading-snug);
+  }
+  :where([data-tk="timeline-track"]) {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    block-size: calc(var(--_rows) * var(--_row-size));
+    overflow: clip;
+    /* The track is a container too, so a label can be held at its edge in cqi. */
+    container: tk-timeline-track / inline-size;
+  }
+
+  /* --- an item ------------------------------------------------------------- */
+  /* Declared here, on the item, because its start and end are. */
+  :where([data-tk="timeline-item"]) {
+    --_span: calc(var(--tk-timeline-to) - var(--tk-timeline-from));
+
+    position: absolute;
+    inset-block-start: calc(var(--_row) * var(--_row-size));
+    inset-inline-start: calc((var(--_start) - var(--tk-timeline-from)) / var(--_span) * 100%);
+    inline-size: max(calc((var(--_end) - var(--_start)) / var(--_span) * 100%), var(--tk-space-2));
+    display: grid;
+    /* One column the width of the bar, so a longer label overflows it rather
+       than widening it: to the right normally, to the left at the end. */
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--tk-space-1);
+    color: var(--tk-text-primary);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-tight);
+  }
+  /* A label whose item starts before the window is held at the window's edge:
+     pushed in by however far the item starts outside it, in track units. */
+  :where([data-tk="timeline-item-label"]) {
+    order: -1;
+    white-space: nowrap;
+    padding-inline-start: max(
+      var(--tk-space-1),
+      calc((var(--tk-timeline-from) - var(--_start)) / var(--_span) * 100cqi + var(--tk-space-1))
+    );
+  }
+  /* In the last stretch of the window a label sits at its bar's end, or at the
+     window's edge if the bar runs on past it, and reads back over the track,
+     so it is not cut off at the right. */
+  :where([data-tk="timeline-item"][data-label="end"] > [data-tk="timeline-item-label"]) {
+    justify-self: unsafe end;
+    /* Held at the window's right edge when the bar runs on past it. */
+    padding-inline: 0
+      max(var(--tk-space-1), calc((var(--_end) - var(--tk-timeline-to)) / var(--_span) * 100cqi + var(--tk-space-1)));
+  }
+  :where([data-tk="timeline-bar"]) {
+    block-size: calc(var(--tk-space-1) * 1.5);
+    border-radius: var(--tk-radius-full);
+    background: var(--tk-line-strong);
+    transition:
+      background-color var(--tk-motion-ink),
+      block-size var(--tk-motion-size);
+  }
+  /* The dates are words for the lists; the axis says them in the chart. */
+  :where([data-tk="timeline-item"] > [data-tk="timeline-when"]) {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* A milestone: a mark at its point, its label beside it. */
+  :where([data-tk="timeline-item"][data-milestone]) {
+    inline-size: max-content;
+    translate: calc(var(--tk-space-2) / -2) 0;
+  }
+  :where([data-tk="timeline-item"][data-milestone] > [data-tk="timeline-bar"]) {
+    inline-size: var(--tk-space-2);
+    rotate: 45deg;
+    border-radius: 0;
+  }
+
+  /* The current item, in the action ink, and heavier. When anything is
+     current, everything else recedes: thinner bars in line grey, labels in
+     the quietest text. One thing is being talked about; the rest is context. */
+  :where([data-tk="timeline-item"][aria-current="true"]) {
+    font-weight: var(--tk-weight-semibold);
+  }
+  :where([data-tk="timeline-item"][aria-current="true"] > [data-tk="timeline-bar"]) {
+    block-size: var(--tk-space-2);
+    background: var(--tk-action-fill);
+  }
+  :where([data-tk="timeline"]:has([aria-current="true"]) [data-tk="timeline-item"]:not([aria-current="true"])) {
+    color: var(--tk-text-tertiary);
+  }
+  /* Receding by thickness, not by colour: a bar is the only sight of how long
+     an item ran (its dates are words for a screen reader), so every bar keeps
+     the strong line, which clears 3:1 on every surface (WCAG 1.4.11). */
+  :where([data-tk="timeline"]:has([aria-current="true"]) [data-tk="timeline-item"]:not([aria-current="true"]) > [data-tk="timeline-bar"]) {
+    block-size: var(--tk-space-1);
+    background: var(--tk-line-strong);
+  }
+  /* A milestone keeps its size when it recedes: a smaller diamond is a speck. */
+  :where([data-tk="timeline-item"][data-milestone] > [data-tk="timeline-bar"]) {
+    block-size: var(--tk-space-2);
+  }
+
+  /* An item wholly outside the window shows nothing on the track. Opacity,
+     not visibility or display: it is still in the list a screen reader hears. */
+  :where([data-tk="timeline-item"][data-out] > [data-tk="timeline-item-label"]) {
+    opacity: 0;
+  }
+
+  /* --- now ------------------------------------------------------------------ */
+  :where([data-tk="timeline-now"]) {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: calc(
+      var(--_lanes-w) +
+        (100% - var(--_lanes-w)) * (var(--_at) - var(--tk-timeline-from)) / (var(--tk-timeline-to) - var(--tk-timeline-from))
+    );
+    border-inline-start: 1px dashed var(--tk-line-strong);
+    pointer-events: none;
+  }
+  /* Just under the axis's rule, in the space before the first lane's items:
+     at the top of the line it sat over the axis's own years. */
+  :where([data-tk="timeline-now"] > span) {
+    position: absolute;
+    inset-block-start: calc(var(--tk-space-6) + 1px);
+    padding-inline-start: var(--tk-space-1);
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-xs);
+  }
+
+  /* --- the current item's detail ------------------------------------------- */
+  :where([data-tk="timeline-detail"]) {
+    display: grid;
+    gap: var(--tk-space-3);
+    max-inline-size: var(--tk-measure);
+  }
+  :where([data-tk="timeline-detail-item"]) {
+    display: grid;
+    gap: var(--tk-space-2);
+    min-inline-size: 0;
+  }
+  :where([data-tk="timeline-detail-title"]) {
+    margin: 0;
+    font-weight: var(--tk-weight-semibold);
+  }
+  :where([data-tk="timeline-detail-title"] > [data-tk="timeline-when"]) {
+    color: var(--tk-text-secondary);
+    font-weight: var(--tk-weight-normal);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="timeline-bar"]) {
+      background: CanvasText;
+    }
+    :where([data-tk="timeline-item"][aria-current="true"] > [data-tk="timeline-bar"]) {
+      background: Highlight;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="timeline"]) {
+      transition: none;
+    }
+  }
+
+  /* --- a narrow box: the lists, as they are --------------------------------- */
+  @container tk-timeline (inline-size < 40rem) {
+    :where([data-tk="timeline-chart"]) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    :where([data-tk="timeline-axis"], [data-tk="timeline-now"]) {
+      display: none;
+    }
+    :where([data-tk="timeline-lane"]) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--tk-space-2);
+    }
+    :where([data-tk="timeline-track"]) {
+      block-size: auto;
+      display: grid;
+      gap: var(--tk-space-2);
+      overflow: visible;
+    }
+    :where([data-tk="timeline-item"]) {
+      position: static;
+      inline-size: auto;
+      translate: none;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--tk-space-1) var(--tk-space-2);
+    }
+    :where([data-tk="timeline-item-label"]) {
+      order: 0;
+      white-space: normal;
+      padding: 0;
+      opacity: 1;
+    }
+    :where([data-tk="timeline-bar"]) {
+      display: none;
+    }
+    :where([data-tk="timeline-item"] > [data-tk="timeline-when"]) {
+      position: static;
+      inline-size: auto;
+      block-size: auto;
+      overflow: visible;
+      clip-path: none;
+      color: var(--tk-text-secondary);
+    }
+  }
+
+  /* ===========================================================================
+     The journey: one line across the scale, telling it a moment at a time.
+
+     Everything is a function of where the story has got, --tk-timeline-reveal
+     (a registered number). The line is drawn from the window's left edge to
+     it, with a head at its tip. A milestone's dot lands as the line reaches it;
+     one the line has not reached is not there. The moment being told
+     unfolds out of its dot (see milestones). A period's bar grows up to the
+     line. Move the number and the story moves: as a transition on a page,
+     frame by frame in a film.
+
+     It is three rows: the callouts above the line, the axis (the line, its
+     years, the periods' band), and any callouts placed below. Every
+     milestone's callout is laid out in its row, shown or not, so the journey
+     is as tall as its tallest moment: the line never moves from one moment
+     to the next, and a callout never leaves the box for what is around it.
+  =========================================================================== */
+  :where([data-tk="timeline"][data-variant="journey"]) {
+    transition:
+      --tk-timeline-from calc(var(--tk-duration-slow) * 4) var(--tk-ease-standard),
+      --tk-timeline-to calc(var(--tk-duration-slow) * 4) var(--tk-ease-standard),
+      --tk-timeline-reveal calc(var(--tk-duration-slow) * 4) var(--tk-ease-standard);
+  }
+
+  :where([data-tk="timeline-journey"]) {
+    --_span: calc(var(--tk-timeline-to) - var(--tk-timeline-from));
+    /* The axis row: the line at its top, the years, the periods' band. */
+    --_axis: calc(var(--tk-space-7) + var(--tk-space-6) + var(--tk-space-3));
+
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto var(--_axis) auto;
+    padding-block-start: var(--tk-space-4);
+    overflow-x: clip;
+    container: tk-timeline-track / inline-size;
+  }
+
+  :where([data-tk="timeline-rail"]) {
+    position: relative;
+    grid-row: 2;
+    grid-column: 1;
+  }
+  :where([data-tk="timeline-line"]) {
+    position: absolute;
+    inset-inline-start: 0;
+    block-size: 2px;
+    translate: 0 -50%;
+    inline-size: clamp(0%, (var(--tk-timeline-reveal) - var(--tk-timeline-from)) / var(--_span) * 100%, 100%);
+    background: var(--tk-text-primary);
+  }
+  :where([data-tk="timeline-head"]) {
+    position: absolute;
+    inset-inline-start: clamp(0%, (var(--tk-timeline-reveal) - var(--tk-timeline-from)) / var(--_span) * 100%, 100%);
+    inline-size: var(--tk-space-3);
+    block-size: var(--tk-space-3);
+    translate: -50% -50%;
+    border-radius: var(--tk-radius-full);
+    background: var(--tk-action-fill);
+    box-shadow: 0 0 0 var(--tk-space-1) var(--tk-surface-base);
+  }
+  /* Years appear as the line reaches them, under it. */
+  :where([data-tk="timeline-rail"] > [data-tk="timeline-tick"]) {
+    position: absolute;
+    inset-block-start: var(--tk-space-3);
+    inset-inline-start: calc((var(--_at) - var(--tk-timeline-from)) / var(--_span) * 100%);
+    translate: -50% 0;
+    border: 0;
+    padding: 0;
+    color: var(--tk-text-tertiary);
+    font-size: var(--tk-size-xs);
+    font-variant-numeric: tabular-nums;
+    opacity: clamp(0, (var(--tk-timeline-reveal) - var(--_at) + 0.3) / 0.6, 1);
+  }
+
+  :where([data-tk="timeline-milestones"], [data-tk="timeline-periods"]) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  /* The milestones span all three rows and share them, so each sits in the
+     callout row above the line or the one below it. */
+  :where([data-tk="timeline-milestones"]) {
+    grid-row: 1 / -1;
+    grid-column: 1;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* --- milestones ------------------------------------------------------------
+     A milestone is a dot on the line, and the moment being told unfolds out of
+     it: the dot lands with a ripple, a stem draws away from the line, a
+     leader rule runs out from the stem's end, the year rises from behind the
+     rule, then the name, then the detail, its code wiping in last.
+
+     --tk-timeline-told (a registered number, 0 to 1) is how far that has
+     got, and each part takes its own stretch of it, eased. Becoming current
+     it runs to 1 as a transition, starting as the line arrives; leaving, it
+     runs back to 0 at once, so a moment folds into its dot before the next
+     one opens. A film sets the tell prop (--tk-timeline-tell, 1 unless
+     set) instead and draws every frame.
+
+     Only the moment being told has words on show. A passed milestone is its
+     dot (its name is still there, for assistive technology), so a callout
+     never lies over another. And nothing is drawn across the axis: callouts
+     open above the line, where only the head travels; one placed below
+     starts its stem under the periods' band. */
+  :where([data-tk="timeline-milestone"]) {
+    --tk-timeline-told: 0;
+    --_e: clamp(0, (var(--tk-timeline-reveal) - var(--_start)) / 0.3, 1);
+    /* Each part's stretch of the telling, as 0 to 1, then eased (smoothstep). */
+    --_d: clamp(0, var(--tk-timeline-told) / 0.2, 1);
+    --_ring: clamp(0, var(--tk-timeline-told) / 0.45, 1);
+    --_s: clamp(0, (var(--tk-timeline-told) - 0.12) / 0.28, 1);
+    --_r: clamp(0, (var(--tk-timeline-told) - 0.32) / 0.24, 1);
+    --_y1: clamp(0, (var(--tk-timeline-told) - 0.42) / 0.24, 1);
+    --_n: clamp(0, (var(--tk-timeline-told) - 0.5) / 0.24, 1);
+    --_t: clamp(0, (var(--tk-timeline-told) - 0.62) / 0.24, 1);
+    --_c: clamp(0, (var(--tk-timeline-told) - 0.7) / 0.3, 1);
+    --_stem-k: calc(var(--_s) * var(--_s) * (3 - 2 * var(--_s)));
+    --_rule-k: calc(var(--_r) * var(--_r) * (3 - 2 * var(--_r)));
+    --_year-k: calc(var(--_y1) * var(--_y1) * (3 - 2 * var(--_y1)));
+    --_name-k: calc(var(--_n) * var(--_n) * (3 - 2 * var(--_n)));
+    --_text-k: calc(var(--_t) * var(--_t) * (3 - 2 * var(--_t)));
+    --_code-k: calc(var(--_c) * var(--_c) * (3 - 2 * var(--_c)));
+    --_stem: var(--tk-space-7);
+    --_dot: var(--tk-space-2);
+
+    position: relative;
+    grid-column: 1;
+    justify-self: start;
+    margin-inline-start: calc((var(--_start) - var(--tk-timeline-from)) / var(--_span) * 100%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-3);
+    inline-size: max-content;
+    max-inline-size: 46cqi;
+    opacity: var(--_e);
+    pointer-events: none;
+    color: var(--tk-text-primary);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-snug);
+    transition: --tk-timeline-told calc(var(--tk-duration-slow) * 2) var(--tk-ease-exit);
+  }
+  :where([data-tk="timeline-milestone"][aria-current="step"]) {
+    --tk-timeline-told: var(--tk-timeline-tell);
+    z-index: 1;
+    pointer-events: auto;
+    transition: --tk-timeline-told calc(var(--tk-duration-slow) * 5) linear calc(var(--tk-duration-slow) * 3);
+  }
+  /* Above the line: the stem, then the year and name on their rule, the detail over them. */
+  :where([data-tk="timeline-milestone"][data-side="above"]) {
+    grid-row: 1;
+    align-self: end;
+    flex-direction: column-reverse;
+    padding-block-end: var(--_stem);
+  }
+  /* Below the line: the stem starts under the periods' band, so it never crosses it. */
+  :where([data-tk="timeline-milestone"][data-side="below"]) {
+    grid-row: 3;
+    align-self: start;
+    padding-block-start: var(--tk-space-5);
+  }
+
+  /* The dot: hollow once passed, filled and ringed while it is told. */
+  :where([data-tk="timeline-milestone"])::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inline-size: var(--_dot);
+    block-size: var(--_dot);
+    box-sizing: border-box;
+    border: 2px solid var(--tk-line-strong);
+    border-radius: var(--tk-radius-full);
+    background: color-mix(in oklab, var(--tk-action-fill) calc(var(--_d) * 100%), var(--tk-surface-base));
+    border-color: color-mix(in oklab, var(--tk-action-fill) calc(var(--_d) * 100%), var(--tk-line-strong));
+    scale: calc(1 + var(--_d) * 0.5 + var(--_d) * (1 - var(--_d)) * 1.4);
+    box-shadow: 0 0 0 calc(var(--_ring) * var(--tk-space-4)) color-mix(in oklab, var(--tk-action-fill) calc((1 - var(--_ring)) * 40%), transparent);
+  }
+  :where([data-tk="timeline-milestone"][data-side="above"])::after {
+    inset-block-end: 0;
+    translate: -50% 50%;
+  }
+  :where([data-tk="timeline-milestone"][data-side="below"])::after {
+    inset-block-start: calc(-1 * var(--_axis));
+    translate: -50% -50%;
+  }
+
+  /* The stem, drawn away from the line. */
+  :where([data-tk="timeline-milestone"])::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inline-size: 0;
+    border-inline-start: 1px solid var(--tk-text-primary);
+    scale: 1 var(--_stem-k);
+  }
+  :where([data-tk="timeline-milestone"][data-side="above"])::before {
+    inset-block-end: calc(var(--_dot) / 2 + var(--tk-space-1) / 2);
+    block-size: calc(var(--_stem) - var(--_dot) / 2 - var(--tk-space-1) / 2);
+    transform-origin: bottom;
+  }
+  :where([data-tk="timeline-milestone"][data-side="below"])::before {
+    inset-block-start: 0;
+    block-size: var(--tk-space-5);
+    transform-origin: top;
+  }
+
+  /* The year and the name, on the leader rule that runs out from the stem.
+     They rise from behind it: clipped at the rule's edge, moving out of it. */
+  :where([data-tk="timeline-milestone-label"]) {
+    position: relative;
+    display: grid;
+    gap: var(--tk-space-1);
+    padding-inline: var(--tk-space-2) 0;
+    padding-block: var(--tk-space-2);
+  }
+  :where([data-tk="timeline-milestone"][data-side="above"] [data-tk="timeline-milestone-label"]) {
+    clip-path: inset(-100vh -100vw 0 -100vw);
+  }
+  :where([data-tk="timeline-milestone"][data-side="below"] [data-tk="timeline-milestone-label"]) {
+    clip-path: inset(0 -100vw -100vh -100vw);
+  }
+  :where([data-tk="timeline-milestone-label"])::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    block-size: 1px;
+    background: var(--tk-text-primary);
+    scale: var(--_rule-k) 1;
+    transform-origin: left;
+  }
+  :where([data-tk="timeline-milestone"][data-side="above"] [data-tk="timeline-milestone-label"])::after {
+    inset-block-end: 0;
+  }
+  :where([data-tk="timeline-milestone"][data-side="below"] [data-tk="timeline-milestone-label"])::after {
+    inset-block-start: 0;
+  }
+  :where([data-tk="timeline-milestone-label"] > [data-tk="timeline-when"]) {
+    font-family: var(--tk-font-display);
+    font-size: var(--tk-size-3xl);
+    font-weight: var(--tk-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    line-height: var(--tk-leading-tight);
+    letter-spacing: var(--tk-tracking-tight);
+    opacity: var(--_year-k);
+    translate: 0 calc((1 - var(--_year-k)) * 100%);
+  }
+  /* The year sits on the rule, on either side, so it is the first to rise
+     out of it: above the line the name is over the year, below it under. */
+  :where([data-tk="timeline-milestone-label"] > [data-tk="timeline-item-label"]) {
+    order: -1;
+    white-space: normal;
+    padding: 0;
+    font-size: var(--tk-size-lg);
+    font-weight: var(--tk-weight-semibold);
+    opacity: var(--_name-k);
+    translate: 0 calc((1 - var(--_name-k)) * 100%);
+  }
+  :where([data-tk="timeline-milestone"][data-side="below"] [data-tk="timeline-milestone-label"] > *) {
+    order: 0;
+    translate: 0 calc((var(--_name-k) - 1) * 100%);
+  }
+  :where([data-tk="timeline-milestone"][data-side="below"] [data-tk="timeline-milestone-label"] > [data-tk="timeline-when"]) {
+    translate: 0 calc((var(--_year-k) - 1) * 100%);
+  }
+
+  /* The detail: its words settle in, then its code wipes across. */
+  :where([data-tk="timeline-milestone-detail"]) {
+    inline-size: min(46cqi, var(--tk-measure));
+    padding-inline-start: var(--tk-space-2);
+    opacity: var(--_text-k);
+    translate: 0 calc((1 - var(--_text-k)) * var(--tk-space-2));
+  }
+  /* A milestone not being told keeps its detail's room and hides it, once it
+     has folded away. */
+  :where([data-tk="timeline-milestone"]:not([aria-current="step"]) [data-tk="timeline-milestone-detail"]) {
+    visibility: hidden;
+    transition: visibility 0s linear calc(var(--tk-duration-slow) * 2);
+  }
+  :where([data-tk="timeline-milestone-detail"] [data-tk="code-block"]) {
+    clip-path: inset(0 calc((1 - var(--_code-k)) * 100%) 0 0 round min(var(--tk-radius-lg), var(--tk-radius-nested)));
+  }
+
+  /* Late in the window a milestone reads back towards the past: its stem, dot
+     and rule at its right-hand side. */
+  :where([data-tk="timeline-milestone"][data-label="end"]) {
+    translate: -100% 0;
+    align-items: end;
+    text-align: end;
+  }
+  :where([data-tk="timeline-milestone"][data-label="end"])::before {
+    inset-inline: auto 0;
+  }
+  :where([data-tk="timeline-milestone"][data-label="end"])::after {
+    inset-inline: auto 0;
+    translate: 50% 50%;
+  }
+  :where([data-tk="timeline-milestone"][data-label="end"][data-side="below"])::after {
+    translate: 50% -50%;
+  }
+  :where([data-tk="timeline-milestone"][data-label="end"] [data-tk="timeline-milestone-label"]) {
+    padding-inline: 0 var(--tk-space-2);
+  }
+  :where([data-tk="timeline-milestone"][data-label="end"] [data-tk="timeline-milestone-label"])::after {
+    transform-origin: right;
+  }
+  :where([data-tk="timeline-milestone"][data-label="end"] [data-tk="timeline-milestone-detail"]) {
+    padding-inline: 0 var(--tk-space-2);
+    text-align: start;
+  }
+
+  /* --- periods: a quiet band just under the line's years -------------------- */
+  :where([data-tk="timeline-periods"]) {
+    position: relative;
+    grid-row: 2;
+    grid-column: 1;
+    margin-block-start: var(--tk-space-7);
+    block-size: var(--tk-space-6);
+  }
+  :where([data-tk="timeline-period"]) {
+    --_e: clamp(0, (var(--tk-timeline-reveal) - var(--_start)) / 0.3, 1);
+
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: calc((var(--_start) - var(--tk-timeline-from)) / var(--_span) * 100%);
+    inline-size: calc(max(0, min(var(--_end), var(--tk-timeline-reveal)) - var(--_start)) / var(--_span) * 100%);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--tk-space-1);
+    opacity: var(--_e);
+    color: var(--tk-text-tertiary);
+    font-size: var(--tk-size-xs);
+    letter-spacing: var(--tk-tracking-wide);
+    text-transform: uppercase;
+  }
+  /* Held at the window's edge while the period runs on into view, and gone
+     once its end has left the window: a finished period has no label to hold. */
+  :where([data-tk="timeline-period"] > [data-tk="timeline-item-label"]) {
+    order: -1;
+    white-space: nowrap;
+    opacity: clamp(0, var(--_end) - var(--tk-timeline-from) - 1, 1);
+  }
+  /* A period's band is the only sight of its extent: the strong line, 3:1 on every surface (WCAG 1.4.11). */
+  :where([data-tk="timeline-period"] > [data-tk="timeline-bar"]) {
+    block-size: var(--tk-space-1);
+    background: var(--tk-line-strong);
+  }
+  :where([data-tk="timeline-period"][aria-current="true"]) {
+    color: var(--tk-text-secondary);
+  }
+  :where([data-tk="timeline-period"][aria-current="true"] > [data-tk="timeline-bar"]) {
+    background: var(--tk-text-primary);
+  }
+  :where([data-tk="timeline-period"] > [data-tk="timeline-when"]) {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* Forced colours: every mark in the system's ink. The line, the head, the
+     bands and the leader rule are backgrounds, which forced colours would
+     otherwise paint over; the current period in the highlight colour. */
+  @media (forced-colors: active) {
+    :where([data-tk="timeline-line"], [data-tk="timeline-head"], [data-tk="timeline-period"] > [data-tk="timeline-bar"]) {
+      forced-color-adjust: none;
+      background: CanvasText;
+    }
+    :where([data-tk="timeline-period"][aria-current="true"] > [data-tk="timeline-bar"]) {
+      background: Highlight;
+    }
+    :where([data-tk="timeline-milestone-label"])::after {
+      forced-color-adjust: none;
+      background: CanvasText;
+    }
+    :where([data-tk="timeline-milestone"])::before {
+      border-color: CanvasText;
+    }
+    :where([data-tk="timeline-milestone"])::after {
+      forced-color-adjust: none;
+      border-color: CanvasText;
+      background: Canvas;
+    }
+    :where([data-tk="timeline-milestone"][aria-current="step"])::after {
+      background: CanvasText;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="timeline"][data-variant="journey"], [data-tk="timeline-milestone"]) {
+      transition: none;
+    }
+  }
+
+  /* A narrow box: the two lists, as they are. */
+  @container tk-timeline (inline-size < 40rem) {
+    :where([data-tk="timeline-journey"]) {
+      grid-template-rows: none;
+      gap: var(--tk-space-4);
+      padding: 0;
+    }
+    :where([data-tk="timeline-rail"]) {
+      display: none;
+    }
+    :where([data-tk="timeline-periods"]) {
+      position: static;
+      margin: 0;
+      block-size: auto;
+    }
+    :where([data-tk="timeline-milestones"], [data-tk="timeline-periods"]) {
+      display: grid;
+      grid-row: auto;
+      grid-template-rows: none;
+      gap: var(--tk-space-2);
+    }
+    :where([data-tk="timeline-milestone"], [data-tk="timeline-period"]) {
+      position: static;
+      grid-row: auto;
+      margin: 0;
+      inline-size: auto;
+      max-inline-size: none;
+      translate: none;
+      opacity: 1;
+      padding: 0;
+      text-align: start;
+      align-items: start;
+      flex-direction: column;
+    }
+    :where([data-tk="timeline-milestone"]) {
+      --tk-timeline-told: 1;
+    }
+    :where([data-tk="timeline-milestone"])::before,
+    :where([data-tk="timeline-milestone"])::after,
+    :where([data-tk="timeline-milestone-label"])::after {
+      content: none;
+    }
+    :where([data-tk="timeline-milestone-label"]) {
+      clip-path: none;
+      padding: 0;
+    }
+    :where([data-tk="timeline-milestone"]:not([aria-current="step"]) [data-tk="timeline-milestone-detail"]) {
+      display: none;
+    }
+    :where([data-tk="timeline-milestone-detail"]) {
+      inline-size: auto;
+      padding: 0;
+    }
+    :where([data-tk="timeline-milestone"]:not([aria-current="step"]) [data-tk="timeline-when"]) {
+      font-family: inherit;
+      font-size: inherit;
+    }
+    :where([data-tk="timeline-period"] > [data-tk="timeline-bar"]) {
+      display: none;
+    }
+    :where([data-tk="timeline-period"] > [data-tk="timeline-when"]) {
+      position: static;
+      inline-size: auto;
+      block-size: auto;
+      clip-path: none;
+    }
+  }
+}

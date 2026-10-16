@@ -1,12 +1,23 @@
 {
   "tk": {
-    "nudged": [],
+    "nudged": [
+      {
+        "key": "mint-ink",
+        "fromKey": "mint",
+        "fromStated": true,
+        "from": "#10B981",
+        "to": "#007751",
+        "dl": -19.3,
+        "deltaE": 0.1965,
+        "verdict": "REBRAND"
+      }
+    ],
     "rejected": [
       {
         "label": "mint as a ring",
         "from": "#10B981",
-        "to": "#0D9769",
-        "deltaE": 0.0989,
+        "to": "#009768",
+        "deltaE": 0.0996,
         "verdict": "noticeable"
       }
     ],
@@ -23,6 +34,7 @@
       "violet",
       "ink-quiet",
       "danger",
+      "mint-ink",
       "violet-dark",
       "ink-soft",
       "danger-dark",
@@ -38,8 +50,8 @@
       {
         "label": "yellow as a ring",
         "from": "#F5B800",
-        "to": "#AC8100",
-        "deltaE": 0.1922,
+        "to": "#AD8100",
+        "deltaE": 0.1911,
         "verdict": "REBRAND"
       }
     ],
@@ -76,22 +88,22 @@
       {
         "label": "orange ringing on both grounds, label ignored",
         "from": "#F59E0B",
-        "to": "#B77608",
-        "deltaE": 0.1524,
+        "to": "#B87500",
+        "deltaE": 0.1528,
         "verdict": "REBRAND"
       },
       {
         "label": "orange as a ring on white alone",
         "from": "#F59E0B",
-        "to": "#CE8408",
-        "deltaE": 0.0964,
+        "to": "#CF8400",
+        "deltaE": 0.095,
         "verdict": "noticeable"
       },
       {
         "label": "orange as a meter fill on the fog track alone",
         "from": "#F59E0B",
-        "to": "#B77608",
-        "deltaE": 0.1524,
+        "to": "#B87500",
+        "deltaE": 0.1528,
         "verdict": "REBRAND"
       }
     ],
@@ -122,29 +134,29 @@
         "fromKey": "pink",
         "fromStated": true,
         "from": "#E11D7A",
-        "to": "#CE1B70",
-        "dl": -4.3,
-        "deltaE": 0.0404,
+        "to": "#D40070",
+        "dl": -3.4,
+        "deltaE": 0.0345,
         "verdict": "noticeable"
       },
       {
         "key": "pink-ui-dark",
         "fromKey": "pink-ui",
         "fromStated": false,
-        "from": "#CE1B70",
-        "to": "#B71864",
-        "dl": -5,
-        "deltaE": 0.05,
+        "from": "#D40070",
+        "to": "#BC0063",
+        "dl": -4.8,
+        "deltaE": 0.0521,
         "verdict": "state step"
       },
       {
         "key": "pink-ui-darker",
         "fromKey": "pink-ui",
         "fromStated": false,
-        "from": "#CE1B70",
-        "to": "#AC175E",
-        "dl": -7.5,
-        "deltaE": 0.0743,
+        "from": "#D40070",
+        "to": "#B1005D",
+        "dl": -7.1,
+        "deltaE": 0.0764,
         "verdict": "state step"
       }
     ],
@@ -202,7 +214,7 @@
       {
         "label": "yellow as a ring",
         "from": "#F4C430",
-        "to": "#A67F09",
+        "to": "#A48000",
         "deltaE": 0.2253,
         "verdict": "REBRAND"
       }

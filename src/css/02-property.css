@@ -131,6 +131,15 @@
    inherits because the fill is a child of the element carrying the inline
    value; the typed zero keeps an unset meter honest. */
 @property --tk-meter-value { syntax: "<number>"; inherits: true; initial-value: 0; }
+/* The window a Timeline shows, on its own scale. Registered so a pan or a zoom is a transition. */
+@property --tk-timeline-from { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --tk-timeline-to { syntax: "<number>"; inherits: true; initial-value: 1; }
+/* How far a journey Timeline has got. Registered so the line draws itself as a transition. */
+@property --tk-timeline-reveal { syntax: "<number>"; inherits: true; initial-value: 0; }
+/* How far a journey station's moment has been told, 0 to 1. Registered so it unfolds from its dot as a transition. */
+/* What the current station's told runs to: 1, unless a film draws the telling frame by frame. */
+@property --tk-timeline-tell { syntax: "<number>"; inherits: true; initial-value: 1; }
+@property --tk-timeline-told { syntax: "<number>"; inherits: true; initial-value: 0; }
 
 /* --- typography ramp additions ------------------------------------------- */
 @property --tk-leading-display { syntax: "<number>"; inherits: true; initial-value: 1.04; }

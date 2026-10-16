@@ -46,16 +46,118 @@ export function oklab({ r, g, b }) {
   };
 }
 
-/** OKLab → sRGB (0–255 per channel), clamped into gamut. */
-export function srgb({ L, a, b }) {
+/* OKLab → linear-light sRGB, unclamped: a channel under 0 or over 1 is a
+   colour the screen cannot show. */
+function linearRgb({ L, a, b }) {
   const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
   const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
   const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
-  return {
-    r: fromLinear(4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s),
-    g: fromLinear(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s),
-    b: fromLinear(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s),
-  };
+  return [
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
+  ];
+}
+
+/**
+ * OKLab → sRGB (0–255 per channel), each channel CLIPPED into range.
+ *
+ * Right for a colour that is already in gamut (rounding apart), and for
+ * anything that has to be fast and need not be fair. Wrong for a colour that
+ * is out of gamut: clipping each channel separately moves the hue, and a
+ * vivid blue clipped this way goes purple. A derived colour goes through
+ * fromOklch, which maps it into gamut by chroma instead.
+ */
+export function srgb(lab) {
+  const [r, g, b] = linearRgb(lab);
+  return { r: fromLinear(r), g: fromLinear(g), b: fromLinear(b) };
+}
+
+/** Whether an OKLab colour is inside sRGB, with a hair of tolerance for float error. */
+export function inGamut(lab, eps = 1e-6) {
+  return linearRgb(lab).every((c) => c >= -eps && c <= 1 + eps);
+}
+
+/* Plain OKLab distance between two OKLab colours (ΔEOK). */
+const distance = (x, y) => Math.hypot(x.L - y.L, x.a - y.a, x.b - y.b);
+
+/* The clipped colour as OKLab, so it can be compared with the one it came from. */
+const clipped = (lab) => oklab(srgb(lab));
+
+/**
+ * OKLCh → the nearest sRGB colour of the same lightness and hue, by reducing
+ * chroma: CSS Color 4 §14's gamut-mapping algorithm (binary search with a
+ * local MINDE).
+ *
+ * Lightness and hue are what a reader sees first, so they are held; chroma
+ * gives way. A colour already in gamut is returned unchanged. Past white or
+ * black there is nothing to hold, so those clamp to white and black. Between
+ * them, chroma is halved towards the edge of the gamut until the CLIPPED
+ * colour is within one just-noticeable difference (ΔEOK 0.02) of the
+ * reduced one: at that point clipping is no longer visible, and stopping
+ * there keeps the most chroma the screen can give. The search ends at the
+ * top of that window rather than the bottom, so two neighbouring colours in
+ * a ramp do not land a whole JND apart and band (csswg-drafts #7135).
+ *
+ * Ottosson (sRGB gamut clipping, 2021) shows the cost: holding lightness
+ * sends very light and very dark saturated colours towards grey. For a ramp
+ * that is the honest answer; the alternative was a hue shift.
+ *
+ * { strict: true } drops the clip at the end: chroma is reduced until the
+ * colour is fully inside sRGB, so lightness and hue are held exactly (to the
+ * rounding of 8-bit channels) at the cost of a little chroma the window
+ * would have kept. The JND window lets the final clip move hue by up to a
+ * few degrees on a saturated orange; nudge, which promises hue is never
+ * moved, needs strict.
+ */
+export function gamutMap({ L, C, h }, { strict = false } = {}) {
+  if (L >= 1) return { r: 255, g: 255, b: 255 };
+  if (L <= 0) return { r: 0, g: 0, b: 0 };
+  const rad = (h * Math.PI) / 180;
+  const at = (c) => ({ L, a: c * Math.cos(rad), b: c * Math.sin(rad) });
+
+  const origin = at(C);
+  if (inGamut(origin)) return srgb(origin);
+
+  if (strict) {
+    /* The largest chroma still inside the gamut, by bisection. */
+    let inside = 0;
+    let outside = C;
+    while (outside - inside > 1e-5) {
+      const mid = (inside + outside) / 2;
+      if (inGamut(at(mid))) inside = mid;
+      else outside = mid;
+    }
+    return srgb(at(inside));
+  }
+
+  const JND = 0.02;
+  const EPSILON = 0.0001;
+  let lo = 0;
+  let hi = C;
+  let loInGamut = true;
+  let current = origin;
+  let clip = clipped(current);
+  if (distance(clip, current) < JND) return srgb(current);
+
+  while (hi - lo > EPSILON) {
+    const chroma = (lo + hi) / 2;
+    current = at(chroma);
+    if (loInGamut && inGamut(current)) {
+      lo = chroma;
+      continue;
+    }
+    clip = clipped(current);
+    const E = distance(clip, current);
+    if (E < JND) {
+      if (JND - E < EPSILON) break;
+      loInGamut = false;
+      lo = chroma;
+    } else {
+      hi = chroma;
+    }
+  }
+  return srgb(current);
 }
 
 /** Perceptual distance. Under 0.03 is a rendition; over 0.10 is another colour. */
@@ -74,10 +176,9 @@ export function oklch(rgb) {
   return { L, C, h };
 }
 
-/** OKLCh → sRGB. */
-export function fromOklch({ L, C, h }) {
-  const rad = (h * Math.PI) / 180;
-  return srgb({ L, a: C * Math.cos(rad), b: C * Math.sin(rad) });
+/** OKLCh → sRGB, mapped into gamut by chroma (see gamutMap), never clipped per channel. */
+export function fromOklch(lch) {
+  return gamutMap(lch);
 }
 
 export const hex = ({ r, g, b }) =>

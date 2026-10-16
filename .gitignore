@@ -24,3 +24,22 @@ tools/_*
 
 # Client names for the neutral gate — checked locally, never committed.
 tools/neutral-terms.local.json
+
+# Videos are build outputs: record, send, publish, never commit.
+# tools/media-gate.mjs fails the check if one is tracked anyway.
+*.webm
+*.mp4
+*.m4v
+*.mov
+*.mkv
+*.avi
+*.ogv
+
+# The film's bed: a source the recorder reads, kept with the film, not in git.
+tools/timeline/bed.mp3
+tools/timeline/.picture.webm
+tools/timeline/.sound.webm
+tools/timeline/web/
+
+# The evening run's reports, state and logs (tools/evening.mjs).
+.evening/

@@ -118,3 +118,7 @@ export { ResourceDownload } from "./ResourceDownload";
 export type { ResourceDownloadProps } from "./ResourceDownload";
 export { Accordion } from "./Accordion";
 export type { AccordionProps, AccordionItem } from "./Accordion";
+export { Timeline } from "./Timeline";
+export type { TimelineProps, TimelineItem, TimelineLane } from "./Timeline";
+export { Code } from "./Code";
+export type { CodeProps } from "./Code";

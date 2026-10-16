@@ -1,0 +1,83 @@
+/* ---------------------------------------------------------------------------
+   Code — a short piece of source, labelled.
+
+   The pack's mono face on the sunken surface, in the nested radius, with the
+   label above in small secondary type. Long lines wrap at the box (and break
+   inside a long word only when they must), so the snippet never scrolls
+   sideways and never needs a focus stop of its own.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="code"]) {
+    display: grid;
+    gap: var(--tk-space-2);
+    margin: 0;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="code-label"]) {
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-normal);
+  }
+
+  :where([data-tk="code-block"]) {
+    margin: 0;
+    padding: var(--tk-space-3) var(--tk-space-4);
+    border: 1px solid var(--tk-line-subtle);
+    /* A small surface, so at most the large corner: never rounder than where it sits. */
+    border-radius: min(var(--tk-radius-lg), var(--tk-radius-nested));
+    background: var(--tk-surface-sunken);
+    color: var(--tk-text-primary);
+    font-family: var(--tk-font-mono);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-normal);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    tab-size: 2;
+  }
+
+  :where([data-tk="code-block"] > code) {
+    font: inherit;
+  }
+
+  /* --- highlighting ---------------------------------------------------------
+     The kinds a reader recognises (src/lib/highlight.ts), each a slot of the
+     tk-code set. A pack sets them to put its own colours on code; a pack
+     that sets none paints code in its own text inks, so the wireframe reads
+     as code in greys: the words of the language (keywords, and tags and
+     selectors) strong and in the primary ink, what is named and what is
+     given (properties, strings, numbers) in the secondary, the scaffolding
+     (comments, punctuation) quietest. Resolved here, at the code, so a
+     snippet inside an inverse section takes that section's inks. Every slot
+     is checked for contrast on the code's sunken surface under every pack. */
+  :where([data-tk="code-block"] [data-code="keyword"]) {
+    color: var(--tk-code-keyword, var(--tk-text-primary));
+    font-weight: var(--tk-weight-semibold);
+  }
+  :where([data-tk="code-block"] [data-code="tag"]) {
+    color: var(--tk-code-tag, var(--tk-text-primary));
+    font-weight: var(--tk-weight-semibold);
+  }
+  :where([data-tk="code-block"] [data-code="property"]) {
+    color: var(--tk-code-property, var(--tk-text-secondary));
+  }
+  :where([data-tk="code-block"] [data-code="string"]) {
+    color: var(--tk-code-string, var(--tk-text-secondary));
+  }
+  :where([data-tk="code-block"] [data-code="number"]) {
+    color: var(--tk-code-number, var(--tk-text-secondary));
+  }
+  :where([data-tk="code-block"] [data-code="comment"]) {
+    color: var(--tk-code-comment, var(--tk-text-tertiary));
+  }
+  :where([data-tk="code-block"] [data-code="punctuation"]) {
+    color: var(--tk-code-punctuation, var(--tk-text-tertiary));
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="code-block"] [data-code]) {
+      color: CanvasText;
+    }
+  }
+}

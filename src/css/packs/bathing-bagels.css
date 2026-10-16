@@ -28,9 +28,9 @@
    browser silently recovered from — so the contrast gate reported 812 passes
    against a stylesheet that would not build.
 
-     pink-ui: #E11D7A → #CE1B70 · L −4.3 · ΔE 0.0404 (noticeable)
-     pink-ui-dark: #CE1B70 → #B71864 · L −5.0 · ΔE 0.0500 (step from pink-ui)
-     pink-ui-darker: #CE1B70 → #AC175E · L −7.5 · ΔE 0.0743 (step from pink-ui)
+     pink-ui: #E11D7A → #D40070 · L −3.4 · ΔE 0.0345 (noticeable)
+     pink-ui-dark: #D40070 → #BC0063 · L −4.8 · ΔE 0.0521 (step from pink-ui)
+     pink-ui-darker: #D40070 → #B1005D · L −7.1 · ΔE 0.0764 (step from pink-ui)
 
    NUDGES TRIED AND REJECTED — recomputed every time this file is written, so
    the reason a job went to another colour is a number rather than a memory.
@@ -58,10 +58,10 @@
     --bagel-orange: #F97316;
     --bagel-ink-faint: #A98473;
     --bagel-pink: #E11D7A;
-    --bagel-pink-ui: #CE1B70; /* solved */
-    --bagel-pink-ui-dark: #B71864; /* solved */
+    --bagel-pink-ui: #D40070; /* solved */
+    --bagel-pink-ui-dark: #BC0063; /* solved */
     --bagel-danger: #B42318;
-    --bagel-pink-ui-darker: #AC175E; /* solved */
+    --bagel-pink-ui-darker: #B1005D; /* solved */
     --bagel-ink-quiet: #8C4A34;
     --bagel-brown: #9A3412;
     --bagel-danger-dark: #912018;

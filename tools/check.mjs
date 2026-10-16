@@ -26,6 +26,7 @@ const STEPS = [
   { name: "scene", cmd: "node tools/scene-gate.mjs" },
   { name: "boundary", cmd: "node tools/boundary-gate.mjs" },
   { name: "neutral", cmd: "node tools/neutral-gate.mjs" },
+  { name: "media", cmd: "node tools/media-gate.mjs" },
   { name: "contrast", cmd: "node tools/contrast-gate.mjs" },
   { name: "type", cmd: "node tools/type-gate.mjs" },
   { name: "storybook build", cmd: "npm run -s build-storybook", required: true },

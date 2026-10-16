@@ -102,6 +102,12 @@
       "worst": 2.56,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "Code": {
+      "skins": 1,
+      "mean": 2.13,
+      "worst": 2.13,
+      "checkedAt": "2026-10-16T14:58:57.350Z"
+    },
     "ContactCta": {
       "skins": 9,
       "mean": 6.92,
@@ -449,6 +455,18 @@
       "mean": 3.31,
       "worst": 3.31,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "Timeline": {
+      "skins": 1,
+      "mean": 1.07,
+      "worst": 1.07,
+      "checkedAt": "2026-10-16T14:58:57.350Z"
+    },
+    "TimelineJourney": {
+      "skins": 1,
+      "mean": 1.72,
+      "worst": 1.72,
+      "checkedAt": "2026-10-16T14:58:57.350Z"
     }
   }
 }
