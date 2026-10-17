@@ -18,6 +18,11 @@ export type SiteHeaderProps = {
    * stays at the top of the page rather than only the top of the header.
    */
   banner?: ReactNode;
+  /**
+   * A UtilityNav (contact, careers, log in): a strip inside the header,
+   * above the bar. The general before the specific, so it reads first.
+   */
+  utility?: ReactNode;
 };
 
 const DEFAULT_NAV = [
@@ -37,6 +42,7 @@ export function SiteHeader({
   withMegaMenu = false,
   actions,
   banner,
+  utility,
 }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuId = useId();
@@ -45,6 +51,7 @@ export function SiteHeader({
     <>
       {banner}
       <header data-tk="site-header" data-mega={withMegaMenu ? "" : undefined}>
+        {utility ? <div data-tk="site-header-utility">{utility}</div> : null}
         <div data-tk="site-header-bar">
           <a href="#main" data-tk="site-header-brand">
             {brand}

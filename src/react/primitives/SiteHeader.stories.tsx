@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SiteHeader } from "./SiteHeader";
 import { Search } from "./Search";
 import { PhaseBanner } from "./PhaseBanner";
+import { UtilityNav } from "./UtilityNav";
 
 const meta = {
   title: "04 Primitives/20 Site header",
@@ -21,6 +22,10 @@ const meta = {
     banner: {
       control: false,
       description: "Optional strip above the header: a PhaseBanner.",
+    },
+    utility: {
+      control: false,
+      description: "Optional strip inside the header, above the bar: a UtilityNav.",
     },
   },
   args: {
@@ -56,6 +61,34 @@ export const MegaSheet: Story = {
   name: "Mega sheet",
   args: { withMegaMenu: true },
   render: (args) => <SiteHeader {...args} actions={<Search />} />,
+};
+
+export const WithUtility: Story = {
+  name: "With utility navigation",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The optional utility slot: a UtilityNav strip above the bar, for the few links every page carries that are not the site's sections. See Utility nav for when to use one.",
+      },
+    },
+  },
+  render: (args) => (
+    <SiteHeader
+      {...args}
+      actions={<Search />}
+      utility={
+        <UtilityNav
+          links={[
+            { label: "Contact", href: "#main" },
+            { label: "Careers", href: "#main" },
+            { label: "Customer portal", href: "#main" },
+            { label: "Log in", href: "#main" },
+          ]}
+        />
+      }
+    />
+  ),
 };
 
 export const WithPhaseBanner: Story = {

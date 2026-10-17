@@ -1,0 +1,102 @@
+/* ---------------------------------------------------------------------------
+   Tooltip and Toggletip — a few words beside a control.
+
+   One bubble for both: the inverse surface, small type, a measure of its
+   own, above the control by default. Hidden by the attribute the component
+   sets (data-open), not by display, so the tooltip stays in the
+   accessibility tree as the description or name it is. The bubble keeps its
+   own box when shown, so a pointer can move onto it without it closing
+   (WCAG 1.4.13: hoverable).
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="tooltip"], [data-tk="toggletip"]) {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
+  :where([data-tk="tooltip-bubble"]) {
+    position: absolute;
+    z-index: 50;
+    inset-inline-start: 50%;
+    inline-size: max-content;
+    max-inline-size: min(20rem, 80vi);
+    padding: var(--tk-space-2) var(--tk-space-3);
+    border-radius: var(--tk-radius-md);
+    background: var(--tk-surface-inverse);
+    color: var(--tk-text-inverse);
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-normal);
+    line-height: var(--tk-leading-snug);
+    text-align: start;
+    white-space: normal;
+    translate: -50% 0;
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      opacity var(--tk-duration-fast) var(--tk-ease-standard),
+      visibility 0s linear var(--tk-duration-fast);
+  }
+  :where([data-tk="tooltip-bubble"][data-open]) {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity var(--tk-duration-fast) var(--tk-ease-standard);
+  }
+  /* A bridge across the gap, so a pointer moving onto the bubble stays "over" it. */
+  :where([data-tk="tooltip-bubble"])::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    block-size: var(--tk-space-2);
+  }
+
+  :where([data-tk="tooltip"], [data-tk="toggletip"]):where([data-placement="above"]) > :where([data-tk="tooltip-bubble"]) {
+    inset-block-end: calc(100% + var(--tk-space-2));
+  }
+  :where([data-tk="tooltip"], [data-tk="toggletip"]):where([data-placement="above"]) > :where([data-tk="tooltip-bubble"])::before {
+    inset-block-start: 100%;
+  }
+  :where([data-tk="tooltip"], [data-tk="toggletip"]):where([data-placement="below"]) > :where([data-tk="tooltip-bubble"]) {
+    inset-block-start: calc(100% + var(--tk-space-2));
+  }
+  :where([data-tk="tooltip"], [data-tk="toggletip"]):where([data-placement="below"]) > :where([data-tk="tooltip-bubble"])::before {
+    inset-block-end: 100%;
+  }
+
+  /* Links inside a toggletip read on the inverse surface. */
+  :where([data-tk="tooltip-bubble"]) :where(a) {
+    color: inherit;
+  }
+
+  :where([data-tk="toggletip-button"]) {
+    display: grid;
+    place-items: center;
+    min-inline-size: var(--tk-target-min);
+    min-block-size: var(--tk-target-min);
+    padding: 0;
+    border: 0;
+    border-radius: var(--tk-radius-full);
+    background: none;
+    color: var(--tk-text-secondary);
+    cursor: pointer;
+  }
+  :where([data-tk="toggletip-button"]:hover, [data-tk="toggletip-button"][aria-expanded="true"]) {
+    color: var(--tk-text-primary);
+  }
+  :where([data-tk="toggletip-button"]:focus-visible) {
+    outline: 2px solid var(--tk-focus-color);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="tooltip-bubble"], [data-tk="tooltip-bubble"][data-open]) {
+      transition: none;
+    }
+  }
+  @media (forced-colors: active) {
+    :where([data-tk="tooltip-bubble"]) {
+      border: 1px solid CanvasText;
+    }
+  }
+}

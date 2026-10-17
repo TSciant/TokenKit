@@ -964,6 +964,127 @@
       "single": true,
       "target": "root",
       "doc": "The Figma Timeline journey (week 20 told, the line at 20.6, weeks 8 to 32, 960 wide) laid over the same."
+    },
+    "Toast": {
+      "story": "04-primitives-65-toast--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Toast region (three toasts, 384 wide) laid over the same."
+    },
+    "Tooltip": {
+      "story": "04-primitives-66-tooltip--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Tooltip (open, above an outline button) laid over the same."
+    },
+    "ChoiceGroup": {
+      "story": "04-primitives-68-choice-group--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Choice group (the radio question, 400 wide) laid over the same."
+    },
+    "Switch": {
+      "story": "04-primitives-69-switch--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Switch (on, with a hint, 400 wide) laid over the same."
+    },
+    "Steps": {
+      "story": "04-primitives-70-steps--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Steps (step 3 of 5 current, 720 wide) laid over the same."
+    },
+    "TaskList": {
+      "story": "04-primitives-71-task-list--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Task list (five tasks, every status, 640 wide) laid over the same."
+    },
+    "SummaryList": {
+      "story": "04-primitives-72-summary-list--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Summary list (four rows, 640 wide) laid over the same."
+    },
+    "UtilityNav": {
+      "story": "04-primitives-73-utility-nav--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Utility nav (four links at the end edge, 640 wide) laid over the same. Ceiling 16: the strip is nothing but 14px underlined words, so the screen's sub-pixel text against Figma's greyscale text is most of the score (as for Icon and Chip); the links land within 3px of the code's.",
+      "maxMean": 16
+    },
+    "SignIn": {
+      "story": "04-primitives-74-sign-in--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Sign in (the default form, 400 wide) laid over the same."
+    },
+    "AudioPlayer": {
+      "story": "04-primitives-75-audio-player--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Audio player (stopped at the start, 640 wide) laid over the same."
     }
   }
 }

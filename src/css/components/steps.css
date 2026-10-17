@@ -1,0 +1,262 @@
+/* ---------------------------------------------------------------------------
+   Steps, TaskList, SummaryList — where a reader is, and what they have said.
+
+   Steps: numbered markers joined by a line, done ones filled with a check,
+   the current one ringed in the action colour, the rest ringed in the
+   strong line (3:1 on every surface, WCAG 1.4.11). The status is also in
+   words for a screen reader, and in the marker's shape (check, ring,
+   number), so colour is never the only telling. A row by default; in a box
+   under 32rem, a column.
+
+   TaskList: rows divided by hairlines, the name a link, the status at the
+   end: plain text when complete, a tag in a status tone while there is
+   something to do.
+
+   SummaryList: three columns (name, value, action) when there is room, the
+   value under its name when there is not.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  /* --- steps ------------------------------------------------------------- */
+  :where([data-tk="steps"]) {
+    --_marker: calc(var(--tk-space-5) + var(--tk-space-1));
+    container: tk-steps / inline-size;
+  }
+  :where([data-tk="steps-list"]),
+  :where([data-tk="steps"][data-orientation="horizontal"]) > :where([data-tk="steps-list"]) {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  :where([data-tk="steps-step"]) {
+    position: relative;
+    flex: 1 1 0;
+    display: grid;
+    justify-items: start;
+    gap: var(--tk-space-2);
+    min-inline-size: 0;
+    padding-inline-end: var(--tk-space-3);
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-snug);
+  }
+  /* The line to the next step, from this marker's edge to the next. */
+  :where([data-tk="steps-step"]:not(:last-child))::after {
+    content: "";
+    position: absolute;
+    inset-block-start: calc(var(--_marker) / 2 - 1px);
+    inset-inline-start: calc(var(--_marker) + var(--tk-space-2));
+    inset-inline-end: var(--tk-space-2);
+    block-size: 2px;
+    background: var(--tk-line-strong);
+  }
+  :where([data-tk="steps-step"][data-status="complete"]:not(:last-child))::after {
+    background: var(--tk-action-fill);
+  }
+  :where([data-tk="steps-marker"]) {
+    display: grid;
+    place-items: center;
+    inline-size: var(--_marker);
+    block-size: var(--_marker);
+    border: 2px solid var(--tk-line-strong);
+    border-radius: var(--tk-radius-full);
+    background: var(--tk-surface-raised);
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-semibold);
+    font-variant-numeric: tabular-nums;
+  }
+  :where([data-tk="steps-step"][data-status="complete"]) > :where([data-tk="steps-marker"]) {
+    border-color: var(--tk-action-fill);
+    background: var(--tk-action-fill);
+    color: var(--tk-action-text);
+  }
+  :where([data-tk="steps-step"][data-status="current"]) > :where([data-tk="steps-marker"]) {
+    border-color: var(--tk-action-fill);
+    color: var(--tk-text-primary);
+    box-shadow: 0 0 0 var(--tk-space-1) color-mix(in oklab, var(--tk-action-fill) 18%, transparent);
+  }
+  :where([data-tk="steps-step"][data-status="error"]) > :where([data-tk="steps-marker"]) {
+    border-color: var(--tk-status-danger-line);
+    color: var(--tk-status-danger-text);
+  }
+  :where([data-tk="steps-step"][data-status="current"]) {
+    color: var(--tk-text-primary);
+    font-weight: var(--tk-weight-semibold);
+  }
+  :where([data-tk="steps-step"][data-status="complete"]) {
+    color: var(--tk-text-primary);
+  }
+  :where([data-tk="steps-step"][data-status="upcoming"]) {
+    color: var(--tk-text-secondary);
+  }
+  :where([data-tk="steps-link"]) {
+    color: inherit;
+  }
+  /* A long step name wraps under its marker rather than running into the next. */
+  :where([data-tk="steps-name"], [data-tk="steps-label"]) {
+    overflow-wrap: anywhere;
+  }
+
+  :where([data-tk="steps"][data-orientation="vertical"]) > :where([data-tk="steps-list"]) {
+    flex-direction: column;
+    gap: var(--tk-space-4);
+  }
+  @container tk-steps (inline-size < 32rem) {
+    :where([data-tk="steps-list"]) {
+      flex-direction: column;
+      gap: var(--tk-space-4);
+    }
+  }
+  /* A column: marker and name side by side, the line running down. */
+  :where([data-tk="steps"][data-orientation="vertical"]) :where([data-tk="steps-step"]) {
+    grid-template-columns: var(--_marker) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--tk-space-3);
+    padding-inline-end: 0;
+  }
+  :where([data-tk="steps"][data-orientation="vertical"]) :where([data-tk="steps-step"]:not(:last-child))::after {
+    inset-block-start: calc(var(--_marker) + var(--tk-space-1));
+    inset-block-end: calc(var(--tk-space-4) * -1 + var(--tk-space-1));
+    inset-inline-start: calc(var(--_marker) / 2 - 1px);
+    inset-inline-end: auto;
+    inline-size: 2px;
+    block-size: auto;
+  }
+  @container tk-steps (inline-size < 32rem) {
+    :where([data-tk="steps-step"]) {
+      grid-template-columns: var(--_marker) minmax(0, 1fr);
+      align-items: center;
+      gap: var(--tk-space-3);
+      padding-inline-end: 0;
+    }
+    :where([data-tk="steps-step"]:not(:last-child))::after {
+      inset-block-start: calc(var(--_marker) + var(--tk-space-1));
+      inset-block-end: calc(var(--tk-space-4) * -1 + var(--tk-space-1));
+      inset-inline-start: calc(var(--_marker) / 2 - 1px);
+      inset-inline-end: auto;
+      inline-size: 2px;
+      block-size: auto;
+    }
+  }
+
+  /* --- task list ----------------------------------------------------------- */
+  :where([data-tk="task-list"]) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-block-start: 1px solid var(--tk-line-default);
+  }
+  :where([data-tk="task"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: space-between;
+    gap: var(--tk-space-2) var(--tk-space-4);
+    padding-block: var(--tk-space-3);
+    border-block-end: 1px solid var(--tk-line-default);
+  }
+  :where([data-tk="task-name"]) {
+    display: grid;
+    gap: var(--tk-space-1);
+    min-inline-size: 0;
+  }
+  :where([data-tk="task-link"]) {
+    font-weight: var(--tk-weight-medium);
+  }
+  :where([data-tk="task-label"]) {
+    color: var(--tk-text-secondary);
+  }
+  :where([data-tk="task-hint"]) {
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+  }
+  :where([data-tk="task-status"]) {
+    flex: none;
+    padding: var(--tk-space-1) var(--tk-space-2);
+    border-radius: var(--tk-radius-sm);
+    background: var(--tk-status-info-surface);
+    color: var(--tk-status-info-text);
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+  }
+  /* Completed is plain text: done things recede, what needs doing stands out. */
+  :where([data-tk="task"][data-status="complete"]) > :where([data-tk="task-status"]) {
+    padding-inline: 0;
+    background: none;
+    color: var(--tk-text-primary);
+  }
+  :where([data-tk="task"][data-status="not-started"]) > :where([data-tk="task-status"]) {
+    background: var(--tk-status-info-surface);
+    color: var(--tk-status-info-text);
+  }
+  :where([data-tk="task"][data-status="in-progress"]) > :where([data-tk="task-status"]) {
+    background: var(--tk-status-warning-surface);
+    color: var(--tk-status-warning-text);
+  }
+  :where([data-tk="task"][data-status="cannot-start"]) > :where([data-tk="task-status"]) {
+    background: none;
+    color: var(--tk-text-secondary);
+  }
+  :where([data-tk="task"][data-status="error"]) > :where([data-tk="task-status"]) {
+    background: var(--tk-status-danger-surface);
+    color: var(--tk-status-danger-text);
+  }
+
+  /* --- summary list -------------------------------------------------------- */
+  :where([data-tk="summary-list"]) {
+    margin: 0;
+    container: tk-summary / inline-size;
+  }
+  :where([data-tk="summary-row"]) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto;
+    gap: var(--tk-space-1) var(--tk-space-4);
+    padding-block: var(--tk-space-3);
+  }
+  :where([data-tk="summary-list"][data-divided]) > :where([data-tk="summary-row"]) {
+    border-block-end: 1px solid var(--tk-line-default);
+  }
+  :where([data-tk="summary-key"]) {
+    font-weight: var(--tk-weight-semibold);
+  }
+  :where([data-tk="summary-value"], [data-tk="summary-action"]) {
+    margin: 0;
+  }
+  :where([data-tk="summary-value"]) > :where(p) {
+    margin: 0;
+  }
+  :where([data-tk="summary-action"]) {
+    justify-self: end;
+  }
+  @container tk-summary (inline-size < 32rem) {
+    :where([data-tk="summary-row"]) {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+    :where([data-tk="summary-key"]) {
+      grid-column: 1;
+    }
+    :where([data-tk="summary-value"]) {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    :where([data-tk="summary-action"]) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="steps-step"]:not(:last-child))::after {
+      forced-color-adjust: none;
+      background: CanvasText;
+    }
+    :where([data-tk="steps-marker"]) {
+      border-color: CanvasText;
+    }
+    :where([data-tk="task-status"]) {
+      border: 1px solid CanvasText;
+    }
+  }
+}

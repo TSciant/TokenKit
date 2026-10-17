@@ -1,0 +1,129 @@
+/* ---------------------------------------------------------------------------
+   Toast — a short message about something that just happened.
+
+   A raised card at the end of the viewport, its tone in its icon and a rule
+   down its start edge (the Alert's tones, so a reader learns one set), never
+   in its colour alone. The stack is a polite live region that is always
+   there. It arrives with the kit's entrance motion and no movement at all
+   when a reader has asked for less.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="toast-region"]) {
+    z-index: 60;
+    inline-size: min(24rem, calc(100vi - var(--tk-space-5) * 2));
+  }
+  :where([data-tk="toast-region"][data-placement="block-end"]) {
+    position: fixed;
+    inset-block-end: var(--tk-space-5);
+    inset-inline-end: var(--tk-space-5);
+  }
+  :where([data-tk="toast-region"][data-placement="block-start"]) {
+    position: fixed;
+    inset-block-start: var(--tk-space-5);
+    inset-inline-end: var(--tk-space-5);
+  }
+  :where([data-tk="toast-region"][data-placement="static"]) {
+    position: static;
+  }
+
+  :where([data-tk="toast-list"]) {
+    display: grid;
+    gap: var(--tk-space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :where([data-tk="toast"]) {
+    --_tone: var(--tk-status-info-line);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: start;
+    gap: var(--tk-space-2) var(--tk-space-3);
+    padding: var(--tk-space-3) var(--tk-space-3) var(--tk-space-3) var(--tk-space-4);
+    border: 1px solid var(--tk-line-default);
+    border-inline-start: 4px solid var(--_tone);
+    border-radius: min(var(--tk-radius-lg), var(--tk-radius-nested));
+    background: var(--tk-surface-raised);
+    box-shadow: var(--tk-shadow-md);
+    color: var(--tk-text-primary);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-snug);
+    transition:
+      opacity var(--tk-duration-base) var(--tk-ease-entrance),
+      translate var(--tk-duration-base) var(--tk-ease-entrance);
+  }
+  @starting-style {
+    :where([data-tk="toast"]) {
+      opacity: 0;
+      translate: 0 var(--tk-space-2);
+    }
+  }
+  :where([data-tk="toast"][data-status="success"]) { --_tone: var(--tk-status-success-line); }
+  :where([data-tk="toast"][data-status="warning"]) { --_tone: var(--tk-status-warning-line); }
+  :where([data-tk="toast"][data-status="danger"]) { --_tone: var(--tk-status-danger-line); }
+
+  /* The tone's glyph, in the tone's text colour (4.5:1 on the raised surface). */
+  :where([data-tk="toast"]) > :where([data-tk="icon"]) {
+    margin-block-start: 0.1em;
+    color: var(--tk-status-info-text);
+  }
+  :where([data-tk="toast"][data-status="success"]) > :where([data-tk="icon"]) { color: var(--tk-status-success-text); }
+  :where([data-tk="toast"][data-status="warning"]) > :where([data-tk="icon"]) { color: var(--tk-status-warning-text); }
+  :where([data-tk="toast"][data-status="danger"]) > :where([data-tk="icon"]) { color: var(--tk-status-danger-text); }
+
+  :where([data-tk="toast-text"]) {
+    display: grid;
+    gap: var(--tk-space-1);
+    min-inline-size: 0;
+  }
+  :where([data-tk="toast-title"]) {
+    margin: 0;
+    font-weight: var(--tk-weight-semibold);
+  }
+  :where([data-tk="toast-message"]) {
+    color: var(--tk-text-secondary);
+  }
+  :where([data-tk="toast-message"]) > :where(p) {
+    margin: 0;
+  }
+  /* The action sits under the words, so a long title never squeezes it. */
+  :where([data-tk="toast-action"]) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  :where([data-tk="toast-dismiss"]) {
+    grid-column: 3;
+    grid-row: 1;
+    display: grid;
+    place-items: center;
+    min-inline-size: var(--tk-target-min);
+    min-block-size: var(--tk-target-min);
+    margin: calc(var(--tk-space-2) * -1);
+    padding: 0;
+    border: 0;
+    border-radius: var(--tk-radius-sm);
+    background: none;
+    color: var(--tk-text-secondary);
+    cursor: pointer;
+  }
+  :where([data-tk="toast-dismiss"]:hover) {
+    color: var(--tk-text-primary);
+  }
+  :where([data-tk="toast-dismiss"]:focus-visible) {
+    outline: 2px solid var(--tk-focus-color);
+    outline-offset: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="toast"]) {
+      transition: none;
+    }
+  }
+  @media (forced-colors: active) {
+    :where([data-tk="toast"]) {
+      border-color: CanvasText;
+    }
+  }
+}

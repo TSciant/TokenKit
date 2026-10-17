@@ -16,6 +16,8 @@ const meta = {
     code: { control: "text" },
     label: { control: "text" },
     language: { control: "text" },
+    copy: { control: "boolean" },
+    copyWords: { control: "object" },
   },
   args: {
     label: "A component's rule, reading only tokens",
@@ -92,6 +94,17 @@ export const TkPack: Story = {
       {SNIPPETS.slice(0, 3).map(([label, language, code]) => (
         <Code key={label} label={label} language={language} code={code} />
       ))}
+    </div>
+  ),
+};
+
+export const Copy: Story = {
+  name: "With a Copy button",
+  parameters: { docs: { description: { story: "For a snippet a reader is meant to paste. The button copies the code, says \"Copied\" for two seconds, and a live region says it aloud. Its accessible name ends with the label (\"Copy The card's CSS\"), so several on one page are told apart." } } },
+  args: { copy: true, label: "Install", language: "text", code: "npm install @tokenkit/react" },
+  render: (args) => (
+    <div style={{ maxInlineSize: "30rem" }}>
+      <Code {...args} />
     </div>
   ),
 };

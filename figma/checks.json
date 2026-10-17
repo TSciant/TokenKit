@@ -42,6 +42,12 @@
       "worst": 3.21,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "AudioPlayer": {
+      "skins": 1,
+      "mean": 3.67,
+      "worst": 3.67,
+      "checkedAt": "2026-10-17T22:08:00.521Z"
+    },
     "Avatar": {
       "skins": 6,
       "mean": 7.21,
@@ -102,11 +108,17 @@
       "worst": 2.56,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "ChoiceGroup": {
+      "skins": 1,
+      "mean": 2.16,
+      "worst": 2.16,
+      "checkedAt": "2026-10-17T19:05:28.500Z"
+    },
     "Code": {
       "skins": 1,
       "mean": 2.13,
       "worst": 2.13,
-      "checkedAt": "2026-10-16T14:58:57.350Z"
+      "checkedAt": "2026-10-17T19:17:12.824Z"
     },
     "ContactCta": {
       "skins": 9,
@@ -414,6 +426,12 @@
       "worst": 0.07,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "SignIn": {
+      "skins": 1,
+      "mean": 3.9,
+      "worst": 3.9,
+      "checkedAt": "2026-10-17T22:08:00.521Z"
+    },
     "SiteFooter": {
       "skins": 1,
       "mean": 7.73,
@@ -424,7 +442,7 @@
       "skins": 4,
       "mean": 2.76,
       "worst": 4.93,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-17T22:30:06.100Z"
     },
     "SkipLink": {
       "skins": 1,
@@ -432,17 +450,41 @@
       "worst": 6.55,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "Steps": {
+      "skins": 1,
+      "mean": 3.39,
+      "worst": 3.39,
+      "checkedAt": "2026-10-17T19:05:28.500Z"
+    },
     "SubBrandPage": {
       "skins": 1,
       "mean": 1.93,
       "worst": 1.93,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "SummaryList": {
+      "skins": 1,
+      "mean": 2.58,
+      "worst": 2.58,
+      "checkedAt": "2026-10-17T19:05:28.500Z"
+    },
+    "Switch": {
+      "skins": 1,
+      "mean": 3.74,
+      "worst": 3.74,
+      "checkedAt": "2026-10-17T19:05:28.500Z"
+    },
     "Tachometer": {
       "skins": 2,
       "mean": 1.45,
       "worst": 2.89,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "TaskList": {
+      "skins": 1,
+      "mean": 2.92,
+      "worst": 2.92,
+      "checkedAt": "2026-10-17T19:05:28.500Z"
     },
     "TextStyles": {
       "skins": 1,
@@ -467,6 +509,24 @@
       "mean": 1.72,
       "worst": 1.72,
       "checkedAt": "2026-10-16T14:58:57.350Z"
+    },
+    "Toast": {
+      "skins": 1,
+      "mean": 3.49,
+      "worst": 3.49,
+      "checkedAt": "2026-10-17T19:05:28.500Z"
+    },
+    "Tooltip": {
+      "skins": 1,
+      "mean": 6.71,
+      "worst": 6.71,
+      "checkedAt": "2026-10-17T19:06:34.608Z"
+    },
+    "UtilityNav": {
+      "skins": 1,
+      "mean": 14.6,
+      "worst": 14.6,
+      "checkedAt": "2026-10-17T22:08:46.920Z"
     }
   }
 }

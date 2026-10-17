@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.23. A token-driven design system: components draw only from
+token-kit 0.3.24. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -1029,7 +1029,7 @@ Figma: node `311:1607`.
 
 Code — a short piece of source, labelled.
 
-Use for: a snippet that illustrates a point (a few lines, not a file). Don't use for: code a reader is meant to copy whole (give them the file), or a single token inside a sentence (that is inline code, the plain code element).
+Use for: a snippet that illustrates a point (a few lines, not a file). Don't use for: a whole file (link to it), or a single token inside a sentence (that is inline code, the plain code element). For a snippet a reader is meant to paste, set `copy`: a button in the corner copies it and says "Copied", aloud too, through a live region.
 
 Figma: node `402:1585`.
 
@@ -1044,3 +1044,79 @@ Figma: node `403:1585`.
 ### TimelineJourney
 
 Figma: node `409:2590`.
+
+### Toast
+
+Figma: node `440:1716`.
+
+### Tooltip
+
+Tooltip — a few words about a control, shown on hover and on focus.
+
+Use for: the name of an icon-only button, or a short supplement to a control that already says what it does. Don't use for: anything a reader needs to complete a task (put it on the page), anything on a touch screen only (there is no hover), rich content or links (a Toggletip), or text on something that cannot take focus. GOV.UK's system has no tooltip at all, for these reasons; this one exists for the icon-button case and holds itself to WCAG 1.4.13: it stays while the pointer is over it, until focus leaves or Escape is pressed, and Escape closes it without moving focus.
+
+Figma: node `444:1801`.
+
+### ChoiceGroup
+
+ChoiceGroup — a question answered by choosing from a few options: radio buttons for one, checkboxes for any number.
+
+Use for: up to about seven options a reader should see all of at once. Don't use for: a long list (a Select, or a search), a single on and off setting that applies at once (a Switch), or options that need room to explain themselves (ChoiceCard).
+
+Figma: node `441:1721`.
+
+### Switch
+
+Switch — a setting that is on or off and takes effect at once.
+
+Use for: a preference that changes something straight away, with no save button (notifications, a dark theme). Don't use for: a choice that is only sent with a form (a checkbox, in a ChoiceGroup), or more than two states.
+
+Figma: node `441:1775`.
+
+### Steps
+
+Steps — where a reader is in a process with a set order: done, here, still to come.
+
+Use for: a form or task in a few fixed stages, read in order (apply, check, pay). Don't use for: tasks that can be done in any order (a TaskList), navigating between pages that are not a sequence (section nav), or more than about seven stages (fewer, bigger steps; or one question per page).
+
+Figma: node `442:1781`.
+
+### TaskList
+
+TaskList — the parts of a long job, each with where it is, done in any order.
+
+Use for: a service or form with several sections a reader may come back to over time (GOV.UK's task list). Don't use for: stages that must go in order (Steps), or a to-do list a reader ticks (checkboxes).
+
+Figma: node `442:1845`.
+
+### SummaryList
+
+SummaryList — facts as pairs of a name and a value, each changeable.
+
+Use for: what a reader has entered, before they send it (check your answers); the details of a record (a profile, an order). Don't use for: data a reader compares across rows and columns (a Table), or steps.
+
+Figma: node `442:1885`.
+
+### UtilityNav
+
+UtilityNav — a short row of small links above or beside the primary navigation.
+
+The things a reader looks for on every page but that are not what the site is about: contact, careers, a customer portal, log in. A navigation landmark of its own, named so a screen reader hears it apart from the primary one. Small and quiet, so it never competes with the sections; a few links, not a second menu (anything that grows past five or six belongs in the primary navigation or the footer). Put it at the top, above the site-wide header: the general before the specific. SiteHeader takes it in its `utility` slot.
+
+Figma: node `447:1820`.
+
+### SignIn
+
+SignIn — a form that signs someone in.
+
+An email address and a password, a Sign in button, and a way back in for someone who has forgotten. The fields say what they are to a password manager (autocomplete username and current-password), the password can be shown to catch a typo, and paste is never blocked. A failed attempt is said once, above the form, without naming the field at fault, and the password is cleared. Put it only in front of what is private: everything public should be readable without signing in.
+
+Figma: node `449:1840`.
+
+### AudioPlayer
+
+AudioPlayer — a clip or an episode, played on the page.
+
+A native audio element underneath, with the kit's own controls over it, so every control is a real button or slider a keyboard and a screen reader already know: play and pause, back and forward fifteen seconds, the position (arrow keys move it by the same fifteen), the time, the speed and mute. Volume is left to the device. It never plays by itself: nothing sounds until someone presses play. A transcript, when there is one, opens under the controls for anyone who would rather read or cannot hear.
+
+Figma: node `447:1839`.

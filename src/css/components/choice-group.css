@@ -1,0 +1,161 @@
+/* ---------------------------------------------------------------------------
+   ChoiceGroup and Switch — choosing, and turning on and off.
+
+   The group is a fieldset without a frame: the legend reads as the field's
+   label (the same style as Field's), its hint and error under it, the
+   options below. Each option is the kit's `choice` row (field.css): the
+   native input in the action colour, the whole row the target. An option's
+   own hint sits under its label in the secondary ink.
+
+   The switch draws its track around a native checkbox, which sits on top of
+   it, transparent, so the browser's own focus, keyboard and click handling
+   do the work.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="choice-group"]) {
+    display: grid;
+    gap: var(--tk-space-2);
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  /* A legend will not take a grid's gap, so it carries its own space. */
+  :where([data-tk="choice-group"]) > :where(legend) {
+    float: inline-start;
+    inline-size: 100%;
+    margin-block-end: var(--tk-space-2);
+    padding: 0;
+  }
+  :where([data-tk="choice-group"]) > :where(legend + *) {
+    clear: both;
+  }
+  :where([data-tk="choice-group-options"]),
+  :where([data-tk="choice-group"][data-layout="stack"]) :where([data-tk="choice-group-options"]) {
+    display: grid;
+    gap: var(--tk-space-1);
+  }
+  :where([data-tk="choice-group"][data-layout="inline"]) :where([data-tk="choice-group-options"]) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tk-space-1) var(--tk-space-6);
+  }
+  /* An error marks the group with the danger rule down its start edge, as GOV.UK does, not the field's colour alone. */
+  :where([data-tk="choice-group"][data-invalid]) {
+    padding-inline-start: var(--tk-space-4);
+    border-inline-start: 4px solid var(--tk-status-danger-line);
+  }
+
+  :where([data-tk="choice-text"]) {
+    display: grid;
+    gap: var(--tk-space-1);
+    padding-block: 0.1em;
+  }
+  :where([data-tk="choice-label"], [data-tk="switch-label"]) {
+    color: var(--tk-text-primary);
+    overflow-wrap: anywhere;
+  }
+  :where([data-tk="choice-hint"]) {
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+  }
+
+  /* --- switch ------------------------------------------------------------ */
+  :where([data-tk="switch"]) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--tk-space-4);
+    min-block-size: var(--tk-target-min);
+    cursor: pointer;
+  }
+  :where([data-tk="switch-text"]) {
+    display: grid;
+    gap: var(--tk-space-1);
+  }
+  :where([data-tk="switch-hint"]) {
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+  }
+  :where([data-tk="switch-control"]) {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    flex: none;
+  }
+  :where([data-tk="switch-input"]) {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: calc(var(--tk-space-6) + var(--tk-space-3));
+    margin: 0;
+    opacity: 0;
+    cursor: inherit;
+  }
+  :where([data-tk="switch-track"]) {
+    display: inline-flex;
+    align-items: center;
+    inline-size: calc(var(--tk-space-6) + var(--tk-space-3));
+    block-size: var(--tk-space-5);
+    padding: calc(var(--tk-space-1) / 2);
+    border: 2px solid var(--tk-line-strong);
+    border-radius: var(--tk-radius-full);
+    background: var(--tk-surface-raised);
+    transition: background-color var(--tk-duration-fast) var(--tk-ease-standard), border-color var(--tk-duration-fast) var(--tk-ease-standard);
+  }
+  :where([data-tk="switch-thumb"]) {
+    inline-size: calc(var(--tk-space-5) - var(--tk-space-2));
+    block-size: calc(var(--tk-space-5) - var(--tk-space-2));
+    border-radius: var(--tk-radius-full);
+    background: var(--tk-line-strong);
+    transition: translate var(--tk-duration-fast) var(--tk-ease-standard), background-color var(--tk-duration-fast) var(--tk-ease-standard);
+  }
+  :where([data-tk="switch-input"]:checked) + :where([data-tk="switch-track"]) {
+    border-color: var(--tk-action-fill);
+    background: var(--tk-action-fill);
+  }
+  :where([data-tk="switch-input"]:checked) + :where([data-tk="switch-track"]) > :where([data-tk="switch-thumb"]) {
+    translate: calc(var(--tk-space-6) + var(--tk-space-3) - var(--tk-space-5)) 0;
+    background: var(--tk-action-text);
+  }
+  :where([data-tk="switch-input"]:focus-visible) + :where([data-tk="switch-track"]) {
+    outline: 2px solid var(--tk-focus-color);
+    outline-offset: 2px;
+  }
+  :where([data-tk="switch-input"]:disabled) + :where([data-tk="switch-track"]) {
+    opacity: 0.5;
+  }
+  :where([data-tk="switch"]:has(:disabled)) {
+    color: var(--tk-text-disabled);
+    cursor: not-allowed;
+  }
+  :where([data-tk="switch-state"]) {
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+  }
+  :where([data-tk="switch-input"]:checked) ~ :where([data-tk="switch-state"]) > :where([data-tk="switch-off"]),
+  :where([data-tk="switch-input"]:not(:checked)) ~ :where([data-tk="switch-state"]) > :where([data-tk="switch-on"]) {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-tk="switch-track"], [data-tk="switch-thumb"]) {
+      transition: none;
+    }
+  }
+  @media (forced-colors: active) {
+    :where([data-tk="switch-track"]) {
+      border-color: CanvasText;
+    }
+    :where([data-tk="switch-thumb"]) {
+      forced-color-adjust: none;
+      background: CanvasText;
+    }
+    :where([data-tk="switch-input"]:checked) + :where([data-tk="switch-track"]) > :where([data-tk="switch-thumb"]) {
+      background: Highlight;
+    }
+  }
+}

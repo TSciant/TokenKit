@@ -1,0 +1,63 @@
+/* ---------------------------------------------------------------------------
+   SignIn — a form that signs someone in.
+
+   One column on the narrow measure, so the fields are as wide as an email
+   address needs and no wider. The heading, an optional line, a notice or an
+   error, then the fields. Sign in and the forgotten-password link share a
+   row and wrap under each other on a narrow screen. Other ways in sit under
+   a rule with a word on it, quieter than the form.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="sign-in"]) {
+    display: grid;
+    gap: var(--tk-space-5);
+    max-inline-size: var(--tk-measure-narrow);
+  }
+  :where([data-tk="sign-in-heading"]) {
+    margin: 0;
+    font-size: var(--tk-size-heading);
+    line-height: var(--tk-leading-tight);
+  }
+  :where([data-tk="sign-in-intro"]) {
+    margin: 0;
+    color: var(--tk-text-secondary);
+  }
+  :where([data-tk="sign-in-form"]) {
+    display: grid;
+    gap: var(--tk-space-5);
+  }
+  :where([data-tk="sign-in-actions"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-3) var(--tk-space-5);
+  }
+  :where([data-tk="sign-in-forgot"]) {
+    font-size: var(--tk-size-sm);
+  }
+  :where([data-tk="sign-in-alternatives"]) {
+    display: grid;
+    gap: var(--tk-space-3);
+  }
+  /* A rule each side of a short word. */
+  :where([data-tk="sign-in-divider"]) {
+    display: flex;
+    align-items: center;
+    gap: var(--tk-space-3);
+    margin: 0;
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+  }
+  :where([data-tk="sign-in-divider"])::before,
+  :where([data-tk="sign-in-divider"])::after {
+    content: "";
+    flex: 1;
+    border-block-start: 1px solid var(--tk-line-default);
+  }
+  :where([data-tk="sign-in-footer"]) {
+    margin: 0;
+    padding-block-start: var(--tk-space-4);
+    border-block-start: 1px solid var(--tk-line-default);
+  }
+}

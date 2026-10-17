@@ -94,7 +94,17 @@
     "Timeline": "403:1585",
     "TimelineJourney": "409:2590",
     "Timeline/Item": "402:1603",
-    "Timeline/Milestone": "404:1625"
+    "Timeline/Milestone": "404:1625",
+    "Toast": "440:1716",
+    "Tooltip": "444:1801",
+    "ChoiceGroup": "441:1721",
+    "Switch": "441:1775",
+    "Steps": "442:1781",
+    "TaskList": "442:1845",
+    "SummaryList": "442:1885",
+    "UtilityNav": "447:1820",
+    "SignIn": "449:1840",
+    "AudioPlayer": "447:1839"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -189,7 +199,17 @@
     "Timeline": "04-primitives-63-timeline--onion-skin",
     "TimelineJourney": "04-primitives-63-timeline--onion-skin-journey",
     "Timeline/Item": "04-primitives-63-timeline--onion-skin",
-    "Timeline/Milestone": "04-primitives-63-timeline--onion-skin-journey"
+    "Timeline/Milestone": "04-primitives-63-timeline--onion-skin-journey",
+    "Toast": "04-primitives-65-toast--onion-skin",
+    "Tooltip": "04-primitives-66-tooltip--onion-skin",
+    "ChoiceGroup": "04-primitives-68-choice-group--onion-skin",
+    "Switch": "04-primitives-69-switch--onion-skin",
+    "Steps": "04-primitives-70-steps--onion-skin",
+    "TaskList": "04-primitives-71-task-list--onion-skin",
+    "SummaryList": "04-primitives-72-summary-list--onion-skin",
+    "UtilityNav": "04-primitives-73-utility-nav--onion-skin",
+    "SignIn": "04-primitives-74-sign-in--onion-skin",
+    "AudioPlayer": "04-primitives-75-audio-player--onion-skin"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -284,6 +304,16 @@
     "Timeline": "src/react/primitives/Timeline.tsx",
     "TimelineJourney": "src/react/primitives/Timeline.tsx",
     "Timeline/Item": "src/react/primitives/Timeline.tsx",
-    "Timeline/Milestone": "src/react/primitives/Timeline.tsx"
+    "Timeline/Milestone": "src/react/primitives/Timeline.tsx",
+    "Toast": "src/react/primitives/Toast.tsx",
+    "Tooltip": "src/react/primitives/Tooltip.tsx",
+    "ChoiceGroup": "src/react/primitives/ChoiceGroup.tsx",
+    "Switch": "src/react/primitives/Switch.tsx",
+    "Steps": "src/react/primitives/Steps.tsx",
+    "TaskList": "src/react/primitives/TaskList.tsx",
+    "SummaryList": "src/react/primitives/SummaryList.tsx",
+    "UtilityNav": "src/react/primitives/UtilityNav.tsx",
+    "SignIn": "src/react/primitives/SignIn.tsx",
+    "AudioPlayer": "src/react/primitives/AudioPlayer.tsx"
   }
 }

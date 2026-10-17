@@ -1,0 +1,178 @@
+/* ---------------------------------------------------------------------------
+   AudioPlayer — a clip or an episode, played on the page.
+
+   A raised card: the play button in the action colour, the description and
+   title beside it, the tools (back, forward, speed, mute) quiet at the end,
+   and under them the position between the time played and the time it runs.
+   In a box under 36rem the tools drop to a row of their own under the title,
+   so the position keeps its length. The position is the native range in the
+   action colour, so it keeps the keyboard and the screen-reader announcement
+   every range already has. Times are tabular, so they do not jitter as they
+   count.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="audio-player"]) {
+    container: tk-audio / inline-size;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "play info tools"
+      "track track track";
+    align-items: center;
+    gap: var(--tk-space-3) var(--tk-space-4);
+    padding: var(--tk-space-4);
+    border: 1px solid var(--tk-line-default);
+    border-radius: min(var(--tk-radius-lg), var(--tk-radius-nested));
+    background: var(--tk-surface-raised);
+  }
+  :where([data-tk="audio-player-media"]) {
+    display: none;
+  }
+
+  :where([data-tk="audio-player-play"]) {
+    grid-area: play;
+    display: grid;
+    place-items: center;
+    inline-size: var(--tk-target-comfortable);
+    block-size: var(--tk-target-comfortable);
+    padding: 0;
+    /* Transparent, so forced colours has an edge to paint where the fill was. */
+    border: 1px solid transparent;
+    border-radius: var(--tk-radius-full);
+    background: var(--tk-action-fill);
+    color: var(--tk-action-text);
+    cursor: pointer;
+  }
+  :where([data-tk="audio-player-play"]:hover) {
+    background: var(--tk-action-fill-hover);
+  }
+
+  :where([data-tk="audio-player-info"]) {
+    grid-area: info;
+    display: grid;
+    gap: var(--tk-space-1);
+    min-inline-size: 0;
+  }
+  :where([data-tk="audio-player-description"]) {
+    margin: 0;
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+    line-height: var(--tk-leading-snug);
+  }
+  :where([data-tk="audio-player-title"]) {
+    margin: 0;
+    color: var(--tk-text-primary);
+    font-weight: var(--tk-weight-semibold);
+    line-height: var(--tk-leading-snug);
+  }
+
+  :where([data-tk="audio-player-tools"]) {
+    grid-area: tools;
+    display: flex;
+    align-items: center;
+    gap: var(--tk-space-1);
+  }
+  :where([data-tk="audio-player-tool"], [data-tk="audio-player-speed"]) {
+    display: grid;
+    place-items: center;
+    min-inline-size: var(--tk-target-comfortable);
+    min-block-size: var(--tk-target-comfortable);
+    padding: 0 var(--tk-space-2);
+    border: 0;
+    border-radius: var(--tk-radius-full);
+    background: none;
+    color: var(--tk-text-secondary);
+    font: inherit;
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+  }
+  :where([data-tk="audio-player-tool"]:hover, [data-tk="audio-player-speed"]:hover) {
+    color: var(--tk-text-primary);
+  }
+  /* Muted: the struck speaker, and the button held down on the sunken surface. */
+  :where([data-tk="audio-player-tool"][aria-pressed="true"]) {
+    background: var(--tk-surface-sunken);
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="audio-player-track"]) {
+    grid-area: track;
+    display: flex;
+    align-items: center;
+    gap: var(--tk-space-3);
+  }
+  :where([data-tk="audio-player-time"]) {
+    flex: none;
+    min-inline-size: 4ch;
+    color: var(--tk-text-secondary);
+    font-size: var(--tk-size-sm);
+    font-variant-numeric: tabular-nums;
+  }
+  :where([data-tk="audio-player-time"]:last-child) {
+    text-align: end;
+  }
+  :where([data-tk="audio-player-position"]) {
+    flex: 1;
+    min-inline-size: 0;
+    margin: 0;
+    block-size: var(--tk-target-min);
+    accent-color: var(--tk-action-fill);
+    cursor: pointer;
+  }
+
+  /* Its own row when there is one, so no empty row (and gap) when there is not. */
+  :where([data-tk="audio-player-transcript"]) {
+    grid-column: 1 / -1;
+    padding-block-start: var(--tk-space-3);
+    border-block-start: 1px solid var(--tk-line-default);
+  }
+  /* The disclosure's own triangle, which says it opens. */
+  :where([data-tk="audio-player-transcript-toggle"]) {
+    display: list-item;
+    list-style: disclosure-closed inside;
+    inline-size: fit-content;
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-medium);
+    cursor: pointer;
+  }
+  :where([data-tk="audio-player-transcript"][open]) > :where([data-tk="audio-player-transcript-toggle"]) {
+    list-style-type: disclosure-open;
+  }
+  :where([data-tk="audio-player-transcript-body"]) {
+    max-block-size: 16em;
+    overflow-y: auto;
+    margin-block-start: var(--tk-space-3);
+    padding-inline-end: var(--tk-space-2);
+    font-size: var(--tk-size-sm);
+  }
+  :where([data-tk="audio-player-transcript-body"]) > :where(p) {
+    margin: 0 0 var(--tk-space-2);
+  }
+
+  :where([data-tk="audio-player-play"]:focus-visible, [data-tk="audio-player-tool"]:focus-visible, [data-tk="audio-player-speed"]:focus-visible) {
+    outline: 2px solid var(--tk-focus-color);
+    outline-offset: 2px;
+  }
+
+  @container tk-audio (inline-size < 36rem) {
+    :where([data-tk="audio-player"]) > :where([data-tk="audio-player-tools"]) {
+      grid-area: 2 / 1 / 3 / -1;
+      justify-content: space-between;
+    }
+    :where([data-tk="audio-player"]) > :where([data-tk="audio-player-track"]) {
+      grid-area: 3 / 1 / 4 / -1;
+    }
+    :where([data-tk="audio-player"]) > :where([data-tk="audio-player-transcript"]) {
+      grid-area: 4 / 1 / 5 / -1;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="audio-player-tool"][aria-pressed="true"]) {
+      outline: 1px solid ButtonText;
+    }
+  }
+}

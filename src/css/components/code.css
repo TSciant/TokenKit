@@ -41,6 +41,39 @@
     font: inherit;
   }
 
+  /* --- copy ------------------------------------------------------------------
+     A quiet button in the block's corner; the code keeps clear of it. */
+  :where([data-tk="code-body"]) {
+    position: relative;
+    min-inline-size: 0;
+  }
+  :where([data-tk="code-body"]) > :where([data-tk="code-block"]) {
+    padding-inline-end: calc(var(--tk-space-4) + var(--tk-space-8));
+  }
+  :where([data-tk="code-copy"]) {
+    position: absolute;
+    inset-block-start: var(--tk-space-2);
+    inset-inline-end: var(--tk-space-2);
+    min-block-size: var(--tk-target-min);
+    padding: var(--tk-space-1) var(--tk-space-2);
+    border: 1px solid var(--tk-line-default);
+    /* Concentric with the block: its corner less the inset it sits at. */
+    border-radius: max(var(--tk-radius-sm), calc(min(var(--tk-radius-lg), var(--tk-radius-nested)) - var(--tk-space-2)));
+    background: var(--tk-surface-raised);
+    color: var(--tk-text-primary);
+    font: inherit;
+    font-size: var(--tk-size-xs);
+    font-weight: var(--tk-weight-medium);
+    cursor: pointer;
+  }
+  :where([data-tk="code-copy"]:hover) {
+    border-color: var(--tk-line-strong);
+  }
+  :where([data-tk="code-copy"]:focus-visible) {
+    outline: 2px solid var(--tk-focus-color);
+    outline-offset: 2px;
+  }
+
   /* --- highlighting ---------------------------------------------------------
      The kinds a reader recognises (src/lib/highlight.ts), each a slot of the
      tk-code set. A pack sets them to put its own colours on code; a pack
