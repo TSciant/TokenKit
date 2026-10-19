@@ -43,3 +43,12 @@ tools/timeline/web/
 
 # The evening run's reports, state and logs (tools/evening.mjs).
 .evening/
+
+# The planner spike's generated pairs: rebuilt by node tools/planner/build-dataset.mjs
+tools/planner/data/train.jsonl
+tools/planner/data/test.jsonl
+tools/planner/data/heldout.jsonl
+# The planner spike's Python environment (laya), kept at a short path for Windows
+.lv/
+tools/planner/data/laya-*.jsonl
+tools/planner/data/calibration.jsonl

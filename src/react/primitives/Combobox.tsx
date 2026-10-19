@@ -199,6 +199,8 @@ export function Combobox({
         {label}
         {required ? <RequiredMark /> : optional ? <span data-tk="field-optional"> (optional)</span> : null}
       </label>
+      {hint ? <p data-tk="field-hint" id={hintId}>{hint}</p> : null}
+      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
       <div data-tk="combobox" data-kind={kind} data-chars={chars} data-open={expanded ? "" : undefined}>
         {kind === "search" ? <span data-tk="combobox-lead"><Icon name="search" size="sm" /></span> : null}
         <input
@@ -268,8 +270,6 @@ export function Combobox({
           {!shown.length ? <p data-tk="combobox-empty">{loading ? "Loading…" : emptyText}</p> : null}
         </div>
       </div>
-      {hint ? <p data-tk="field-hint" id={hintId}>{hint}</p> : null}
-      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
       {name ? <input type="hidden" name={name} value={allowCustom ? (value ?? text) : value ?? ""} /> : null}
       <span data-tk="visually-hidden" role="status">{said}</span>
     </div>

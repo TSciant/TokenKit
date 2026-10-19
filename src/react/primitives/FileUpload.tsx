@@ -160,6 +160,9 @@ export function FileUpload({
         {label}
         {required ? <RequiredMark /> : optional ? <span data-tk="field-optional"> (optional)</span> : null}
       </label>
+      {hintText ? <p data-tk="field-hint" id={hintId}>{hintText}</p> : null}
+      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
+      {disabled && reason ? <p data-tk="field-hint" id={reasonId}>{reason}</p> : null}
       <div data-tk="file-upload-zone" data-dropzone={dropzone && enhanced ? "" : undefined} data-dragging={dragging ? "" : undefined} {...drop}>
         <input
           ref={input}
@@ -192,9 +195,6 @@ export function FileUpload({
           </>
         ) : null}
       </div>
-      {hintText ? <p data-tk="field-hint" id={hintId}>{hintText}</p> : null}
-      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
-      {disabled && reason ? <p data-tk="field-hint" id={reasonId}>{reason}</p> : null}
       {files.length ? (
         <ul data-tk="file-upload-list" ref={list}>
           {files.map((f, i) => (

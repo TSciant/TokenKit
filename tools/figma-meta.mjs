@@ -19,6 +19,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync, statSync, readdirSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (f) => JSON.parse(readFileSync(resolve(ROOT, f), "utf8"));
@@ -54,6 +55,11 @@ if (existsSync(resolve(ROOT, ".tokenkit-export")) || !git("log", "-1", "--format
   process.exit(0);
 }
 
+/* A source's content, as onion-check hashes it when it measures. */
+const hashOf = (rel) => {
+  try { return createHash("sha1").update(readFileSync(resolve(ROOT, rel), "utf8").replace(/\r\n/g, "\n")).digest("hex").slice(0, 12); } catch { return null; }
+};
+
 const out = {};
 for (const [name, node] of Object.entries(keys.components)) {
   if (name.includes("/")) continue; // RailNav/Item is part of RailNav
@@ -75,7 +81,9 @@ for (const [name, node] of Object.entries(keys.components)) {
     sourceUpdatedAt,
     /* The code moved on after the design was pulled, and nothing has compared them
        since: a check run after the change clears it, because it says the two still agree. */
-    stale: !!(sourceUpdatedAt && skinPulledAt && new Date(sourceUpdatedAt) > new Date(skinPulledAt) && !(checks[name]?.checkedAt && new Date(checks[name].checkedAt) > new Date(sourceUpdatedAt))),
+    /* A check clears it while the source is still the one it measured (its content hash, see onion-check);
+       a check from before hashes falls back to its time. */
+    stale: !!(sourceUpdatedAt && skinPulledAt && new Date(sourceUpdatedAt) > new Date(skinPulledAt) && !(checks[name]?.sourceHash ? checks[name].sourceHash === hashOf(source) : checks[name]?.checkedAt && new Date(checks[name].checkedAt) > new Date(sourceUpdatedAt))),
     check: checks[name] ?? null,
   };
 }

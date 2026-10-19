@@ -76,6 +76,12 @@ export function InlineForm({
       >
         {label}
       </label>
+      {hint ? (
+        <p data-tk="field-hint" id={hintId}>
+          {hint}
+        </p>
+      ) : null}
+      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
       <div data-tk="inline-form-row">
         <input
           data-tk="input"
@@ -93,12 +99,6 @@ export function InlineForm({
           {submitLabel}
         </Button>
       </div>
-      {hint ? (
-        <p data-tk="field-hint" id={hintId}>
-          {hint}
-        </p>
-      ) : null}
-      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
       {children}
     </form>
   );

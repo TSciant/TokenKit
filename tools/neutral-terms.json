@@ -19,7 +19,6 @@
     "catches a copy-paste from the last engagement, which is the way most of these",
     "arrive."
   ],
-
   "terms": [
     "healthcare",
     "health care",
@@ -42,12 +41,16 @@
     "\\b1115\\b",
     "revenue cycle"
   ],
-
   "allow": [
     {
       "path": "NOTICE.md",
       "pattern": "health",
       "why": "Reserved: the provenance note may need to name a sector when describing an engagement. No hit today."
+    },
+    {
+      "path": "tools/planner/data/paraphrases.json",
+      "pattern": "^\\s*\"(composed|taxonomy)-1115(-p)?\":",
+      "why": "the planner dataset numbers its rows, and row 1115's id matches a listed number: that one line (an id, not a name) is skipped; every other line, and every other number, is still checked"
     }
   ]
 }

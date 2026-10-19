@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.27. A token-driven design system: components draw only from
+token-kit 0.3.28. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -239,10 +239,14 @@ the next.
 - **Being open is `open` with a handler.** Modal and Drawer close with
   `onClose`; Search reports `onOpenChange(open)`. A new component that opens
   takes `open`, `defaultOpen` and `onOpenChange(open)`.
-- **A frame's order:** a single control is label, control, hint, error; a
-  group in a fieldset (ChoiceGroup, DateInput) is legend, hint, error, then
-  its options. Every error says "Error:" to a screen reader first, and every
-  required mark is the same (`field-parts.tsx`).
+- **A frame's order is label, hint, error, then the control** (a group's
+  legend, hint, error, then its options), and a character count below the
+  control. GOV.UK and NHS put the error "above the field"; Carbon, Paste and
+  PatternFly put help and errors below. The kit follows the first, as its
+  error summary and fieldsets already did: what to type, and what went wrong,
+  come before the box, for the eye and for a screen magnifier. Every error
+  says "Error:" to a screen reader first, and every required mark is the
+  same (`field-parts.tsx`).
 
 A deprecated name works until the next minor release, which removes it; a
 patch never does.

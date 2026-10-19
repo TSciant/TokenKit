@@ -242,13 +242,15 @@ export function Field({
         {label}
         {required ? <RequiredMark /> : optional ? <span data-tk="field-optional"> (optional)</span> : null}
       </label>
-      {controlNode}
+      {/* Label, hint, error, then the control (GOV.UK and NHS: the error "above the field"), so the eye and a
+          screen magnifier reach what to type before the box; the count stays below it. */}
       {hint ? (
         <p data-tk="field-hint" id={hintId}>
           {hint}
         </p>
       ) : null}
       {error ? <FieldError id={errorId}>{error}</FieldError> : null}
+      {controlNode}
       {counts ? (
         <>
           {/* The visible count updates on every keystroke and is hidden from

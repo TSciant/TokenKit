@@ -18,6 +18,7 @@
  */
 import { chromium } from "playwright";
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { derivePort, projectName } from "./port.mjs";
@@ -147,5 +148,12 @@ for (const r of rows) {
   c.skins++; c.sum += r.mean; c.worst = Math.max(c.worst, r.mean);
 }
 const now = new Date().toISOString();
-for (const [name, c] of Object.entries(byName)) prior[name] = { skins: c.skins, mean: +(c.sum / c.skins).toFixed(2), worst: +c.worst.toFixed(2), checkedAt: now };
+/* The source as measured, by content: figma-meta calls a component stale only when its source no longer matches
+   what was checked. Comparing times could not work: a check always runs before the commit it verifies, so the
+   commit always looked newer than the check (29 components "stale" after a line-ending commit). */
+const sources = JSON.parse(readFileSync(resolve(ROOT, "figma/keys.json"), "utf8")).sources ?? {};
+const sourceHash = (name) => {
+  try { return createHash("sha1").update(readFileSync(resolve(ROOT, sources[name]), "utf8").replace(/\r\n/g, "\n")).digest("hex").slice(0, 12); } catch { return undefined; }
+};
+for (const [name, c] of Object.entries(byName)) prior[name] = { skins: c.skins, mean: +(c.sum / c.skins).toFixed(2), worst: +c.worst.toFixed(2), checkedAt: now, sourceHash: sourceHash(name) };
 writeFileSync(checksPath, JSON.stringify({ components: Object.fromEntries(Object.entries(prior).sort(([a], [b]) => a.localeCompare(b))) }, null, 2) + "\n");

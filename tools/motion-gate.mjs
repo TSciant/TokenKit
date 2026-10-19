@@ -29,8 +29,9 @@
  *           any live region in it is off while the motion runs and never
  *           assertive (the APG carousel's rule).
  *   DECOR   each decor element is aria-hidden, names no equivalent (there is
- *           nothing to be equivalent to), and nothing in it runs, in CSS or
- *           in script, with the page paused or under reduced motion.
+ *           nothing to be equivalent to), nothing in it loops (or runs past
+ *           five seconds) with the page paused, and nothing in it moves at
+ *           all under reduced motion.
  *
  * The round also asked that decor loops read --tk-duration-ambient. The
  * verdict changed that: a pause or a five-second stop is what conforms, and
@@ -122,9 +123,17 @@ const decorProbe = () => {
 };
 
 /* Anything still moving inside a decor element. */
-const decorRunning = () =>
+/* Anything still moving inside a decor element. With loopsOnly, only what loops or runs past five seconds: decor
+   that ends by itself within five conforms by ending (the verdict's "or a five-second stop"), so the pause owes it
+   nothing; reduced motion still stops it all (Grok, 2026-10-19). */
+const decorRunning = (loopsOnly) =>
   document.getAnimations()
     .filter((a) => a.playState === "running" && a.timeline === document.timeline && a.effect?.target?.closest('[data-motion-class="decor"]'))
+    .filter((a) => {
+      if (!loopsOnly) return true;
+      const t = a.effect.getComputedTiming();
+      return t.iterations === Infinity || (Number(t.delay) || 0) + (Number(t.duration) || 0) * t.iterations > 5000;
+    })
     .map((a) => (a.effect.target.getAttribute("data-tk") || a.effect.target.tagName.toLowerCase()) + (a.effect.pseudoElement ?? ""));
 
 export function motionCheck(argv = process.argv.slice(2)) {
@@ -197,14 +206,14 @@ export function motionCheck(argv = process.argv.slice(2)) {
         const before = await page.evaluate(() => document.documentElement.getAttribute("data-motion"));
         await page.evaluate(() => document.documentElement.setAttribute("data-motion", "paused"));
         await page.waitForTimeout(500);
-        for (const w of await page.evaluate(decorRunning)) fail("decor", w, "still moves with the page paused", story);
+        for (const w of await page.evaluate(decorRunning, true)) fail("decor", w, "still loops with the page paused", story);
         if (scripted >= SCRIPT_LOOP && !hasData && (await page.evaluate(framesIn, 400)) > 3)
           fail("decor", "script", "still asks for frames with the page paused", story);
         await page.evaluate((b) => { if (b == null) document.documentElement.removeAttribute("data-motion"); else document.documentElement.setAttribute("data-motion", b); }, before);
 
         await page.emulateMedia({ reducedMotion: "reduce" });
         await page.waitForTimeout(500);
-        for (const w of await page.evaluate(decorRunning)) fail("decor", w, "still moves under reduced motion", story);
+        for (const w of await page.evaluate(decorRunning, false)) fail("decor", w, "still moves under reduced motion", story);
         if (scripted >= SCRIPT_LOOP && !hasData && (await page.evaluate(framesIn, 400)) > 3)
           fail("decor", "script", "still asks for frames under reduced motion", story);
         await page.emulateMedia({ reducedMotion: null });
