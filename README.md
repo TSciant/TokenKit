@@ -280,18 +280,27 @@ props threaded through a tree.
 | `npm run gate:report` | Also writes `audits/contrast.json` |
 | `npm run type-gate` | Type gate — characters per line, measured with Pretext |
 | `npm run type-gate -- --zoom 200` | Same, at doubled root font size |
-| `npm run gates` | The story gates below, in one browser pass over the built Storybook |
+| `npm run gates` | The story gates below, in one browser pass over the built Storybook (three pages at once; `TK_GATE_PAGES=1` for one) |
+| `npm run gates -- --affected` | Only the stories the uncommitted change can reach |
 | `npm run a11y` | axe-core over every built story at two viewports, with an exit code |
 | `npm run radius` | Concentric corners — inner radius = outer radius − the gap |
 | `npm run controls` | Every component story exposes controls, asked of the running preview |
 | `npm run attrs` | Every `data-*` value in the DOM is one a selector answers to |
 | `npm run properties` | Every `@property` in 02-property.css actually registered |
+| `npm run titles` | No title past three lines at phone width |
+| `npm run reflow` | Nothing scrolls sideways at 320px (WCAG 1.4.10) |
+| `npm run forced-colors` | Boundaries, states and focus survive forced colours |
+| `npm run motion` | Every loop is data (with an equivalent) or decor (hidden, and stops when paused or reduced); WCAG 2.2.2 |
 | `npm run gen:stories` | Regenerate story controls from the components' prop types |
 | `npm run gen:stories -- --check` | Fail if any generated story is stale |
 | `npm run next:build` | Production Next.js build of the page compositions |
 | `npm run next:dev` | The same app, on a dev server |
 | `npm run lighthouse` | Lighthouse over the built routes, mobile, Slow 4G, threshold 95 |
-| `npm run check` | Every gate, then a pass/fail summary. Keeps going after a failure so one run shows everything. Run it before merging — there is no CI config in the repo. |
+| `npm run check` | Every gate, then a pass/fail summary. Keeps going after a failure so one run shows everything. The evening run does this before anything ships. |
+| `npm run check:fast` | Every static gate, then the build and story gates only for the stories the change reaches (none for a docs or tools change) |
+| `npm run hooks` | Install the pre-commit hook: the fast tier on what is staged |
+| `npm run new:component -- <Name>` | Start a primitive: source, stories, stylesheet, import and export |
+| `npm run figma:register -- <Name> --node <id> --skin <url> --doc "…"` | Register its Figma counterpart and measure it (keys, onion, skin, meta, guidelines) |
 | `npm run check:delivery` | `check`, then the Next build and Lighthouse. The full claim. |
 | `npm run bundle` | `dist/tokenkit.css`, with its font files beside it in `dist/assets/` |
 | `npm run resume` | The resume site: `dist/resume.html` and the Loops and Flows page — see docs/08-resume.md |

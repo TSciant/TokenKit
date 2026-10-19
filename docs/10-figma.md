@@ -26,19 +26,27 @@ design pixel coincide, and only a 1x picture can witness that.
 
 ## Adding or changing a component
 
-1. Draw it in Figma from the kit's variables (the file is a library: tokens in
-   the `tk`, `tk-density`, `tk-type`, `tk-icon` and `tk-ink` collections), with
-   its documentation link and a description that names the code.
-2. Export its variants at 1x into `figma/skins/<Component>/`. A frame taller than
-   1024px cannot be exported whole (Figma caps an export at 1024 on its longest
-   side): export its sections by node id and stitch them at 1x.
-3. Add it to `keys.json` and `onion.json`. For a pattern, `npm run gen:stories`
-   writes its "Onion skin (Figma)" story from the `onion.json` entry; a primitive's
-   story is written by hand beside it.
-4. With Storybook running, `node tools/onion-check.mjs <Component>`. Read the
-   number, then look at the difference (a drift is named, then aligned, accepted,
-   paused or replaced) and record it in `verdicts/`.
-5. `npm run figma:meta`, then `npm run check`.
+1. Start it in code: `npm run new:component -- <Component>` writes the source,
+   its stories (the next number, argTypes, a Playground and an Onion skin
+   story), its stylesheet and the import and export lines. Write the doc
+   comment and the story description it leaves as TODO: the comment's first two
+   paragraphs are the component's entry in the Figma guidelines.
+2. Draw it in Figma from the kit's variables (the file is a library: tokens in
+   the `tk`, `tk-density`, `tk-type`, `tk-icon` and `tk-ink` collections), in its
+   section, with a description that names the code.
+3. Take its skin at 1x (`get_screenshot` on the node, contents only) and, with
+   Storybook running, register and measure it in one go:
+   `npm run figma:register -- <Component> --node <id> --skin <url or file> --doc "<what the skin shows>"`.
+   It writes `keys.json`, `onion.json` and the skin's folder, runs the onion
+   check, regenerates `meta.json` and the guidelines, and says whether the mean
+   is under its ceiling (8, or `--max-mean` with the reason in `--doc`). A frame
+   taller than 1024px cannot be taken whole: take its sections by node id and
+   stitch them at 1x. For a pattern, `npm run gen:stories` writes its Onion skin
+   story from the `onion.json` entry.
+4. Look at the difference, not only the number (a drift is named, then aligned,
+   accepted, paused or replaced) and record it in `verdicts/`.
+5. `npm run check:fast` before committing (the pre-commit hook runs it too,
+   after `npm run hooks`); the full `npm run check` runs every evening.
 
 ## Packs and densities
 

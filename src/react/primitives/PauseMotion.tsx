@@ -4,7 +4,7 @@
    Vite/Storybook and load-bearing under the Next.js App Router, where a module
    without it is a server component and may not use hooks at all. */
 
-import { useEffect, useSyncExternalStore, type ReactNode } from "react";
+import { useSyncExternalStore, type ReactNode } from "react";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
 
@@ -20,7 +20,25 @@ function readMotion(): Motion {
   return document.documentElement.dataset.motion === "paused" ? "paused" : "running";
 }
 
+/* The last page's choice, applied the first time anything asks: the button, the tachometer, MotionFx. */
+let restored = false;
+function restoreSaved() {
+  if (restored) return;
+  restored = true;
+  try { if (localStorage.getItem(KEY) === "paused" && !document.documentElement.dataset.motion) document.documentElement.dataset.motion = "paused"; } catch { /* storage blocked */ }
+}
+
+/**
+ * For the page's <head>, before anything draws: applies the saved pause so not
+ * even the first frame moves. Without it the choice applies when the first
+ * component that reads it mounts.
+ *
+ *   <script dangerouslySetInnerHTML={{ __html: motionBootScript }} />
+ */
+export const motionBootScript = `try{if(localStorage.getItem("${KEY}")==="paused")document.documentElement.dataset.motion="paused"}catch(e){}`;
+
 function subscribe(onChange: () => void) {
+  restoreSaved();
   const mo = new MutationObserver(onChange);
   mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-motion"] });
   const mq = window.matchMedia?.(REDUCE);
@@ -71,19 +89,14 @@ export interface PauseMotionProps {
  * Its words name the action ("Pause animations", then "Play animations")
  * and change when it is pressed, so it carries no pressed state. Put it
  * once, early in the page (the header's utilities), before the moving
- * content; the choice is kept for the next page. When the device asks for
+ * content; the choice is kept for the next page (put `motionBootScript` in
+ * the head so it holds from the first frame). When the device asks for
  * reduced motion nothing loops, so it shows as paused, unavailable, and
  * says why. WCAG 2.2.2: motion that starts on its own, lasts more than five
  * seconds and sits beside other content can be paused.
  */
 export function PauseMotion({ pauseLabel = "Pause animations", playLabel = "Play animations", reducedReason = "Animations are off in your device settings.", variant = "quiet", size = "sm", remember = true, onChange }: PauseMotionProps) {
   const motion = useSyncExternalStore(subscribe, readMotion, () => "running" as Motion);
-
-  /* The last page's choice, before anything else has drawn a frame of motion it should not have. */
-  useEffect(() => {
-    if (!remember) return;
-    try { if (localStorage.getItem(KEY) === "paused") document.documentElement.dataset.motion = "paused"; } catch { /* storage blocked */ }
-  }, [remember]);
 
   const paused = motion !== "running";
   const toggle = () => { setMotionPaused(!paused, remember); onChange?.(!paused); };

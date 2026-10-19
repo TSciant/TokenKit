@@ -31,14 +31,18 @@ export interface LanguageSwitcherProps extends HTMLAttributes<HTMLElement> {
  * Links, each in its own language's name and marked with its language, so a
  * reader who knows none of the page's language still finds theirs, and a
  * screen reader says it in the right voice. The page's own language is shown
- * as the current one. Past a few, the rest move behind a menu. Put it in the
- * same place on every page; it goes to the same page, keeps what was typed,
- * and translates nothing. Only offer a language the service is fully
- * written in.
+ * as the current one, and never behind the menu. Past a few, the rest
+ * move behind a menu. Put it in the same place on every page; it goes to
+ * the same page, keeps what was typed, and translates nothing. Only offer
+ * a language the service is fully written in.
  */
 export function LanguageSwitcher({ languages, label = "Language", collapseAfter = 3, moreLabel = "More languages", ...rest }: LanguageSwitcherProps) {
-  const visible = languages.length > collapseAfter + 1 ? languages.slice(0, collapseAfter) : languages;
-  const more = languages.length > collapseAfter + 1 ? languages.slice(collapseAfter) : [];
+  const collapse = languages.length > collapseAfter + 1;
+  let visible = collapse ? languages.slice(0, collapseAfter) : languages;
+  /* The page's own language is never behind the menu: it takes the last visible place. */
+  const current = languages.find((l) => l.current);
+  if (collapse && current && !visible.includes(current)) visible = [...visible.slice(0, -1), current];
+  const more = collapse ? languages.filter((l) => !visible.includes(l)) : [];
   return (
     <nav {...rest} data-tk="language-switcher" aria-label={label}>
       <ul data-tk="language-switcher-list">
@@ -55,7 +59,7 @@ export function LanguageSwitcher({ languages, label = "Language", collapseAfter 
         ))}
         {more.length ? (
           <li>
-            <MenuButton label={moreLabel} variant="quiet" items={more.map((l) => ({ label: l.name, href: l.href, current: l.current, lang: l.code, hreflang: l.code, dir: l.dir }))} />
+            <MenuButton label={moreLabel} variant="quiet" items={more.map((l) => ({ label: l.name, href: l.href, current: l.current, lang: l.code, hreflang: l.code, dir: l.dir, describe: l.describe }))} />
           </li>
         ) : null}
       </ul>

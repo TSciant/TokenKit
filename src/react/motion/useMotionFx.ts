@@ -9,7 +9,8 @@ import { normalizeFx, type FxContext, type FxProp } from "./types";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 import { useInView } from "./useInView";
 import { useParallax } from "./useParallax";
-import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
+/* The reader paused motion, or the device reduces it: either way nothing reveals or drifts. */
+import { useMotionPaused } from "../primitives/PauseMotion";
 
 export type MotionFxBind = {
   ref: (node: HTMLElement | null) => void;
@@ -56,7 +57,7 @@ export function useMotionFx(
   context: FxContext = "default",
 ): MotionFxBind {
   const cfg = normalizeFx(fx, context);
-  const reduced = usePrefersReducedMotion();
+  const reduced = useMotionPaused();
   const reveal = cfg && !reduced ? cfg.reveal : false;
   const parallaxAmt =
     cfg && !reduced && typeof cfg.parallax === "number" ? cfg.parallax : 0;

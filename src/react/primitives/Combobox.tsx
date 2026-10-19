@@ -72,7 +72,7 @@ function mark(label: string, q: string): ReactNode {
  * or a click chooses, Escape closes and then clears. Typing never replaces
  * what was typed. The number of matches is said when typing pauses. Without
  * allowCustom, leaving with text that is not an option puts back the last
- * choice. No placeholder: the label and hint say what to type.
+ * choice, and leaving it empty clears the choice. No placeholder: the label and hint say what to type.
  */
 export function Combobox({
   label,
@@ -100,7 +100,8 @@ export function Combobox({
   const autoId = useId();
   const id = idProp ?? autoId;
   const listId = `${id}-list`;
-  const optId = (i: number) => `${id}-opt-${i}`;
+  /* By the option's place in the whole list, not in the filtered one: an id keeps naming the same option as the list narrows. */
+  const optId = (o: ComboboxOption | undefined) => `${id}-opt-${o ? options.indexOf(o) : -1}`;
   const hintId = hint ? `${id}-hint` : undefined;
   const errorId = error ? `${id}-error` : undefined;
 
@@ -125,7 +126,7 @@ export function Combobox({
   const step = (from: number, dir: 1 | -1) => { for (let i = from + dir; i >= 0 && i < shown.length; i += dir) if (enabled(i)) return i; return -1; };
 
   /* Follow the highlight. */
-  useEffect(() => { if (open && active >= 0) document.getElementById(optId(active))?.scrollIntoView({ block: "nearest" }); }, [open, active]);
+  useEffect(() => { if (open && active >= 0) document.getElementById(optId(shown[active]))?.scrollIntoView({ block: "nearest" }); }, [open, active]);
 
   /* Say how many match once typing pauses, only while the list is open. */
   useEffect(() => {
@@ -181,10 +182,11 @@ export function Combobox({
     }
   };
 
-  /* Leaving: free text is kept with allowCustom; otherwise the last choice comes back. */
+  /* Leaving: free text is kept with allowCustom; emptied, the choice is cleared; otherwise the last choice comes back. */
   const onBlur = () => {
     close();
     if (allowCustom) { if ((text.trim() || null) !== value) commit(text.trim() || null); return; }
+    if (!text.trim() && value !== null) { commit(null); return; }
     setText(chosen?.label ?? "");
   };
 
@@ -207,7 +209,7 @@ export function Combobox({
           aria-expanded={expanded}
           aria-controls={listId}
           aria-autocomplete="list"
-          aria-activedescendant={expanded && active >= 0 ? optId(active) : undefined}
+          aria-activedescendant={expanded && active >= 0 ? optId(shown[active]) : undefined}
           aria-describedby={[hintId, errorId].filter(Boolean).join(" ") || undefined}
           aria-invalid={error ? true : undefined}
           aria-required={required || undefined}
@@ -241,10 +243,13 @@ export function Combobox({
             {shown.map((o, i) => (
               <li
                 key={o.value}
-                id={optId(i)}
+                id={optId(o)}
                 role="option"
                 data-tk="combobox-option"
-                aria-selected={o.value === value}
+                /* Selected is the highlighted option, the one aria-activedescendant names (the APG list
+                   autocomplete); the chosen one is marked by its tick and its weight. */
+                aria-selected={i === active}
+                data-chosen={o.value === value ? "" : undefined}
                 aria-disabled={o.disabled || undefined}
                 data-active={i === active ? "" : undefined}
                 onMouseDown={(e) => e.preventDefault()}

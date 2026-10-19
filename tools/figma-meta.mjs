@@ -79,6 +79,6 @@ for (const [name, node] of Object.entries(keys.components)) {
     check: checks[name] ?? null,
   };
 }
-writeFileSync(resolve(ROOT, "figma/meta.json"), JSON.stringify({ generated: new Date().toISOString(), file: keys.file, components: out }, null, 2) + "\n");
+writeFileSync(resolve(ROOT, "figma/meta.json"), JSON.stringify({ file: keys.file, components: out }, null, 2) + "\n");
 const stale = Object.entries(out).filter(([, v]) => v.stale).map(([k]) => k);
 console.log(`figma meta: ${Object.keys(out).length} components, ${stale.length} with code newer than the design${stale.length ? ": " + stale.join(", ") : ""}`);

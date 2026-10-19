@@ -140,7 +140,7 @@ export function Faq({
                   id={panelId}
                   role="region"
                   aria-labelledby={triggerId}
-                  data-tk="panel"
+                  data-tk="disclosure"
                   data-faq-panel=""
                 >
                   {typeof item.answer === "string" ? (

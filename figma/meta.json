@@ -1,5 +1,4 @@
 {
-  "generated": "2026-10-19T00:36:06.694Z",
   "file": "QZCC8HtLON5aYIAmYc56Li",
   "components": {
     "Button": {
@@ -10,13 +9,13 @@
       "skinDir": "figma/skins/Button",
       "skins": 42,
       "skinPulledAt": "2026-10-04T10:51:40-04:00",
-      "sourceUpdatedAt": "2026-10-19T00:18:48.282Z",
+      "sourceUpdatedAt": "2026-10-18T21:22:16-04:00",
       "stale": false,
       "check": {
         "skins": 24,
         "mean": 4.94,
         "worst": 14.01,
-        "checkedAt": "2026-10-19T00:35:19.781Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Chip": {
@@ -61,13 +60,13 @@
       "skinDir": "figma/skins/Card",
       "skins": 9,
       "skinPulledAt": "2026-10-05T06:02:34-04:00",
-      "sourceUpdatedAt": "2026-10-05T06:52:26-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 6,
         "mean": 4.24,
         "worst": 8.73,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Alert": {
@@ -112,13 +111,13 @@
       "skinDir": "figma/skins/Field",
       "skins": 9,
       "skinPulledAt": "2026-10-05T11:21:10-04:00",
-      "sourceUpdatedAt": "2026-10-17T20:21:11-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 9,
         "mean": 1.99,
         "worst": 7.33,
-        "checkedAt": "2026-10-18T01:20:36.157Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Meter": {
@@ -146,13 +145,13 @@
       "skinDir": "figma/skins/Modal",
       "skins": 3,
       "skinPulledAt": "2026-10-05T10:24:15-04:00",
-      "sourceUpdatedAt": "2026-10-18T16:42:05-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 3,
         "mean": 5.63,
         "worst": 6.94,
-        "checkedAt": "2026-10-18T21:14:27.705Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Figure": {
@@ -163,13 +162,13 @@
       "skinDir": "figma/skins/Figure",
       "skins": 5,
       "skinPulledAt": "2026-09-29T11:45:52-04:00",
-      "sourceUpdatedAt": "2026-09-20T00:42:57-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 5,
         "mean": 1.27,
         "worst": 1.66,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Media": {
@@ -180,13 +179,13 @@
       "skinDir": "figma/skins/Media",
       "skins": 6,
       "skinPulledAt": "2026-09-29T12:59:19-04:00",
-      "sourceUpdatedAt": "2026-09-20T00:42:57-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 6,
         "mean": 3.92,
         "worst": 6.56,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Icon": {
@@ -673,13 +672,13 @@
       "skinDir": "figma/skins/MenuButton",
       "skins": 5,
       "skinPulledAt": "2026-10-07T08:45:12-04:00",
-      "sourceUpdatedAt": "2026-10-18T16:48:49-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 5,
         "mean": 4.31,
         "worst": 7.15,
-        "checkedAt": "2026-10-18T22:10:24.185Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "MegaMenu": {
@@ -707,13 +706,13 @@
       "skinDir": "figma/skins/Faq",
       "skins": 1,
       "skinPulledAt": "2026-10-02T07:00:07-04:00",
-      "sourceUpdatedAt": "2026-09-21T13:59:57-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 3.51,
         "worst": 3.51,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "SearchResults": {
@@ -724,13 +723,13 @@
       "skinDir": "figma/skins/SearchResults",
       "skins": 1,
       "skinPulledAt": "2026-10-02T07:08:21-04:00",
-      "sourceUpdatedAt": "2026-09-20T00:42:57-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 1.76,
         "worst": 1.76,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "LogoLadder": {
@@ -877,13 +876,13 @@
       "skinDir": "figma/skins/Tachometer",
       "skins": 2,
       "skinPulledAt": "2026-10-18T14:21:20-04:00",
-      "sourceUpdatedAt": "2026-10-19T00:34:30.096Z",
+      "sourceUpdatedAt": "2026-10-18T21:22:16-04:00",
       "stale": false,
       "check": {
         "skins": 2,
         "mean": 5.66,
         "worst": 6.89,
-        "checkedAt": "2026-10-19T00:34:59.668Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Shell": {
@@ -962,13 +961,13 @@
       "skinDir": "figma/skins/ButtonReason",
       "skins": 1,
       "skinPulledAt": "2026-10-04T20:39:02-04:00",
-      "sourceUpdatedAt": "2026-10-19T00:18:48.282Z",
+      "sourceUpdatedAt": "2026-10-18T21:22:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.49,
         "worst": 2.49,
-        "checkedAt": "2026-10-19T00:35:51.255Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "CardHeader": {
@@ -979,13 +978,13 @@
       "skinDir": "figma/skins/CardHeader",
       "skins": 1,
       "skinPulledAt": "2026-10-05T06:52:26-04:00",
-      "sourceUpdatedAt": "2026-10-05T06:52:26-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 4.15,
         "worst": 4.15,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "ChoiceCard": {
@@ -1013,13 +1012,13 @@
       "skinDir": "figma/skins/FieldAffix",
       "skins": 1,
       "skinPulledAt": "2026-10-05T11:21:10-04:00",
-      "sourceUpdatedAt": "2026-10-17T20:21:11-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 1.48,
         "worst": 1.48,
-        "checkedAt": "2026-10-18T01:20:36.157Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "FieldPassword": {
@@ -1030,13 +1029,13 @@
       "skinDir": "figma/skins/FieldPassword",
       "skins": 1,
       "skinPulledAt": "2026-10-05T11:21:10-04:00",
-      "sourceUpdatedAt": "2026-10-17T20:21:11-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 1.3,
         "worst": 1.3,
-        "checkedAt": "2026-10-18T01:20:36.157Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "FieldCount": {
@@ -1047,13 +1046,13 @@
       "skinDir": "figma/skins/FieldCount",
       "skins": 1,
       "skinPulledAt": "2026-10-05T11:21:10-04:00",
-      "sourceUpdatedAt": "2026-10-17T20:21:11-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 1.33,
         "worst": 1.33,
-        "checkedAt": "2026-10-18T01:20:36.157Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "ModalDescription": {
@@ -1064,13 +1063,13 @@
       "skinDir": "figma/skins/ModalDescription",
       "skins": 1,
       "skinPulledAt": "2026-10-05T12:42:06-04:00",
-      "sourceUpdatedAt": "2026-10-18T16:42:05-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 3.15,
         "worst": 3.15,
-        "checkedAt": "2026-10-18T21:14:29.366Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "FieldWidths": {
@@ -1081,13 +1080,13 @@
       "skinDir": "figma/skins/FieldWidths",
       "skins": 1,
       "skinPulledAt": "2026-10-05T12:50:04-04:00",
-      "sourceUpdatedAt": "2026-10-17T20:21:11-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 0.54,
         "worst": 0.54,
-        "checkedAt": "2026-10-18T01:20:36.157Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "FieldReadOnly": {
@@ -1098,13 +1097,13 @@
       "skinDir": "figma/skins/FieldReadOnly",
       "skins": 1,
       "skinPulledAt": "2026-10-05T13:26:46-04:00",
-      "sourceUpdatedAt": "2026-10-17T20:21:11-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.29,
         "worst": 2.29,
-        "checkedAt": "2026-10-18T01:20:36.157Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "TextStyles": {
@@ -1183,13 +1182,13 @@
       "skinDir": "figma/skins/ChatPanel",
       "skins": 1,
       "skinPulledAt": "2026-10-06T22:32:17-04:00",
-      "sourceUpdatedAt": "2026-10-06T22:32:17-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 1,
-        "mean": 1.74,
-        "worst": 1.74,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "mean": 2.59,
+        "worst": 2.59,
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Drawer": {
@@ -1285,13 +1284,13 @@
       "skinDir": "figma/skins/Code",
       "skins": 1,
       "skinPulledAt": "2026-10-16T09:06:40-04:00",
-      "sourceUpdatedAt": "2026-10-17T14:49:41-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.13,
         "worst": 2.13,
-        "checkedAt": "2026-10-17T19:17:12.824Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Timeline": {
@@ -1336,13 +1335,13 @@
       "skinDir": "figma/skins/Toast",
       "skins": 1,
       "skinPulledAt": "2026-10-17T15:17:51-04:00",
-      "sourceUpdatedAt": "2026-10-18T11:46:31-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 3.49,
         "worst": 3.49,
-        "checkedAt": "2026-10-18T18:18:12.373Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Tooltip": {
@@ -1353,13 +1352,13 @@
       "skinDir": "figma/skins/Tooltip",
       "skins": 1,
       "skinPulledAt": "2026-10-17T15:17:51-04:00",
-      "sourceUpdatedAt": "2026-10-17T14:49:41-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 6.71,
         "worst": 6.71,
-        "checkedAt": "2026-10-17T19:06:34.608Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "ChoiceGroup": {
@@ -1370,13 +1369,13 @@
       "skinDir": "figma/skins/ChoiceGroup",
       "skins": 1,
       "skinPulledAt": "2026-10-17T15:17:51-04:00",
-      "sourceUpdatedAt": "2026-10-17T14:49:41-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.16,
         "worst": 2.16,
-        "checkedAt": "2026-10-17T19:05:28.500Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Switch": {
@@ -1625,13 +1624,13 @@
       "skinDir": "figma/skins/Tabs",
       "skins": 1,
       "skinPulledAt": "2026-10-18T15:47:03-04:00",
-      "sourceUpdatedAt": "2026-10-10T19:20:09-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 2.43,
         "worst": 2.43,
-        "checkedAt": "2026-10-18T19:36:44.398Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "ResourceDownload": {
@@ -1931,13 +1930,13 @@
       "skinDir": "figma/skins/LanguageSwitcher",
       "skins": 1,
       "skinPulledAt": "2026-10-18T18:24:45-04:00",
-      "sourceUpdatedAt": "2026-10-18T16:48:49-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 7.9,
         "worst": 7.9,
-        "checkedAt": "2026-10-18T20:59:37.452Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "SaveStatus": {
@@ -1965,13 +1964,13 @@
       "skinDir": "figma/skins/Spinner",
       "skins": 1,
       "skinPulledAt": "2026-10-18T18:24:45-04:00",
-      "sourceUpdatedAt": "2026-10-19T00:18:48.281Z",
+      "sourceUpdatedAt": "2026-10-18T21:22:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 7.4,
         "worst": 7.4,
-        "checkedAt": "2026-10-19T00:35:21.839Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "Skeleton": {
@@ -1982,13 +1981,13 @@
       "skinDir": "figma/skins/Skeleton",
       "skins": 1,
       "skinPulledAt": "2026-10-18T18:24:45-04:00",
-      "sourceUpdatedAt": "2026-10-19T00:18:48.281Z",
+      "sourceUpdatedAt": "2026-10-18T21:22:16-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 0.39,
         "worst": 0.39,
-        "checkedAt": "2026-10-19T00:35:23.907Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "EmptyState": {
@@ -2067,13 +2066,13 @@
       "skinDir": "figma/skins/Combobox",
       "skins": 1,
       "skinPulledAt": "2026-10-18T18:24:45-04:00",
-      "sourceUpdatedAt": "2026-10-18T16:44:52-04:00",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 1.81,
         "worst": 1.81,
-        "checkedAt": "2026-10-18T21:10:30.334Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     },
     "FileUpload": {
@@ -2152,13 +2151,13 @@
       "skinDir": "figma/skins/PauseMotion",
       "skins": 1,
       "skinPulledAt": "2026-10-18T20:11:18-04:00",
-      "sourceUpdatedAt": "2026-10-19T00:19:49.917Z",
+      "sourceUpdatedAt": "2026-10-18T21:56:33-04:00",
       "stale": false,
       "check": {
         "skins": 1,
         "mean": 10.37,
         "worst": 10.37,
-        "checkedAt": "2026-10-19T00:35:25.555Z"
+        "checkedAt": "2026-10-19T01:58:34.515Z"
       }
     }
   }

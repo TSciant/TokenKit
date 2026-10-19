@@ -170,7 +170,7 @@ export { ReorderList } from "./ReorderList";
 export type { ReorderListProps, ReorderItem, ReorderMessages } from "./ReorderList";
 export { CareCard } from "./CareCard";
 export type { CareCardProps, CareLevel } from "./CareCard";
-export { PauseMotion, useMotionPaused, setMotionPaused } from "./PauseMotion";
+export { PauseMotion, useMotionPaused, setMotionPaused, motionBootScript } from "./PauseMotion";
 export type { PauseMotionProps } from "./PauseMotion";
 export { Callout } from "./Callout";
 export type { CalloutProps } from "./Callout";

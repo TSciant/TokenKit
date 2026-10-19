@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.25. A token-driven design system: components draw only from
+token-kit 0.3.26. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -1286,7 +1286,7 @@ Figma: node `497:2364`.
 
 LanguageSwitcher — the same page in another language.
 
-Links, each in its own language's name and marked with its language, so a reader who knows none of the page's language still finds theirs, and a screen reader says it in the right voice. The page's own language is shown as the current one. Past a few, the rest move behind a menu. Put it in the same place on every page; it goes to the same page, keeps what was typed, and translates nothing. Only offer a language the service is fully written in.
+Links, each in its own language's name and marked with its language, so a reader who knows none of the page's language still finds theirs, and a screen reader says it in the right voice. The page's own language is shown as the current one, and never behind the menu. Past a few, the rest move behind a menu. Put it in the same place on every page; it goes to the same page, keeps what was typed, and translates nothing. Only offer a language the service is fully written in.
 
 Figma: node `497:2368`.
 
@@ -1350,7 +1350,7 @@ Figma: node `507:2391`.
 
 Combobox — type to narrow a long list, then choose.
 
-An editable combobox with a listbox (the APG pattern, list autocomplete, chosen by hand). Focus stays in the text box the whole time; the arrow keys move a highlight through the options (aria-activedescendant), Enter or a click chooses, Escape closes and then clears. Typing never replaces what was typed. The number of matches is said when typing pauses. Without allowCustom, leaving with text that is not an option puts back the last choice. No placeholder: the label and hint say what to type.
+An editable combobox with a listbox (the APG pattern, list autocomplete, chosen by hand). Focus stays in the text box the whole time; the arrow keys move a highlight through the options (aria-activedescendant), Enter or a click chooses, Escape closes and then clears. Typing never replaces what was typed. The number of matches is said when typing pauses. Without allowCustom, leaving with text that is not an option puts back the last choice, and leaving it empty clears the choice. No placeholder: the label and hint say what to type.
 
 Figma: node `507:2437`.
 
@@ -1390,6 +1390,6 @@ Figma: node `509:2513`.
 
 PauseMotion — one button that pauses every loop on the page, and plays them again: spinners, skeletons, a busy button's turn, the tachometer, and any motion of the page's own marked `data-motion-class="decor"` (the kit's CSS stops it) or drawn in script that reads `useMotionPaused()`. Motion that carries information is not decor: it names a static equivalent instead (`data-motion-class="data"`, `data-equivalent`).
 
-Its words name the action ("Pause animations", then "Play animations") and change when it is pressed, so it carries no pressed state. Put it once, early in the page (the header's utilities), before the moving content; the choice is kept for the next page. When the device asks for reduced motion nothing loops, so it shows as paused, unavailable, and says why. WCAG 2.2.2: motion that starts on its own, lasts more than five seconds and sits beside other content can be paused.
+Its words name the action ("Pause animations", then "Play animations") and change when it is pressed, so it carries no pressed state. Put it once, early in the page (the header's utilities), before the moving content; the choice is kept for the next page (put `motionBootScript` in the head so it holds from the first frame). When the device asks for reduced motion nothing loops, so it shows as paused, unavailable, and says why. WCAG 2.2.2: motion that starts on its own, lasts more than five seconds and sits beside other content can be paused.
 
 Figma: node `512:2561`.

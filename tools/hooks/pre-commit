@@ -1,0 +1,14 @@
+#!/bin/sh
+# tokenkit pre-commit: the fast tier of npm run check, on what is being committed.
+#
+# Every static gate (seconds), then the Storybook build and the story gates for
+# only the stories the staged change can reach, and none when it reaches none
+# (a docs or tools commit). The full pass, every story, still runs every
+# evening before anything ships. Installed by `npm run hooks`.
+#
+# The evening release sets TK_CHECKED to the commit its full check just passed,
+# so committing the version bump on top of it does not check it again.
+if [ -n "$TK_CHECKED" ] && [ "$TK_CHECKED" = "$(git rev-parse HEAD)" ]; then
+  exit 0
+fi
+exec node tools/check.mjs --fast --staged

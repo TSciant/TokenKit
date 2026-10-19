@@ -1,3 +1,9 @@
+"use client";
+/* Client component. This file uses React state, effects or DOM APIs, so it
+   runs in the browser rather than on the server. The directive is inert under
+   Vite/Storybook and load-bearing under the Next.js App Router, where a module
+   without it is a server component and may not use hooks at all. */
+
 import { useEffect, useId, useRef, useState, type HTMLAttributes } from "react";
 import { Icon, type IconName } from "./Icon";
 
@@ -20,6 +26,8 @@ export type MenuButtonItem = {
   hreflang?: string;
   /** Right-to-left labels (Arabic, Hebrew). */
   dir?: "ltr" | "rtl";
+  /** Hidden words a screen reader says in place of the label: "Newid yr iaith i'r Gymraeg". */
+  describe?: string;
 };
 
 export type MenuButtonProps = Omit<HTMLAttributes<HTMLDivElement>, "onSelect"> & {
@@ -132,7 +140,7 @@ export function MenuButton({
             {item.href ? (
               <a data-tk="menu-button-item" href={item.href} aria-current={item.current ? "page" : undefined} lang={item.lang} hrefLang={item.hreflang} dir={item.dir}>
                 {item.icon ? <Icon name={item.icon} size="sm" aria-hidden="true" /> : null}
-                {item.label}
+                {item.describe ? <><span aria-hidden="true">{item.label}</span><span data-tk="visually-hidden">{item.describe}</span></> : item.label}
               </a>
             ) : (
               <button
@@ -144,7 +152,7 @@ export function MenuButton({
                 }}
               >
                 {item.icon ? <Icon name={item.icon} size="sm" aria-hidden="true" /> : null}
-                {item.label}
+                {item.describe ? <><span aria-hidden="true">{item.label}</span><span data-tk="visually-hidden">{item.describe}</span></> : item.label}
               </button>
             )}
           </li>

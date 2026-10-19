@@ -1,6 +1,6 @@
 {
   "name": "tokenkit",
-  "version": "0.3.25",
+  "version": "0.3.26",
   "private": true,
   "type": "module",
   "description": "A token-driven CSS design system. Primitives, layout shells, and a headless accessibility gate.",
@@ -28,6 +28,10 @@
     "onionskin": "node tools/onionskin.mjs",
     "lint:css": "node tools/lint-tokens.mjs",
     "check": "node tools/check.mjs",
+    "check:fast": "node tools/check.mjs --fast",
+    "new:component": "node tools/new-component.mjs",
+    "figma:register": "node tools/figma-register.mjs",
+    "hooks": "git config core.hooksPath tools/hooks && echo pre-commit: the fast tier of npm run check",
     "gates": "node tools/browser-gates.mjs",
     "motion": "node tools/motion-gate.mjs",
     "storybook": "node tools/storybook.mjs",

@@ -15,7 +15,7 @@ const meta = {
     layout: "padded",
     docs: {
       description: {
-        component: "Opt-in entrance panel (data-tk=panel) animated on DOM insert. Use for: reveal stacks and inserted panels that should arrive, not snap. Don't use for: everything on first paint, or FAQ rows (use FAQ).",
+        component: "Opt-in entrance panel (data-tk=disclosure) animated on DOM insert. Use for: reveal stacks and inserted panels that should arrive, not snap. Don't use for: everything on first paint, or FAQ rows (use FAQ).",
       },
     },
   },

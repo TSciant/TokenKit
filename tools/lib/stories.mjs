@@ -97,12 +97,21 @@ async function open(page, base, story) {
   await page
     .evaluate(() =>
       Promise.race([
-        Promise.allSettled(document.getAnimations().map((a) => a.finished)),
+        /* Not the loops: one that never ends never settles, and waiting on it cost every story with a
+           spinner the whole four seconds, twice. They are decor or data, and tools/motion-gate.mjs reads them. */
+        Promise.allSettled(
+          document.getAnimations()
+            .filter((a) => a.effect?.getComputedTiming().iterations !== Infinity)
+            .map((a) => a.finished),
+        ),
         new Promise((r) => setTimeout(r, 4000)),
       ]),
     )
     .catch(() => {});
-  await page.waitForTimeout(300);
+  /* Two frames for the last style and layout to land, then a short beat for effects that start on the
+     first frame. This was a flat 300 ms: five of the thirteen minutes, with ~1,080 opens. */
+  await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))).catch(() => {});
+  await page.waitForTimeout(60);
   /* Rules keyed on data-fx-reveal are written `[data-fx-ready] [...]`, so a
      story that uses the FX layer is only fully styled once the script has
      marked the document. Stories without it skip the wait entirely. */
@@ -112,9 +121,18 @@ async function open(page, base, story) {
   return true;
 }
 
-/** Run the checks in one pass. Resolves true when every check passed. */
-export async function runChecks(checks) {
-  const entries = Object.values(readIndex().entries);
+/* How many pages walk the stories at once. Each is its own renderer, so the
+   pass is about this many times faster until memory runs short; on a small
+   machine set TK_GATE_PAGES=1 to walk them one at a time as before. */
+const PAGES = Math.max(1, Number(process.env.TK_GATE_PAGES) || 3);
+
+/**
+ * Run the checks in one pass. Resolves true when every check passed.
+ * `only`, when given, is a set of story ids to visit instead of all of them
+ * (the fast tier: the stories a change can reach).
+ */
+export async function runChecks(checks, { only } = {}) {
+  const entries = Object.values(readIndex().entries).filter((e) => !only || only.has(e.id));
   const { base, close } = await serve();
   const executablePath = process.env.TOKENKIT_CHROMIUM || undefined;
   const browser = await chromium.launch(executablePath ? { executablePath } : {});
@@ -126,28 +144,54 @@ export async function runChecks(checks) {
     return page;
   };
 
+  /* Stories that crashed the page or timed out twice: reported, and the run fails, but the other stories are still checked. */
+  const broken = [];
+
   try {
     for (const vp of Object.values(VIEWPORTS)) {
       const here = checks.filter((c) => c.visit && c.viewports?.includes(vp.name));
       if (!here.length) continue;
-      let page = await newPage({ viewport: { width: vp.width, height: vp.height } });
-      let opened = 0;
-      for (const story of entries) {
-        const takers = here.filter((c) => !c.stories || c.stories(story));
-        if (!takers.length) continue;
-        /* One renderer grows over hundreds of navigations and, past eight hundred or so stories, crashes:
-           a fresh page every 150 keeps the run inside it. */
-        if (++opened % 150 === 0) {
-          await page.close();
-          page = await newPage({ viewport: { width: vp.width, height: vp.height } });
+      const viewport = { width: vp.width, height: vp.height };
+      /* One queue, several pages taking from it. The checks keep their findings in closures and every
+         change a check makes to a page (emulation, a pause, focus) is on that page and put back, so they
+         need no change to share the work. */
+      const queue = entries
+        .map((story) => ({ story, takers: here.filter((c) => !c.stories || c.stories(story)) }))
+        .filter((q) => q.takers.length);
+      const worker = async () => {
+        let page = await newPage({ viewport });
+        let opened = 0;
+        for (let job = queue.shift(); job; job = queue.shift()) {
+          const { story, takers } = job;
+          /* One renderer grows over hundreds of navigations and, past eight hundred or so stories, crashes:
+             a fresh page every 150 keeps the run inside it. */
+          if (++opened % 150 === 0) {
+            await page.close();
+            page = await newPage({ viewport });
+          }
+          /* A crashed renderer or a timeout used to end the whole pass, so no gate reported anything. Now it
+             costs one story: a fresh page, one more try, and if that fails too it is named at the end. */
+          for (let attempt = 1; ; attempt++) {
+            try {
+              if (!(await open(page, base, story))) {
+                for (const c of takers) c.unrendered?.(story, vp);
+              } else {
+                for (const c of takers) await c.visit(page, story, vp);
+              }
+              break;
+            } catch (err) {
+              await page.close().catch(() => {});
+              page = await newPage({ viewport });
+              if (attempt === 2) {
+                broken.push(`${story.id} (${vp.name}): ${String(err?.message ?? err).split("\n")[0]}`);
+                break;
+              }
+            }
+          }
         }
-        if (!(await open(page, base, story))) {
-          for (const c of takers) c.unrendered?.(story, vp);
-          continue;
-        }
-        for (const c of takers) await c.visit(page, story, vp);
-      }
-      await page.close();
+        await page.close();
+      };
+      await Promise.all(Array.from({ length: Math.min(PAGES, queue.length) }, worker));
     }
 
     const onceChecks = checks.filter((c) => c.once);
@@ -166,5 +210,10 @@ export async function runChecks(checks) {
 
   let pass = true;
   for (const c of checks) pass = (await c.report()) && pass;
+  if (broken.length) {
+    console.log(`\nNot checked:${broken.length} stor${broken.length === 1 ? "y" : "ies"} crashed the page or timed out twice:`);
+    for (const b of broken) console.log(`  BROKE  ${b}`);
+    pass = false;
+  }
   return pass;
 }

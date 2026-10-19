@@ -102,7 +102,8 @@
     outline-offset: calc(var(--tk-focus-width) * -1);
   }
 
-  :where([data-tk="combobox-option"][aria-selected="true"]) {
+  /* The chosen option (the highlighted one is aria-selected, and drawn by data-active above). */
+  :where([data-tk="combobox-option"][data-chosen]) {
     font-weight: var(--tk-weight-semibold);
   }
 
