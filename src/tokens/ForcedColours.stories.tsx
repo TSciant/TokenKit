@@ -74,7 +74,7 @@ export const Sheet: Story = {
 
       <section data-shell="stack" data-gap="3">
         <Sub>Status: the title and the words carry it; the colour is a second channel.</Sub>
-        <Alert status="warning" title="Your session ends in five minutes">Save your work to keep it.</Alert>
+        <Alert tone="warning" title="Your session ends in five minutes">Save your work to keep it.</Alert>
         <p style={{ margin: 0 }}>
           A <a href="#forced-colours">link in running text</a> keeps its underline and takes the reader's link colour.
         </p>

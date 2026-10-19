@@ -22,6 +22,8 @@ export interface CookieConsentProps extends Omit<HTMLAttributes<HTMLElement>, "t
    */
   title?: ReactNode;
   /** The heading's level in the page outline. Default 2. */
+  headingLevel?: 2 | 3;
+  /** @deprecated Use headingLevel; kept until the next minor release. */
   level?: 2 | 3;
   /**
    * The message: which cookies are essential, which are not, and what the
@@ -110,7 +112,8 @@ export interface CookieConsentProps extends Omit<HTMLAttributes<HTMLElement>, "t
  */
 export function CookieConsent({
   title = "Cookies on this site",
-  level = 2,
+  headingLevel,
+  level: legacyLevel,
   children = "We use some essential cookies to make this site work. We'd also like to set analytics cookies to understand how it is used. We won't set them unless you say yes.",
   policyHref,
   policyLabel = "Read the cookie policy",
@@ -130,6 +133,7 @@ export function CookieConsent({
   contained = false,
   ...rest
 }: CookieConsentProps) {
+  const level = headingLevel ?? legacyLevel ?? 2;
   const [made, setMade] = useState<CookieConsentChoice | null>(null);
   const [hidden, setHidden] = useState(false);
   const shown = choice ?? made;

@@ -47,7 +47,7 @@ function AutoSave() {
       <div style={{ minBlockSize: "1.5rem" }}>
         {state === "saving" ? <SaveStatus state="saving" /> : state === "saved" ? <SaveStatus state="saved" message={count === 1 ? "Change saved" : `${count} changes saved`} /> : null}
       </div>
-      {state === "failed" ? <Alert status="danger" title="Your change was not saved" action={<Button size="sm" variant="outline" onClick={() => { setFailNext(false); save(); }}>Retry</Button>}>Check your connection and try again.</Alert> : null}
+      {state === "failed" ? <Alert tone="danger" title="Your change was not saved" action={<Button size="sm" variant="outline" onClick={() => { setFailNext(false); save(); }}>Retry</Button>}>Check your connection and try again.</Alert> : null}
       <label style={{ display: "flex", gap: "var(--tk-space-2)", alignItems: "center" }}><input type="checkbox" checked={failNext} onChange={(e) => setFailNext(e.currentTarget.checked)} /> Make the next save fail</label>
     </div>
   );

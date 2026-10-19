@@ -6,6 +6,8 @@ export type QuestionItem = { question: string; answer: ReactNode };
 export interface QuestionListProps extends HTMLAttributes<HTMLDivElement> {
   items: QuestionItem[];
   /** Each question's heading level: h3 under a section's h2 (the default), h4 one deeper. */
+  headingLevel?: 3 | 4;
+  /** @deprecated Use headingLevel; kept until the next minor release. */
   level?: 3 | 4;
 }
 
@@ -17,7 +19,8 @@ export interface QuestionListProps extends HTMLAttributes<HTMLDivElement> {
  * answers are short or most readers want several of them; when they are long
  * and readers want one, Faq hides the rest behind a disclosure each.
  */
-export function QuestionList({ items, level = 3, ...rest }: QuestionListProps) {
+export function QuestionList({ items, headingLevel, level: legacyLevel, ...rest }: QuestionListProps) {
+  const level = headingLevel ?? legacyLevel ?? 3;
   return (
     <div data-tk="question-list" {...rest}>
       {items.map((item) => (

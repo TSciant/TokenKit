@@ -17,7 +17,8 @@ const meta = {
   },
   argTypes: {
     title: { control: "text" },
-    level: { control: "inline-radio", options: [2, 3] },
+    headingLevel: { control: "inline-radio", options: [2, 3] },
+    level: { control: false, table: { category: "Deprecated" }, description: "Use headingLevel." },
     children: { control: "text" },
     policyHref: { control: "text" },
     policyLabel: { control: "text" },

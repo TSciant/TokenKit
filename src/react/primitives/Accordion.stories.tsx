@@ -15,10 +15,11 @@ const meta = {
   },
   argTypes: {
     items: { control: "object" },
-    level: { control: "inline-radio", options: [2, 3, 4] },
+    headingLevel: { control: "inline-radio", options: [2, 3, 4] },
+    level: { control: false, table: { category: "Deprecated" }, description: "Use headingLevel." },
   },
   args: {
-    level: 3,
+    headingLevel: 3,
     items: [
       { heading: "2025", content: <p style={{ margin: 0 }}>Four sessions, each with its recording and slides.</p> },
       { heading: "2024", content: <p style={{ margin: 0 }}>Three sessions; the recordings were not kept.</p> },

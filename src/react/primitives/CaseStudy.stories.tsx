@@ -19,7 +19,8 @@ const meta = {
     parts: { control: "object" },
     results: { control: "object" },
     link: { control: "object" },
-    level: { control: "inline-radio", options: [2, 3] },
+    headingLevel: { control: "inline-radio", options: [2, 3] },
+    level: { control: false, table: { category: "Deprecated" }, description: "Use headingLevel." },
   },
   args: {
     client: "Regional services provider",
@@ -36,7 +37,7 @@ const meta = {
       { value: "4 weeks", label: "from start to new rota" },
     ],
     link: { label: "Read the full story", href: "#main" },
-    level: 3,
+    headingLevel: 3,
   },
 } satisfies Meta<typeof CaseStudy>;
 

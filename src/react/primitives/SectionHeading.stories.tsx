@@ -17,7 +17,8 @@ const meta = {
   argTypes: {
     eyebrow: { control: "text" },
     title: { control: "text" },
-    level: { control: "inline-radio", options: [2, 3] },
+    headingLevel: { control: "inline-radio", options: [2, 3] },
+    level: { control: false, table: { category: "Deprecated" }, description: "Use headingLevel." },
     children: { control: "text", description: "The introduction: a sentence or two." },
     action: { control: "object" },
     align: { control: "inline-radio", options: ["start", "center"] },
@@ -25,7 +26,7 @@ const meta = {
   args: {
     eyebrow: "Insights",
     title: "Latest reports and briefs",
-    level: 2,
+    headingLevel: 2,
     children: "Research and analysis from the team, newest first.",
     action: { label: "All insights", href: "#main" },
     align: "start",

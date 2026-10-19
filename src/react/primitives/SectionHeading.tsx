@@ -9,6 +9,8 @@ export interface SectionHeadingProps extends Omit<HTMLAttributes<HTMLDivElement>
   /** The heading. */
   title: ReactNode;
   /** h2 for a section of the page (the default), h3 for one inside a section. */
+  headingLevel?: 2 | 3;
+  /** @deprecated Use headingLevel; kept until the next minor release. */
   level?: 2 | 3;
   /**
    * A sentence or two introducing what follows. Optional; an introduction
@@ -30,7 +32,8 @@ export interface SectionHeadingProps extends Omit<HTMLAttributes<HTMLDivElement>
  * section. Not a page title (that is the page header's h1) and not a band of
  * colour: the section it heads carries the surface.
  */
-export function SectionHeading({ eyebrow, title, level = 2, children, action, align = "start", ...rest }: SectionHeadingProps) {
+export function SectionHeading({ eyebrow, title, headingLevel, level: legacyLevel, children, action, align = "start", ...rest }: SectionHeadingProps) {
+  const level = headingLevel ?? legacyLevel ?? 2;
   return (
     <div data-tk="section-heading" data-align={align === "center" ? "center" : undefined} {...rest}>
       <div data-tk="section-heading-text">

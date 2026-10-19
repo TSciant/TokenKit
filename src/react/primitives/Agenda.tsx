@@ -19,6 +19,8 @@ export interface AgendaProps extends HTMLAttributes<HTMLDivElement> {
   /** Said once above the list, so no row repeats it: "Times are Eastern." Optional. */
   note?: string;
   /** Each session title's heading level: h3 (the default) under a section's h2, h4 one deeper. */
+  headingLevel?: 3 | 4;
+  /** @deprecated Use headingLevel; kept until the next minor release. */
   level?: 3 | 4;
 }
 
@@ -32,7 +34,8 @@ export interface AgendaProps extends HTMLAttributes<HTMLDivElement> {
  * links all called "Slides" are twelve identical links. A list of events,
  * each its own date, is an event list instead.
  */
-export function Agenda({ sessions, note, level = 3, ...rest }: AgendaProps) {
+export function Agenda({ sessions, note, headingLevel, level: legacyLevel, ...rest }: AgendaProps) {
+  const level = headingLevel ?? legacyLevel ?? 3;
   return (
     <div data-tk="agenda" {...rest}>
       {note ? <p data-tk="agenda-note">{note}</p> : null}

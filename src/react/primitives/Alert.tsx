@@ -3,6 +3,9 @@ import { Icon } from "./Icon";
 import { STATUS_ICON } from "./status-icon";
 
 export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, "title" | "children"> {
+  /** Which status: the same four tones as Toast and Chip. */
+  tone?: "info" | "success" | "warning" | "danger";
+  /** @deprecated Use tone, as Toast and Chip do; kept until the next minor release. */
   status?: "info" | "success" | "warning" | "danger";
   title?: string;
   /** Announce changes to assistive tech. Use for errors and async results. */
@@ -18,7 +21,8 @@ export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"
   statusIcon?: boolean;
 }
 
-export function Alert({ status, title, live, action, statusIcon = true, children, ...rest }: AlertProps) {
+export function Alert({ tone, status: legacyStatus, title, live, action, statusIcon = true, children, ...rest }: AlertProps) {
+  const status = tone ?? legacyStatus;
   return (
     <div
       {...rest}

@@ -24,7 +24,8 @@ const meta = {
     expertise: { control: "object" },
     expertiseLabel: { control: "text" },
     back: { control: "object" },
-    level: { control: "inline-radio", options: [1, 2] },
+    headingLevel: { control: "inline-radio", options: [1, 2] },
+    level: { control: false, table: { category: "Deprecated" }, description: "Use headingLevel." },
   },
   args: {
     name: "Jordan Rivera",
@@ -44,7 +45,7 @@ const meta = {
     expertise: ["Urban planning", "Public consultation", "Transport research", "Survey design"],
     expertiseLabel: "Expertise",
     back: { label: "All staff", href: "#main" },
-    level: 1,
+    headingLevel: 1,
   },
 } satisfies Meta<typeof ProfileHeader>;
 
@@ -92,7 +93,7 @@ export const NameAndRole: Story = {
     bio: undefined,
     expertise: undefined,
     back: undefined,
-    level: 2,
+    headingLevel: 2,
   },
 };
 

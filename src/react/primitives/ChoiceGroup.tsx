@@ -5,6 +5,7 @@
    without it is a server component and may not use hooks at all. */
 
 import { useId, useState, type FieldsetHTMLAttributes, type ReactNode } from "react";
+import { FieldError, RequiredMark } from "./field-parts";
 
 export type ChoiceOption = {
   value: string;
@@ -75,23 +76,14 @@ export function ChoiceGroup({ type = "radio", legend, name, options, hint, error
     >
       <legend data-tk="field-label">
         {legend}
-        {required ? (
-          <>
-            <span aria-hidden="true"> *</span>
-            <span data-tk="visually-hidden"> (required)</span>
-          </>
-        ) : null}
+        {required ? <RequiredMark /> : null}
       </legend>
       {hint ? (
         <p data-tk="field-hint" id={hintId}>
           {hint}
         </p>
       ) : null}
-      {error ? (
-        <p data-tk="field-error" id={errorId}>
-          {error}
-        </p>
-      ) : null}
+      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
       <div data-tk="choice-group-options">
         {options.map((o, i) => {
           const id = `${base}-${i}`;

@@ -5,6 +5,7 @@
    without it is a server component and may not use hooks at all. */
 
 import { useEffect, useId, useRef, useState } from "react";
+import { FieldError, RequiredMark } from "./field-parts";
 import type {
   InputHTMLAttributes,
   ReactNode,
@@ -79,15 +80,6 @@ export type FieldProps = Shared &
       SelectHTMLAttributes<HTMLSelectElement>,
     "id" | "children"
   >;
-
-function RequiredMark() {
-  return (
-    <>
-      <span aria-hidden="true"> *</span>
-      <span data-tk="visually-hidden"> (required)</span>
-    </>
-  );
-}
 
 /**
  * Field. Baseline: labelled input. Progressive layers:
@@ -256,11 +248,7 @@ export function Field({
           {hint}
         </p>
       ) : null}
-      {error ? (
-        <p data-tk="field-error" id={errorId}>
-          {error}
-        </p>
-      ) : null}
+      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
       {counts ? (
         <>
           {/* The visible count updates on every keystroke and is hidden from

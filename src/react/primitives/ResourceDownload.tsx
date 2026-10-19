@@ -25,6 +25,8 @@ export interface ResourceDownloadProps extends Omit<HTMLAttributes<HTMLElement>,
   /** The words of that link. */
   alternativeLabel?: string;
   /** The level of the title's heading, to fit the outline of the page it is on. */
+  headingLevel?: 2 | 3 | 4;
+  /** @deprecated Use headingLevel; kept until the next minor release. */
   level?: 2 | 3 | 4;
   /** The locale the date is written in. */
   locale?: string;
@@ -91,10 +93,11 @@ export function ResourceDownload({
   download,
   alternativeHref,
   alternativeLabel = "Request an accessible format",
-  level = 3,
+  headingLevel, level: legacyLevel,
   locale = "en-US",
   ...rest
 }: ResourceDownloadProps) {
+  const level = headingLevel ?? legacyLevel ?? 3;
   const H = `h${level}` as "h2" | "h3" | "h4";
   const icon = ICONS[format.trim().toLowerCase()] ?? "file";
   return (

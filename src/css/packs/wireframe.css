@@ -144,6 +144,7 @@
     /* elevation: flat. The boundary carries the depth. */
     --tk-shadow-sm: none;
     --tk-shadow-md: none;
+    --tk-shadow-lg: none;
   }
 
 

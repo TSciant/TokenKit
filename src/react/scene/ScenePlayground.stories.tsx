@@ -57,11 +57,11 @@ function ScenePlayground() {
           style={{ fontFamily: "var(--tk-font-mono)", fontSize: "var(--tk-size-xs)", minBlockSize: "20rem", minInlineSize: 0 }}
         />
         {"error" in result ? (
-          <Alert status="danger" title="Not drawn">
+          <Alert tone="danger" title="Not drawn">
             {result.error}
           </Alert>
         ) : result.notes.length ? (
-          <Alert status="warning" title={`Left out ${result.notes.length === 1 ? "one thing" : `${result.notes.length} things`}`}>
+          <Alert tone="warning" title={`Left out ${result.notes.length === 1 ? "one thing" : `${result.notes.length} things`}`}>
             <ul>
               {result.notes.map((n) => (
                 <li key={n}>{n}</li>
@@ -69,7 +69,7 @@ function ScenePlayground() {
             </ul>
           </Alert>
         ) : (
-          <Alert status="success" title="Clean">
+          <Alert tone="success" title="Clean">
             Every part and option is one the kit has.
           </Alert>
         )}

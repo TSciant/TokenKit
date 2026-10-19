@@ -21,9 +21,10 @@ const meta = {
   },
   argTypes: {
     items: { control: "object" },
-    level: { control: "inline-radio", options: [3, 4] },
+    headingLevel: { control: "inline-radio", options: [3, 4] },
+    level: { control: false, table: { category: "Deprecated" }, description: "Use headingLevel." },
   },
-  args: { items: ITEMS, level: 3 },
+  args: { items: ITEMS, headingLevel: 3 },
 } satisfies Meta<typeof QuestionList>;
 
 export default meta;

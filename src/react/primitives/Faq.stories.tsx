@@ -39,6 +39,7 @@ const meta = {
   argTypes: {
     tone: { control: "inline-radio", options: ["faq", "info"] },
     singleExpand: { control: "boolean" },
+    headingLevel: { control: "inline-radio", options: [3, 4, 5], description: "Each question's heading level: one below the section title." },
   },
 } satisfies Meta<typeof Faq>;
 

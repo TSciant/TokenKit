@@ -12,9 +12,12 @@ const meta = {
       },
     },
   },
-  argTypes: { level: { control: "inline-radio", options: ["non-urgent", "urgent", "emergency"] } },
+  argTypes: {
+    urgency: { control: "inline-radio", options: ["non-urgent", "urgent", "emergency"] },
+    level: { control: false, table: { category: "Deprecated" }, description: "Use urgency." },
+  },
   args: {
-    level: "non-urgent",
+    urgency: "non-urgent",
     title: "Speak to a GP if:",
     children: (
       <ul>
@@ -42,14 +45,14 @@ export const ThreeLevels: Story = {
   name: "The three levels, in order",
   render: () => (
     <div data-shell="stack" data-gap="5">
-      <CareCard level="non-urgent" title="Speak to a GP if:">
+      <CareCard urgency="non-urgent" title="Speak to a GP if:">
         <ul>
           <li>your headache keeps coming back</li>
           <li>painkillers do not help and your headache gets worse</li>
         </ul>
       </CareCard>
-      <CareCard level="urgent" title="Call 111 if:">{URGENT}</CareCard>
-      <CareCard level="emergency" title="Call 999 or go to A&E now if:" action={{ label: "Find your nearest A&E", href: "#main" }}>
+      <CareCard urgency="urgent" title="Call 111 if:">{URGENT}</CareCard>
+      <CareCard urgency="emergency" title="Call 999 or go to A&E now if:" action={{ label: "Find your nearest A&E", href: "#main" }}>
         <ul>
           <li>they have been knocked out</li>
           <li>they are being sick after a head injury</li>
@@ -65,7 +68,7 @@ export const OnionSkin: Story = {
     docs: { description: { story: "The Figma CareCard laid over this one: the urgent card with three reasons, 560 wide." } },
     onion: { component: "CareCard", skin: () => "default.png" },
   },
-  args: { level: "urgent", title: "Call 111 if:", children: URGENT },
+  args: { urgency: "urgent", title: "Call 111 if:", children: URGENT },
   render: (args) => (
     <div style={{ inlineSize: 560 }}>
       <CareCard {...args} />

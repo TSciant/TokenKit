@@ -176,6 +176,18 @@
     --tk-measure: 53ch;      /* measured: 66.7 CPL in Manrope (the type gate's body row) */
     --tk-measure-narrow: 44ch; /* measured: 53.6 CPL */
 
+    /* --- overlay widths: every floating panel's width from one place, so a
+           pack or a page can widen its dialogs without touching a component.
+           Each is a cap; the panel still fits the screen. -------------------- */
+    --tk-measure-dialog-sm: 24rem;
+    --tk-measure-dialog-md: 36rem;
+    --tk-measure-dialog-lg: 44rem;
+    --tk-measure-drawer-sm: 20rem;
+    --tk-measure-drawer-md: 28rem;
+    --tk-measure-drawer-lg: 36rem;
+    --tk-measure-sheet: 40rem;    /* a bottom sheet, centred, on anything wider than a phone */
+    --tk-measure-popover: 24rem;  /* a toast, a menu, anything that hangs from a control */
+
     /* --- target size: WCAG 2.5.8 AA is 24px ------------------------------ */
     --tk-target-min: 24px;
     --tk-target-comfortable: 44px;
@@ -237,6 +249,13 @@
     --tk-shadow-none: none;
     --tk-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
     --tk-shadow-md: 0 2px 8px rgb(0 0 0 / 0.08);
+    /* An overlay above the page (a dialog), and the lift a card-like control
+       takes on hover. Every pack flattens sm, md and lg (a dialog stands off
+       its scrim by its border), and keeps the lift. The dialog used to write
+       its own "var(--tk-shadow-md), 0 24px 48px …", which is invalid once md
+       is none, so no pack ever drew it: lg is that shadow, said once. */
+    --tk-shadow-lg: 0 2px 8px rgb(0 0 0 / 0.08), 0 24px 48px rgb(0 0 0 / 0.18);
+    --tk-shadow-lift: 0 4px 12px color-mix(in srgb, var(--tk-text-primary) 10%, transparent);
 
     /* --- density: the single knob context turns.
            Components multiply their own padding by it. ------------------- */

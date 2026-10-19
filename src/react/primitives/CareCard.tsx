@@ -12,11 +12,13 @@ const LEVEL: Record<CareLevel, { label: string; icon: IconName }> = {
 
 export interface CareCardProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   /** How quickly to get care: non-urgent (a GP, a pharmacy), urgent (111), emergency (999, A&E). */
-  level: CareLevel;
+  urgency?: CareLevel;
+  /** @deprecated Use urgency (level means a heading's level everywhere else in the kit); kept until the next minor release. */
+  level?: CareLevel;
   /** One call to action: "Speak to a GP if:", "Call 111 if:", "Call 999 or go to A&E now if:". */
   title: string;
   headingLevel?: 2 | 3 | 4;
-  /** The urgency, said before the title as part of the heading. Defaults to the level's words. */
+  /** The urgency, said before the title as part of the heading. Defaults to the urgency's words. */
   label?: string;
   /** A bulleted list of when, even for one item; then a line, if needed. */
   children?: ReactNode;
@@ -35,7 +37,8 @@ export interface CareCardProps extends Omit<HTMLAttributes<HTMLDivElement>, "tit
  * NHS service manual's care cards, and saying so: use it for care advice,
  * not for warnings (a Callout) or in a question page.
  */
-export function CareCard({ level, title, headingLevel = 3, label, children, action, ...rest }: CareCardProps) {
+export function CareCard({ urgency, level: legacyLevel, title, headingLevel = 3, label, children, action, ...rest }: CareCardProps) {
+  const level = urgency ?? legacyLevel ?? "non-urgent";
   const id = useId();
   const H = `h${headingLevel}` as "h2" | "h3" | "h4";
   const l = LEVEL[level];

@@ -5,6 +5,7 @@
    without it is a server component and may not use hooks at all. */
 
 import { useId, useState, type FieldsetHTMLAttributes } from "react";
+import { FieldError, RequiredMark } from "./field-parts";
 
 export type DatePart = "day" | "month" | "year";
 export type DateValue = Partial<Record<DatePart, string>>;
@@ -92,23 +93,14 @@ export function DateInput({
     <fieldset {...rest} data-tk="date-input" data-invalid={error ? "" : undefined} aria-describedby={describedBy}>
       <legend data-tk="field-label">
         {legend}
-        {required ? (
-          <>
-            <span aria-hidden="true"> *</span>
-            <span data-tk="visually-hidden"> (required)</span>
-          </>
-        ) : null}
+        {required ? <RequiredMark /> : null}
       </legend>
       {hint ? (
         <p data-tk="field-hint" id={hintId}>
           {hint}
         </p>
       ) : null}
-      {error ? (
-        <p data-tk="field-error" id={errorId}>
-          {error}
-        </p>
-      ) : null}
+      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
       <div data-tk="date-input-parts">
         {shown.map((p) => {
           const pid = `${base}-${p}`;

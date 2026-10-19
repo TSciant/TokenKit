@@ -1,6 +1,6 @@
 {
   "name": "tokenkit",
-  "version": "0.3.26",
+  "version": "0.3.27",
   "private": true,
   "type": "module",
   "description": "A token-driven CSS design system. Primitives, layout shells, and a headless accessibility gate.",

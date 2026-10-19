@@ -9,6 +9,7 @@ import { Button } from "./Button";
 import { Icon } from "./Icon";
 import { Spinner } from "./Loading";
 import { STATUS_ICON } from "./status-icon";
+import { FieldError, RequiredMark } from "./field-parts";
 
 export type FileUploadItem = {
   id: string;
@@ -157,7 +158,7 @@ export function FileUpload({
     <div {...rest} data-tk="file-upload" data-invalid={error ? "" : undefined}>
       <label data-tk="field-label" htmlFor={id} id={`${id}-label`}>
         {label}
-        {required ? <><span aria-hidden="true"> *</span><span data-tk="visually-hidden"> (required)</span></> : optional ? <span data-tk="field-optional"> (optional)</span> : null}
+        {required ? <RequiredMark /> : optional ? <span data-tk="field-optional"> (optional)</span> : null}
       </label>
       <div data-tk="file-upload-zone" data-dropzone={dropzone && enhanced ? "" : undefined} data-dragging={dragging ? "" : undefined} {...drop}>
         <input
@@ -192,7 +193,7 @@ export function FileUpload({
         ) : null}
       </div>
       {hintText ? <p data-tk="field-hint" id={hintId}>{hintText}</p> : null}
-      {error ? <p data-tk="field-error" id={errorId}><span data-tk="visually-hidden">Error: </span>{error}</p> : null}
+      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
       {disabled && reason ? <p data-tk="field-hint" id={reasonId}>{reason}</p> : null}
       {files.length ? (
         <ul data-tk="file-upload-list" ref={list}>

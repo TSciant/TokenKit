@@ -26,6 +26,8 @@ export interface PricingProps extends HTMLAttributes<HTMLUListElement> {
   /** The word on the recommended plan. */
   recommendedLabel?: string;
   /** Each plan name's heading level: h3 under a section's h2 (the default), h4 one deeper. */
+  headingLevel?: 3 | 4;
+  /** @deprecated Use headingLevel; kept until the next minor release. */
   level?: 3 | 4;
 }
 
@@ -38,7 +40,8 @@ export interface PricingProps extends HTMLAttributes<HTMLUListElement> {
  * nothing about it depends on colour. Features are ticked lines, and a plan's
  * action names the plan for a screen reader.
  */
-export function Pricing({ plans, recommendedLabel = "Recommended", level = 3, ...rest }: PricingProps) {
+export function Pricing({ plans, recommendedLabel = "Recommended", headingLevel, level: legacyLevel, ...rest }: PricingProps) {
+  const level = headingLevel ?? legacyLevel ?? 3;
   return (
     <ul data-tk="pricing" {...rest}>
       {plans.map((plan) => (

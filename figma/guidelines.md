@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.26. A token-driven design system: components draw only from
+token-kit 0.3.27. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -202,6 +202,8 @@ Shells become containers only when asked (`data-container`), because
 
 #### Adding a component
 
+`npm run new:component -- <Name>` writes steps 1 to 4 in this shape.
+
 1. New file in `src/css/components/`, imported from `index.css`.
 2. Everything inside `@layer components`, selectors wrapped in `:where()`.
 3. Read `--tk-*` only. Local scratch is `--_name`.
@@ -213,6 +215,37 @@ Shells become containers only when asked (`data-container`), because
 
 The React wrapper, if you want one, maps props to attributes and does nothing
 else. If a wrapper is computing class names, the CSS is wrong.
+
+#### Prop names
+
+One name for one idea, so a prop learned on one component means the same on
+the next.
+
+- **A heading's level is `headingLevel`** on every component that renders a
+  heading of its own (Accordion, Agenda, CaseStudy, CookieConsent, Faq,
+  Pricing, ProfileHeader, QuestionList, ResourceDownload, SectionHeading,
+  Callout, CareCard, EmptyState, Panel, SignIn). Heading itself takes `level`:
+  it is the heading. The older `level` still works on the nine that had it,
+  deprecated.
+- **A status is `tone`**: `info`, `success`, `warning`, `danger` on Alert,
+  Toast and Chip, and `neutral` or `danger` for a Button's consequence. Alert's
+  `status` still works, deprecated. Other scales name what they measure:
+  CareCard's `urgency`, DestructiveConfirm's `severity`. `variant` is for shape
+  or layout, never for meaning.
+- **A value is `value`, `defaultValue` and `onChange(value)`** (Combobox,
+  DateInput, ChoiceGroup, the fields). Two older shapes stay for now: Tabs
+  (`selected`, `defaultSelected`, `onSelect(id)`) and ChoiceCard
+  (`onChange(value, checked)`, one card at a time).
+- **Being open is `open` with a handler.** Modal and Drawer close with
+  `onClose`; Search reports `onOpenChange(open)`. A new component that opens
+  takes `open`, `defaultOpen` and `onOpenChange(open)`.
+- **A frame's order:** a single control is label, control, hint, error; a
+  group in a fieldset (ChoiceGroup, DateInput) is legend, hint, error, then
+  its options. Every error says "Error:" to a screen reader first, and every
+  required mark is the same (`field-parts.tsx`).
+
+A deprecated name works until the next minor release, which removes it; a
+patch never does.
 
 ## Accessibility
 
@@ -454,7 +487,7 @@ Figma: node `38:88`.
 
 *Use for:* a message with a status.
 
-*Properties:* `status`: `info` · `success` · `warning` · `danger`; `title`: text; `statusIcon`: flag.
+*Properties:* `tone`: `info` · `success` · `warning` · `danger`; `status`: `info` · `success` · `warning` · `danger`; `title`: text; `statusIcon`: flag.
 
 - **Do:** Do it, say it's done, and offer Undo beside the message. One press puts it back.
 - **Don't:** Don't ask first for something that can be put back. A question before every removal teaches people to say yes without reading it.
@@ -732,6 +765,8 @@ Figma: node `151:753`.
 ### Faq
 
 Strong disclosure stack for FAQ or additional information. Numbered triggers, plus/minus mark, measure-bound answers.
+
+Each question is a heading holding its button, as in Accordion (whose engine it shares), so a screen-reader user can list the questions and jump; a closed answer stays in the page, hidden, so the button always names a region that exists.
 
 Figma: node `170:1051`.
 
@@ -1114,7 +1149,7 @@ Use for: a page of several sections where most readers want one or two (past yea
 
 *Use for:* sections a reader opens one at a time, each behind its heading: each accordion-item child is one section; level is the headings' level.
 
-*Properties:* `level`: `2` · `3` · `4`.
+*Properties:* `headingLevel`: `2` · `3` · `4`; `level`: `2` · `3` · `4`.
 
 Figma: node `472:1972`.
 

@@ -116,7 +116,7 @@
     border-color: var(--tk-line-strong);
     background: var(--tk-surface-raised);
     transform: translateY(-1px);
-    box-shadow: 0 6px 18px color-mix(in srgb, var(--tk-text-primary) 8%, transparent);
+    box-shadow: var(--tk-shadow-lift);
   }
 
   :where(a[data-tk="search-results-link"]:hover [data-tk="search-results-chevron"]),

@@ -80,7 +80,7 @@ export const UsingColour: Story = {
       <Rule title="Status colours mean status">
         <GuidancePair>
           <Guidance tone="do" note="Keep the status colours for status: success, warning, danger, information. Then a reader who has learned that red means stop can trust it everywhere.">
-            <Alert status="success" title="Version 2.0 is out">Your projects were updated automatically.</Alert>
+            <Alert tone="success" title="Version 2.0 is out">Your projects were updated automatically.</Alert>
           </Guidance>
           <Guidance tone="dont" note="Don't borrow the danger red to make something stand out. Used for decoration it stops meaning danger, and the next real error has to shout over it.">
             <div data-shell="stack" data-gap="2">

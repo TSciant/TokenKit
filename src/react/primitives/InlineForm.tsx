@@ -6,6 +6,7 @@
 import { useId } from "react";
 import type { FormHTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 import { Button } from "./Button";
+import { FieldError } from "./field-parts";
 
 export interface InlineFormProps
   extends Omit<FormHTMLAttributes<HTMLFormElement>, "children"> {
@@ -97,11 +98,7 @@ export function InlineForm({
           {hint}
         </p>
       ) : null}
-      {error ? (
-        <p data-tk="field-error" id={errorId}>
-          {error}
-        </p>
-      ) : null}
+      {error ? <FieldError id={errorId}>{error}</FieldError> : null}
       {children}
     </form>
   );

@@ -17,7 +17,9 @@ const meta = {
     },
   },
   argTypes: {
-    status: { control: "inline-radio", options: ["info", "success", "warning", "danger"] },
+    tone: { control: "inline-radio", options: ["info", "success", "warning", "danger"] },
+    /* Deprecated for tone, and kept live here: the onion check picks its skin by it. */
+    status: { control: "inline-radio", options: ["info", "success", "warning", "danger"], table: { category: "Deprecated" } },
     live: { control: "boolean" },
     action: { control: false },
   },
@@ -38,7 +40,7 @@ export const OnionSkinAction: Story = {
   },
   render: () => (
     <div style={{ inlineSize: 480 }}>
-      <Alert status="success" title="That conversation has been removed." action={<Button variant="outline" size="sm">Undo</Button>} />
+      <Alert tone="success" title="That conversation has been removed." action={<Button variant="outline" size="sm">Undo</Button>} />
     </div>
   ),
 };
@@ -60,15 +62,15 @@ export const Undo: Story = {
       return (
         <div data-shell="stack" data-gap="6" style={{ maxInlineSize: "48rem" }}>
           {removed ? (
-            <Alert status="success" live title="That conversation has been removed." action={<Button variant="outline" size="sm" onClick={() => setRemoved(false)}>Undo</Button>}>
+            <Alert tone="success" live title="That conversation has been removed." action={<Button variant="outline" size="sm" onClick={() => setRemoved(false)}>Undo</Button>}>
               It is gone from the board for everyone.
             </Alert>
           ) : (
-            <Alert status="info" live title="It’s back where it was." />
+            <Alert tone="info" live title="It’s back where it was." />
           )}
           <GuidancePair>
             <Guidance tone="do" note="Do it, say it's done, and offer Undo beside the message. One press puts it back.">
-              <Alert status="success" title="That conversation has been removed." action={<Button variant="outline" size="sm">Undo</Button>} />
+              <Alert tone="success" title="That conversation has been removed." action={<Button variant="outline" size="sm">Undo</Button>} />
             </Guidance>
             <Guidance tone="dont" note="Don't ask first for something that can be put back. A question before every removal teaches people to say yes without reading it.">
               <ModalPanel title="Remove it?" size="sm" actions={[{ label: "Cancel", variant: "outline" }, { label: "Remove", variant: "solid", tone: "danger" }]} />
@@ -86,9 +88,9 @@ export const AllStatuses: Story = {
   render: () => (
     <div data-shell="stack" data-gap="3">
       <Alert title="Info">Neutral message.</Alert>
-      <Alert status="success" title="Success">Completed.</Alert>
-      <Alert status="warning" title="Warning">Worth checking.</Alert>
-      <Alert status="danger" title="Danger">This one carries role="alert".</Alert>
+      <Alert tone="success" title="Success">Completed.</Alert>
+      <Alert tone="warning" title="Warning">Worth checking.</Alert>
+      <Alert tone="danger" title="Danger">This one carries role="alert".</Alert>
     </div>
   ),
 };

@@ -15,11 +15,12 @@ const meta = {
   argTypes: {
     sessions: { control: "object" },
     note: { control: "text" },
-    level: { control: "inline-radio", options: [3, 4] },
+    headingLevel: { control: "inline-radio", options: [3, 4] },
+    level: { control: false, table: { category: "Deprecated" }, description: "Use headingLevel." },
   },
   args: {
     note: "Times are local to the venue.",
-    level: 3,
+    headingLevel: 3,
     sessions: [
       { time: "09:00", title: "Welcome and opening remarks", speakers: ["Jordan Lee, Director"] },
       {

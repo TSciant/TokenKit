@@ -80,22 +80,31 @@ export function a11yCheck(argv = process.argv.slice(2)) {
 
       // The addon runs its own axe against the same page; wait it out rather
       // than racing it. axe refuses to run twice at once and says so.
-      let result = null;
-      for (let i = 0; i < 12; i++) {
-        try {
-          result = await page.evaluate(
-            ({ tags, exclude }) =>
-              window.axe.run(
-                { include: [["#storybook-root"]], exclude },
-                { runOnly: { type: "tag", values: tags } },
-              ),
-            { tags: TAGS, exclude: EXCLUDE },
-          );
-          break;
-        } catch (e) {
-          if (!String(e).includes("already running")) throw e;
-          await page.waitForTimeout(400);
+      const runAxe = async () => {
+        for (let i = 0; i < 12; i++) {
+          try {
+            return await page.evaluate(
+              ({ tags, exclude }) =>
+                window.axe.run(
+                  { include: [["#storybook-root"]], exclude },
+                  { runOnly: { type: "tag", values: tags } },
+                ),
+              { tags: TAGS, exclude: EXCLUDE },
+            );
+          } catch (e) {
+            if (!String(e).includes("already running")) throw e;
+            await page.waitForTimeout(400);
+          }
         }
+        return null;
+      };
+      let result = await runAxe();
+      /* A violation is looked at once more, a moment later, and only one that is still there counts. The
+         settle is two frames now, not 300 ms, and with three pages sharing the machine a button can still be
+         mid-transition when axe reads its colour (2026-10-19: the mega menu's outline buttons, clean alone). */
+      if (result?.violations.length) {
+        await page.waitForTimeout(600);
+        result = (await runAxe()) ?? result;
       }
       if (!result) {
         failures.push({ id: story.id, viewport: vp.name, rule: "axe", help: "axe never got a turn", nodes: [] });

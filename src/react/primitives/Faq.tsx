@@ -4,8 +4,9 @@
    Vite/Storybook and load-bearing under the Next.js App Router, where a module
    without it is a server component and may not use hooks at all. */
 
-import { useId, useState, type ReactNode } from "react";
+import { useId, type ReactNode } from "react";
 import { Icon } from "./Icon";
+import { useOpenSet } from "./disclosure-state";
 
 export type FaqEntry = {
   id?: string;
@@ -24,6 +25,8 @@ export type FaqProps = {
   items: FaqEntry[];
   /** Only one panel open at a time. */
   singleExpand?: boolean;
+  /** The level of each question's heading: one below the section's title (an h2), so 3 by default. */
+  headingLevel?: 3 | 4 | 5;
   className?: string;
 };
 
@@ -40,6 +43,11 @@ function defaultTitle(tone: "faq" | "info") {
 /**
  * Strong disclosure stack for FAQ or additional information.
  * Numbered triggers, plus/minus mark, measure-bound answers.
+ *
+ * Each question is a heading holding its button, as in Accordion (whose
+ * engine it shares), so a screen-reader user can list the questions and
+ * jump; a closed answer stays in the page, hidden, so the button always
+ * names a region that exists.
  */
 export function Faq({
   title,
@@ -47,32 +55,12 @@ export function Faq({
   tone = "faq",
   items,
   singleExpand = false,
+  headingLevel = 3,
   className,
 }: FaqProps) {
   const baseId = useId();
-  const initial = new Set<number>();
-  items.forEach((item, i) => {
-    if (item.defaultOpen) initial.add(i);
-  });
-  if (singleExpand && initial.size > 1) {
-    const first = [...initial][0];
-    initial.clear();
-    initial.add(first);
-  }
-
-  const [open, setOpen] = useState<Set<number>>(initial);
-
-  const toggle = (index: number) => {
-    setOpen((prev) => {
-      const next = new Set(singleExpand ? [] : prev);
-      if (prev.has(index)) {
-        if (!singleExpand) next.delete(index);
-      } else {
-        next.add(index);
-      }
-      return next;
-    });
-  };
+  const [open, toggle] = useOpenSet(items, singleExpand);
+  const H = `h${headingLevel}` as "h3" | "h4" | "h5";
 
   const showTitle = title !== false;
   const heading = title === false ? null : title ?? defaultTitle(tone);
@@ -119,6 +107,7 @@ export function Faq({
               data-tk="faq-item"
               data-open={isOpen ? "" : undefined}
             >
+              <H data-tk="faq-heading">
               <button
                 type="button"
                 id={triggerId}
@@ -135,21 +124,21 @@ export function Faq({
                   <Icon name={isOpen ? "minus" : "plus"} size="sm" />
                 </span>
               </button>
-              {isOpen ? (
-                <div
-                  id={panelId}
-                  role="region"
-                  aria-labelledby={triggerId}
-                  data-tk="disclosure"
-                  data-faq-panel=""
-                >
-                  {typeof item.answer === "string" ? (
-                    <p style={{ margin: 0 }}>{item.answer}</p>
-                  ) : (
-                    item.answer
-                  )}
-                </div>
-              ) : null}
+              </H>
+              <div
+                id={panelId}
+                role="region"
+                aria-labelledby={triggerId}
+                data-tk="disclosure"
+                data-faq-panel=""
+                hidden={!isOpen}
+              >
+                {typeof item.answer === "string" ? (
+                  <p style={{ margin: 0 }}>{item.answer}</p>
+                ) : (
+                  item.answer
+                )}
+              </div>
             </div>
           );
         })}

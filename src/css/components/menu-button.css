@@ -42,7 +42,7 @@
        as wide as the trigger it hangs from, and every label would wrap. */
     inline-size: max-content;
     min-inline-size: 12rem;
-    max-inline-size: 24rem;
+    max-inline-size: var(--tk-measure-popover);
     margin: 0;
     padding: var(--_gap);
     list-style: none;

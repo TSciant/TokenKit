@@ -534,6 +534,12 @@ export const KINDS = {
     "about": "a message with a status",
     "text": "children",
     "props": {
+      "tone": [
+        "info",
+        "success",
+        "warning",
+        "danger"
+      ],
       "status": [
         "info",
         "success",
@@ -698,6 +704,11 @@ export const KINDS = {
       "accordion-item"
     ],
     "props": {
+      "headingLevel": [
+        2,
+        3,
+        4
+      ],
       "level": [
         2,
         3,
@@ -739,6 +750,11 @@ export const KINDS = {
       "dateLabel": "text",
       "description": "text",
       "download": "flag",
+      "headingLevel": [
+        2,
+        3,
+        4
+      ],
       "level": [
         2,
         3,

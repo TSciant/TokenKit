@@ -223,7 +223,7 @@ export function ChatPanel({
               ) : null}
               {t.status === "stopped" ? <p data-tk="chat-flag">Stopped</p> : null}
               {t.status === "error" ? (
-                <Alert status="warning" title="No answer">
+                <Alert tone="warning" title="No answer">
                   <p>{t.error}</p>
                   <Button size="sm" variant="outline" onClick={() => retry(i)}>
                     Retry

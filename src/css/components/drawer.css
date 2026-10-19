@@ -21,7 +21,7 @@
     border: 0;
     background: transparent;
     color: inherit;
-    inline-size: min(28rem, 100vw);
+    inline-size: min(var(--tk-measure-drawer-md), 100vw);
     block-size: 100dvh;
     max-inline-size: none;
     max-block-size: none;
@@ -56,17 +56,17 @@
     inset-block-start: auto;
     inset-inline: 0;
     margin-inline: auto;
-    inline-size: min(100%, 40rem);
+    inline-size: min(100%, var(--tk-measure-sheet));
     block-size: auto;
     max-block-size: 85dvh;
   }
 
   :where([data-tk="drawer"][data-size="sm"]:not([data-side="bottom"])) {
-    inline-size: min(20rem, 100vw);
+    inline-size: min(var(--tk-measure-drawer-sm), 100vw);
   }
 
   :where([data-tk="drawer"][data-size="lg"]:not([data-side="bottom"])) {
-    inline-size: min(36rem, 100vw);
+    inline-size: min(var(--tk-measure-drawer-lg), 100vw);
   }
 
   :where([data-tk="drawer"][open]) {

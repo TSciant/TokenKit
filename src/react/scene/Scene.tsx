@@ -74,7 +74,7 @@ export function Scene({ scene, brand, active, onActive, ...rest }: SceneProps) {
   if ("error" in result) {
     return (
       <div data-tk="scene" {...rest}>
-        <Alert status="warning" title="This scene can’t be drawn">
+        <Alert tone="warning" title="This scene can’t be drawn">
           {result.error}
         </Alert>
       </div>
@@ -294,7 +294,7 @@ export function Scene({ scene, brand, active, onActive, ...rest }: SceneProps) {
           />
         );
       case "alert":
-        return <Alert status={n.status} title={n.title} {...m}>{node.text}</Alert>;
+        return <Alert tone={n.status} title={n.title} {...m}>{node.text}</Alert>;
       case "choice-group":
         return (
           <ChoiceCardGroup

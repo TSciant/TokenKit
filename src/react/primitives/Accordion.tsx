@@ -1,8 +1,9 @@
 "use client";
 /* Client component: it keeps which sections are open in React state. */
 
-import { useId, useState, type HTMLAttributes, type ReactNode } from "react";
+import { useId, type HTMLAttributes, type ReactNode } from "react";
 import { Icon } from "./Icon";
+import { useOpenSet } from "./disclosure-state";
 
 export type AccordionItem = {
   id?: string;
@@ -17,6 +18,8 @@ export type AccordionItem = {
 export interface AccordionProps extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   items: AccordionItem[];
   /** The level of each section's heading, to fit the outline of the page it is on. */
+  headingLevel?: 2 | 3 | 4;
+  /** @deprecated Use headingLevel; kept until the next minor release. */
   level?: 2 | 3 | 4;
 }
 
@@ -36,18 +39,11 @@ export interface AccordionProps extends Omit<HTMLAttributes<HTMLDivElement>, "ch
  * the page, so find-in-page will not reach it: another reason to keep what
  * matters out of an accordion. Several can be open at once.
  */
-export function Accordion({ items, level = 3, ...rest }: AccordionProps) {
+export function Accordion({ items, headingLevel, level: legacyLevel, ...rest }: AccordionProps) {
+  const level = headingLevel ?? legacyLevel ?? 3;
   const base = useId();
-  const [open, setOpen] = useState<Set<number>>(() => new Set(items.flatMap((it, i) => (it.defaultOpen ? [i] : []))));
+  const [open, toggle] = useOpenSet(items);
   const H = `h${level}` as "h2" | "h3" | "h4";
-
-  const toggle = (i: number) =>
-    setOpen((prev) => {
-      const next = new Set(prev);
-      if (next.has(i)) next.delete(i);
-      else next.add(i);
-      return next;
-    });
 
   return (
     <div data-tk="accordion" {...rest}>

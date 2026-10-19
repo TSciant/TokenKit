@@ -11,7 +11,7 @@
 @layer components {
   :where([data-tk="toast-region"]) {
     z-index: 60;
-    inline-size: min(24rem, calc(100vi - var(--tk-space-5) * 2));
+    inline-size: min(var(--tk-measure-popover), calc(100vi - var(--tk-space-5) * 2));
   }
   :where([data-tk="toast-region"][data-placement="block-end"]) {
     position: fixed;

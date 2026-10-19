@@ -8,8 +8,8 @@
     padding: 0;
     border: none;
     background: transparent;
-    max-inline-size: min(92vw, 36rem);
-    width: min(92vw, 36rem);
+    max-inline-size: min(92vw, var(--tk-measure-dialog-md));
+    width: min(92vw, var(--tk-measure-dialog-md));
     color: inherit;
 
     /* Closed resting pose - animates to open via [open] + @starting-style. */
@@ -23,13 +23,13 @@
   }
 
   :where([data-tk="modal"][data-size="sm"]) {
-    max-inline-size: min(92vw, 24rem);
-    width: min(92vw, 24rem);
+    max-inline-size: min(92vw, var(--tk-measure-dialog-sm));
+    width: min(92vw, var(--tk-measure-dialog-sm));
   }
 
   :where([data-tk="modal"][data-size="lg"]) {
-    max-inline-size: min(94vw, 44rem);
-    width: min(94vw, 44rem);
+    max-inline-size: min(94vw, var(--tk-measure-dialog-lg));
+    width: min(94vw, var(--tk-measure-dialog-lg));
   }
 
   :where([data-tk="modal"][open]) {
@@ -82,16 +82,14 @@
     color: var(--tk-text-primary);
     border: 1px solid var(--tk-line-default);
     border-radius: var(--_radius);
-    box-shadow:
-      var(--tk-shadow-md),
-      0 24px 48px color-mix(in srgb, var(--tk-scrim-ink) 18%, transparent);
+    box-shadow: var(--tk-shadow-lg);
   }
 
   /* A panel on its own, in the page (ModalPanel in guidance and docs), takes
      the width its dialog would have given it. */
   :where(:not([data-tk="modal"]) > [data-tk="modal-panel"]) {
     inline-size: 100%;
-    max-inline-size: 36rem;
+    max-inline-size: var(--tk-measure-dialog-md);
     /* In the page it sits inside something, so it rounds by what it is
        given, never past its own radius. */
     --_radius: min(var(--tk-radius-xl), var(--tk-radius-nested, var(--tk-radius-xl)));
@@ -99,11 +97,11 @@
 
   /* Only a panel on its own carries a size; in a dialog the dialog does. */
   :where([data-tk="modal-panel"][data-size="sm"]) {
-    max-inline-size: 24rem;
+    max-inline-size: var(--tk-measure-dialog-sm);
   }
 
   :where([data-tk="modal-panel"][data-size="lg"]) {
-    max-inline-size: 44rem;
+    max-inline-size: var(--tk-measure-dialog-lg);
   }
 
   :where([data-tk="modal-panel"] > *) {

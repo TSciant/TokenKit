@@ -37,6 +37,8 @@ export interface ProfileHeaderProps extends Omit<HTMLAttributes<HTMLElement>, "r
   /** A way back to the list they came from ("All staff"), above everything else. */
   back?: { label: string; href: string };
   /** The name's heading level: h1 on their own page (the default), h2 when the profile is a section of another. */
+  headingLevel?: 1 | 2;
+  /** @deprecated Use headingLevel; kept until the next minor release. */
   level?: 1 | 2;
 }
 
@@ -77,9 +79,11 @@ export function ProfileHeader({
   expertise,
   expertiseLabel = "Expertise",
   back,
-  level = 1,
+  headingLevel,
+  level: legacyLevel,
   ...rest
 }: ProfileHeaderProps) {
+  const level = headingLevel ?? legacyLevel ?? 1;
   const id = useId();
   const expertiseId = `${id}-expertise`;
   const hasContacts = Boolean(contacts?.email || contacts?.phone || contacts?.links?.length);

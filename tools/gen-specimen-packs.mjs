@@ -1035,6 +1035,7 @@ ${"keyword tag property string number comment punctuation".split(" ").map((k) =>
        wants shadow says so here and nothing else changes. */
     --tk-shadow-sm: none;
     --tk-shadow-md: none;
+    --tk-shadow-lg: none;
 
     /* motion — pace and curve are brand properties. These restate the kit's
        defaults; a brand that wants to feel quicker changes them here. */

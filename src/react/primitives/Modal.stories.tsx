@@ -357,7 +357,7 @@ export const UsingModals: Story = {
       <ModalRule title="Last resort: if it can be in the page, put it in the page">
         <GuidancePair>
           <Guidance tone="do" note="Tell people a thing worked, or didn't, where it happened, with an Alert in the page. They read it and carry on; nothing stands between them and the next thing they meant to do.">
-            <Alert status="success" title="Changes saved">Your profile is up to date.</Alert>
+            <Alert tone="success" title="Changes saved">Your profile is up to date.</Alert>
           </Guidance>
           <Guidance tone="dont" note="Don't put a success, an error or a notice in a modal. It takes over the screen to say something that needed no answer, and its only button is the one that makes it go away.">
             <ModalPanel size="sm" title="Success!" actions={[{ label: "OK" }]}>
@@ -414,7 +414,7 @@ export const UsingModals: Story = {
             </ModalPanel>
           </Guidance>
           <Guidance tone="dont" note="Don't close the modal and report the problem in the page. The reader has to open it again, find their place and type it all over.">
-            <Alert status="danger" title="Group not created">A group with that name already exists.</Alert>
+            <Alert tone="danger" title="Group not created">A group with that name already exists.</Alert>
           </Guidance>
         </GuidancePair>
       </ModalRule>

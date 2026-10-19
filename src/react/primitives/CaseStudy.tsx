@@ -19,6 +19,8 @@ export interface CaseStudyProps extends Omit<HTMLAttributes<HTMLElement>, "title
   /** A link to the whole story. */
   link?: { label: string; href: string };
   /** The title's heading level: h2 for a page's one case study, h3 for one in a section (the default). */
+  headingLevel?: 2 | 3;
+  /** @deprecated Use headingLevel; kept until the next minor release. */
   level?: 2 | 3;
 }
 
@@ -31,7 +33,8 @@ export interface CaseStudyProps extends Omit<HTMLAttributes<HTMLElement>, "title
  * its own. A grid of case-study teasers is a card collection of these, each
  * with its summary and link only.
  */
-export function CaseStudy({ client, title, summary, parts, results, link, level = 3, ...rest }: CaseStudyProps) {
+export function CaseStudy({ client, title, summary, parts, results, link, headingLevel, level: legacyLevel, ...rest }: CaseStudyProps) {
+  const level = headingLevel ?? legacyLevel ?? 3;
   return (
     <article data-tk="case-study" {...rest}>
       <div data-tk="case-study-head">

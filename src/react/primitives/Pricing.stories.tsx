@@ -15,11 +15,12 @@ const meta = {
   argTypes: {
     plans: { control: "object" },
     recommendedLabel: { control: "text" },
-    level: { control: "inline-radio", options: [3, 4] },
+    headingLevel: { control: "inline-radio", options: [3, 4] },
+    level: { control: false, table: { category: "Deprecated" }, description: "Use headingLevel." },
   },
   args: {
     recommendedLabel: "Recommended",
-    level: 3,
+    headingLevel: 3,
     plans: [
       {
         name: "Review",

@@ -92,7 +92,7 @@ export function SignIn({
       {intro ? <p data-tk="sign-in-intro">{intro}</p> : null}
       {notice}
       {error ? (
-        <Alert id={errorId} status="danger" title="You could not be signed in" tabIndex={-1}>
+        <Alert id={errorId} tone="danger" title="You could not be signed in" tabIndex={-1}>
           <p>{error}</p>
         </Alert>
       ) : null}

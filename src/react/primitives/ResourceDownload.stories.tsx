@@ -24,7 +24,8 @@ const meta = {
     download: { control: "boolean" },
     alternativeHref: { control: "text" },
     alternativeLabel: { control: "text" },
-    level: { control: "inline-radio", options: [2, 3, 4] },
+    headingLevel: { control: "inline-radio", options: [2, 3, 4] },
+    level: { control: false, table: { category: "Deprecated" }, description: "Use headingLevel." },
     locale: { control: "inline-radio", options: ["en-US", "en-GB", "fr-FR", "de-DE"] },
   },
   args: {
@@ -36,7 +37,7 @@ const meta = {
     date: "2026-06-30",
     description: "The method, the numbers by month, and what each service changed.",
     download: false,
-    level: 3,
+    headingLevel: 3,
     locale: "en-US",
   },
 } satisfies Meta<typeof ResourceDownload>;

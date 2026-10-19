@@ -75,7 +75,7 @@ export const SessionExpired: Story = {
   },
   args: {
     notice: (
-      <Alert status="info" title="You were signed out">
+      <Alert tone="info" title="You were signed out">
         <p>You were signed out after 30 minutes without activity, to keep your account safe.</p>
       </Alert>
     ),
