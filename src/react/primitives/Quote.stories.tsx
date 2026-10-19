@@ -102,3 +102,16 @@ export const Testimonials: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma Quote laid over this one: the plain quote with its name, role and organisation, 560 wide." } },
+    onion: { component: "Quote", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 560 }}>
+      <Quote {...args} />
+    </div>
+  ),
+};

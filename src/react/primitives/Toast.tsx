@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type HTMLAttributes, type ReactNode } from "react";
-import { Icon, type IconName } from "./Icon";
+import { Icon } from "./Icon";
+import { STATUS_ICON } from "./status-icon";
 
 export type ToastTone = "info" | "success" | "warning" | "danger";
 
@@ -33,7 +34,6 @@ export interface ToastRegionProps extends Omit<HTMLAttributes<HTMLElement>, "chi
   dismissLabel?: string;
 }
 
-const ICON: Record<ToastTone, IconName> = { info: "info", success: "success", warning: "warning", danger: "error" };
 const MIN = 6000;
 
 function Toast({ toast, onDismiss, dismissLabel }: { toast: ToastItem; onDismiss: (id: string) => void; dismissLabel: string }) {
@@ -62,7 +62,7 @@ function Toast({ toast, onDismiss, dismissLabel }: { toast: ToastItem; onDismiss
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setPaused(false);
       }}
     >
-      <Icon name={ICON[tone]} />
+      <Icon name={STATUS_ICON[tone]} />
       <div data-tk="toast-text">
         <p data-tk="toast-title">{toast.title}</p>
         {toast.message ? <div data-tk="toast-message">{toast.message}</div> : null}

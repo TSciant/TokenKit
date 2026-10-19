@@ -12,6 +12,9 @@ export type ButtonGroupAction = {
   disabled?: boolean;
   /** Why it is disabled; see Button. */
   reason?: ReactNode;
+  /** Working on it (a confirmation held open while the action runs); see Button. */
+  busy?: boolean;
+  busyLabel?: string;
 };
 
 export type ButtonGroupProps = Omit<HTMLAttributes<HTMLDivElement>, "onSelect"> & {
@@ -84,6 +87,8 @@ export function ButtonGroup({
           size={size}
           disabled={a.disabled}
           reason={a.reason}
+          busy={a.busy}
+          busyLabel={a.busyLabel}
         >
           {a.label}
         </Button>

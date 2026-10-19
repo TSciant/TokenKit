@@ -1,0 +1,161 @@
+/* ---------------------------------------------------------------------------
+   Loading — a spinner when what is coming is unknown, a skeleton when its
+   shape is known.
+
+   Spinner: an arc in the text's own colour at the text's own size (it sits
+   in whatever it is waiting for), turning at the spin slot. Its words are in
+   a polite status region; the arc is decoration. Under reduced motion it
+   stops as a whole ring at half strength: still there, no longer moving.
+
+   Skeleton: the shapes of the coming content, in the text colour at a tenth,
+   with rounded corners. A text line is 60% of the font size, centred in the
+   line it stands for, so a skeleton takes the room the text will. It breathes
+   at the pulse slot and stops under reduced motion. Hidden from screen
+   readers: the group says what is loading, once.
+
+   Button's busy arc uses the same turn (tk-spin, --tk-motion-spin).
+--------------------------------------------------------------------------- */
+
+@layer components {
+  @keyframes tk-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes tk-pulse {
+    50% {
+      opacity: 0.45;
+    }
+  }
+
+  :where([data-tk="spinner"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    color: inherit;
+  }
+
+  /* The visible words: the text's own colour and size, like the arc. */
+  :where([data-tk="spinner-label"]) {
+    color: inherit;
+    font-size: inherit;
+  }
+
+  :where([data-tk="spinner"][data-placement="center"]) {
+    display: flex;
+    justify-content: center;
+    inline-size: 100%;
+    padding-block: var(--tk-space-6);
+  }
+
+  :where([data-tk="spinner-arc"]) {
+    flex: none;
+    box-sizing: border-box;
+    inline-size: 1em;
+    block-size: 1em;
+    border: 0.125em solid currentColor;
+    border-inline-end-color: transparent;
+    border-radius: var(--tk-radius-full);
+    animation: tk-spin var(--tk-motion-spin) infinite;
+  }
+
+  :where([data-tk="spinner"][data-size="sm"] [data-tk="spinner-arc"]) {
+    inline-size: var(--tk-icon-sm);
+    block-size: var(--tk-icon-sm);
+  }
+  :where([data-tk="spinner"][data-size="md"] [data-tk="spinner-arc"]) {
+    inline-size: var(--tk-icon-md);
+    block-size: var(--tk-icon-md);
+  }
+  :where([data-tk="spinner"][data-size="lg"] [data-tk="spinner-arc"]) {
+    inline-size: var(--tk-icon-lg);
+    block-size: var(--tk-icon-lg);
+  }
+
+  :where([data-tk="skeleton-group"]) {
+    display: grid;
+    gap: var(--tk-space-3);
+  }
+
+  :where([data-tk="skeleton"]) {
+    --_fill: color-mix(in srgb, currentColor 10%, transparent);
+
+    display: block;
+    inline-size: var(--_w, 100%);
+    color: inherit;
+  }
+
+  /* Text keeps a line's room even before its lines are drawn. */
+  :where([data-tk="skeleton"][data-shape="text"]) {
+    min-block-size: 1lh;
+  }
+
+  :where([data-tk="skeleton-line"]),
+  :where([data-tk="skeleton"]:is([data-shape="block"], [data-shape="circle"])) {
+    background-color: var(--_fill);
+    animation: tk-pulse var(--tk-motion-pulse) infinite;
+  }
+
+  :where([data-tk="skeleton-line"]) {
+    display: block;
+    block-size: 0.6em;
+    margin-block: calc((1lh - 0.6em) / 2);
+    border-radius: var(--tk-radius-sm);
+  }
+
+  :where([data-tk="skeleton-line"]:last-child:not(:first-child)) {
+    inline-size: 60%;
+  }
+
+  :where([data-tk="skeleton"][data-shape="block"]) {
+    block-size: var(--_h, 6rem);
+    border-radius: min(var(--tk-radius-md), var(--tk-radius-nested));
+  }
+
+  :where([data-tk="skeleton"][data-shape="circle"]) {
+    flex: none;
+    inline-size: var(--_w, 2.5rem);
+    block-size: var(--_w, 2.5rem);
+    border-radius: var(--tk-radius-full);
+  }
+
+  :where([data-tk="skeleton"][data-animated="false"]) :where([data-tk="skeleton-line"]),
+  :where([data-tk="skeleton"][data-animated="false"]:is([data-shape="block"], [data-shape="circle"])) {
+    animation: none;
+  }
+
+  /* A tenth of the text colour vanishes in forced colours: the shapes keep an
+     outline instead. */
+  @media (forced-colors: active) {
+    :where([data-tk="skeleton-line"]),
+    :where([data-tk="skeleton"]:is([data-shape="block"], [data-shape="circle"])) {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+  }
+}
+
+/* The arc and the pulse are decor over words that carry the wait (G-81): they
+   stop when the reader pauses motion, as under reduced motion. */
+:root[data-motion="paused"] :where([data-tk="spinner-arc"]) {
+  animation: none;
+  border-inline-end-color: currentColor;
+  opacity: 0.5;
+}
+:root[data-motion="paused"] :where([data-tk="skeleton-line"]),
+:root[data-motion="paused"] :where([data-tk="skeleton"]:is([data-shape="block"], [data-shape="circle"])) {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-tk="spinner-arc"]) {
+    animation: none;
+    border-inline-end-color: currentColor;
+    opacity: 0.5;
+  }
+  :where([data-tk="skeleton-line"]),
+  :where([data-tk="skeleton"]:is([data-shape="block"], [data-shape="circle"])) {
+    animation: none;
+  }
+}

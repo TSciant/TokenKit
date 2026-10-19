@@ -1047,6 +1047,9 @@ ${"keyword tag property string number comment punctuation".split(" ").map((k) =>
     --tk-motion-size: var(--tk-duration-base) var(--tk-ease-standard);
     --tk-motion-enter: var(--tk-duration-base) var(--tk-ease-entrance);
     --tk-motion-exit: var(--tk-duration-fast) var(--tk-ease-exit);
+    --tk-motion-ambient: var(--tk-duration-ambient) linear;
+    --tk-motion-spin: var(--tk-duration-spin) linear;
+    --tk-motion-pulse: var(--tk-duration-pulse) var(--tk-ease-standard);
 
     /* --- posture ---------------------------------------------------------
        What this brand owns beyond colour.

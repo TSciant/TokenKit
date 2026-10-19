@@ -86,5 +86,27 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+
+    /* Decor does not play at all, not even the one short run above. */
+    [data-motion-class="decor"],
+    [data-motion-class="decor"]::before,
+    [data-motion-class="decor"]::after,
+    [data-motion-class="decor"] *,
+    [data-motion-class="decor"] *::before,
+    [data-motion-class="decor"] *::after {
+      animation: none !important;
+    }
+  }
+
+  /* Decor carries nothing, so it holds still when the reader pauses motion
+     (PauseMotion; G-81). Mark a loop data-motion-class="decor" and this stops
+     it, pseudo-elements included; tools/motion-gate.mjs checks that it does. */
+  :root[data-motion="paused"] [data-motion-class="decor"],
+  :root[data-motion="paused"] [data-motion-class="decor"]::before,
+  :root[data-motion="paused"] [data-motion-class="decor"]::after,
+  :root[data-motion="paused"] [data-motion-class="decor"] *,
+  :root[data-motion="paused"] [data-motion-class="decor"] *::before,
+  :root[data-motion="paused"] [data-motion-class="decor"] *::after {
+    animation-play-state: paused !important;
   }
 }

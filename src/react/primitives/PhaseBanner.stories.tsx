@@ -117,3 +117,16 @@ export const UsingPhaseBanners: Story = {
     </GuidancePair>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma PhaseBanner laid over this one: a prototype banner with a title and one line, 800 wide, not sticky." } },
+    onion: { component: "PhaseBanner", target: "root", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 800 }}>
+      <PhaseBanner {...args} />
+    </div>
+  ),
+};

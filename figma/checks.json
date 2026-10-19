@@ -1,16 +1,28 @@
 {
   "components": {
+    "Accordion": {
+      "skins": 1,
+      "mean": 1.72,
+      "worst": 1.72,
+      "checkedAt": "2026-10-18T19:35:38.145Z"
+    },
+    "Agenda": {
+      "skins": 1,
+      "mean": 1.59,
+      "worst": 1.59,
+      "checkedAt": "2026-10-18T20:02:38.377Z"
+    },
     "Alert": {
       "skins": 4,
-      "mean": 2.21,
-      "worst": 2.24,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "mean": 2.28,
+      "worst": 2.31,
+      "checkedAt": "2026-10-18T18:11:14.992Z"
     },
     "AlertAction": {
       "skins": 1,
-      "mean": 2.55,
-      "worst": 2.55,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "mean": 2.62,
+      "worst": 2.62,
+      "checkedAt": "2026-10-18T18:20:08.878Z"
     },
     "ApplyForm": {
       "skins": 1,
@@ -36,6 +48,12 @@
       "worst": 5.02,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "ArticleMeta": {
+      "skins": 1,
+      "mean": 12.96,
+      "worst": 12.96,
+      "checkedAt": "2026-10-18T19:57:37.887Z"
+    },
     "ArticlePage": {
       "skins": 1,
       "mean": 3.21,
@@ -54,23 +72,41 @@
       "worst": 10.69,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "BackLink": {
+      "skins": 1,
+      "mean": 9.49,
+      "worst": 9.49,
+      "checkedAt": "2026-10-18T21:00:54.017Z"
+    },
+    "Breadcrumbs": {
+      "skins": 1,
+      "mean": 13.61,
+      "worst": 13.61,
+      "checkedAt": "2026-10-18T19:33:24.943Z"
+    },
     "Button": {
       "skins": 24,
       "mean": 4.94,
       "worst": 14.01,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-19T00:35:19.781Z"
     },
     "ButtonGroup": {
       "skins": 1,
       "mean": 2.74,
       "worst": 2.74,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T22:10:25.932Z"
     },
     "ButtonReason": {
       "skins": 1,
       "mean": 2.49,
       "worst": 2.49,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-19T00:35:51.255Z"
+    },
+    "Callout": {
+      "skins": 1,
+      "mean": 6.87,
+      "worst": 6.87,
+      "checkedAt": "2026-10-18T01:08:11.741Z"
     },
     "Card": {
       "skins": 6,
@@ -84,6 +120,18 @@
       "worst": 4.15,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "CareCard": {
+      "skins": 1,
+      "mean": 3.43,
+      "worst": 3.43,
+      "checkedAt": "2026-10-18T22:10:27.595Z"
+    },
+    "CaseStudy": {
+      "skins": 1,
+      "mean": 6.58,
+      "worst": 6.58,
+      "checkedAt": "2026-10-18T20:04:15.386Z"
+    },
     "ChatPanel": {
       "skins": 1,
       "mean": 1.74,
@@ -94,13 +142,13 @@
       "skins": 12,
       "mean": 10.84,
       "worst": 14.51,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T19:46:40.906Z"
     },
     "ChipTone": {
       "skins": 4,
-      "mean": 8.23,
-      "worst": 9.16,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "mean": 8.47,
+      "worst": 9.34,
+      "checkedAt": "2026-10-18T18:12:53.298Z"
     },
     "ChoiceCard": {
       "skins": 1,
@@ -120,11 +168,29 @@
       "worst": 2.13,
       "checkedAt": "2026-10-17T19:17:12.824Z"
     },
+    "Combobox": {
+      "skins": 1,
+      "mean": 1.81,
+      "worst": 1.81,
+      "checkedAt": "2026-10-18T21:10:30.334Z"
+    },
     "ContactCta": {
       "skins": 9,
       "mean": 6.92,
       "worst": 14.01,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "ContactDetails": {
+      "skins": 1,
+      "mean": 2.65,
+      "worst": 2.65,
+      "checkedAt": "2026-10-18T20:00:34.544Z"
+    },
+    "CookieConsent": {
+      "skins": 1,
+      "mean": 2.99,
+      "worst": 2.99,
+      "checkedAt": "2026-10-18T19:42:34.074Z"
     },
     "CtaBlocks": {
       "skins": 1,
@@ -132,11 +198,47 @@
       "worst": 1.27,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "DataTable": {
+      "skins": 1,
+      "mean": 1.87,
+      "worst": 1.87,
+      "checkedAt": "2026-10-18T19:40:45.595Z"
+    },
+    "DateInput": {
+      "skins": 1,
+      "mean": 1.67,
+      "worst": 1.67,
+      "checkedAt": "2026-10-18T11:29:16.885Z"
+    },
+    "DestructiveConfirm": {
+      "skins": 1,
+      "mean": 1.45,
+      "worst": 1.45,
+      "checkedAt": "2026-10-18T21:15:02.130Z"
+    },
     "Drawer": {
       "skins": 1,
       "mean": 1.21,
       "worst": 1.21,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "EmptyState": {
+      "skins": 1,
+      "mean": 2.5,
+      "worst": 2.5,
+      "checkedAt": "2026-10-18T21:04:16.444Z"
+    },
+    "ErrorPage": {
+      "skins": 1,
+      "mean": 2.15,
+      "worst": 2.15,
+      "checkedAt": "2026-10-18T21:04:19.706Z"
+    },
+    "ErrorSummary": {
+      "skins": 1,
+      "mean": 3.81,
+      "worst": 3.81,
+      "checkedAt": "2026-10-18T00:09:14.261Z"
     },
     "EventList": {
       "skins": 1,
@@ -172,37 +274,37 @@
       "skins": 9,
       "mean": 1.99,
       "worst": 7.33,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T01:20:36.157Z"
     },
     "FieldAffix": {
       "skins": 1,
       "mean": 1.48,
       "worst": 1.48,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T01:20:36.157Z"
     },
     "FieldCount": {
       "skins": 1,
       "mean": 1.33,
       "worst": 1.33,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T01:20:36.157Z"
     },
     "FieldPassword": {
       "skins": 1,
       "mean": 1.3,
       "worst": 1.3,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T01:20:36.157Z"
     },
     "FieldReadOnly": {
       "skins": 1,
       "mean": 2.29,
       "worst": 2.29,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T01:20:36.157Z"
     },
     "FieldWidths": {
       "skins": 1,
       "mean": 0.54,
       "worst": 0.54,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T01:20:36.157Z"
     },
     "Figure": {
       "skins": 5,
@@ -210,11 +312,23 @@
       "worst": 1.66,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "FileUpload": {
+      "skins": 1,
+      "mean": 3.97,
+      "worst": 3.97,
+      "checkedAt": "2026-10-18T21:10:32.007Z"
+    },
     "FilterBar": {
       "skins": 1,
       "mean": 2.83,
       "worst": 2.83,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "FloatingAction": {
+      "skins": 1,
+      "mean": 1.76,
+      "worst": 1.76,
+      "checkedAt": "2026-10-18T20:08:11.026Z"
     },
     "Gradient": {
       "skins": 19,
@@ -233,6 +347,12 @@
       "mean": 0.3,
       "worst": 0.4,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "Heading": {
+      "skins": 6,
+      "mean": 1.56,
+      "worst": 1.84,
+      "checkedAt": "2026-10-18T19:51:05.984Z"
     },
     "Hero": {
       "skins": 4,
@@ -258,17 +378,35 @@
       "worst": 15.96,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "IdentifierField": {
+      "skins": 1,
+      "mean": 1.38,
+      "worst": 1.38,
+      "checkedAt": "2026-10-18T21:10:28.637Z"
+    },
     "InlineForm": {
       "skins": 2,
       "mean": 2.62,
       "worst": 2.98,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "LanguageSwitcher": {
+      "skins": 1,
+      "mean": 7.9,
+      "worst": 7.9,
+      "checkedAt": "2026-10-18T20:59:37.452Z"
+    },
     "LeadForm": {
       "skins": 1,
       "mean": 4.86,
       "worst": 4.86,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "LinkList": {
+      "skins": 1,
+      "mean": 2,
+      "worst": 2,
+      "checkedAt": "2026-10-18T19:58:40.079Z"
     },
     "LogoLadder": {
       "skins": 6,
@@ -310,7 +448,7 @@
       "skins": 5,
       "mean": 4.31,
       "worst": 7.15,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T22:10:24.185Z"
     },
     "Meter": {
       "skins": 5,
@@ -322,13 +460,13 @@
       "skins": 3,
       "mean": 5.63,
       "worst": 6.94,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T21:14:27.705Z"
     },
     "ModalDescription": {
       "skins": 1,
       "mean": 3.15,
       "worst": 3.15,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T21:14:29.366Z"
     },
     "OnThisPage": {
       "skins": 1,
@@ -348,11 +486,29 @@
       "worst": 3.68,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "Panel": {
+      "skins": 1,
+      "mean": 3.52,
+      "worst": 3.52,
+      "checkedAt": "2026-10-18T11:29:16.885Z"
+    },
+    "PauseMotion": {
+      "skins": 1,
+      "mean": 10.37,
+      "worst": 10.37,
+      "checkedAt": "2026-10-19T00:35:25.555Z"
+    },
     "PeopleDirectory": {
       "skins": 1,
       "mean": 2.3,
       "worst": 2.3,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "PhaseBanner": {
+      "skins": 1,
+      "mean": 6.94,
+      "worst": 6.94,
+      "checkedAt": "2026-10-18T19:27:27.398Z"
     },
     "Plate": {
       "skins": 8,
@@ -360,11 +516,35 @@
       "worst": 1.74,
       "checkedAt": "2026-10-10T20:30:05.897Z"
     },
+    "Pricing": {
+      "skins": 1,
+      "mean": 4.62,
+      "worst": 4.62,
+      "checkedAt": "2026-10-18T20:07:04.008Z"
+    },
+    "ProfileHeader": {
+      "skins": 1,
+      "mean": 4.06,
+      "worst": 4.06,
+      "checkedAt": "2026-10-18T20:11:28.791Z"
+    },
     "ProofStrip": {
       "skins": 1,
       "mean": 3.63,
       "worst": 3.63,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "QuestionList": {
+      "skins": 1,
+      "mean": 2.22,
+      "worst": 2.22,
+      "checkedAt": "2026-10-18T20:01:33.340Z"
+    },
+    "Quote": {
+      "skins": 1,
+      "mean": 10.7,
+      "worst": 10.7,
+      "checkedAt": "2026-10-18T19:55:03.586Z"
     },
     "RailNav": {
       "skins": 1,
@@ -372,17 +552,35 @@
       "worst": 2.17,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "ReorderList": {
+      "skins": 1,
+      "mean": 1.39,
+      "worst": 1.39,
+      "checkedAt": "2026-10-18T21:10:33.652Z"
+    },
+    "ResourceDownload": {
+      "skins": 1,
+      "mean": 4.28,
+      "worst": 4.28,
+      "checkedAt": "2026-10-18T19:39:17.235Z"
+    },
+    "SaveStatus": {
+      "skins": 1,
+      "mean": 10.83,
+      "worst": 10.83,
+      "checkedAt": "2026-10-18T22:10:29.237Z"
+    },
     "ScenePricing": {
       "skins": 1,
       "mean": 2.97,
       "worst": 2.97,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T18:17:27.716Z"
     },
     "SceneSettings": {
       "skins": 1,
-      "mean": 2.54,
-      "worst": 2.54,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "mean": 2.74,
+      "worst": 2.74,
+      "checkedAt": "2026-10-18T18:17:29.524Z"
     },
     "Search": {
       "skins": 2,
@@ -395,6 +593,12 @@
       "mean": 1.76,
       "worst": 1.76,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "SectionHeading": {
+      "skins": 1,
+      "mean": 3.33,
+      "worst": 3.33,
+      "checkedAt": "2026-10-18T20:00:36.204Z"
     },
     "SectionNav": {
       "skins": 1,
@@ -414,6 +618,12 @@
       "worst": 2.48,
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
+    "SessionTimeout": {
+      "skins": 1,
+      "mean": 5.23,
+      "worst": 5.23,
+      "checkedAt": "2026-10-18T22:10:56.962Z"
+    },
     "Shell": {
       "skins": 5,
       "mean": 0.11,
@@ -424,7 +634,7 @@
       "skins": 1,
       "mean": 0.07,
       "worst": 0.07,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "checkedAt": "2026-10-18T18:17:25.925Z"
     },
     "SignIn": {
       "skins": 1,
@@ -442,13 +652,25 @@
       "skins": 4,
       "mean": 2.76,
       "worst": 4.93,
-      "checkedAt": "2026-10-17T22:30:06.100Z"
+      "checkedAt": "2026-10-18T00:10:28.766Z"
+    },
+    "Skeleton": {
+      "skins": 1,
+      "mean": 0.39,
+      "worst": 0.39,
+      "checkedAt": "2026-10-19T00:35:23.907Z"
     },
     "SkipLink": {
       "skins": 1,
       "mean": 6.55,
       "worst": 6.55,
       "checkedAt": "2026-10-10T01:59:48.374Z"
+    },
+    "Spinner": {
+      "skins": 1,
+      "mean": 7.4,
+      "worst": 7.4,
+      "checkedAt": "2026-10-19T00:35:21.839Z"
     },
     "Steps": {
       "skins": 1,
@@ -474,11 +696,17 @@
       "worst": 3.74,
       "checkedAt": "2026-10-17T19:05:28.500Z"
     },
+    "Tabs": {
+      "skins": 1,
+      "mean": 2.43,
+      "worst": 2.43,
+      "checkedAt": "2026-10-18T19:36:44.398Z"
+    },
     "Tachometer": {
       "skins": 2,
-      "mean": 1.45,
-      "worst": 2.89,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "mean": 5.66,
+      "worst": 6.89,
+      "checkedAt": "2026-10-19T00:34:59.668Z"
     },
     "TaskList": {
       "skins": 1,
@@ -514,7 +742,7 @@
       "skins": 1,
       "mean": 3.49,
       "worst": 3.49,
-      "checkedAt": "2026-10-17T19:05:28.500Z"
+      "checkedAt": "2026-10-18T18:18:12.373Z"
     },
     "Tooltip": {
       "skins": 1,
@@ -527,6 +755,12 @@
       "mean": 14.6,
       "worst": 14.6,
       "checkedAt": "2026-10-17T22:08:46.920Z"
+    },
+    "VideoPlayer": {
+      "skins": 1,
+      "mean": 0.41,
+      "worst": 0.41,
+      "checkedAt": "2026-10-18T19:45:39.911Z"
     }
   }
 }

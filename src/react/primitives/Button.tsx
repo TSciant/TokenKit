@@ -163,6 +163,7 @@ export function Button({
           {trail}
         </span>
       ) : null}
+      {busy ? <span data-tk="button-turn" data-motion-class="decor" aria-hidden="true" /> : null}
       {explains ? (
         /* aria-hidden keeps the reason out of the button's NAME (which is
            computed from its content); aria-describedby still reads it as the

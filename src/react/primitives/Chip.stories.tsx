@@ -115,20 +115,15 @@ export const StatusTones: Story = {
   ),
 };
 
-const TONE_ICON = { info: "calendar", success: "check", warning: "barChart", danger: "ban" } as const;
-
 /** A status chip per tone, for the Figma status chips to be laid over. */
 export const OnionSkinTone: Story = {
   name: "Onion skin: tones (Figma)",
   args: { tone: "warning", children: "Poll" },
   parameters: {
-    docs: { description: { story: "The Figma status chips laid over this one: tone in Controls picks the matching variant. Each carries its icon." } },
+    docs: { description: { story: "The Figma status chips laid over this one: tone in Controls picks the matching variant. Each carries its status icon by default (info, success, warning, error), as every toned chip now does; an explicit leading mark would replace it." } },
     onion: { component: "ChipTone", skin: (a: Record<string, unknown>) => `${(a.tone as string) ?? "info"}.png` },
   },
-  render: (args) => {
-    const tone = (args.tone ?? "info") as keyof typeof TONE_ICON;
-    return <Chip {...args} tone={tone} leading={<Icon name={TONE_ICON[tone] ?? "info"} size="sm" />} />;
-  },
+  render: (args) => <Chip {...args} tone={(args.tone ?? "info") as "info" | "success" | "warning" | "danger"} />,
 };
 
 export const OnionSkin: Story = {

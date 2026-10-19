@@ -1,4 +1,6 @@
 import type { HTMLAttributes, ReactNode } from "react";
+import { Icon } from "./Icon";
+import { STATUS_ICON } from "./status-icon";
 
 export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, "title" | "children"> {
   status?: "info" | "success" | "warning" | "danger";
@@ -12,9 +14,11 @@ export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"
    */
   action?: ReactNode;
   children?: ReactNode;
+  /** The status icon before the message (default true): status is never the boundary alone. */
+  statusIcon?: boolean;
 }
 
-export function Alert({ status, title, live, action, children, ...rest }: AlertProps) {
+export function Alert({ status, title, live, action, statusIcon = true, children, ...rest }: AlertProps) {
   return (
     <div
       {...rest}
@@ -23,6 +27,7 @@ export function Alert({ status, title, live, action, children, ...rest }: AlertP
       role={status === "danger" ? "alert" : live ? "status" : undefined}
       aria-live={live && status !== "danger" ? "polite" : undefined}
     >
+      {statusIcon ? <Icon name={STATUS_ICON[status ?? "info"]} /> : null}
       <div data-tk="alert-body">
         {title ? <p data-tk="alert-title">{title}</p> : null}
         {children}

@@ -147,6 +147,9 @@ if (foundationOut.length) out.push(`## Practice\n\n${foundationOut.join("\n")}`)
 
 /* Components, in the order the Figma file builds them. */
 const comps = [];
+/* A variant component reads the same stories as its parent (FieldCount, Field's): its Do and Don't are said
+   once, under the first, and pointed to after, so the file spends its budget on what is new. */
+const guidanceOwner = new Map();
 for (const [name, m] of Object.entries(meta.components)) {
   if (name.includes("/")) continue; // sub-components are covered by their parent
   const about = describe(m.source, name);
@@ -158,8 +161,12 @@ for (const [name, m] of Object.entries(meta.components)) {
   if (kind?.about) parts.push(`*Use for:* ${kind.about}.`, "");
   const pl = propsLine(kind);
   if (pl) parts.push(`*Properties:* ${pl}.`, "");
-  for (const x of g) parts.push(`- **${x.tone === "do" ? "Do" : "Don't"}:** ${x.note}`);
-  if (g.length) parts.push("");
+  const owner = g.length ? guidanceOwner.get(storyFile) : undefined;
+  if (owner) parts.push(`Do and Don't: as ${owner}.`, "");
+  else {
+    for (const x of g) parts.push(`- **${x.tone === "do" ? "Do" : "Don't"}:** ${x.note}`);
+    if (g.length) { parts.push(""); guidanceOwner.set(storyFile, name); }
+  }
   parts.push(`Figma: node \`${m.node}\`.`, "");
   comps.push(parts.join("\n"));
 }

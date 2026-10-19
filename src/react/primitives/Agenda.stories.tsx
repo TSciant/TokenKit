@@ -45,3 +45,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma Agenda laid over this one: four sessions with times, speakers, detail and slides, 720 wide." } },
+    onion: { component: "Agenda", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 720 }}>
+      <Agenda {...args} />
+    </div>
+  ),
+};

@@ -123,3 +123,16 @@ export const UnderAHeading: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma DataTable laid over this one: the sign-ups table (caption, four columns, five rows), 640 wide." } },
+    onion: { component: "DataTable", target: "root", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 640 }}>
+      <DataTable {...args} />
+    </div>
+  ),
+};

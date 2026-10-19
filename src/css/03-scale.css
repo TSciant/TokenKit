@@ -181,13 +181,20 @@
     --tk-target-comfortable: 44px;
 
     /* --- motion -----------------------------------------------------------
-       The raw material: three durations and three curves. A component never
+       The raw material: four durations and three curves. A component never
        names these directly, for the same reason it never names a hex — they
        are the ramp, not the contract.
        -------------------------------------------------------------------- */
     --tk-duration-fast: 120ms;
     --tk-duration-base: 200ms;
     --tk-duration-slow: 320ms;
+    /* For loops that run for seconds, not transitions: a sweep, an orbit, an
+       ambient drift. Always linear, always stopped under reduced motion. */
+    --tk-duration-ambient: 8s;
+    /* Loops that say "still working": a spinner turning, a skeleton breathing.
+       Short and steady, and stopped under reduced motion like the rest. */
+    --tk-duration-spin: 700ms;
+    --tk-duration-pulse: 1600ms;
     --tk-ease-standard: cubic-bezier(0.2, 0, 0, 1);
     --tk-ease-entrance: cubic-bezier(0, 0, 0, 1);
     --tk-ease-exit: cubic-bezier(0.3, 0, 1, 1);
@@ -221,6 +228,9 @@
     --tk-motion-size: var(--tk-duration-base) var(--tk-ease-standard);
     --tk-motion-enter: var(--tk-duration-base) var(--tk-ease-entrance);
     --tk-motion-exit: var(--tk-duration-fast) var(--tk-ease-exit);
+    --tk-motion-ambient: var(--tk-duration-ambient) linear;
+    --tk-motion-spin: var(--tk-duration-spin) linear;
+    --tk-motion-pulse: var(--tk-duration-pulse) var(--tk-ease-standard);
 
     /* --- elevation: expressed as line + shadow so a flat wireframe pack
            can zero the shadow and keep the boundary --------------------- */

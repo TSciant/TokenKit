@@ -95,3 +95,16 @@ export const NameAndRole: Story = {
     level: 2,
   },
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma ProfileHeader laid over this one: the full profile (portrait, details, contacts, bio and expertise), 800 wide." } },
+    onion: { component: "ProfileHeader", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 800 }}>
+      <ProfileHeader {...args} />
+    </div>
+  ),
+};

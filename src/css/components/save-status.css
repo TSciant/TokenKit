@@ -1,0 +1,37 @@
+/* ---------------------------------------------------------------------------
+   SaveStatus — "Saving…", then "Saved", beside what was changed.
+
+   Small secondary text with its mark: a turning arc while saving, a tick
+   once saved, then the time a step apart. Nothing moves in or out: the words
+   change in place.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="save-status"]) {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-1) var(--tk-space-2);
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="save-status-words"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-1);
+  }
+
+  :where([data-tk="save-status"][data-state="saved"] [data-tk="save-status-words"]) {
+    color: var(--tk-text-primary);
+  }
+
+  /* The time stays secondary whatever the words' state: it is outside the status region. */
+  :where([data-tk="save-status-time"]) {
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="save-status"][data-state="saving"] [data-tk="save-status-words"]) {
+    color: var(--tk-text-secondary);
+  }
+}

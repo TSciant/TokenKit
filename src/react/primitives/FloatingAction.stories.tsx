@@ -131,3 +131,16 @@ export const SideTab: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma FloatingAction laid over this one: the contained button with its icon and label, in a 320 box." } },
+    onion: { component: "FloatingAction", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 320 }}>
+      <FloatingAction {...args} />
+    </div>
+  ),
+};

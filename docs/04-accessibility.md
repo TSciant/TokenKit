@@ -9,7 +9,8 @@ property of this kit. Plan for manual work on the rest.
 ## What the kit gives you by construction
 
 - `:focus-visible` outline on everything, never removed, only replaced
-- `prefers-reduced-motion` honoured globally
+- `prefers-reduced-motion` honoured globally, and a page-wide pause
+  (`PauseMotion`) for readers whose device has no such setting
 - Root font size never overridden, so browser text settings work
 - `--tk-target-min` at 24px, applied by every interactive primitive
 - `--tk-line-strong` at ≥ 3:1 on control boundaries
@@ -30,6 +31,24 @@ and reads computed styles. It checks:
 - Translucent colours composited against what is actually behind them
 
 `npm run gate -- --zoom 200` re-runs with the root font size doubled.
+
+## Motion: data or decor (2.2.2)
+
+Every loop says which it is, because each conforms its own way.
+
+- **Decor** carries no information: a spinner's arc, a skeleton's pulse, a
+  dial's sweep. Mark it `data-motion-class="decor"` and `aria-hidden`; it
+  stops when the reader pauses motion and under reduced motion. The kit's
+  CSS stops any marked element; motion drawn in script reads
+  `useMotionPaused()`.
+- **Data** carries information: a ticker, a feed, a rolling number. Mark it
+  `data-motion-class="data"` and name a static equivalent with the same
+  words (`data-equivalent="#id"`). Show the equivalent by default, or give a
+  control (`aria-controls`) that puts it in place of the motion. Its live
+  region stays off while the motion runs.
+
+Motion that ends within five seconds of the page starting needs neither.
+`npm run motion` (and `npm run gates`) checks all of it in every story.
 
 ## What the gate does not check
 

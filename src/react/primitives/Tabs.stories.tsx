@@ -69,3 +69,16 @@ export const ManyTabs: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma Tabs laid over this one: three tabs with the first selected, 560 wide." } },
+    onion: { component: "Tabs", target: "root", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 560 }}>
+      <Tabs {...args} />
+    </div>
+  ),
+};

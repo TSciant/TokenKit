@@ -68,6 +68,8 @@ const SCRIPT_ONLY = new Map([
   ["data-state", "written by script to reflect open/closed for the hook above; the CSS reads data-open"],
   ["data-scene-node", "a scene part's place in its scene, read by Scene and SceneLayers to light it; the CSS reads data-scene-active"],
   ["data-section-variant", "a library section's layout, named for layers panels and audits; its shells draw the layout, so the CSS has nothing to add"],
+  ["data-motion-class=data", "motion that carries information, read by tools/motion-gate.mjs; it conforms by its equivalent, not by a style (decor is the value the CSS stops)"],
+  ["data-equivalent", "the static equivalent a data loop names, read by tools/motion-gate.mjs"],
 ]);
 
 export function attributeCheck(argv = process.argv.slice(2)) {

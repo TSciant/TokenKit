@@ -52,3 +52,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma Pricing laid over this one: three plans with the middle one recommended, 960 wide." } },
+    onion: { component: "Pricing", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 960 }}>
+      <Pricing {...args} />
+    </div>
+  ),
+};

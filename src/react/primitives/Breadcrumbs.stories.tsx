@@ -71,3 +71,16 @@ export const Folded: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma Breadcrumbs laid over this one: three links and the current page, 640 wide, unfolded." } },
+    onion: { component: "Breadcrumbs", target: "root", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 640 }}>
+      <Breadcrumbs {...args} />
+    </div>
+  ),
+};

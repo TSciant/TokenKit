@@ -28,6 +28,10 @@
   }
 
   :where([data-tk="chat-log"]) {
+    /* A containing block for what sits inside it: visually-hidden text in a
+       scrolled log was positioned against the page and made it 30,000px tall
+       on a phone (exchange Room view, 2026-10-18). */
+    position: relative;
     display: grid;
     align-content: start;
     gap: var(--tk-space-4);

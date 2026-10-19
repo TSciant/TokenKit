@@ -1,0 +1,53 @@
+/* ---------------------------------------------------------------------------
+   ErrorSummary — the list of what went wrong, at the top of the page.
+
+   A box with a thick danger edge all round (a border, not a fill, so it
+   holds in forced colours and in a wireframe), the title in the heading
+   style, and each error a link in the danger ink, underlined and bold
+   enough to read as a list of things to fix. Focus is taken by the box
+   itself when it appears; its focus ring is the kit's, outside the edge.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="error-summary"]) {
+    padding: var(--tk-space-4) var(--tk-space-5);
+    border: var(--tk-space-1) solid var(--tk-status-danger-line);
+    border-radius: min(var(--tk-radius-md), var(--tk-radius-nested));
+    background: var(--tk-surface-raised);
+    color: var(--tk-text-primary);
+  }
+  :where([data-tk="error-summary"]:focus-visible),
+  :where([data-tk="error-summary"]:focus) {
+    outline: 2px solid var(--tk-focus-color);
+    outline-offset: 2px;
+  }
+  :where([data-tk="error-summary-title"]) {
+    margin: 0 0 var(--tk-space-3);
+    font-size: var(--tk-size-lg);
+    font-weight: var(--tk-weight-bold);
+    line-height: var(--tk-leading-snug);
+  }
+  :where([data-tk="error-summary-description"]) {
+    margin-block-end: var(--tk-space-3);
+  }
+  :where([data-tk="error-summary-description"]) > :where(p) {
+    margin: 0;
+  }
+  :where([data-tk="error-summary-list"]) {
+    display: grid;
+    gap: var(--tk-space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  :where([data-tk="error-summary-link"]) {
+    color: var(--tk-status-danger-text);
+    font-weight: var(--tk-weight-semibold);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  :where([data-tk="error-summary-link"]:hover) {
+    text-decoration-thickness: 2px;
+  }
+}

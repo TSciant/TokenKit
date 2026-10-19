@@ -94,3 +94,16 @@ export const Minimal: Story = {
     topics: undefined,
   },
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma ArticleMeta laid over this one: type, date, author, reading time and two topics, 640 wide." } },
+    onion: { component: "ArticleMeta", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 640 }}>
+      <ArticleMeta {...args} />
+    </div>
+  ),
+};

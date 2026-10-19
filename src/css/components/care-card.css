@@ -1,0 +1,82 @@
+/* ---------------------------------------------------------------------------
+   CareCard — what care to get, who to contact, how quickly.
+
+   A card whose heading is the call to action, with its level's mark. The
+   three levels differ in more than hue: non-urgent has a hairline and a band
+   at the start, urgent a heavy edge all round, emergency the inverse band
+   with a heavy edge. In the grey packs, the mark and the edge carry it.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="care-card"]) {
+    display: grid;
+    gap: var(--tk-space-3);
+    max-inline-size: var(--tk-measure);
+    padding: var(--tk-space-4) var(--tk-space-5);
+    border-radius: min(var(--tk-radius-md), var(--tk-radius-nested));
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="care-card"][data-level="non-urgent"]) {
+    border: 1px solid var(--tk-status-info-line);
+    border-inline-start-width: var(--tk-space-2);
+    background: var(--tk-status-info-surface);
+  }
+
+  :where([data-tk="care-card"][data-level="urgent"]) {
+    border: var(--tk-space-1) solid var(--tk-status-danger-line);
+    background: var(--tk-surface-raised);
+  }
+
+  :where([data-tk="care-card"][data-level="emergency"]) {
+    border: var(--tk-space-1) solid var(--tk-status-danger-line);
+    background: var(--tk-surface-inverse);
+    color: var(--tk-text-inverse);
+  }
+
+  :where([data-tk="care-card-title"]) {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--tk-space-2);
+    margin: 0;
+    font-size: var(--tk-size-lg);
+    font-weight: var(--tk-weight-bold);
+    line-height: var(--tk-leading-snug);
+  }
+
+  :where([data-tk="care-card-title"]) > :where([data-tk="icon"]) {
+    flex: none;
+    margin-block-start: 0.15em;
+  }
+
+  :where([data-tk="care-card-body"]) > :where(ul) {
+    margin: 0;
+    padding-inline-start: calc(var(--tk-space-4) + var(--tk-space-1));
+  }
+
+  :where([data-tk="care-card-body"]) > :where(ul) > :where(li + li) {
+    margin-block-start: var(--tk-space-1);
+  }
+
+  :where([data-tk="care-card-body"]) > :where(p) {
+    margin: var(--tk-space-3) 0 0;
+  }
+
+  :where([data-tk="care-card-action"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    margin-block-start: var(--tk-space-3);
+    color: inherit;
+    font-weight: var(--tk-weight-bold);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="care-card"]) {
+      border-color: CanvasText;
+    }
+  }
+}

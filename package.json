@@ -1,6 +1,6 @@
 {
   "name": "tokenkit",
-  "version": "0.3.24",
+  "version": "0.3.25",
   "private": true,
   "type": "module",
   "description": "A token-driven CSS design system. Primitives, layout shells, and a headless accessibility gate.",
@@ -29,6 +29,7 @@
     "lint:css": "node tools/lint-tokens.mjs",
     "check": "node tools/check.mjs",
     "gates": "node tools/browser-gates.mjs",
+    "motion": "node tools/motion-gate.mjs",
     "storybook": "node tools/storybook.mjs",
     "build-storybook": "storybook build",
     "serve": "node tools/serve.mjs",

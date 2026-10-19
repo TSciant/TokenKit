@@ -108,3 +108,16 @@ export const NotReady: Story = {
     transcriptHref: undefined,
   },
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma VideoPlayer laid over this one: the poster before play (title, duration, captions and the transcript link), 560 wide." } },
+    onion: { component: "VideoPlayer", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 560 }}>
+      <VideoPlayer {...args} />
+    </div>
+  ),
+};

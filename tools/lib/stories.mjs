@@ -18,6 +18,7 @@
  *   visit        (page, story, viewport) — called on each settled story
  *   unrendered   optional (story, viewport) — the story never rendered
  *   once         optional (page) — called a single time, on the first story
+ *   init         optional function — run in each page before any story script
  *   report       () → true when the check passed; prints its own findings
  */
 
@@ -118,14 +119,28 @@ export async function runChecks(checks) {
   const executablePath = process.env.TOKENKIT_CHROMIUM || undefined;
   const browser = await chromium.launch(executablePath ? { executablePath } : {});
 
+  /* A page with every check's init script installed, so it is there from the first line of each story. */
+  const newPage = async (options) => {
+    const page = await browser.newPage(options);
+    for (const c of checks) if (c.init) await page.addInitScript(c.init);
+    return page;
+  };
+
   try {
     for (const vp of Object.values(VIEWPORTS)) {
       const here = checks.filter((c) => c.visit && c.viewports?.includes(vp.name));
       if (!here.length) continue;
-      const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
+      let page = await newPage({ viewport: { width: vp.width, height: vp.height } });
+      let opened = 0;
       for (const story of entries) {
         const takers = here.filter((c) => !c.stories || c.stories(story));
         if (!takers.length) continue;
+        /* One renderer grows over hundreds of navigations and, past eight hundred or so stories, crashes:
+           a fresh page every 150 keeps the run inside it. */
+        if (++opened % 150 === 0) {
+          await page.close();
+          page = await newPage({ viewport: { width: vp.width, height: vp.height } });
+        }
         if (!(await open(page, base, story))) {
           for (const c of takers) c.unrendered?.(story, vp);
           continue;

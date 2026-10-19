@@ -169,11 +169,17 @@
     max-block-size: calc(100dvh - 2 * var(--tk-space-6));
   }
 
+  /* The body scrolls, and a scroller clips: a field's focus ring at its edge
+     would be cut (found building DestructiveConfirm). It keeps room for the
+     ring on every side and pulls back by the same amount, so nothing moves. */
   :where([data-tk="modal-body"]) {
+    --_ring-room: calc(var(--tk-focus-offset) + var(--tk-focus-width));
     font-size: var(--tk-size-base);
     color: var(--tk-text-secondary);
     flex: 1 1 auto;
     min-block-size: 0;
+    margin: calc(-1 * var(--_ring-room));
+    padding: var(--_ring-room);
     overflow-y: auto;
     overscroll-behavior: contain;
   }

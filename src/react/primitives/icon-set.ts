@@ -14,7 +14,7 @@
  * a cascading weight is worth more here than the set with more glyphs and a
  * weight the cascade cannot reach.
  *
- * 221 glyphs, 15 groups. Curated rather than exhaustive: Lucide
+ * 222 glyphs, 15 groups. Curated rather than exhaustive: Lucide
  * ships roughly 1,500 and importing all of them would put every one in the
  * bundle to serve the handful a page uses. The groups below are the vocabulary
  * a marketing site, a catalogue and a form actually need, and adding to them
@@ -115,6 +115,7 @@ import {
   LuGlobe,
   LuGraduationCap,
   LuGrid3X3,
+  LuGripVertical,
   LuHammer,
   LuHandshake,
   LuHash,
@@ -300,6 +301,7 @@ export const icons = {
   maximize: LuMaximize2,
   minimize: LuMinimize2,
   move: LuMove,
+  grip: LuGripVertical,
   scissors: LuScissors,
 
   /* --- Status --- */
@@ -515,14 +517,14 @@ export const icons = {
 /**
  * The same names, grouped, for the catalogue.
  *
- * A flat list of 221 icons is a wall nobody reads. The groups are how
+ * A flat list of 222 icons is a wall nobody reads. The groups are how
  * somebody looking for "the one that means delivery" actually searches, and
  * they are declared here rather than in the story so the catalogue cannot
  * drift from the set it documents.
  */
 export const ICON_GROUPS: Record<string, readonly string[]> = {
   "Navigation": ["menu", "close", "search", "home", "arrowLeft", "arrowRight", "arrowUp", "arrowDown", "chevronLeft", "chevronRight", "chevronUp", "chevronDown", "chevronsRight", "externalLink", "cornerDownRight", "moveRight", "panelLeft"],
-  "Actions": ["plus", "minus", "check", "copy", "trash", "edit", "download", "upload", "share", "refresh", "undo", "redo", "save", "send", "filter", "sliders", "settings", "sort", "maximize", "minimize", "move", "scissors"],
+  "Actions": ["plus", "minus", "check", "copy", "trash", "edit", "download", "upload", "share", "refresh", "undo", "redo", "save", "send", "filter", "sliders", "settings", "sort", "maximize", "minimize", "move", "grip", "scissors"],
   "Status": ["alert", "info", "help", "success", "error", "warning", "ban", "loader", "shieldCheck", "badgeCheck", "flag", "bell", "bellOff", "sparkles", "zap"],
   "Media": ["play", "pause", "stop", "skipForward", "skipBack", "volume", "volumeOff", "mic", "micOff", "camera", "video", "image", "images", "headphones", "radio", "film", "subtitles"],
   "Files": ["fileText", "file", "files", "folder", "folderOpen", "archive", "clipboard", "book", "bookOpen", "newspaper", "notebook", "printer", "paperclip", "fileCheck", "fileDown", "scroll"],

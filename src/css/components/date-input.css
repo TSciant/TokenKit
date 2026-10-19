@@ -1,0 +1,51 @@
+/* ---------------------------------------------------------------------------
+   DateInput — a date someone already knows, in three short fields.
+
+   A fieldset without a frame, like ChoiceGroup: the legend in the field
+   label's style, its hint and error under it, then the parts in a row, each
+   with its own small label above a field sized to its answer (Field's
+   data-chars widths: two, two, four). The parts wrap under each other only
+   when the row cannot hold them. An error draws the danger rule down the
+   group's start edge, and the parts in error take the error border.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="date-input"]) {
+    display: grid;
+    gap: var(--tk-space-2);
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  /* A legend will not take a grid's gap, so it carries its own space. */
+  :where([data-tk="date-input"]) > :where(legend) {
+    float: inline-start;
+    inline-size: 100%;
+    margin-block-end: var(--tk-space-2);
+    padding: 0;
+  }
+  :where([data-tk="date-input"]) > :where(legend + *) {
+    clear: both;
+  }
+  :where([data-tk="date-input"][data-invalid]) {
+    padding-inline-start: var(--tk-space-4);
+    border-inline-start: var(--tk-space-1) solid var(--tk-status-danger-line);
+  }
+  :where([data-tk="date-input-parts"]) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tk-space-3) var(--tk-space-4);
+    margin-block-start: var(--tk-space-1);
+  }
+  :where([data-tk="date-input-part"]) {
+    display: grid;
+    gap: var(--tk-space-1);
+    justify-items: start;
+  }
+  :where([data-tk="date-input-label"]) {
+    color: var(--tk-text-primary);
+    font-size: var(--tk-size-sm);
+  }
+}

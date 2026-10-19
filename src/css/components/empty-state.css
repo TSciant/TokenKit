@@ -1,0 +1,88 @@
+/* ---------------------------------------------------------------------------
+   EmptyState — where content would be, why there is none, what to do.
+
+   One block against the start edge, at most the measure wide: the cause's
+   mark in secondary ink, the title as a heading, a sentence or two, then the
+   way on. A page-sized one has more room above and a larger title; a compact
+   one is a single sentence in secondary ink, with no heading, mark or button.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="empty-state"]) {
+    display: grid;
+    justify-items: start;
+    gap: var(--tk-space-3);
+    max-inline-size: var(--tk-measure);
+    padding-block: var(--tk-space-6);
+  }
+
+  :where([data-tk="empty-state"][data-size="page"]) {
+    padding-block: var(--tk-space-8);
+  }
+
+  :where([data-tk="empty-state"][data-size="compact"]) {
+    padding-block: var(--tk-space-3);
+  }
+
+  :where([data-tk="empty-state-mark"]) {
+    display: inline-flex;
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="empty-state-media"]) {
+    inline-size: min(100%, 16rem);
+  }
+
+  :where([data-tk="empty-state-title"]) {
+    margin: 0;
+    font-size: var(--tk-size-lg);
+    font-weight: var(--tk-weight-semibold);
+    line-height: var(--tk-leading-snug);
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="empty-state"][data-size="page"] [data-tk="empty-state-title"]) {
+    font-size: var(--tk-size-2xl);
+    line-height: var(--tk-leading-tight);
+  }
+
+  :where([data-tk="empty-state"][data-size="compact"] [data-tk="empty-state-title"]) {
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-normal);
+    line-height: var(--tk-leading-normal);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="empty-state-description"]) {
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="empty-state-description"]) > :where(p) {
+    margin: 0;
+  }
+
+  :where([data-tk="empty-state-reference"]) {
+    margin: 0;
+    font-family: var(--tk-font-mono);
+    font-size: var(--tk-size-xs);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="empty-state-actions"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-3) var(--tk-space-4);
+    margin-block-start: var(--tk-space-2);
+  }
+
+  :where([data-tk="empty-state-link"]) {
+    color: var(--tk-text-primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  :where([data-tk="empty-state-link"]:hover) {
+    text-decoration-thickness: 2px;
+  }
+}

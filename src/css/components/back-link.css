@@ -1,0 +1,54 @@
+/* ---------------------------------------------------------------------------
+   BackLink — one link back, at the top of the page.
+
+   Small, underlined, with a chevron drawn from two edges of a square (as
+   breadcrumbs draw theirs), pointing back: left, or right in a right-to-left
+   page. A button that has to post the form looks the same. Its inks are the
+   context's, so on an inverse band it turns with the band.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="back-link"]) {
+    --_mark: 0.4em;
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    min-block-size: var(--tk-target-min);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--tk-text-primary);
+    font: inherit;
+    font-size: var(--tk-size-sm);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+  }
+
+  :where([data-tk="back-link"])::before {
+    content: "";
+    flex: none;
+    inline-size: var(--_mark);
+    block-size: var(--_mark);
+    margin-inline-start: 0.15em;
+    border-block-start: 1.5px solid currentColor;
+    border-inline-start: 1.5px solid currentColor;
+    rotate: -45deg;
+  }
+
+  :where([data-tk="back-link"]:dir(rtl))::before {
+    rotate: 45deg;
+  }
+
+  :where([data-tk="back-link"]:hover) {
+    text-decoration-thickness: 2px;
+  }
+
+  :where([data-tk="back-link"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: var(--tk-focus-offset);
+  }
+}

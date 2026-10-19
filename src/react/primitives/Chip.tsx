@@ -3,6 +3,8 @@ import type {
   HTMLAttributes,
   ReactNode,
 } from "react";
+import { Icon } from "./Icon";
+import { STATUS_ICON } from "./status-icon";
 
 type ChipBase = {
   emphasis?: "default" | "strong" | "quiet";
@@ -19,6 +21,8 @@ type ChipBase = {
   pressed?: boolean;
   /** Leading mark — prefer a small Icon. */
   leading?: ReactNode;
+  /** A toned chip shows its status icon before the word (default true); false to drop it, or give your own with leading. */
+  statusIcon?: boolean;
   children?: ReactNode;
 };
 
@@ -38,21 +42,24 @@ export function Chip({
   interactive,
   pressed,
   leading,
+  statusIcon = true,
   children,
   ...rest
 }: ChipProps) {
+  /* A status is never colour alone: a toned chip carries its icon too, unless told not to. */
+  const mark = leading ?? (statusIcon && tone && tone !== "neutral" ? <Icon name={STATUS_ICON[tone]} size="sm" /> : null);
   const common = {
     "data-tk": "chip",
     "data-emphasis": emphasis === "default" ? undefined : emphasis,
     "data-tone": tone === "neutral" ? undefined : tone,
     "data-interactive": interactive ? "" : undefined,
     "data-pressed": pressed ? "" : undefined,
-    "data-leading": leading ? "" : undefined,
+    "data-leading": mark ? "" : undefined,
   } as const;
 
   const body = (
     <>
-      {leading ? <span data-tk="chip-leading">{leading}</span> : null}
+      {mark ? <span data-tk="chip-leading">{mark}</span> : null}
       <span data-tk="chip-label">{children}</span>
     </>
   );

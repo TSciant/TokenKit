@@ -53,3 +53,16 @@ export const OfficeCards: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma ContactDetails laid over this one: head office: address, phone, email, hours and directions, 480 wide." } },
+    onion: { component: "ContactDetails", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 480 }}>
+      <ContactDetails {...args} />
+    </div>
+  ),
+};

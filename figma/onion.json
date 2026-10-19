@@ -1085,6 +1085,451 @@
       "single": true,
       "target": "root",
       "doc": "The Figma Audio player (stopped at the start, 640 wide) laid over the same."
+    },
+    "ErrorSummary": {
+      "story": "04-primitives-76-error-summary--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Error summary (two errors, 480 wide, without the focus ring) laid over the same."
+    },
+    "Callout": {
+      "story": "04-primitives-77-callout--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Callout (the warning, 480 wide) laid over the same."
+    },
+    "DateInput": {
+      "story": "04-primitives-78-date-input--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Date input (the date of birth question, empty, 400 wide) laid over the same."
+    },
+    "Panel": {
+      "story": "04-primitives-79-panel--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Panel (the confirmation, 480 wide) laid over the same."
+    },
+    "PhaseBanner": {
+      "story": "04-primitives-42-phase-banner--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma PhaseBanner (prototype label, title and one line, 800 wide, unstuck) laid over the same."
+    },
+    "Breadcrumbs": {
+      "story": "04-primitives-59-breadcrumbs--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Breadcrumbs (three steps and the current page, 640 wide, unfolded) laid over the same. maxMean 14: a 21px strip that is almost all text, so the text antialiasing Figma cannot match dominates, and Figma rounds each auto-width text box up to a whole pixel, so the later steps drift by up to 1.8px. Geometry (chevron, underline offset) matches exactly.",
+      "maxMean": 14
+    },
+    "Accordion": {
+      "story": "04-primitives-61-accordion--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Accordion (three closed sections, 480 wide) laid over the same."
+    },
+    "Tabs": {
+      "story": "04-primitives-58-tabs--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma Tabs (three tabs, the first selected, and its agenda panel, 560 wide) laid over the same."
+    },
+    "ResourceDownload": {
+      "story": "04-primitives-60-resource-download--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma ResourceDownload (the PDF report: tile, title, format, size, length, date and a description, 560 wide) laid over the same."
+    },
+    "DataTable": {
+      "story": "04-primitives-52-table--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma DataTable (the sign-ups table: caption, four columns, five rows, 640 wide) laid over the same."
+    },
+    "CookieConsent": {
+      "story": "04-primitives-55-cookie-consent--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The Figma CookieConsent (contained in the page, before a choice, 640 wide) laid over the same."
+    },
+    "VideoPlayer": {
+      "story": "04-primitives-50-video-player--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma VideoPlayer (the poster before play: plate, label, play button, length and CC badges, and the transcript link, 560 wide) laid over the same."
+    },
+    "Heading": {
+      "story": "04-primitives-33-heading--onion-skin-heading",
+      "pattern": [
+        "level"
+      ],
+      "doc": "The Figma Heading, one variant per level (h1 to h6 in their text styles, 800 wide), laid over the same.",
+      "target": "root"
+    },
+    "SectionHeading": {
+      "story": "04-primitives-43-section-heading--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma SectionHeading (eyebrow, title, intro and the action, 800 wide) laid over the same."
+    },
+    "Quote": {
+      "story": "04-primitives-51-quote--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma Quote (plain: the quote with its name and role, the measure wide) laid over the same. maxMean 11: Figma sets the 20px quote on its 30px line about 0.7px lower than the code (pixel or percent line height alike), so every glyph edge differs; shifted up a pixel it scores 5.4, and the rule, padding and attribution match.",
+      "maxMean": 11
+    },
+    "ArticleMeta": {
+      "story": "04-primitives-53-article-meta--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma ArticleMeta (type, date, author, reading time and two topics, 640 wide plus its 4px edges) laid over the same. maxMean 14: a 26px strip that is almost all small text, so the text antialiasing Figma cannot match dominates, and Figma sets the date about 1.7px narrower than the code. Dots, chips and the underline match.",
+      "maxMean": 14
+    },
+    "LinkList": {
+      "story": "04-primitives-44-link-list--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma LinkList (six services in two columns under a title, 640 wide) laid over the same."
+    },
+    "ContactDetails": {
+      "story": "04-primitives-45-contact-details--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma ContactDetails (head office: address, phone, email, hours and directions, 480 wide) laid over the same."
+    },
+    "QuestionList": {
+      "story": "04-primitives-46-questions-and-answers--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma QuestionList (three questions and answers, 640 wide) laid over the same."
+    },
+    "Agenda": {
+      "story": "04-primitives-47-agenda--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma Agenda (four sessions with times, speakers, detail and slides, 720 wide) laid over the same."
+    },
+    "CaseStudy": {
+      "story": "04-primitives-48-case-study--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma CaseStudy (client, title, summary, three parts, three results and the link, 800 wide) laid over the same."
+    },
+    "Pricing": {
+      "story": "04-primitives-49-pricing--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma Pricing (three plans, the middle one recommended, 960 wide) laid over the same."
+    },
+    "FloatingAction": {
+      "story": "04-primitives-56-floating-action--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma FloatingAction (the round button with its icon, not extended) laid over the same."
+    },
+    "ProfileHeader": {
+      "story": "04-primitives-54-profile-header--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma ProfileHeader (the full profile: back link, portrait, name, role, facts, contacts, bio and expertise, 800 wide) laid over the same."
+    },
+    "BackLink": {
+      "story": "04-primitives-90-back-link--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma BackLink (Back with its chevron) laid over the same. maxMean 10: a 47 by 24 image that is almost all small text, where antialiasing Figma cannot match dominates; the chevron and underline land on the live rows.",
+      "maxMean": 10
+    },
+    "LanguageSwitcher": {
+      "story": "04-primitives-88-language-switcher--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma LanguageSwitcher (English current, Cymraeg) laid over the same."
+    },
+    "SaveStatus": {
+      "story": "04-primitives-91-save-status--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma SaveStatus (3 changes saved with its tick) laid over the same. maxMean 11: a 128 by 21 strip of small text, where Figma sets the digits about a pixel higher and antialiasing dominates; the tick matches within a third of a pixel.",
+      "maxMean": 11
+    },
+    "Spinner": {
+      "story": "04-primitives-81-loading--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma Spinner (the ring at rest and its words) laid over the same, photographed still.",
+      "still": true
+    },
+    "Skeleton": {
+      "story": "04-primitives-81-loading--onion-skin-skeleton",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma Skeleton (three people, a circle and two lines each, 400 wide) laid over the same, photographed still.",
+      "still": true
+    },
+    "EmptyState": {
+      "story": "04-primitives-85-empty-state--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma EmptyState (first use with its mark, title, description and both ways on) laid over the same."
+    },
+    "CareCard": {
+      "story": "04-primitives-93-care-card--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma CareCard, urgent level (three reasons), laid over the same."
+    },
+    "ErrorPage": {
+      "story": "04-primitives-87-error-page--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma ErrorPage (page not found, two lines and one way on) laid over the same."
+    },
+    "IdentifierField": {
+      "story": "04-primitives-80-identifier-field--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma IdentifierField (National Insurance number with its example, 480 wide) laid over the same."
+    },
+    "Combobox": {
+      "story": "04-primitives-86-combobox--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma Combobox, closed, with District of Columbia chosen, laid over the same."
+    },
+    "FileUpload": {
+      "story": "04-primitives-83-file-upload--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma FileUpload (drop zone, written hint, one uploaded file, 560 wide) laid over the same."
+    },
+    "ReorderList": {
+      "story": "04-primitives-92-reorder-list--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma ReorderList (five teams with grips and move buttons, 400 wide) laid over the same."
+    },
+    "DestructiveConfirm": {
+      "story": "04-primitives-84-destructive-confirm--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma DestructiveConfirm (high tier, open, name field focused) laid over the dialog."
+    },
+    "SessionTimeout": {
+      "story": "04-primitives-89-session-timeout--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma SessionTimeout (signed-in warning, two minutes left, with the answers line) laid over the dialog."
+    },
+    "PauseMotion": {
+      "story": "04-primitives-94-pause-motion--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "The Figma PauseMotion (running: quiet, small, the pause icon and Pause animations) laid over the same. maxMean 11: inherited from Button quiet sm, whose label Figma sets a pixel higher than live (9.01 on Button itself, 3.46 a pixel shifted; 4.54 shifted here); the icon matches.",
+      "maxMean": 11
     }
   }
 }

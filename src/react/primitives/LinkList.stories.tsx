@@ -61,3 +61,16 @@ export const UsingLinkLists: Story = {
     </GuidancePair>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma LinkList laid over this one: six services in two columns under a title, 640 wide." } },
+    onion: { component: "LinkList", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 640 }}>
+      <LinkList {...args} />
+    </div>
+  ),
+};

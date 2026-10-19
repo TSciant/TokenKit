@@ -56,3 +56,16 @@ export const UnderAHeading: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma Accordion laid over this one: three closed sections, 480 wide." } },
+    onion: { component: "Accordion", target: "root", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 480 }}>
+      <Accordion {...args} />
+    </div>
+  ),
+};

@@ -1,0 +1,50 @@
+/* ---------------------------------------------------------------------------
+   ErrorPage — a page missing, the service broken, or the service closed.
+
+   Plain and calm: the heading in the page title's style, the body at reading
+   measure in the text's own ink (never red: nothing here is the reader's
+   mistake), links underlined, at most one button. It sits in the page's
+   usual frame, so it brings no surface of its own.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="error-page"]) {
+    display: grid;
+    justify-items: start;
+    gap: var(--tk-space-4);
+    max-inline-size: var(--tk-measure);
+    padding-block: var(--tk-space-6);
+  }
+
+  :where([data-tk="error-page-title"]) {
+    margin: 0 0 var(--tk-space-2);
+  }
+
+  :where([data-tk="error-page-title"]:focus) {
+    outline: none;
+  }
+
+  :where([data-tk="error-page-body"]) {
+    margin: 0;
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="error-page-body"]) > :where(p) {
+    margin: 0;
+  }
+
+  :where([data-tk="error-page-body"]) > :where(p + p) {
+    margin-block-start: var(--tk-space-3);
+  }
+
+  :where([data-tk="error-page-body"] a, [data-tk="error-page-link"]) {
+    color: var(--tk-text-primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  :where([data-tk="error-page-search"]) {
+    inline-size: 100%;
+  }
+}

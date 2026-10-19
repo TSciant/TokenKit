@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.24. A token-driven design system: components draw only from
+token-kit 0.3.25. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -225,7 +225,8 @@ property of this kit. Plan for manual work on the rest.
 #### What the kit gives you by construction
 
 - `:focus-visible` outline on everything, never removed, only replaced
-- `prefers-reduced-motion` honoured globally
+- `prefers-reduced-motion` honoured globally, and a page-wide pause
+  (`PauseMotion`) for readers whose device has no such setting
 - Root font size never overridden, so browser text settings work
 - `--tk-target-min` at 24px, applied by every interactive primitive
 - `--tk-line-strong` at ≥ 3:1 on control boundaries
@@ -246,6 +247,24 @@ and reads computed styles. It checks:
 - Translucent colours composited against what is actually behind them
 
 `npm run gate -- --zoom 200` re-runs with the root font size doubled.
+
+#### Motion: data or decor (2.2.2)
+
+Every loop says which it is, because each conforms its own way.
+
+- **Decor** carries no information: a spinner's arc, a skeleton's pulse, a
+  dial's sweep. Mark it `data-motion-class="decor"` and `aria-hidden`; it
+  stops when the reader pauses motion and under reduced motion. The kit's
+  CSS stops any marked element; motion drawn in script reads
+  `useMotionPaused()`.
+- **Data** carries information: a ticker, a feed, a rolling number. Mark it
+  `data-motion-class="data"` and name a static equivalent with the same
+  words (`data-equivalent="#id"`). Show the equivalent by default, or give a
+  control (`aria-controls`) that puts it in place of the motion. Its live
+  region stays off while the motion runs.
+
+Motion that ends within five seconds of the page starting needs neither.
+`npm run motion` (and `npm run gates`) checks all of it in every story.
 
 #### What the gate does not check
 
@@ -398,7 +417,7 @@ Chip. Baseline is a non-interactive label. Progressive layers: interactive → r
 
 *Use for:* a small label: a tag, a status; interactive and pressed make it a filter.
 
-*Properties:* `emphasis`: `default` · `strong` · `quiet`; `tone`: `info` · `success` · `warning` · `neutral` · `danger`; `interactive`: flag; `pressed`: flag; `icon`: icon.
+*Properties:* `emphasis`: `default` · `strong` · `quiet`; `tone`: `info` · `success` · `warning` · `neutral` · `danger`; `interactive`: flag; `pressed`: flag; `icon`: icon; `statusIcon`: flag.
 
 Figma: node `37:393`.
 
@@ -435,7 +454,7 @@ Figma: node `38:88`.
 
 *Use for:* a message with a status.
 
-*Properties:* `status`: `info` · `success` · `warning` · `danger`; `title`: text.
+*Properties:* `status`: `info` · `success` · `warning` · `danger`; `title`: text; `statusIcon`: flag.
 
 - **Do:** Do it, say it's done, and offer Undo beside the message. One press puts it back.
 - **Don't:** Don't ask first for something that can be put back. A question before every removal teaches people to say yes without reading it.
@@ -457,7 +476,7 @@ Field. Baseline: labelled input. Progressive layers: hint → describedby; error
 
 *Use for:* a labelled input, textarea or select; chars sizes it to the answer; options are a select's choices.
 
-*Properties:* `label`: text; `hint`: text; `error`: text; `required`: flag; `optional`: flag; `control`: `input` · `select` · `textarea`; `chars`: `2` · `3` · `4` · `5` · `10` · `20` · `30`; `prefix`: text; `suffix`: text; `maxChars`: integer; `options`: list; `type`: `text` · `email` · `password` · `number` · `search` · `tel` · `url` · `date`; `readOnly`: flag.
+*Properties:* `label`: text; `hint`: text; `error`: text; `required`: flag; `optional`: flag; `control`: `input` · `select` · `textarea`; `chars`: `2` · `3` · `4` · `5` · `10` · `20` · `30`; `prefix`: text; `suffix`: text; `maxChars`: integer; `options`: list; `id`: text; `type`: `text` · `email` · `password` · `number` · `search` · `tel` · `url` · `date`; `readOnly`: flag.
 
 - **Do:** Every field has a visible label above it, short and in sentence case, with no colon. It is still there after someone has typed, which is when they check what they typed against what was asked.
 - **Don't:** Don't use the placeholder as the label. It vanishes on the first keystroke, leaving a filled box with no question; not every screen reader reads it; and its pale text usually fails contrast. This example has a hidden name so the page passes its checks, which a sighted reader never sees.
@@ -807,20 +826,7 @@ Figma: node `217:142`.
 
 ### ButtonReason
 
-- **Do:** Give each area (a form, a dialog, a card, a hero) at most one solid button: the thing most people came to do. The alternatives are outline or quiet. Not every area needs a solid button at all.
-- **Don't:** Don't make two actions solid because both matter. Two equal weights is no emphasis: the reader has to read both to find the one they want, which is the job emphasis was supposed to do for them.
-- **Do:** Start with a verb and name the result: Save changes, Send message, Add another address. A label someone can read on its own, without the form around it, is a label a screen-reader user can find in a list of buttons.
-- **Don't:** Don't use Submit, OK, Continue on its own or Click here. They describe the act of pressing, which the reader already knows, and not what pressing does, which is the only thing they need.
-- **Do:** When a dialog asks a question, label the buttons with its answer: Delete this project? is answered by Delete project and Keep project. The reader can act without re-reading the question.
-- **Don't:** Don't answer with Yes and No. Taken alone they mean nothing, and a reader who skimmed the question has a coin to toss.
-- **Do:** One to three words, written in sentence case. Casing is the pack's styling: an uppercase CTA (ArrowCta) is still written Save and continue, and the CSS does the rest, so the words stay right if the style changes.
-- **Don't:** Don't write a sentence on a button, and don't Title Case it. Long labels wrap or truncate in narrow places, and capitals at every word slow reading without adding emphasis.
-- **Do:** If it changes something here (saves, sends, opens a panel), it is a button. If it takes the reader somewhere, it is a link: give Button an href and it renders a real link, which shows its address, can be opened in a new tab and can be copied.
-- **Don't:** Don't navigate from a button's click handler. It looks the same and behaves worse: no address on hover, no new tab, no copy link, and a screen reader announces a button where there is a destination.
-- **Do:** Prefer leaving the button on and explaining what is missing when it is pressed. When the action really cannot happen yet, disable it with a reason: it stays reachable by keyboard and says why on focus and hover.
-- **Don't:** Don't disable a button and leave the reader to work out why. A grey button with no explanation is a dead end, and before this kit kept disabled buttons focusable, a keyboard user could not even find it.
-- **Do:** Use quiet danger for a destructive action that repeats (Remove beside each row) and save solid danger for the one confirmation that cannot be undone. The weight should match how final it is.
-- **Don't:** Don't put a solid danger button on every row. A page of loud red buttons trains people to stop seeing them, which is the opposite of what danger is for.
+Do and Don't: as Button.
 
 Figma: node `220:142`.
 
@@ -830,16 +836,7 @@ The top of a card: an eyebrow above the title, a subtitle under it, and one smal
 
 The action sits above a stretched title link, so a clickable card can still have its own menu, and a card with an action stops clipping its overflow so the menu can open past the card's edge.
 
-- **Do:** A card summarises one thing and leads to it: a title, a sentence or two, and the way in. The destination is a page; the card is the door.
-- **Don't:** Don't put the whole article in the card. A card that needs paragraphs or its own headings is a page squeezed into a box, and a grid of them is a wall to read.
-- **Do:** Make the title the link (CardTitle href). It is stretched over the card, so the whole card is the target, and the link is named by the title: a screen-reader user scanning a list of links hears where each one goes.
-- **Don't:** Don't add a Read more link. Every card then has a link with the same name, so the list of links is Read more, Read more, Read more, and the title, which says where it goes, is not a link at all.
-- **Do:** If the card is a link, anything else in it is a small, separate action (Save, a More menu), and it sits above the stretched link so it still works. If the card has several real actions, it is not a link: put the actions in the footer as buttons.
-- **Don't:** Don't wrap a card in a link and then put buttons inside it. A control inside a link is invalid, the browser has to guess which one was meant, and the link's name becomes every word on the card. (Not shown live, because the markup itself is the mistake.)
-- **Do:** Cards in a row share a shape: the same parts in the same order, so the eye compares content, not layout. A set should survive being reordered (or filtered) without any card looking out of place.
-- **Don't:** Don't mix shapes in one row: a picture on one card, a button on the next, three lines of text on a third. Every difference has to be read before the content can be, and the row stops reading as a set.
-- **Do:** CardTitle is a heading (h3 by default; set as to fit the page), so cards appear in a screen reader's list of headings under the section they belong to. Write it in sentence case, as you would say it.
-- **Don't:** Don't fake a title with bold text, and don't Title Case it. The bold text looks the same and is missing from the headings list; capitals on every word slow reading and add nothing.
+Do and Don't: as Card.
 
 Figma: node `222:150`.
 
@@ -853,103 +850,37 @@ Figma: node `224:1407`.
 
 ### FieldAffix
 
-- **Do:** Every field has a visible label above it, short and in sentence case, with no colon. It is still there after someone has typed, which is when they check what they typed against what was asked.
-- **Don't:** Don't use the placeholder as the label. It vanishes on the first keystroke, leaving a filled box with no question; not every screen reader reads it; and its pale text usually fails contrast. This example has a hidden name so the page passes its checks, which a sighted reader never sees.
-- **Do:** Use chars when the answer has a known length. A four-character box says a year is wanted before anyone reads the label twice.
-- **Don't:** Don't stretch a short answer across the page. A full-width box for a year reads as a request for more than a year, and the eye has to travel to find where to type.
-- **Do:** When most fields are required, mark the few that are optional, in words. The reader learns one exception instead of decoding a mark on every line.
-- **Don't:** Don't put an asterisk on every field. When everything is marked, the mark carries no information, and an asterisk on its own means nothing until someone finds the key.
-- **Do:** Put the error next to the field and write it as an instruction: what is wrong and what a right answer looks like. The reader can fix it without reading anything else.
-- **Don't:** Don't say Invalid input. It tells the reader they failed and not why, so they guess, resubmit, and fail again.
-- **Do:** If the reader needs to see a value they cannot change, make it read-only and say why. It stays readable at full contrast, reachable by keyboard, and is sent with the form.
-- **Don't:** Don't disable a field to show a value. Disabled text is faint by design, a keyboard cannot reach it, a screen reader may skip it, and the value is not submitted.
-- **Do:** Set type, autoComplete and inputMode. The browser fills what it already knows, a phone shows the right keyboard, and people who find typing hard type less. Leave paste alone, and leave the field empty unless there is a reason to pre-fill it.
-- **Don't:** Don't leave a phone number as plain text with no hints, and never block paste on a field (a confirm-your-email box most of all). It looks the same and works worse: no autofill, a letter keyboard on a phone, and a password manager that cannot help.
+Do and Don't: as Field.
 
 Figma: node `228:1393`.
 
 ### FieldPassword
 
-- **Do:** Every field has a visible label above it, short and in sentence case, with no colon. It is still there after someone has typed, which is when they check what they typed against what was asked.
-- **Don't:** Don't use the placeholder as the label. It vanishes on the first keystroke, leaving a filled box with no question; not every screen reader reads it; and its pale text usually fails contrast. This example has a hidden name so the page passes its checks, which a sighted reader never sees.
-- **Do:** Use chars when the answer has a known length. A four-character box says a year is wanted before anyone reads the label twice.
-- **Don't:** Don't stretch a short answer across the page. A full-width box for a year reads as a request for more than a year, and the eye has to travel to find where to type.
-- **Do:** When most fields are required, mark the few that are optional, in words. The reader learns one exception instead of decoding a mark on every line.
-- **Don't:** Don't put an asterisk on every field. When everything is marked, the mark carries no information, and an asterisk on its own means nothing until someone finds the key.
-- **Do:** Put the error next to the field and write it as an instruction: what is wrong and what a right answer looks like. The reader can fix it without reading anything else.
-- **Don't:** Don't say Invalid input. It tells the reader they failed and not why, so they guess, resubmit, and fail again.
-- **Do:** If the reader needs to see a value they cannot change, make it read-only and say why. It stays readable at full contrast, reachable by keyboard, and is sent with the form.
-- **Don't:** Don't disable a field to show a value. Disabled text is faint by design, a keyboard cannot reach it, a screen reader may skip it, and the value is not submitted.
-- **Do:** Set type, autoComplete and inputMode. The browser fills what it already knows, a phone shows the right keyboard, and people who find typing hard type less. Leave paste alone, and leave the field empty unless there is a reason to pre-fill it.
-- **Don't:** Don't leave a phone number as plain text with no hints, and never block paste on a field (a confirm-your-email box most of all). It looks the same and works worse: no autofill, a letter keyboard on a phone, and a password manager that cannot help.
+Do and Don't: as Field.
 
 Figma: node `229:1393`.
 
 ### FieldCount
 
-- **Do:** Every field has a visible label above it, short and in sentence case, with no colon. It is still there after someone has typed, which is when they check what they typed against what was asked.
-- **Don't:** Don't use the placeholder as the label. It vanishes on the first keystroke, leaving a filled box with no question; not every screen reader reads it; and its pale text usually fails contrast. This example has a hidden name so the page passes its checks, which a sighted reader never sees.
-- **Do:** Use chars when the answer has a known length. A four-character box says a year is wanted before anyone reads the label twice.
-- **Don't:** Don't stretch a short answer across the page. A full-width box for a year reads as a request for more than a year, and the eye has to travel to find where to type.
-- **Do:** When most fields are required, mark the few that are optional, in words. The reader learns one exception instead of decoding a mark on every line.
-- **Don't:** Don't put an asterisk on every field. When everything is marked, the mark carries no information, and an asterisk on its own means nothing until someone finds the key.
-- **Do:** Put the error next to the field and write it as an instruction: what is wrong and what a right answer looks like. The reader can fix it without reading anything else.
-- **Don't:** Don't say Invalid input. It tells the reader they failed and not why, so they guess, resubmit, and fail again.
-- **Do:** If the reader needs to see a value they cannot change, make it read-only and say why. It stays readable at full contrast, reachable by keyboard, and is sent with the form.
-- **Don't:** Don't disable a field to show a value. Disabled text is faint by design, a keyboard cannot reach it, a screen reader may skip it, and the value is not submitted.
-- **Do:** Set type, autoComplete and inputMode. The browser fills what it already knows, a phone shows the right keyboard, and people who find typing hard type less. Leave paste alone, and leave the field empty unless there is a reason to pre-fill it.
-- **Don't:** Don't leave a phone number as plain text with no hints, and never block paste on a field (a confirm-your-email box most of all). It looks the same and works worse: no autofill, a letter keyboard on a phone, and a password manager that cannot help.
+Do and Don't: as Field.
 
 Figma: node `230:1396`.
 
 ### ModalDescription
 
-- **Do:** Tell people a thing worked, or didn't, where it happened, with an Alert in the page. They read it and carry on; nothing stands between them and the next thing they meant to do.
-- **Don't:** Don't put a success, an error or a notice in a modal. It takes over the screen to say something that needed no answer, and its only button is the one that makes it go away.
-- **Do:** Open a modal because someone pressed something that asked for it. They know where it came from and what it is for, and focus goes back to that button when it closes.
-- **Don't:** Don't open one on its own: on load, on a timer, on the way out. It interrupts something the reader chose to do with something they didn't. The exceptions are the few that cannot wait, like a session about to end.
-- **Do:** Title the modal with the words of the button that opened it, and label the action with what it does. A reader who sees only the buttons still knows what they are agreeing to. Cancel first, the action last.
-- **Don't:** Don't ask Are you sure? and answer with Yes and No. The reader has to go back to the question to find out what Yes does, and the one who skims presses it.
-- **Do:** Keep a modal to one short task: a name, a choice, a confirmation. If it needs more than that, it needs a page.
-- **Don't:** Don't put steps, tabs or accordions in a modal. A wizard in a box has no back button and no address, and closing it by mistake loses every step at once. Use pages.
-- **Do:** When the answer is wrong, keep the modal open and put the message at the field. What was typed is still there to fix.
-- **Don't:** Don't close the modal and report the problem in the page. The reader has to open it again, find their place and type it all over.
-- **Do:** Close, Escape and Cancel all leave without changing anything behind the modal. Knowing they can back out is what lets people open it in the first place.
-- **Don't:** Don't take the way out away (dismissible={false}) to make someone answer a question they could skip. Keep it for the decision that has to be made, like a session about to end, and give it two actions that both close it.
+Do and Don't: as Modal.
 
 Figma: node `240:2219`.
 
 ### FieldWidths
 
-- **Do:** Every field has a visible label above it, short and in sentence case, with no colon. It is still there after someone has typed, which is when they check what they typed against what was asked.
-- **Don't:** Don't use the placeholder as the label. It vanishes on the first keystroke, leaving a filled box with no question; not every screen reader reads it; and its pale text usually fails contrast. This example has a hidden name so the page passes its checks, which a sighted reader never sees.
-- **Do:** Use chars when the answer has a known length. A four-character box says a year is wanted before anyone reads the label twice.
-- **Don't:** Don't stretch a short answer across the page. A full-width box for a year reads as a request for more than a year, and the eye has to travel to find where to type.
-- **Do:** When most fields are required, mark the few that are optional, in words. The reader learns one exception instead of decoding a mark on every line.
-- **Don't:** Don't put an asterisk on every field. When everything is marked, the mark carries no information, and an asterisk on its own means nothing until someone finds the key.
-- **Do:** Put the error next to the field and write it as an instruction: what is wrong and what a right answer looks like. The reader can fix it without reading anything else.
-- **Don't:** Don't say Invalid input. It tells the reader they failed and not why, so they guess, resubmit, and fail again.
-- **Do:** If the reader needs to see a value they cannot change, make it read-only and say why. It stays readable at full contrast, reachable by keyboard, and is sent with the form.
-- **Don't:** Don't disable a field to show a value. Disabled text is faint by design, a keyboard cannot reach it, a screen reader may skip it, and the value is not submitted.
-- **Do:** Set type, autoComplete and inputMode. The browser fills what it already knows, a phone shows the right keyboard, and people who find typing hard type less. Leave paste alone, and leave the field empty unless there is a reason to pre-fill it.
-- **Don't:** Don't leave a phone number as plain text with no hints, and never block paste on a field (a confirm-your-email box most of all). It looks the same and works worse: no autofill, a letter keyboard on a phone, and a password manager that cannot help.
+Do and Don't: as Field.
 
 Figma: node `241:144`.
 
 ### FieldReadOnly
 
-- **Do:** Every field has a visible label above it, short and in sentence case, with no colon. It is still there after someone has typed, which is when they check what they typed against what was asked.
-- **Don't:** Don't use the placeholder as the label. It vanishes on the first keystroke, leaving a filled box with no question; not every screen reader reads it; and its pale text usually fails contrast. This example has a hidden name so the page passes its checks, which a sighted reader never sees.
-- **Do:** Use chars when the answer has a known length. A four-character box says a year is wanted before anyone reads the label twice.
-- **Don't:** Don't stretch a short answer across the page. A full-width box for a year reads as a request for more than a year, and the eye has to travel to find where to type.
-- **Do:** When most fields are required, mark the few that are optional, in words. The reader learns one exception instead of decoding a mark on every line.
-- **Don't:** Don't put an asterisk on every field. When everything is marked, the mark carries no information, and an asterisk on its own means nothing until someone finds the key.
-- **Do:** Put the error next to the field and write it as an instruction: what is wrong and what a right answer looks like. The reader can fix it without reading anything else.
-- **Don't:** Don't say Invalid input. It tells the reader they failed and not why, so they guess, resubmit, and fail again.
-- **Do:** If the reader needs to see a value they cannot change, make it read-only and say why. It stays readable at full contrast, reachable by keyboard, and is sent with the form.
-- **Don't:** Don't disable a field to show a value. Disabled text is faint by design, a keyboard cannot reach it, a screen reader may skip it, and the value is not submitted.
-- **Do:** Set type, autoComplete and inputMode. The browser fills what it already knows, a phone shows the right keyboard, and people who find typing hard type less. Leave paste alone, and leave the field empty unless there is a reason to pre-fill it.
-- **Don't:** Don't leave a phone number as plain text with no hints, and never block paste on a field (a confirm-your-email box most of all). It looks the same and works worse: no autofill, a letter keyboard on a phone, and a password manager that cannot help.
+Do and Don't: as Field.
 
 Figma: node `242:2291`.
 
@@ -1008,8 +939,7 @@ Figma: node `311:1608`.
 
 ### AlertAction
 
-- **Do:** Do it, say it's done, and offer Undo beside the message. One press puts it back.
-- **Don't:** Don't ask first for something that can be put back. A question before every removal teaches people to say yes without reading it.
+Do and Don't: as Alert.
 
 Figma: node `311:1654`.
 
@@ -1120,3 +1050,346 @@ AudioPlayer — a clip or an episode, played on the page.
 A native audio element underneath, with the kit's own controls over it, so every control is a real button or slider a keyboard and a screen reader already know: play and pause, back and forward fifteen seconds, the position (arrow keys move it by the same fifteen), the time, the speed and mute. Volume is left to the device. It never plays by itself: nothing sounds until someone presses play. A transcript, when there is one, opens under the controls for anyone who would rather read or cannot hear.
 
 Figma: node `447:1839`.
+
+### ErrorSummary
+
+ErrorSummary — the list of what went wrong, at the top of the page.
+
+After a form is submitted with mistakes: a box above the page's heading titled "There is a problem", every error as a link to its field, focus on the box, and "Error: " at the start of the page's title. A link moves focus to the field and scrolls its label (or its group's legend) into view with it, so the reader sees the question and not just a box. Each message is worded exactly as the error beside its field: the summary repeats them, it does not replace them. Shown for a single error too.
+
+Figma: node `456:1864`.
+
+### Callout
+
+Callout — a block set apart from the body text.
+
+Two kinds, chosen by how much it matters. Inset text stands out with a thick rule down its edge and no fill: worth noticing, safe to miss. A warning is for what a reader must not miss: a short specific heading, the warning icon and a full border on the warning surface, so its shape says it as well as its colour. Both carry a hidden label, so a screen reader hears where the callout starts. Neither is an alert: a callout is part of the page's content, there when the page loads, never announced (a message about something that just happened is an Alert or a Toast).
+
+Figma: node `457:1864`.
+
+### DateInput
+
+DateInput — a date someone already knows, in three short fields.
+
+Day, month and year in a fieldset whose legend is the question, each with its own small label, sized to its answer (two, two and four characters). Text fields with a numeric keypad, never number fields (which round, step and scroll). Focus never jumps on by itself: a reader moves between them, so they can go back and correct one. An error is said once, under the hint, and borders only the parts in error. Ask for month and year alone when the exact day is unlikely to be known. For choosing a date from a calendar (booking, scheduling), a date picker, with typing still allowed.
+
+Figma: node `458:1867`.
+
+### Panel
+
+Panel — a page's one prominent message: done, or wait.
+
+A confirmation panel tells the reader a task is finished, with its reference large enough to note down; what happens next goes under it, on the page. An interruption panel stops a journey before a likely mistake, something serious that cannot be undone, or something important that was missed: the inverse surface, a heading that says it is an interruption, a little content, one way on and one way back. Use it sparingly; seen often, it stops being seen. Neither is announced as it loads: the heading carries it, which is why the heading has to say what is going on.
+
+Figma: node `461:1867`.
+
+### PhaseBanner
+
+PhaseBanner — a quiet strip above the site header saying what state the site is in (a prototype, a beta) and, optionally, where you are and one line of context.
+
+It sits above SiteHeader (SiteHeader's `banner`) and sticks to the top by default, so the caveat stays in view however far down a reader goes. It is a statement, not an alert: no colour of its own beyond the surface, and no close button, because the state it describes does not go away when someone dismisses it.
+
+- **Do:** Say what state the site is in, in a word, and what that means for the reader in one line: what is not real yet, or where feedback goes.
+- **Don't:** Don't use it for news or promotions. A strip that sometimes carries a sale teaches people to ignore it on the day it says the site is a prototype.
+
+Figma: node `468:1940`.
+
+### Breadcrumbs
+
+Breadcrumbs — where this page sits: the pages above it, each a link, from the top of the site down.
+
+Use for: sites more than two levels deep, where a reader may arrive from search and want to go up a level. Don't use for: the steps of a form (a trail is places, not progress), history (it is where the page is, not where the reader came from), or a site of one level.
+
+*Use for:* where the page sits: crumbs are the pages above it by name, from the top down; its text is this page's name, left out when the heading under it says the same.
+
+*Properties:* `crumbs`: list; `label`: text; `collapse`: flag.
+
+Figma: node `469:1946`.
+
+### Accordion
+
+Accordion — sections of one page that a reader opens one at a time, each behind its heading.
+
+Use for: a page of several sections where most readers want one or two (past years of an event, the parts of a long policy). Don't use for: questions and answers (use FAQ, which numbers them), content everyone needs (put it on the page; hiding it makes it harder to find), or switching between views of one thing (tabs).
+
+*Use for:* sections a reader opens one at a time, each behind its heading: each accordion-item child is one section; level is the headings' level.
+
+*Properties:* `level`: `2` · `3` · `4`.
+
+Figma: node `472:1972`.
+
+### Tabs
+
+Tabs — views of one thing, one at a time, chosen from a row of labels.
+
+Use for: parts of one subject that a reader looks at one by one and that are all worth a look (an event's agenda, speakers and recordings). Don't use for: going to another page (use section nav, which is links), the steps of a form (a reader must see them in order), or content a reader needs to compare side by side (put it on the page). If people need all of it, it is not tabs.
+
+*Use for:* views of one thing, one at a time: its text names the set (Event details); each tab child is one view, its text the tab's label and its children the panel.
+
+Figma: node `473:1977`.
+
+### ResourceDownload
+
+ResourceDownload — a file a reader can take away: a report, a slide deck, a recording. Its title is the link, and under it what the reader is about to get: the format, the size and how long it is.
+
+Use for: a document, deck, data file or recording offered as a file. Don't use for: a page (link to it), a list of files that differ only in format (one item, the formats in its line), or a button that only says "Download". A link whose words are "Download" names nothing; out of context, a screen reader's list of links reads "Download, Download, Download". The title is the link here so every one says what it is.
+
+Figma: node `474:1973`.
+
+### DataTable
+
+DataTable — data that is a table: rows of the same kind of thing, compared across the same columns. A real <table>, with a caption that names it, column headers, and optionally a column of row headers.
+
+For data only, never for layout. Figures line up (tabular numbers) and end-align in a column set to "end". On a container too narrow for it, the table scrolls sideways inside a region named by its caption, which takes keyboard focus so it can be scrolled without a mouse; the page itself never scrolls sideways. A list of key and value pairs is a description list instead, and a grid of cards is a collection.
+
+Figma: node `477:1990`.
+
+### CookieConsent
+
+CookieConsent — the banner that asks whether non-essential cookies may be set, before any are.
+
+A region named by its heading, with the message, a link to the cookie policy and three actions: Accept all, Reject non-essential, and Cookie settings. Accept and reject are the same variant and the same size, side by side, because they are equal answers to one question: a banner that makes yes a button and no a grey link is deciding for the reader, and in much of the world that is not consent. Settings is quieter; it is a third way in, not a third answer.
+
+- **Do:** Give accept and reject the same weight: one variant, one size, side by side. They are two answers to one question.
+- **Don't:** Don't make yes a button and no a link to a settings page. That decides for the reader, and where consent is the law it is not consent.
+
+Figma: node `478:2006`.
+
+### VideoPlayer
+
+VideoPlayer — a video shown as its poster until the viewer presses play.
+
+Nothing from a third party loads before that press: no player script, no iframe, no cookie, no request to YouTube or Vimeo. A page with three videos on it costs three pictures, and a reader who never presses play has told nobody they were there. Pressing play swaps the poster for the player in the same box at the same ratio (a native <video> for a self-hosted `src`; youtube-nocookie.com or Vimeo with do-not-track for an `embed`) and moves focus into it, so a keyboard user carries on where they pressed.
+
+Figma: node `480:2012`.
+
+### Heading
+
+A heading whose level and look are chosen separately. The level is structure; `text` is appearance. Writing the level to get a size (an h4 because it is small) breaks the outline every assistive technology reads.
+
+*Use for:* a heading outside a card; level is its place in the outline, look how it appears when that differs.
+
+*Properties:* `level`: `1` · `2` · `3` · `4` · `5` · `6`; `look`: `title` · `eyebrow` · `body` · `caption` · `small` · `display` · `heading-l` · `heading-m` · `heading-s` · `heading-xs` · `lead` · `metric`.
+
+Figma: node `482:2025`.
+
+### SectionHeading
+
+SectionHeading — the heading of one section of a page, with an optional eyebrow, a short introduction and a link to everything of its kind.
+
+It introduces the content set below it and owns none of it, so a page of sections reads as an outline: the page title once, then one of these per section. Not a page title (that is the page header's h1) and not a band of colour: the section it heads carries the surface.
+
+- **Do:** Keep the introduction to a sentence or two that says what the section holds. A reader decides from it whether to read on.
+- **Don't:** Don't set a heading on its own band of colour away from what it heads. Two regions read as two things; the heading belongs to its section.
+
+Figma: node `483:2013`.
+
+### Quote
+
+Quote — something someone said, and who said it.
+
+A figure holding the quotation (a blockquote) and its attribution (the figcaption: a name, then a role and organisation), so the two are read as one thing and the words are never separated from the person. The quotation marks are drawn by the CSS in the reader's language, not typed into the text, so the same words can be set as a plain quote, a pull quote or a testimonial without editing them.
+
+*Use for:* a quotation and who said it: its text is the words (no quotation marks), name, role and organisation the speaker; pull for an article, testimonial in a card.
+
+*Properties:* `name`: text; `role`: text; `organisation`: text; `variant`: `plain` · `pull` · `testimonial`.
+
+Figma: node `484:2018`.
+
+### ArticleMeta
+
+ArticleMeta — the line under an article's title: what it is, when it was published (and updated), who wrote it, how long it takes, and what it is about.
+
+One row that wraps, as a list, so a screen reader takes it a piece at a time. The pieces are parted by quiet dots drawn in CSS, which are shapes rather than characters: nothing is read aloud between them, and a dot that would start a wrapped line is clipped away. Dates are time elements with the ISO date in datetime. Not a place for actions: sharing and saving belong in their own row.
+
+Figma: node `486:2018`.
+
+### LinkList
+
+LinkList — links to other pages as a list of short labels: the pages under a section, related reading, quick links.
+
+Each row is a whole link with an arrow at its end, ruled off from the next, so a long list scans as a column of places to go. It sits in the content, not in a navigation landmark: the site's navigation is the header's and the rail's. When each link needs a picture or a paragraph, it is a card collection instead.
+
+- **Do:** Label each link with where it goes, in the words of the page it opens. The arrow says it is a link; the label says which.
+- **Don't:** Don't give every row its own 'Explore' button. Six buttons with one label are six identical links to a screen reader, and the row itself is already the link.
+
+Figma: node `488:2043`.
+
+### ContactDetails
+
+ContactDetails — how to reach someone: an address, a phone number, an email address, opening hours and a way to get there, each on its own line.
+
+Details to use, not a pitch: no heading of its own beyond a name, no button, and every number and address a real link (tel:, mailto:) so a phone dials and a mail client opens. Each line's icon is decoration; its kind is spoken as a word. An office card is this inside a card; a contact band with a button is a call to action.
+
+Figma: node `489:2080`.
+
+### QuestionList
+
+QuestionList — questions and their answers, all shown at once.
+
+Each question is a real heading, so a screen reader's heading list is the list of questions, and each answer follows it in full. Use it when the answers are short or most readers want several of them; when they are long and readers want one, Faq hides the rest behind a disclosure each.
+
+- **Do:** Write each question as a reader would ask it, and answer it in the first sentence. The rest of the answer is detail for those who want it.
+- **Don't:** Don't set questions as bold paragraphs. They look like headings and are not, so nobody can jump between them, and the page has no outline.
+
+Figma: node `490:2099`.
+
+### Agenda
+
+Agenda — one event's programme: its sessions in order, each with a time, a title, who leads it, a line on what it covers and one thing to take away.
+
+An ordered list, because the order is the point, with the times in a column of their own in figures that line up. Each session's action names the session for a screen reader ("Slides for Opening remarks"), since twelve links all called "Slides" are twelve identical links. A list of events, each its own date, is an event list instead.
+
+Figma: node `491:2124`.
+
+### CaseStudy
+
+CaseStudy — one piece of work told as a story: who it was for, what was wrong, what was done and what came of it.
+
+The parts are a description list (a label, then its paragraph), the results a row of figures, and the whole an article, because it stands on its own. A grid of case-study teasers is a card collection of these, each with its summary and link only.
+
+Figma: node `492:2147`.
+
+### Pricing
+
+Pricing — plans side by side: each a name, a price and what it is per, who it is for, what it includes and one action.
+
+A list of cards, one per plan, that wraps to as many columns as fit. The recommended plan says so in words above its name and gets the solid button; nothing about it depends on colour. Features are ticked lines, and a plan's action names the plan for a screen reader.
+
+Figma: node `493:2263`.
+
+### FloatingAction
+
+FloatingAction — one primary action that floats over the page: a round button in the corner, or a tab on the page's edge.
+
+For the one thing a reader should be able to do from anywhere on the page: start a chat, write a new message, get in touch. One per page, because a second is no longer the primary action, and never for something that belongs to one section (put that in the section). Material calls the round one a floating action button and the labelled one an extended FAB.
+
+Figma: node `494:2325`.
+
+### ProfileHeader
+
+ProfileHeader — the top of a person's own page: who they are, what they do and where, how to reach them, a few paragraphs about them and what they know about.
+
+The name is the page's heading, with any letters after it in a lighter weight. The portrait sits in a narrow column beside the details when the container has room, and above them, smaller, when it does not; that is a container query, so a profile in a sidebar stacks while one on a page sits side by side. Email and phone are real links (mailto:, tel:), and every icon is decoration with its kind spoken as a word. A grid of people is a card collection, each card a name, a role and a link to this.
+
+Figma: node `496:2337`.
+
+### BackLink
+
+BackLink — one link back to the previous page of a journey, at the top.
+
+A chevron and "Back" (or "Go back to [page]" where Back would not be clear). Put it at the top of the page before `<main>`, so the skip link passes over it, and not inside a nav. A real address that works without JavaScript, never `history.back()`; a button only when going back has to send the form (`as="button"`, with the form's name and value). Back takes them to the page as they left it. Not with breadcrumbs, not on content pages, and not beside other links or buttons. On a dark band, inside the inverse context.
+
+Figma: node `497:2364`.
+
+### LanguageSwitcher
+
+LanguageSwitcher — the same page in another language.
+
+Links, each in its own language's name and marked with its language, so a reader who knows none of the page's language still finds theirs, and a screen reader says it in the right voice. The page's own language is shown as the current one. Past a few, the rest move behind a menu. Put it in the same place on every page; it goes to the same page, keeps what was typed, and translates nothing. Only offer a language the service is fully written in.
+
+Figma: node `497:2368`.
+
+### SaveStatus
+
+SaveStatus — "Saving…", then "Saved", beside what was changed.
+
+For saving that happens by itself (as you type, or on each change): a quiet line next to the edited content, not a toast, that says one thing and then the next instead of stacking ("3 changes saved"). A polite status region, so a screen reader hears each state once; the time sits outside it. A failed save is not this: a danger Alert with Retry that stays until it saves. A manual Save button says it is working itself (Button busy).
+
+Figma: node `497:2373`.
+
+### Spinner
+
+Spinner — something is coming, and it is not known what it looks like.
+
+An arc in the text's colour at the text's size, with its words in one polite status region; focus stays where the reader put it. When the coming content's shape is known, use a Skeleton instead; inside a button, Button's `busy`. One spinner talks at a time: give the others `decorative`. For a long wait, say how long or show progress, not a spinner.
+
+Figma: node `497:2382`.
+
+### Skeleton
+
+Skeleton — the shape of what is coming, while it comes.
+
+Shapes that stand for the content (a line for text, a circle for an avatar, a block for an image), in the text colour at a tenth. Hidden from screen readers: put them in a SkeletonGroup, which says what is loading. Not with a spinner, and not for toasts, menus or dialogs.
+
+Figma: node `502:2367`.
+
+### EmptyState
+
+EmptyState — where content would be, why there is none, and what to do.
+
+It replaces what is empty (the table, headers and all), so a screen reader does not read an empty table first. A real heading at its place in the outline, a sentence or two, and at most two ways on. Left-aligned as one block. Its mark and any picture are decoration. Not while loading (that is a Spinner or a Skeleton), and not for an error that needs action now (an Alert).
+
+Figma: node `502:2383`.
+
+### CareCard
+
+CareCard — what care to get, who to contact and how quickly.
+
+Three levels, told apart by the words in the heading (hidden, but read first: "Urgent advice: Call 111 if:"), by the mark and by the edge, not by colour alone. The heading is one call to action; the body is a bulleted list of when. Order cards by how likely and how serious. An emergency card may carry one action link and no other links. Built from one source, the NHS service manual's care cards, and saying so: use it for care advice, not for warnings (a Callout) or in a question page.
+
+Figma: node `502:2458`.
+
+### ErrorPage
+
+ErrorPage — the page that says a page is missing, the service is broken or the service is closed, and what to do.
+
+Inside the site's usual header and footer, without breadcrumbs: the heading in plain words, a short body, what happened to their answers, how to get help, and at most one way on. No error code, no jargon ("404", "bad request"), no humour ("oops"), no red, and no blame. The server still sends the real status. Not for a form's validation errors (ErrorSummary) or for planned downtime while the service still works (an Alert).
+
+Figma: node `502:2459`.
+
+### IdentifierField
+
+IdentifierField — one input for a fixed-format reference: a National Insurance number, an NHS number, a tax or VAT reference, a sort code.
+
+A Field sized to the reference, with its full name as the label and a safe example as the hint. It takes the value however it is typed (spaces, dashes, lower case) and has no maxlength to cut a paste short: clean it with `normaliseIdentifier` before checking, and show it back with `formatIdentifier`. One input, never a box per group. Spellcheck is off; the keyboard is numeric only for references that are digits alone.
+
+Figma: node `507:2391`.
+
+### Combobox
+
+Combobox — type to narrow a long list, then choose.
+
+An editable combobox with a listbox (the APG pattern, list autocomplete, chosen by hand). Focus stays in the text box the whole time; the arrow keys move a highlight through the options (aria-activedescendant), Enter or a click chooses, Escape closes and then clears. Typing never replaces what was typed. The number of matches is said when typing pauses. Without allowCustom, leaving with text that is not an option puts back the last choice. No placeholder: the label and hint say what to type.
+
+Figma: node `507:2437`.
+
+### FileUpload
+
+FileUpload — choose files, see each by name with where it is, remove any.
+
+A native file input first: without JavaScript it is the browser's own. Once the page runs, a real button opens the picker (so speech control can press it), a box around it takes dropped files, and the chosen files are listed by name with their size, their status as an icon and a word, and a Remove button that names the file. A polite region says "2 of 3 files uploaded" and "File scan.heic removed". A file's error is also the field's error. The kit uploads nothing: `onAdd` gets the files, the caller checks them, sends them and keeps `files` up to date.
+
+Figma: node `507:2438`.
+
+### ReorderList
+
+ReorderList — put a short list in order by dragging, by keyboard, or with a button.
+
+Each item has a grip to drag it by, which is also a button: Space or Enter picks the item up, the arrows move it, Space or Enter puts it down, Escape puts it back. Each item also has Move up and Move down, so a single tap does it without dragging (WCAG 2.5.7). Every pick-up, move, drop and cancel is said, with the position. For quick reordering of a short list; not when the list is sorted by something (disable it and say so).
+
+Figma: node `507:2487`.
+
+### DestructiveConfirm
+
+DestructiveConfirm — a pause before an action that cannot be undone.
+
+An alert dialog: the title is a question, the consequence is read with it, Cancel comes first and takes focus, the action is the danger button in the title's words. A click outside does nothing; Escape and Cancel keep things as they were. For high severity the action stays unavailable until the thing's name is typed, and focus starts in that field. While the action runs the dialog stays open and says so; if it fails, the reason is shown here and nothing closes. Afterwards, go back to the list and confirm in a Toast. No Alert inside, and never a dialog from a dialog.
+
+Figma: node `509:2474`.
+
+### SessionTimeout
+
+SessionTimeout — warn before a session ends for inactivity, and let them stay without losing anything.
+
+Any activity restarts the clock. `warnBefore` seconds before the end, a dialog says when they will be signed out (or their answers deleted), with a button to stay that takes focus and a link to leave; Escape stays too. The time left is said every 15 seconds, then every second in the last 20. Staying calls `onExtend` (a keep-alive, no reload); the end calls `onTimeout`, which goes to a page saying what happened ("We signed you out", "For your security, we deleted your answers") with a way to start again. WCAG 2.2.1: a limit under 20 hours can be extended, with at least 20 seconds' notice.
+
+Figma: node `509:2513`.
+
+### PauseMotion
+
+PauseMotion — one button that pauses every loop on the page, and plays them again: spinners, skeletons, a busy button's turn, the tachometer, and any motion of the page's own marked `data-motion-class="decor"` (the kit's CSS stops it) or drawn in script that reads `useMotionPaused()`. Motion that carries information is not decor: it names a static equivalent instead (`data-motion-class="data"`, `data-equivalent`).
+
+Its words name the action ("Pause animations", then "Play animations") and change when it is pressed, so it carries no pressed state. Put it once, early in the page (the header's utilities), before the moving content; the choice is kept for the next page. When the device asks for reduced motion nothing loops, so it shows as paused, unavailable, and says why. WCAG 2.2.2: motion that starts on its own, lasts more than five seconds and sits beside other content can be paused.
+
+Figma: node `512:2561`.

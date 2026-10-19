@@ -14,6 +14,12 @@ export type MenuButtonItem = {
    * every item one or none, so the labels stay in a line.
    */
   icon?: IconName;
+  /** The label's own language, when it is not the page's (a language list: "Cymraeg" is lang="cy"). */
+  lang?: string;
+  /** The language of the page a link goes to. */
+  hreflang?: string;
+  /** Right-to-left labels (Arabic, Hebrew). */
+  dir?: "ltr" | "rtl";
 };
 
 export type MenuButtonProps = Omit<HTMLAttributes<HTMLDivElement>, "onSelect"> & {
@@ -124,7 +130,7 @@ export function MenuButton({
         {items.map((item) => (
           <li key={item.label}>
             {item.href ? (
-              <a data-tk="menu-button-item" href={item.href} aria-current={item.current ? "page" : undefined}>
+              <a data-tk="menu-button-item" href={item.href} aria-current={item.current ? "page" : undefined} lang={item.lang} hrefLang={item.hreflang} dir={item.dir}>
                 {item.icon ? <Icon name={item.icon} size="sm" aria-hidden="true" /> : null}
                 {item.label}
               </a>

@@ -1,0 +1,58 @@
+/* ---------------------------------------------------------------------------
+   LanguageSwitcher — the same page in another language.
+
+   A short row of names, each in its own language: links underlined, the
+   page's own language in semibold with no link, parted by a thin rule so a
+   row of single words still reads as separate choices. Small, in the line
+   it sits in (a utility bar, a header's actions, after a heading). On a dark
+   band it takes its inks from the inverse context.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="language-switcher"]) {
+    inline-size: fit-content;
+    max-inline-size: 100%;
+  }
+
+  :where([data-tk="language-switcher-list"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-1) 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-tk="language-switcher-list"]) > :where(li) {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  :where([data-tk="language-switcher-list"]) > :where(li + li)::before {
+    content: "";
+    inline-size: 1px;
+    block-size: 1em;
+    margin-inline: var(--tk-space-3);
+    background-color: var(--tk-line-default);
+  }
+
+  :where([data-tk="language-switcher-link"]) {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tk-target-min);
+    color: var(--tk-text-primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  :where([data-tk="language-switcher-link"]:hover) {
+    text-decoration-thickness: 2px;
+  }
+
+  :where([data-tk="language-switcher-current"]) {
+    color: var(--tk-text-primary);
+    font-weight: var(--tk-weight-semibold);
+  }
+}

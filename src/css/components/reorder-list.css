@@ -1,0 +1,92 @@
+/* ---------------------------------------------------------------------------
+   ReorderList — put a short list in order.
+
+   Rows between hairlines: the grip at the start (a move cursor), the item,
+   and Move up / Move down at the end. A picked-up row is drawn as lifted, a
+   raised surface with a strong edge, not a fainter copy. Where a dragged row
+   will land is a line, dashed while passing and solid where it would drop,
+   so the meaning holds without colour. Nothing animates.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="reorder"]) {
+    display: grid;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="reorder-list"]) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-block-start: 1px solid var(--tk-line-subtle);
+  }
+
+  :where([data-tk="reorder-item"]) {
+    display: flex;
+    align-items: center;
+    gap: var(--tk-space-2);
+    padding: var(--tk-space-1) var(--tk-space-1);
+    border-block-end: 1px solid var(--tk-line-subtle);
+    background-color: var(--tk-surface-default);
+  }
+
+  :where([data-tk="reorder-item"][data-grabbed]) {
+    position: relative;
+    z-index: 1;
+    border: 2px solid var(--tk-line-strong);
+    border-radius: min(var(--tk-radius-md), var(--tk-radius-nested));
+    background-color: var(--tk-surface-raised);
+    box-shadow: var(--tk-shadow-md);
+  }
+
+  :where([data-tk="reorder-item"][data-over]) {
+    box-shadow: inset 0 2px 0 var(--tk-line-strong);
+  }
+
+  :where([data-tk="reorder-grip"]) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    inline-size: var(--tk-target-min);
+    block-size: var(--tk-target-min);
+    padding: 0;
+    border: 0;
+    border-radius: min(var(--tk-radius-sm), var(--tk-radius-nested));
+    background: none;
+    color: var(--tk-text-secondary);
+    cursor: grab;
+  }
+
+  :where([data-tk="reorder-grip"][aria-pressed="true"]) {
+    color: var(--tk-text-primary);
+    cursor: grabbing;
+  }
+
+  :where([data-tk="reorder-grip"]:focus-visible) {
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: calc(var(--tk-focus-width) * -1);
+  }
+
+  :where([data-tk="reorder"][data-disabled] [data-tk="reorder-grip"]) {
+    color: var(--tk-text-disabled);
+    cursor: not-allowed;
+  }
+
+  :where([data-tk="reorder-label"]) {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="reorder-moves"]) {
+    display: inline-flex;
+    gap: var(--tk-space-1);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="reorder-item"][data-over]) {
+      outline: 2px solid Highlight;
+    }
+  }
+}

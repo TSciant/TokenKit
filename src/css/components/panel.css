@@ -1,0 +1,77 @@
+/* ---------------------------------------------------------------------------
+   Panel — a page's one prominent message: done, or wait.
+
+   Confirmation: the success surface inside a thick success edge, the
+   heading in the title style with the success icon, the reference set large
+   and heavy so it can be read out or copied. A box with an icon and a
+   heading that says what is done, not a colour alone.
+   Interruption: the inverse surface ([data-on="inverse"], so every ink,
+   link and button inside flips with the pack), full width, generous room,
+   the content on its measure, and its two actions in a row that wraps.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="panel"]) {
+    display: grid;
+    gap: var(--tk-space-4);
+    color: var(--tk-text-primary);
+  }
+  :where([data-tk="panel"][data-variant="confirmation"]) {
+    padding: var(--tk-space-6);
+    border: var(--tk-space-1) solid var(--tk-status-success-line);
+    border-radius: min(var(--tk-radius-lg), var(--tk-radius-nested));
+    background: var(--tk-status-success-surface);
+  }
+  :where([data-tk="panel"][data-variant="interruption"]) {
+    padding: var(--tk-space-7) var(--tk-space-6);
+    /* A border the pack has made a hairline on the dark ground: an edge for forced colours. */
+    border: 1px solid var(--tk-line-default);
+    border-radius: min(var(--tk-radius-lg), var(--tk-radius-nested));
+    background: var(--tk-surface-default);
+  }
+  :where([data-tk="panel-title"]) {
+    display: flex;
+    align-items: start;
+    gap: var(--tk-space-3);
+    margin: 0;
+    font-size: var(--tk-size-title);
+    line-height: var(--tk-leading-tight);
+  }
+  /* The icon at the title's own size, so it reads as part of the heading. */
+  /* One attribute of specificity, so this beats icon.css (imported later) whatever the order. */
+  :where([data-tk="panel-title"]) > [data-tk="icon"] {
+    flex: none;
+    inline-size: 0.85em;
+    block-size: 0.85em;
+    margin-block-start: 0.1em;
+    color: var(--tk-status-success-text);
+  }
+  :where([data-tk="panel-reference-line"]) {
+    margin: 0;
+    font-size: var(--tk-size-md);
+  }
+  :where([data-tk="panel-reference"]) {
+    display: inline-block;
+    margin-block-start: var(--tk-space-1);
+    font-size: var(--tk-size-xl);
+    font-weight: var(--tk-weight-bold);
+    letter-spacing: var(--tk-tracking-wide);
+    font-variant-numeric: tabular-nums;
+  }
+  :where([data-tk="panel-body"]) {
+    max-inline-size: var(--tk-measure);
+  }
+  :where([data-tk="panel-body"]) > :where(p, ul, ol) {
+    margin: 0;
+  }
+  :where([data-tk="panel-body"]) > :where(p, ul, ol) + :where(p, ul, ol) {
+    margin-block-start: var(--tk-space-3);
+  }
+  :where([data-tk="panel-actions"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-3) var(--tk-space-5);
+    margin-block-start: var(--tk-space-2);
+  }
+}

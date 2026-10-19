@@ -1,0 +1,52 @@
+/* ---------------------------------------------------------------------------
+   Callout — a block set apart from the body text.
+
+   Inset: a thick rule down the start edge in the strong line, no fill, the
+   text indented from it. It reads as part of the page, set to one side.
+   Warning: the warning surface inside a full border in the warning line,
+   the heading with the warning icon. Different in shape from an Alert (a
+   fill with a 4px start edge), because it is not a status message: a reader
+   who cannot see the colours still sees a rule (inset) or a box with a
+   heading and an icon (warning). The text is the primary ink on both.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="callout"]) {
+    display: grid;
+    gap: var(--tk-space-2);
+    max-inline-size: var(--tk-measure);
+    color: var(--tk-text-primary);
+  }
+  :where([data-tk="callout"][data-variant="inset"]) {
+    padding: var(--tk-space-1) 0 var(--tk-space-1) var(--tk-space-4);
+    border-inline-start: var(--tk-space-2) solid var(--tk-line-strong);
+  }
+  :where([data-tk="callout"][data-variant="warning"]) {
+    padding: var(--tk-space-4) var(--tk-space-5);
+    border: 1px solid var(--tk-status-warning-line);
+    border-radius: min(var(--tk-radius-md), var(--tk-radius-nested));
+    background: var(--tk-status-warning-surface);
+  }
+  :where([data-tk="callout-title"]) {
+    display: flex;
+    align-items: start;
+    gap: var(--tk-space-2);
+    margin: 0;
+    font-size: var(--tk-size-md);
+    font-weight: var(--tk-weight-bold);
+    line-height: var(--tk-leading-snug);
+  }
+  /* The icon sits on the heading's first line, in the warning ink. */
+  :where([data-tk="callout-title"]) > :where([data-tk="icon"]) {
+    flex: none;
+    margin-block-start: 0.1em;
+    color: var(--tk-status-warning-text);
+  }
+  :where([data-tk="callout-body"]) > :where(p, ul, ol) {
+    margin: 0;
+  }
+  /* Between blocks only: the hidden label comes first and is not one. */
+  :where([data-tk="callout-body"]) > :where(p, ul, ol) + :where(p, ul, ol) {
+    margin-block-start: var(--tk-space-2);
+  }
+}

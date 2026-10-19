@@ -64,6 +64,11 @@ type Shared = {
    */
   maxChars?: number;
   options?: FieldOption[];
+  /**
+   * The control's id, for something that links to it: an ErrorSummary
+   * entry ("#email"), or a fragment in a URL. Generated when left out.
+   */
+  id?: string;
   children?: ReactNode;
 };
 
@@ -102,10 +107,12 @@ export function Field({
   reveal = true,
   maxChars,
   options,
+  id: idProp,
   children,
   ...rest
 }: FieldProps) {
-  const id = useId();
+  const autoId = useId();
+  const id = idProp ?? autoId;
   const hintId = hint ? `${id}-hint` : undefined;
   const errorId = error ? `${id}-error` : undefined;
   /* Character count. */

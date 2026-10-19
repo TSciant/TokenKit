@@ -133,3 +133,16 @@ export const UsingCookieConsent: Story = {
     </GuidancePair>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma CookieConsent laid over this one: the banner contained in the page, before a choice, 640 wide." } },
+    onion: { component: "CookieConsent", target: "root", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 640 }}>
+      <CookieConsent {...args} />
+    </div>
+  ),
+};

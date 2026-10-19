@@ -1,0 +1,139 @@
+/* ---------------------------------------------------------------------------
+   FileUpload — choose files, see each by name with where it is, remove any.
+
+   Field's label, hint and error, around a box. Without JavaScript the box
+   holds the browser's own file input. Once the page runs, the input is
+   hidden (still the form's, still the label's) and an outline Button opens
+   it, with a line saying what is chosen. As a drop zone the box has a dashed
+   edge; a file dragged over it makes the edge solid and heavier, a change of
+   line, not of colour, and nothing moves.
+
+   The files are a list: each row an icon, the name (the middle of a long one
+   goes, the extension stays), the size, the status as an icon and a word,
+   and Remove. Progress is a native bar under the row. A file's error is in
+   the danger ink under its row; the field's own error says it too.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="file-upload"]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tk-space-2);
+  }
+
+  :where([data-tk="file-upload-zone"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tk-space-2) var(--tk-space-3);
+  }
+
+  :where([data-tk="file-upload-zone"][data-dropzone]) {
+    padding: var(--tk-space-4);
+    border: 1px dashed var(--tk-line-strong);
+    border-radius: min(var(--tk-radius-md), var(--tk-radius-nested));
+  }
+
+  :where([data-tk="file-upload-zone"][data-dragging]) {
+    border-style: solid;
+    border-width: 2px;
+    padding: calc(var(--tk-space-4) - 1px);
+  }
+
+  :where([data-tk="file-upload"][data-invalid] [data-tk="file-upload-zone"][data-dropzone]) {
+    border-color: var(--tk-status-danger-line);
+  }
+
+  /* Hidden once a button stands in for it: still in the form and under the
+     label, never in the tab order twice. */
+  :where([data-tk="file-upload-input"]) {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  :where([data-tk="file-upload-status"]) {
+    font-size: var(--tk-size-sm);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="file-upload-list"]) {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-block-start: 1px solid var(--tk-line-subtle);
+  }
+
+  :where([data-tk="file-upload-file"]) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+    align-items: center;
+    gap: var(--tk-space-1) var(--tk-space-3);
+    padding-block: var(--tk-space-2);
+    border-block-end: 1px solid var(--tk-line-subtle);
+    font-size: var(--tk-size-sm);
+  }
+
+  :where([data-tk="file-upload-file"]) > :where([data-tk="icon"]) {
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="file-upload-name"]) {
+    overflow: hidden;
+    font-weight: var(--tk-weight-medium);
+    white-space: nowrap;
+  }
+
+  :where([data-tk="file-upload-size"]) {
+    color: var(--tk-text-secondary);
+    white-space: nowrap;
+  }
+
+  :where([data-tk="file-upload-state"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tk-space-1);
+    color: var(--tk-text-secondary);
+    white-space: nowrap;
+  }
+
+  /* Not yet the reader's: the name waits in secondary ink. Done: the status reads in primary. */
+  :where([data-tk="file-upload-file"][data-status="uploading"] [data-tk="file-upload-name"]) {
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="file-upload-file"][data-status="uploaded"] [data-tk="file-upload-state"]) {
+    color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="file-upload-file"][data-status="error"] [data-tk="file-upload-state"]) {
+    color: var(--tk-status-danger-text);
+    font-weight: var(--tk-weight-medium);
+  }
+
+  :where([data-tk="file-upload-progress"], [data-tk="file-upload-error"]) {
+    grid-column: 2 / -1;
+  }
+
+  :where([data-tk="file-upload-progress"]) {
+    inline-size: 100%;
+    block-size: var(--tk-space-1);
+    accent-color: var(--tk-text-primary);
+  }
+
+  :where([data-tk="file-upload-error"]) {
+    margin: 0;
+    color: var(--tk-status-danger-text);
+    font-weight: var(--tk-weight-medium);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="file-upload-zone"][data-dragging]) {
+      border-color: Highlight;
+    }
+  }
+}

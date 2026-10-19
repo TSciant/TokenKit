@@ -75,3 +75,16 @@ export const UsingSectionHeadings: Story = {
     </GuidancePair>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma SectionHeading laid over this one: eyebrow, title, a line of text and the action, 800 wide." } },
+    onion: { component: "SectionHeading", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 800 }}>
+      <SectionHeading {...args} />
+    </div>
+  ),
+};

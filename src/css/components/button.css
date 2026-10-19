@@ -284,22 +284,19 @@
     cursor: wait;
   }
 
-  :where([data-tk="button"][data-busy])::after {
-    content: "";
+  /* The turn: decor beside the busy words, hidden from assistive technology. */
+  :where([data-tk="button-turn"]) {
+    flex: none;
     inline-size: 0.85em;
     block-size: 0.85em;
     margin-inline-start: var(--tk-space-2);
     border: 2px solid currentColor;
     border-inline-end-color: transparent;
     border-radius: var(--tk-radius-full);
-    animation: tk-button-spin 0.7s linear infinite;
+    animation: tk-spin var(--tk-motion-spin) infinite;
   }
 
-  @keyframes tk-button-spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
+  /* The turn is the kit spinner's (loading.css: tk-spin). */
 
   /* A pressed toggle is a fill (outline, quiet) or an inset shadow (solid),
      and forced colours drop both. On takes the reader's selection colours
@@ -316,6 +313,14 @@
   }
 }
 
+/* The busy turn is decor over the busy words (G-81): it stops when the reader
+   pauses motion, as under reduced motion. */
+:root[data-motion="paused"] :where([data-tk="button-turn"]) {
+  animation: none;
+  border-inline-end-color: currentColor;
+  opacity: 0.5;
+}
+
 @media (prefers-reduced-motion: reduce) {
   :where([data-tk="button"]) {
     transition: none;
@@ -325,7 +330,7 @@
     transition: none;
     transform: none !important;
   }
-  :where([data-tk="button"][data-busy])::after {
+  :where([data-tk="button-turn"]) {
     animation: none;
     border-inline-end-color: currentColor;
     opacity: 0.5;

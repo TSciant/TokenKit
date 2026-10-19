@@ -63,6 +63,12 @@ export interface ModalProps
   dismissible?: boolean;
   /** Panel width. Default md. */
   size?: ModalSize;
+  /**
+   * Where focus goes on close when the opener is gone (the row that was just
+   * deleted, and its Delete button with it): the next thing to work on. Focus
+   * goes back to the opener whenever it is still on the page.
+   */
+  returnFocusTo?: () => HTMLElement | null;
 }
 
 /**
@@ -82,6 +88,7 @@ export function Modal({
   closeOnBackdrop,
   dismissible = true,
   size = "md",
+  returnFocusTo,
   ...rest
 }: ModalProps) {
   const hasFooter = Boolean(footer) || Boolean(actions?.length);
@@ -109,7 +116,8 @@ export function Modal({
     } else if (node.open) {
       node.close();
       const prev = opener.current;
-      if (prev instanceof HTMLElement) prev.focus();
+      if (prev instanceof HTMLElement && prev.isConnected) prev.focus();
+      else returnFocusTo?.()?.focus();
       opener.current = null;
     }
 

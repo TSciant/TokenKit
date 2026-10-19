@@ -29,7 +29,7 @@ const GROUPS = {
     edit:"LuPencil", download:"LuDownload", upload:"LuUpload", share:"LuShare2",
     refresh:"LuRefreshCw", undo:"LuUndo2", redo:"LuRedo2", save:"LuSave", send:"LuSend",
     filter:"LuFilter", sliders:"LuSlidersHorizontal", settings:"LuSettings", sort:"LuArrowUpDown",
-    maximize:"LuMaximize2", minimize:"LuMinimize2", move:"LuMove", scissors:"LuScissors",
+    maximize:"LuMaximize2", minimize:"LuMinimize2", move:"LuMove", grip:"LuGripVertical", scissors:"LuScissors",
   },
   "Status": {
     alert:"LuCircleAlert", info:"LuInfo", help:"LuCircleHelp", success:"LuCircleCheck",

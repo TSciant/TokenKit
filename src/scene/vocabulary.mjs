@@ -484,7 +484,8 @@ export const KINDS = {
       ],
       "interactive": "flag",
       "pressed": "flag",
-      "icon": "icon"
+      "icon": "icon",
+      "statusIcon": "flag"
     }
   },
   "field": {
@@ -514,6 +515,7 @@ export const KINDS = {
       "suffix": "text",
       "maxChars": "integer",
       "options": "list",
+      "id": "text",
       "type": [
         "text",
         "email",
@@ -538,7 +540,8 @@ export const KINDS = {
         "warning",
         "danger"
       ],
-      "title": "text"
+      "title": "text",
+      "statusIcon": "flag"
     }
   },
   "choice-group": {

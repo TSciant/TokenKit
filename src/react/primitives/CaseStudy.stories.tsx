@@ -49,3 +49,16 @@ export const Teaser: Story = {
   parameters: { docs: { description: { story: "Summary and link only: how each one appears in a collection." } } },
   args: { parts: undefined, results: undefined },
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma CaseStudy laid over this one: client, title, summary, three parts, three results and the link, 800 wide." } },
+    onion: { component: "CaseStudy", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 800 }}>
+      <CaseStudy {...args} />
+    </div>
+  ),
+};

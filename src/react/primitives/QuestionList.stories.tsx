@@ -49,3 +49,16 @@ export const UsingQuestionLists: Story = {
     </GuidancePair>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma QuestionList laid over this one: three questions and answers, 640 wide." } },
+    onion: { component: "QuestionList", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 640 }}>
+      <QuestionList {...args} />
+    </div>
+  ),
+};

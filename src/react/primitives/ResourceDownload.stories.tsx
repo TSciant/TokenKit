@@ -82,3 +82,16 @@ export const Narrow: Story = {
     </div>
   ),
 };
+
+export const OnionSkin: Story = {
+  name: "Onion skin (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma ResourceDownload laid over this one: the PDF report (format, size, length, date and a description), 560 wide." } },
+    onion: { component: "ResourceDownload", target: "root", skin: () => "default.png" },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 560 }}>
+      <ResourceDownload {...args} />
+    </div>
+  ),
+};

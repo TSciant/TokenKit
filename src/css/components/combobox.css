@@ -1,0 +1,145 @@
+/* ---------------------------------------------------------------------------
+   Combobox — type to narrow a long list, then choose.
+
+   Field's input, with a chevron at the end (select) or a magnifier at the
+   start (search), and a popup hung under it on MenuButton's panel: raised,
+   hairline, the panel's corner and shadow. The highlighted option takes the
+   focus ring, because focus itself stays in the text box; the chosen one
+   carries a tick, not only a fill. The typed part of each label is marked.
+   Widths follow Field's chars scale.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  :where([data-tk="combobox"]) {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-inline-size: 100%;
+  }
+
+  :where([data-tk="combobox"][data-chars]) {
+    inline-size: calc(var(--_chars) * 1ch + 2 * var(--tk-space-3) + 2px + 2rem);
+  }
+
+  :where([data-tk="combobox"]) > :where([data-tk="input"]) {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="combobox"][data-kind="select"]) > :where([data-tk="input"]) {
+    padding-inline-end: calc(var(--tk-space-3) + var(--tk-icon-sm) + var(--tk-space-2));
+  }
+
+  :where([data-tk="combobox"][data-kind="search"]) > :where([data-tk="input"]) {
+    padding-inline-start: calc(var(--tk-space-3) + var(--tk-icon-sm) + var(--tk-space-2));
+  }
+
+  :where([data-tk="combobox-lead"]) {
+    position: absolute;
+    inset-inline-start: var(--tk-space-3);
+    display: inline-flex;
+    color: var(--tk-text-secondary);
+    pointer-events: none;
+  }
+
+  :where([data-tk="combobox-toggle"]) {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: calc(var(--tk-icon-sm) + 2 * var(--tk-space-3));
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--tk-text-secondary);
+    cursor: pointer;
+  }
+
+  :where([data-tk="combobox"][data-open] [data-tk="combobox-toggle"] [data-tk="icon"]) {
+    rotate: 180deg;
+  }
+
+  :where([data-tk="combobox-popup"]) {
+    position: absolute;
+    inset-block-start: calc(100% + var(--tk-space-1));
+    inset-inline: 0;
+    z-index: 10;
+    max-block-size: 16rem;
+    overflow-y: auto;
+    padding: var(--tk-space-1);
+    border: 1px solid var(--tk-line-default);
+    border-radius: min(var(--tk-radius-lg), var(--tk-radius-nested));
+    background-color: var(--tk-surface-raised);
+    box-shadow: var(--tk-shadow-md);
+  }
+
+  :where([data-tk="combobox-popup"][hidden]) {
+    display: none;
+  }
+
+  :where([data-tk="combobox-list"]) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :where([data-tk="combobox-option"]) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tk-space-2);
+    padding: var(--tk-space-2) var(--tk-space-3);
+    border-radius: min(var(--tk-radius-md), var(--tk-radius-nested));
+    color: var(--tk-text-primary);
+    cursor: pointer;
+  }
+
+  :where([data-tk="combobox-option"][data-active]) {
+    background-color: var(--tk-surface-sunken);
+    outline: var(--tk-focus-width) solid var(--tk-focus-color);
+    outline-offset: calc(var(--tk-focus-width) * -1);
+  }
+
+  :where([data-tk="combobox-option"][aria-selected="true"]) {
+    font-weight: var(--tk-weight-semibold);
+  }
+
+  :where([data-tk="combobox-option"][aria-disabled="true"]) {
+    color: var(--tk-text-disabled);
+    cursor: not-allowed;
+  }
+
+  :where([data-tk="combobox-option-text"]) {
+    display: grid;
+    min-inline-size: 0;
+  }
+
+  :where([data-tk="combobox-option-meta"]) {
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-normal);
+    color: var(--tk-text-secondary);
+  }
+
+  :where([data-tk="combobox-match"]) {
+    background: none;
+    color: inherit;
+    font-weight: var(--tk-weight-semibold);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+  }
+
+  :where([data-tk="combobox-empty"]) {
+    margin: 0;
+    padding: var(--tk-space-2) var(--tk-space-3);
+    color: var(--tk-text-secondary);
+  }
+
+  @media (forced-colors: active) {
+    :where([data-tk="combobox-option"][data-active]) {
+      outline-color: Highlight;
+    }
+  }
+}

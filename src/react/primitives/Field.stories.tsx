@@ -14,6 +14,7 @@ const meta = {
     },
   },
   argTypes: {
+    id: { control: "text", description: "The control's id, for an ErrorSummary link or a URL fragment. Generated when left out." },
     children: {
       control: false,
       description: "Slot — composed elements, not text.",

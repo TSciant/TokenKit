@@ -97,3 +97,17 @@ export const OnionSkinTextStyles: Story = {
     </div>
   ),
 };
+
+/** One heading at a time, for the Figma Heading (a variant per level) to be laid over. */
+export const OnionSkinHeading: Story = {
+  name: "Onion skin: heading (Figma)",
+  parameters: {
+    docs: { description: { story: "The Figma Heading laid over this one: level in Controls picks the variant (h1 to h6, each in its level style), 800 wide." } },
+    onion: { component: "Heading", target: "root", skin: (a: Record<string, unknown>) => `${a.level ?? 2}.png` },
+  },
+  render: (args) => (
+    <div style={{ inlineSize: 800 }}>
+      <Heading {...args} />
+    </div>
+  ),
+};
