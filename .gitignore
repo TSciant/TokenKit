@@ -48,7 +48,14 @@ tools/timeline/web/
 tools/planner/data/train.jsonl
 tools/planner/data/test.jsonl
 tools/planner/data/heldout.jsonl
+tools/planner/data/blind.jsonl
+tools/planner/data/blind2.jsonl
+tools/planner/data/implied-v4-raw.json
 # The planner spike's Python environment (laya), kept at a short path for Windows
 .lv/
 tools/planner/data/laya-*.jsonl
+tools/planner/data/ollama-*.jsonl
 tools/planner/data/calibration.jsonl
+
+# Python bytecode from the planner scripts
+__pycache__/

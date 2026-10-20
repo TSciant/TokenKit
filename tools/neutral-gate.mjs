@@ -66,8 +66,11 @@ const files = execSync("git ls-files -co --exclude-standard", { cwd: ROOT, encod
       f !== "tools/neutral-terms.json", // the wordlist names the terms by definition
   );
 
+/* A path may end in a `*` segment ("tools/planner/data/*.json") for files that keep arriving with the same kind of
+   harmless hit; the pattern still has to match the line. */
+const pathRe = (p) => new RegExp(`^${p.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^/]*")}$`);
 const allowed = (allow ?? []).map((a) => ({
-  file: a.path,
+  file: pathRe(a.path),
   re: new RegExp(a.pattern, "i"),
   why: a.why ?? "",
 }));
@@ -92,7 +95,7 @@ for (const rel of files) {
   if (src === null) continue;
   src.split(/\r?\n/).forEach((line, i) => {
     for (const m of line.matchAll(RE)) {
-      if (allowed.some((a) => a.file === rel && a.re.test(line))) continue;
+      if (allowed.some((a) => a.file.test(rel) && a.re.test(line))) continue;
       hits.push({ file: rel, line: i + 1, term: m[1], text: line.trim().slice(0, 100) });
     }
   });

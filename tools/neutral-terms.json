@@ -51,6 +51,11 @@
       "path": "tools/planner/data/paraphrases.json",
       "pattern": "^\\s*\"(composed|taxonomy)-1115(-p)?\":",
       "why": "the planner dataset numbers its rows, and row 1115's id matches a listed number: that one line (an id, not a name) is skipped; every other line, and every other number, is still checked"
+    },
+    {
+      "path": "tools/planner/data/*.json",
+      "pattern": "^\\s*\"ms\": \\d+,?\\s*$",
+      "why": "the planner harness records each answer's time in milliseconds; a run that takes exactly a listed number of ms is a timing, not a name: only a bare \"ms\": <number> line is skipped"
     }
   ]
 }
