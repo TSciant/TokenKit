@@ -59,3 +59,6 @@ tools/planner/data/calibration.jsonl
 
 # Python bytecode from the planner scripts
 __pycache__/
+
+# deploy-if-changed: the hash of the last deployed dist/
+.cache/
