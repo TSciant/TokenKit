@@ -178,7 +178,9 @@ export function Field({
     controlNode = <textarea data-tk="textarea" {...controlProps} />;
   } else if (control === "select") {
     controlNode = (
-      <select data-tk="select" {...controlProps} defaultValue={rest.defaultValue ?? ""}>
+      /* A select with a value is controlled: giving it a defaultValue as well is a React error, so the empty default
+         only applies to an uncontrolled one. */
+      <select data-tk="select" {...controlProps} {...(rest.value === undefined ? { defaultValue: rest.defaultValue ?? "" } : {})}>
         {(options ?? []).map((o) => (
           <option key={o.value || "__empty"} value={o.value} disabled={o.disabled}>
             {o.label}
