@@ -1,4 +1,4 @@
-# <img src=".storybook/static/wordmark.svg" alt="token kit" height="44">
+# <img src=".storybook/static/wordmark.svg" alt="TokenKit" height="44">
 
 A token-driven CSS design system at **wireframe fidelity**. Primitives, seven
 layout shells, and headless gates that check the system rather than a palette.

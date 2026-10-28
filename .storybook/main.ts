@@ -35,8 +35,9 @@ const config: StorybookConfig = {
   },
 
   staticDirs: [
-    /* The wordmark, served at /wordmark.svg: the manager's sidebar brand, and the
-       one copy the README title points at. */
+    /* The lockup, served at /wordmark.svg: the manager's sidebar brand, and the
+       one copy the README title points at. Beside it favicon.svg, the State
+       Coin, which Storybook uses for the tab when it finds one here. */
     { from: "./static", to: "/" },
     /* The Figma skins the Onion toolbar switch lays over a component. Served
        at /onion; requested only while the switch is on. */

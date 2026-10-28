@@ -5,12 +5,15 @@ import { create } from "storybook/theming";
 import keys from "../figma/keys.json";
 import meta from "../figma/meta.json";
 
-/* The sidebar carries the wordmark, so the kit's name is on every page of the
-   Storybook and not only on the one that plays the animation. */
+/* The sidebar carries the lockup (the State Coin and the name), so the kit's
+   mark is on every page of the Storybook and not only on the one that plays
+   the animation. The tab's favicon is the coin too: static/favicon.svg, which
+   Storybook picks up from the static folder. Both are written by
+   tools/gen-site-icons.mjs. */
 addons.setConfig({
   theme: create({
     base: "light",
-    brandTitle: "token kit",
+    brandTitle: "TokenKit",
     brandImage: "wordmark.svg",
     brandTarget: "_self",
   }),
