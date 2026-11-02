@@ -1,6 +1,6 @@
 {
   "name": "tokenkit",
-  "version": "0.3.32",
+  "version": "0.3.33",
   "private": true,
   "type": "module",
   "description": "A token-driven CSS design system. Primitives, layout shells, and a headless accessibility gate.",
@@ -38,6 +38,9 @@
     "build-storybook": "storybook build",
     "serve": "node tools/serve.mjs",
     "bundle": "node tools/bundle.mjs",
+    "stage": "npm run resume && node tools/deploy-if-changed.mjs --stage",
+    "promote": "node tools/deploy-window.mjs && node tools/deploy-if-changed.mjs --promote",
+    "smoke:live": "node tools/smoke-live.mjs",
     "type-gate": "node tools/type-gate.mjs",
     "build-pretext": "node tools/build-pretext.mjs",
     "a11y": "node tools/a11y-gate.mjs",
@@ -66,7 +69,11 @@
     "figma:manifest": "node tools/figma-manifest.mjs",
     "figma:guidelines": "node tools/figma-guidelines.mjs",
     "figma:onion": "node tools/onion-check.mjs",
-    "figma:meta": "node tools/figma-meta.mjs"
+    "figma:meta": "node tools/figma-meta.mjs",
+    "test:gamepad": "node --test \"src/packs/gamepad/tests/*.test.mjs\"",
+    "test:keyboard": "node --test \"src/packs/keyboard/tests/*.test.mjs\"",
+    "test:call": "node --test \"src/packs/call/tests/*.test.mjs\"",
+    "test:tv": "node --test \"src/packs/tv/tests/*.test.mjs\""
   },
   "devDependencies": {
     "@chenglou/pretext": "^0.0.9",

@@ -1,0 +1,8 @@
+{
+  "codeConnect": {
+    "include": ["figma/connect/**/*.figma.ts"],
+    "label": "Web Components",
+    "language": "html",
+    "documentUrlSubstitutions": {}
+  }
+}

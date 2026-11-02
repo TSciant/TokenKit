@@ -1,0 +1,20 @@
+export type CallReply = { ok: boolean; status: number; data: any };
+export type CallSend = (path: "state" | "join" | "tracks" | "renegotiate" | "leave", body: Record<string, unknown>) => Promise<CallReply>;
+export type CallPerson = { sessionId: string; tracks: string[]; username: string; me: boolean };
+export type CallStatus = "idle" | "joining" | "in" | "off";
+export type CallState = { status: CallStatus; people: CallPerson[]; streams: Record<string, MediaStream>; local: MediaStream | null; mic: boolean; cam: boolean; error: string };
+export type RemoteTrack = { location: "remote"; sessionId: string; trackName: string };
+export type Call = {
+  on(fn: (s: CallState) => void): () => void;
+  readonly state: CallState;
+  watch(): void;
+  join(): Promise<void>;
+  leave(opts?: { beacon?: boolean }): void;
+  toggle(kind: "audio" | "video"): void;
+  look(): Promise<void>;
+  destroy(): void;
+};
+export const STUN: RTCIceServer[];
+export function wantTracks(people: CallPerson[], pulled: Set<string>): RemoteTrack[];
+export function trackName(kind: string, mark?: string): string;
+export function createCall(opts: { send: CallSend; iceServers?: RTCIceServer[]; media?: MediaStreamConstraints; every?: number }): Call;

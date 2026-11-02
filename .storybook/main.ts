@@ -1,5 +1,6 @@
-import type { StorybookConfig } from "@storybook/react-vite";
+﻿import type { StorybookConfig } from "@storybook/react-vite";
 import { dirname, resolve } from "node:path";
+import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 /* A client's own stories, from their own repository, when asked for.
@@ -16,6 +17,12 @@ import { fileURLToPath } from "node:url";
 const CLIENT_DIR = process.env.TK_CLIENT_DIR;
 const KIT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
+/* The gamepad pack's replay demo plays a clip that is Tony's and stays on this machine
+   (src/packs/gamepad/demo/media is git-ignored). Served at /local-media in dev only:
+   `storybook build` never includes it, and without it the story plays inputs alone. */
+const GAMEPAD_MEDIA = resolve(KIT, "src/packs/gamepad/demo/media");
+const LOCAL_MEDIA = !process.argv.includes("build") && existsSync(resolve(GAMEPAD_MEDIA, "goal.mp4"));
+
 const config: StorybookConfig = {
   stories: [
     "../src/**/*.stories.@(ts|tsx)",
@@ -24,7 +31,7 @@ const config: StorybookConfig = {
 
   addons: [
     // axe on every story. Set to fail rather than warn once a component is
-    // clean — a warning nobody must clear becomes a backlog.
+    // clean â€” a warning nobody must clear becomes a backlog.
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
   ],
@@ -56,6 +63,7 @@ const config: StorybookConfig = {
       from: "../node_modules/maplibre-gl/dist/maplibre-gl-shared.mjs",
       to: "/maplibre-gl-shared.mjs",
     },
+    ...(LOCAL_MEDIA ? [{ from: GAMEPAD_MEDIA, to: "/local-media" }] : []),
   ],
 
   core: { disableTelemetry: true },

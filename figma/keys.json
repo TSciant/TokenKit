@@ -157,7 +157,10 @@
     "ReorderList": "507:2487",
     "DestructiveConfirm": "509:2474",
     "SessionTimeout": "509:2513",
-    "PauseMotion": "512:2561"
+    "PauseMotion": "512:2561",
+    "Gamepad": "550:153",
+    "ButtonPrompt": "550:3149",
+    "Guitar": "550:2962"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -315,7 +318,10 @@
     "ReorderList": "04-primitives-92-reorder-list--onion-skin",
     "DestructiveConfirm": "04-primitives-84-destructive-confirm--onion-skin",
     "SessionTimeout": "04-primitives-89-session-timeout--onion-skin",
-    "PauseMotion": "04-primitives-94-pause-motion--onion-skin"
+    "PauseMotion": "04-primitives-94-pause-motion--onion-skin",
+    "Gamepad": "10-packs-01-gamepad--onion-skin",
+    "ButtonPrompt": "10-packs-01-gamepad--prompt-onion-skin",
+    "Guitar": "10-packs-01-gamepad--guitar-onion-skin"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -473,6 +479,9 @@
     "ReorderList": "src/react/primitives/ReorderList.tsx",
     "DestructiveConfirm": "src/react/primitives/DestructiveConfirm.tsx",
     "SessionTimeout": "src/react/primitives/SessionTimeout.tsx",
-    "PauseMotion": "src/react/primitives/PauseMotion.tsx"
+    "PauseMotion": "src/react/primitives/PauseMotion.tsx",
+    "Gamepad": "src/packs/gamepad/tk-gamepad.mjs",
+    "ButtonPrompt": "src/packs/gamepad/tk-gamepad.mjs",
+    "Guitar": "src/packs/gamepad/tk-gamepad.mjs"
   }
 }

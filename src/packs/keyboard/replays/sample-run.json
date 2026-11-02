@@ -1,0 +1,21 @@
+{
+  "note": "A made-up six-second run, keyed by position (KeyboardEvent.code): walk, sprint, jump, strafe right, turn left, hop, stop, use. Each frame is the keys held from t until the next frame.",
+  "frames": [
+    {"t":0,"keys":[]},
+    {"t":0.2,"keys":["KeyW"]},
+    {"t":0.8,"keys":["KeyW","ShiftLeft"]},
+    {"t":1.4,"keys":["KeyW","ShiftLeft","Space"]},
+    {"t":1.6,"keys":["KeyW","ShiftLeft"]},
+    {"t":2.3,"keys":["KeyW","ShiftLeft","KeyD"]},
+    {"t":2.9,"keys":["KeyW","KeyD"]},
+    {"t":3.3,"keys":["KeyW"]},
+    {"t":3.6,"keys":["KeyW","KeyA"]},
+    {"t":4,"keys":["KeyW"]},
+    {"t":4.4,"keys":["KeyW","Space"]},
+    {"t":4.55,"keys":["KeyW"]},
+    {"t":5,"keys":[]},
+    {"t":5.3,"keys":["KeyE"]},
+    {"t":5.45,"keys":[]},
+    {"t":5.8,"keys":[]}
+  ]
+}

@@ -62,3 +62,14 @@ __pycache__/
 
 # deploy-if-changed: the hash of the last deployed dist/
 .cache/
+
+# Local secrets (Resend and the like): Tony types these in himself; never committed
+.env
+.env.*
+!.env.example
+
+# Email previews (node tools/email/preview.mjs): build output with copies of the Norbert GIFs
+dist-email/
+
+# Local database for member accounts (tools/auth/local.mjs)
+.data/

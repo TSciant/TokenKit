@@ -1530,6 +1530,42 @@
       "single": true,
       "doc": "The Figma PauseMotion (running: quiet, small, the pause icon and Pause animations) laid over the same. maxMean 11: inherited from Button quiet sm, whose label Figma sets a pixel higher than live (9.01 on Button itself, 3.46 a pixel shifted; 4.54 shifted here); the icon matches.",
       "maxMean": 11
+    },
+    "Gamepad": {
+      "story": "10-packs-01-gamepad--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The default variant: Theme=Boosty, Glyphs=Letters, State=Idle, at 1x. Figma flattens the body and stick gradients to solids."
+    },
+    "ButtonPrompt": {
+      "story": "10-packs-01-gamepad--prompt-onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "Theme=Boosty, State=Off: the terse chip (glyph and action; the control name stays in the accessible label)."
+    },
+    "Guitar": {
+      "story": "10-packs-01-gamepad--guitar-onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "Theme=Boosty, State=Idle: the 5-fret guitar glyph at 1x."
     }
   }
 }

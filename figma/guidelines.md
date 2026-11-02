@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.32. A token-driven design system: components draw only from
+token-kit 0.3.33. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -1432,3 +1432,15 @@ PauseMotion — one button that pauses every loop on the page, and plays them ag
 Its words name the action ("Pause animations", then "Play animations") and change when it is pressed, so it carries no pressed state. Put it once, early in the page (the header's utilities), before the moving content; the choice is kept for the next page (put `motionBootScript` in the head so it holds from the first frame). When the device asks for reduced motion nothing loops, so it shows as paused, unavailable, and says why. WCAG 2.2.2: motion that starts on its own, lasts more than five seconds and sits beside other content can be paused.
 
 Figma: node `512:2561`.
+
+### Gamepad
+
+Figma: node `550:153`.
+
+### ButtonPrompt
+
+Figma: node `550:3149`.
+
+### Guitar
+
+Figma: node `550:2962`.

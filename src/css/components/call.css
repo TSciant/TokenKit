@@ -1,0 +1,57 @@
+/* Call — the call pack's tiles and controls (src/packs/call). A tile is a person's picture with their name on it;
+   radii are concentric (the name tag is the tile's radius less its inset). Your own picture is mirrored, as a mirror is. */
+@layer components {
+  :where([data-tk="call-tiles"]) {
+    display: grid;
+    gap: var(--tk-space-3);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  }
+
+  :where([data-tk="call-tile"]) {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--tk-radius-md);
+    overflow: hidden;
+    background: var(--tk-surface-sunken);
+  }
+
+  :where([data-tk="call-tile"]) video {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  :where([data-tk="call-tile"]) video[data-mirrored] { transform: scaleX(-1); }
+
+  :where([data-tk="call-tile-off"]) {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--tk-text-tertiary);
+    font-size: var(--tk-size-base);
+  }
+
+  :where([data-tk="call-tile"]) figcaption {
+    position: absolute;
+    inset-inline-start: var(--tk-space-2);
+    inset-block-end: var(--tk-space-2);
+    padding: var(--tk-space-1) var(--tk-space-2);
+    border-radius: max(0px, calc(var(--tk-radius-md) - var(--tk-space-2)));
+    background: var(--tk-surface-raised);
+    color: var(--tk-text-primary);
+    font-size: var(--tk-size-sm);
+    font-weight: var(--tk-weight-semibold);
+  }
+
+  :where([data-tk="call-bar"]) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tk-space-2);
+    align-items: center;
+  }
+
+  :where([data-tk="call-bar"]) > * { flex: none; }
+}

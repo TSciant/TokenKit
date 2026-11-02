@@ -1,0 +1,3 @@
+# Local-only clips. Never committed, never deployed.
+*
+!.gitignore

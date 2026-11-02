@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Replay: GrampaYeetly air dribble · TokenKit gamepad pack</title>
+<style>
+  html,body{margin:0;background:#07060a;color:#efe9ff;font:14px/1.4 system-ui,sans-serif}
+  main{max-width:1280px;margin:0 auto;padding:20px}
+  .stage{position:relative;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden}
+  .stage video{width:100%;height:100%;display:block}
+  .stage .ov{position:absolute;left:2%;bottom:3%;width:24%}
+  .stage .ov tk-gamepad{--tk-gamepad-width:100%}
+  .missing{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:2em;opacity:.8}
+  .bar{display:flex;gap:12px;align-items:center;margin-top:12px}
+  input[type=range]{flex:1}
+  html:has(body.render),body.render{background:transparent}body.render main{padding:0;max-width:none}body.render .stage{background:transparent;border-radius:0}body.render video,body.render .bar,body.render h1,body.render p{display:none}
+</style></head>
+<body>
+<main>
+  <h1>Replay: GrampaYeetly air dribble</h1>
+  <p>Inputs from the match replay (about 30 Hz), drawn by <code>&lt;tk-gamepad source="replay"&gt;</code> on the Rocket League default layout, synced to the clip at the wall pop (replay 1.18 s, clock 3:59). Local only.</p>
+  <div class="stage"><video id="v" src="./media/goal.mp4" playsinline controls preload="auto"></video><div class="ov" id="ov"></div></div>
+  <div class="bar"><button id="play">Play</button><input id="scrub" type="range" min="0" max="7.13" step="0.01" value="0" aria-label="Replay time"><output id="tt">0.00 s</output></div>
+</main>
+<script type="module">
+  import { mountReplayOverlay, REPLAY_OVERLAY_CSS, GOAL_CLIP_OFFSET } from '../replay-overlay.mjs';
+  const st = document.createElement('style'); st.textContent = REPLAY_OVERLAY_CSS; document.head.append(st);
+  const data = await (await fetch('../replays/grampayeetly-air-dribble.json')).json();
+  const q = new URLSearchParams(location.search);
+  const ov = mountReplayOverlay(document.getElementById('ov'), data, { theme: q.get('theme') || 'boosty', glyphs: q.get('glyphs') || 'letters', chips: q.get('chips') || 'compact' });
+  window.__overlay = ov; window.__offset = GOAL_CLIP_OFFSET;
+  if (q.has('render')) { document.body.classList.add('render'); document.title = 'render'; }
+  const v = document.getElementById('v'), scrub = document.getElementById('scrub'), tt = document.getElementById('tt');
+  v.addEventListener('error', () => { const m = document.createElement('div'); m.className = 'missing'; m.textContent = 'Clip not here (it stays local, in demo/media/goal.mp4). The inputs still play: press Play.'; v.replaceWith(m); });
+  let stopFree = null;
+  if (!q.has('render')) ov.sync(v);
+  document.getElementById('play').onclick = () => { if (v.isConnected && v.readyState) { v.paused ? v.play() : v.pause(); } else { stopFree ? (stopFree(), stopFree = null) : (stopFree = ov.pad.playReplay()); } };
+  scrub.oninput = () => { const t = +scrub.value; if (v.isConnected && v.readyState) v.currentTime = Math.max(0, t - GOAL_CLIP_OFFSET); else ov.show(t); tt.value = t.toFixed(2) + ' s'; };
+  v.addEventListener('timeupdate', () => { const t = v.currentTime + GOAL_CLIP_OFFSET; scrub.value = t; tt.value = t.toFixed(2) + ' s'; });
+</script>
+</body></html>
