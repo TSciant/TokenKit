@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.33. A token-driven design system: components draw only from
+token-kit 0.3.34. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -1444,3 +1444,39 @@ Figma: node `550:3149`.
 ### Guitar
 
 Figma: node `550:2962`.
+
+### Keyboard
+
+Figma: node `561:1503`.
+
+### KeyPrompt
+
+Figma: node `562:177`.
+
+### TvTile
+
+Figma: node `568:207`.
+
+### TvRow
+
+Figma: node `571:465`.
+
+### TvOsd
+
+Figma: node `572:507`.
+
+### TvSidebar
+
+Figma: node `573:627`.
+
+### TvShell
+
+Figma: node `575:1686`.
+
+### CallTile
+
+Figma: node `577:167`.
+
+### CallBar
+
+Figma: node `577:280`.

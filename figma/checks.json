@@ -113,11 +113,25 @@
       "worst": 2.49,
       "checkedAt": "2026-10-19T01:58:34.515Z"
     },
+    "CallBar": {
+      "skins": 1,
+      "mean": 10.18,
+      "worst": 10.18,
+      "checkedAt": "2026-11-02T23:23:24.694Z",
+      "sourceHash": "59fe6e87b286"
+    },
     "Callout": {
       "skins": 1,
       "mean": 6.87,
       "worst": 6.87,
       "checkedAt": "2026-10-18T01:08:11.741Z"
+    },
+    "CallTile": {
+      "skins": 1,
+      "mean": 0.42,
+      "worst": 0.42,
+      "checkedAt": "2026-11-02T23:22:25.432Z",
+      "sourceHash": "59fe6e87b286"
     },
     "Card": {
       "skins": 6,
@@ -429,6 +443,20 @@
       "worst": 2.98,
       "checkedAt": "2026-10-19T13:23:15.644Z",
       "sourceHash": "3eafe724138c"
+    },
+    "Keyboard": {
+      "skins": 1,
+      "mean": 1.03,
+      "worst": 1.03,
+      "checkedAt": "2026-11-02T23:01:45.341Z",
+      "sourceHash": "518fa679b320"
+    },
+    "KeyPrompt": {
+      "skins": 1,
+      "mean": 11.27,
+      "worst": 11.27,
+      "checkedAt": "2026-11-02T23:03:36.154Z",
+      "sourceHash": "518fa679b320"
     },
     "LanguageSwitcher": {
       "skins": 1,
@@ -796,6 +824,41 @@
       "mean": 6.71,
       "worst": 6.71,
       "checkedAt": "2026-10-19T01:58:34.515Z"
+    },
+    "TvOsd": {
+      "skins": 1,
+      "mean": 2.19,
+      "worst": 2.19,
+      "checkedAt": "2026-11-02T23:14:11.118Z",
+      "sourceHash": "846530299b31"
+    },
+    "TvRow": {
+      "skins": 1,
+      "mean": 3.29,
+      "worst": 3.29,
+      "checkedAt": "2026-11-02T23:29:10.861Z",
+      "sourceHash": "846530299b31"
+    },
+    "TvShell": {
+      "skins": 1,
+      "mean": 1.88,
+      "worst": 1.88,
+      "checkedAt": "2026-11-02T23:29:10.861Z",
+      "sourceHash": "846530299b31"
+    },
+    "TvSidebar": {
+      "skins": 1,
+      "mean": 3.66,
+      "worst": 3.66,
+      "checkedAt": "2026-11-03T00:08:55.422Z",
+      "sourceHash": "7d3e88edb80f"
+    },
+    "TvTile": {
+      "skins": 1,
+      "mean": 3.44,
+      "worst": 3.44,
+      "checkedAt": "2026-11-02T23:10:35.192Z",
+      "sourceHash": "846530299b31"
     },
     "UtilityNav": {
       "skins": 1,

@@ -2239,6 +2239,168 @@
         "checkedAt": "2026-11-01T22:45:55.875Z",
         "sourceHash": "d206dbc387d3"
       }
+    },
+    "Keyboard": {
+      "node": "561:1503",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=561-1503",
+      "story": "10-packs-02-keyboard--onion-skin",
+      "source": "src/packs/keyboard/tk-keyboard.mjs",
+      "skinDir": "figma/skins/Keyboard",
+      "skins": 1,
+      "skinPulledAt": "2026-11-02T23:01:43.640Z",
+      "sourceUpdatedAt": "2026-11-02T12:38:51-05:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 1.03,
+        "worst": 1.03,
+        "checkedAt": "2026-11-02T23:01:45.341Z",
+        "sourceHash": "518fa679b320"
+      }
+    },
+    "KeyPrompt": {
+      "node": "562:177",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=562-177",
+      "story": "10-packs-02-keyboard--prompt-onion-skin",
+      "source": "src/packs/keyboard/tk-keyboard.mjs",
+      "skinDir": "figma/skins/KeyPrompt",
+      "skins": 1,
+      "skinPulledAt": "2026-11-02T23:03:34.427Z",
+      "sourceUpdatedAt": "2026-11-02T12:38:51-05:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 11.27,
+        "worst": 11.27,
+        "checkedAt": "2026-11-02T23:03:36.154Z",
+        "sourceHash": "518fa679b320"
+      }
+    },
+    "TvTile": {
+      "node": "568:207",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=568-207",
+      "story": "10-packs-03-tv--tile-onion-skin",
+      "source": "src/packs/tv/tk-tv.mjs",
+      "skinDir": "figma/skins/TvTile",
+      "skins": 1,
+      "skinPulledAt": "2026-11-02T23:10:26.338Z",
+      "sourceUpdatedAt": "2026-11-02T16:43:39-05:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 3.44,
+        "worst": 3.44,
+        "checkedAt": "2026-11-02T23:10:35.192Z",
+        "sourceHash": "846530299b31"
+      }
+    },
+    "TvRow": {
+      "node": "571:465",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=571-465",
+      "story": "10-packs-03-tv--row-onion-skin",
+      "source": "src/packs/tv/tk-tv.mjs",
+      "skinDir": "figma/skins/TvRow",
+      "skins": 1,
+      "skinPulledAt": "2026-11-02T23:29:07.740Z",
+      "sourceUpdatedAt": "2026-11-02T16:43:39-05:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 3.29,
+        "worst": 3.29,
+        "checkedAt": "2026-11-02T23:29:10.861Z",
+        "sourceHash": "846530299b31"
+      }
+    },
+    "TvOsd": {
+      "node": "572:507",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=572-507",
+      "story": "10-packs-03-tv--osd-onion-skin",
+      "source": "src/packs/tv/tk-tv.mjs",
+      "skinDir": "figma/skins/TvOsd",
+      "skins": 1,
+      "skinPulledAt": "2026-11-02T23:14:08.994Z",
+      "sourceUpdatedAt": "2026-11-02T16:43:39-05:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 2.19,
+        "worst": 2.19,
+        "checkedAt": "2026-11-02T23:14:11.118Z",
+        "sourceHash": "846530299b31"
+      }
+    },
+    "TvSidebar": {
+      "node": "573:627",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=573-627",
+      "story": "10-packs-03-tv--sidebar-onion-skin",
+      "source": "src/packs/tv/tk-tv.mjs",
+      "skinDir": "figma/skins/TvSidebar",
+      "skins": 1,
+      "skinPulledAt": "2026-11-02T23:15:42.417Z",
+      "sourceUpdatedAt": "2026-11-02T16:43:39-05:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 12.14,
+        "worst": 12.14,
+        "checkedAt": "2026-11-02T23:15:30.146Z",
+        "sourceHash": "846530299b31"
+      }
+    },
+    "TvShell": {
+      "node": "575:1686",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=575-1686",
+      "story": "10-packs-03-tv--shell-onion-skin",
+      "source": "src/packs/tv/tk-tv.mjs",
+      "skinDir": "figma/skins/TvShell",
+      "skins": 1,
+      "skinPulledAt": "2026-11-02T23:19:08.804Z",
+      "sourceUpdatedAt": "2026-11-02T16:43:39-05:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 1.88,
+        "worst": 1.88,
+        "checkedAt": "2026-11-02T23:29:10.861Z",
+        "sourceHash": "846530299b31"
+      }
+    },
+    "CallTile": {
+      "node": "577:167",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=577-167",
+      "story": "10-packs-04-call--tile-onion-skin",
+      "source": "src/packs/call/Call.tsx",
+      "skinDir": "figma/skins/CallTile",
+      "skins": 1,
+      "skinPulledAt": "2026-11-02T23:22:23.825Z",
+      "sourceUpdatedAt": "2026-11-02T17:25:26-05:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 0.42,
+        "worst": 0.42,
+        "checkedAt": "2026-11-02T23:22:25.432Z",
+        "sourceHash": "59fe6e87b286"
+      }
+    },
+    "CallBar": {
+      "node": "577:280",
+      "figma": "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=577-280",
+      "story": "10-packs-04-call--bar-onion-skin",
+      "source": "src/packs/call/Call.tsx",
+      "skinDir": "figma/skins/CallBar",
+      "skins": 1,
+      "skinPulledAt": "2026-11-02T23:23:23.241Z",
+      "sourceUpdatedAt": "2026-11-02T17:25:26-05:00",
+      "stale": false,
+      "check": {
+        "skins": 1,
+        "mean": 10.18,
+        "worst": 10.18,
+        "checkedAt": "2026-11-02T23:23:24.694Z",
+        "sourceHash": "59fe6e87b286"
+      }
     }
   }
 }

@@ -3,8 +3,10 @@ import { useRef, useState, type ReactNode } from "react";
 import { TvShell, TvRow, TvTile, TvSidebar, TvOsd } from "./Tv";
 import type { TkTvOsdElement, TkTvShellElement, TvAccent, TvVerbDetail } from "./tk-tv.mjs";
 
-/* No Figma component yet: these stories carry no `onion` parameter, so the toolbar's
-   Figma and Onion buttons stay off here until a Packs · TV page exists. */
+/* Figma: Packs · TV. `onion` names the Figma component a story is compared with (the
+   toolbar's Figma and Onion buttons, and tools/onion-check.mjs via figma/onion.json). */
+const onion = (component: string) => ({ component, skin: () => "default.png" });
+const FIG = "https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=";
 const THEMES = ["boosty", "dark", "light"] as const;
 const dark = { background: "#07060a", padding: 24, borderRadius: 12 } as const;
 const note = { color: "#d8d4e4", font: "13px/1.5 system-ui, sans-serif", margin: 0, maxWidth: "70ch" } as const;
@@ -65,8 +67,8 @@ const meta: Meta<typeof TvShell> = {
     className: { control: false },
     style: { control: false },
   },
-  parameters: { docs: { description: { component: "A 10-foot starter: a safe-area shell, titled rows of tiles, an on-screen display and a side menu, driven by five verbs (move, select, back, home, menu) from the arrow keys, a remote or a gamepad, with spatial focus between tiles. Three themes over --tk-tv-* tokens. Not in Figma yet. Tests: npm run test:tv." } } },
-  decorators: [(S) => <div style={dark}><S /></div>],
+  parameters: { docs: { description: { component: "A 10-foot starter: a safe-area shell, titled rows of tiles, an on-screen display and a side menu, driven by five verbs (move, select, back, home, menu) from the arrow keys, a remote or a gamepad, with spatial focus between tiles. Three themes over --tk-tv-* tokens. Figma: the Packs · TV page (TvShell, TvRow, TvTile, TvOsd, TvSidebar), drawn at the 1920-wide reference frame. Code Connect templates: figma/connect/tv/*.figma.ts. Tests: npm run test:tv." } } },
+  decorators: [(S, ctx) => (ctx.parameters.bare ? <S /> : <div style={dark}><S /></div>)],
 };
 export default meta;
 type Story = StoryObj<typeof TvShell>;
@@ -89,7 +91,7 @@ export const ReadMe: Story = {
       </ul>
       <p>The remote contract turns the arrow keys, Enter and Space, Backspace and Escape, the gamepad pack's D-pad, stick, A and B, and the keyboard pack's codes into five verbs: move, select, back, home and menu. Keys in a text field are ignored. Spatial focus moves by geometry, stays in a row, remembers each row's last tile, and Back returns to the level focus came from. Nothing traps focus.</p>
       <p>The focus ring is thick and two-toned, and the focused tile lifts, grows and underlines its title: never colour alone. Motion stops under reduced motion, <code>calm</code> and the kit's motion pause.</p>
-      <p>From the Bobo TV prototype (Sep 2026) and the QCast stories. Figma: not drawn yet. Tests: <code>npm run test:tv</code>.</p>
+      <p>From the Bobo TV prototype (Sep 2026) and the QCast stories. Figma: the Packs · TV page, drawn at the 1920-wide reference frame (<a style={{ color: "#7fe9f2" }} href={`${FIG}575-1686`}>TvShell</a>, <a style={{ color: "#7fe9f2" }} href={`${FIG}571-465`}>TvRow</a>, <a style={{ color: "#7fe9f2" }} href={`${FIG}568-207`}>TvTile</a>, <a style={{ color: "#7fe9f2" }} href={`${FIG}572-507`}>TvOsd</a>, <a style={{ color: "#7fe9f2" }} href={`${FIG}573-627`}>TvSidebar</a>). Code Connect templates: <code>figma/connect/tv</code>. Tests: <code>npm run test:tv</code>.</p>
     </article>
   ),
 };
@@ -130,6 +132,7 @@ export const Home: Story = {
 
 /* The shell's own controls. */
 export const Playground: Story = {
+  parameters: { onion: onion("TvShell") },
   render: (a) => (
     <TvShell {...a}>
       <TvSidebar label="Main menu"><Menu /></TvSidebar>
@@ -210,6 +213,7 @@ export const Themes: Story = {
    prop has a control somewhere). */
 export const RowPlayground: StoryObj<typeof TvRow> = {
   name: "Row: controls",
+  parameters: { onion: onion("TvRow") },
   args: { label: "Films", layout: "row", level: 2 },
   argTypes: {
     label: { control: "text" },
@@ -223,6 +227,7 @@ export const RowPlayground: StoryObj<typeof TvRow> = {
 
 export const TilePlayground: StoryObj<typeof TvTile> = {
   name: "Tile: controls",
+  parameters: { onion: onion("TvTile") },
   args: { label: "Films", sub: "Living-room catalog", accent: "emerald", badge: "", alt: "", image: "", href: "", disabled: false, current: "", focused: false },
   argTypes: {
     label: { control: "text" },
@@ -243,6 +248,7 @@ export const TilePlayground: StoryObj<typeof TvTile> = {
 
 export const SidebarPlayground: StoryObj<typeof TvSidebar> = {
   name: "Sidebar: controls",
+  parameters: { onion: onion("TvSidebar") },
   args: { label: "Main menu", collapse: false },
   argTypes: {
     label: { control: "text" },
@@ -255,6 +261,7 @@ export const SidebarPlayground: StoryObj<typeof TvSidebar> = {
 
 export const OsdPlayground: StoryObj<typeof TvOsd> = {
   name: "OSD: controls",
+  parameters: { onion: onion("TvOsd") },
   args: { kind: "volume", value: 40, muted: false, label: "Drama", detail: "24 of 98 minutes", paused: false, open: true, persist: true, timeout: 3000, calm: false },
   argTypes: {
     kind: { control: "inline-radio", options: ["volume", "now-playing", "message"] },
@@ -271,3 +278,41 @@ export const OsdPlayground: StoryObj<typeof TvOsd> = {
   },
   render: (a: Parameters<typeof TvOsd>[0]) => <div style={{ paddingBlock: 12 }}><TvOsd {...a} /></div>,
 } as never;
+
+/* Onion skins: the default variant of each Figma component, drawn 1:1 with nothing around it,
+   for the toolbar's Onion switch and tools/onion-check.mjs (figma/onion.json). Figma draws the
+   pack at its 1920-wide reference frame, so figma/onion.json gives these a 1920 viewport: a
+   tile, row, OSD or sidebar outside a shell sizes from the viewport (container units fall back
+   to it), and the shell's story leaves room for the page's padding so the shell is 1920 wide. */
+const fit = { display: "inline-block" } as const;
+export const TileOnionSkin: Story = {
+  name: "Tile onion skin",
+  parameters: { bare: true, onion: { component: "TvTile", target: "root", skin: () => "default.png" } },
+  render: () => <TvTile label="Drama" sub="Slow evenings" accent="violet" theme="boosty" />,
+};
+export const RowOnionSkin: Story = {
+  name: "Row onion skin",
+  parameters: { bare: true, onion: { component: "TvRow", target: "root", skin: () => "default.png" } },
+  render: () => <div style={{ ...fit, background: "#07060a" }}><TvRow label="Films" theme="boosty">{tiles(FILMS, 6)}</TvRow></div>,
+};
+export const OsdOnionSkin: Story = {
+  name: "OSD onion skin",
+  parameters: { bare: true, onion: { component: "TvOsd", target: "root", skin: () => "default.png" } },
+  render: () => <TvOsd kind="volume" value={40} theme="boosty" open persist calm />,
+};
+export const SidebarOnionSkin: Story = {
+  name: "Sidebar onion skin",
+  parameters: { bare: true, onion: { component: "TvSidebar", target: "root", skin: () => "default.png" } },
+  render: () => <div style={fit}><TvSidebar label="Main menu" theme="boosty"><Menu /></TvSidebar></div>,
+};
+export const ShellOnionSkin: Story = {
+  name: "Shell onion skin",
+  parameters: { bare: true, onion: { component: "TvShell", target: "root", skin: () => "default.png" } },
+  render: () => (
+    <TvShell theme="boosty" label="TV home" input="none" screen calm>
+      <TvSidebar label="Main menu"><Menu /></TvSidebar>
+      <TvRow label="Films">{tiles(FILMS, 6)}</TvRow>
+      <TvRow label="Music">{tiles(MUSIC, 6)}</TvRow>
+    </TvShell>
+  ),
+};

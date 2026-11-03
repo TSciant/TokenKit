@@ -8,7 +8,8 @@ export type Call = {
   on(fn: (s: CallState) => void): () => void;
   readonly state: CallState;
   watch(): void;
-  join(): Promise<void>;
+  join(opts?: { share?: boolean }): Promise<void>;
+  share(): Promise<void>;
   leave(opts?: { beacon?: boolean }): void;
   toggle(kind: "audio" | "video"): void;
   look(): Promise<void>;

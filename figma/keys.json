@@ -160,7 +160,16 @@
     "PauseMotion": "512:2561",
     "Gamepad": "550:153",
     "ButtonPrompt": "550:3149",
-    "Guitar": "550:2962"
+    "Guitar": "550:2962",
+    "Keyboard": "561:1503",
+    "KeyPrompt": "562:177",
+    "TvTile": "568:207",
+    "TvRow": "571:465",
+    "TvOsd": "572:507",
+    "TvSidebar": "573:627",
+    "TvShell": "575:1686",
+    "CallTile": "577:167",
+    "CallBar": "577:280"
   },
   "stories": {
     "Button": "04-primitives-01-button--onion-skin",
@@ -321,7 +330,16 @@
     "PauseMotion": "04-primitives-94-pause-motion--onion-skin",
     "Gamepad": "10-packs-01-gamepad--onion-skin",
     "ButtonPrompt": "10-packs-01-gamepad--prompt-onion-skin",
-    "Guitar": "10-packs-01-gamepad--guitar-onion-skin"
+    "Guitar": "10-packs-01-gamepad--guitar-onion-skin",
+    "Keyboard": "10-packs-02-keyboard--onion-skin",
+    "KeyPrompt": "10-packs-02-keyboard--prompt-onion-skin",
+    "TvTile": "10-packs-03-tv--tile-onion-skin",
+    "TvRow": "10-packs-03-tv--row-onion-skin",
+    "TvOsd": "10-packs-03-tv--osd-onion-skin",
+    "TvSidebar": "10-packs-03-tv--sidebar-onion-skin",
+    "TvShell": "10-packs-03-tv--shell-onion-skin",
+    "CallTile": "10-packs-04-call--tile-onion-skin",
+    "CallBar": "10-packs-04-call--bar-onion-skin"
   },
   "sources": {
     "Button": "src/react/primitives/Button.tsx",
@@ -482,6 +500,15 @@
     "PauseMotion": "src/react/primitives/PauseMotion.tsx",
     "Gamepad": "src/packs/gamepad/tk-gamepad.mjs",
     "ButtonPrompt": "src/packs/gamepad/tk-gamepad.mjs",
-    "Guitar": "src/packs/gamepad/tk-gamepad.mjs"
+    "Guitar": "src/packs/gamepad/tk-gamepad.mjs",
+    "Keyboard": "src/packs/keyboard/tk-keyboard.mjs",
+    "KeyPrompt": "src/packs/keyboard/tk-keyboard.mjs",
+    "TvTile": "src/packs/tv/tk-tv.mjs",
+    "TvRow": "src/packs/tv/tk-tv.mjs",
+    "TvOsd": "src/packs/tv/tk-tv.mjs",
+    "TvSidebar": "src/packs/tv/tk-tv.mjs",
+    "TvShell": "src/packs/tv/tk-tv.mjs",
+    "CallTile": "src/packs/call/Call.tsx",
+    "CallBar": "src/packs/call/Call.tsx"
   }
 }

@@ -16,6 +16,7 @@
      const call = createCall({ send });
      call.on((s) => render(s));   // { status, people, streams, local, mic, cam, error }
      await call.join();           // asks for the camera and mic
+     await call.join({ share: false }); call.share();   // watch and listen first, show yourself later (a guest)
      call.toggle("audio");  call.leave();
    A 503 from state means calls aren't switched on: status "off". Nothing is recorded, and nothing starts before join. */
 
@@ -62,12 +63,15 @@ export function createCall({ send, iceServers = STUN, media = { audio: { echoCan
     });
   }
 
-  async function join() {
+  /* share: false joins to watch and listen only: no camera or microphone is asked for until share(). */
+  async function join({ share = true } = {}) {
     if (s.status === "in" || s.status === "joining") return;
     set({ status: "joining", error: "" });
-    let local;
-    try { local = await navigator.mediaDevices.getUserMedia(media); }
-    catch { return set({ status: "idle", error: "The browser didn't let us use the camera and microphone. Allow them (the camera icon by the address) and join again." }); }
+    let local = null;
+    if (share) {
+      try { local = await navigator.mediaDevices.getUserMedia(media); }
+      catch { return set({ status: "idle", error: "The browser didn't let us use the camera and microphone. Allow them (the camera icon by the address) and join again." }); }
+    }
     pc = new RTCPeerConnection({ iceServers, bundlePolicy: "max-bundle" });
     pulled = new Set(); owner = new Map();
     pc.ontrack = (e) => {
@@ -77,23 +81,36 @@ export function createCall({ send, iceServers = STUN, media = { audio: { echoCan
       ms.addTrack(e.track);
       set({ streams: { ...s.streams, [sid]: ms } });
     };
-    const sent = local.getTracks().map((track) => ({ track, tr: pc.addTransceiver(track, { direction: "sendonly" }) }));
     set({ local });
     try {
       const j = await ask("join");
       if (!j.ok) throw new Error(why(j, "The call didn't start."));
       sessionId = j.data.sessionId;
-      await serial(async () => {
-        const offer = await pc.createOffer();
-        await pc.setLocalDescription(offer);
-        const mark = Math.random().toString(36).slice(2, 8);
-        const r = await ask("tracks", { sessionDescription: { type: "offer", sdp: offer.sdp }, tracks: sent.map(({ track, tr }) => ({ location: "local", mid: tr.mid, trackName: trackName(track.kind, mark) })) });
-        if (!r.ok) throw new Error(why(r, "Your camera didn't reach the call."));
-        await pc.setRemoteDescription(r.data.sessionDescription);
-      });
-      set({ status: "in", mic: true, cam: true });
+      if (local) await publish(local);
+      set({ status: "in", mic: !!local, cam: !!local });
       startTimer(); look();
     } catch (err) { leave(); set({ error: err instanceof Error ? err.message : "The call didn't start." }); }
+  }
+
+  /* Send your own tracks into the call: at join, or later for someone who joined to watch first. */
+  async function publish(local) {
+    const sent = local.getTracks().map((track) => ({ track, tr: pc.addTransceiver(track, { direction: "sendonly" }) }));
+    await serial(async () => {
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+      const mark = Math.random().toString(36).slice(2, 8);
+      const r = await ask("tracks", { sessionDescription: { type: "offer", sdp: offer.sdp }, tracks: sent.map(({ track, tr }) => ({ location: "local", mid: tr.mid, trackName: trackName(track.kind, mark) })) });
+      if (!r.ok) throw new Error(why(r, "Your camera didn't reach the call."));
+      await pc.setRemoteDescription(r.data.sessionDescription);
+    });
+  }
+  async function share() {
+    if (!pc || !sessionId || s.local) return;
+    let local;
+    try { local = await navigator.mediaDevices.getUserMedia(media); }
+    catch { return set({ error: "The browser didn't let us use the camera and microphone. Allow them (the camera icon by the address) and try again." }); }
+    try { await publish(local); set({ local, mic: true, cam: true, error: "" }); }
+    catch (err) { local.getTracks().forEach((t) => t.stop()); set({ error: err instanceof Error ? err.message : "Your camera didn't reach the call." }); }
   }
 
   /* `beacon` sends the leave with keepalive, for a page that's closing. */
@@ -117,7 +134,7 @@ export function createCall({ send, iceServers = STUN, media = { audio: { echoCan
     get state() { return s; },
     /* Watch who's in the call without joining (the button can say who's there). */
     watch() { look(); startTimer(); },
-    join, leave, toggle, look,
+    join, share, leave, toggle, look,
     destroy() { stopTimer(); if (sessionId) leave({ beacon: true }); fns.clear(); },
   };
 }

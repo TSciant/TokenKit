@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { CallBar, CallTile, CallTiles } from "./Call";
 import type { CallState } from "./call-client.mjs";
 
-/* No Figma component yet: these stories carry no `onion` parameter, so the toolbar's Figma and Onion buttons stay off
-   here until a Packs · Call page exists. No camera is asked for: the moving pictures are drawn on a canvas. */
+/* Figma: Packs · Call (CallTile, CallBar), drawn in the house pack (tk). `onion` names the Figma component a story is
+   compared with (the toolbar's Figma and Onion buttons, and tools/onion-check.mjs via figma/onion.json). No camera is
+   asked for: the moving pictures are drawn on a canvas. */
+const onion = (component: string) => ({ component, skin: () => "default.png" });
 function useFakeStream(hue: number) {
   /* A still picture (a head and shoulders), drawn once: the motion gate keeps stories from asking for frames. */
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -32,7 +34,7 @@ const meta: Meta<typeof InCall> = {
   component: InCall,
   args: { people: 3, mic: true, cam: true },
   argTypes: { people: { control: { type: "range", min: 1, max: 4, step: 1 } }, mic: { control: "boolean" }, cam: { control: "boolean" } },
-  parameters: { docs: { description: { component: "A small-group video call: tiles with names, and mute, camera and leave. The client talks to an SFU through a broker you run, so its secret stays on your server. See src/packs/call/README.md." } } },
+  parameters: { onion: onion("CallBar"), docs: { description: { component: "A small-group video call: tiles with names, and mute, camera and leave. The client talks to an SFU through a broker you run, so its secret stays on your server. Figma: [Packs · Call → CallTile](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=577-167) (State), [CallBar](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=577-280) (Mic × Camera), in the house pack; switch the tk mode for another. Code Connect templates: figma/connect/call/*.figma.ts. See src/packs/call/README.md." } } },
 };
 export default meta;
 type Story = StoryObj<typeof InCall>;
@@ -41,6 +43,7 @@ export const Playground: Story = {};
 export const MutedCameraOff: Story = { name: "Muted, camera off", args: { mic: false, cam: false } };
 export const Tiles: Story = {
   name: "Tile states",
+  parameters: { onion: onion("CallTile") },
   render: () => {
     const s = useFakeStream(260);
     return <div style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fill, minmax(16rem, 1fr))", maxWidth: 960 }}><CallTile stream={s} name="@dad" /><CallTile stream={s} name="You" muted mirrored /><CallTile stream={s} name="@kite" off /><CallTile name="@joining" /></div>;
@@ -85,3 +88,20 @@ export const BarPlayground: StoryObj<BarArgs> = {
   argTypes: { state: { control: "object", description: "mic and cam from the call's state." }, call: { control: false, description: "The call from useCall: toggle and leave." }, leaveText: { control: "text" } },
   render: (a) => <CallBar state={{ status: "in", people: [], streams: {}, local: null, error: "", ...a.state }} call={noop} leaveText={a.leaveText} />,
 } as never;
+
+/* Onion skins: the default variant of each Figma component, drawn 1:1 with nothing around it, for the toolbar's Onion
+   switch and tools/onion-check.mjs (figma/onion.json). In the house pack, as Figma draws them; no stream, so nothing
+   moves: the tile is connecting, the bar is mic and camera on. */
+const quiet: CallState = { status: "in", local: null, mic: true, cam: true, error: "", people: [], streams: {} };
+export const TileOnionSkin: Story = {
+  name: "Tile onion skin",
+  globals: { pack: "tk" },
+  parameters: { onion: { component: "CallTile", skin: () => "default.png" } },
+  render: () => <CallTile name="@kite" style={{ inlineSize: 320 }} />,
+};
+export const BarOnionSkin: Story = {
+  name: "Bar onion skin",
+  globals: { pack: "tk" },
+  parameters: { onion: { component: "CallBar", target: "root", skin: () => "default.png" } },
+  render: () => <div style={{ display: "inline-block" }}><CallBar state={quiet} call={noop} /></div>,
+};

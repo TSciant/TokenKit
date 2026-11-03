@@ -4,8 +4,9 @@ import { Keyboard, KeyPrompt } from "./Keyboard";
 import { createKeyReplay } from "./tk-keyboard.mjs";
 import run from "./replays/sample-run.json";
 
-/* No Figma component yet: these stories carry no `onion` parameter, so the toolbar's
-   Figma and Onion buttons stay off here until the Packs · Keyboard page exists. */
+/* Figma: Packs · Keyboard. `onion` names the Figma component a story is compared with
+   (the toolbar's Figma and Onion buttons, and tools/onion-check.mjs via figma/onion.json). */
+const onion = (component: string) => ({ component, skin: () => "default.png" });
 const row = { display: "flex", flexWrap: "wrap", gap: 24, alignItems: "flex-start" } as const;
 const cap = { font: "600 12px/1.4 system-ui, sans-serif", marginTop: 6, color: "#d8d4e4" } as const;
 const dark = { background: "#07060a", padding: 24, borderRadius: 12 } as const;
@@ -34,13 +35,14 @@ const meta: Meta<typeof Keyboard> = {
     currentTime: { control: { type: "number", min: 0, step: 0.05 } },
     onKey: { action: "tk-keyboard-key" },
   },
-  parameters: { backgrounds: { default: "dark" }, docs: { description: { component: "A keyboard drawn from tokens, only the keys a game uses, each where it sits on an ANSI board: named clusters (wasd, arrows, space, shift, ctrl, alt, tab, esc, enter, numbers, numbers9, fkeys) or any KeyboardEvent.code. Three themes, live keydown / keyup by position or a replay. Not in Figma yet. Tests: npm run test:keyboard." } } },
-  decorators: [(S) => <div style={dark}><S /></div>],
+  parameters: { onion: onion("Keyboard"), backgrounds: { default: "dark" }, docs: { description: { component: "A keyboard drawn from tokens, only the keys a game uses, each where it sits on an ANSI board: named clusters (wasd, arrows, space, shift, ctrl, alt, tab, esc, enter, numbers, numbers9, fkeys) or any KeyboardEvent.code. Three themes, live keydown / keyup by position or a replay. Figma: [Packs · Keyboard → Keyboard](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=561-1503) (Theme × Keys × State), [KeyPrompt](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=562-177). Code Connect templates: figma/connect/keyboard/*.figma.ts. Tests: npm run test:keyboard." } } },
+  decorators: [(S, ctx) => (ctx.parameters.bare ? <S /> : <div style={dark}><S /></div>)],
 };
 export default meta;
 type Story = StoryObj<typeof Keyboard>;
 
-/* The doc page: what the pack is, its API, and where its tests are. */
+/* The doc page: what the pack is, its API, and where its Figma and tests are. */
+const link = { color: "#7fe9f2" } as const;
 export const ReadMe: Story = {
   name: "Read me",
   parameters: { controls: { disable: true } },
@@ -55,7 +57,7 @@ export const ReadMe: Story = {
       </ul>
       <p>Live input reads codes only, never the typed character, and sends nothing anywhere. Typing in a field is ignored unless <code>capture</code> is set; every key is let go on blur and when the page is hidden, so nothing sticks. Key presses are never announced.</p>
       <p>A held key is filled, outlined and sunk, not only recoloured. Pulsing stops under reduced motion, <code>calm</code> and the kit's motion pause.</p>
-      <p>Figma: not drawn yet (no Packs · Keyboard page). Tests: <code>npm run test:keyboard</code>.</p>
+      <p>Figma: <a style={link} href="https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=561-1503">Keyboard</a> (Theme × Keys × State) and <a style={link} href="https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=562-177">KeyPrompt</a> on the Packs · Keyboard page. Code Connect templates: <code>figma/connect/keyboard</code>. Tests: <code>npm run test:keyboard</code>.</p>
     </article>
   ),
 };
@@ -115,6 +117,7 @@ export const LiveKeys: Story = {
 
 export const PromptChips: Story = {
   name: "Prompt chips",
+  parameters: { onion: onion("KeyPrompt") },
   render: () => (
     <div style={{ display: "grid", gap: 14 }}>
       {THEMES.map((t) => (
@@ -138,6 +141,7 @@ export const PromptChips: Story = {
    every prop has a control somewhere). */
 export const PromptPlayground: StoryObj<typeof KeyPrompt> = {
   name: "Prompt chip: controls",
+  parameters: { onion: onion("KeyPrompt") },
   args: { code: "KeyW", action: "Move forward", label: "", theme: "boosty", lit: false, pulse: false, layout: "auto" },
   argTypes: {
     code: { control: "select", options: CODES, description: "The element's `key` attribute (KeyboardEvent.code)." },
@@ -191,3 +195,18 @@ function ReplayScrub() {
   return <div style={{ maxWidth: "100%" }}><Keyboard keys="wasd space shift" replay={replay} currentTime={t} status size={0.8} /><input aria-label="Replay time" type="range" min={0} max={replay.duration} step={0.01} value={t} onChange={(e) => setT(+e.target.value)} style={{ width: "min(100%, 340px)", display: "block", marginTop: 8 }} /></div>;
 }
 export const ReplayScrubber: Story = { name: "Replay: scrub inputs", render: () => <ReplayScrub /> };
+
+/* Onion skins: the default variant of each Figma component, drawn 1:1 with nothing around it,
+   for the toolbar's Onion switch and tools/onion-check.mjs (figma/onion.json). US caps, so the
+   letters match the drawing on any layout. */
+export const OnionSkin: Story = {
+  name: "Onion skin",
+  args: { theme: "boosty", keys: "wasd arrows space shift", size: 1 },
+  parameters: { bare: true, onion: { component: "Keyboard", target: "root", skin: () => "default.png" } },
+  render: (a) => <Keyboard keys={a.keys} theme={a.theme} layout="us" size={1} />,
+};
+export const PromptOnionSkin: Story = {
+  name: "Prompt onion skin",
+  parameters: { bare: true, onion: { component: "KeyPrompt", target: "root", skin: () => "default.png" } },
+  render: () => <KeyPrompt code="KeyW" action="Move forward" theme="boosty" layout="us" />,
+};

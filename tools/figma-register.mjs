@@ -6,6 +6,8 @@
  *   npm run figma:register -- SaveStatus --node 497:2373 --skin <png url or path> --doc "What the skin shows"
  *
  *   --story <id>       the onion story, if not <its file>--onion-skin (found in the Storybook index)
+ *   --source <file>    the code it is drawn from, when that is not src/react/{primitives,patterns}/<Name>.tsx
+ *                      (a pack: src/packs/keyboard/tk-keyboard.mjs)
  *   --target root      photograph the story's first child, not its first [data-tk]
  *   --max-mean <n>     an accepted ceiling above 8; say why in --doc
  *   --part             a part of a set (RailNav/Item): keys.json only, no skin or onion entry
@@ -32,15 +34,17 @@ const BARE = ["--part", "--no-check"]; // flags that take no value
 const name = args.find((a, i) => !a.startsWith("--") && !(args[i - 1]?.startsWith("--") && !BARE.includes(args[i - 1])));
 const node = opt("node");
 const fail = (m) => { console.error(m); process.exit(1); };
-if (!name || !node || !/^\d+:\d+$/.test(node)) fail("usage: npm run figma:register -- <Name> --node <id like 497:2373> --skin <url|path> --doc \"…\" [--story id] [--target root] [--max-mean n] [--part] [--url u] [--no-check]");
+if (!name || !node || !/^\d+:\d+$/.test(node)) fail("usage: npm run figma:register -- <Name> --node <id like 497:2373> --skin <url|path> --doc \"…\" [--story id] [--source file] [--target root] [--max-mean n] [--part] [--url u] [--no-check]");
 
 const readJson = (f) => JSON.parse(readFileSync(join(ROOT, f), "utf8"));
 const writeJson = (f, j) => writeFileSync(join(ROOT, f), JSON.stringify(j, null, 2) + "\n");
 
-/* The source: its own file, or the one that exports it. */
+/* The source: given (a pack's element file, src/packs/<pack>/tk-<pack>.mjs), its own file, or the one that exports it. */
 const base = name.split("/")[0];
-const source = [`src/react/primitives/${base}.tsx`, `src/react/patterns/${base}.tsx`].find((f) => existsSync(join(ROOT, f)))
-  ?? fail(`No source for ${base} in src/react/primitives or src/react/patterns.`);
+const given = opt("source");
+if (given && !existsSync(join(ROOT, given))) fail(`--source ${given} does not exist.`);
+const source = given ?? [`src/react/primitives/${base}.tsx`, `src/react/patterns/${base}.tsx`].find((f) => existsSync(join(ROOT, f)))
+  ?? fail(`No source for ${base} in src/react/primitives or src/react/patterns (a pack component: pass --source).`);
 
 /* The onion story: given, or <the stories file>--onion-skin from the last Storybook build's index. */
 let story = opt("story");

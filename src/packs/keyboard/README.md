@@ -55,8 +55,15 @@ for the stories and tests.
 
 ## Figma
 
-Not drawn yet: there is no Packs · Keyboard page, so the pack isn't in `figma/keys.json`,
-`onion.json` or `meta.json`, has no skins, and its stories carry no `onion` parameter.
+The Packs · Keyboard page in the kit file: **Keyboard**
+([561:1503](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=561-1503), Theme ×
+Keys (Default, WASD, Arrows) × State (Idle, Highlight, Pressed)) and **KeyPrompt**
+([562:177](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=562-177), Theme ×
+State). Colours bind to the `tk-keyboard` variable collection (modes boosty / dark / light, the
+`--tk-keyboard-*` defaults); legends are Manrope, the kit's face. Both are in `figma/keys.json`,
+`onion.json` and `meta.json` with 1x skins, the `Onion skin` and `Prompt onion skin` stories
+draw the default variants, and Code Connect templates are in `figma/connect/keyboard` (not
+published).
 
 ## Tests
 

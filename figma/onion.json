@@ -1566,6 +1566,120 @@
       "single": true,
       "target": "root",
       "doc": "Theme=Boosty, State=Idle: the 5-fret guitar glyph at 1x."
+    },
+    "Keyboard": {
+      "story": "10-packs-02-keyboard--onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "The default variant: Theme=Boosty, Keys=Default (wasd arrows space shift), State=Idle, at 1x with US caps. Figma draws the cap legends in Manrope, the kit's face."
+    },
+    "KeyPrompt": {
+      "story": "10-packs-02-keyboard--prompt-onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "Theme=Boosty, State=Off: the W cap and Move forward, at 1x with US caps. maxMean 12: a 133x33 chip that is mostly text; the difference is in the glyphs (Chromium's variable Manrope 700 against Figma's static Manrope Bold, about 25 a pixel along the text rows) and the cap's right edge a third of a pixel wider; the best shift is 0,0, so nothing is misplaced. Fills, borders and radii match (about 3 on flat areas).",
+      "maxMean": 12
+    },
+    "TvTile": {
+      "story": "10-packs-03-tv--tile-onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "Theme=Boosty, State=Default, accent violet: Drama, Slow evenings, at the 1920-wide reference frame (viewport 1920, so the tile's container units resolve as they do in a 1920 shell).",
+      "viewport": 1920
+    },
+    "TvRow": {
+      "story": "10-packs-03-tv--row-onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "Theme=Boosty, State=Idle: Films with Drama, Comedy (New), Documentary, Animation, Classics and Shorts, at the 1920-wide reference frame (viewport 1920). In a shell the row fills the main column and its track clips the rest. Drawn on the screen background (tv/bg); the story puts the row on the same ground.",
+      "viewport": 1920
+    },
+    "TvOsd": {
+      "story": "10-packs-03-tv--osd-onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "Theme=Boosty, Kind=Volume at 40, open and held (persist, calm), at the 1920-wide reference frame (viewport 1920). The skin is cropped to the pill: Figma's export grows by the drop shadow, the live element's box does not.",
+      "viewport": 1920
+    },
+    "TvSidebar": {
+      "story": "10-packs-03-tv--sidebar-onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "Theme=Boosty, State=Idle: Home (current), Films, Music, Games, Family, Ask, Settings at the 1920-wide reference frame (viewport 1920). Its items once drifted to body text on kit pages (the reset button { font: inherit; color: inherit } beat the ::slotted rules); fixed 2026-11-02 with !important on the items colour and type, mean 3.66.",
+      "viewport": 1920
+    },
+    "TvShell": {
+      "story": "10-packs-03-tv--shell-onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "Theme=Boosty, Guides=Off: the 1920x1080 screen with the sidebar (Home current) and the Films and Music rows, title-safe padding 96 / 54. Viewport 1968, so the shell is 1920 wide inside the page's 24px padding.",
+      "viewport": 1968
+    },
+    "CallTile": {
+      "story": "10-packs-04-call--tile-onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "doc": "State=Connecting, name @kite, 320 wide, in the house pack (the story sets the pack global to tk; Figma sets the tk mode)."
+    },
+    "CallBar": {
+      "story": "10-packs-04-call--bar-onion-skin",
+      "pattern": [
+        "state"
+      ],
+      "states": {
+        "default": {}
+      },
+      "single": true,
+      "target": "root",
+      "doc": "Mic=On, Camera=On: Mute, Camera off and Leave the call, kit Buttons md, in the house pack (story pack global tk; Figma tk mode). maxMean 11: inherited from the kit Button instances, whose labels Figma sets a little wider than live (Button itself carries the same drift); here three of them add up to 2px, so the second and third buttons land a pixel right (5.05 a pixel shifted). Fills, outlines, the pill radius and the gap match.",
+      "maxMean": 11
     }
   }
 }

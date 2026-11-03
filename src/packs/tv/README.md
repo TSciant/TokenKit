@@ -116,8 +116,23 @@ same five verbs, through `press()` or a `tk-tv-verb`, rather than a set of its o
 
 ## Figma
 
-Not drawn yet: there is no Packs · TV page, so the pack isn't in `figma/keys.json`,
-`onion.json` or `meta.json`, has no skins, and its stories carry no `onion` parameter.
+The Packs · TV page in the kit file, drawn at the 1920-wide reference frame:
+**TvShell** ([575:1686](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=575-1686),
+Theme × Guides, a 1920×1080 screen), **TvRow**
+([571:465](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=571-465), Theme ×
+State), **TvTile** ([568:207](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=568-207),
+Theme × State, with Label, Sub and Badge properties), **TvOsd**
+([572:507](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=572-507), Theme × Kind)
+and **TvSidebar** ([573:627](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=573-627),
+Theme × State). Colours and sizes bind to the `tk-tv` collection (modes boosty / dark / light;
+sizes at 1920), and a tile's accent is its `tk-tv-accent` mode. All five are in
+`figma/keys.json`, `onion.json` (with a 1920 viewport, so container units resolve as in a
+1920 shell) and `meta.json` with 1x skins; Code Connect templates are in `figma/connect/tv`
+(not published).
+
+The sidebar's item colour and type are `!important` inside the shadow root, so a page's own button reset
+(the kit's `button { font: inherit; color: inherit }`) can't turn them into body text; the Figma onion check found
+that drift on 2026-11-02.
 
 ## Tests
 

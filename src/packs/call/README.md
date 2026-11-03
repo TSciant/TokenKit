@@ -51,5 +51,18 @@ Video is asked for at 640×360, 24 fps; echo cancellation and noise suppression 
 STUN is Cloudflare's (`stun:stun.cloudflare.com:3478`). Pass your own `iceServers` to add TURN for
 networks that block UDP. The heartbeat runs every 4 seconds.
 
+## Figma
+
+The Packs · Call page in the kit file: **CallTile**
+([577:167](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=577-167), State: Connecting,
+Live, Camera off, with a Name property) and **CallBar**
+([577:280](https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=577-280), Mic × Camera, from
+the kit's Button). Kit variables only (`tk`, `tk-density`, `tk-type`), drawn in the house mode
+(`tk`); switch the mode for another pack. Registered in `figma/keys.json`, `onion.json` and
+`meta.json` with 1x skins; the onion stories set the pack global to `tk`. Code Connect templates
+are in `figma/connect/call` (JSX, not published).
+
+## Tests
+
 `npm run test:call` tests the pure parts and the "off" state. The browser end needs a real SFU,
 so it's checked in the meeting room.
