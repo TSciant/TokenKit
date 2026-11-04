@@ -70,6 +70,10 @@ __pycache__/
 
 # Email previews (node tools/email/preview.mjs): build output with copies of the Norbert GIFs
 dist-email/
+# Recording-booth clips, locally (tools/api/booth.mjs): people's voices, never in git.
+dist-booth/
+# Free play items, unpacked from their zips (tools/play/unpack.mjs): big models, never in git.
+/play/
 
 # Local database for member accounts (tools/auth/local.mjs)
 .data/

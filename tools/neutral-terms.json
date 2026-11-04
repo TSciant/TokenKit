@@ -56,6 +56,16 @@
       "path": "tools/planner/data/*.json",
       "pattern": "^\\s*\"ms\": \\d+,?\\s*$",
       "why": "the planner harness records each answer's time in milliseconds; a run that takes exactly a listed number of ms is a timing, not a name: only a bare \"ms\": <number> line is skipped"
+    },
+    {
+      "path": "tools/board/personas/bill-gateskeeper.md",
+      "pattern": "health",
+      "why": "The advisory board's Impact Analyst (a parody of a philanthropist) talks about global health as his public subject; it's the advisor's voice, not a client's sector."
+    },
+    {
+      "path": "tools/board/personas.generated.mjs",
+      "pattern": "health",
+      "why": "The advisory board's Impact Analyst (a parody of a philanthropist) talks about global health as his public subject; it's the advisor's voice, not a client's sector."
     }
   ]
 }
