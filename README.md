@@ -2,6 +2,7 @@
 
 A token-driven CSS design system at **wireframe fidelity**. Primitives, seven
 layout shells, and headless gates that check the system rather than a palette.
+Today that is <!-- kit-counts -->124 components (93 primitives, 27 patterns and 4 device and media packs), checked by 22 automated gates for contrast, reflow, accessibility, motion and Figma parity.<!-- /kit-counts -->
 
 It is client-neutral on purpose. The kit is a starting point, not a delivery:
 fork it, add that client's primitives and components beside the kit's own, and
@@ -59,6 +60,12 @@ The kit does **not** ship Gutenberg code. WordPress’s standard unit is the **b
 
 ## Install and run
 
+**Install status:** TokenKit is used today by forking or vendoring this repo
+(or as a git dependency: `npm install github:TSciant/TokenKit`, which installs
+it under the name `tokenkit`). No compiled package is on npm yet, scoped or
+otherwise, and there are no registry items to pull with `npx`. The unscoped
+`token-kit` package on npm belongs to someone else and is unrelated.
+
 ```bash
 npm install
 npx playwright install chromium   # for the gate and the audit tools
@@ -97,6 +104,10 @@ into `dist/`; its root lists what is actually on disk, so a documented path
 cannot go stale.
 
 ## Use
+
+From a fork or a vendored copy, import the files themselves
+(`src/css/index.css`, `src/react/index.ts`); as a git dependency, the
+package's `exports` give them short names:
 
 ```js
 import "tokenkit/css";
@@ -447,15 +458,15 @@ than by review:
 
 ## Starting an engagement
 
-`master` is the kit and only the kit. An engagement is a branch cut from it:
+`main` is the kit and only the kit. An engagement is a branch cut from it:
 
 ```bash
-git switch -c client/acme/site-relaunch master
+git switch -c client/acme/site-relaunch main
 ```
 
 The client is whoever the agreement is with; the engagement is one piece of
 work for them, and a client with two pieces of work gets two branches. That
-branch fills `src/client/` and changes nothing above it. So `git merge master`
+branch fills `src/client/` and changes nothing above it. So `git merge main`
 brings kit improvements forward without touching a line of the engagement's own
 code, and the delivery is that branch and no other.
 
@@ -465,7 +476,7 @@ to make room for them, which is what keeps one delivery from carrying the last
 one.
 
 When something built for an engagement turns out to be general, promote it: move
-it up out of `src/client/`, commit it on `master`, merge `master` back into the
+it up out of `src/client/`, commit it on `main`, merge `main` back into the
 engagement branch. That direction is safe and it is how the kit grows. The other
 direction — writing an engagement's requirement into a kit file — is the one
 that entangles the two, and `npm run neutral` and `npm run boundary` exist to

@@ -76,6 +76,8 @@ export type KeyPromptProps = {
   code: string;
   /** What it does here, e.g. "Move forward". */
   action?: string;
+  /** What happens, after the action, e.g. "hold to sprint". */
+  effect?: string;
   /** Override the key's spoken name (defaults to e.g. "W key", "Space bar"). */
   label?: string;
   theme?: KeyboardTheme;
@@ -88,8 +90,8 @@ export type KeyPromptProps = {
   labels?: Record<string, string>;
 };
 
-export function KeyPrompt({ code, action, label, theme = "boosty", lit, pulse, layout, labels }: KeyPromptProps) {
+export function KeyPrompt({ code, action, effect, label, theme = "boosty", lit, pulse, layout, labels }: KeyPromptProps) {
   const ref = useRef<HTMLElement & { labels: Record<string, string> | null }>(null);
   useEffect(() => { const el = ref.current; if (!el || !labels) return; el.labels = labels; return () => { el.labels = null; }; }, [labels]);
-  return <tk-key-prompt ref={ref} code={code} action={action || undefined} label={label || undefined} theme={theme} lit={lit ? "" : undefined} pulse={pulse ? "" : undefined} layout={layout} />;
+  return <tk-key-prompt ref={ref} code={code} action={action || undefined} effect={effect || undefined} label={label || undefined} theme={theme} lit={lit ? "" : undefined} pulse={pulse ? "" : undefined} layout={layout} />;
 }

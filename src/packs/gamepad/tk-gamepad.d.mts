@@ -20,7 +20,7 @@ export const THEMES: GamepadTheme[];
 export const GLYPH_SETS: GlyphSet[];
 export const STANDARD_BUTTONS: ButtonName[];
 export const BUTTON_WORDS: Record<string, string>;
-export const ROCKET_LEAGUE_DEFAULT: ReplayMap;
+export const CAR_BALL_DEFAULT: ReplayMap;
 export function createReplay(frames: ReplayFrame[] | { frames: ReplayFrame[] }, opts?: { map?: ReplayMap | ((f: ReplayFrame) => GamepadState); hold?: number; timeKey?: string }): Replay;
 export function defineGamepadElements(reg?: CustomElementRegistry): boolean;
 export function readPad(gp: unknown, opts?: { deadzone?: number }): any;

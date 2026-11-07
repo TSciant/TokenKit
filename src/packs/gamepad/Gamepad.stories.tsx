@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useRef, useState } from "react";
 import { Gamepad, ButtonPrompt, Guitar } from "./Gamepad";
-import { createReplay, ROCKET_LEAGUE_DEFAULT, readPad } from "./tk-gamepad.mjs";
+import { createReplay, CAR_BALL_DEFAULT, readPad } from "./tk-gamepad.mjs";
 import { mountReplayOverlay, REPLAY_OVERLAY_CSS, GOAL_CLIP_OFFSET } from "./replay-overlay.mjs";
-import goal from "./replays/grampayeetly-air-dribble.json";
+import goal from "./replays/air-dribble.json";
 
 /* Every story names its Figma component, so the toolbar's Figma button opens
    Packs · Gamepad in the TokenKit file (figma/keys.json). */
@@ -43,7 +43,7 @@ export const ReadMe: Story = {
         <li>React: <code>Gamepad</code>, <code>ButtonPrompt</code>, <code>Guitar</code> from <code>src/packs/gamepad</code>.</li>
       </ul>
       <p>A pad that doesn't report the standard mapping is shown as a list of raw buttons, never guessed at. Pulsing stops under reduced motion, <code>calm</code> and the kit's motion pause.</p>
-      <p>Replays: Rocket League replays don't record pitch, yaw or air roll, so the left stick's Y axis and air roll can't be shown from one.</p>
+      <p>Replays: Car-ball replays don't record pitch, yaw or air roll, so the left stick's Y axis and air roll can't be shown from one.</p>
       <p>Figma: <a style={link} href="https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=550-153">Gamepad</a>, <a style={link} href="https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=550-3149">ButtonPrompt</a>, <a style={link} href="https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=550-2962">Guitar</a> on the Packs · Gamepad page. Code Connect templates: <code>figma/connect/gamepad</code>. Tests: <code>npm run test:gamepad</code>.</p>
     </article>
   ),
@@ -111,6 +111,7 @@ export const PromptChips: Story = {
           <ButtonPrompt theme={t} btn="lb" action="Camera" />
           <ButtonPrompt theme={t} btn="ls" action="Walk" />
           <ButtonPrompt theme={t} btn="menu" action="Pause" lit pulse />
+          <ButtonPrompt theme={t} btn="south" action="Jump" effect="hold for a jet hover" terse />
         </div>
       ))}
     </div>
@@ -130,10 +131,11 @@ const FRET_BTNS = ["fret1", "fret2", "fret3", "fret4", "fret5", "strum", "whammy
 export const PromptPlayground: StoryObj<typeof ButtonPrompt> = {
   name: "Prompt chip: controls",
   parameters: { onion: onion("ButtonPrompt") },
-  args: { btn: "up", action: "Fetch", label: "", glyphs: "letters", theme: "boosty", lit: false, pulse: false, terse: false },
+  args: { btn: "up", action: "Fetch", effect: "", label: "", glyphs: "letters", theme: "boosty", lit: false, pulse: false, terse: false },
   argTypes: {
     btn: { control: "select", options: [...PADS, "fret1", "fret2", "fret3", "fret4", "fret5", "strum"] },
     action: { control: "text" },
+    effect: { control: "text", description: "What the press does, after the action (e.g. \"hold for a jet hover\"); empty for none." },
     label: { control: "text", description: "Accessible name; defaults to \"<button>: <action>\"." },
     glyphs: { control: "inline-radio", options: ["letters", "shapes", "numbers"] },
     theme: { control: "inline-radio", options: ["boosty", "dark", "light"] },
@@ -158,7 +160,7 @@ export const GuitarPlayground: StoryObj<typeof Guitar> = {
 } as never;
 
 
-/* Replay: inputs recorded in a Rocket League replay drive the pad. The clip is Tony's and
+/* Replay: inputs recorded in a car-ball replay drive the pad. The clip is Tony's and
    stays on this machine: Storybook serves demo/media only in dev (never in a build), and
    without it the inputs still play on their own clock. */
 function ReplayDemo() {
@@ -187,7 +189,7 @@ function ReplayDemo() {
     <div data-motion-class="data" data-equivalent="#replay-words" style={{ width: "min(100%, 960px)" }}>
       <div style={{ position: "relative", aspectRatio: "16 / 9", background: "#000", borderRadius: 12, overflow: "hidden" }}>
         {clip
-          ? <video ref={video} src="/local-media/goal.mp4" controls playsInline muted aria-label="GrampaYeetly air dribble goal (local clip)" style={{ width: "100%", height: "100%", display: "block" }} onError={() => setClip(false)} />
+          ? <video ref={video} src="/local-media/goal.mp4" controls playsInline muted aria-label="Air dribble goal (local clip)" style={{ width: "100%", height: "100%", display: "block" }} onError={() => setClip(false)} />
           : <div style={{ position: "absolute", top: 16, right: 16, display: "grid", gap: 8, justifyItems: "end", color: "#d8d4e4", font: "13px/1.4 system-ui, sans-serif", textAlign: "right", maxWidth: "50%" }}>
               <span>The clip stays on Tony's machine, so it isn't served here. The inputs play on their own clock.</span>
               <button type="button" onClick={() => setPlaying((p) => !p)} style={{ font: "600 13px system-ui, sans-serif", padding: "6px 12px", borderRadius: 8, border: "1px solid #22e4f0", background: "#0a0810", color: "#f3efff", cursor: "pointer" }}>{playing ? "Stop inputs" : "Play inputs"}</button>
@@ -199,15 +201,15 @@ function ReplayDemo() {
   );
 }
 export const ReplayGoal: Story = {
-  name: "Replay: GrampaYeetly air dribble",
-  parameters: { docs: { description: { story: `Inputs from the match replay (${goal.frames.length} frames, ~30 Hz) on the Rocket League default layout: throttle → RT/LT, steer → left stick X, jump/double jump/dodge → A, boost → B, powerslide → X. Synced at the wall pop (replay 1.18 s, clock 3:59 = clip 0.375 s); the replay's goal frame lands on the first goal-explosion frame. Pitch, yaw and air roll are not stored in replays, so the left stick's Y axis and air roll cannot be shown.` } } },
+  name: "Replay: an air dribble",
+  parameters: { docs: { description: { story: `Inputs from the match replay (${goal.frames.length} frames, ~30 Hz) on the usual car-ball layout: throttle → RT/LT, steer → left stick X, jump/double jump/dodge → A, boost → B, powerslide → X. Synced at the wall pop (replay 1.18 s, clock 3:59 = clip 0.375 s); the replay's goal frame lands on the first goal-explosion frame. Pitch, yaw and air roll are not stored in replays, so the left stick's Y axis and air roll cannot be shown.` } } },
   render: () => <ReplayDemo />,
 };
 
 /* The same replay with no clip: scrub it. */
 function ReplayScrub() {
   const [t, setT] = useState(1.18);
-  const replay = useRef(createReplay(goal.frames, { map: ROCKET_LEAGUE_DEFAULT, hold: 0.15 })).current;
+  const replay = useRef(createReplay(goal.frames, { map: CAR_BALL_DEFAULT, hold: 0.15 })).current;
   return <div><Gamepad replay={replay} currentTime={t} status /><input aria-label="Replay time" type="range" min={0} max={replay.duration} step={0.01} value={t} onChange={(e) => setT(+e.target.value)} style={{ width: 340, display: "block", marginTop: 8 }} /></div>;
 }
 export const ReplayScrubber: Story = { name: "Replay: scrub inputs", render: () => <ReplayScrub /> };

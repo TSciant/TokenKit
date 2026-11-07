@@ -10,7 +10,7 @@
    root), and theme="boosty|dark|light" only sets their defaults. */
 import { padSVG, guitarSVG, GEO, PAD_VIEWBOX, FRETS } from './gamepad-art.mjs';
 import { GLYPHS, GLYPH_SETS, BUTTON_WORDS, STANDARD_BUTTONS, readPad, toView, sharedHub, createGamepadHub, padFamily } from './gamepad-core.mjs';
-import { createReplay, syncReplayToMedia, ROCKET_LEAGUE_DEFAULT } from './gamepad-replay.mjs';
+import { createReplay, syncReplayToMedia, CAR_BALL_DEFAULT } from './gamepad-replay.mjs';
 
 export const THEMES = ['boosty', 'dark', 'light'];
 /* theme defaults. A page overrides any of them with its own --tk-gamepad-* values. */
@@ -160,7 +160,7 @@ export class TkGamepad extends HTMLBase {
   }
 }
 
-/* "D-pad up: Fetch": a small picture of the control, then its name, then the action. */
+/* "D-pad up: Fetch": a small picture of the control, then its name, then the action, then (effect=) what it does. */
 export function buttonIcon(btn, glyphs = 'letters') {
   const dir = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] }[btn];
   if (dir) { const [dx, dy] = dir; return `<svg viewBox="-12 -12 24 24" aria-hidden="true"><path class="ix" d="M-3.6 -10.5h7.2v7h7v7.2h-7v6.8h-7.2v-6.8h-7v-7.2h7z"/><rect class="ia" x="${(dx * 7 - 3.6).toFixed(1)}" y="${(dy * 7 - 3.6).toFixed(1)}" width="7.2" height="7.2" rx="1.4"/></svg>`; }
@@ -180,6 +180,7 @@ const CHIP_CSS = `
 svg{width:1.692em;height:1.692em;flex:none;display:block}
 .ix{fill:none;stroke:${T('chip-key')};stroke-width:1.3;opacity:.7}.ia{fill:${T('chip-key')}}.ig{fill:${T('chip-bg')}}.it{fill:${T('chip-bg')};font:900 9.5px/1 var(--tk-font-sans,system-ui,sans-serif)}.il{fill:${T('chip-bg')};font:800 12px/1 var(--tk-font-sans,Inter,system-ui,sans-serif)}
 .k{opacity:.82;font-weight:600}.a{font-weight:700}
+.e{font-weight:500;color:color-mix(in srgb,${T('chip-ink')} 80%,${T('chip-bg')});white-space:normal}.e::before{content:'·';margin-inline-end:.46em;opacity:.7}
 :host([terse]) .k{display:none}
 :host([lit]) .chip{background:color-mix(in srgb,${T('chip-key')} 26%,${T('chip-bg')});border-color:${T('chip-key')}}
 :host([pulse][lit]) .chip{animation:tkgp-chip 1.6s ease-in-out infinite}
@@ -190,17 +191,17 @@ svg{width:1.692em;height:1.692em;flex:none;display:block}
 `;
 let CHIP_SHEET = null;
 export class TkButtonPrompt extends HTMLBase {
-  static get observedAttributes() { return ['btn', 'action', 'label', 'glyphs', 'theme', 'lit', 'terse']; }
+  static get observedAttributes() { return ['btn', 'action', 'effect', 'label', 'glyphs', 'theme', 'lit', 'terse']; }
   constructor() { super(); this._root = this.attachShadow({ mode: 'open' }); const s = (CHIP_SHEET ||= sheet(BASE_CSS + PAD_CSS + CHIP_CSS)); if (s && 'adoptedStyleSheets' in this._root) this._root.adoptedStyleSheets = [s]; else { const st = document.createElement('style'); st.textContent = BASE_CSS + PAD_CSS + CHIP_CSS; this._root.appendChild(st); } }
   connectedCallback() { watchMotion(this); this._render(); }
   disconnectedCallback() { unwatchMotion(this); }
   attributeChangedCallback() { if (this.isConnected) this._render(); }
   _render() {
-    const btn = this.getAttribute('btn') || 'south', action = this.getAttribute('action') || '', name = this.getAttribute('label') || BUTTON_WORDS[btn] || btn;
+    const btn = this.getAttribute('btn') || 'south', action = this.getAttribute('action') || '', effect = this.getAttribute('effect') || '', name = this.getAttribute('label') || BUTTON_WORDS[btn] || btn;
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
     this._root.querySelector('.chip')?.remove();
-    const d = document.createElement('span'); d.className = 'chip'; d.setAttribute('role', 'note'); d.setAttribute('aria-label', action ? `${name}: ${action}` : name);
-    d.innerHTML = buttonIcon(btn, this.getAttribute('glyphs') || 'letters') + `<span class="k">${esc(name)}${action ? ':' : ''}</span>${action ? `<span class="a">${esc(action)}</span>` : ''}`;
+    const d = document.createElement('span'); d.className = 'chip'; d.setAttribute('role', 'note'); d.setAttribute('aria-label', (action ? `${name}: ${action}` : name) + (effect ? `, ${effect}` : ''));
+    d.innerHTML = buttonIcon(btn, this.getAttribute('glyphs') || 'letters') + `<span class="k">${esc(name)}${action ? ':' : ''}</span>${action ? `<span class="a">${esc(action)}</span>` : ''}${effect ? `<span class="e">${esc(effect)}</span>` : ''}`;
     this._root.appendChild(d);
   }
 }
@@ -225,5 +226,5 @@ export function defineGamepadElements(reg = globalThis.customElements) {
   return true;
 }
 defineGamepadElements();
-export { createReplay, syncReplayToMedia, ROCKET_LEAGUE_DEFAULT };
+export { createReplay, syncReplayToMedia, CAR_BALL_DEFAULT };
 export { padSVG, guitarSVG, GEO, PAD_VIEWBOX, GLYPHS, GLYPH_SETS, BUTTON_WORDS, STANDARD_BUTTONS, readPad, toView, sharedHub, createGamepadHub, padFamily };

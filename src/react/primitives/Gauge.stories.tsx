@@ -9,7 +9,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Alias story — the kit dial is Tachometer (tokenized QD lineage). Open Components/Tachometer for the full control set. Use for: A single radial reading against a scale when a dial reads clearer than a bar. Don't use for: Multi-band performance stories (Tachometer), or simple percent bars (Meter).",
+          "Alias story — the kit dial is Tachometer. Open Components/Tachometer for the full control set. Use for: A single radial reading against a scale when a dial reads clearer than a bar. Don't use for: Multi-band performance stories (Tachometer), or simple percent bars (Meter).",
       },
     },
   },

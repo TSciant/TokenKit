@@ -25,12 +25,12 @@ optional 1.6 s breathe, both off under `prefers-reduced-motion` and `calm`.
 ## Replay source
 
 `createReplay(frames, { map, hold })` plays recorded inputs through the same view-state as
-a live pad. `ROCKET_LEAGUE_DEFAULT` maps throttle to RT / LT, steer to the left stick X,
+a live pad. `CAR_BALL_DEFAULT` maps throttle to RT / LT, steer to the left stick X,
 jump / double jump / dodge to A (south), boost to B (east) and powerslide to X (west).
-Rocket League replays **do not record pitch, yaw or air roll**, so the left stick's Y
+Car-ball replays **do not record pitch, yaw or air roll**, so the left stick's Y
 axis, the right stick and air roll can't be shown from a replay.
 
-`demo/replay-goal.html` is a standalone local page: the GrampaYeetly air-dribble goal
+`demo/replay-goal.html` is a standalone local page: an air-dribble goal
 with its inputs overlaid, synced at the wall pop (replay 1.18 s = clip 0.375 s). The clip
 belongs in `demo/media/goal.mp4` and is git-ignored: it is never committed or deployed.
 Storybook serves that folder at `/local-media` in dev only.
@@ -47,3 +47,5 @@ variable collection (modes boosty / dark / light). Code Connect templates live i
 `npm run test:gamepad`: a mocked `navigator.getGamepads` (standard mapping, families,
 raw fallback, junk input, several pads, connect / disconnect), the art's contract and the
 replay source.
+
+The Code Connect templates are configured for teams on a Figma Organization or Enterprise plan, which Code Connect needs; on other plans the components' documentation links point from Figma to the code instead.

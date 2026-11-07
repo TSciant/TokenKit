@@ -1,6 +1,6 @@
 /* The replay overlay used by the demo page, the Storybook story and the MP4 render:
    a <tk-gamepad source="replay"> plus prompt chips for whatever is held right now. */
-import { createReplay, ROCKET_LEAGUE_DEFAULT } from './gamepad-replay.mjs';
+import { createReplay, CAR_BALL_DEFAULT } from './gamepad-replay.mjs';
 import './tk-gamepad.mjs';
 
 /* Goal clip sync: replay jump at 1.18 s (clock 3:59) = clip frame 10 (pts 0.375 s), the
@@ -20,13 +20,13 @@ export function stickMeaning(pos) {
 }
 /* chips: 'full' shows every pill with its key and action; 'compact' (Tony, 2026-11-02: "we can collapse the button
    pills") shows each as its glyph alone, and the pill held right now opens to say what it does. */
-export function mountReplayOverlay(host, data, { hold = 0.15, theme = 'boosty', size = '', glyphs = 'letters', title = 'GrampaYeetly · air dribble', chips: chipMode = 'full' } = {}) {
-  const replay = createReplay(data.frames || data, { map: ROCKET_LEAGUE_DEFAULT, hold });
+export function mountReplayOverlay(host, data, { hold = 0.15, theme = 'boosty', size = '', glyphs = 'letters', title = 'Air dribble', chips: chipMode = 'full' } = {}) {
+  const replay = createReplay(data.frames || data, { map: CAR_BALL_DEFAULT, hold });
   host.classList.add('tk-replay-overlay');
   host.innerHTML = `
     <div class="ro-card" data-theme="${theme}">
       <div class="ro-head"><span class="ro-dot" aria-hidden="true"></span><span class="ro-title"></span><span class="ro-clock" aria-label="Game clock"></span></div>
-      <tk-gamepad theme="${theme}" glyphs="${glyphs}"${size ? ` size="${size}"` : ''} label="Rocket League inputs from the replay"></tk-gamepad>
+      <tk-gamepad theme="${theme}" glyphs="${glyphs}"${size ? ` size="${size}"` : ''} label="Car inputs from the replay"></tk-gamepad>
       <div class="ro-steer" aria-hidden="true"><span class="ro-steer-k">Steer</span><span class="ro-steer-bar"><i></i></span></div>
       <div class="ro-chips" data-mode="${chipMode}" aria-live="off"></div>
       <div class="ro-foot">Replays record throttle, the stick left and right, jump, boost and powerslide. In the air that stick yaws or air rolls, and air roll isn't recorded, so it can't say which. Pitch isn't recorded either.</div>
@@ -34,7 +34,7 @@ export function mountReplayOverlay(host, data, { hold = 0.15, theme = 'boosty', 
   host.querySelector('.ro-title').textContent = title;
   const pad = host.querySelector('tk-gamepad'), chips = host.querySelector('.ro-chips'), clock = host.querySelector('.ro-clock'), steer = host.querySelector('.ro-steer-bar i'), steerK = host.querySelector('.ro-steer-k');
   pad.replay = replay;
-  const chipEls = Object.fromEntries(CHIP_ORDER.map((b) => { const c = document.createElement('tk-button-prompt'); c.setAttribute('btn', b); c.setAttribute('glyphs', glyphs); c.setAttribute('theme', theme); if (chipMode === 'compact') c.setAttribute('terse', ''); else c.setAttribute('action', ROCKET_LEAGUE_DEFAULT.labels[b]); c.setAttribute('label', SHORT[glyphs]?.[b] ?? SHORT.letters[b]); chips.append(c); return [b, c]; }));
+  const chipEls = Object.fromEntries(CHIP_ORDER.map((b) => { const c = document.createElement('tk-button-prompt'); c.setAttribute('btn', b); c.setAttribute('glyphs', glyphs); c.setAttribute('theme', theme); if (chipMode === 'compact') c.setAttribute('terse', ''); else c.setAttribute('action', CAR_BALL_DEFAULT.labels[b]); c.setAttribute('label', SHORT[glyphs]?.[b] ?? SHORT.letters[b]); chips.append(c); return [b, c]; }));
   const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
   function show(t) {
     pad.currentTime = t; const s = replay.at(replay.start + t); const on = new Set(s.pressed);
@@ -42,7 +42,7 @@ export function mountReplayOverlay(host, data, { hold = 0.15, theme = 'boosty', 
       const c = chipEls[b], lit = on.has(b);
       if (c.hasAttribute('lit') !== lit) {
         c.toggleAttribute('lit', lit);
-        if (chipMode === 'compact') lit ? c.setAttribute('action', ROCKET_LEAGUE_DEFAULT.labels[b]) : c.removeAttribute('action');
+        if (chipMode === 'compact') lit ? c.setAttribute('action', CAR_BALL_DEFAULT.labels[b]) : c.removeAttribute('action');
       }
     }
     clock.textContent = s.frame ? fmt(s.frame.clock) : '';

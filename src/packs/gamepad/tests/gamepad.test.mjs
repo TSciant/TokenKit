@@ -108,12 +108,12 @@ test('art: no maker marks or maker symbols', () => {
 });
 
 /* ---- replay input source ---- */
-import { createReplay, syncReplayToMedia, ROCKET_LEAGUE_DEFAULT } from '../gamepad-replay.mjs';
+import { createReplay, syncReplayToMedia, CAR_BALL_DEFAULT } from '../gamepad-replay.mjs';
 import { readFileSync } from 'node:fs';
-const goal = JSON.parse(readFileSync(new URL('../replays/grampayeetly-air-dribble.json', import.meta.url), 'utf8'));
+const goal = JSON.parse(readFileSync(new URL('../replays/air-dribble.json', import.meta.url), 'utf8'));
 
-test('replay: Rocket League default mapping', () => {
-  const m = (f) => ROCKET_LEAGUE_DEFAULT.frame(f);
+test('replay: car-ball default mapping', () => {
+  const m = (f) => CAR_BALL_DEFAULT.frame(f);
   assert.deepEqual(m({ throttle: 1 }).pressed, ['rt']);
   assert.equal(m({ throttle: 1 }).rt, 1);
   assert.deepEqual(m({ throttle: -1 }).pressed, ['lt']);
@@ -124,7 +124,7 @@ test('replay: Rocket League default mapping', () => {
   assert.deepEqual(m({ boost: true }).pressed, ['east']);
   assert.deepEqual(m({ handbrake: true }).pressed, ['west']);
   assert.equal(m({}).ly, 0, 'pitch is not recorded, so ly stays 0');
-  assert.ok(ROCKET_LEAGUE_DEFAULT.notRecorded.some((s) => /air roll/.test(s)));
+  assert.ok(CAR_BALL_DEFAULT.notRecorded.some((s) => /air roll/.test(s)));
 });
 
 test('replay: at() boundaries, the 1.18 s jump, hold and events', () => {

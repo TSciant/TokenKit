@@ -176,7 +176,7 @@ export class TkKeyboard extends HTMLBase {
   }
 }
 
-/* "[W] Move forward": a small key cap, then the action. */
+/* "[W] Move forward": a small key cap, then the action, then (effect=) what it does. */
 export function capMark(code, labels = null) {
   const dir = { ArrowUp: 0, ArrowRight: 90, ArrowDown: 180, ArrowLeft: 270 }[code];
   if (dir != null) return `<svg viewBox="-8 -8 16 16" aria-hidden="true"><path d="M0 -4.5L4.5 2.5H-4.5Z" transform="rotate(${dir})"/></svg>`;
@@ -188,6 +188,7 @@ const CHIP_CSS = `
 .cap{display:inline-grid;place-items:center;box-sizing:border-box;min-width:1.9em;height:1.9em;padding:0 .45em;border-radius:.35em;border:1px solid ${T('chip-key')};border-bottom-width:3px;background:${T('chip-cap')};color:${T('chip-cap-ink')};font:700 .92em/1 ${SANS};transition:background .25s ease,color .25s ease}
 .cap svg{width:1em;height:1em;display:block;fill:currentColor}
 .a{font-weight:700}
+.e{font-weight:500;color:color-mix(in srgb,${T('chip-ink')} 80%,${T('chip-bg')});white-space:normal}.e::before{content:'·';margin-inline-end:.46em;opacity:.7}
 :host([lit]) .chip{background:color-mix(in srgb,${T('chip-key')} 22%,${T('chip-bg')});border-color:${T('chip-key')}}
 :host([lit]) .cap{background:${T('chip-key')};color:${T('chip-lit-ink')}}
 :host([pulse][lit]) .chip{animation:tkkb-chip 1.6s ease-in-out infinite}
@@ -199,7 +200,7 @@ const CHIP_CSS = `
 `;
 let CHIP_SHEET = null; const chipSheet = () => (CHIP_SHEET ||= sheet(BASE_CSS + CHIP_CSS));
 export class TkKeyPrompt extends HTMLBase {
-  static get observedAttributes() { return ['key', 'code', 'action', 'label', 'theme', 'lit', 'layout']; }
+  static get observedAttributes() { return ['key', 'code', 'action', 'effect', 'label', 'theme', 'lit', 'layout']; }
   constructor() { super(); this._root = attach(this, BASE_CSS + CHIP_CSS, chipSheet); this._labels = null; }
   connectedCallback() { watchMotion(this); this._render(); withLayout(this, () => this._render()); }
   disconnectedCallback() { unwatchMotion(this); }
@@ -210,10 +211,10 @@ export class TkKeyPrompt extends HTMLBase {
   get code() { return this.getAttribute('key') || this.getAttribute('code') || 'KeyW'; }
   set code(v) { if (v) this.setAttribute('code', String(v)); else this.removeAttribute('code'); }
   _render() {
-    const code = this.code, action = this.getAttribute('action') || '', name = this.getAttribute('label') || keyWord(code, this._labels);
+    const code = this.code, action = this.getAttribute('action') || '', effect = this.getAttribute('effect') || '', name = this.getAttribute('label') || keyWord(code, this._labels);
     this._root.querySelector('.chip')?.remove();
-    const d = document.createElement('span'); d.className = 'chip'; d.setAttribute('role', 'note'); d.setAttribute('aria-label', action ? `${name}: ${action}` : name);
-    d.innerHTML = `<kbd class="cap" aria-hidden="true">${capMark(code, this._labels)}</kbd><span class="a" aria-hidden="true">${esc(action || name)}</span>`;
+    const d = document.createElement('span'); d.className = 'chip'; d.setAttribute('role', 'note'); d.setAttribute('aria-label', (action ? `${name}: ${action}` : name) + (effect ? `, ${effect}` : ''));
+    d.innerHTML = `<kbd class="cap" aria-hidden="true">${capMark(code, this._labels)}</kbd><span class="a" aria-hidden="true">${esc(action || name)}</span>${effect ? `<span class="e" aria-hidden="true">${esc(effect)}</span>` : ''}`;
     this._root.appendChild(d);
   }
 }

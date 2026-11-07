@@ -4,7 +4,7 @@ tokenkit is pre-existing intellectual property, developed independently and
 maintained in its own repository. It is not work product of any client
 engagement.
 
-`master` is the kit and nothing else: no client's name, no client's content, no
+`main` is the kit and nothing else: no client's name, no client's content, no
 client's brand. That is not tidiness, it is the claim this file makes, in a
 form somebody can check. Two gates check it on every run — `npm run neutral`
 (no client vocabulary in the kit) and `npm run boundary` (the kit does not
@@ -18,7 +18,7 @@ import client code).
   its own content and its own delivery.
 
 One branch per engagement, named `client/<client>/<engagement>`, cut from
-`master`. The engagement's own files live under `src/client/` on that branch
+`main`. The engagement's own files live under `src/client/` on that branch
 and nowhere else. Delivery is that branch; the kit travels with it under
 licence.
 
@@ -47,7 +47,7 @@ before signing costs nothing; asking afterwards is a renegotiation.
 
 Work done **before** signing is unambiguously the author's — there is no
 agreement yet for it to be assigned under. So the ordering is worth being
-deliberate about: extract anything general into the kit on `master`, with its
+deliberate about: extract anything general into the kit on `main`, with its
 own commits and its own dates, before the engagement's agreement exists. The
 git history is the record, and it is easier to point at than to reconstruct.
 

@@ -131,6 +131,7 @@ export const PromptChips: Story = {
           <KeyPrompt theme={t} code="Escape" action="Pause" />
           <KeyPrompt theme={t} code="Digit1" action="Slot 1" />
           <KeyPrompt theme={t} code="Tab" />
+          <KeyPrompt theme={t} code="Space" action="Jump" effect="hold for a jet hover" />
         </div>
       ))}
     </div>
@@ -142,10 +143,11 @@ export const PromptChips: Story = {
 export const PromptPlayground: StoryObj<typeof KeyPrompt> = {
   name: "Prompt chip: controls",
   parameters: { onion: onion("KeyPrompt") },
-  args: { code: "KeyW", action: "Move forward", label: "", theme: "boosty", lit: false, pulse: false, layout: "auto" },
+  args: { code: "KeyW", action: "Move forward", effect: "", label: "", theme: "boosty", lit: false, pulse: false, layout: "auto" },
   argTypes: {
     code: { control: "select", options: CODES, description: "The element's `key` attribute (KeyboardEvent.code)." },
     action: { control: "text" },
+    effect: { control: "text", description: "What the press does, after the action (e.g. \"hold for a jet hover\"); empty for none." },
     label: { control: "text", description: "Accessible name of the key; defaults to e.g. \"W key\"." },
     theme: { control: "inline-radio", options: [...THEMES] },
     lit: { control: "boolean" },

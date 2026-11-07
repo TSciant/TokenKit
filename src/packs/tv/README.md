@@ -140,3 +140,5 @@ that drift on 2026-11-02.
 keyboard pack's hub, TV remote key names), fields and shortcuts ignored, held moves
 repeating, the event contract, spatial focus in a grid and across rows with memory, the
 sidebar beside the rows, Back, menu and home, and the OSD's words.
+
+The Code Connect templates are configured for teams on a Figma Organization or Enterprise plan, which Code Connect needs; on other plans the components' documentation links point from Figma to the code instead.

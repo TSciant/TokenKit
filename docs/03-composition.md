@@ -71,6 +71,31 @@ no breakpoint and no knowledge of the viewport.
 Shells become containers only when asked (`data-container`), because
 `container-type` applies containment and containment is not always wanted.
 
+## Guests: puppets, helpers, onion skins
+
+Some things on a page are not the page's own: a puppet guide, a contextual
+helper, a live model's answer, Figma's picture laid over a story. They get no
+free placement. A guest goes in one of two places and nowhere else:
+
+1. **An allowlisted Scene kind.** The scene vocabulary
+   (`tools/gen-scene-vocabulary.mjs`) is the allowlist: a kind the kit does not
+   have is dropped by the sanitizer and named in the notes.
+2. **A named slot** a shell declares (`data-slot="guide"`, `"context"`),
+   with its footprint reserved by tokens (`inline-size` and `block-size` from
+   the scale). Empty, the slot costs no layout shift and no runtime weight:
+   nothing loads until something occupies it.
+
+While a slot is occupied, the same gates run as for the page itself: contrast,
+axe, Lighthouse 95 and reduced motion. A guest that fails them does not ship.
+The onion skin is a development tool only: Storybook's manager reads it from
+`figma/skins` (`/onion`), and no page, CSS or module the kit ships imports it.
+A live model in a slot is a loop, and is priced as one (a Loop build or a Loop
+retainer on the offer page), not as a component.
+
+Today the Scene allowlist is enforced (the sanitizer and `npm run check`'s
+scene gate). The named-slot footprint and the occupied-slot gate pass are the
+rule, not yet a gate.
+
 ## Adding a component
 
 `npm run new:component -- <Name>` writes steps 1 to 4 in this shape.

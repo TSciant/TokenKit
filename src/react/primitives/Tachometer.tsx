@@ -37,7 +37,7 @@ export type TachometerProps = {
 /* The drawing lives in src/lib/tachometer-draw.mjs, so a page without React draws
    the same dial (and the light pack's hatched red zone comes with it). */
 /**
- * Token-driven tachometer — OutsideIn / QD lineage (P-12).
+ * Token-driven tachometer.
  * Reads --tk-* CSS vars; canvas is decorative; role=meter + live text carry a11y.
  */
 export function Tachometer({

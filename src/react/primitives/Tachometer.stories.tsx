@@ -8,7 +8,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Token-driven dial from QD/OutsideIn (P-12). Needle and glow resolve from --tk-* tokens. Canvas is decorative; role=meter + live text carry the accessible value. prefers-reduced-motion freezes the needle. Use for: Banded performance dials (risk, readiness, score ranges). Don't use for: Simple progress (Meter), or a single unlabeled decorative circle.",
+          "Token-driven dial. Needle and glow resolve from --tk-* tokens. Canvas is decorative; role=meter + live text carry the accessible value. prefers-reduced-motion freezes the needle. Use for: Banded performance dials (risk, readiness, score ranges). Don't use for: Simple progress (Meter), or a single unlabeled decorative circle.",
       },
     },
   },

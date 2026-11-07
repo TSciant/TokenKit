@@ -15,6 +15,8 @@ npm install
 npm run check:delivery
 ```
 
+What the kit brings to it: <!-- kit-counts -->124 components (93 primitives, 27 patterns and 4 device and media packs), checked by 22 automated gates for contrast, reflow, accessibility, motion and Figma parity.<!-- /kit-counts -->
+
 `check:delivery` is `check` (lint · vocabulary · generated-file freshness ·
 boundary · neutral · contrast · type · build, then a11y · radius · attributes ·
 properties · controls in one browser pass) followed by the Next.js build and
@@ -80,7 +82,7 @@ wants three columns instead of four changes it themselves and looks at the
 result.
 
 ```sh
-npm run controls              # 59 components · 321/321 props · 0 gaps
+npm run controls              # components · props a panel drives / props declared · gaps
 npm run controls -- --verbose # per component, which panel drives it
 ```
 
@@ -100,7 +102,7 @@ Inherited DOM attributes (`className`, `style`, `onClick` and the rest of
 forwards, not a designed API, and 250 of them in the panel would bury the dozen
 that are the component.
 
-The 25 patterns' stories are generated from the components' own prop types,
+The patterns' stories are generated from the components' own prop types,
 default values and JSDoc:
 
 ```sh

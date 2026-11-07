@@ -47,6 +47,7 @@ const STEPS = [
   { name: "type", cmd: "node tools/type-gate.mjs" },
   { name: "storybook build", cmd: "npm run -s build-storybook", required: true },
   { name: "figma", cmd: "node tools/figma-gate.mjs" },
+  { name: "counts", cmd: "node tools/kit-counts.mjs --check" },
   { name: "browser gates", cmd: FAST ? `node tools/browser-gates.mjs --affected${STAGED ? " --staged" : ""}` : "node tools/browser-gates.mjs" },
 ];
 

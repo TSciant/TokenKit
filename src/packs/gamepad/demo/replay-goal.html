@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Replay: GrampaYeetly air dribble · TokenKit gamepad pack</title>
+<title>Replay: an air dribble · TokenKit gamepad pack</title>
 <style>
   html,body{margin:0;background:#07060a;color:#efe9ff;font:14px/1.4 system-ui,sans-serif}
   main{max-width:1280px;margin:0 auto;padding:20px}
@@ -16,15 +16,15 @@
 </style></head>
 <body>
 <main>
-  <h1>Replay: GrampaYeetly air dribble</h1>
-  <p>Inputs from the match replay (about 30 Hz), drawn by <code>&lt;tk-gamepad source="replay"&gt;</code> on the Rocket League default layout, synced to the clip at the wall pop (replay 1.18 s, clock 3:59). Local only.</p>
+  <h1>Replay: an air dribble</h1>
+  <p>Inputs from the match replay (about 30 Hz), drawn by <code>&lt;tk-gamepad source="replay"&gt;</code> on the usual car-ball layout, synced to the clip at the wall pop (replay 1.18 s, clock 3:59). Local only.</p>
   <div class="stage"><video id="v" src="./media/goal.mp4" playsinline controls preload="auto"></video><div class="ov" id="ov"></div></div>
   <div class="bar"><button id="play">Play</button><input id="scrub" type="range" min="0" max="7.13" step="0.01" value="0" aria-label="Replay time"><output id="tt">0.00 s</output></div>
 </main>
 <script type="module">
   import { mountReplayOverlay, REPLAY_OVERLAY_CSS, GOAL_CLIP_OFFSET } from '../replay-overlay.mjs';
   const st = document.createElement('style'); st.textContent = REPLAY_OVERLAY_CSS; document.head.append(st);
-  const data = await (await fetch('../replays/grampayeetly-air-dribble.json')).json();
+  const data = await (await fetch('../replays/air-dribble.json')).json();
   const q = new URLSearchParams(location.search);
   const ov = mountReplayOverlay(document.getElementById('ov'), data, { theme: q.get('theme') || 'boosty', glyphs: q.get('glyphs') || 'letters', chips: q.get('chips') || 'compact' });
   window.__overlay = ov; window.__offset = GOAL_CLIP_OFFSET;

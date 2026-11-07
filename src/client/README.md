@@ -11,11 +11,11 @@ keep them straight is a directory you can point at.
 
 ## One engagement per branch
 
-`master` is the kit, and it is empty here on purpose. An engagement is a branch
-cut from `master`, named `client/<client>/<engagement>` — the client is whoever
+`main` is the kit, and it is empty here on purpose. An engagement is a branch
+cut from `main`, named `client/<client>/<engagement>` — the client is whoever
 the agreement is with, the engagement is one piece of work for them, and a
 client with two pieces of work gets two branches. That branch fills this
-directory and changes nothing above it, so merging `master` forward brings kit
+directory and changes nothing above it, so merging `main` forward brings kit
 improvements in without touching a line of the engagement's own code, and the
 delivery is that branch and no other.
 
@@ -85,7 +85,7 @@ ship with the kit are grayscale on purpose.
 ## Storybook
 
 Stories under this directory belong to the `09 Client` section, which is the
-last one in the sidebar and is empty on `master`. Title them
+last one in the sidebar and is empty on `main`. Title them
 `09 Client/NN Name`.
 
 ## Delivering

@@ -71,3 +71,5 @@ published).
 auto-repeat and IME ignored, blur and hidden-page clearing, the Meta release, fields
 ignored unless `capture`, listeners on and off), the layout map, the art's contract and
 the replay source.
+
+The Code Connect templates are configured for teams on a Figma Organization or Enterprise plan, which Code Connect needs; on other plans the components' documentation links point from Figma to the code instead.

@@ -6,16 +6,16 @@
    frames: [{ t: seconds, ...fields }] in time order. A mapping turns one frame into a
    view-state { pressed:[names], lt, rt, lx, ly, rx, ry } using standard positional names.
 
-   Rocket League replays store the car's network-replicated inputs at about 30 Hz:
+   Car-ball replays store the car's network-replicated inputs at about 30 Hz:
    throttle, steer, handbrake, and the boost / jump / double-jump / dodge components.
    They do NOT store pitch, yaw or air roll, so the right stick, the left stick's Y axis
    and the air-roll button cannot be shown from a replay. */
 
-/* Rocket League default controller layout (positional names, any maker's pad):
+/* The usual car-ball controller layout (positional names, any maker's pad):
    throttle > 0 = RT, throttle < 0 = LT (reverse/brake), steer = left stick X,
    jump / double jump / dodge = A (south), boost = B (east), handbrake = X (west). */
-export const ROCKET_LEAGUE_DEFAULT = Object.freeze({
-  name: 'Rocket League default',
+export const CAR_BALL_DEFAULT = Object.freeze({
+  name: 'Car-ball default',
   frame(f) {
     const th = num(f.throttle), st = num(f.steer), pressed = [];
     if (f.jump || f.doubleJump || f.dodge) pressed.push('south');
@@ -33,7 +33,7 @@ const num = (v) => { const n = +v; return Number.isFinite(n) ? Math.max(-1, Math
 /* createReplay(frames, { map, hold }) -> { duration, start, at(t), events, frames }
    hold: keep a digital press visible for at least this many seconds (a one-frame jump at
    30 Hz is otherwise gone before the eye sees it). 0 = exactly as recorded. */
-export function createReplay(frames, { map = ROCKET_LEAGUE_DEFAULT, hold = 0, timeKey = 't' } = {}) {
+export function createReplay(frames, { map = CAR_BALL_DEFAULT, hold = 0, timeKey = 't' } = {}) {
   const fr = (Array.isArray(frames) ? frames : frames?.frames || []).filter((f) => f && Number.isFinite(+f[timeKey])).slice().sort((a, b) => a[timeKey] - b[timeKey]);
   const toState = typeof map === 'function' ? map : map.frame.bind(map);
   const states = fr.map((f) => { try { return toState(f) || {}; } catch { return {}; } });

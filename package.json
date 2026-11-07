@@ -1,6 +1,6 @@
 {
   "name": "tokenkit",
-  "version": "0.3.35",
+  "version": "0.3.36",
   "private": true,
   "type": "module",
   "description": "A token-driven CSS design system. Primitives, layout shells, and a headless accessibility gate.",
@@ -9,7 +9,8 @@
     "./css": "./src/css/index.css",
     "./react": "./src/react/index.ts",
     "./contrast": "./src/lib/contrast.ts",
-    "./scene": "./src/scene/scene.mjs"
+    "./scene": "./src/scene/scene.mjs",
+    "./packs/*": "./src/packs/*"
   },
   "files": [
     "src",
@@ -33,12 +34,14 @@
     "figma:register": "node tools/figma-register.mjs",
     "hooks": "git config core.hooksPath tools/hooks && echo pre-commit: the fast tier of npm run check",
     "gates": "node tools/browser-gates.mjs",
+    "test:tricks": "node tools/tricks-browser.mjs",
+    "test:tricks:deploy": "node tools/tricks-browser.mjs || node tools/tricks-browser.mjs",
     "motion": "node tools/motion-gate.mjs",
     "storybook": "node tools/storybook.mjs",
     "build-storybook": "storybook build",
     "serve": "node tools/serve.mjs",
     "bundle": "node tools/bundle.mjs",
-    "stage": "npm run resume && node tools/deploy-if-changed.mjs --stage",
+    "stage": "npm run resume && npm run -s test:tricks:deploy && node tools/deploy-if-changed.mjs --stage",
     "promote": "node tools/deploy-window.mjs && node tools/deploy-if-changed.mjs --promote",
     "smoke:live": "node tools/smoke-live.mjs",
     "type-gate": "node tools/type-gate.mjs",
@@ -76,6 +79,7 @@
     "test:tv": "node --test \"src/packs/tv/tests/*.test.mjs\""
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^1.4.0",
     "@chenglou/pretext": "^0.0.9",
     "@storybook/addon-a11y": "^10.6.0",
     "@storybook/addon-docs": "^10.6.0",
@@ -84,6 +88,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^5.2.0",
     "lighthouse": "^13.5.0",
+    "maplibre-gl": "^6.10.0",
     "motion": "^13.4.0",
     "next": "^15.5.0",
     "playwright": "^1.63.0",
@@ -91,22 +96,30 @@
     "qrcode-generator": "^1.4.4",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
+    "react-icons": "^5.7.0",
     "storybook": "^10.6.0",
     "three": "^0.186.1",
     "typescript": "^5.9.3",
     "vite": "^7.3.6"
   },
   "peerDependencies": {
-    "react": ">=18"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    }
-  },
-  "dependencies": {
     "@anthropic-ai/sdk": "^1.4.0",
     "maplibre-gl": "^6.10.0",
+    "react": ">=18",
     "react-icons": "^5.7.0"
+  },
+  "peerDependenciesMeta": {
+    "@anthropic-ai/sdk": {
+      "optional": true
+    },
+    "maplibre-gl": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-icons": {
+      "optional": true
+    }
   }
 }

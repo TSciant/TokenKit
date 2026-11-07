@@ -63,6 +63,8 @@ export type ButtonPromptProps = {
   btn: string;
   /** What it does here, e.g. "Fetch". */
   action?: string;
+  /** What happens, after the action, e.g. "hold for a jet hover". */
+  effect?: string;
   /** Override the control's spoken name (defaults to e.g. "D-pad up"). */
   label?: string;
   glyphs?: GlyphSet;
@@ -74,8 +76,8 @@ export type ButtonPromptProps = {
   terse?: boolean;
 };
 
-export function ButtonPrompt({ btn, action, label, glyphs = "letters", theme = "boosty", lit, pulse, terse }: ButtonPromptProps) {
-  return <tk-button-prompt btn={btn} action={action} label={label} glyphs={glyphs} theme={theme} lit={lit ? "" : undefined} pulse={pulse ? "" : undefined} terse={terse ? "" : undefined} />;
+export function ButtonPrompt({ btn, action, effect, label, glyphs = "letters", theme = "boosty", lit, pulse, terse }: ButtonPromptProps) {
+  return <tk-button-prompt btn={btn} action={action} effect={effect || undefined} label={label} glyphs={glyphs} theme={theme} lit={lit ? "" : undefined} pulse={pulse ? "" : undefined} terse={terse ? "" : undefined} />;
 }
 
 export type GuitarProps = { theme?: GamepadTheme; size?: number | string; highlight?: string; pressed?: string[]; label?: string };
