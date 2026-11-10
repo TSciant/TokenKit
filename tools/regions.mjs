@@ -600,6 +600,9 @@ export function splitRegions() {
     generator: document.querySelector('meta[name="generator"]')?.content || null,
     stylesheets: [...document.querySelectorAll('link[rel="stylesheet"]')].map((l) => l.href).slice(0, 40),
     regions: regions.map(({ _el, _els, ...r }, i) => ({ n: i + 1, ...r })),
+    /* Kept on the page so each crop can measure its region again: scrolling wakes lazy media and embeds, which
+       grow the page and move everything below them after the first measure. */
+    ...((window.__tkRegionEls = regions.map((r) => r._els || [r._el])), {}),
   };
 }
 
@@ -646,7 +649,8 @@ async function main() {
     for (const width of opts.widths) {
       const page = await browser.newPage({ viewport: { width, height: width < 600 ? 800 : 900 } });
       try {
-        await page.goto(url, { waitUntil: "networkidle", timeout: 45000 });
+        /* A page that never goes quiet (a streaming video, a poll) still gets split: fall back to "load", as capture does. */
+        await page.goto(url, { waitUntil: "networkidle", timeout: 45000 }).catch(() => page.goto(url, { waitUntil: "load", timeout: 60000 }));
         await page.waitForTimeout(opts.wait);
         /* Wake it as a visitor would (delayed scripts, lazy iframes), decline any
            consent banner, and come back to the top so sticky things sit where a
@@ -667,6 +671,9 @@ async function main() {
         const MAX_CROP = 16000;
         const crop = async (r) => {
           const file = `${String(r.n).padStart(2, "0")}@${width}.png`;
+          /* Where the region is now, not where it was: earlier crops may have woken things that moved it. */
+          const now = await page.evaluate((i) => { const els = (window.__tkRegionEls || [])[i]; if (!els || !els.every((e) => e.isConnected)) return null; const rs = els.map((e) => e.getBoundingClientRect()); const x = Math.min(...rs.map((r) => r.left)), y = Math.min(...rs.map((r) => r.top)); return { x: Math.round(x + scrollX), y: Math.round(y + scrollY), w: Math.round(Math.max(...rs.map((r) => r.right)) - x), h: Math.round(Math.max(...rs.map((r) => r.bottom)) - y) }; }, r.n - 1).catch(() => null);
+          if (now && now.w > 0 && now.h > 0) r.box = now;
           const clip = { x: Math.max(0, r.box.x), y: Math.max(0, r.box.y), width: Math.min(r.box.w, width), height: Math.min(r.box.h, MAX_CROP) };
           try {
             await page.screenshot({ path: resolve(dir, file), clip, fullPage: true });
@@ -685,7 +692,8 @@ async function main() {
           }
         });
         for (const r of result.regions.filter((r) => !floating(r))) {
-          await page.evaluate((y) => window.scrollTo(0, y), Math.max(0, r.box.y - 40));
+          const y = await page.evaluate((i) => { const e = (window.__tkRegionEls || [])[i]?.[0]; return e?.isConnected ? e.getBoundingClientRect().top + scrollY : null; }, r.n - 1).catch(() => null);
+          await page.evaluate((y) => window.scrollTo(0, y), Math.max(0, (y ?? r.box.y) - 40));
           await page.waitForTimeout(250);
           await crop(r);
         }
