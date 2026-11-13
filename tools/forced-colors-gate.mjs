@@ -192,6 +192,11 @@ const focusProbe = () => {
   const el = document.activeElement;
   if (!el || el === document.body || el === document.documentElement) return null;
   if (el.closest('[data-tk="map-canvas"]') || el.tagName === "IFRAME") return { skip: true };
+  /* A media player's own buttons (play, menu) sit in its closed shadow tree:
+     activeElement stays the <video>/<audio>, no longer :focus-visible, and
+     the player draws their ring. Not ours to outline, and not focus
+     "coming back round" either, so the walk carries on past them. */
+  if (/^(VIDEO|AUDIO)$/.test(el.tagName) && el.controls && !el.matches(":focus-visible")) return { skip: true, native: true };
   const cs = getComputedStyle(el);
   const has = (e) => {
     const s = getComputedStyle(e);
@@ -252,6 +257,7 @@ export function forcedColorsCheck(argv = process.argv.slice(2)) {
             return el.__fcId;
           });
           await handle.dispose();
+          if (r?.native && inRoot) continue;
           if (!r || !inRoot || seen.has(id)) break;
           seen.add(id);
           if (r.skip) continue;

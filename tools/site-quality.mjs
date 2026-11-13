@@ -101,15 +101,22 @@ try {
           const el = document.activeElement;
           if (!el || el === document.body) return null;
           const cs = getComputedStyle(el), label = (el.getAttribute("aria-label") || el.textContent || el.getAttribute("href") || el.tagName).trim().replace(/\s+/g, " ").slice(0, 60);
+          /* Inside a <video controls> or <audio controls>, Tab moves through
+             the player's own buttons (play, menu) in its closed shadow tree.
+             activeElement still says the <video>, which no longer matches
+             :focus-visible, so its outline reads none, but the player rings
+             the button itself. Counted apart, not as unseen (timeline film,
+             2026-11-13: checked by eye in Chromium). */
+          if (/^(VIDEO|AUDIO)$/.test(el.tagName) && el.controls && !el.matches(":focus-visible")) return { tag: el.tagName.toLowerCase(), label, native: true };
           const ring = (cs.outlineStyle !== "none" && parseFloat(cs.outlineWidth) > 0) || (cs.boxShadow && cs.boxShadow !== "none");
           const box = el.getBoundingClientRect();
           return { tag: el.tagName.toLowerCase(), label, ring, offscreen: box.width === 0 || box.height === 0 };
         });
         if (!s) break;
         stops.push(s);
-        if (!s.ring && !s.offscreen) unseen.push(`${s.tag} "${s.label}"`);
+        if (!s.native && !s.ring && !s.offscreen) unseen.push(`${s.tag} "${s.label}"`);
       }
-      row.keyboard = { stops: stops.length, noVisibleFocus: [...new Set(unseen)] };
+      row.keyboard = { stops: stops.length, noVisibleFocus: [...new Set(unseen)], nativeControls: stops.filter((s) => s.native).length };
       await c.close();
     }
     rows.push(row);

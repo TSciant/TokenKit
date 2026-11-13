@@ -52,8 +52,10 @@ export function Gamepad({ theme = "boosty", glyphs = "letters", highlight, pulse
   useEffect(() => { if (ref.current && state && !source) ref.current.state = state; }, [state, source]);
   useEffect(() => { if (ref.current && replay) ref.current.replay = replay; }, [replay]);
   useEffect(() => { if (ref.current && replay && currentTime != null) ref.current.currentTime = currentTime; }, [replay, currentTime]);
+  /* highlight is also the element's method, and React 19 would assign a prop of that name as a property: set the attribute. */
+  useEffect(() => { const el = ref.current; if (!el) return; if (highlight) el.setAttribute("highlight", highlight); else el.removeAttribute("highlight"); }, [highlight]);
   return (
-    <tk-gamepad ref={ref} theme={theme} glyphs={glyphs} highlight={highlight || undefined} pulse={pulse ? "" : undefined} calm={calm ? "" : undefined}
+    <tk-gamepad ref={ref} theme={theme} glyphs={glyphs} pulse={pulse ? "" : undefined} calm={calm ? "" : undefined}
       size={size != null ? String(size) : undefined} source={source} index={index != null ? String(index) : undefined} label={label} status={status ? "" : undefined} class={className} style={style} />
   );
 }
