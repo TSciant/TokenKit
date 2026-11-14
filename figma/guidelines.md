@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.38. A token-driven design system: components draw only from
+token-kit 0.3.39. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -558,6 +558,8 @@ Figma: node `38:200`.
 ### Meter
 
 Meter. The value is exposed three ways: as text, as ARIA state, and as width. Width alone communicates nothing to a screen reader and nothing to anyone who cannot compare two bars.
+
+A screen reader hears it once, from the meter itself: "Places taken, meter, 6 of 8". The visible head repeats the same words, so it is hidden from assistive tech; the meter carries the label and says the value in the same words the head shows (aria-valuetext), not a bare "6" or "75%".
 
 Figma: node `38:231`.
 

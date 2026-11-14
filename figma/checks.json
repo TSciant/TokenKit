@@ -420,9 +420,10 @@
     },
     "HubCards": {
       "skins": 1,
-      "mean": 4.51,
-      "worst": 4.51,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "mean": 4.67,
+      "worst": 4.67,
+      "checkedAt": "2026-11-13T23:03:24.805Z",
+      "sourceHash": "aed13972fe06"
     },
     "Icon": {
       "skins": 3,
@@ -797,9 +798,10 @@
     },
     "TileGrid": {
       "skins": 1,
-      "mean": 3.31,
-      "worst": 3.31,
-      "checkedAt": "2026-10-10T01:59:48.374Z"
+      "mean": 5,
+      "worst": 5,
+      "checkedAt": "2026-11-13T23:03:24.805Z",
+      "sourceHash": "9e83e2a9b7a9"
     },
     "Timeline": {
       "skins": 1,

@@ -2,7 +2,7 @@
 
 A token-driven CSS design system at **wireframe fidelity**. Primitives, seven
 layout shells, and headless gates that check the system rather than a palette.
-Today that is <!-- kit-counts -->124 components (93 primitives, 27 patterns and 4 device and media packs), checked by 22 automated gates for contrast, reflow, accessibility, motion and Figma parity.<!-- /kit-counts -->
+Today that is <!-- kit-counts -->125 components (93 primitives, 27 patterns and 5 device and media packs), checked by 22 automated gates for contrast, reflow, accessibility, motion and Figma parity.<!-- /kit-counts -->
 
 It is client-neutral on purpose. The kit is a starting point, not a delivery:
 fork it, add that client's primitives and components beside the kit's own, and

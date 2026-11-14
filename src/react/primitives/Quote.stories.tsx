@@ -97,7 +97,7 @@ export const Testimonials: Story = {
           role: "Office manager",
         },
       ].map((q) => (
-        <Quote key={q.name} variant="testimonial" portrait={<Avatar name={q.name} />} {...q} />
+        <Quote key={q.name} variant="testimonial" portrait={<Avatar name={q.name} decorative />} {...q} />
       ))}
     </div>
   ),

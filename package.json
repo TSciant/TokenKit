@@ -1,6 +1,6 @@
 {
   "name": "tokenkit",
-  "version": "0.3.38",
+  "version": "0.3.39",
   "private": true,
   "type": "module",
   "description": "A token-driven CSS design system. Primitives, layout shells, and a headless accessibility gate.",
@@ -74,6 +74,7 @@
     "figma:onion": "node tools/onion-check.mjs",
     "figma:meta": "node tools/figma-meta.mjs",
     "test:gamepad": "node --test \"src/packs/gamepad/tests/*.test.mjs\"",
+    "test:instruments": "node --test \"src/packs/instruments/tests/*.test.mjs\"",
     "test:keyboard": "node --test \"src/packs/keyboard/tests/*.test.mjs\"",
     "test:call": "node --test \"src/packs/call/tests/*.test.mjs\"",
     "test:tv": "node --test \"src/packs/tv/tests/*.test.mjs\""

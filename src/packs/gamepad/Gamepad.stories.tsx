@@ -42,6 +42,7 @@ export const ReadMe: Story = {
         <li><code>&lt;tk-guitar&gt;</code>: a 5-fret guitar glyph for jam and duo modes.</li>
         <li>React: <code>Gamepad</code>, <code>ButtonPrompt</code>, <code>Guitar</code> from <code>src/packs/gamepad</code>.</li>
       </ul>
+      <p>The playable guitar neck and piano keys live in the instruments pack.</p>
       <p>A pad that doesn't report the standard mapping is shown as a list of raw buttons, never guessed at. Pulsing stops under reduced motion, <code>calm</code> and the kit's motion pause.</p>
       <p>Replays: Car-ball replays don't record pitch, yaw or air roll, so the left stick's Y axis and air roll can't be shown from one.</p>
       <p>Figma: <a style={link} href="https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=550-153">Gamepad</a>, <a style={link} href="https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=550-3149">ButtonPrompt</a>, <a style={link} href="https://www.figma.com/design/QZCC8HtLON5aYIAmYc56Li/?node-id=550-2962">Guitar</a> on the Packs · Gamepad page. Code Connect templates: <code>figma/connect/gamepad</code>. Tests: <code>npm run test:gamepad</code>.</p>

@@ -367,14 +367,15 @@
       "source": "src/react/patterns/TileGrid.tsx",
       "skinDir": "figma/skins/TileGrid",
       "skins": 1,
-      "skinPulledAt": "2026-09-29T15:01:19-04:00",
+      "skinPulledAt": "2026-11-14T07:14:46-05:00",
       "sourceUpdatedAt": "2026-10-09T19:37:08-04:00",
       "stale": false,
       "check": {
         "skins": 1,
-        "mean": 3.31,
-        "worst": 3.31,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "mean": 5,
+        "worst": 5,
+        "checkedAt": "2026-11-13T23:03:24.805Z",
+        "sourceHash": "9e83e2a9b7a9"
       }
     },
     "HubCards": {
@@ -384,14 +385,15 @@
       "source": "src/react/patterns/catalog.tsx",
       "skinDir": "figma/skins/HubCards",
       "skins": 1,
-      "skinPulledAt": "2026-09-29T15:57:53-04:00",
+      "skinPulledAt": "2026-11-14T07:14:46-05:00",
       "sourceUpdatedAt": "2026-10-09T19:37:08-04:00",
       "stale": false,
       "check": {
         "skins": 1,
-        "mean": 4.51,
-        "worst": 4.51,
-        "checkedAt": "2026-10-10T01:59:48.374Z"
+        "mean": 4.67,
+        "worst": 4.67,
+        "checkedAt": "2026-11-13T23:03:24.805Z",
+        "sourceHash": "aed13972fe06"
       }
     },
     "CtaBlocks": {
@@ -879,8 +881,8 @@
       "skinDir": "figma/skins/Tachometer",
       "skins": 2,
       "skinPulledAt": "2026-10-18T14:21:20-04:00",
-      "sourceUpdatedAt": "2026-10-18T21:22:16-04:00",
-      "stale": false,
+      "sourceUpdatedAt": "2026-11-05T08:58:12-05:00",
+      "stale": true,
       "check": {
         "skins": 2,
         "mean": 5.66,
@@ -2194,8 +2196,8 @@
       "skinDir": "figma/skins/Gamepad",
       "skins": 1,
       "skinPulledAt": "2026-11-01T17:20:47-05:00",
-      "sourceUpdatedAt": "2026-11-01T17:43:53-05:00",
-      "stale": false,
+      "sourceUpdatedAt": "2026-11-05T08:11:06-05:00",
+      "stale": true,
       "check": {
         "skins": 1,
         "mean": 6.36,
@@ -2212,8 +2214,8 @@
       "skinDir": "figma/skins/ButtonPrompt",
       "skins": 1,
       "skinPulledAt": "2026-11-01T17:20:47-05:00",
-      "sourceUpdatedAt": "2026-11-01T17:43:53-05:00",
-      "stale": false,
+      "sourceUpdatedAt": "2026-11-05T08:11:06-05:00",
+      "stale": true,
       "check": {
         "skins": 1,
         "mean": 6.47,
@@ -2230,8 +2232,8 @@
       "skinDir": "figma/skins/Guitar",
       "skins": 1,
       "skinPulledAt": "2026-11-01T17:20:47-05:00",
-      "sourceUpdatedAt": "2026-11-01T17:43:53-05:00",
-      "stale": false,
+      "sourceUpdatedAt": "2026-11-05T08:11:06-05:00",
+      "stale": true,
       "check": {
         "skins": 1,
         "mean": 3.05,
@@ -2247,9 +2249,9 @@
       "source": "src/packs/keyboard/tk-keyboard.mjs",
       "skinDir": "figma/skins/Keyboard",
       "skins": 1,
-      "skinPulledAt": "2026-11-02T23:01:43.640Z",
-      "sourceUpdatedAt": "2026-11-02T12:38:51-05:00",
-      "stale": false,
+      "skinPulledAt": "2026-11-02T18:29:46-05:00",
+      "sourceUpdatedAt": "2026-11-05T07:11:25-05:00",
+      "stale": true,
       "check": {
         "skins": 1,
         "mean": 1.03,
@@ -2265,9 +2267,9 @@
       "source": "src/packs/keyboard/tk-keyboard.mjs",
       "skinDir": "figma/skins/KeyPrompt",
       "skins": 1,
-      "skinPulledAt": "2026-11-02T23:03:34.427Z",
-      "sourceUpdatedAt": "2026-11-02T12:38:51-05:00",
-      "stale": false,
+      "skinPulledAt": "2026-11-02T18:29:46-05:00",
+      "sourceUpdatedAt": "2026-11-05T07:11:25-05:00",
+      "stale": true,
       "check": {
         "skins": 1,
         "mean": 11.27,
@@ -2283,9 +2285,9 @@
       "source": "src/packs/tv/tk-tv.mjs",
       "skinDir": "figma/skins/TvTile",
       "skins": 1,
-      "skinPulledAt": "2026-11-02T23:10:26.338Z",
-      "sourceUpdatedAt": "2026-11-02T16:43:39-05:00",
-      "stale": false,
+      "skinPulledAt": "2026-11-02T18:29:46-05:00",
+      "sourceUpdatedAt": "2026-11-02T19:16:05-05:00",
+      "stale": true,
       "check": {
         "skins": 1,
         "mean": 3.44,
@@ -2301,9 +2303,9 @@
       "source": "src/packs/tv/tk-tv.mjs",
       "skinDir": "figma/skins/TvRow",
       "skins": 1,
-      "skinPulledAt": "2026-11-02T23:29:07.740Z",
-      "sourceUpdatedAt": "2026-11-02T16:43:39-05:00",
-      "stale": false,
+      "skinPulledAt": "2026-11-02T18:29:46-05:00",
+      "sourceUpdatedAt": "2026-11-02T19:16:05-05:00",
+      "stale": true,
       "check": {
         "skins": 1,
         "mean": 3.29,
@@ -2319,9 +2321,9 @@
       "source": "src/packs/tv/tk-tv.mjs",
       "skinDir": "figma/skins/TvOsd",
       "skins": 1,
-      "skinPulledAt": "2026-11-02T23:14:08.994Z",
-      "sourceUpdatedAt": "2026-11-02T16:43:39-05:00",
-      "stale": false,
+      "skinPulledAt": "2026-11-02T18:29:46-05:00",
+      "sourceUpdatedAt": "2026-11-02T19:16:05-05:00",
+      "stale": true,
       "check": {
         "skins": 1,
         "mean": 2.19,
@@ -2337,15 +2339,15 @@
       "source": "src/packs/tv/tk-tv.mjs",
       "skinDir": "figma/skins/TvSidebar",
       "skins": 1,
-      "skinPulledAt": "2026-11-02T23:15:42.417Z",
-      "sourceUpdatedAt": "2026-11-02T16:43:39-05:00",
+      "skinPulledAt": "2026-11-02T18:29:46-05:00",
+      "sourceUpdatedAt": "2026-11-02T19:16:05-05:00",
       "stale": false,
       "check": {
         "skins": 1,
-        "mean": 12.14,
-        "worst": 12.14,
-        "checkedAt": "2026-11-02T23:15:30.146Z",
-        "sourceHash": "846530299b31"
+        "mean": 3.66,
+        "worst": 3.66,
+        "checkedAt": "2026-11-03T00:08:55.422Z",
+        "sourceHash": "7d3e88edb80f"
       }
     },
     "TvShell": {
@@ -2355,9 +2357,9 @@
       "source": "src/packs/tv/tk-tv.mjs",
       "skinDir": "figma/skins/TvShell",
       "skins": 1,
-      "skinPulledAt": "2026-11-02T23:19:08.804Z",
-      "sourceUpdatedAt": "2026-11-02T16:43:39-05:00",
-      "stale": false,
+      "skinPulledAt": "2026-11-02T18:29:46-05:00",
+      "sourceUpdatedAt": "2026-11-02T19:16:05-05:00",
+      "stale": true,
       "check": {
         "skins": 1,
         "mean": 1.88,
@@ -2373,7 +2375,7 @@
       "source": "src/packs/call/Call.tsx",
       "skinDir": "figma/skins/CallTile",
       "skins": 1,
-      "skinPulledAt": "2026-11-02T23:22:23.825Z",
+      "skinPulledAt": "2026-11-02T18:29:46-05:00",
       "sourceUpdatedAt": "2026-11-02T17:25:26-05:00",
       "stale": false,
       "check": {
@@ -2391,7 +2393,7 @@
       "source": "src/packs/call/Call.tsx",
       "skinDir": "figma/skins/CallBar",
       "skins": 1,
-      "skinPulledAt": "2026-11-02T23:23:23.241Z",
+      "skinPulledAt": "2026-11-02T18:29:46-05:00",
       "sourceUpdatedAt": "2026-11-02T17:25:26-05:00",
       "stale": false,
       "check": {

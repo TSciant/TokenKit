@@ -8,7 +8,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Someone's photo, or their initials (first and last name) on the pack's inverse surface when there is none or it fails to load. Never a silhouette: forty identical grey heads say \"unknown person\" forty times. A circle is a person; square is an organisation, a team or a bot. Decorative by default, because a name sits beside it; give it a label when it stands alone. Drawn from a members' message board built on the kit, Primer, Atlassian and Fluent.",
+          "Someone's photo, or their initials (first and last name) on the pack's inverse surface when there is none or it fails to load. Never a silhouette: forty identical grey heads say \"unknown person\" forty times. A circle is a person; square is an organisation, a team or a bot. On its own it is an image named for the person, so a screen reader hears who it is; beside their written name, set decorative so the name is heard once. label overrides what is heard (\"your puppet\"). Drawn from a members' message board built on the kit, Primer, Atlassian and Fluent.",
       },
     },
   },
@@ -18,6 +18,7 @@ const meta = {
     size: { control: "inline-radio", options: ["sm", "md", "lg"] },
     shape: { control: "inline-radio", options: ["circle", "square"] },
     label: { control: "text" },
+    decorative: { control: "boolean" },
   },
   args: { name: "Mary Ellen Doyle", size: "md", shape: "circle" },
 } satisfies Meta<typeof Avatar>;
@@ -29,7 +30,7 @@ export const Playground: Story = {};
 
 export const SizesAndShapes: Story = {
   name: "Sizes and shapes",
-  parameters: { docs: { description: { story: "32, 48 and 64px; a circle for people, a square for organisations, teams and bots." } } },
+  parameters: { docs: { description: { story: "32, 48 and 64px; a circle for people, a square for organisations, teams and bots. Standing alone, each is heard as an image with the name." } } },
   render: () => (
     <div data-shell="inline" data-gap="4" data-align="center">
       <Avatar name="Mary Ellen Doyle" size="sm" />
@@ -44,7 +45,7 @@ export const SizesAndShapes: Story = {
 
 export const WithAName: Story = {
   name: "Beside a name",
-  parameters: { docs: { description: { story: "The usual case: the name is beside it, so the avatar is decorative and a screen reader hears the name once. A photo that fails to load (the second row) falls back to initials." } } },
+  parameters: { docs: { description: { story: "The usual case: the name is beside it, so the avatar is set decorative and a screen reader hears the name once. A photo that fails to load (the second row) falls back to initials." } } },
   render: () => (
     <ul data-shell="stack" data-gap="3" style={{ listStyle: "none", margin: 0, padding: 0 }}>
       {[
@@ -53,7 +54,7 @@ export const WithAName: Story = {
         ["Sam", null],
       ].map(([name, src]) => (
         <li key={name} data-shell="row" data-gap="3" data-align="center">
-          <Avatar name={name as string} src={src} />
+          <Avatar name={name as string} src={src} decorative />
           <span>{name}</span>
         </li>
       ))}

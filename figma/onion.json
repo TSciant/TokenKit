@@ -238,7 +238,7 @@
       "single": true,
       "viewport": 1072,
       "settle": 1200,
-      "doc": "The Figma component laid over this one at 1024px, nine tiles as the grid lays them out (four to a row: columns is a minimum tile width). The stock plates are the same images in the design, so what is compared is the card, its radii, the type and the grid. Switch Onion in the toolbar."
+      "doc": "The Figma component laid over this one at 1024px, nine tiles as the grid lays them out (three to a row: columns is the most columns). The stock plates are the same images in the design, so what is compared is the card, its radii, the type and the grid. Switch Onion in the toolbar."
     },
     "HubCards": {
       "story": "05-patterns-16-hub-cards--onion-skin",
@@ -251,7 +251,7 @@
       "single": true,
       "viewport": 1072,
       "target": "root",
-      "doc": "The Figma component laid over this one at 1024px: four cards as the grid lays them (three to a row, then one: columns is a minimum card width), each the height of its row, the footer rule and link pinned to the bottom. Switch Onion in the toolbar."
+      "doc": "The Figma component laid over this one at 1024px: four cards as the grid lays them (two to a row: columns is the most columns), each the height of its row, the footer rule and link pinned to the bottom. Switch Onion in the toolbar."
     },
     "CtaBlocks": {
       "story": "05-patterns-17-cta-blocks--onion-skin",

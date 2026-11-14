@@ -4,7 +4,7 @@
 import { useState, type HTMLAttributes } from "react";
 
 export interface AvatarProps extends Omit<HTMLAttributes<HTMLSpanElement>, "children"> {
-  /** Whose it is. The initials come from it, and `label` defaults to it. */
+  /** Whose it is. The initials come from it, and a screen reader hears it (unless `label` or `decorative` says otherwise). */
   name: string;
   /** Their photo. Without one, or when it fails to load, their initials. */
   src?: string | null;
@@ -12,12 +12,15 @@ export interface AvatarProps extends Omit<HTMLAttributes<HTMLSpanElement>, "chil
   size?: "sm" | "md" | "lg";
   /** circle for a person (the default); square for an organisation, a team or a bot. */
   shape?: "circle" | "square";
-  /**
-   * Name it for a screen reader. Leave it off when the person's name is
-   * already beside it (the usual case): then it is decorative, and a reader
-   * hears the name once, not twice.
-   */
+  /** What a screen reader hears, when it should be more than the name ("your puppet"). Defaults to `name`. */
   label?: string;
+  /**
+   * Set it when the person's name is already beside the avatar: the avatar is
+   * then hidden from a screen reader, which hears the name once, not twice.
+   * Without it the avatar is an image named for them, so one standing alone
+   * (a row of faces, a byline picture) is never silent.
+   */
+  decorative?: boolean;
 }
 
 /** "Mary Ellen Doyle" → "MD"; one letter when that is all there is. */
@@ -36,18 +39,21 @@ export function initials(name: string): string {
  * read plainly as "no photo yet". Initials sit on the pack's inverse surface,
  * one colour for everyone, because a colour picked from a name would mean
  * nothing. A circle is a person; a square is an organisation, a team or a bot.
+ *
+ * On its own it is an image named for the person (role="img", their name);
+ * beside their written name, set `decorative` so the name is heard once.
  */
-export function Avatar({ name, src, size = "md", shape = "circle", label, ...rest }: AvatarProps) {
+export function Avatar({ name, src, size = "md", shape = "circle", label, decorative = false, ...rest }: AvatarProps) {
   const [failed, setFailed] = useState(false);
   const photo = src && !failed;
-  const named = label != null;
+  const named = !decorative;
   return (
     <span
       data-tk="avatar"
       data-size={size === "md" ? undefined : size}
       data-shape={shape === "circle" ? undefined : shape}
       role={named ? "img" : undefined}
-      aria-label={named ? label : undefined}
+      aria-label={named ? (label ?? name) : undefined}
       aria-hidden={named ? undefined : true}
       {...rest}
     >

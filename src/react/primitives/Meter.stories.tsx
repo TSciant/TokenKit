@@ -8,7 +8,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "The value is exposed three ways: as text, as ARIA state, and as width. Width alone communicates nothing to a screen reader and nothing to anyone comparing two bars by eye. Use for: Scalar progress toward a known maximum (completion, capacity). Don't use for: Categorical comparisons (use Gauge/Tachometer), or indeterminate spinners.",
+          "The value is exposed three ways: as text, as ARIA state, and as width. Width alone communicates nothing to a screen reader and nothing to anyone comparing two bars by eye. A screen reader hears it once, from the meter: the label, then the value in the words the head shows (display becomes aria-valuetext, so \"6 of 8\", not a bare \"6\"); the visible head is hidden from it so the label is not said twice. Use for: Scalar progress toward a known maximum (completion, capacity). Don't use for: Categorical comparisons (use Gauge/Tachometer), or indeterminate spinners.",
       },
     },
   },
@@ -27,6 +27,17 @@ export const Range: Story = {
       {[0, 25, 64, 100].map((v) => (
         <Meter key={v} label={`At ${v}`} value={v} />
       ))}
+    </div>
+  ),
+};
+
+export const SaidInWords: Story = {
+  name: "Said in words",
+  parameters: { docs: { description: { story: "display is what the head shows and what a screen reader says: \"Places taken, meter, 6 of 8\"." } } },
+  render: () => (
+    <div data-shell="stack" data-gap="4" style={{ maxInlineSize: "24rem" }}>
+      <Meter label="Places taken" value={6} max={8} display="6 of 8" />
+      <Meter label="Spent of the plan" value={140} max={200} display="$140 of $200 · $60 left" />
     </div>
   ),
 };
