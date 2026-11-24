@@ -1,0 +1,293 @@
+/* ---------------------------------------------------------------------------
+   Front Room — a warm pack for a family living room (PROPOSAL, Grok 2026-11-24)
+
+   For a TV in a living room, watched by an older viewer from the sofa and run
+   by a helper with a remote. Tony, 2026-11-24, on the overlay in the house
+   pack: "it's too sterile". So: the ground is a lamp-lit room at night
+   (hearth, walnut), the ink is cream, the action and the focus are lamp gold.
+   The light context is linen and cream with brown ink and a copper action.
+
+   Contrast is aimed above the floor, at about 7:1 for body text (the elders
+   brief, ds-corpus/briefs/elders-and-dementia-2026-11-24.md). Ratios are in
+   the proposal note beside this file; the kit's contrast gate is the judge.
+
+   Copied from _template.css. Only values moved; no slot added or renamed.
+   Not yet checked by lint:css or the contrast gate.
+--------------------------------------------------------------------------- */
+
+@layer tokens {
+  [data-brand="front-room"] {
+    /* ---------------------------------------------------------------------
+       PACK-PRIVATE — the brand book, transcribed. Add, remove, rename freely.
+       --------------------------------------------------------------------- */
+    /* paper: the light ground, and the ink on the dark plate */
+    --front-room-cream: #FBF3E6;
+    --front-room-linen: #F5EAD7;
+    --front-room-parchment: #EDDDC4;
+    --front-room-rule-light: #D6BF9E;
+    /* ink on the light ground */
+    --front-room-brown: #3A2819;
+    --front-room-brown-soft: #5A4230;
+    --front-room-brown-quiet: #6B5340;
+    --front-room-brown-faint: #8A725C;
+    /* the action on the light ground; cream rides on it */
+    --front-room-copper: #8A4512;
+    --front-room-copper-dark: #733910;
+    --front-room-copper-darker: #5E2E0C;
+    /* the dark plate: a living room at night */
+    --front-room-hearth: #1C140E;
+    /* a raised plate on the dark ground */
+    --front-room-walnut: #2B2017;
+    --front-room-walnut-deep: #140E0A;
+    --front-room-rule-dark: #5C4836;
+    /* pressed on the light ground: one step past parchment (copper on it 5.0:1) */
+    --front-room-parchment-deep: #E8D5B8;
+    /* pressed on the dark plate: one step up from walnut (gold on it 8.9:1) */
+    --front-room-walnut-hi: #3A2B1F;
+    /* shadows: brown, not grey, so elevation reads as lamp light on wood */
+    --front-room-shade-soft: rgb(58 40 25 / 0.10);
+    --front-room-shade: rgb(58 40 25 / 0.16);
+    --front-room-shade-deep: rgb(58 40 25 / 0.22);
+    --front-room-shade-night: rgb(8 5 3 / 0.45);
+    --front-room-shade-night-deep: rgb(8 5 3 / 0.60);
+    /* second ink on the dark plate */
+    --front-room-oat: #EADBC4;
+    /* third ink on the dark plate */
+    --front-room-sand: #D4BE9E;
+    --front-room-dust: #A8927A;
+    /* the action and the focus on the dark plate */
+    --front-room-gold: #FFC861;
+    --front-room-gold-hi: #FFD68A;
+    --front-room-gold-lo: #F0B347;
+    --front-room-sage: #2F5D3A;
+    --front-room-sage-light: #E3EEDC;
+    --front-room-amber-ink: #7A4E00;
+    --front-room-amber-light: #FBEBC8;
+    --front-room-river: #24506E;
+    --front-room-river-light: #DFEAF2;
+    --front-room-ember: #A3271B;
+    --front-room-ember-light: #F8E0DA;
+    --front-room-sage-glow: #B5D3A6;
+    --front-room-amber-glow: #F3CD7A;
+    --front-room-river-glow: #A9CBE3;
+    --front-room-ember-glow: #F2A493;
+    /* the scrim: black, the only ink the scrim alphas were solved for */
+    --front-room-wash: #000000;
+
+    /* ---------------------------------------------------------------------
+       CONTRACT — fixed slots. Map private values in; do not rename.
+       --------------------------------------------------------------------- */
+
+    /* surface */
+    --tk-surface-base: var(--front-room-linen);
+    --tk-surface-default: var(--front-room-cream);
+    --tk-surface-raised: var(--front-room-cream);
+    --tk-surface-sunken: var(--front-room-parchment);
+    --tk-surface-inverse: var(--front-room-hearth);
+
+    /* text */
+    --tk-text-primary: var(--front-room-brown);
+    --tk-text-secondary: var(--front-room-brown-soft);
+    --tk-text-tertiary: var(--front-room-brown-quiet);
+    --tk-text-inverse: var(--front-room-cream);
+    --tk-text-disabled: var(--front-room-brown-faint);
+    /* link — currentColor, so a link is its text's colour and its underline
+       carries it, until a pack chooses a link colour. A pack that does fills
+       all three here and in its inverse block; the contrast gate checks them. */
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
+
+    /* line — line-strong must clear 3:1 against the surface behind it */
+    --tk-line-subtle: var(--front-room-parchment);
+    --tk-line-default: var(--front-room-rule-light);
+    /* Scrim and texture ink. The scrim alphas in 03-scale.css were solved
+       against a black wash — keep this the darkest value the pack has or all
+       three guarantees move at once. The texture ink should be barely
+       visible; it decorates and never informs. */
+    --tk-scrim-ink: var(--front-room-wash);
+
+    /* Glass: chrome over imagery the pack does not control. Fixed pair. */
+    --tk-glass-fill: var(--front-room-cream);
+    --tk-glass-ink: var(--front-room-brown);
+    --tk-glass-line: var(--front-room-rule-light);
+    /* --- motion -----------------------------------------------------------
+       Pace and curve are brand properties, so the pack sets them. These are
+       the kit's defaults restated; a brand that wants to feel quicker or
+       softer changes them here and every component follows.
+       -------------------------------------------------------------------- */
+    --tk-motion-ink: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-surface: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-line: var(--tk-duration-fast) var(--tk-ease-standard);
+    --tk-motion-elevation: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-opacity: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-transform: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-size: var(--tk-duration-base) var(--tk-ease-standard);
+    --tk-motion-enter: var(--tk-duration-base) var(--tk-ease-entrance);
+    --tk-motion-exit: var(--tk-duration-fast) var(--tk-ease-exit);
+    --tk-motion-ambient: var(--tk-duration-ambient) linear;
+    --tk-motion-spin: var(--tk-duration-spin) linear;
+    --tk-motion-pulse: var(--tk-duration-pulse) var(--tk-ease-standard);
+
+    --tk-text-on-scrim: var(--front-room-cream);
+    --tk-texture-ink: var(--front-room-rule-light);
+    /* logo — the one place a pack is meant to look like itself.
+       Everything else in this file exists to be systematic; this exists to be
+       recognisable. Set mark and word apart only if the brand actually does. */
+    --tk-logo-ink: var(--front-room-copper);
+    --tk-logo-mark-ink: var(--front-room-copper);
+    --tk-logo-word-ink: var(--front-room-brown);
+    --tk-logo-tagline-ink: var(--front-room-brown-quiet);
+    --tk-logo-tile: var(--front-room-copper);
+    /* Only if the brand's wordmark is actually set this way. */
+    --tk-logo-word-weight: 700;
+    --tk-logo-word-tracking: -0.02em;
+
+    --tk-line-strong: var(--front-room-brown-faint);
+
+    /* action — action-text must clear 4.5:1 against action-fill */
+    --tk-action-fill: var(--front-room-copper);
+    --tk-action-fill-hover: var(--front-room-copper-dark);
+    --tk-action-fill-active: var(--front-room-copper-darker);
+    --tk-action-text: var(--front-room-cream);
+
+    --tk-action-quiet-fill: transparent;
+    --tk-action-quiet-fill-hover: var(--front-room-parchment);
+    --tk-action-quiet-fill-active: var(--front-room-parchment-deep);
+    --tk-action-quiet-text: var(--front-room-copper);
+
+    /* focus — must clear 3:1 against every surface it can land on */
+    --tk-focus-color: var(--front-room-copper);
+
+    /* data ink — a bare graphic (meter fill, gauge arc) against its own
+       track. Usually the same as the action fill; set it apart when the
+       action fill only clears its floor because a label sits on top of it. */
+    --tk-data-ink: var(--front-room-copper);
+
+    /* status */
+    --tk-status-info-line: var(--front-room-river);
+    --tk-status-info-surface: var(--front-room-river-light);
+    --tk-status-info-text: var(--front-room-river);
+
+    --tk-status-success-line: var(--front-room-sage);
+    --tk-status-success-surface: var(--front-room-sage-light);
+    --tk-status-success-text: var(--front-room-sage);
+
+    --tk-status-warning-line: var(--front-room-amber-ink);
+    --tk-status-warning-surface: var(--front-room-amber-light);
+    --tk-status-warning-text: var(--front-room-amber-ink);
+
+    --tk-status-danger-line: var(--front-room-ember);
+    --tk-status-danger-surface: var(--front-room-ember-light);
+    --tk-status-danger-text: var(--front-room-ember);
+
+    /* elevation — soft and warm: brown-tinted, wide and low, never a hard
+       edge. Decoration only; nothing is told apart by its shadow alone. */
+    --tk-shadow-sm: 0 1px 2px var(--front-room-shade-soft), 0 1px 1px var(--front-room-shade-soft);
+    --tk-shadow-md: 0 4px 12px var(--front-room-shade), 0 1px 3px var(--front-room-shade-soft);
+    --tk-shadow-lg: 0 12px 32px var(--front-room-shade-deep), 0 2px 6px var(--front-room-shade-soft);
+
+    /* Optional. Most packs leave the scales alone. Uncomment only if the
+       brand genuinely owns proportion, not just appearance. */
+    /* --tk-font-sans: "<Brand Sans>", ui-sans-serif, system-ui, sans-serif; */
+    /* --tk-radius-md: 0; */
+  }
+
+  /* --- painting -----------------------------------------------------------
+     A pack applied to a subtree has to paint, and this is not cosmetic.
+
+     Custom properties inherit, but an already-computed inherited property does
+     not re-resolve further down. `:where(body)` computes `color:
+     var(--tk-text-primary)` once, against whatever pack is in force at the
+     body; a <p> three levels down has no colour declaration of its own, so it
+     inherits that computed value. Remapping the token underneath it changes
+     nothing, and the text renders in the outer pack's ink on the inner pack's
+     ground.
+
+     So the element that switches packs re-declares colour and background. This
+     rule sits in the tokens layer, which the elements layer comes after, so it
+     does not fight `:where(body)` at the root — it only takes effect where a
+     pack is scoped mid-tree, which is exactly where it is needed.
+     ---------------------------------------------------------------------- */
+  [data-brand="front-room"] {
+    background-color: var(--front-room-linen);
+    color: var(--front-room-brown);
+  }
+
+  /* -----------------------------------------------------------------------
+     INVERSE CONTEXT — required.
+
+     [data-on="inverse"] flips a subtree onto the dark plate. Every slot below
+     must move. Remapping only the text colour leaves quiet buttons, borders
+     and focus rings resolving against the light surface, which renders as
+     invisible ink and reads like a missing element rather than a contrast bug.
+
+     Paint the background from the private ramp, not from --tk-surface-inverse:
+     this same rule remaps that slot, so painting from it resolves against the
+     new value and flips straight back.
+     ----------------------------------------------------------------------- */
+  [data-brand="front-room"] :where([data-on="inverse"]),
+  [data-brand="front-room"][data-on="inverse"] {
+    background-color: var(--front-room-hearth);
+    color: var(--front-room-cream);
+
+    --tk-surface-default: var(--front-room-hearth);
+    --tk-surface-base: var(--front-room-hearth);
+    --tk-surface-raised: var(--front-room-walnut);
+    --tk-surface-sunken: var(--front-room-walnut-deep);
+    --tk-surface-inverse: var(--front-room-cream);
+
+    --tk-text-primary: var(--front-room-cream);
+    --tk-text-secondary: var(--front-room-oat);
+    --tk-text-tertiary: var(--front-room-sand);
+    --tk-text-inverse: var(--front-room-brown);
+    --tk-text-disabled: var(--front-room-dust);
+    --tk-link-text: currentColor;
+    --tk-link-hover: currentColor;
+    --tk-link-visited: currentColor;
+
+    --tk-line-subtle: var(--front-room-walnut);
+    --tk-line-default: var(--front-room-rule-dark);
+    /* Scrim and texture ink. The scrim alphas in 03-scale.css were solved
+       against a black wash — keep this the darkest value the pack has or all
+       three guarantees move at once. The texture ink should be barely
+       visible; it decorates and never informs. */
+    --tk-scrim-ink: var(--front-room-wash);
+    --tk-text-on-scrim: var(--front-room-cream);
+    --tk-texture-ink: var(--front-room-rule-dark);
+
+    --tk-line-strong: var(--front-room-sand);
+
+    --tk-action-fill: var(--front-room-gold);
+    --tk-action-fill-hover: var(--front-room-gold-hi);
+    --tk-action-fill-active: var(--front-room-gold-lo);
+    --tk-action-text: var(--front-room-hearth);
+
+    --tk-action-quiet-fill: transparent;
+    --tk-action-quiet-fill-hover: var(--front-room-walnut);
+    --tk-action-quiet-fill-active: var(--front-room-walnut-hi);
+    --tk-action-quiet-text: var(--front-room-gold);
+
+    --tk-focus-color: var(--front-room-gold);
+    --tk-data-ink: var(--front-room-gold);
+
+    --tk-status-info-line: var(--front-room-river-glow);
+    --tk-status-info-surface: var(--front-room-hearth);
+    --tk-status-info-text: var(--front-room-river-glow);
+    --tk-status-success-line: var(--front-room-sage-glow);
+    --tk-status-success-surface: var(--front-room-hearth);
+    --tk-status-success-text: var(--front-room-sage-glow);
+    --tk-status-warning-line: var(--front-room-amber-glow);
+    --tk-status-warning-surface: var(--front-room-hearth);
+    --tk-status-warning-text: var(--front-room-amber-glow);
+    --tk-status-danger-line: var(--front-room-ember-glow);
+    --tk-status-danger-surface: var(--front-room-hearth);
+    --tk-status-danger-text: var(--front-room-ember-glow);
+
+    /* elevation on the dark plate: a deeper, near-black warm shade, since a
+       brown shadow vanishes on walnut */
+    --tk-shadow-sm: 0 1px 2px var(--front-room-shade-night);
+    --tk-shadow-md: 0 4px 12px var(--front-room-shade-night), 0 1px 3px var(--front-room-shade-night);
+    --tk-shadow-lg: 0 12px 32px var(--front-room-shade-night-deep), 0 2px 6px var(--front-room-shade-night);
+  }
+}
