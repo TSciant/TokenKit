@@ -229,10 +229,11 @@
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
     "DataTable": {
-      "skins": 1,
-      "mean": 1.87,
+      "skins": 4,
+      "mean": 1.82,
       "worst": 1.87,
-      "checkedAt": "2026-10-18T19:40:45.595Z"
+      "checkedAt": "2026-11-27T15:37:06.871Z",
+      "sourceHash": "9fd2d9454b61"
     },
     "DateInput": {
       "skins": 1,
@@ -363,10 +364,11 @@
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
     "FloatingAction": {
-      "skins": 1,
-      "mean": 1.76,
-      "worst": 1.76,
-      "checkedAt": "2026-10-18T20:08:11.026Z"
+      "skins": 3,
+      "mean": 5.4,
+      "worst": 7.57,
+      "checkedAt": "2026-11-27T15:38:57.052Z",
+      "sourceHash": "9cb1cd8ae3eb"
     },
     "Gamepad": {
       "skins": 1,
@@ -514,10 +516,11 @@
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
     "MenuButton": {
-      "skins": 5,
-      "mean": 4.31,
+      "skins": 7,
+      "mean": 4.03,
       "worst": 7.15,
-      "checkedAt": "2026-10-19T11:21:09.378Z"
+      "checkedAt": "2026-11-27T15:35:20.862Z",
+      "sourceHash": "bdc653f8bfcb"
     },
     "Meter": {
       "skins": 5,
@@ -613,10 +616,11 @@
       "sourceHash": "67ae1d83236b"
     },
     "Quote": {
-      "skins": 1,
-      "mean": 10.7,
+      "skins": 3,
+      "mean": 6.88,
       "worst": 10.7,
-      "checkedAt": "2026-10-18T19:55:03.586Z"
+      "checkedAt": "2026-11-27T15:32:36.852Z",
+      "sourceHash": "78938845b207"
     },
     "RailNav": {
       "skins": 1,
@@ -743,10 +747,11 @@
       "checkedAt": "2026-10-10T01:59:48.374Z"
     },
     "Spinner": {
-      "skins": 1,
-      "mean": 7.4,
+      "skins": 4,
+      "mean": 7.36,
       "worst": 7.4,
-      "checkedAt": "2026-10-19T01:58:34.515Z"
+      "checkedAt": "2026-11-27T15:33:52.532Z",
+      "sourceHash": "e12b86fa5631"
     },
     "Steps": {
       "skins": 1,

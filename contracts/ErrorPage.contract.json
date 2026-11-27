@@ -1,0 +1,119 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ErrorPage",
+ "layer": "primitive",
+ "about": "ErrorPage — the page that says a page is missing, the service is broken or the service is closed, and what to do. Inside the site's usual header and footer, without breadcrumbs: the heading in plain w",
+ "sources": {
+  "react": "src/react/primitives/ErrorPage.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/error-page.css"
+ ],
+ "dataTk": [
+  "error-page",
+  "error-page-body",
+  "error-page-link",
+  "error-page-search",
+  "error-page-title"
+ ],
+ "figma": [
+  {
+   "name": "ErrorPage",
+   "node": "502:2459",
+   "codeConnect": true,
+   "map": {
+    "Body": "children",
+    "Show action": "action (omit it to hide)"
+   },
+   "unpaired": [
+    "Heading"
+   ]
+  }
+ ],
+ "props": {
+  "kind": {
+   "type": "enum",
+   "values": [
+    "not-found",
+    "problem",
+    "unavailable"
+   ],
+   "default": "\"not-found\"",
+   "about": "not-found (404), problem (500, any unexpected problem), unavailable (503: closed, for now or for good)."
+  },
+  "title": {
+   "type": "text",
+   "about": "The heading. Each kind's words are the tested ones: change them only with content sign-off."
+  },
+  "children": {
+   "type": "content",
+   "figma": [
+    "ErrorPage.Body"
+   ],
+   "about": "In place of each kind's own words, for the body."
+  },
+  "availableFrom": {
+   "type": "text",
+   "about": "When an unavailable service is back, as a day, date and time: \"9am on Monday 3 November 2026\"."
+  },
+  "answers": {
+   "type": "content",
+   "about": "What happened to what they entered: \"We saved your answers. They will be available for 30 days.\""
+  },
+  "contact": {
+   "type": "content",
+   "about": "How to get help: a link to a page with numbers and opening times, or those details (ContactDetails)."
+  },
+  "alternative": {
+   "type": "other",
+   "ts": "{ label: string; href: string; }",
+   "about": "Another service they can use instead."
+  },
+  "action": {
+   "type": "other",
+   "ts": "{ label: string; href: string; }",
+   "figma": [
+    "ErrorPage.Show action"
+   ],
+   "about": "One way on, when there is one: \"Go to the homepage\"."
+  },
+  "search": {
+   "type": "content",
+   "about": "A search box, only when the header has none."
+  },
+  "serviceName": {
+   "type": "text",
+   "about": "Sets the document title to \"[heading] – [service name]\", so a screen reader hears what happened with the page."
+  },
+  "focusOnShow": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Move focus to the heading when shown (an app that changes route without loading a page)."
+  }
+ },
+ "tokens": [
+  "measure",
+  "space-2",
+  "space-4",
+  "space-6",
+  "text-primary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "ErrorPage.Heading": "title"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

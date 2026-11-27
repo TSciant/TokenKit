@@ -1,0 +1,89 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Media",
+ "layer": "primitive",
+ "about": null,
+ "sources": {
+  "react": "src/react/primitives/Media.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/media.css",
+  "src/css/components/search-results.css"
+ ],
+ "dataTk": [
+  "media",
+  "media-body",
+  "media-figure"
+ ],
+ "figma": [
+  {
+   "name": "Media",
+   "node": "39:173",
+   "codeConnect": true,
+   "map": {
+    "Body": "children",
+    "Size": "size",
+    "Container": "the box it sits in (a container query), not a prop"
+   },
+   "unpaired": [
+    "Title"
+   ]
+  }
+ ],
+ "props": {
+  "figure": {
+   "type": "content"
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "figma": [
+    "Media.Size"
+   ]
+  },
+  "fx": {
+   "type": "other",
+   "ts": "FxProp"
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  },
+  "className": {
+   "type": "text"
+  },
+  "children": {
+   "type": "content",
+   "figma": [
+    "Media.Body"
+   ]
+  }
+ },
+ "tokens": [
+  "radius-nested",
+  "space-4",
+  "surface-sunken"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "omit": {
+   "Media.Title": "content: the title is a heading among the children"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

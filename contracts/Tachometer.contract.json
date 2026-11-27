@@ -1,0 +1,70 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Tachometer",
+ "layer": "primitive",
+ "about": "Token-driven tachometer. Reads --tk-* CSS vars; canvas is decorative; role=meter + live text carry a11y.",
+ "sources": {
+  "react": "src/react/primitives/Tachometer.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/tachometer.css"
+ ],
+ "dataTk": [
+  "tachometer",
+  "tachometer-canvas"
+ ],
+ "figma": [
+  {
+   "name": "Tachometer",
+   "node": "186:485",
+   "codeConnect": true,
+   "map": {
+    "state": "default: CSS, pegged: runtime, not a prop"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "value": {
+   "type": "number",
+   "about": "Needle position 0–1. When set, dial follows this (controlled)."
+  },
+  "label": {
+   "type": "text",
+   "about": "Override center label."
+  },
+  "reading": {
+   "type": "text",
+   "about": "Override reading under the needle."
+  },
+  "features": {
+   "type": "other",
+   "ts": "TachFeature[]",
+   "about": "Optional feature list; cycles when animated and value is unset."
+  },
+  "animated": {
+   "type": "boolean",
+   "about": "Auto-cycle features + ease needle (default true when value unset)."
+  },
+  "className": {
+   "type": "text"
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

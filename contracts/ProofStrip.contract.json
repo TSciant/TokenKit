@@ -1,0 +1,186 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ProofStrip",
+ "layer": "pattern",
+ "about": "07 — the proof strip. Three claims run together as one pipe-delimited line read as a single run-on sentence to a screen reader. Three labelled figures say the same thing and can be navigated.",
+ "sources": {
+  "react": "src/react/patterns/marketing.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/button-group.css",
+  "src/css/components/button.css",
+  "src/css/components/card.css",
+  "src/css/components/chat.css",
+  "src/css/components/cookie-consent.css",
+  "src/css/components/eyebrow.css",
+  "src/css/components/field.css",
+  "src/css/components/hero.css",
+  "src/css/components/inline-form.css",
+  "src/css/components/modal.css",
+  "src/css/components/phase-banner.css",
+  "src/css/components/pricing.css",
+  "src/css/components/sample-page.css",
+  "src/css/components/scene.css",
+  "src/css/components/site-header.css"
+ ],
+ "dataTk": [
+  "button",
+  "card",
+  "card-body",
+  "card-link",
+  "card-title",
+  "eyebrow",
+  "hero",
+  "hero-actions",
+  "hero-body",
+  "hero-lede",
+  "hero-text",
+  "hero-title",
+  "hero-visual",
+  "section"
+ ],
+ "figma": [
+  {
+   "name": "ProofStrip",
+   "node": "60:558",
+   "codeConnect": true,
+   "map": {
+    "Heading": "heading",
+    "Deck": "deck",
+    "Columns": "columns; code also: 2, 4, 1"
+   },
+   "unpaired": [
+    "Value 1",
+    "Label 1",
+    "Value 2",
+    "Label 2",
+    "Value 3",
+    "Label 3"
+   ]
+  }
+ ],
+ "props": {
+  "heading": {
+   "type": "text",
+   "default": "PROOF_HEADING",
+   "figma": [
+    "ProofStrip.Heading"
+   ],
+   "about": "Leave empty (with deck) for the facts alone, as a strip under a hero."
+  },
+  "deck": {
+   "type": "text",
+   "default": "PROOF_DECK",
+   "figma": [
+    "ProofStrip.Deck"
+   ]
+  },
+  "stats": {
+   "type": "other",
+   "ts": "Stat[]",
+   "default": "PROOF_STATS"
+  },
+  "columns": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1"
+   ],
+   "default": "3",
+   "figma": [
+    "ProofStrip.Columns"
+   ]
+  }
+ },
+ "tokens": [
+  "action-danger-fill",
+  "action-danger-fill-active",
+  "action-danger-fill-hover",
+  "action-danger-quiet-text",
+  "action-danger-text",
+  "action-fill",
+  "action-fill-active",
+  "action-fill-hover",
+  "action-quiet-fill",
+  "action-quiet-fill-active",
+  "action-quiet-fill-hover",
+  "action-quiet-text",
+  "action-text",
+  "control-min",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "font-mono",
+  "leading-snug",
+  "leading-tight",
+  "line-default",
+  "line-strong",
+  "line-subtle",
+  "measure",
+  "measure-narrow",
+  "motion-elevation",
+  "motion-ink",
+  "motion-line",
+  "motion-surface",
+  "motion-transform",
+  "radius-button",
+  "radius-nested",
+  "shadow-none",
+  "shadow-sm",
+  "size-base",
+  "size-display",
+  "size-lg",
+  "size-md",
+  "size-sm",
+  "size-title",
+  "size-xl",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-7",
+  "space-8",
+  "space-9",
+  "surface-inverse",
+  "surface-raised",
+  "surface-sunken",
+  "target-comfortable",
+  "target-min",
+  "text-disabled",
+  "text-inverse",
+  "text-on-scrim",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "tracking-wide",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "ProofStrip.Value 1": "stats[0].value",
+   "ProofStrip.Label 1": "stats[0].label",
+   "ProofStrip.Value 2": "stats[1].value",
+   "ProofStrip.Label 2": "stats[1].label",
+   "ProofStrip.Value 3": "stats[2].value",
+   "ProofStrip.Label 3": "stats[2].label"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

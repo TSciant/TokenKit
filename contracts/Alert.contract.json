@@ -1,0 +1,129 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Alert",
+ "layer": "primitive",
+ "about": null,
+ "sources": {
+  "react": "src/react/primitives/Alert.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/alert.css",
+  "src/css/components/chat.css"
+ ],
+ "dataTk": [
+  "alert",
+  "alert-action",
+  "alert-body",
+  "alert-title"
+ ],
+ "figma": [
+  {
+   "name": "Alert",
+   "node": "38:101",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Body": "children",
+    "Status icon": "statusIcon",
+    "Status": "status"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "AlertAction",
+   "node": "311:1654",
+   "codeConnect": true,
+   "map": {
+    "Status icon": "statusIcon"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "tone": {
+   "type": "enum",
+   "values": [
+    "info",
+    "success",
+    "warning",
+    "danger"
+   ],
+   "about": "Which status: the same four tones as Toast and Chip."
+  },
+  "status": {
+   "type": "enum",
+   "values": [
+    "info",
+    "success",
+    "warning",
+    "danger"
+   ],
+   "figma": [
+    "Alert.Status"
+   ]
+  },
+  "title": {
+   "type": "text",
+   "figma": [
+    "Alert.Title"
+   ]
+  },
+  "live": {
+   "type": "boolean",
+   "about": "Announce changes to assistive tech. Use for errors and async results."
+  },
+  "action": {
+   "type": "content",
+   "about": "One action beside the message: Undo after something was done, Retry after something failed, a link to what changed. For an action that can be undone, do it and offer Undo here rather than asking first"
+  },
+  "children": {
+   "type": "content",
+   "figma": [
+    "Alert.Body"
+   ]
+  },
+  "statusIcon": {
+   "type": "boolean",
+   "default": "true",
+   "figma": [
+    "Alert.Status icon",
+    "AlertAction.Status icon"
+   ],
+   "about": "The status icon before the message (default true): status is never the boundary alone."
+  }
+ },
+ "tokens": [
+  "radius-nested",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "status-danger-line",
+  "status-danger-surface",
+  "status-danger-text",
+  "status-info-line",
+  "status-info-surface",
+  "status-info-text",
+  "status-success-line",
+  "status-success-surface",
+  "status-success-text",
+  "status-warning-line",
+  "status-warning-surface",
+  "status-warning-text",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

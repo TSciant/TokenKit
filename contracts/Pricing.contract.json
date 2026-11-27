@@ -1,0 +1,107 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Pricing",
+ "layer": "primitive",
+ "about": "Pricing — plans side by side: each a name, a price and what it is per, who it is for, what it includes and one action. A list of cards, one per plan, that wraps to as many columns as fit. The recommen",
+ "sources": {
+  "react": "src/react/primitives/Pricing.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/pricing.css"
+ ],
+ "dataTk": [
+  "pricing",
+  "pricing-action",
+  "pricing-amount",
+  "pricing-features",
+  "pricing-head",
+  "pricing-period",
+  "pricing-price",
+  "pricing-summary"
+ ],
+ "figma": [
+  {
+   "name": "Pricing",
+   "node": "493:2263",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  },
+  {
+   "name": "Pricing/Plan",
+   "node": "493:2262",
+   "codeConnect": true,
+   "map": {
+    "Name": "Pricing data",
+    "Price": "Pricing data",
+    "Period": "Pricing data",
+    "Show period": "Pricing data",
+    "Summary": "Pricing data",
+    "Show feature 4": "how many items you pass",
+    "Recommended": "Pricing data"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "Pricing/Feature",
+   "node": "493:2158",
+   "codeConnect": true,
+   "map": {
+    "Text": "children"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "plans": {
+   "type": "other",
+   "ts": "PricingPlan[]",
+   "required": true
+  },
+  "recommendedLabel": {
+   "type": "text",
+   "default": "\"Recommended\"",
+   "about": "The word on the recommended plan."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "3",
+    "4"
+   ],
+   "about": "Each plan name's heading level: h3 under a section's h2 (the default), h4 one deeper."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "3",
+    "4"
+   ]
+  }
+ },
+ "tokens": [
+  "leading-tight",
+  "line-subtle",
+  "size-2xl",
+  "size-sm",
+  "space-2",
+  "space-3",
+  "space-4",
+  "text-secondary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

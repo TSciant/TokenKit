@@ -1,0 +1,208 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Modal",
+ "layer": "primitive",
+ "about": "Modal on native dialog. showModal() for top-layer + focus trap; Escape and backdrop close; focus returns to the opener. Enter/exit motion is CSS on --tk-motion-enter / exit (see modal.css).",
+ "sources": {
+  "react": "src/react/primitives/Modal.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/drawer.css",
+  "src/css/components/modal.css"
+ ],
+ "dataTk": [
+  "modal",
+  "modal-body",
+  "modal-description",
+  "modal-footer",
+  "modal-header",
+  "modal-panel",
+  "modal-title",
+  "modal-trigger"
+ ],
+ "figma": [
+  {
+   "name": "Modal",
+   "node": "38:283",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Body": "children",
+    "Show footer": "footer (omit it to hide)",
+    "Dismissible": "dismissible",
+    "Description": "description",
+    "Size": "size"
+   },
+   "unpaired": [
+    "Description text"
+   ]
+  },
+  {
+   "name": "ModalDescription",
+   "node": "240:2219",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "open": {
+   "type": "boolean",
+   "required": true
+  },
+  "onClose": {
+   "type": "event",
+   "required": true
+  },
+  "title": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "Modal.Title"
+   ]
+  },
+  "description": {
+   "type": "content",
+   "figma": [
+    "Modal.Description"
+   ],
+   "about": "One or two sentences under the title, read with it when the dialog opens (aria-describedby). Use it when the title alone does not say what is at stake; for a confirmation, it is the consequence."
+  },
+  "alert": {
+   "type": "boolean",
+   "about": "An alert dialog (role=\"alertdialog\"): the kind that interrupts on purpose to confirm something that cannot be undone. Without a description it is described by its body, so the consequence is read when"
+  },
+  "children": {
+   "type": "content",
+   "figma": [
+    "Modal.Body"
+   ]
+  },
+  "actions": {
+   "type": "other",
+   "ts": "ButtonGroupAction[]",
+   "about": "The footer's actions, as a ButtonGroup: end-aligned, equal widths, in reading order. Write them Cancel first, the action last (the action is the solid one, or the danger one). In a narrow dialog they "
+  },
+  "footer": {
+   "type": "content",
+   "figma": [
+    "Modal.Show footer"
+   ],
+   "about": "Free footer content, for anything that is not a row of buttons."
+  },
+  "closeOnBackdrop": {
+   "type": "boolean",
+   "about": "Close when the backdrop is clicked. By default only a modal with no footer does: one with actions (a form, a confirmation) closes by its buttons, Escape or Close, so a stray click outside cannot throw"
+  },
+  "dismissible": {
+   "type": "boolean",
+   "default": "true",
+   "figma": [
+    "Modal.Dismissible"
+   ],
+   "about": "false: a decision that has to be made. No Close button, Escape does nothing, a click outside does nothing; the only ways out are the actions, so give it at least two that both close it. For the rare c"
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "default": "\"md\"",
+   "figma": [
+    "Modal.Size"
+   ],
+   "about": "Panel width. Default md."
+  },
+  "returnFocusTo": {
+   "type": "other",
+   "ts": "() => HTMLElement",
+   "about": "Where focus goes on close when the opener is gone (the row that was just deleted, and its Delete button with it): the next thing to work on. Focus goes back to the opener whenever it is still on the p"
+  }
+ },
+ "tokens": [
+  "control-min",
+  "duration-base",
+  "focus-offset",
+  "focus-width",
+  "leading-tight",
+  "line-default",
+  "measure",
+  "measure-dialog-lg",
+  "measure-dialog-md",
+  "measure-dialog-sm",
+  "motion-enter",
+  "motion-exit",
+  "radius-nested",
+  "radius-xl",
+  "scrim-ink",
+  "shadow-lg",
+  "size-base",
+  "size-sm",
+  "size-xl",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-6",
+  "surface-raised",
+  "text-primary",
+  "text-secondary",
+  "tracking-snug",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "Modal.Description text": "description"
+  }
+ },
+ "a11y": {
+  "role": "dialog (modal)",
+  "name": "its title",
+  "story": "04-primitives-09-modal--trigger",
+  "keys": [
+   {
+    "key": "Escape",
+    "before": [
+     {
+      "click": "#storybook-root [data-tk=button]"
+     }
+    ],
+    "from": null,
+    "expect": {
+     "hidden": "dialog[open], [role=dialog]"
+    },
+    "says": "closes when dismissible"
+   },
+   {
+    "key": "Escape",
+    "before": [
+     {
+      "click": "#storybook-root [data-tk=button]"
+     }
+    ],
+    "from": null,
+    "expect": {
+     "focused": "#storybook-root [data-tk=button]",
+     "nth": 1
+    },
+    "says": "returns focus to the trigger"
+   }
+  ],
+  "focus": "moves into the dialog on open, stays inside while open, returns to the trigger on close"
+ },
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

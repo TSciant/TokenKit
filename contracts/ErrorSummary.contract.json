@@ -1,0 +1,107 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ErrorSummary",
+ "layer": "primitive",
+ "about": "ErrorSummary — the list of what went wrong, at the top of the page. After a form is submitted with mistakes: a box above the page's heading titled \"There is a problem\", every error as a link to its fi",
+ "sources": {
+  "react": "src/react/primitives/ErrorSummary.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/error-summary.css"
+ ],
+ "dataTk": [
+  "error-summary",
+  "error-summary-description",
+  "error-summary-link",
+  "error-summary-list",
+  "error-summary-title"
+ ],
+ "figma": [
+  {
+   "name": "ErrorSummary",
+   "node": "456:1864",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Show description": "description (omit it to hide)",
+    "Description": "description"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "ErrorSummary/Link",
+   "node": "456:1862",
+   "codeConnect": true,
+   "map": {
+    "Label": "children"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "errors": {
+   "type": "other",
+   "ts": "ErrorSummaryItem[]",
+   "required": true,
+   "about": "One per answer in error. Nothing renders when the list is empty."
+  },
+  "title": {
+   "type": "text",
+   "default": "\"There is a problem\"",
+   "figma": [
+    "ErrorSummary.Title"
+   ]
+  },
+  "description": {
+   "type": "content",
+   "figma": [
+    "ErrorSummary.Show description",
+    "ErrorSummary.Description"
+   ],
+   "about": "A line under the title, only if something applies to every error."
+  },
+  "focusOnShow": {
+   "type": "boolean",
+   "default": "true",
+   "about": "Take focus when shown (and when the errors change), so a screen reader hears it and the next Tab is the first link."
+  },
+  "titlePrefix": {
+   "type": "other",
+   "ts": "string | false",
+   "default": "\"Error: \"",
+   "about": "Put this at the start of the page's title while the summary is shown, and take it off after, so a screen reader announces the error with the page. Set false when the page manages its own title (a serv"
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "leading-snug",
+  "radius-md",
+  "radius-nested",
+  "size-lg",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "status-danger-line",
+  "status-danger-text",
+  "surface-raised",
+  "text-primary",
+  "weight-bold",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

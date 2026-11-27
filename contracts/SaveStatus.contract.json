@@ -1,0 +1,67 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SaveStatus",
+ "layer": "primitive",
+ "about": "SaveStatus — \"Saving…\", then \"Saved\", beside what was changed. For saving that happens by itself (as you type, or on each change): a quiet line next to the edited content, not a toast, that says one t",
+ "sources": {
+  "react": "src/react/primitives/SaveStatus.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/save-status.css"
+ ],
+ "dataTk": [
+  "save-status",
+  "save-status-time",
+  "save-status-words"
+ ],
+ "figma": [
+  {
+   "name": "SaveStatus",
+   "node": "497:2373",
+   "codeConnect": true,
+   "map": {
+    "Words": "children"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "state": {
+   "type": "enum",
+   "values": [
+    "saving",
+    "saved"
+   ],
+   "required": true
+  },
+  "message": {
+   "type": "content",
+   "about": "In place of \"Saving…\" / \"Saved\": \"3 changes saved\", \"Draft saved\"."
+  },
+  "time": {
+   "type": "content",
+   "about": "When, shown after the words but not read out each time it changes: \"1 min ago\"."
+  }
+ },
+ "tokens": [
+  "size-sm",
+  "space-1",
+  "space-2",
+  "text-primary",
+  "text-secondary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

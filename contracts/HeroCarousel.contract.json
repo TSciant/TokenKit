@@ -1,0 +1,114 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "HeroCarousel",
+ "layer": "pattern",
+ "about": "05 — hero slider. Does not auto-advance. 2.2.2 requires a pause control for anything that moves by itself, and a wireframe has nothing to prove by moving. The dots are real buttons with names rather t",
+ "sources": {
+  "react": "src/react/patterns/HeroCarousel.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/eyebrow.css",
+  "src/css/components/hero.css",
+  "src/css/components/phase-banner.css",
+  "src/css/components/scrim.css",
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "card-body",
+  "eyebrow",
+  "hero-actions",
+  "hero-cta",
+  "hero-dot",
+  "hero-dots",
+  "hero-pager",
+  "hero-pager-btn",
+  "hero-plate",
+  "scrim",
+  "scrim-content",
+  "visually-hidden"
+ ],
+ "figma": [
+  {
+   "name": "HeroCarousel",
+   "node": "135:760",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": [
+    "Plate",
+    "Slide"
+   ]
+  }
+ ],
+ "props": {
+  "slides": {
+   "type": "other",
+   "ts": "HeroSlide[]",
+   "default": "HERO_SLIDES"
+  },
+  "initialSlide": {
+   "type": "number",
+   "default": "0",
+   "about": "Which slide is showing on first render. Clamped to the deck."
+  },
+  "label": {
+   "type": "text",
+   "default": "\"Featured\"",
+   "about": "Aria label for the carousel region."
+  }
+ },
+ "tokens": [
+  "duration-slow",
+  "ease-entrance",
+  "font-mono",
+  "leading-snug",
+  "motion-opacity",
+  "motion-surface",
+  "motion-transform",
+  "radius-nested",
+  "scrim-aa",
+  "scrim-aa-large",
+  "scrim-aaa",
+  "scrim-blur-max",
+  "scrim-blur-min",
+  "scrim-cover",
+  "scrim-frost",
+  "scrim-hold",
+  "scrim-hover",
+  "scrim-ink",
+  "scrim-level",
+  "scrim-level-max",
+  "scrim-level-min",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-5",
+  "space-7",
+  "target-min",
+  "text-on-scrim",
+  "text-secondary",
+  "text-tertiary",
+  "tracking-wide",
+  "weight-medium"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "HeroCarousel.Plate": "slides[n].seed (picks the stand-in photograph; its category says what it shows)",
+   "HeroCarousel.Slide": "initialSlide (1-based in Figma, 0-based in code)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

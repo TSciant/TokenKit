@@ -1,0 +1,122 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "DataTable",
+ "layer": "primitive",
+ "about": "DataTable — data that is a table: rows of the same kind of thing, compared across the same columns. A real <table>, with a caption that names it, column headers, and optionally a column of row headers",
+ "sources": {
+  "react": "src/react/primitives/DataTable.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/data-table.css"
+ ],
+ "dataTk": [
+  "data-table",
+  "data-table-caption",
+  "data-table-table"
+ ],
+ "figma": [
+  {
+   "name": "DataTable",
+   "node": "622:2813",
+   "codeConnect": true,
+   "map": {
+    "Caption": "caption",
+    "Show caption": "caption (omit it to hide)",
+    "Striped": "striped (true/false)",
+    "Dense": "dense (true/false)"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "DataTable/Cell",
+   "node": "477:1989",
+   "codeConnect": true,
+   "map": {
+    "Text": "children"
+   },
+   "unpaired": [
+    "Kind",
+    "Align"
+   ]
+  }
+ ],
+ "props": {
+  "caption": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "DataTable.Caption",
+    "DataTable.Show caption"
+   ],
+   "about": "What the table is, in a line: \"Opening hours by site\". Required: it names the table for a screen reader, and names the scrolling region around it, so a keyboard user knows what they are scrolling."
+  },
+  "captionHidden": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Keep the caption for screen readers only, when a heading right above the table already says the same thing to sight."
+  },
+  "columns": {
+   "type": "other",
+   "ts": "DataTableColumn[]",
+   "required": true,
+   "about": "The columns, in order: each a key, a heading, and how to align it."
+  },
+  "rows": {
+   "type": "content",
+   "required": true,
+   "about": "One object per row, keyed by column key. A missing key is an empty cell."
+  },
+  "rowHeader": {
+   "type": "text",
+   "about": "The key of the column that names each row (usually the first). Its cells become row headers, so a screen reader announces \"Northfield\" before \"12\" and a figure is never read without what it is a figur"
+  },
+  "striped": {
+   "type": "boolean",
+   "default": "false",
+   "figma": [
+    "DataTable.Striped"
+   ],
+   "about": "Shade every other row, for long rows that are hard to follow across."
+  },
+  "dense": {
+   "type": "boolean",
+   "default": "false",
+   "figma": [
+    "DataTable.Dense"
+   ],
+   "about": "Tighter cells, for a table that is mostly figures and needs to fit."
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-normal",
+  "size-base",
+  "size-sm",
+  "space-2",
+  "space-3",
+  "space-4",
+  "text-primary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "DataTable/Cell.Kind": "where the cell is: columns (Header), rowHeader (Row header), rows (Data)",
+   "DataTable/Cell.Align": "columns[n].align"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,74 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ToastRegion",
+ "layer": "primitive",
+ "about": "Toast — a short message about something that just happened, that steps aside on its own or when dismissed. Use for: the result of an action the reader just took (\"Saved\", \"Invite sent\"), where the pag",
+ "sources": {
+  "react": "src/react/primitives/Toast.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/toast.css"
+ ],
+ "dataTk": [
+  "toast-region"
+ ],
+ "figma": [
+  {
+   "name": "Toast",
+   "node": "440:1716",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "toasts": {
+   "type": "other",
+   "ts": "ToastItem[]",
+   "required": true
+  },
+  "onDismiss": {
+   "type": "event",
+   "required": true,
+   "about": "Called when a toast is dismissed, by its button or by its timeout."
+  },
+  "label": {
+   "type": "text",
+   "default": "\"Notifications\"",
+   "about": "Names the region for assistive technology."
+  },
+  "placement": {
+   "type": "enum",
+   "values": [
+    "block-end",
+    "block-start",
+    "static"
+   ],
+   "default": "\"block-end\"",
+   "about": "Where the stack sits: fixed to the end of the viewport (default), its start, or in the page's flow."
+  },
+  "dismissLabel": {
+   "type": "text",
+   "default": "\"Dismiss\"",
+   "about": "The dismiss button's words, before the toast's title (\"Dismiss: Saved\")."
+  }
+ },
+ "tokens": [
+  "measure-popover",
+  "space-5"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

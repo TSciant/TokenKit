@@ -1,0 +1,90 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Tooltip",
+ "layer": "primitive",
+ "about": "Tooltip — a few words about a control, shown on hover and on focus. Use for: the name of an icon-only button, or a short supplement to a control that already says what it does. Don't use for: anything",
+ "sources": {
+  "react": "src/react/primitives/Tooltip.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/tooltip.css"
+ ],
+ "dataTk": [
+  "tooltip",
+  "tooltip-bubble"
+ ],
+ "figma": [
+  {
+   "name": "Tooltip",
+   "node": "444:1801",
+   "codeConnect": true,
+   "map": {
+    "Content": "content",
+    "Placement": "placement (lower case)"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "content": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "Tooltip.Content"
+   ],
+   "about": "The words. Short: a name or a phrase. Anything longer, or anything a reader needs, is not a tooltip."
+  },
+  "children": {
+   "type": "content",
+   "required": true,
+   "about": "The one focusable element it belongs to (a button, a link)."
+  },
+  "labels": {
+   "type": "boolean",
+   "default": "false",
+   "about": "The words are the element's name (an icon-only button with no visible text of its own), not a description added after its name."
+  },
+  "placement": {
+   "type": "enum",
+   "values": [
+    "above",
+    "below"
+   ],
+   "default": "\"above\"",
+   "figma": [
+    "Tooltip.Placement"
+   ],
+   "about": "Above the element (default) or below it."
+  },
+  "open": {
+   "type": "boolean",
+   "about": "Shown whatever the pointer and focus do: for documentation and design review, not for use on a page."
+  }
+ },
+ "tokens": [
+  "duration-fast",
+  "ease-standard",
+  "leading-snug",
+  "radius-md",
+  "size-sm",
+  "space-2",
+  "space-3",
+  "surface-inverse",
+  "text-inverse",
+  "weight-normal"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

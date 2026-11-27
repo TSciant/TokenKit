@@ -1,0 +1,823 @@
+{
+ "$schema": "../schema/pack.schema.json",
+ "pack": "wireframe",
+ "$description": " ---------------------------------------------------------------------------\n   Pack: wireframe\n\n   Pure grayscale. This is the delivered appearance for an unbranded,\n   grayscale wireframe prototype. It is also the reference pack — every other\n   pack fills the same slots.\n\n   Values are true neutrals (R = G = B). Every text-on-surface pair below is\n   verified by tools/contrast-gate.mjs against computed values in the browser,\n   not asserted here. Ratios in comments are the expected result.\n\n   Applied at :root so the kit renders correctly with no attribute set, and\n   at [data-brand=\"wireframe\"] so it can be scoped to a subtree.\n--------------------------------------------------------------------------- ",
+ "layer": "tokens",
+ "rules": [
+  {
+   "selectors": [
+    ":root",
+    "[data-brand=\"wireframe\"]"
+   ],
+   "context": "default",
+   "items": [
+    {
+     "note": " --- pack-private ramp -------------------------------------------------\n       Nothing outside this file reads --wf-*. Components read --tk-* only. "
+    },
+    {
+     "private": "wf-0",
+     "$value": "#ffffff"
+    },
+    {
+     "private": "wf-50",
+     "$value": "#fafafa"
+    },
+    {
+     "private": "wf-100",
+     "$value": "#f4f4f4"
+    },
+    {
+     "private": "wf-150",
+     "$value": "#ededed"
+    },
+    {
+     "private": "wf-200",
+     "$value": "#e4e4e4"
+    },
+    {
+     "private": "wf-300",
+     "$value": "#d0d0d0"
+    },
+    {
+     "private": "wf-400",
+     "$value": "#a8a8a8"
+    },
+    {
+     "private": "wf-500",
+     "$value": "#808080"
+    },
+    {
+     "private": "wf-600",
+     "$value": "#636363"
+    },
+    {
+     "private": "wf-700",
+     "$value": "#4a4a4a"
+    },
+    {
+     "private": "wf-800",
+     "$value": "#333333"
+    },
+    {
+     "private": "wf-900",
+     "$value": "#1f1f1f"
+    },
+    {
+     "private": "wf-950",
+     "$value": "#0f0f0f"
+    },
+    {
+     "private": "wf-1000",
+     "$value": "#000000"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " --- the contract ---------------------------------------------------- "
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " surface "
+    },
+    {
+     "slot": "surface-base",
+     "$value": "{wf-100}"
+    },
+    {
+     "slot": "surface-default",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "surface-raised",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "surface-sunken",
+     "$value": "{wf-200}"
+    },
+    {
+     "slot": "surface-inverse",
+     "$value": "{wf-900}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " text — ratios against --tk-surface-default (#ffffff) "
+    },
+    {
+     "slot": "text-primary",
+     "$value": "{wf-900}",
+     "$comment": " 16.48:1  AAA "
+    },
+    {
+     "slot": "text-secondary",
+     "$value": "{wf-700}",
+     "$comment": "  8.86:1  AAA "
+    },
+    {
+     "slot": "text-tertiary",
+     "$value": "{wf-600}",
+     "$comment": "  6.01:1  AAA "
+    },
+    {
+     "slot": "text-inverse",
+     "$value": "{wf-0}",
+     "$comment": " on --tk-surface-inverse: 16.48:1 "
+    },
+    {
+     "slot": "text-disabled",
+     "$value": "{wf-500}",
+     "$comment": "  3.95:1  — 1.4.3 exempts disabled "
+    },
+    {
+     "note": " link — currentColor, so a link is its text's colour and its underline\n       carries it, until a pack chooses a link colour. A pack that does fills\n       all three here and in its inverse block; the contrast gate checks them. "
+    },
+    {
+     "slot": "link-text",
+     "$value": "currentColor"
+    },
+    {
+     "slot": "link-hover",
+     "$value": "currentColor"
+    },
+    {
+     "slot": "link-visited",
+     "$value": "currentColor"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " line — --tk-line-strong is the one used on anything a user operates,\n       because 1.4.11 wants 3:1 for UI component boundaries.\n       subtle and default are decorative only. "
+    },
+    {
+     "note": " Decorative strokes — soft opacity so boxes whisper, not shout.\n       --tk-line-strong stays solid for operable UI (1.4.11). "
+    },
+    {
+     "slot": "line-subtle",
+     "$value": "color-mix(in srgb, {wf-500} 22%, transparent)"
+    },
+    {
+     "slot": "line-default",
+     "$value": "color-mix(in srgb, {wf-500} 34%, transparent)"
+    },
+    {
+     "note": " --- scrim and texture ------------------------------------------------\n       The alphas are arithmetic and live in the scale. The ink is a colour,\n       so it lives here. --tk-scrim-ink must stay the darkest value the pack\n       has: every alpha in the scale was solved against a black wash, and a\n       lighter ink invalidates all three at once. --tk-texture-ink is meant to\n       be barely there — it decorates and never informs. "
+    },
+    {
+     "slot": "scrim-ink",
+     "$value": "{wf-1000}"
+    },
+    {
+     "note": " Glass: chrome floating on imagery the pack does not control. Identical\n       in every pack, for the same reason [data-on=\"scrim\"] is — see the note\n       in 02-property.css. "
+    },
+    {
+     "slot": "glass-fill",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "glass-ink",
+     "$value": "{wf-950}"
+    },
+    {
+     "slot": "glass-line",
+     "$value": "{wf-300}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " --- motion -----------------------------------------------------------\n       Pace and curve are brand properties, so the pack sets them. These are\n       the kit's defaults restated; a brand that wants to feel quicker or\n       softer changes them here and every component follows.\n       -------------------------------------------------------------------- "
+    },
+    {
+     "slot": "motion-ink",
+     "$value": "{tk-duration-fast} {tk-ease-standard}"
+    },
+    {
+     "slot": "motion-surface",
+     "$value": "{tk-duration-fast} {tk-ease-standard}"
+    },
+    {
+     "slot": "motion-line",
+     "$value": "{tk-duration-fast} {tk-ease-standard}"
+    },
+    {
+     "slot": "motion-elevation",
+     "$value": "{tk-duration-base} {tk-ease-standard}"
+    },
+    {
+     "slot": "motion-opacity",
+     "$value": "{tk-duration-base} {tk-ease-standard}"
+    },
+    {
+     "slot": "motion-transform",
+     "$value": "{tk-duration-base} {tk-ease-standard}"
+    },
+    {
+     "slot": "motion-size",
+     "$value": "{tk-duration-base} {tk-ease-standard}"
+    },
+    {
+     "slot": "motion-enter",
+     "$value": "{tk-duration-base} {tk-ease-entrance}"
+    },
+    {
+     "slot": "motion-exit",
+     "$value": "{tk-duration-fast} {tk-ease-exit}"
+    },
+    {
+     "slot": "motion-ambient",
+     "$value": "{tk-duration-ambient} linear"
+    },
+    {
+     "slot": "motion-spin",
+     "$value": "{tk-duration-spin} linear"
+    },
+    {
+     "slot": "motion-pulse",
+     "$value": "{tk-duration-pulse} {tk-ease-standard}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "text-on-scrim",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "texture-ink",
+     "$value": "{wf-300}"
+    },
+    {
+     "note": " logo — grayscale, like everything else here.\n       A brand pack is where these stop being grey; see _template.css. "
+    },
+    {
+     "slot": "logo-ink",
+     "$value": "{wf-900}"
+    },
+    {
+     "slot": "logo-mark-ink",
+     "$value": "{wf-900}"
+    },
+    {
+     "slot": "logo-word-ink",
+     "$value": "{wf-900}"
+    },
+    {
+     "slot": "logo-tagline-ink",
+     "$value": "{wf-600}"
+    },
+    {
+     "slot": "logo-tile",
+     "$value": "{wf-100}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "line-strong",
+     "$value": "{wf-500}",
+     "$comment": "  3.95:1  UI boundary "
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " action "
+    },
+    {
+     "slot": "action-fill",
+     "$value": "{wf-900}"
+    },
+    {
+     "slot": "action-fill-hover",
+     "$value": "{wf-800}"
+    },
+    {
+     "slot": "action-fill-active",
+     "$value": "{wf-1000}"
+    },
+    {
+     "slot": "action-text",
+     "$value": "{wf-0}",
+     "$comment": " 16.48:1 on fill "
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "action-quiet-fill",
+     "$value": "transparent"
+    },
+    {
+     "slot": "action-quiet-fill-hover",
+     "$value": "{wf-100}"
+    },
+    {
+     "slot": "action-quiet-text",
+     "$value": "{wf-900}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " focus "
+    },
+    {
+     "slot": "focus-color",
+     "$value": "{wf-900}",
+     "$comment": " 16.48:1 on default surface "
+    },
+    {
+     "note": " A bare graphic against its own track — see --tk-data-ink in\n       02-property.css for why this is not --tk-action-fill. "
+    },
+    {
+     "slot": "data-ink",
+     "$value": "{wf-900}",
+     "$comment": " 16.48:1 on default surface ",
+     "$extraSemicolon": true
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " status — a grayscale pack has no hue to spend, so status is carried by\n       weight and boundary. A brand pack replaces these with hue and the\n       components do not change. "
+    },
+    {
+     "slot": "status-info-line",
+     "$value": "{wf-500}"
+    },
+    {
+     "slot": "status-info-surface",
+     "$value": "{wf-100}"
+    },
+    {
+     "slot": "status-info-text",
+     "$value": "{wf-900}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "status-success-line",
+     "$value": "{wf-600}"
+    },
+    {
+     "slot": "status-success-surface",
+     "$value": "{wf-100}"
+    },
+    {
+     "slot": "status-success-text",
+     "$value": "{wf-900}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "status-warning-line",
+     "$value": "{wf-600}"
+    },
+    {
+     "slot": "status-warning-surface",
+     "$value": "{wf-150}"
+    },
+    {
+     "slot": "status-warning-text",
+     "$value": "{wf-900}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "status-danger-line",
+     "$value": "{wf-900}"
+    },
+    {
+     "slot": "status-danger-surface",
+     "$value": "{wf-150}"
+    },
+    {
+     "slot": "status-danger-text",
+     "$value": "{wf-900}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " elevation: flat. The boundary carries the depth. "
+    },
+    {
+     "slot": "shadow-sm",
+     "$value": "none"
+    },
+    {
+     "slot": "shadow-md",
+     "$value": "none"
+    },
+    {
+     "slot": "shadow-lg",
+     "$value": "none"
+    }
+   ]
+  },
+  {
+   "gap": 2
+  },
+  {
+   "note": " --- painting -----------------------------------------------------------\n     A pack applied to a subtree has to paint, and this is not cosmetic.\n\n     Custom properties inherit, but an already-computed inherited property does\n     not re-resolve further down. `:where(body)` computes `color:\n     var(--tk-text-primary)` once, against whatever pack is in force at the\n     body; a <p> three levels down has no colour declaration of its own, so it\n     inherits that computed value. Remapping the token underneath it changes\n     nothing, and the text renders in the outer pack's ink on the inner pack's\n     ground.\n\n     So the element that switches packs re-declares colour and background. This\n     rule sits in the tokens layer, which the elements layer comes after, so it\n     does not fight `:where(body)` at the root — it only takes effect where a\n     pack is scoped mid-tree, which is exactly where it is needed.\n     ---------------------------------------------------------------------- "
+  },
+  {
+   "selectors": [
+    "[data-brand=\"wireframe\"]"
+   ],
+   "context": "paint",
+   "items": [
+    {
+     "paint": "background-color",
+     "$value": "{wf-100}"
+    },
+    {
+     "paint": "color",
+     "$value": "{wf-900}"
+    }
+   ]
+  },
+  {
+   "gap": 1
+  },
+  {
+   "note": " --- inverse context ---------------------------------------------------\n     Every slot that has to move when a subtree sits on the dark surface.\n     Components are not told they are on a dark background; the context\n     re-resolves the same slots they were already reading.\n\n     The set is deliberately complete. Remapping only --tk-text-primary leaves\n     quiet buttons, borders and focus rings resolving against the light\n     surface, which is invisible ink on a dark plate — a failure that looks\n     like a missing element rather than a contrast bug. "
+  },
+  {
+   "selectors": [
+    ":where([data-on=\"inverse\"])",
+    "[data-brand=\"wireframe\"] :where([data-on=\"inverse\"])"
+   ],
+   "context": "inverse",
+   "items": [
+    {
+     "note": " Paint from the ramp, not from --tk-surface-inverse. The element that\n       flips the context also remaps that slot, so painting from it would\n       resolve against the new value and flip straight back to light. "
+    },
+    {
+     "paint": "background-color",
+     "$value": "{wf-900}"
+    },
+    {
+     "paint": "color",
+     "$value": "{wf-0}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "surface-default",
+     "$value": "{wf-900}"
+    },
+    {
+     "slot": "surface-base",
+     "$value": "{wf-900}"
+    },
+    {
+     "slot": "surface-raised",
+     "$value": "{wf-800}"
+    },
+    {
+     "slot": "surface-sunken",
+     "$value": "{wf-950}"
+    },
+    {
+     "slot": "surface-inverse",
+     "$value": "{wf-0}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "text-primary",
+     "$value": "{wf-0}",
+     "$comment": " 16.48:1 on wf-900 "
+    },
+    {
+     "slot": "text-secondary",
+     "$value": "{wf-300}",
+     "$comment": "  9.80:1 "
+    },
+    {
+     "slot": "text-tertiary",
+     "$value": "{wf-400}",
+     "$comment": "  6.15:1 "
+    },
+    {
+     "slot": "text-inverse",
+     "$value": "{wf-900}"
+    },
+    {
+     "slot": "text-disabled",
+     "$value": "{wf-500}"
+    },
+    {
+     "slot": "link-text",
+     "$value": "currentColor"
+    },
+    {
+     "slot": "link-hover",
+     "$value": "currentColor"
+    },
+    {
+     "slot": "link-visited",
+     "$value": "currentColor"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "line-subtle",
+     "$value": "color-mix(in srgb, {wf-0} 14%, transparent)"
+    },
+    {
+     "slot": "line-default",
+     "$value": "color-mix(in srgb, {wf-0} 22%, transparent)"
+    },
+    {
+     "note": " --- scrim and texture ------------------------------------------------\n       The alphas are arithmetic and live in the scale. The ink is a colour,\n       so it lives here. --tk-scrim-ink must stay the darkest value the pack\n       has: every alpha in the scale was solved against a black wash, and a\n       lighter ink invalidates all three at once. --tk-texture-ink is meant to\n       be barely there — it decorates and never informs. "
+    },
+    {
+     "slot": "scrim-ink",
+     "$value": "{wf-1000}"
+    },
+    {
+     "slot": "text-on-scrim",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "texture-ink",
+     "$value": "{wf-700}"
+    },
+    {
+     "note": " logo — on inverse paper. "
+    },
+    {
+     "slot": "logo-ink",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "logo-mark-ink",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "logo-word-ink",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "logo-tagline-ink",
+     "$value": "{wf-300}"
+    },
+    {
+     "slot": "logo-tile",
+     "$value": "color-mix(in srgb, {wf-0} 14%, transparent)"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "line-strong",
+     "$value": "{wf-400}",
+     "$comment": "  6.15:1 as a boundary "
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "action-fill",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "action-fill-hover",
+     "$value": "{wf-200}"
+    },
+    {
+     "slot": "action-fill-active",
+     "$value": "{wf-300}"
+    },
+    {
+     "slot": "action-text",
+     "$value": "{wf-900}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "action-quiet-fill",
+     "$value": "transparent"
+    },
+    {
+     "slot": "action-quiet-fill-hover",
+     "$value": "{wf-800}"
+    },
+    {
+     "slot": "action-quiet-text",
+     "$value": "{wf-0}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "focus-color",
+     "$value": "{wf-0}"
+    },
+    {
+     "note": " A bare graphic against its own track — see --tk-data-ink in\n       02-property.css for why this is not --tk-action-fill. "
+    },
+    {
+     "slot": "data-ink",
+     "$value": "{wf-0}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "status-info-line",
+     "$value": "{wf-400}"
+    },
+    {
+     "slot": "status-info-surface",
+     "$value": "{wf-800}"
+    },
+    {
+     "slot": "status-info-text",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "status-success-line",
+     "$value": "{wf-400}"
+    },
+    {
+     "slot": "status-success-surface",
+     "$value": "{wf-800}"
+    },
+    {
+     "slot": "status-success-text",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "status-warning-line",
+     "$value": "{wf-300}"
+    },
+    {
+     "slot": "status-warning-surface",
+     "$value": "{wf-800}"
+    },
+    {
+     "slot": "status-warning-text",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "status-danger-line",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "status-danger-surface",
+     "$value": "{wf-800}"
+    },
+    {
+     "slot": "status-danger-text",
+     "$value": "{wf-0}"
+    }
+   ]
+  },
+  {
+   "gap": 1
+  },
+  {
+   "note": " --- on a scrim --------------------------------------------------------\n     A context, not a component rule — which is why it lives in the pack with\n     the others, and why it is a COMPLETE slot set rather than a text colour.\n\n     It exists because [data-on=\"inverse\"] could not do this job. Inverse means\n     \"the opposite of whatever this pack defaults to\", so it is light ink in a\n     light pack and DARK ink in a dark one. A scrim's wash is the pack's\n     darkest value in both packs, because that is what the alphas were solved\n     against — so borrowing inverse put near-black controls on a near-black\n     wash under wireframe-dark, at 2.28:1.\n\n     This block is therefore deliberately IDENTICAL in every pack. The ground\n     it sits on is the same ground everywhere.\n\n     Two rules for anything added here. Nothing paints a background: the wash\n     is the ground, and painting over it would hide the photograph the scrim\n     exists to sit on. And nothing de-emphasises by colour — secondary and\n     tertiary collapse onto the primary ink, because a scrim has exactly the\n     contrast headroom the alpha bought it and none spare. Hierarchy on a\n     scrim comes from size and weight.\n     -------------------------------------------------------------------- "
+  },
+  {
+   "selectors": [
+    ":where([data-on=\"scrim\"], [data-tk=\"scrim-content\"])",
+    "[data-brand=\"wireframe\"] :where([data-on=\"scrim\"], [data-tk=\"scrim-content\"])"
+   ],
+   "context": "scrim",
+   "items": [
+    {
+     "paint": "color",
+     "$value": "{wf-0}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "text-primary",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "text-secondary",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "text-tertiary",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "text-inverse",
+     "$value": "{wf-1000}"
+    },
+    {
+     "slot": "text-disabled",
+     "$value": "{wf-300}"
+    },
+    {
+     "slot": "link-text",
+     "$value": "currentColor"
+    },
+    {
+     "slot": "link-hover",
+     "$value": "currentColor"
+    },
+    {
+     "slot": "link-visited",
+     "$value": "currentColor"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " A boundary on a wash has to clear 3:1 against the wash's worst case,\n       which is a light composite. White is the only value that always does. "
+    },
+    {
+     "slot": "line-subtle",
+     "$value": "{wf-300}"
+    },
+    {
+     "slot": "line-default",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "line-strong",
+     "$value": "{wf-0}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " Controls are their own opaque boxes, so they carry their own pair. "
+    },
+    {
+     "slot": "action-fill",
+     "$value": "{wf-0}"
+    },
+    {
+     "slot": "action-fill-hover",
+     "$value": "{wf-200}"
+    },
+    {
+     "slot": "action-fill-active",
+     "$value": "{wf-300}"
+    },
+    {
+     "slot": "action-text",
+     "$value": "{wf-1000}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " Outline / quiet controls are glass chips on the wash: dark ink at high\n       alpha is the ground (contrast), frost on the button is middle-ground\n       craft (see hero.css). Transparent fill failed AA whenever the photo\n       composite lightened past the wash's worst-case budget. "
+    },
+    {
+     "slot": "action-quiet-fill",
+     "$value": "color-mix(in srgb, {tk-scrim-ink} 72%, transparent)"
+    },
+    {
+     "slot": "action-quiet-fill-hover",
+     "$value": "color-mix(in srgb, {tk-scrim-ink} 88%, transparent)"
+    },
+    {
+     "slot": "action-quiet-fill-active",
+     "$value": "color-mix(in srgb, {tk-scrim-ink} 94%, transparent)"
+    },
+    {
+     "slot": "action-quiet-text",
+     "$value": "{wf-0}"
+    },
+    {
+     "gap": 1
+    },
+    {
+     "slot": "focus-color",
+     "$value": "{wf-0}"
+    },
+    {
+     "note": " A bare graphic against its own track — see --tk-data-ink in\n       02-property.css for why this is not --tk-action-fill. "
+    },
+    {
+     "slot": "data-ink",
+     "$value": "{wf-0}"
+    }
+   ]
+  }
+ ]
+}

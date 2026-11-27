@@ -1,0 +1,113 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Code",
+ "layer": "primitive",
+ "about": "Code — a short piece of source, labelled. Use for: a snippet that illustrates a point (a few lines, not a file). Don't use for: a whole file (link to it), or a single token inside a sentence (that is ",
+ "sources": {
+  "react": "src/react/primitives/Code.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/code.css",
+  "src/css/components/timeline.css"
+ ],
+ "dataTk": [
+  "code",
+  "code-block",
+  "code-body",
+  "code-copy",
+  "code-label"
+ ],
+ "figma": [
+  {
+   "name": "Code",
+   "node": "402:1585",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Code": "code",
+    "Show label": "label (omit it to hide)",
+    "Show copy": "copy"
+   },
+   "unpaired": [
+    "Copy label"
+   ]
+  }
+ ],
+ "props": {
+  "code": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "Code.Code"
+   ],
+   "about": "The code, as text. Line breaks and indentation are kept."
+  },
+  "label": {
+   "type": "text",
+   "figma": [
+    "Code.Label",
+    "Code.Show label"
+   ],
+   "about": "What it is, shown above it: \"ActionScript 1, 2000\", \"The card's CSS\"."
+  },
+  "language": {
+   "type": "text",
+   "about": "The language: \"css\", \"scss\", \"js\", \"jsx\", \"ts\", \"html\", \"actionscript\"… It decides how the code is highlighted, and is written as the code element's class for anything else that reads it. Left out, it"
+  },
+  "copy": {
+   "type": "boolean",
+   "figma": [
+    "Code.Show copy"
+   ],
+   "about": "A Copy button in the corner, for a snippet a reader is meant to paste."
+  },
+  "copyWords": {
+   "type": "other",
+   "ts": "[copy: string, copied: string]",
+   "default": "[\"Copy\", \"Copied\"]",
+   "about": "The button's words before and after copying, for a page in another language."
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "font-mono",
+  "leading-normal",
+  "line-default",
+  "line-strong",
+  "line-subtle",
+  "radius-lg",
+  "radius-nested",
+  "radius-sm",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-8",
+  "surface-raised",
+  "surface-sunken",
+  "target-min",
+  "text-primary",
+  "text-secondary",
+  "weight-medium"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "Code.Copy label": "copyWords"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

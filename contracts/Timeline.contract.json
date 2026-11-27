@@ -1,0 +1,245 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Timeline",
+ "layer": "primitive",
+ "about": "Timeline — things across time, in lanes: spans (a start and an end) and milestones (a single point), on one scale. Use for: how several threads ran side by side and overlapped (eras, a project's phase",
+ "sources": {
+  "react": "src/react/primitives/Timeline.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/timeline.css"
+ ],
+ "dataTk": [
+  "timeline",
+  "timeline-axis",
+  "timeline-bar",
+  "timeline-chart",
+  "timeline-detail",
+  "timeline-detail-item",
+  "timeline-detail-title",
+  "timeline-head",
+  "timeline-item",
+  "timeline-item-label",
+  "timeline-journey",
+  "timeline-lane",
+  "timeline-lane-label",
+  "timeline-line",
+  "timeline-milestone",
+  "timeline-milestone-detail",
+  "timeline-milestone-label",
+  "timeline-milestones",
+  "timeline-now",
+  "timeline-period",
+  "timeline-periods",
+  "timeline-rail",
+  "timeline-tick",
+  "timeline-track",
+  "timeline-when"
+ ],
+ "figma": [
+  {
+   "name": "Timeline",
+   "node": "403:1585",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": [
+    "Detail title",
+    "Detail when",
+    "Detail",
+    "Today",
+    "Show today",
+    "Show detail"
+   ]
+  },
+  {
+   "name": "TimelineJourney",
+   "node": "409:2590",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": [
+    "Period",
+    "Earlier period",
+    "Show passed",
+    "Show periods",
+    "Side"
+   ]
+  },
+  {
+   "name": "Timeline/Item",
+   "node": "402:1603",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Current": "Timeline data"
+   },
+   "unpaired": [
+    "Kind"
+   ]
+  },
+  {
+   "name": "Timeline/Milestone",
+   "node": "404:1625",
+   "codeConnect": true,
+   "map": {
+    "Year": "Timeline data",
+    "Name": "Timeline data",
+    "Detail": "Timeline data",
+    "Show detail": "Timeline data",
+    "State": "Passed: runtime, not a prop, Current: runtime, not a prop"
+   },
+   "unpaired": [
+    "Side",
+    "Type"
+   ]
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "Timeline/Item.Label"
+   ],
+   "about": "What the timeline shows. Names it for assistive technology."
+  },
+  "start": {
+   "type": "number",
+   "required": true,
+   "about": "The first and last points of the scale."
+  },
+  "end": {
+   "type": "number",
+   "required": true
+  },
+  "lanes": {
+   "type": "other",
+   "ts": "TimelineLane[]",
+   "required": true
+  },
+  "step": {
+   "type": "number",
+   "about": "Distance between ticks on the axis, in the scale's units."
+  },
+  "format": {
+   "type": "other",
+   "ts": "(value: number) => string",
+   "default": "(v) => String(v)",
+   "about": "How a point on the scale is written: a year as itself, a day as a date."
+  },
+  "datetime": {
+   "type": "other",
+   "ts": "(value: number) => string",
+   "default": "YEAR",
+   "about": "The machine-readable date for a point, when it is one (a time element's datetime: \"1996\", \"2026-03-14\"). Left out, whole years from 1000 to 9999 are dates and anything else (a week number, a fraction "
+  },
+  "words": {
+   "type": "other",
+   "ts": "{ milestones?: string; periods?: string; to?: string; }",
+   "about": "The words the timeline says for itself, for a page in another language."
+  },
+  "view": {
+   "type": "other",
+   "ts": "[number, number]",
+   "about": "The part of the scale in view. Defaults to all of it; narrow it to zoom, move it to pan."
+  },
+  "now": {
+   "type": "number",
+   "about": "A point marked with a line across every lane (\"today\")."
+  },
+  "nowLabel": {
+   "type": "text",
+   "default": "\"Now\"",
+   "about": "The words for the now line."
+  },
+  "variant": {
+   "type": "enum",
+   "values": [
+    "lanes",
+    "journey"
+   ],
+   "default": "\"lanes\"",
+   "about": "How it is drawn. \"lanes\" (the default): a Gantt chart, one row per lane. \"journey\": one line that travels the scale, its milestones as dots along it (the current one unfolding into a callout: its year"
+  },
+  "reveal": {
+   "type": "number",
+   "about": "How far along the scale the story has got. The journey's line is drawn to here; milestones and periods emerge as it reaches them, and periods grow behind it. A registered number, so moving it is a tra"
+  },
+  "tell": {
+   "type": "number",
+   "about": "In a journey, how far the current milestone has been told, 0 to 1: its dot lands, its stem draws, its rule runs out, then its year, name and detail arrive. Leave it out and becoming current is a trans"
+  }
+ },
+ "tokens": [
+  "action-fill",
+  "duration-slow",
+  "ease-exit",
+  "ease-standard",
+  "font-display",
+  "leading-snug",
+  "leading-tight",
+  "line-strong",
+  "line-subtle",
+  "measure",
+  "motion-ink",
+  "motion-size",
+  "motion-transform",
+  "radius-full",
+  "size-3xl",
+  "size-lg",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-6",
+  "space-7",
+  "surface-base",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "timeline-from",
+  "timeline-reveal",
+  "timeline-tell",
+  "timeline-to",
+  "timeline-told",
+  "tracking-tight",
+  "tracking-wide",
+  "weight-normal",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "Timeline.Today": "nowLabel",
+   "Timeline.Show today": "now (omit it to hide the today line)",
+   "TimelineJourney.Period": "the current lane's label in lanes",
+   "TimelineJourney.Earlier period": "an earlier lane's label in lanes",
+   "TimelineJourney.Show periods": "lanes (one lane shows no period labels)",
+   "Timeline/Item.Kind": "lanes[n].items[m]: a span has an end, a milestone does not",
+   "Timeline/Milestone.Type": "the milestone's detail content: code, text or media"
+  },
+  "omit": {
+   "Timeline.Detail title": "runtime: the detail shows whichever moment the person selects",
+   "Timeline.Detail when": "runtime: the detail shows whichever moment the person selects",
+   "Timeline.Detail": "runtime: the detail shows whichever moment the person selects",
+   "Timeline.Show detail": "runtime: the detail opens on selection",
+   "TimelineJourney.Show passed": "derived: moments before now draw as passed",
+   "TimelineJourney.Side": "layout: the journey alternates sides by itself",
+   "Timeline/Milestone.Side": "layout: alternates by position"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

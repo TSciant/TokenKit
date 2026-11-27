@@ -470,7 +470,8 @@
       "story": "04-primitives-28-menu-button--onion-skin",
       "pattern": [
         "state",
-        "size"
+        "size",
+        "variant"
       ],
       "states": {
         "closed": {
@@ -480,7 +481,7 @@
           "initialOpen": true
         }
       },
-      "doc": "The Figma component laid over this one, closed and open, and at md and lg. Open includes the list, so the box is as tall as the list under the trigger.",
+      "doc": "The Figma component laid over this one, closed and open, and at md and lg. Open includes the list, so the box is as tall as the list under the trigger. A third, optional part names the trigger Variant when it is not outline (closed-md-solid, closed-md-quiet).",
       "target": "root"
     },
     "MegaMenu": {
@@ -1198,14 +1199,11 @@
     "DataTable": {
       "story": "04-primitives-52-table--onion-skin",
       "pattern": [
-        "state"
+        "striped",
+        "dense"
       ],
-      "states": {
-        "default": {}
-      },
-      "single": true,
       "target": "root",
-      "doc": "The Figma DataTable (the sign-ups table: caption, four columns, five rows, 640 wide) laid over the same."
+      "doc": "The Figma DataTable (the sign-ups table: caption, four columns, five rows, 640 wide) laid over the same. Now a set: Striped and Dense (false-false is the default table; true-false, false-true, true-true the options), each laid over the story with the same args."
     },
     "CookieConsent": {
       "story": "04-primitives-55-cookie-consent--onion-skin",
@@ -1252,13 +1250,9 @@
     "Quote": {
       "story": "04-primitives-51-quote--onion-skin",
       "pattern": [
-        "state"
+        "variant"
       ],
-      "states": {
-        "default": {}
-      },
-      "single": true,
-      "doc": "The Figma Quote (plain: the quote with its name and role, the measure wide) laid over the same. maxMean 11: Figma sets the 20px quote on its 30px line about 0.7px lower than the code (pixel or percent line height alike), so every glyph edge differs; shifted up a pixel it scores 5.4, and the rule, padding and attribution match.",
+      "doc": "The Figma Quote set laid over the same, in its three settings (Variant). plain: the quote with its name and role, the measure wide; maxMean 11: Figma sets the 20px quote on its 30px line about 0.7px lower than the code (pixel or percent line height alike), so every glyph edge differs; shifted up a pixel it scores 5.4, and the rule, padding and attribution match. pull: ruled above and below, the words at 2xl medium. testimonial: the Card around it, photographed without a portrait (Show portrait off), since the story passes none.",
       "maxMean": 11
     },
     "ArticleMeta": {
@@ -1342,13 +1336,10 @@
     "FloatingAction": {
       "story": "04-primitives-56-floating-action--onion-skin",
       "pattern": [
-        "state"
+        "variant",
+        "position"
       ],
-      "states": {
-        "default": {}
-      },
-      "single": true,
-      "doc": "The Figma FloatingAction (the round button with its icon, not extended) laid over the same."
+      "doc": "The Figma FloatingAction laid over the same: the round button with its icon, not extended (button-end), and the side tab on each edge (tab-end, tab-start: the label along the edge, the two page-facing corners rounded)."
     },
     "ProfileHeader": {
       "story": "04-primitives-54-profile-header--onion-skin",
@@ -1399,13 +1390,9 @@
     "Spinner": {
       "story": "04-primitives-81-loading--onion-skin",
       "pattern": [
-        "state"
+        "size"
       ],
-      "states": {
-        "default": {}
-      },
-      "single": true,
-      "doc": "The Figma Spinner (the ring at rest and its words) laid over the same, photographed still.",
+      "doc": "The Figma Spinner set (the ring at rest and its words) laid over the same at each Size: inherit (1em of the text), sm, md and lg (icon/sm, md, lg), photographed still.",
       "still": true
     },
     "Skeleton": {

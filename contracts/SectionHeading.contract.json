@@ -1,0 +1,116 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SectionHeading",
+ "layer": "primitive",
+ "about": "SectionHeading — the heading of one section of a page, with an optional eyebrow, a short introduction and a link to everything of its kind. It introduces the content set below it and owns none of it, ",
+ "sources": {
+  "react": "src/react/primitives/SectionHeading.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/section-heading.css"
+ ],
+ "dataTk": [
+  "section-heading",
+  "section-heading-action",
+  "section-heading-intro",
+  "section-heading-text"
+ ],
+ "figma": [
+  {
+   "name": "SectionHeading",
+   "node": "483:2013",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Show eyebrow": "eyebrow (omit it to hide)",
+    "Action": "action",
+    "Show action": "action (omit it to hide)"
+   },
+   "unpaired": [
+    "Intro",
+    "Show intro"
+   ]
+  }
+ ],
+ "props": {
+  "eyebrow": {
+   "type": "text",
+   "figma": [
+    "SectionHeading.Show eyebrow"
+   ],
+   "about": "A word or two above the heading: the section's kind, or what it belongs to. Optional."
+  },
+  "title": {
+   "type": "content",
+   "required": true,
+   "figma": [
+    "SectionHeading.Title"
+   ],
+   "about": "The heading."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3"
+   ],
+   "about": "h2 for a section of the page (the default), h3 for one inside a section."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3"
+   ]
+  },
+  "children": {
+   "type": "content",
+   "about": "A sentence or two introducing what follows. Optional; an introduction that needs a third sentence is a section of its own."
+  },
+  "action": {
+   "type": "other",
+   "ts": "{ label: string; href: string; }",
+   "figma": [
+    "SectionHeading.Action",
+    "SectionHeading.Show action"
+   ],
+   "about": "A link to everything of this kind (\"All insights\"), at the end of the heading."
+  },
+  "align": {
+   "type": "enum",
+   "values": [
+    "center",
+    "start"
+   ],
+   "default": "\"start\"",
+   "about": "Start (the default), or centred above a section that is centred too."
+  }
+ },
+ "tokens": [
+  "measure",
+  "space-2",
+  "space-3",
+  "space-5",
+  "text-secondary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "SectionHeading.Intro": "children",
+   "SectionHeading.Show intro": "children (omit them to hide)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

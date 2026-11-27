@@ -1,0 +1,135 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "AudioPlayer",
+ "layer": "primitive",
+ "about": "AudioPlayer — a clip or an episode, played on the page. A native audio element underneath, with the kit's own controls over it, so every control is a real button or slider a keyboard and a screen read",
+ "sources": {
+  "react": "src/react/primitives/AudioPlayer.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/audio-player.css"
+ ],
+ "dataTk": [
+  "audio-player",
+  "audio-player-description",
+  "audio-player-info",
+  "audio-player-media",
+  "audio-player-play",
+  "audio-player-position",
+  "audio-player-speed",
+  "audio-player-time",
+  "audio-player-title",
+  "audio-player-tool",
+  "audio-player-tools",
+  "audio-player-track",
+  "audio-player-transcript",
+  "audio-player-transcript-body",
+  "audio-player-transcript-toggle"
+ ],
+ "figma": [
+  {
+   "name": "AudioPlayer",
+   "node": "447:1839",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Description": "description",
+    "Show description": "description (omit it to hide)",
+    "Duration": "duration",
+    "State": "Stopped: runtime, not a prop, Playing: runtime, not a prop"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "title": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "AudioPlayer.Title"
+   ],
+   "about": "What it is. Required: it names the player and its play button. Forty characters or fewer reads best."
+  },
+  "description": {
+   "type": "text",
+   "figma": [
+    "AudioPlayer.Description",
+    "AudioPlayer.Show description"
+   ],
+   "about": "A line above the title: the series, the episode, who is speaking. Optional; eighty characters or fewer."
+  },
+  "src": {
+   "type": "text",
+   "required": true,
+   "about": "The audio file. Nothing plays until someone presses play."
+  },
+  "duration": {
+   "type": "text",
+   "figma": [
+    "AudioPlayer.Duration"
+   ],
+   "about": "How long it runs, as it should read before the file has said (\"24:05\", \"1:02:30\")."
+  },
+  "transcript": {
+   "type": "content",
+   "about": "The words, for anyone who would rather read or cannot hear. Shown in a disclosure under the player."
+  },
+  "transcriptHref": {
+   "type": "text",
+   "about": "Where the whole transcript can be downloaded."
+  },
+  "speeds": {
+   "type": "other",
+   "ts": "number[]",
+   "default": "[1, 1.25, 1.5, 2, 0.75]",
+   "about": "The speeds the speed button steps through, starting at the first."
+  },
+  "skip": {
+   "type": "number",
+   "default": "15",
+   "about": "Seconds the back and forward buttons (and the arrow keys on the position) move."
+  },
+  "words": {
+   "type": "other",
+   "ts": "Partial<AudioPlayerWords>"
+  }
+ },
+ "tokens": [
+  "action-fill",
+  "action-fill-hover",
+  "action-text",
+  "focus-color",
+  "leading-snug",
+  "line-default",
+  "radius-full",
+  "radius-lg",
+  "radius-nested",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "surface-raised",
+  "surface-sunken",
+  "target-comfortable",
+  "target-min",
+  "text-primary",
+  "text-secondary",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,33 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Disclosure",
+ "layer": "primitive",
+ "about": "Opt-in entrance panel (`data-tk=\"disclosure\"`). Uses",
+ "sources": {
+  "react": "src/react/primitives/Disclosure.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/disclosure.css"
+ ],
+ "dataTk": [
+  "disclosure"
+ ],
+ "figma": [],
+ "props": {},
+ "tokens": [
+  "motion-enter",
+  "motion-transform",
+  "space-2"
+ ],
+ "checks": [
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

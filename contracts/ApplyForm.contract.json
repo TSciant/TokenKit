@@ -1,0 +1,127 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ApplyForm",
+ "layer": "pattern",
+ "about": "25 — single-column form with a file input and a consent checkbox.",
+ "sources": {
+  "react": "src/react/patterns/ApplyForm.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/combobox.css",
+  "src/css/components/field.css",
+  "src/css/components/inline-form.css",
+  "src/css/components/scene.css",
+  "src/css/components/search.css"
+ ],
+ "dataTk": [
+  "choice",
+  "field",
+  "field-hint",
+  "field-label",
+  "input",
+  "select"
+ ],
+ "figma": [
+  {
+   "name": "ApplyForm",
+   "node": "115:582",
+   "codeConnect": true,
+   "map": {
+    "Heading": "heading"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "heading": {
+   "type": "text",
+   "default": "APPLY_HEADING",
+   "figma": [
+    "ApplyForm.Heading"
+   ]
+  },
+  "fields": {
+   "type": "other",
+   "ts": "FormField[]",
+   "default": "APPLY_FIELDS"
+  },
+  "roleLabel": {
+   "type": "text",
+   "default": "\"Role of interest\""
+  },
+  "rolePlaceholder": {
+   "type": "text",
+   "default": "\"Choose a role\""
+  },
+  "roles": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "APPLY_ROLES"
+  },
+  "resumeLabel": {
+   "type": "text",
+   "default": "\"Résumé\""
+  },
+  "resumeHint": {
+   "type": "text",
+   "default": "\"PDF or Word, up to 5 MB.\""
+  },
+  "resumeAccept": {
+   "type": "text",
+   "default": "\".pdf,.doc,.docx\"",
+   "about": "Value of the file input's accept attribute."
+  },
+  "consentLabel": {
+   "type": "text",
+   "default": "\"I agree to this application being stored for recruitment pu"
+  },
+  "submitLabel": {
+   "type": "text",
+   "default": "\"Submit application\""
+  }
+ },
+ "tokens": [
+  "field-min",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "icon-sm",
+  "line-strong",
+  "motion-elevation",
+  "motion-enter",
+  "motion-exit",
+  "motion-line",
+  "motion-size",
+  "motion-surface",
+  "radius-control",
+  "radius-nested",
+  "search-width",
+  "size-base",
+  "size-sm",
+  "space-2",
+  "space-3",
+  "status-danger-line",
+  "surface-default",
+  "surface-sunken",
+  "target-min",
+  "text-disabled",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "weight-medium"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

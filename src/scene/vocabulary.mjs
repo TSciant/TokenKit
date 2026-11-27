@@ -9,7 +9,6 @@
 export const PACKS = {
   "bathing-bagels": "Bathing Bagels",
   "door-shop": "Door Shop",
-  "front-room": "Front Room",
   "mohave": "Mohave",
   "muncheese": "Muncheese",
   "tk": "TK",

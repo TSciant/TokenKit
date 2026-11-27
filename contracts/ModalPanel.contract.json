@@ -1,0 +1,87 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ModalPanel",
+ "layer": "primitive",
+ "about": "The panel a Modal draws: header, body, footer and Close. Modal renders it inside the dialog; on its own it shows a modal in place, in the page, which is what guidance and documentation need (a real di",
+ "sources": {
+  "react": "src/react/primitives/Modal.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/drawer.css",
+  "src/css/components/modal.css"
+ ],
+ "dataTk": [
+  "modal-panel"
+ ],
+ "figma": [],
+ "props": {
+  "children": {
+   "type": "content"
+  },
+  "title": {
+   "type": "text",
+   "required": true
+  },
+  "footer": {
+   "type": "content",
+   "about": "Free footer content, for anything that is not a row of buttons."
+  },
+  "description": {
+   "type": "content",
+   "about": "One or two sentences under the title, read with it when the dialog opens (aria-describedby). Use it when the title alone does not say what is at stake; for a confirmation, it is the consequence."
+  },
+  "actions": {
+   "type": "other",
+   "ts": "ButtonGroupAction[]",
+   "about": "The footer's actions, as a ButtonGroup: end-aligned, equal widths, in reading order. Write them Cancel first, the action last (the action is the solid one, or the danger one). In a narrow dialog they "
+  },
+  "dismissible": {
+   "type": "boolean",
+   "default": "true",
+   "about": "false: a decision that has to be made. No Close button, Escape does nothing, a click outside does nothing; the only ways out are the actions, so give it at least two that both close it. For the rare c"
+  },
+  "onDismiss": {
+   "type": "event",
+   "about": "Close was pressed. Inside Modal this closes the dialog."
+  },
+  "ids": {
+   "type": "other",
+   "ts": "{ title?: string; description?: string; body?: string; }",
+   "about": "Element ids for the dialog's aria wiring; Modal supplies them."
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "about": "Panel width when shown on its own, as in Modal. Default md."
+  }
+ },
+ "tokens": [
+  "line-default",
+  "measure-dialog-lg",
+  "measure-dialog-md",
+  "measure-dialog-sm",
+  "radius-nested",
+  "radius-xl",
+  "shadow-lg",
+  "space-4",
+  "space-5",
+  "space-6",
+  "surface-raised",
+  "text-primary"
+ ],
+ "checks": [
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

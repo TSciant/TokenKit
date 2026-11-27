@@ -1,0 +1,92 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ChoiceCard",
+ "layer": "primitive",
+ "about": "Choice card — a radio or checkbox drawn as a card. For choosing between a few options that each need a sentence (plans, delivery speeds, a setup path). PatternFly calls these selectable cards and tile",
+ "sources": {
+  "react": "src/react/primitives/ChoiceCard.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/choice-card.css"
+ ],
+ "dataTk": [
+  "choice-card",
+  "choice-card-description",
+  "choice-card-group",
+  "choice-card-head",
+  "choice-card-input",
+  "choice-card-meta",
+  "choice-card-text",
+  "choice-card-title"
+ ],
+ "figma": [
+  {
+   "name": "ChoiceCard",
+   "node": "224:1407",
+   "codeConnect": true,
+   "map": {
+    "State": "unchecked: runtime, not a prop, checked: checked"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "type": {
+   "type": "enum",
+   "values": [
+    "checkbox",
+    "radio"
+   ],
+   "default": "\"radio\"",
+   "about": "radio: one of a set (share a `name`). checkbox: any number."
+  },
+  "title": {
+   "type": "content",
+   "required": true,
+   "about": "The option's name. This is the control's label."
+  },
+  "description": {
+   "type": "content",
+   "about": "A line or two under the title, read as the control's description."
+  },
+  "meta": {
+   "type": "content",
+   "about": "A short fact at the end of the title line: a price, a count, \"Recommended\"."
+  }
+ },
+ "tokens": [
+  "action-fill",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "line-default",
+  "line-strong",
+  "motion-line",
+  "radius-nested",
+  "size-sm",
+  "space-1",
+  "space-3",
+  "space-4",
+  "surface-raised",
+  "surface-sunken",
+  "text-disabled",
+  "text-primary",
+  "text-secondary",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

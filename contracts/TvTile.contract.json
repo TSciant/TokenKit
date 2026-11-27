@@ -1,0 +1,120 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "TvTile",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/tv/Tv.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "TvTile",
+   "node": "568:207",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Sub": "sub",
+    "Badge": "badge",
+    "Theme": "theme (lower case)",
+    "State": "Default: CSS, Focused: CSS"
+   },
+   "unpaired": [
+    "Badge text"
+   ]
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "TvTile.Label"
+   ],
+   "about": "The tile's title and accessible name (\"Films\")."
+  },
+  "sub": {
+   "type": "text",
+   "figma": [
+    "TvTile.Sub"
+   ],
+   "about": "A second line (\"Living-room catalog\"); read as the tile's description."
+  },
+  "image": {
+   "type": "text",
+   "about": "An image for the art area (16:9). Without one, the art is a gradient in the accent."
+  },
+  "alt": {
+   "type": "text",
+   "about": "Alternative text for the image; empty (decorative) by default, since the label names the tile."
+  },
+  "accent": {
+   "type": "enum",
+   "values": [
+    "none",
+    "emerald",
+    "violet",
+    "amber",
+    "cyan",
+    "pink"
+   ],
+   "about": "emerald, violet, amber, cyan, pink or none: a bar and a tint. Decoration only, never status."
+  },
+  "badge": {
+   "type": "text",
+   "figma": [
+    "TvTile.Badge"
+   ],
+   "about": "A word on the art (\"New\", \"Live\"): status in words, never colour alone."
+  },
+  "href": {
+   "type": "text",
+   "about": "Makes the tile a link."
+  },
+  "disabled": {
+   "type": "boolean",
+   "about": "Shown but not chosen, and skipped by spatial focus."
+  },
+  "current": {
+   "type": "text",
+   "about": "aria-current for the tile that is playing or open (\"true\", \"page\")."
+  },
+  "focused": {
+   "type": "boolean",
+   "about": "Draw the focus ring without focus: a picture of the state, or a kiosk whose window has lost the system's focus. Real focus draws it anyway."
+  },
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "figma": [
+    "TvTile.Theme"
+   ]
+  },
+  "onSelect": {
+   "type": "event",
+   "about": "Chosen: a click, Enter, A, or the remote's select."
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": {
+  "pairWith": {
+   "TvTile.Badge text": "badge"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

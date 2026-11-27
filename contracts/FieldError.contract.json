@@ -1,0 +1,41 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "FieldError",
+ "layer": "primitive",
+ "about": "The control's error, prefixed for a screen reader (\"Error: Enter a date\"), so the message is not mistaken for a hint when it is read on its own through aria-describedby.",
+ "sources": {
+  "react": "src/react/primitives/field-parts.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/field.css"
+ ],
+ "dataTk": [
+  "field-error"
+ ],
+ "figma": [],
+ "props": {
+  "id": {
+   "type": "text"
+  },
+  "children": {
+   "type": "content",
+   "required": true
+  }
+ },
+ "tokens": [
+  "size-sm",
+  "status-danger-text",
+  "weight-medium"
+ ],
+ "checks": [
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

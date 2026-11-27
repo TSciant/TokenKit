@@ -1,0 +1,142 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Shell",
+ "layer": "shell",
+ "about": null,
+ "sources": {
+  "react": "src/react/shells/Shell.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "Shell",
+   "node": "190:523",
+   "codeConnect": true,
+   "map": {
+    "kind": "kind; code also: center, inline"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "as": {
+   "type": "other",
+   "ts": "ElementType",
+   "default": "\"div\""
+  },
+  "kind": {
+   "type": "enum",
+   "values": [
+    "center",
+    "grid",
+    "row",
+    "stack",
+    "inline",
+    "sidebar",
+    "split"
+   ],
+   "required": true,
+   "figma": [
+    "Shell.kind"
+   ]
+  },
+  "gap": {
+   "type": "enum",
+   "values": [
+    "0",
+    "2",
+    "3",
+    "4",
+    "1",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+   ]
+  },
+  "cols": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1"
+   ],
+   "about": "grid only — the column target. Layout still collapses by available width."
+  },
+  "fixed": {
+   "type": "boolean",
+   "about": "grid only — hold the column count instead of collapsing."
+  },
+  "ratio": {
+   "type": "enum",
+   "values": [
+    "2:1",
+    "1:2",
+    "3:1",
+    "1:3"
+   ],
+   "about": "grid only — two unequal columns: each pair of children splits the row 2:1, 1:2, 3:1 or 1:3 while the shell is wide enough (36rem, 44rem for the quarters), and stacks when it is not. Takes over from `c"
+  },
+  "side": {
+   "type": "enum",
+   "values": [
+    "start",
+    "end"
+   ],
+   "about": "sidebar only — which edge the rail sits on."
+  },
+  "width": {
+   "type": "enum",
+   "values": [
+    "default",
+    "narrow",
+    "wide"
+   ],
+   "about": "center only"
+  },
+  "align": {
+   "type": "enum",
+   "values": [
+    "center",
+    "start",
+    "end",
+    "stretch"
+   ]
+  },
+  "justify": {
+   "type": "enum",
+   "values": [
+    "center",
+    "start",
+    "end",
+    "between"
+   ]
+  },
+  "container": {
+   "type": "boolean",
+   "about": "Become a query container so descendants can size against this box."
+  },
+  "className": {
+   "type": "text"
+  },
+  "children": {
+   "type": "content"
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

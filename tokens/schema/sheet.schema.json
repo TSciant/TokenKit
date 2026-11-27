@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tokenkit:schema:sheet",
+  "title": "token-kit token sheet",
+  "description": "A token stylesheet that is not a pack (the scale: space, size, radius, type, motion, density). The source; the CSS file named in `css` is generated from it by tools/tokens-pack.mjs. The body is the stylesheet as a tree, comments included. Values use {name} for references, as in a pack.",
+  "type": "object",
+  "required": ["sheet", "css", "body"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "sheet": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "css": { "type": "string", "description": "The generated file, from the repository root." },
+    "body": { "$ref": "#/$defs/nodes" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "nodes": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "object", "required": ["gap"], "properties": { "gap": { "type": "integer", "minimum": 1 } }, "additionalProperties": false },
+          { "type": "object", "required": ["note"], "properties": { "note": { "type": "string" } }, "additionalProperties": false },
+          { "type": "object", "required": ["at", "body"], "properties": { "at": { "type": "string", "pattern": "^@" }, "body": { "$ref": "#/$defs/nodes" } }, "additionalProperties": false },
+          {
+            "type": "object",
+            "required": ["selectors", "items"],
+            "properties": { "selectors": { "type": "array", "items": { "type": "string" }, "minItems": 1 }, "items": { "type": "array", "items": { "$ref": "#/$defs/item" } } },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "item": {
+      "oneOf": [
+        { "type": "object", "required": ["gap"], "properties": { "gap": { "type": "integer", "minimum": 1 } }, "additionalProperties": false },
+        { "type": "object", "required": ["note"], "properties": { "note": { "type": "string" } }, "additionalProperties": false },
+        {
+          "type": "object",
+          "required": ["$value"],
+          "properties": {
+            "slot": { "type": "string" }, "private": { "type": "string" }, "paint": { "type": "string" },
+            "$value": { "type": "string" },
+            "$comment": { "type": "string" },
+            "$lead": { "type": "string", "description": "The text between the colon and the value, when it is not one space (a value on its own line)." },
+            "$pad": { "type": "string", "description": "The space before a trailing comment, when it is not one space (comments aligned in a column)." }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

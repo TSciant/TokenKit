@@ -1,0 +1,65 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "CallBar",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/call/Call.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/call.css"
+ ],
+ "dataTk": [
+  "call-bar"
+ ],
+ "figma": [
+  {
+   "name": "CallBar",
+   "node": "577:280",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": [
+    "Mic",
+    "Camera"
+   ]
+  }
+ ],
+ "props": {
+  "state": {
+   "type": "other",
+   "ts": "CallState",
+   "required": true
+  },
+  "call": {
+   "type": "other",
+   "ts": "Pick<Call, \"toggle\" | \"leave\">",
+   "required": true
+  },
+  "leaveText": {
+   "type": "text",
+   "default": "\"Leave the call\""
+  }
+ },
+ "tokens": [
+  "space-2"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "omit": {
+   "CallBar.Mic": "live call state from useCall(), toggled by the person in the call; not set by the page",
+   "CallBar.Camera": "live call state from useCall(), toggled by the person in the call; not set by the page"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

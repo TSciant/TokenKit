@@ -1,0 +1,97 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ContactDetails",
+ "layer": "primitive",
+ "about": "ContactDetails — how to reach someone: an address, a phone number, an email address, opening hours and a way to get there, each on its own line. Details to use, not a pitch: no heading of its own beyo",
+ "sources": {
+  "react": "src/react/primitives/ContactDetails.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/contact-details.css"
+ ],
+ "dataTk": [
+  "contact-details",
+  "contact-details-line",
+  "contact-details-list",
+  "contact-details-name",
+  "contact-details-row"
+ ],
+ "figma": [
+  {
+   "name": "ContactDetails",
+   "node": "489:2080",
+   "codeConnect": true,
+   "map": {
+    "Name": "name",
+    "Show hours": "hours (omit it to hide)",
+    "Show directions": "directions (omit it to hide)"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "ContactDetails/Row",
+   "node": "489:2079",
+   "codeConnect": true,
+   "map": {
+    "Text": "children",
+    "Link": "ContactDetails data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "name": {
+   "type": "text",
+   "figma": [
+    "ContactDetails.Name"
+   ],
+   "about": "Who or where these reach: an office, a team. Optional."
+  },
+  "address": {
+   "type": "other",
+   "ts": "string[]",
+   "about": "The postal address, one line per item."
+  },
+  "phone": {
+   "type": "text",
+   "about": "As it should be read; the link dials the digits in it."
+  },
+  "email": {
+   "type": "text"
+  },
+  "hours": {
+   "type": "text",
+   "figma": [
+    "ContactDetails.Show hours"
+   ],
+   "about": "When someone is there, in a line (\"Monday to Friday, 9am to 5pm\")."
+  },
+  "directions": {
+   "type": "other",
+   "ts": "{ label: string; href: string; }",
+   "figma": [
+    "ContactDetails.Show directions"
+   ],
+   "about": "A link to directions or a map."
+  }
+ },
+ "tokens": [
+  "leading-normal",
+  "space-2",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

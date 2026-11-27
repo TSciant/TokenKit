@@ -1,0 +1,165 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ArticlePage",
+ "layer": "pattern",
+ "about": "23 — the long-form content template.",
+ "sources": {
+  "react": "src/react/patterns/templates.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/chip.css",
+  "src/css/components/pricing.css"
+ ],
+ "dataTk": [
+  "card",
+  "card-body",
+  "chip"
+ ],
+ "figma": [
+  {
+   "name": "ArticlePage",
+   "node": "120:679",
+   "codeConnect": true,
+   "map": {
+    "Lede": "lede",
+    "Section heading": "sectionHeading",
+    "Section body": "sectionBody",
+    "Author name": "authorName",
+    "Author role": "authorRole"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "title": {
+   "type": "text",
+   "default": "ARTICLE_TITLE"
+  },
+  "crumbs": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "ARTICLE_CRUMBS"
+  },
+  "kind": {
+   "type": "text",
+   "default": "ARTICLE_KIND"
+  },
+  "meta": {
+   "type": "text",
+   "default": "\"12 March 2026 · 8 min read\""
+  },
+  "lede": {
+   "type": "text",
+   "default": "ARTICLE_LEDE",
+   "figma": [
+    "ArticlePage.Lede"
+   ]
+  },
+  "body": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "ARTICLE_BODY",
+   "about": "One paragraph per entry, above the section heading."
+  },
+  "sectionHeading": {
+   "type": "text",
+   "default": "ARTICLE_SECTION_HEADING",
+   "figma": [
+    "ArticlePage.Section heading"
+   ]
+  },
+  "sectionBody": {
+   "type": "text",
+   "default": "ARTICLE_SECTION_BODY",
+   "figma": [
+    "ArticlePage.Section body"
+   ]
+  },
+  "showAuthor": {
+   "type": "boolean",
+   "default": "true",
+   "about": "false drops the byline card off the foot of the article."
+  },
+  "authorName": {
+   "type": "text",
+   "default": "ARTICLE_AUTHOR_NAME",
+   "figma": [
+    "ArticlePage.Author name"
+   ]
+  },
+  "authorRole": {
+   "type": "text",
+   "default": "ARTICLE_AUTHOR_ROLE",
+   "figma": [
+    "ArticlePage.Author role"
+   ]
+  },
+  "seed": {
+   "type": "number",
+   "default": "1",
+   "about": "1-6. Picks the stand-in portrait."
+  }
+ },
+ "tokens": [
+  "action-quiet-fill-hover",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-tight",
+  "line-default",
+  "line-strong",
+  "motion-elevation",
+  "motion-ink",
+  "motion-line",
+  "motion-surface",
+  "motion-transform",
+  "radius-full",
+  "radius-nested",
+  "shadow-lift",
+  "shadow-none",
+  "shadow-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-5",
+  "status-danger-line",
+  "status-danger-surface",
+  "status-danger-text",
+  "status-info-line",
+  "status-info-surface",
+  "status-info-text",
+  "status-success-line",
+  "status-success-surface",
+  "status-success-text",
+  "status-warning-line",
+  "status-warning-surface",
+  "status-warning-text",
+  "surface-default",
+  "surface-inverse",
+  "surface-raised",
+  "surface-sunken",
+  "target-min",
+  "text-inverse",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "tracking-wide",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

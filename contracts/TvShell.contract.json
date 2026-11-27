@@ -1,0 +1,108 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "TvShell",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/tv/Tv.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "TvShell",
+   "node": "575:1686",
+   "codeConnect": true,
+   "map": {
+    "Theme": "theme (lower case)",
+    "Guides": "guides (true/false)"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "default": "\"boosty\"",
+   "figma": [
+    "TvShell.Theme"
+   ],
+   "about": "boosty (cyan ring on black), dark or light. Rows, tiles and the sidebar inside inherit it; any --tk-tv-* property overrides one value."
+  },
+  "label": {
+   "type": "text",
+   "about": "The screen's accessible name (a labelled region)."
+  },
+  "input": {
+   "type": "enum",
+   "values": [
+    "none",
+    "keys",
+    "pad",
+    "keys pad"
+   ],
+   "default": "\"keys\"",
+   "about": "What drives focus: \"keys\" (arrow keys, Enter, Backspace, Escape, while focus is inside), \"pad\" (a gamepad), \"keys pad\", or \"none\"."
+  },
+  "capture": {
+   "type": "boolean",
+   "about": "Also read keys while focus is in a text field (ignored by default)."
+  },
+  "guides": {
+   "type": "boolean",
+   "figma": [
+    "TvShell.Guides"
+   ],
+   "about": "Draw the action-safe, title-safe and safe-area guides (a development aid)."
+  },
+  "screen": {
+   "type": "boolean",
+   "about": "Hold a 16:9 frame with the rows scrolling inside it, as a screen does (auto height below 600px wide)."
+  },
+  "calm": {
+   "type": "boolean",
+   "about": "No motion at all, whatever the OS says: no lift, no fades, no smooth scrolling."
+  },
+  "onVerb": {
+   "type": "event",
+   "about": "Every verb the remote sends ({ verb, dir, source, code })."
+  },
+  "onSelect": {
+   "type": "event",
+   "about": "A tile was chosen (click, Enter, A or the remote's select)."
+  },
+  "onExit": {
+   "type": "event",
+   "about": "Back with nowhere left to go back to: the host decides (close, confirm, ignore)."
+  },
+  "children": {
+   "type": "content",
+   "about": "A <TvSidebar> (it takes the menu slot by itself), rows, and anything with slot=\"overlay\"."
+  },
+  "className": {
+   "type": "text"
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

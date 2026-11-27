@@ -1,0 +1,144 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "DateInput",
+ "layer": "primitive",
+ "about": "DateInput — a date someone already knows, in three short fields. Day, month and year in a fieldset whose legend is the question, each with its own small label, sized to its answer (two, two and four c",
+ "sources": {
+  "react": "src/react/primitives/DateInput.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/date-input.css"
+ ],
+ "dataTk": [
+  "date-input",
+  "date-input-label",
+  "date-input-part",
+  "date-input-parts"
+ ],
+ "figma": [
+  {
+   "name": "DateInput",
+   "node": "458:1867",
+   "codeConnect": true,
+   "map": {
+    "Legend": "legend",
+    "Hint": "hint",
+    "Show hint": "hint (omit it to hide)",
+    "Error": "error",
+    "State": "Default: CSS, Error: error"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "legend": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "DateInput.Legend"
+   ],
+   "about": "The question: \"What is your date of birth?\"."
+  },
+  "hint": {
+   "type": "text",
+   "figma": [
+    "DateInput.Hint",
+    "DateInput.Show hint"
+   ],
+   "about": "An example in the order the fields come: \"For example, 27 3 2007\"."
+  },
+  "error": {
+   "type": "text",
+   "figma": [
+    "DateInput.Error"
+   ]
+  },
+  "errorParts": {
+   "type": "other",
+   "ts": "DatePart[]",
+   "about": "The parts in error, which alone take the error border. All of them when left out and there is an error."
+  },
+  "parts": {
+   "type": "other",
+   "ts": "DatePart[]",
+   "default": "[\"day\", \"month\", \"year\"]",
+   "about": "Which parts to ask for: day, month and year, or month and year for a date people only know roughly."
+  },
+  "order": {
+   "type": "enum",
+   "values": [
+    "dmy",
+    "mdy"
+   ],
+   "default": "\"dmy\"",
+   "about": "Day first (most of the world) or month first (the US)."
+  },
+  "monthAs": {
+   "type": "enum",
+   "values": [
+    "input",
+    "select"
+   ],
+   "default": "\"input\"",
+   "about": "The month as a text field, or as a select of month names (easier for some; the names come from monthNames)."
+  },
+  "monthNames": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "MONTHS"
+  },
+  "birthday": {
+   "type": "boolean",
+   "about": "It is the reader's own date of birth: the fields say so to autofill (bday-day, bday-month, bday-year)."
+  },
+  "id": {
+   "type": "text",
+   "about": "The parts' ids are `${id}-day`, `${id}-month`, `${id}-year`: link an ErrorSummary to the first part in error."
+  },
+  "name": {
+   "type": "text",
+   "about": "The parts' names are `${name}-day` and so on."
+  },
+  "value": {
+   "type": "other",
+   "ts": "Partial<Record<DatePart, string>>"
+  },
+  "defaultValue": {
+   "type": "other",
+   "ts": "Partial<Record<DatePart, string>>"
+  },
+  "onChange": {
+   "type": "event"
+  },
+  "required": {
+   "type": "boolean"
+  },
+  "words": {
+   "type": "other",
+   "ts": "Partial<Record<DatePart, string>>"
+  }
+ },
+ "tokens": [
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "status-danger-line",
+  "text-primary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

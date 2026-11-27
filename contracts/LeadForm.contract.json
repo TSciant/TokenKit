@@ -1,0 +1,160 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "LeadForm",
+ "layer": "pattern",
+ "about": "12 — the lead capture form.",
+ "sources": {
+  "react": "src/react/patterns/LeadForm.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/alert.css",
+  "src/css/components/card.css",
+  "src/css/components/chat.css",
+  "src/css/components/field.css",
+  "src/css/components/scene.css"
+ ],
+ "dataTk": [
+  "alert",
+  "alert-title",
+  "card-body",
+  "field",
+  "field-label",
+  "select",
+  "textarea"
+ ],
+ "figma": [
+  {
+   "name": "LeadForm",
+   "node": "114:519",
+   "codeConnect": true,
+   "map": {
+    "Heading": "heading",
+    "Deck": "deck"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "heading": {
+   "type": "text",
+   "default": "LEAD_HEADING",
+   "figma": [
+    "LeadForm.Heading"
+   ]
+  },
+  "deck": {
+   "type": "text",
+   "default": "\"Fields marked required must be completed before the form ca",
+   "figma": [
+    "LeadForm.Deck"
+   ]
+  },
+  "fields": {
+   "type": "other",
+   "ts": "FormField[]",
+   "default": "LEAD_FIELDS"
+  },
+  "columns": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1"
+   ],
+   "default": "2"
+  },
+  "industryLabel": {
+   "type": "text",
+   "default": "\"Category\""
+  },
+  "industryPlaceholder": {
+   "type": "text",
+   "default": "\"Choose a category\"",
+   "about": "The disabled first option, which is what makes the select required-able."
+  },
+  "industries": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "LEAD_CATEGORIES"
+  },
+  "detailLabel": {
+   "type": "text",
+   "default": "\"What are you working on\""
+  },
+  "detailRows": {
+   "type": "number",
+   "default": "5",
+   "about": "Visible rows on the detail textarea."
+  },
+  "showVerification": {
+   "type": "boolean",
+   "default": "true",
+   "about": "false drops the verification note."
+  },
+  "verificationTitle": {
+   "type": "text",
+   "default": "\"Verification\""
+  },
+  "verificationBody": {
+   "type": "text",
+   "default": "\"A challenge sits here in production. Any challenge used mus"
+  },
+  "submitLabel": {
+   "type": "text",
+   "default": "\"Send\""
+  }
+ },
+ "tokens": [
+  "field-min",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "line-strong",
+  "motion-elevation",
+  "motion-line",
+  "motion-surface",
+  "radius-control",
+  "radius-nested",
+  "size-base",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "status-danger-line",
+  "status-danger-surface",
+  "status-danger-text",
+  "status-info-line",
+  "status-info-surface",
+  "status-info-text",
+  "status-success-line",
+  "status-success-surface",
+  "status-success-text",
+  "status-warning-line",
+  "status-warning-surface",
+  "status-warning-text",
+  "surface-default",
+  "surface-sunken",
+  "text-disabled",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

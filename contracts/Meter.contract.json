@@ -1,0 +1,85 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Meter",
+ "layer": "primitive",
+ "about": "Meter. The value is exposed three ways: as text, as ARIA state, and as width. Width alone communicates nothing to a screen reader and nothing to anyone who cannot compare two bars. A screen reader hea",
+ "sources": {
+  "react": "src/react/primitives/Meter.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/meter.css"
+ ],
+ "dataTk": [
+  "meter",
+  "meter-fill",
+  "meter-head",
+  "meter-track"
+ ],
+ "figma": [
+  {
+   "name": "Meter",
+   "node": "38:231",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Value": "value"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "Meter.Label"
+   ]
+  },
+  "value": {
+   "type": "number",
+   "required": true,
+   "figma": [
+    "Meter.Value"
+   ]
+  },
+  "min": {
+   "type": "number",
+   "default": "0"
+  },
+  "max": {
+   "type": "number",
+   "default": "100"
+  },
+  "display": {
+   "type": "text",
+   "about": "Rendered beside the label, and what a screen reader says for the value (aria-valuetext). Defaults to \"<value> of <max>\"."
+  }
+ },
+ "tokens": [
+  "action-fill",
+  "data-ink",
+  "line-default",
+  "meter-value",
+  "motion-size",
+  "radius-full",
+  "size-sm",
+  "space-2",
+  "space-3",
+  "surface-sunken",
+  "text-secondary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

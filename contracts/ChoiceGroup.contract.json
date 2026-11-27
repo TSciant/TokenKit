@@ -1,0 +1,122 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ChoiceGroup",
+ "layer": "primitive",
+ "about": "ChoiceGroup — a question answered by choosing from a few options: radio buttons for one, checkboxes for any number. Use for: up to about seven options a reader should see all of at once. Don't use for",
+ "sources": {
+  "react": "src/react/primitives/ChoiceGroup.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/choice-group.css"
+ ],
+ "dataTk": [
+  "choice-group",
+  "choice-group-options"
+ ],
+ "figma": [
+  {
+   "name": "ChoiceGroup",
+   "node": "441:1721",
+   "codeConnect": true,
+   "map": {
+    "Legend": "legend",
+    "Hint": "hint",
+    "Show hint": "hint (omit it to hide)",
+    "Error": "error",
+    "State": "Default: CSS, Error: error"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "type": {
+   "type": "enum",
+   "values": [
+    "checkbox",
+    "radio"
+   ],
+   "default": "\"radio\"",
+   "about": "checkbox: any number of the options. radio: exactly one."
+  },
+  "legend": {
+   "type": "content",
+   "required": true,
+   "figma": [
+    "ChoiceGroup.Legend"
+   ],
+   "about": "The question the options answer. The group's name."
+  },
+  "name": {
+   "type": "text",
+   "required": true,
+   "about": "The name the inputs share."
+  },
+  "options": {
+   "type": "other",
+   "ts": "ChoiceOption[]",
+   "required": true
+  },
+  "hint": {
+   "type": "text",
+   "figma": [
+    "ChoiceGroup.Hint",
+    "ChoiceGroup.Show hint"
+   ],
+   "about": "Help that applies to the whole group, under the question."
+  },
+  "error": {
+   "type": "text",
+   "figma": [
+    "ChoiceGroup.Error"
+   ],
+   "about": "What is wrong, when something is. Read with the question."
+  },
+  "required": {
+   "type": "boolean"
+  },
+  "value": {
+   "type": "other",
+   "ts": "string | string[]",
+   "about": "The chosen value (radio) or values (checkbox), when the caller keeps them."
+  },
+  "defaultValue": {
+   "type": "other",
+   "ts": "string | string[]",
+   "about": "The value or values chosen at first, when the component keeps its own."
+  },
+  "onChange": {
+   "type": "event",
+   "about": "Called with the new value (radio) or values (checkbox)."
+  },
+  "layout": {
+   "type": "enum",
+   "values": [
+    "stack",
+    "inline"
+   ],
+   "default": "\"stack\"",
+   "about": "Options one under another (default), or in a row, for two or three short ones (\"Yes\", \"No\")."
+  }
+ },
+ "tokens": [
+  "space-1",
+  "space-2",
+  "space-4",
+  "space-6",
+  "status-danger-line"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

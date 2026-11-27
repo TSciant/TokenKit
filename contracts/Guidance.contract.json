@@ -1,0 +1,94 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Guidance",
+ "layer": "primitive",
+ "about": null,
+ "sources": {
+  "react": "src/react/primitives/Guidance.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/guidance.css"
+ ],
+ "dataTk": [
+  "guidance",
+  "guidance-caption",
+  "guidance-example",
+  "guidance-flag",
+  "guidance-note",
+  "guidance-pair"
+ ],
+ "figma": [
+  {
+   "name": "Guidance",
+   "node": "38:121",
+   "codeConnect": true,
+   "map": {
+    "Note": "note",
+    "Tone": "tone"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "tone": {
+   "type": "enum",
+   "values": [
+    "do",
+    "dont"
+   ],
+   "required": true,
+   "figma": [
+    "Guidance.Tone"
+   ],
+   "about": "Which half of the pair this is. Drives the word, the icon and the border."
+  },
+  "note": {
+   "type": "content",
+   "required": true,
+   "figma": [
+    "Guidance.Note"
+   ],
+   "about": "Why. Required — a rule with no reason is a rule that gets routed around, and the reason is the part a reader can apply to a case you did not write down."
+  },
+  "label": {
+   "type": "text",
+   "about": "Overrides the word. Use for a more specific verb — \"Prefer\", \"Avoid\"."
+  },
+  "children": {
+   "type": "content",
+   "about": "The example itself: real components, not a picture of them."
+  }
+ },
+ "tokens": [
+  "leading-normal",
+  "measure",
+  "radius-nested",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "status-danger-line",
+  "status-danger-surface",
+  "status-danger-text",
+  "status-success-line",
+  "status-success-surface",
+  "status-success-text",
+  "surface-default",
+  "tracking-wide"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

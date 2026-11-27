@@ -1,0 +1,13 @@
+{
+ "$description": "How tk slots whose web form has no direct native equivalent reach other platforms. tools/tokens-portable.mjs fails when a slot's source uses a web-only form (currentColor, url(), viewport or container units, env(), or a value that changes inside @media) and the slot is not listed here. kind: fluid, inherit, responsive or web-only. No native kit exists yet (docs/11-tokens-and-contracts.md); these are the mappings one will follow.",
+ "slots": {
+  "size-display": { "kind": "fluid", "web": "clamp from size-3xl at a 360px viewport up to size-4xl at 960px", "ios": "Dynamic Type: size-3xl in compact width, size-4xl in regular", "android": "WindowSizeClass: size-3xl at compact, size-4xl at medium and up" },
+  "size-title": { "kind": "fluid", "web": "clamp from size-2xl at 360px up to size-3xl at 960px", "ios": "Dynamic Type: size-2xl compact, size-3xl regular", "android": "size-2xl at compact, size-3xl at medium and up" },
+  "size-heading": { "kind": "fluid", "web": "clamp from size-xl at 360px up to size-2xl at 960px", "ios": "Dynamic Type: size-xl compact, size-2xl regular", "android": "size-xl at compact, size-2xl at medium and up" },
+  "link-text": { "kind": "inherit", "web": "currentColor where the pack picks no link colour, else the pack's colour", "ios": "the surrounding text colour (foregroundStyle inherited)", "android": "LocalContentColor" },
+  "link-hover": { "kind": "inherit", "web": "as link-text; hover is a pointer state", "ios": "no hover on touch; the pressed state uses link-text", "android": "the pressed state uses link-text" },
+  "link-visited": { "kind": "inherit", "web": "as link-text", "ios": "no visited state", "android": "no visited state" },
+  "texture-signature": { "kind": "web-only", "why": "an SVG data URL tiled behind a surface; decoration only, never information. A native kit that wants it ships the same SVG as an image asset." },
+  "gutter": { "kind": "responsive", "web": "space-4, then space-5 from 80rem", "ios": "space-4 in compact width, space-5 in regular", "android": "space-4 at compact, space-5 at expanded" }
+ }
+}

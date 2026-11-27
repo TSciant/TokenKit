@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tokenkit:schema:pack",
+  "title": "token-kit pack",
+  "description": "A pack: its private ramp and its value for every tk slot in every context. The source; src/css/packs/<pack>.css is generated from it by tools/tokens-pack.mjs. References to other custom properties are written {name} (var(--wf-100) is {wf-100}).",
+  "type": "object",
+  "required": ["pack", "layer", "rules"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "pack": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "$description": { "type": ["string", "null"], "description": "The pack's header comment." },
+    "layer": { "const": "tokens" },
+    "rules": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "object", "required": ["gap"], "properties": { "gap": { "type": "integer", "minimum": 1 } }, "additionalProperties": false },
+          { "type": "object", "required": ["note"], "properties": { "note": { "type": "string" } }, "additionalProperties": false },
+          {
+            "type": "object",
+            "required": ["selectors", "context", "items"],
+            "properties": {
+              "selectors": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+              "context": { "enum": ["default", "inverse", "scrim", "paint", "dark"], "description": "What the rule sets: the pack's default values, the inverse context, the scrim context, or the paint a scoped pack needs." },
+              "items": { "type": "array", "items": { "$ref": "#/$defs/item" } }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "value": { "type": "string", "description": "A literal (#1f1f1f, 4px, transparent), a reference ({wf-900}, {tk-duration-fast}) or an expression with references inside (color-mix(in srgb, {wf-500} 22%, transparent))." },
+    "item": {
+      "oneOf": [
+        { "type": "object", "required": ["gap"], "properties": { "gap": { "type": "integer", "minimum": 1 } }, "additionalProperties": false },
+        { "type": "object", "required": ["note"], "properties": { "note": { "type": "string" } }, "additionalProperties": false },
+        { "type": "object", "required": ["slot", "$value"], "properties": { "slot": { "type": "string", "description": "A tk slot, without --tk-." }, "$value": { "$ref": "#/$defs/value" }, "$comment": { "type": "string" }, "$extraSemicolon": { "type": "boolean" } }, "additionalProperties": false },
+        { "type": "object", "required": ["private", "$value"], "properties": { "private": { "type": "string", "description": "A pack-private custom property, without the leading --." }, "$value": { "$ref": "#/$defs/value" }, "$comment": { "type": "string" }, "$extraSemicolon": { "type": "boolean" } }, "additionalProperties": false },
+        { "type": "object", "required": ["paint", "$value"], "properties": { "paint": { "type": "string", "description": "A CSS property the rule paints (color, background-color)." }, "$value": { "$ref": "#/$defs/value" }, "$comment": { "type": "string" }, "$extraSemicolon": { "type": "boolean" } }, "additionalProperties": false }
+      ]
+    }
+  }
+}

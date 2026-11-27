@@ -1,0 +1,84 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "UtilityNav",
+ "layer": "primitive",
+ "about": "UtilityNav — a short row of small links above or beside the primary navigation. The things a reader looks for on every page but that are not what the site is about: contact, careers, a customer portal",
+ "sources": {
+  "react": "src/react/primitives/UtilityNav.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/utility-nav.css"
+ ],
+ "dataTk": [
+  "utility-nav",
+  "utility-nav-end",
+  "utility-nav-item",
+  "utility-nav-link",
+  "utility-nav-list"
+ ],
+ "figma": [
+  {
+   "name": "UtilityNav",
+   "node": "447:1820",
+   "codeConnect": true,
+   "map": {
+    "Align": "align (lower case)"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "links": {
+   "type": "other",
+   "ts": "UtilityLink[]",
+   "required": true,
+   "about": "The few links every page carries that are not the site's sections: contact, careers, a portal, log in."
+  },
+  "label": {
+   "type": "text",
+   "default": "\"Utility\"",
+   "about": "The landmark's name, so it is told apart from the primary navigation."
+  },
+  "align": {
+   "type": "enum",
+   "values": [
+    "start",
+    "end"
+   ],
+   "default": "\"end\"",
+   "figma": [
+    "UtilityNav.Align"
+   ],
+   "about": "Which edge the row keeps to. End by default, out of the way of the brand."
+  },
+  "end": {
+   "type": "content",
+   "about": "After the links: an account name and Sign out, or a language switch."
+  }
+ },
+ "tokens": [
+  "leading-snug",
+  "size-sm",
+  "space-1",
+  "space-3",
+  "space-5",
+  "target-min",
+  "text-primary",
+  "text-secondary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

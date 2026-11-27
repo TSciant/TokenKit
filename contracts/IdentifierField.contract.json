@@ -1,0 +1,117 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "IdentifierField",
+ "layer": "primitive",
+ "about": "IdentifierField — one input for a fixed-format reference: a National Insurance number, an NHS number, a tax or VAT reference, a sort code. A Field sized to the reference, with its full name as the lab",
+ "sources": {
+  "react": "src/react/primitives/IdentifierField.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "IdentifierField",
+   "node": "507:2391",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Hint": "hint"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "format": {
+   "type": "enum",
+   "values": [
+    "nino",
+    "nhs",
+    "utr",
+    "vat",
+    "eori",
+    "paye",
+    "aor",
+    "sort-code",
+    "account-number"
+   ],
+   "required": true
+  },
+  "label": {
+   "type": "text",
+   "figma": [
+    "IdentifierField.Label"
+   ],
+   "about": "Defaults to the reference's full name. Name the owner when it is not the reader's (\"Anycompany's employer PAYE reference\")."
+  },
+  "hint": {
+   "type": "other",
+   "ts": "string | false",
+   "figma": [
+    "IdentifierField.Hint"
+   ],
+   "about": "Defaults to \"For example, \" and the published example. The hint says what it looks like, not where to find it: that goes in the page above."
+  },
+  "chars": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "10",
+    "20",
+    "30",
+    "5"
+   ]
+  },
+  "children": {
+   "type": "content"
+  },
+  "id": {
+   "type": "text",
+   "about": "The control's id, for something that links to it: an ErrorSummary entry (\"#email\"), or a fragment in a URL. Generated when left out."
+  },
+  "prefix": {
+   "type": "text",
+   "about": "A short unit before the input (\"$\", \"£\") or after it (\"kg\", \"%\"). Drawn attached to the input but outside it, and hidden from screen readers so it is not read as part of the value: say the unit in the"
+  },
+  "required": {
+   "type": "boolean",
+   "about": "Progressive required marking — text + asterisk, not colour alone."
+  },
+  "error": {
+   "type": "text"
+  },
+  "optional": {
+   "type": "boolean",
+   "about": "Marks the label \"(optional)\" instead. Mark the minority: when most of a form's fields are required, mark the few that are optional; when most are optional, mark the required ones. Ignored if `required"
+  },
+  "suffix": {
+   "type": "text"
+  },
+  "reveal": {
+   "type": "boolean",
+   "about": "For `type=\"password\"`: a Show / Hide button beside the field, on by default. Seeing what you typed is how you catch the typo before the form rejects it. Set false only where the value must never be sh"
+  },
+  "maxChars": {
+   "type": "number",
+   "about": "A character limit, shown as a count under the field (\"You have 12 characters remaining\"). Not the native maxlength: typing past it is allowed and shown as too many, never silently cut off. The count i"
+  },
+  "options": {
+   "type": "other",
+   "ts": "FieldOption[]"
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

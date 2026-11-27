@@ -1,0 +1,73 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ModalTrigger",
+ "layer": "primitive",
+ "about": "Composable opener + Modal. Own the open state so call sites stay declarative. Trigger is a kit Button with data-tk=\"modal-trigger\" for styling hooks.",
+ "sources": {
+  "react": "src/react/primitives/Modal.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/modal.css"
+ ],
+ "dataTk": [
+  "modal-trigger"
+ ],
+ "figma": [],
+ "props": {
+  "label": {
+   "type": "content",
+   "required": true,
+   "about": "Trigger label (Button children)."
+  },
+  "title": {
+   "type": "text",
+   "required": true
+  },
+  "children": {
+   "type": "content"
+  },
+  "footer": {
+   "type": "content",
+   "about": "Static footer, or render-prop with close()."
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "default": "\"md\""
+  },
+  "triggerVariant": {
+   "type": "enum",
+   "values": [
+    "solid",
+    "outline",
+    "quiet"
+   ],
+   "default": "\"solid\""
+  },
+  "triggerSize": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "default": "\"md\""
+  },
+  "closeOnBackdrop": {
+   "type": "boolean"
+  }
+ },
+ "tokens": [],
+ "checks": [],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

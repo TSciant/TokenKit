@@ -1,0 +1,71 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Eyebrow",
+ "layer": "primitive",
+ "about": "Small uppercase label above a headline; optional leading icon as child.",
+ "sources": {
+  "react": "src/react/primitives/Eyebrow.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/eyebrow.css",
+  "src/css/components/phase-banner.css"
+ ],
+ "dataTk": [
+  "eyebrow"
+ ],
+ "figma": [
+  {
+   "name": "Eyebrow",
+   "node": "37:404",
+   "codeConnect": true,
+   "map": {
+    "Label": "children",
+    "Emphasis": "emphasis"
+   },
+   "unpaired": [
+    "Show icon",
+    "Icon"
+   ]
+  }
+ ],
+ "props": {
+  "emphasis": {
+   "type": "enum",
+   "values": [
+    "quiet"
+   ],
+   "figma": [
+    "Eyebrow.Emphasis"
+   ]
+  }
+ },
+ "tokens": [
+  "font-mono",
+  "leading-snug",
+  "size-xs",
+  "space-2",
+  "text-secondary",
+  "text-tertiary",
+  "tracking-wide",
+  "weight-medium"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "Eyebrow.Icon": "children: an <Icon> before the words",
+   "Eyebrow.Show icon": "children: include the <Icon> or don't"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

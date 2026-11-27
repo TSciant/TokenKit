@@ -1,0 +1,127 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "CareCard",
+ "layer": "primitive",
+ "about": "CareCard — what care to get, who to contact and how quickly. Three levels, told apart by the words in the heading (hidden, but read first: \"Urgent advice: Call 111 if:\"), by the mark and by the edge, ",
+ "sources": {
+  "react": "src/react/primitives/CareCard.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/care-card.css"
+ ],
+ "dataTk": [
+  "care-card",
+  "care-card-action",
+  "care-card-body",
+  "care-card-title"
+ ],
+ "figma": [
+  {
+   "name": "CareCard",
+   "node": "502:2458",
+   "codeConnect": true,
+   "map": {
+    "Show reason 3": "how many items you pass",
+    "Level": "level (lower case)"
+   },
+   "unpaired": [
+    "Heading",
+    "Reason 1",
+    "Reason 2",
+    "Reason 3"
+   ]
+  }
+ ],
+ "props": {
+  "urgency": {
+   "type": "enum",
+   "values": [
+    "non-urgent",
+    "urgent",
+    "emergency"
+   ],
+   "about": "How quickly to get care: non-urgent (a GP, a pharmacy), urgent (111), emergency (999, A&E)."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "non-urgent",
+    "urgent",
+    "emergency"
+   ],
+   "figma": [
+    "CareCard.Level"
+   ]
+  },
+  "title": {
+   "type": "text",
+   "required": true,
+   "about": "One call to action: \"Speak to a GP if:\", \"Call 111 if:\", \"Call 999 or go to A&E now if:\"."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4"
+   ],
+   "default": "3"
+  },
+  "label": {
+   "type": "text",
+   "about": "The urgency, said before the title as part of the heading. Defaults to the urgency's words."
+  },
+  "children": {
+   "type": "content",
+   "about": "A bulleted list of when, even for one item; then a line, if needed."
+  },
+  "action": {
+   "type": "other",
+   "ts": "{ label: string; href: string; }",
+   "about": "Emergency only: the one link it may carry (\"Find your nearest A&E\")."
+  }
+ },
+ "tokens": [
+  "leading-snug",
+  "measure",
+  "radius-md",
+  "radius-nested",
+  "size-lg",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "status-danger-line",
+  "status-info-line",
+  "status-info-surface",
+  "surface-inverse",
+  "surface-raised",
+  "text-inverse",
+  "text-primary",
+  "weight-bold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "CareCard.Heading": "title"
+  },
+  "omit": {
+   "CareCard.Reason 1": "content: the reasons are the card's children (a list)",
+   "CareCard.Reason 2": "content: the reasons are the card's children (a list)",
+   "CareCard.Reason 3": "content: the reasons are the card's children (a list)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

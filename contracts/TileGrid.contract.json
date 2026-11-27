@@ -1,0 +1,122 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "TileGrid",
+ "layer": "pattern",
+ "about": "15 — dense catalogue grid, a short label over a plate.",
+ "sources": {
+  "react": "src/react/patterns/TileGrid.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/pricing.css",
+  "src/css/components/sample-page.css"
+ ],
+ "dataTk": [
+  "card",
+  "card-link",
+  "card-title",
+  "section"
+ ],
+ "figma": [
+  {
+   "name": "TileGrid",
+   "node": "82:577",
+   "codeConnect": true,
+   "map": {
+    "Heading": "heading"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "TileGrid/Tile",
+   "node": "82:247",
+   "codeConnect": true,
+   "map": {
+    "Title": "TileGrid data"
+   },
+   "unpaired": [
+    "Seed"
+   ]
+  }
+ ],
+ "props": {
+  "heading": {
+   "type": "other",
+   "ts": "string | false",
+   "default": "TILE_GRID_HEADING",
+   "figma": [
+    "TileGrid.Heading"
+   ],
+   "about": "false drops the heading, for a page that already names the section."
+  },
+  "compact": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Tighter padding when nested in a sample page that already has a hero."
+  },
+  "tiles": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "TILES"
+  },
+  "columns": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1"
+   ],
+   "default": "3"
+  },
+  "ratio": {
+   "type": "text",
+   "default": "\"16 / 9\"",
+   "about": "Aspect ratio of each tile's stand-in photograph."
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-snug",
+  "line-default",
+  "line-strong",
+  "line-subtle",
+  "motion-elevation",
+  "motion-line",
+  "motion-surface",
+  "radius-nested",
+  "shadow-none",
+  "shadow-sm",
+  "size-lg",
+  "size-xl",
+  "space-3",
+  "space-5",
+  "space-7",
+  "space-8",
+  "space-9",
+  "surface-raised",
+  "surface-sunken",
+  "text-primary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "omit": {
+   "TileGrid/Tile.Seed": "derived: the code picks each tile's stand-in picture from its position (1 to 6 in turn); a real tile brings its own image"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

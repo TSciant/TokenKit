@@ -4,6 +4,7 @@ import { addons, types, useChannel, useGlobals, useParameter, useStorybookState 
 import { create } from "storybook/theming";
 import keys from "../figma/keys.json";
 import meta from "../figma/meta.json";
+import passportJson from "../scorecards/passport.json";
 
 /* The sidebar carries the lockup (the State Coin and the name), so the kit's
    mark is on every page of the Storybook and not only on the one that plays
@@ -165,7 +166,57 @@ function TokensPanel({ active }: { active: boolean }) {
   );
 }
 
+/* The passport: what the component promises (its contract) and the evidence for it (its scorecard), from
+   scorecards/passport.json, which tools/scorecards.mjs writes. Evidence, never a certificate: the
+   "Not checked yet" list is always shown. */
+type Passport = { kit: string; byFile: Record<string, string[]>; components: Record<string, {
+  about: string | null; layer: string; props: number; tokens: number;
+  figma: { name: string; node: string; codeConnect: boolean }[];
+  decided: { paired: number; omitted: number }; open: string[];
+  evidence: Record<string, { checkedAt?: string; cases?: number; failed?: number | string[]; closest?: string; keys?: number; stories?: number; flagged?: string[]; parts?: Record<string, { skins: number; mean: number; worst: number }>; reads?: number; nodes?: string[]; codeConnect?: boolean; propertiesDecided?: number }>;
+  unchecked: string[];
+}> };
+const passport = passportJson as unknown as Passport;
+const CHECK_NAMES: Record<string, string> = { contrast: "Contrast", a11y: "Accessibility (axe)", reflow: "Reflow at 320px", "forced-colors": "Forced colours", motion: "Reduced motion", controls: "Controls", radius: "Radius", properties: "Properties", attributes: "Attributes", titles: "Titles", keyboard: "Keyboard (its contract's keys)", rtl: "Right to left", expansion: "Text 40% longer", onion: "Design matches code", figma: "Figma", tokens: "Tokens" };
+
+function evidenceLine(key: string, e: Passport["components"][string]["evidence"][string]) {
+  if (key === "contrast") return `${e.cases} pairs, ${e.failed} failed · closest ${e.closest}`;
+  if (key === "onion") return Object.entries(e.parts ?? {}).map(([n, p]) => `${n}: mean Δ ${p.mean}, worst ${p.worst} over ${p.skins} skin${p.skins === 1 ? "" : "s"}`).join(" · ");
+  if (key === "figma") return `${(e.nodes ?? []).length} frame${(e.nodes ?? []).length === 1 ? "" : "s"} · Code Connect ${e.codeConnect ? "yes" : "no"}`;
+  if (key === "tokens") return `reads ${e.reads} tk slots`;
+  if (key === "keyboard") { const f = Array.isArray(e.failed) ? e.failed : []; return `${e.keys} key${e.keys === 1 ? "" : "s"} pressed · ${f.length ? `${f.length} failed: ${f.join("; ")}` : "all do what the contract says"}`; }
+  return `${e.stories} stor${e.stories === 1 ? "y" : "ies"} opened · ${e.flagged?.length ? `${e.flagged.length} flagged` : "none flagged"}`;
+}
+
+function PassportPanel({ active }: { active: boolean }) {
+  const { storyId, index } = useStorybookState() as unknown as { storyId: string; index?: Record<string, { importPath?: string }> };
+  const file = index?.[storyId]?.importPath?.replace(/^\.\//, "").replace(/\.stories\.tsx$/, ".tsx");
+  /* Pattern stories sit together as patterns/stories/NN-Name.stories.tsx: matched by name, as the scorecards do. */
+  const byName = index?.[storyId]?.importPath?.match(/\/stories\/\d+-([\w-]+)\.stories\.tsx$/)?.[1]?.toLowerCase();
+  const named = byName ? Object.keys(passport.components).filter((n) => n.toLowerCase() === byName) : [];
+  const names = (file && passport.byFile[file]) || named;
+  if (!names.length) return h(AddonPanel, { active }, h("div", { style: { ...ink, ...muted } }, "No contract for this story's component."));
+  return h(AddonPanel, { active }, h("div", { style: { ...ink, display: "grid", gap: 24 } }, names.map((n) => {
+    const p = passport.components[n];
+    return h("section", { key: n, style: { display: "grid", gap: 10 } },
+      h("div", { style: { display: "flex", gap: 12, alignItems: "baseline", flexWrap: "wrap" } },
+        h("strong", { style: { fontSize: 15 } }, n),
+        h("span", { style: muted }, `${p.layer} · token-kit ${passport.kit} · ${p.props} props · reads ${p.tokens} tokens`)),
+      h("table", { style: { borderCollapse: "collapse" } }, h("tbody", null,
+        row("Promises", h("span", null, `contracts/${n}.contract.json`, p.figma.length ? ` · ${p.evidence.figma?.propertiesDecided ?? 0} Figma properties mapped${p.decided.paired + p.decided.omitted ? ` (${p.decided.paired + p.decided.omitted} by recorded decision)` : ""}` : "", p.open.length ? h("span", { style: muted }, ` · not yet written: ${p.open.join(", ")}`) : null)),
+        ...Object.entries(p.evidence).map(([k, e]) => row(CHECK_NAMES[k] ?? k, h("span", null, evidenceLine(k, e), e.checkedAt ? h("span", { style: muted }, ` · ${when(e.checkedAt)}`) : null))))),
+      h("div", null, h("div", { style: { fontWeight: 600, marginBottom: 4 } }, "Not checked yet"),
+        h("ul", { style: { margin: 0, paddingInlineStart: 18 } }, p.unchecked.map((u) => h("li", { key: u }, u)))));
+  })));
+}
+
 addons.register("tokenkit/figma-link", () => {
+  addons.add("tokenkit/passport/panel", {
+    type: types.PANEL,
+    title: "Passport",
+    match: ({ viewMode }) => viewMode === "story",
+    render: ({ active }) => h(PassportPanel, { active: !!active }),
+  });
   addons.add("tokenkit/figma-link/tool", {
     type: types.TOOL,
     title: "Open in Figma",

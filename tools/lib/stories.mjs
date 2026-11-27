@@ -131,7 +131,7 @@ const PAGES = Math.max(1, Number(process.env.TK_GATE_PAGES) || 3);
  * `only`, when given, is a set of story ids to visit instead of all of them
  * (the fast tier: the stories a change can reach).
  */
-export async function runChecks(checks, { only } = {}) {
+export async function runChecks(checks, { only, record: keep = false } = {}) {
   const entries = Object.values(readIndex().entries).filter((e) => !only || only.has(e.id));
   const { base, close } = await serve();
   const executablePath = process.env.TOKENKIT_CHROMIUM || undefined;
@@ -146,6 +146,8 @@ export async function runChecks(checks, { only } = {}) {
 
   /* Stories that crashed the page or timed out twice: reported, and the run fails, but the other stories are still checked. */
   const broken = [];
+  /* Which stories each check opened, for the evidence record written after the reports. */
+  const visits = new Map();
 
   try {
     for (const vp of Object.values(VIEWPORTS)) {
@@ -176,7 +178,7 @@ export async function runChecks(checks, { only } = {}) {
               if (!(await open(page, base, story))) {
                 for (const c of takers) c.unrendered?.(story, vp);
               } else {
-                for (const c of takers) await c.visit(page, story, vp);
+                for (const c of takers) { await c.visit(page, story, vp); (visits.get(c) ?? visits.set(c, new Set()).get(c)).add(story.id); }
               }
               break;
             } catch (err) {
@@ -208,8 +210,34 @@ export async function runChecks(checks, { only } = {}) {
     close();
   }
 
+  /* Evidence for the scorecards (docs/11): each check's report is captured as it prints, and a story it
+     names in its report counts as flagged by it; the rest of what it visited passed. Written only by a
+     full pass of every check (tools/browser-gates.mjs asks for it), so a fast-tier run or one gate run by
+     itself never replaces the whole record with a slice of it. */
+  const ids = entries.map((e) => e.id);
   let pass = true;
-  for (const c of checks) pass = (await c.report()) && pass;
+  const record = {};
+  for (const c of checks) {
+    const lines = [];
+    const log = console.log, err = console.error;
+    console.log = (...a) => { lines.push(a.join(" ")); log(...a); };
+    console.error = (...a) => { lines.push(a.join(" ")); err(...a); };
+    let ok;
+    try { ok = await c.report(); } finally { console.log = log; console.error = err; }
+    pass = ok && pass;
+    const text = lines.join("\n");
+    const visited = visits.get(c) ?? new Set();
+    /* A failing report names its stories; a passing one can still name recorded findings as KNOWN. */
+    const knownLines = lines.filter((l) => /^KNOWN\b/.test(l.trim())).join("\n");
+    const flagged = ids.filter((id) => visited.has(id) && ((!ok && text.includes(id)) || knownLines.includes(id)));
+    record[c.name ?? "check"] = { pass: !!ok, visited: visited.size, flagged };
+  }
+  if (keep && !only) {
+    const { writeFileSync } = await import("node:fs");
+    const byStory = {};
+    for (const [name, r] of Object.entries(record)) for (const id of visits.get(checks.find((c) => (c.name ?? "check") === name)) ?? []) (byStory[id] ??= {})[name] = r.flagged.includes(id) ? "flagged" : "pass";
+    writeFileSync(`${ROOT}/audits/browser-gates.json`, JSON.stringify({ note: "Written by tools/browser-gates.mjs on a full pass: each story, each check that opened it, and whether that check's report named it. Read by tools/scorecards.mjs.", generatedAt: new Date().toISOString(), checks: Object.fromEntries(Object.entries(record).map(([k, v]) => [k, { pass: v.pass, visited: v.visited, flagged: v.flagged.length }])), files: Object.fromEntries(entries.map((e) => [e.id, e.importPath])), stories: byStory }, null, 1) + "\n");
+  }
   if (broken.length) {
     console.log(`\nNot checked:${broken.length} stor${broken.length === 1 ? "y" : "ies"} crashed the page or timed out twice:`);
     for (const b of broken) console.log(`  BROKE  ${b}`);

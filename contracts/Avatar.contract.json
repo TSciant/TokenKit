@@ -1,0 +1,97 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Avatar",
+ "layer": "primitive",
+ "about": "Avatar — someone's photo, or their initials. Never a generic silhouette: forty identical grey heads say \"unknown person\" forty times, where initials tell the rows apart at a glance and read plainly as",
+ "sources": {
+  "react": "src/react/primitives/Avatar.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/avatar.css"
+ ],
+ "dataTk": [
+  "avatar",
+  "avatar-initials",
+  "avatar-photo"
+ ],
+ "figma": [
+  {
+   "name": "Avatar",
+   "node": "311:1565",
+   "codeConnect": true,
+   "map": {
+    "Size": "size",
+    "Shape": "shape"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "name": {
+   "type": "text",
+   "required": true,
+   "about": "Whose it is. The initials come from it, and a screen reader hears it (unless `label` or `decorative` says otherwise)."
+  },
+  "src": {
+   "type": "text",
+   "about": "Their photo. Without one, or when it fails to load, their initials."
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "default": "\"md\"",
+   "figma": [
+    "Avatar.Size"
+   ],
+   "about": "32, 48 or 64px. Default md (48)."
+  },
+  "shape": {
+   "type": "enum",
+   "values": [
+    "circle",
+    "square"
+   ],
+   "default": "\"circle\"",
+   "figma": [
+    "Avatar.Shape"
+   ],
+   "about": "circle for a person (the default); square for an organisation, a team or a bot."
+  },
+  "label": {
+   "type": "text",
+   "about": "What a screen reader hears, when it should be more than the name (\"your puppet\"). Defaults to `name`."
+  },
+  "decorative": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Set it when the person's name is already beside the avatar: the avatar is then hidden from a screen reader, which hears the name once, not twice. Without it the avatar is an image named for them, so o"
+  }
+ },
+ "tokens": [
+  "leading-tight",
+  "radius-full",
+  "radius-md",
+  "surface-inverse",
+  "text-inverse",
+  "tracking-normal",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

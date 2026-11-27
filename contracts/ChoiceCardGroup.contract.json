@@ -1,0 +1,89 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ChoiceCardGroup",
+ "layer": "primitive",
+ "about": "A fieldset of choice cards: the legend is the question, the cards are the answers, laid out on the grid shell.",
+ "sources": {
+  "react": "src/react/primitives/ChoiceCard.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/choice-card.css"
+ ],
+ "dataTk": [
+  "choice-card-group"
+ ],
+ "figma": [],
+ "props": {
+  "legend": {
+   "type": "content",
+   "required": true,
+   "about": "The question the cards answer. Rendered as the fieldset's legend."
+  },
+  "hideLegend": {
+   "type": "boolean",
+   "about": "Visually hide the legend (it is still the group's name)."
+  },
+  "name": {
+   "type": "text",
+   "required": true,
+   "about": "The form field name every card shares."
+  },
+  "type": {
+   "type": "enum",
+   "values": [
+    "checkbox",
+    "radio"
+   ],
+   "default": "\"radio\""
+  },
+  "options": {
+   "type": "other",
+   "ts": "ChoiceCardOption[]",
+   "required": true
+  },
+  "defaultValue": {
+   "type": "other",
+   "ts": "string | string[]",
+   "about": "Uncontrolled initial selection: a value for radios, values for checkboxes."
+  },
+  "value": {
+   "type": "other",
+   "ts": "string | string[]",
+   "about": "Controlled selection."
+  },
+  "onChange": {
+   "type": "event"
+  },
+  "required": {
+   "type": "boolean"
+  },
+  "columns": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1"
+   ],
+   "default": "3",
+   "about": "Column target for the grid shell; it still collapses by width."
+  },
+  "hint": {
+   "type": "content"
+  }
+ },
+ "tokens": [
+  "space-3"
+ ],
+ "checks": [
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

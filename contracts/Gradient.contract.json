@@ -1,0 +1,126 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Gradient",
+ "layer": "primitive",
+ "about": null,
+ "sources": {
+  "react": "src/react/primitives/Gradient.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/hero.css",
+  "src/css/components/scrim.css"
+ ],
+ "dataTk": [
+  "scrim"
+ ],
+ "figma": [
+  {
+   "name": "Gradient",
+   "node": "178:495",
+   "codeConnect": true,
+   "map": {
+    "Shape": "shape",
+    "Direction": "direction; Figma only: blockend, blockstart, inlineend, inlinestart, diagonalup; code also: block-end, block-start, inline-end, inline-start, diagonal-up"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "as": {
+   "type": "other",
+   "ts": "ElementType",
+   "default": "\"div\""
+  },
+  "shape": {
+   "type": "enum",
+   "values": [
+    "fade",
+    "linear",
+    "radial",
+    "conic"
+   ],
+   "default": "\"linear\"",
+   "figma": [
+    "Gradient.Shape"
+   ],
+   "about": "Which gradient function paints it."
+  },
+  "direction": {
+   "type": "enum",
+   "values": [
+    "block-end",
+    "block-start",
+    "inline-end",
+    "inline-start",
+    "diagonal",
+    "diagonal-up"
+   ],
+   "default": "\"block-end\"",
+   "figma": [
+    "Gradient.Direction"
+   ],
+   "about": "Logical direction. Flipped under `dir=\"rtl\"` by the CSS, not here."
+  },
+  "emphasis": {
+   "type": "enum",
+   "values": [
+    "strong",
+    "subtle"
+   ],
+   "about": "How far the second colour travels: a wash at one edge, or the full field."
+  },
+  "origin": {
+   "type": "text",
+   "about": "Centre for radial and conic. Ignored by linear, which has an angle instead."
+  },
+  "from": {
+   "type": "text",
+   "about": "Override the pack's pair for one element — a specimen sheet, not a page."
+  },
+  "to": {
+   "type": "text"
+  },
+  "className": {
+   "type": "text"
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  },
+  "children": {
+   "type": "content"
+  }
+ },
+ "tokens": [
+  "motion-opacity",
+  "motion-surface",
+  "radius-nested",
+  "scrim-aa",
+  "scrim-aa-large",
+  "scrim-aaa",
+  "scrim-blur-max",
+  "scrim-blur-min",
+  "scrim-cover",
+  "scrim-frost",
+  "scrim-hold",
+  "scrim-hover",
+  "scrim-ink",
+  "scrim-level",
+  "scrim-level-max",
+  "scrim-level-min"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

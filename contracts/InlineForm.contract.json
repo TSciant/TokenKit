@@ -1,0 +1,107 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "InlineForm",
+ "layer": "primitive",
+ "about": "Inline form — one field and its submit button on one line. The shape behind newsletter sign-ups, \"get the guide\" boxes and the input-capture hero. It is a real <form>: Enter submits, it works without ",
+ "sources": {
+  "react": "src/react/primitives/InlineForm.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/inline-form.css"
+ ],
+ "dataTk": [
+  "inline-form",
+  "inline-form-row"
+ ],
+ "figma": [
+  {
+   "name": "InlineForm",
+   "node": "215:1393",
+   "codeConnect": true,
+   "map": {
+    "State": "default: CSS, error: error"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "about": "The field's label. Always in the markup; `hideLabel` only takes it off screen."
+  },
+  "hideLabel": {
+   "type": "boolean",
+   "about": "Visually hide the label (it is still the field's name). Only when the submit button and the surrounding copy already say what goes in the box: a placeholder is not a label, and it disappears the momen"
+  },
+  "submitLabel": {
+   "type": "text",
+   "required": true,
+   "about": "The submit button's label: a verb for what happens (\"Subscribe\", \"Get the guide\")."
+  },
+  "type": {
+   "type": "enum",
+   "values": [
+    "search",
+    "text",
+    "tel",
+    "url",
+    "email"
+   ],
+   "default": "\"email\""
+  },
+  "name": {
+   "type": "text",
+   "default": "type"
+  },
+  "placeholder": {
+   "type": "text"
+  },
+  "autoComplete": {
+   "type": "text",
+   "default": "type === \"email\" ? \"email\" : undefined"
+  },
+  "required": {
+   "type": "boolean",
+   "default": "true"
+  },
+  "hint": {
+   "type": "text"
+  },
+  "error": {
+   "type": "text",
+   "about": "An error from the last attempt. Marks the field invalid and is read with it."
+  },
+  "busy": {
+   "type": "boolean",
+   "about": "Submitting: the button stays focusable and announces it is busy."
+  },
+  "inputProps": {
+   "type": "other",
+   "ts": "Omit<InputHTMLAttributes<HTMLInputElement>, \"id\" | \"type\" | ",
+   "about": "Extra props for the input (value, defaultValue, onChange…)."
+  },
+  "children": {
+   "type": "content",
+   "about": "Anything that belongs under the row, after the hint and error: a consent line, a privacy link."
+  }
+ },
+ "tokens": [
+  "measure-narrow",
+  "space-2"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

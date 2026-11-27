@@ -20,6 +20,7 @@ import { chromium } from "playwright";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, resolve } from "node:path";
 import { writeFile, mkdir } from "node:fs/promises";
+import { existsSync, readdirSync } from "node:fs";
 import { judge, format } from "../src/lib/contrast.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -176,6 +177,35 @@ if (zoom !== 100) {
 }
 
 await page.goto(FIXTURE, { waitUntil: "load" });
+
+/* Private packs (private/packs/*.css: the family's own, kept out of the public kit) are measured the same way,
+   in the same three contexts as the specimen packs, but recorded apart, in audits/contrast.private.json, so the
+   kit's own report never names them. A failure in either fails the gate. */
+const PRIVATE_DIR = resolve(ROOT, "private/packs");
+const privatePacks = existsSync(PRIVATE_DIR) ? readdirSync(PRIVATE_DIR).filter((f) => f.endsWith(".css")).map((f) => f.replace(/\.css$/, "")) : [];
+for (const pack of privatePacks) {
+  const href = pathToFileURL(resolve(PRIVATE_DIR, `${pack}.css`)).href;
+  await page.evaluate(({ pack, href }) => new Promise((ok) => {
+    const link = Object.assign(document.createElement("link"), { rel: "stylesheet", href });
+    link.onload = link.onerror = ok;
+    document.head.append(link);
+    const tpl = document.getElementById("specimen"), main = document.querySelector("main");
+    for (const [surface, on] of [["default"], ["sunken"], ["inverse", "inverse"]]) {
+      const section = document.createElement("section");
+      section.dataset.brand = pack;
+      const ctx = Object.assign(document.createElement("div"), { className: "ctx" });
+      ctx.dataset.surface = surface;
+      if (on) ctx.dataset.on = on;
+      ctx.append(tpl.content.cloneNode(true));
+      for (const probe of ctx.querySelectorAll(".focus-probe")) {
+        probe.style.outline = "var(--tk-focus-width) solid var(--tk-focus-color)";
+        probe.style.outlineOffset = "var(--tk-focus-offset)";
+      }
+      section.append(ctx);
+      main.append(section);
+    }
+  }), { pack, href });
+}
 await page.waitForTimeout(120);
 
 const raw = await page.evaluate(collect);
@@ -197,6 +227,7 @@ const rows = raw.map((r) => {
   return { ...r, kind, ...verdict };
 });
 
+const isPrivate = (r) => privatePacks.includes(r.context.split(" / ")[0]);
 const failures = rows.filter((r) => !r.pass);
 
 const pad = (s, n) => String(s).padEnd(n);
@@ -229,15 +260,20 @@ if (wantReport) {
       {
         generatedAt: new Date().toISOString(),
         rootFontSizePx: (16 * zoom) / 100,
-        total: rows.length,
-        failed: failures.length,
-        rows,
+        total: rows.filter((r) => !isPrivate(r)).length,
+        failed: failures.filter((r) => !isPrivate(r)).length,
+        rows: rows.filter((r) => !isPrivate(r)),
       },
       null,
       2,
     ),
   );
   console.log("Report written to audits/contrast.json\n");
+  if (privatePacks.length) {
+    const mine = rows.filter(isPrivate);
+    await writeFile(resolve(ROOT, "audits/contrast.private.json"), JSON.stringify({ note: "Private packs (private/packs), measured by tools/contrast-gate.mjs. Kept out of the public kit.", generatedAt: new Date().toISOString(), packs: privatePacks, total: mine.length, failed: mine.filter((r) => !r.pass).length, rows: mine }, null, 2));
+    console.log(`Private packs (${privatePacks.join(", ")}): ${mine.length} pairs written to audits/contrast.private.json\n`);
+  }
 }
 
 if (failures.length > 0) {

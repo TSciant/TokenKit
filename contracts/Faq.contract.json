@@ -1,0 +1,127 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Faq",
+ "layer": "primitive",
+ "about": "Strong disclosure stack for FAQ or additional information. Numbered triggers, plus/minus mark, measure-bound answers. Each question is a heading holding its button, as in Accordion (whose engine it sh",
+ "sources": {
+  "react": "src/react/primitives/Faq.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/faq.css"
+ ],
+ "dataTk": [
+  "faq",
+  "faq-head",
+  "faq-heading",
+  "faq-index",
+  "faq-item",
+  "faq-mark",
+  "faq-question",
+  "faq-trigger"
+ ],
+ "figma": [
+  {
+   "name": "Faq",
+   "node": "170:1051",
+   "codeConnect": true,
+   "map": {
+    "Title": "title"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "Faq/Item",
+   "node": "170:1050",
+   "codeConnect": true,
+   "map": {
+    "Question": "Faq data",
+    "Answer": "Faq data",
+    "Index": "Faq data",
+    "Open": "user state (a click), not a prop"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "title": {
+   "type": "other",
+   "ts": "string | false",
+   "figma": [
+    "Faq.Title"
+   ],
+   "about": "Section heading. Defaults by tone. Pass false to hide."
+  },
+  "eyebrow": {
+   "type": "text"
+  },
+  "tone": {
+   "type": "enum",
+   "values": [
+    "info",
+    "faq"
+   ],
+   "default": "\"faq\"",
+   "about": "FAQ copy vs additional-information voice."
+  },
+  "items": {
+   "type": "other",
+   "ts": "FaqEntry[]",
+   "required": true
+  },
+  "singleExpand": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Only one panel open at a time."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "3",
+    "4",
+    "5"
+   ],
+   "default": "3",
+   "about": "The level of each question's heading: one below the section's title (an h2), so 3 by default."
+  },
+  "className": {
+   "type": "text"
+  }
+ },
+ "tokens": [
+  "action-fill",
+  "action-text",
+  "focus-color",
+  "focus-width",
+  "font-mono",
+  "leading-snug",
+  "leading-tight",
+  "line-subtle",
+  "measure",
+  "motion-opacity",
+  "motion-transform",
+  "radius-nested",
+  "size-lg",
+  "size-sm",
+  "space-4",
+  "space-5",
+  "target-min",
+  "text-secondary",
+  "text-tertiary",
+  "tracking-wide",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

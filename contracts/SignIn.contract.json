@@ -1,0 +1,165 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SignIn",
+ "layer": "primitive",
+ "about": "SignIn — a form that signs someone in. An email address and a password, a Sign in button, and a way back in for someone who has forgotten. The fields say what they are to a password manager (autocompl",
+ "sources": {
+  "react": "src/react/primitives/SignIn.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/sign-in.css"
+ ],
+ "dataTk": [
+  "sign-in",
+  "sign-in-actions",
+  "sign-in-alternatives",
+  "sign-in-divider",
+  "sign-in-footer",
+  "sign-in-forgot",
+  "sign-in-form",
+  "sign-in-heading",
+  "sign-in-intro"
+ ],
+ "figma": [
+  {
+   "name": "SignIn",
+   "node": "449:1840",
+   "codeConnect": true,
+   "map": {
+    "Heading": "heading",
+    "Show error": "error (omit it to hide)",
+    "Show remember": "remember (omit it to hide)",
+    "Show footer": "footer (omit it to hide)",
+    "Forgot label": "forgotLabel"
+   },
+   "unpaired": [
+    "Show other ways in"
+   ]
+  }
+ ],
+ "props": {
+  "heading": {
+   "type": "text",
+   "default": "\"Sign in\"",
+   "figma": [
+    "SignIn.Heading"
+   ]
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "1"
+   ],
+   "default": "1",
+   "about": "The heading's level: 1 on a page of its own, 2 inside one."
+  },
+  "intro": {
+   "type": "content",
+   "about": "One short line under the heading, if anything needs saying. Less is more: people sign in faster with less around the form."
+  },
+  "notice": {
+   "type": "content",
+   "about": "Something to know before signing in, above the form: \"You were signed out after 30 minutes without activity.\" An info Alert."
+  },
+  "error": {
+   "type": "text",
+   "figma": [
+    "SignIn.Show error"
+   ],
+   "about": "The last attempt failed. Says so above the form, takes focus so it is heard, marks both fields, and empties the password. Never says which of the two was wrong: that tells someone guessing which half "
+  },
+  "usernameLabel": {
+   "type": "text",
+   "default": "\"Email address\"",
+   "about": "What the first field asks for. An email address by default: easier to remember than a username."
+  },
+  "usernameType": {
+   "type": "enum",
+   "values": [
+    "text",
+    "email"
+   ],
+   "default": "\"email\""
+  },
+  "passwordLabel": {
+   "type": "text",
+   "default": "\"Password\""
+  },
+  "remember": {
+   "type": "other",
+   "ts": "string | false",
+   "default": "\"Remember my email address on this device\"",
+   "figma": [
+    "SignIn.Show remember"
+   ],
+   "about": "A \"remember\" checkbox, with words that say what is remembered. Leave out on a shared or public computer's service."
+  },
+  "forgotHref": {
+   "type": "text",
+   "default": "\"#forgot\""
+  },
+  "forgotLabel": {
+   "type": "text",
+   "default": "\"Forgot your password?\"",
+   "figma": [
+    "SignIn.Forgot label"
+   ]
+  },
+  "submitLabel": {
+   "type": "text",
+   "default": "\"Sign in\""
+  },
+  "alternatives": {
+   "type": "content",
+   "about": "Other ways in, under the form after a divider: single sign-on or a passkey, as Buttons."
+  },
+  "alternativesLabel": {
+   "type": "text",
+   "default": "\"Or\""
+  },
+  "footer": {
+   "type": "content",
+   "figma": [
+    "SignIn.Show footer"
+   ],
+   "about": "A line under it all for people without an account: \"New here? Create an account\"."
+  },
+  "action": {
+   "type": "text",
+   "about": "The form's action, for a server that takes the post."
+  },
+  "onSubmit": {
+   "type": "event"
+  }
+ },
+ "tokens": [
+  "leading-tight",
+  "line-default",
+  "measure-narrow",
+  "size-heading",
+  "size-sm",
+  "space-3",
+  "space-4",
+  "space-5",
+  "text-secondary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "SignIn.Show other ways in": "alternatives (omit it to hide)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

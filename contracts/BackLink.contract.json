@@ -1,0 +1,85 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "BackLink",
+ "layer": "primitive",
+ "about": "BackLink — one link back to the previous page of a journey, at the top. A chevron and \"Back\" (or \"Go back to [page]\" where Back would not be clear). Put it at the top of the page before `<main>`, so t",
+ "sources": {
+  "react": "src/react/primitives/BackLink.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/back-link.css"
+ ],
+ "dataTk": [
+  "back-link"
+ ],
+ "figma": [
+  {
+   "name": "BackLink",
+   "node": "497:2364",
+   "codeConnect": true,
+   "map": {
+    "Label": "children"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "children": {
+   "type": "content",
+   "default": "\"Back\"",
+   "figma": [
+    "BackLink.Label"
+   ]
+  },
+  "as": {
+   "type": "enum",
+   "values": [
+    "a",
+    "button"
+   ],
+   "default": "\"a\"",
+   "about": "A link (default), or a button when going back has to post the form."
+  },
+  "name": {
+   "type": "text",
+   "about": "For a button: the form's field it sends, and its value."
+  },
+  "value": {
+   "type": "text"
+  },
+  "form": {
+   "type": "text"
+  },
+  "type": {
+   "type": "enum",
+   "values": [
+    "button",
+    "submit"
+   ],
+   "default": "\"submit\""
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "size-sm",
+  "space-2",
+  "target-min",
+  "text-primary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

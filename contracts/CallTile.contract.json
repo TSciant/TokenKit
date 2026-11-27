@@ -1,0 +1,85 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "CallTile",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/call/Call.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/call.css"
+ ],
+ "dataTk": [
+  "call-tile",
+  "call-tile-off"
+ ],
+ "figma": [
+  {
+   "name": "CallTile",
+   "node": "577:167",
+   "codeConnect": true,
+   "map": {
+    "Name": "name",
+    "State": "Live: runtime, not a prop, Camera off: runtime, not a prop, Connecting: runtime, not a prop"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "stream": {
+   "type": "other",
+   "ts": "MediaStream"
+  },
+  "name": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "CallTile.Name"
+   ]
+  },
+  "muted": {
+   "type": "boolean",
+   "default": "false"
+  },
+  "mirrored": {
+   "type": "boolean",
+   "default": "false"
+  },
+  "off": {
+   "type": "boolean",
+   "default": "false"
+  },
+  "waiting": {
+   "type": "text",
+   "default": "\"Connecting…\""
+  },
+  "offText": {
+   "type": "text",
+   "default": "\"Camera off\""
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  }
+ },
+ "tokens": [
+  "radius-md",
+  "size-base",
+  "surface-sunken",
+  "text-tertiary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

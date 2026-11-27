@@ -1,0 +1,105 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Spinner",
+ "layer": "primitive",
+ "about": "Spinner — something is coming, and it is not known what it looks like. An arc in the text's colour at the text's size, with its words in one polite status region; focus stays where the reader put it. ",
+ "sources": {
+  "react": "src/react/primitives/Loading.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/loading.css"
+ ],
+ "dataTk": [
+  "spinner",
+  "spinner-arc",
+  "spinner-label"
+ ],
+ "figma": [
+  {
+   "name": "Spinner",
+   "node": "619:2520",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Show label": "label (omit it to hide)",
+    "Size": "size"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "content",
+   "figma": [
+    "Spinner.Label",
+    "Spinner.Show label"
+   ]
+  },
+  "a11yLabel": {
+   "type": "text"
+  },
+  "decorative": {
+   "type": "boolean"
+  },
+  "loading": {
+   "type": "boolean",
+   "default": "true",
+   "about": "Still waiting. Set false when the wait is over: the region stays, so `doneLabel` can be said."
+  },
+  "doneLabel": {
+   "type": "text",
+   "about": "Said once the wait is over (\"Invoices loaded\"), when the change is not obvious otherwise."
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg",
+    "inherit"
+   ],
+   "default": "\"inherit\"",
+   "figma": [
+    "Spinner.Size"
+   ],
+   "about": "The text's own size by default (it sits in what it waits for), or an icon size."
+  },
+  "placement": {
+   "type": "enum",
+   "values": [
+    "center",
+    "inline"
+   ],
+   "default": "\"inline\"",
+   "about": "In the line, or centred in the box that is loading."
+  },
+  "delay": {
+   "type": "number",
+   "default": "400",
+   "about": "Milliseconds before it shows, so a quick load never flashes a spinner. Default 400; 0 shows it at once."
+  }
+ },
+ "tokens": [
+  "icon-lg",
+  "icon-md",
+  "icon-sm",
+  "motion-spin",
+  "radius-full",
+  "space-2",
+  "space-6"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

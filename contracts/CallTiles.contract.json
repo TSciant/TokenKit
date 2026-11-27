@@ -1,0 +1,41 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "CallTiles",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/call/Call.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/call.css"
+ ],
+ "dataTk": [
+  "call-tiles"
+ ],
+ "figma": [],
+ "props": {
+  "state": {
+   "type": "other",
+   "ts": "CallState",
+   "required": true
+  },
+  "you": {
+   "type": "text",
+   "default": "\"You\""
+  }
+ },
+ "tokens": [
+  "space-3"
+ ],
+ "checks": [
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,53 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "TaskList",
+ "layer": "primitive",
+ "about": "TaskList — the parts of a long job, each with where it is, done in any order. Use for: a service or form with several sections a reader may come back to over time (GOV.UK's task list). Don't use for: ",
+ "sources": {
+  "react": "src/react/primitives/TaskList.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/steps.css"
+ ],
+ "dataTk": [
+  "task-list"
+ ],
+ "figma": [
+  {
+   "name": "TaskList",
+   "node": "442:1845",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "items": {
+   "type": "other",
+   "ts": "TaskItem[]",
+   "required": true
+  },
+  "words": {
+   "type": "other",
+   "ts": "Partial<Record<TaskStatus, string>>",
+   "about": "The words said for each status, for a page in another language."
+  }
+ },
+ "tokens": [
+  "line-default"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

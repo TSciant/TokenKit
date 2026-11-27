@@ -1,0 +1,67 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "EventList",
+ "layer": "pattern",
+ "about": "24 — event rows: date, title, location, action.",
+ "sources": {
+  "react": "src/react/patterns/EventList.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "visually-hidden"
+ ],
+ "figma": [
+  {
+   "name": "EventList",
+   "node": "106:421",
+   "codeConnect": true,
+   "map": {
+    "Heading": "heading"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "EventList/Row",
+   "node": "106:413",
+   "codeConnect": true,
+   "map": {
+    "Meta": "EventList data",
+    "Title": "EventList data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "heading": {
+   "type": "text",
+   "default": "EVENT_LIST_HEADING",
+   "figma": [
+    "EventList.Heading"
+   ]
+  },
+  "events": {
+   "type": "other",
+   "ts": "EventRow[]",
+   "default": "EVENT_ROWS"
+  },
+  "ctaLabel": {
+   "type": "text",
+   "default": "\"Register\""
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

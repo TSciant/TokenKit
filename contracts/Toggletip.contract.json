@@ -1,0 +1,88 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Toggletip",
+ "layer": "primitive",
+ "about": "Toggletip — a button that shows a short piece of information beside itself, and says it when it does. Use for: an explanation a reader may want and most do not (\"Why do we ask this?\"), where a link el",
+ "sources": {
+  "react": "src/react/primitives/Tooltip.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/tooltip.css"
+ ],
+ "dataTk": [
+  "toggletip",
+  "toggletip-button"
+ ],
+ "figma": [],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "about": "The button's name: what the information is about (\"About the pricing\")."
+  },
+  "content": {
+   "type": "content",
+   "required": true,
+   "about": "The information. May hold a link."
+  },
+  "placement": {
+   "type": "enum",
+   "values": [
+    "above",
+    "below"
+   ],
+   "default": "\"above\""
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "radius-full",
+  "target-min",
+  "text-primary",
+  "text-secondary"
+ ],
+ "checks": [
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": {
+  "role": "button with aria-expanded; the tip is a status",
+  "name": "the button's accessible name",
+  "story": "04-primitives-67-toggletip--playground",
+  "keys": [
+   {
+    "key": "Enter",
+    "from": "[data-tk=toggletip-button]",
+    "expect": {
+     "selector": "[data-tk=toggletip-button]",
+     "attr": "aria-expanded",
+     "value": "true"
+    },
+    "says": "shows the tip"
+   },
+   {
+    "key": "Escape",
+    "before": [
+     {
+      "key": "Enter",
+      "from": "[data-tk=toggletip-button]"
+     }
+    ],
+    "from": "[data-tk=toggletip-button]",
+    "expect": {
+     "selector": "[data-tk=toggletip-button]",
+     "attr": "aria-expanded",
+     "value": "false"
+    },
+    "says": "hides the tip"
+   }
+  ],
+  "focus": "stays on the button"
+ },
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

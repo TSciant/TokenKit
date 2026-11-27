@@ -1,0 +1,152 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "MenuButton",
+ "layer": "primitive",
+ "about": "A button that opens a short list of links or actions. Use for: a handful of related destinations or actions behind one control (More, Share, Account), where a mega menu would be a whole panel for six ",
+ "sources": {
+  "react": "src/react/primitives/MenuButton.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/menu-button.css"
+ ],
+ "dataTk": [
+  "menu-button",
+  "menu-button-chevron",
+  "menu-button-item",
+  "menu-button-panel"
+ ],
+ "figma": [
+  {
+   "name": "MenuButton",
+   "node": "148:299",
+   "codeConnect": true,
+   "map": {
+    "Variant": "variant",
+    "Open": "initialOpen (true/false)",
+    "Size": "size"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "default": "\"More\"",
+   "about": "The trigger's text."
+  },
+  "items": {
+   "type": "other",
+   "ts": "MenuButtonItem[]",
+   "required": true
+  },
+  "align": {
+   "type": "enum",
+   "values": [
+    "start",
+    "end"
+   ],
+   "default": "\"start\"",
+   "about": "Which edge of the trigger the list lines up with."
+  },
+  "variant": {
+   "type": "enum",
+   "values": [
+    "solid",
+    "outline",
+    "quiet"
+   ],
+   "default": "\"outline\"",
+   "figma": [
+    "MenuButton.Variant"
+   ]
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "default": "\"sm\"",
+   "figma": [
+    "MenuButton.Size"
+   ],
+   "about": "The trigger's size, as Button's. Small by default, which is where a More usually sits (a card corner, a toolbar); match the buttons beside it when it is one of a row."
+  },
+  "initialOpen": {
+   "type": "boolean",
+   "default": "false",
+   "figma": [
+    "MenuButton.Open"
+   ],
+   "about": "Open on first render, so the list can be looked at without a click."
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "icon-stroke",
+  "leading-normal",
+  "line-default",
+  "measure-popover",
+  "motion-transform",
+  "radius-lg",
+  "shadow-md",
+  "size-sm",
+  "space-2",
+  "space-3",
+  "surface-raised",
+  "surface-sunken",
+  "text-primary",
+  "weight-bold",
+  "weight-medium"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": {
+  "role": "button with aria-expanded, a list of links",
+  "name": "the trigger's label",
+  "story": "04-primitives-28-menu-button--playground",
+  "keys": [
+   {
+    "key": "Enter",
+    "from": "[data-tk=button][aria-expanded]",
+    "expect": {
+     "selector": "[data-tk=button][aria-expanded]",
+     "attr": "aria-expanded",
+     "value": "true"
+    },
+    "says": "opens the list"
+   },
+   {
+    "key": "Escape",
+    "before": [
+     {
+      "key": "Enter",
+      "from": "[data-tk=button][aria-expanded]"
+     }
+    ],
+    "from": "[data-tk=menu-button-item]",
+    "expect": {
+     "selector": "[data-tk=button][aria-expanded]",
+     "attr": "aria-expanded",
+     "value": "false"
+    },
+    "says": "closes the list"
+   }
+  ],
+  "focus": "Escape returns focus to the trigger"
+ },
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

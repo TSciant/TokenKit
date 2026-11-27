@@ -1,0 +1,152 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "FileUpload",
+ "layer": "primitive",
+ "about": "FileUpload — choose files, see each by name with where it is, remove any. A native file input first: without JavaScript it is the browser's own. Once the page runs, a real button opens the picker (so ",
+ "sources": {
+  "react": "src/react/primitives/FileUpload.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/file-upload.css"
+ ],
+ "dataTk": [
+  "file-upload",
+  "file-upload-error",
+  "file-upload-file",
+  "file-upload-list",
+  "file-upload-name",
+  "file-upload-progress",
+  "file-upload-size",
+  "file-upload-state",
+  "file-upload-status",
+  "file-upload-zone"
+ ],
+ "figma": [
+  {
+   "name": "FileUpload",
+   "node": "507:2438",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Hint": "hint"
+   },
+   "unpaired": [
+    "File name",
+    "File size",
+    "Show file"
+   ]
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "FileUpload.Label"
+   ]
+  },
+  "hint": {
+   "type": "text",
+   "figma": [
+    "FileUpload.Hint"
+   ],
+   "about": "Leave it out to have the limits written from `accept` and `maxSize`."
+  },
+  "error": {
+   "type": "text"
+  },
+  "required": {
+   "type": "boolean"
+  },
+  "optional": {
+   "type": "boolean"
+  },
+  "id": {
+   "type": "text",
+   "about": "The input's id, for an ErrorSummary link."
+  },
+  "name": {
+   "type": "text"
+  },
+  "multiple": {
+   "type": "boolean",
+   "default": "false",
+   "about": "One file per field unless research says people need several at once."
+  },
+  "accept": {
+   "type": "text",
+   "about": "As the input's accept (\"application/pdf,image/jpeg,.png\"). A hint to the picker, not validation: check on the server."
+  },
+  "maxSize": {
+   "type": "number",
+   "about": "The largest file, in bytes, for the hint."
+  },
+  "dropzone": {
+   "type": "boolean",
+   "default": "true",
+   "about": "A box that takes dropped files, around the button. The button is always there."
+  },
+  "files": {
+   "type": "other",
+   "ts": "FileUploadItem[]",
+   "default": "[]"
+  },
+  "onAdd": {
+   "type": "event",
+   "about": "Files chosen or dropped. Check them and add them to `files`."
+  },
+  "onRemove": {
+   "type": "event"
+  },
+  "buttonText": {
+   "type": "text"
+  },
+  "emptyText": {
+   "type": "text",
+   "default": "\"No file chosen\""
+  },
+  "disabled": {
+   "type": "boolean"
+  },
+  "reason": {
+   "type": "content",
+   "about": "Why it is disabled, said beside it."
+  }
+ },
+ "tokens": [
+  "line-strong",
+  "line-subtle",
+  "radius-md",
+  "radius-nested",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "status-danger-line",
+  "status-danger-text",
+  "text-primary",
+  "text-secondary",
+  "weight-medium"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "FileUpload.File name": "files[n].name",
+   "FileUpload.File size": "files[n].size",
+   "FileUpload.Show file": "files (an empty list shows none)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

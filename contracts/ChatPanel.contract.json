@@ -1,0 +1,122 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ChatPanel",
+ "layer": "primitive",
+ "about": "ChatPanel — a conversation with an assistant, with the assistant left to the product: a transcript, a composer and a reply that streams in. While a reply streams, Send becomes Stop; what had arrived s",
+ "sources": {
+  "react": "src/react/primitives/ChatPanel.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/chat.css",
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "chat",
+  "chat-actions",
+  "chat-composer",
+  "chat-empty",
+  "chat-flag",
+  "chat-log",
+  "chat-message",
+  "chat-note",
+  "chat-pending",
+  "chat-who",
+  "visually-hidden"
+ ],
+ "figma": [
+  {
+   "name": "ChatPanel",
+   "node": "289:1464",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "respond": {
+   "type": "other",
+   "ts": "ChatRespond",
+   "required": true,
+   "about": "Where replies come from. The kit attaches no model, endpoint or prompt."
+  },
+  "assistantName": {
+   "type": "text",
+   "default": "\"Assistant\"",
+   "about": "The assistant's name, shown on every reply. Name it as what it is."
+  },
+  "userName": {
+   "type": "text",
+   "default": "\"You\"",
+   "about": "The reader's label on their own turns."
+  },
+  "note": {
+   "type": "content",
+   "about": "What the assistant answers from and how far to trust it, said once and kept in view, rather than as a disclaimer opening every reply."
+  },
+  "starters": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "[]",
+   "about": "Up to three questions to start with, shown while the conversation is empty."
+  },
+  "emptyText": {
+   "type": "content",
+   "default": "\"Ask a question to start.\"",
+   "about": "What the empty conversation says before anything is asked."
+  },
+  "defaultTurns": {
+   "type": "other",
+   "ts": "ChatTurn[]",
+   "default": "[]",
+   "about": "The conversation to start from (uncontrolled); keep it with `onTurnsChange`."
+  },
+  "onTurnsChange": {
+   "type": "event",
+   "about": "Every change to the conversation, for a product that keeps it somewhere."
+  },
+  "inputLabel": {
+   "type": "text",
+   "default": "\"Your message\"",
+   "about": "The composer's label."
+  },
+  "maxChars": {
+   "type": "number",
+   "about": "A limit on what the reader can send, shown as a count under the composer."
+  },
+  "logLabel": {
+   "type": "text",
+   "default": "\"Conversation\"",
+   "about": "The transcript's accessible name."
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "radius-md",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "surface-sunken",
+  "text-secondary",
+  "text-tertiary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

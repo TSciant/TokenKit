@@ -1,0 +1,116 @@
+{
+ "note": "Written by tools/keyboard-gate.mjs: each key a contract promises, pressed and checked. Read by tools/scorecards.mjs.",
+ "generatedAt": "2026-11-27T23:00:11.393Z",
+ "components": {
+  "Modal": {
+   "story": "04-primitives-09-modal--trigger",
+   "results": [
+    {
+     "key": "Escape",
+     "says": "closes when dismissible",
+     "pass": true
+    },
+    {
+     "key": "Escape",
+     "says": "returns focus to the trigger",
+     "pass": true
+    }
+   ]
+  },
+  "MenuButton": {
+   "story": "04-primitives-28-menu-button--playground",
+   "results": [
+    {
+     "key": "Enter",
+     "says": "opens the list",
+     "pass": true
+    },
+    {
+     "key": "Escape",
+     "says": "closes the list",
+     "pass": true
+    }
+   ]
+  },
+  "Tabs": {
+   "story": "04-primitives-58-tabs--playground",
+   "results": [
+    {
+     "key": "ArrowRight",
+     "says": "moves to the next tab",
+     "pass": true
+    },
+    {
+     "key": "End",
+     "says": "moves to the last tab",
+     "pass": true
+    },
+    {
+     "key": "ArrowLeft",
+     "says": "wraps from the first tab to the last",
+     "pass": true
+    }
+   ]
+  },
+  "Accordion": {
+   "story": "04-primitives-61-accordion--playground",
+   "results": [
+    {
+     "key": "Enter",
+     "says": "opens the section",
+     "pass": true
+    },
+    {
+     "key": "Space",
+     "says": "opens the section",
+     "pass": true
+    },
+    {
+     "key": "Tab",
+     "says": "moves to the next section's trigger",
+     "pass": true
+    }
+   ]
+  },
+  "Toggletip": {
+   "story": "04-primitives-67-toggletip--playground",
+   "results": [
+    {
+     "key": "Enter",
+     "says": "shows the tip",
+     "pass": true
+    },
+    {
+     "key": "Escape",
+     "says": "hides the tip",
+     "pass": true
+    }
+   ]
+  },
+  "Switch": {
+   "story": "04-primitives-69-switch--with-state",
+   "results": [
+    {
+     "key": "Space",
+     "says": "turns it on",
+     "pass": true
+    }
+   ]
+  },
+  "Combobox": {
+   "story": "04-primitives-86-combobox--playground",
+   "results": [
+    {
+     "key": "ArrowDown",
+     "says": "opens the list",
+     "pass": true
+    },
+    {
+     "key": "Escape",
+     "says": "closes the list",
+     "pass": true
+    }
+   ]
+  }
+ }
+}

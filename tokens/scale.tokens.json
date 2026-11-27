@@ -1,0 +1,788 @@
+{
+ "$schema": "./schema/sheet.schema.json",
+ "sheet": "scale",
+ "css": "src/css/03-scale.css",
+ "body": [
+  {
+   "note": " ---------------------------------------------------------------------------\n   Scales. Brand-independent.\n\n   A brand pack may override any of these, but most packs will not — a brand\n   changes what things look like, rarely how they are proportioned. Colour and\n   anything else a brand genuinely owns lives in the pack, not here.\n\n   Everything is rem. No vw in the type scale: fluid type built on viewport\n   units does not respond to the user's browser font-size setting, which is\n   what WCAG 1.4.4 actually tests at 200%. Container-relative sizing, where a\n   component wants it, is expressed per-component with cqi.\n--------------------------------------------------------------------------- "
+  },
+  {
+   "gap": 1
+  },
+  {
+   "at": "@layer tokens",
+   "body": [
+    {
+     "selectors": [
+      ":root"
+     ],
+     "items": [
+      {
+       "note": " --- space: a 4px base with a doubling tail -------------------------\n       The private ramp. The public --tk-space-* tokens are this times\n       --tk-density, derived just below.\n       ------------------------------------------------------------------ "
+      },
+      {
+       "private": "_space-0",
+       "$value": "0px"
+      },
+      {
+       "private": "_space-1",
+       "$value": "0.25rem"
+      },
+      {
+       "private": "_space-2",
+       "$value": "0.5rem"
+      },
+      {
+       "private": "_space-3",
+       "$value": "0.75rem"
+      },
+      {
+       "private": "_space-4",
+       "$value": "1rem"
+      },
+      {
+       "private": "_space-5",
+       "$value": "1.5rem"
+      },
+      {
+       "private": "_space-6",
+       "$value": "2rem"
+      },
+      {
+       "private": "_space-7",
+       "$value": "3rem"
+      },
+      {
+       "private": "_space-8",
+       "$value": "4rem"
+      },
+      {
+       "private": "_space-9",
+       "$value": "6rem"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- type ------------------------------------------------------------ "
+      },
+      {
+       "note": " Manrope is the kit's own face — see src/css/fonts/manrope.css for\n       what it is and why it is here. \"Manrope Fallback\" is a metric-matched\n       stand-in so the swap costs no layout shift; the generic stack after it\n       is what runs if neither loads. A brand pack overrides this slot like\n       any other. "
+      },
+      {
+       "slot": "font-sans",
+       "$value": "\"Manrope\", \"Manrope Fallback\", ui-sans-serif, system-ui,\n      -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+       "$lead": "\n      "
+      },
+      {
+       "slot": "font-mono",
+       "$value": "\"Geist Mono\", ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas,\n      \"Liberation Mono\", monospace",
+       "$lead": "\n      "
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " Display face and case. Default to the body face and no transform, so\n       the kit reads as one voice until a pack says otherwise. "
+      },
+      {
+       "slot": "font-display",
+       "$value": "{tk-font-sans}"
+      },
+      {
+       "slot": "display-case",
+       "$value": "none"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " Lucide's own default. A pack with a heavy display face usually wants\n       more than this; a quiet one usually wants less. "
+      },
+      {
+       "slot": "icon-stroke",
+       "$value": "2"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " Icon box, in rem, so a reader at 200% gets icons at 200% along with the\n       text beside them. These were three numbers in Icon.tsx — 16, 20, 24 —\n       which meant icon size was the one measurement in the kit that ignored\n       the root size, ignored a pack, and could only be changed by editing\n       TypeScript. "
+      },
+      {
+       "slot": "icon-sm",
+       "$value": "1rem"
+      },
+      {
+       "slot": "icon-md",
+       "$value": "1.25rem"
+      },
+      {
+       "slot": "icon-lg",
+       "$value": "1.5rem"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "slot": "size-xs",
+       "$value": "0.75rem"
+      },
+      {
+       "slot": "size-sm",
+       "$value": "0.875rem"
+      },
+      {
+       "slot": "size-base",
+       "$value": "1rem"
+      },
+      {
+       "slot": "size-md",
+       "$value": "1.125rem"
+      },
+      {
+       "slot": "size-lg",
+       "$value": "1.25rem"
+      },
+      {
+       "slot": "size-xl",
+       "$value": "1.5rem"
+      },
+      {
+       "slot": "size-2xl",
+       "$value": "1.875rem"
+      },
+      {
+       "slot": "size-3xl",
+       "$value": "2.25rem"
+      },
+      {
+       "slot": "size-4xl",
+       "$value": "3rem"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- leading and tracking ---------------------------------------------\n       Type does not scale linearly and neither should its spacing. The same\n       tracking from caption to display is the single loudest tell that a\n       scale was listed rather than designed: at 12px a face needs air, at\n       48px the same air reads as a gap. Leading runs the other way — long\n       body lines need it, a two-word headline does not.\n\n       So the ramp is paired. Larger step, tighter leading, tighter tracking.\n       --tk-*-display is the top of the ramp; the older four leading values\n       and three tracking values keep their names and meanings.\n       -------------------------------------------------------------------- "
+      },
+      {
+       "slot": "leading-display",
+       "$value": "1.04"
+      },
+      {
+       "slot": "leading-tight",
+       "$value": "1.15"
+      },
+      {
+       "slot": "leading-snug",
+       "$value": "1.3"
+      },
+      {
+       "slot": "leading-normal",
+       "$value": "1.5"
+      },
+      {
+       "slot": "leading-relaxed",
+       "$value": "1.6"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "slot": "tracking-display",
+       "$value": "-0.035em"
+      },
+      {
+       "slot": "tracking-tight",
+       "$value": "-0.02em"
+      },
+      {
+       "slot": "tracking-snug",
+       "$value": "-0.01em"
+      },
+      {
+       "slot": "tracking-normal",
+       "$value": "0em"
+      },
+      {
+       "slot": "tracking-wide",
+       "$value": "0.04em"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "slot": "weight-normal",
+       "$value": "400"
+      },
+      {
+       "slot": "weight-medium",
+       "$value": "500"
+      },
+      {
+       "slot": "weight-semibold",
+       "$value": "600"
+      },
+      {
+       "slot": "weight-bold",
+       "$value": "700"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- radius ---------------------------------------------------------- "
+      },
+      {
+       "slot": "radius-none",
+       "$value": "0"
+      },
+      {
+       "slot": "radius-sm",
+       "$value": "4px"
+      },
+      {
+       "slot": "radius-md",
+       "$value": "8px"
+      },
+      {
+       "slot": "radius-lg",
+       "$value": "16px"
+      },
+      {
+       "note": " Surface seed: large enough that pad (space-4/5) leaves a visible inner curve. "
+      },
+      {
+       "slot": "radius-xl",
+       "$value": "2rem"
+      },
+      {
+       "slot": "radius-full",
+       "$value": "9999px"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " Concentric nesting. A rounded box inside a rounded box has one correct\n       inner radius: the outer radius less the gap between them. Any other\n       value leaves two arcs that do not share a centre, which is what makes a\n       card with an inset plate look approximate no matter how careful the\n       rest of it is. Clamped at zero, because past that the inner corner is\n       square and square is correct.\n\n       Surfaces that bleed to their parent's edge do not use this — they\n       inherit the parent's radius exactly. See card-media. "
+      },
+      {
+       "note": " --tk-radius-nested is NOT a value, it is a running total. See the\n       concentric-radius block at the foot of this file. "
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- plate ------------------------------------------------------------\n       The cap is the point. A plate is the one element whose height comes from\n       its ratio rather than its content, so in a fluid grid it is what makes\n       the page lurch — measured at +1785px in one step when the insights feed\n       dropped from four columns to one. It keeps its ratio until it reaches\n       this, then stops.\n       -------------------------------------------------------------------- "
+      },
+      {
+       "slot": "search-width",
+       "$value": "14rem"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "slot": "plate-max",
+       "$value": "22rem"
+      },
+      {
+       "slot": "plate-max-portrait",
+       "$value": "15rem"
+      },
+      {
+       "slot": "plate-min",
+       "$value": "4rem"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- scrim ------------------------------------------------------------\n       Derived in src/css/components/scrim.css, not chosen. Each alpha is the\n       lightest wash that still guarantees its contrast ratio when the image\n       underneath is pure white — the worst case an unknown photograph can\n       present. The gate composites them and checks the arithmetic.\n       -------------------------------------------------------------------- "
+      },
+      {
+       "slot": "scrim-aa-large",
+       "$value": "0.42",
+       "$pad": "  ",
+       "$comment": " >= 3:1   — 1.4.3 large text "
+      },
+      {
+       "slot": "scrim-aa",
+       "$value": "0.54",
+       "$pad": "        ",
+       "$comment": " >= 4.5:1 — 1.4.3 normal text "
+      },
+      {
+       "slot": "scrim-aaa",
+       "$value": "0.66",
+       "$pad": "       ",
+       "$comment": " >= 7:1   — 1.4.6 "
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " How far up the gradient holds full alpha. Text must sit inside this\n       band or the guarantee above does not apply to it. "
+      },
+      {
+       "slot": "scrim-hold",
+       "$value": "62%"
+      },
+      {
+       "note": " How far from the anchor edge the wash reaches. 100% = full frame. "
+      },
+      {
+       "slot": "scrim-cover",
+       "$value": "100%"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " The manual-level escape hatch and its bounds. 0.25 is the point below\n       which a wash stops reading as a wash; 0.88 is the point above which\n       there is no photograph left. Neither is a compliance threshold — those\n       are the three above. "
+      },
+      {
+       "slot": "scrim-level-min",
+       "$value": "0.25"
+      },
+      {
+       "slot": "scrim-level-max",
+       "$value": "0.88"
+      },
+      {
+       "slot": "scrim-hover",
+       "$value": "{tk-scrim-aaa}"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " Frost radius over the same conceptual range. "
+      },
+      {
+       "slot": "scrim-blur-min",
+       "$value": "2px"
+      },
+      {
+       "slot": "scrim-blur-base",
+       "$value": "8px"
+      },
+      {
+       "slot": "scrim-blur-max",
+       "$value": "20px"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " The per-instance overrides. Declared here so the lint can see them and\n       so every one has a documented default rather than appearing out of a\n       style attribute. "
+      },
+      {
+       "slot": "scrim-level",
+       "$value": "{tk-scrim-aa}"
+      },
+      {
+       "slot": "scrim-frost",
+       "$value": "{tk-scrim-blur-base}"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- measure ----------------------------------------------------------\n       Set from tools/type-gate.mjs, not by eye. `ch` is the advance width of\n       the digit zero, which is wider than the average character, so a measure\n       in `ch` always renders MORE characters per line than its number\n       suggests — 68ch measured at 80 CPL, well past the comfortable band.\n       56ch lands at ~66, which is the middle of the 45-75 range.\n       ------------------------------------------------------------------- "
+      },
+      {
+       "slot": "measure",
+       "$value": "53ch",
+       "$pad": "      ",
+       "$comment": " measured: 66.7 CPL in Manrope (the type gate's body row) "
+      },
+      {
+       "slot": "measure-narrow",
+       "$value": "44ch",
+       "$comment": " measured: 53.6 CPL "
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- overlay widths: every floating panel's width from one place, so a\n           pack or a page can widen its dialogs without touching a component.\n           Each is a cap; the panel still fits the screen. -------------------- "
+      },
+      {
+       "slot": "measure-dialog-sm",
+       "$value": "24rem"
+      },
+      {
+       "slot": "measure-dialog-md",
+       "$value": "36rem"
+      },
+      {
+       "slot": "measure-dialog-lg",
+       "$value": "44rem"
+      },
+      {
+       "slot": "measure-drawer-sm",
+       "$value": "20rem"
+      },
+      {
+       "slot": "measure-drawer-md",
+       "$value": "28rem"
+      },
+      {
+       "slot": "measure-drawer-lg",
+       "$value": "36rem"
+      },
+      {
+       "slot": "measure-sheet",
+       "$value": "40rem",
+       "$pad": "    ",
+       "$comment": " a bottom sheet, centred, on anything wider than a phone "
+      },
+      {
+       "slot": "measure-popover",
+       "$value": "24rem",
+       "$pad": "  ",
+       "$comment": " a toast, a menu, anything that hangs from a control "
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- target size: WCAG 2.5.8 AA is 24px ------------------------------ "
+      },
+      {
+       "slot": "target-min",
+       "$value": "24px"
+      },
+      {
+       "slot": "target-comfortable",
+       "$value": "44px"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- motion -----------------------------------------------------------\n       The raw material: four durations and three curves. A component never\n       names these directly, for the same reason it never names a hex — they\n       are the ramp, not the contract.\n       -------------------------------------------------------------------- "
+      },
+      {
+       "slot": "duration-fast",
+       "$value": "120ms"
+      },
+      {
+       "slot": "duration-base",
+       "$value": "200ms"
+      },
+      {
+       "slot": "duration-slow",
+       "$value": "320ms"
+      },
+      {
+       "note": " For loops that run for seconds, not transitions: a sweep, an orbit, an\n       ambient drift. Always linear, always stopped under reduced motion. "
+      },
+      {
+       "slot": "duration-ambient",
+       "$value": "8s"
+      },
+      {
+       "note": " Loops that say \"still working\": a spinner turning, a skeleton breathing.\n       Short and steady, and stopped under reduced motion like the rest. "
+      },
+      {
+       "slot": "duration-spin",
+       "$value": "700ms"
+      },
+      {
+       "slot": "duration-pulse",
+       "$value": "1600ms"
+      },
+      {
+       "slot": "ease-standard",
+       "$value": "cubic-bezier(0.2, 0, 0, 1)"
+      },
+      {
+       "slot": "ease-entrance",
+       "$value": "cubic-bezier(0, 0, 0, 1)"
+      },
+      {
+       "slot": "ease-exit",
+       "$value": "cubic-bezier(0.3, 0, 1, 1)"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- motion contract ---------------------------------------------------\n       One motion token per kind of change, each a complete `<duration> <easing>`\n       so a component writes\n\n           transition: background-color var(--tk-motion-surface);\n\n       and never picks a number. Pairing motion to WHAT MOVES rather than to a\n       t-shirt size is what makes it consistent: every surface in the kit\n       changes at the same rate because they all read the same slot, and a\n       brand that wants to feel quicker moves one value rather than auditing\n       every component for stray 200ms.\n\n       These are pack slots. Pace and curve are as much a brand's property as\n       its greys — the packs below fill them, and packs/_template.css lists\n       them with the rest.\n\n       Ordered by how much of the screen each one disturbs: ink and surface\n       are instant-feeling, size and position are the slowest, because a box\n       changing shape is the one the eye actually has to follow.\n       -------------------------------------------------------------------- "
+      },
+      {
+       "slot": "motion-ink",
+       "$value": "{tk-duration-fast} {tk-ease-standard}"
+      },
+      {
+       "slot": "motion-surface",
+       "$value": "{tk-duration-fast} {tk-ease-standard}"
+      },
+      {
+       "slot": "motion-line",
+       "$value": "{tk-duration-fast} {tk-ease-standard}"
+      },
+      {
+       "slot": "motion-elevation",
+       "$value": "{tk-duration-base} {tk-ease-standard}"
+      },
+      {
+       "slot": "motion-opacity",
+       "$value": "{tk-duration-base} {tk-ease-standard}"
+      },
+      {
+       "slot": "motion-transform",
+       "$value": "{tk-duration-base} {tk-ease-standard}"
+      },
+      {
+       "slot": "motion-size",
+       "$value": "{tk-duration-base} {tk-ease-standard}"
+      },
+      {
+       "slot": "motion-enter",
+       "$value": "{tk-duration-base} {tk-ease-entrance}"
+      },
+      {
+       "slot": "motion-exit",
+       "$value": "{tk-duration-fast} {tk-ease-exit}"
+      },
+      {
+       "slot": "motion-ambient",
+       "$value": "{tk-duration-ambient} linear"
+      },
+      {
+       "slot": "motion-spin",
+       "$value": "{tk-duration-spin} linear"
+      },
+      {
+       "slot": "motion-pulse",
+       "$value": "{tk-duration-pulse} {tk-ease-standard}"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- elevation: expressed as line + shadow so a flat wireframe pack\n           can zero the shadow and keep the boundary --------------------- "
+      },
+      {
+       "slot": "shadow-none",
+       "$value": "none"
+      },
+      {
+       "slot": "shadow-sm",
+       "$value": "0 1px 2px rgb(0 0 0 / 0.06)"
+      },
+      {
+       "slot": "shadow-md",
+       "$value": "0 2px 8px rgb(0 0 0 / 0.08)"
+      },
+      {
+       "note": " An overlay above the page (a dialog), and the lift a card-like control\n       takes on hover. Every pack flattens sm, md and lg (a dialog stands off\n       its scrim by its border), and keeps the lift. The dialog used to write\n       its own \"var(--tk-shadow-md), 0 24px 48px …\", which is invalid once md\n       is none, so no pack ever drew it: lg is that shadow, said once. "
+      },
+      {
+       "slot": "shadow-lg",
+       "$value": "0 2px 8px rgb(0 0 0 / 0.08), 0 24px 48px rgb(0 0 0 / 0.18)"
+      },
+      {
+       "slot": "shadow-lift",
+       "$value": "0 4px 12px color-mix(in srgb, {tk-text-primary} 10%, transparent)"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " --- density: the single knob context turns.\n           Components multiply their own padding by it. ------------------- "
+      },
+      {
+       "slot": "density",
+       "$value": "1"
+      }
+     ]
+    },
+    {
+     "gap": 1
+    },
+    {
+     "note": " Density is contextual, not owned. Any ancestor can set it and every\n     component below resolves against it. "
+    },
+    {
+     "selectors": [
+      "[data-density=\"compact\"]"
+     ],
+     "items": [
+      {
+       "slot": "density",
+       "$value": "0.75"
+      }
+     ]
+    },
+    {
+     "gap": 1
+    },
+    {
+     "selectors": [
+      "[data-density=\"comfortable\"]"
+     ],
+     "items": [
+      {
+       "slot": "density",
+       "$value": "1.25"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "gap": 1
+  },
+  {
+   "note": " ---------------------------------------------------------------------------\n   Density.\n\n   Density used to be applied at the call site — `calc(var(--tk-space-5) *\n   var(--tk-density))`, written out in each component that remembered to. Six\n   files did. The shells did not, so `data-gap` ignored density entirely, and\n   neither did any section padding, so the whole compact/comfortable range moved\n   a page by about twelve pixels. A multiplier you have to remember is a\n   multiplier that is mostly absent.\n\n   So the scale carries it instead: --tk-space-* IS the ramp times the density\n   in force, and every consumer gets it for free — shells, components, and the\n   inline styles in the audit rebuilds alike. No call site multiplies any more.\n\n   Why the derivation is repeated on [data-density] rather than written once on\n   :root: a custom property is substituted at computed-value time and then\n   INHERITED AS A VALUE. Declared only on :root, --tk-space-5 would compute\n   against :root's density and descendants would inherit that number — the same\n   trap that makes a pack re-declare `color` instead of trusting the token to\n   re-resolve. Restating it on every element that can change --tk-density is\n   what makes a nested density region actually nest.\n\n   --tk-target-min is deliberately NOT in the ramp. Pointer targets have a\n   floor in WCAG 2.5.8 and density is not allowed to argue with it.\n\n   [data-brand] is in the selector for the same reason [data-density] is, and\n   it was missing until a pack tried to set its own density. A brand that owns\n   proportion sets --tk-density in its pack; without restating the ramp on\n   [data-brand] that pack inherits the space tokens ROOT already computed and\n   the density silently does nothing — the page looks identical and nothing\n   reports a problem, which is the worst kind of bug this file can have. The\n   same applies to --tk-radius-nested below: a pack that changes --tk-radius-xl\n   has to re-seed the concentric chain or every nested corner on its pages\n   keeps solving from the kit's radius instead of the brand's.\n--------------------------------------------------------------------------- "
+  },
+  {
+   "at": "@layer tokens",
+   "body": [
+    {
+     "selectors": [
+      ":root",
+      "[data-density]",
+      "[data-brand]"
+     ],
+     "items": [
+      {
+       "slot": "space-0",
+       "$value": "calc({_space-0} * {tk-density})"
+      },
+      {
+       "slot": "space-1",
+       "$value": "calc({_space-1} * {tk-density})"
+      },
+      {
+       "slot": "space-2",
+       "$value": "calc({_space-2} * {tk-density})"
+      },
+      {
+       "slot": "space-3",
+       "$value": "calc({_space-3} * {tk-density})"
+      },
+      {
+       "slot": "space-4",
+       "$value": "calc({_space-4} * {tk-density})"
+      },
+      {
+       "slot": "space-5",
+       "$value": "calc({_space-5} * {tk-density})"
+      },
+      {
+       "slot": "space-6",
+       "$value": "calc({_space-6} * {tk-density})"
+      },
+      {
+       "slot": "space-7",
+       "$value": "calc({_space-7} * {tk-density})"
+      },
+      {
+       "slot": "space-8",
+       "$value": "calc({_space-8} * {tk-density})"
+      },
+      {
+       "slot": "space-9",
+       "$value": "calc({_space-9} * {tk-density})"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " The seed for the concentric chain below: a container with nothing\n       around it rounds at --tk-radius-xl (was lg; lg is now a mid step). Re-stated here because the space\n       ramp changes with density and so does every subtraction downstream. "
+      },
+      {
+       "slot": "radius-nested",
+       "$value": "{tk-radius-xl}"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " Control shapes: the corner a brand gives its inputs and its buttons.\n       Shapes, like capsules, not steps in the concentric chain: a control\n       takes its brand's corner wherever it sits, capped by the nested radius\n       so it is never rounder than what holds it. Inputs default to md, which\n       is a rounded rectangle in every pack; before this they took the nested\n       radius, which at page level is xl, and on a 40px control that is a\n       capsule in every pack with an xl over 20px. Buttons keep the nested\n       radius (the 9999px initial value loses every min()); a pack that wants\n       its buttons to match its inputs sets --tk-radius-button. Restated on\n       [data-brand] so a pack's own md is the one that resolves. "
+      },
+      {
+       "slot": "radius-control",
+       "$value": "{tk-radius-md}"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " Display sizes that give way on a phone. Measured before they existed\n       (the ds-corpus type brief said: measure first): at 412px, nine of the\n       kit's page and hero titles ran to four lines at their desktop sizes.\n       So the three top styles are fluid between the step below and their\n       own step: the step below at a 360px viewport, rising until their own\n       at 960px, fixed above. The bounds are the pack's own sizes (restated\n       on [data-brand], so a brand's 4xl is the one that resolves); only the\n       slope is the kit's, and it is set by the widest step any pack has\n       (door-shop's 3xl to 4xl is 28px), so every pack reaches its own size\n       by 960px: display covers a 30px step, title 18px, heading 12px. CSS\n       cannot divide a width by a width yet, or the slope would be the\n       pack's. Every onion skin is taken at 1000px or wider, so the design\n       file's fixed sizes are still exact there. "
+      },
+      {
+       "slot": "size-display",
+       "$value": "clamp({tk-size-3xl}, calc({tk-size-3xl} + (100vw - 22.5rem) * 0.05), {tk-size-4xl})"
+      },
+      {
+       "slot": "size-title",
+       "$value": "clamp({tk-size-2xl}, calc({tk-size-2xl} + (100vw - 22.5rem) * 0.03), {tk-size-3xl})"
+      },
+      {
+       "slot": "size-heading",
+       "$value": "clamp({tk-size-xl}, calc({tk-size-xl} + (100vw - 22.5rem) * 0.02), {tk-size-2xl})"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " The page gutter: the one space between the screen's edge and the\n       content, applied once (the center shell, and any band that meets the\n       edge) and never by a band AND the content inside it. Space-4 on a\n       phone and up to 80rem; space-5 from 80rem (see below), Primer's numbers. The\n       ds-corpus spacing brief; Primer's content padding. Before this, the\n       center shell padded 16px and the bands 24px, and PageHero's band\n       padded around a center shell, so a title lost both. "
+      },
+      {
+       "slot": "gutter",
+       "$value": "{tk-space-4}"
+      },
+      {
+       "gap": 1
+      },
+      {
+       "note": " Control heights: a button or an icon button, and a field. Scaled by\n       density, never below the pointer-target floor. They were the same\n       formula written out in button.css and twice in modal.css (the room\n       its header keeps for Close), and once in field.css. Figma has them as\n       control/min and field/min, per density mode. "
+      },
+      {
+       "slot": "control-min",
+       "$value": "max({tk-target-min}, calc(2.25rem * {tk-density}))"
+      },
+      {
+       "slot": "field-min",
+       "$value": "max({tk-target-min}, calc(2.5rem * {tk-density}))"
+      }
+     ]
+    },
+    {
+     "gap": 1
+    },
+    {
+     "at": "@media (min-width: 80rem)",
+     "body": [
+      {
+       "selectors": [
+        ":root",
+        "[data-density]",
+        "[data-brand]"
+       ],
+       "items": [
+        {
+         "slot": "gutter",
+         "$value": "{tk-space-5}"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "gap": 1
+  },
+  {
+   "note": " ---------------------------------------------------------------------------\n   Concentric radii.\n\n   One rule, everywhere: **the inner radius is the outer radius less the gap\n   between them.** Two rounded boxes whose arcs do not share a centre look\n   approximate no matter how careful the rest of the page is, and the eye\n   catches it long before anyone can say why. A system that picks radius-sm for\n   inner things and radius-lg for outer things is guessing at that centre\n   rather than computing it.\n\n   A single global \"nested radius\" token cannot express this, which is what the\n   kit had and what was wrong with it: the correct inner radius depends on\n   which container you are in and how much padding that container has. A card\n   inset by space-5 and an alert inset by space-4 do not want the same number.\n\n   So --tk-radius-nested is a running total. Every rounded container does this:\n\n     :where([data-tk=\"thing\"]) {\n       --_radius: var(--tk-radius-nested);      what I was handed\n       --_radius-gap: var(--tk-space-5);        what I inset my children by\n       border-radius: var(--_radius);\n     }\n     :where([data-tk=\"thing\"]) > * {\n       --tk-radius-nested: max(0px, calc(var(--_radius) - var(--_radius-gap)));\n     }\n\n   The subtraction is published on the CHILDREN, not on the container, and that\n   is not a style choice — it is the only arrangement that works. A custom\n   property reference resolves against the element's OWN computed value, so a\n   container that both reads --tk-radius-nested and re-declares it is a cycle:\n   both properties become guaranteed-invalid, border-radius falls back to its\n   initial value, and every rounded box on the page silently squares off. That\n   is exactly what the first version of this did. Declaring on `> *` reads the\n   inherited value on one element and writes on another, so there is no cycle.\n\n   Three things are deliberately outside the chain:\n\n   - Capsules. --tk-radius-full is a shape, not a rounded rectangle. A pill\n     inside a card stays a pill; subtracting a gap from it is meaningless.\n   - Bleeding surfaces. A child flush to its parent's edge has no gap to\n     subtract, so it takes the parent's corners exactly and the parent clips.\n   - Square things. Zero stays zero; max() already guarantees it.\n\n   tools/radius-gate.mjs walks every built story and checks the arithmetic.\n--------------------------------------------------------------------------- "
+  }
+ ]
+}

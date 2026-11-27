@@ -1,0 +1,153 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ArticleFeed",
+ "layer": "pattern",
+ "about": "10 — the insights feed. The title sits over the photograph, which is only defensible because the scrim bounds the worst case: text on bare photography cannot be contrast-checked and 1.4.3 still applie",
+ "sources": {
+  "react": "src/react/patterns/ArticleFeed.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/eyebrow.css",
+  "src/css/components/hero.css",
+  "src/css/components/phase-banner.css",
+  "src/css/components/pricing.css",
+  "src/css/components/sample-page.css",
+  "src/css/components/scrim.css"
+ ],
+ "dataTk": [
+  "card",
+  "card-body",
+  "card-link",
+  "card-title",
+  "eyebrow",
+  "scrim",
+  "scrim-content",
+  "section"
+ ],
+ "figma": [
+  {
+   "name": "ArticleFeed",
+   "node": "132:606",
+   "codeConnect": true,
+   "map": {
+    "Heading": "heading",
+    "Deck": "deck"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "ArticleFeed/Card",
+   "node": "132:599",
+   "codeConnect": true,
+   "map": {
+    "Kind": "ArticleFeed data",
+    "Title": "ArticleFeed data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "heading": {
+   "type": "text",
+   "default": "ARTICLE_FEED_HEADING",
+   "figma": [
+    "ArticleFeed.Heading"
+   ]
+  },
+  "deck": {
+   "type": "text",
+   "default": "ARTICLE_FEED_DECK",
+   "figma": [
+    "ArticleFeed.Deck"
+   ]
+  },
+  "cards": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "ARTICLES"
+  },
+  "kinds": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "ARTICLE_KINDS",
+   "about": "Eyebrow labels, cycled across the cards."
+  },
+  "categories": {
+   "type": "other",
+   "ts": "string[]",
+   "about": "Subject per card, positionally. Cycled, like `kinds`."
+  },
+  "columns": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1"
+   ],
+   "default": "4"
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "font-mono",
+  "leading-snug",
+  "line-default",
+  "line-strong",
+  "line-subtle",
+  "motion-elevation",
+  "motion-line",
+  "motion-opacity",
+  "motion-surface",
+  "radius-nested",
+  "scrim-aa",
+  "scrim-aa-large",
+  "scrim-aaa",
+  "scrim-blur-max",
+  "scrim-blur-min",
+  "scrim-cover",
+  "scrim-frost",
+  "scrim-hold",
+  "scrim-hover",
+  "scrim-ink",
+  "scrim-level",
+  "scrim-level-max",
+  "scrim-level-min",
+  "shadow-none",
+  "shadow-sm",
+  "size-lg",
+  "size-xl",
+  "size-xs",
+  "space-2",
+  "space-3",
+  "space-5",
+  "space-7",
+  "space-8",
+  "space-9",
+  "surface-raised",
+  "surface-sunken",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "tracking-wide",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

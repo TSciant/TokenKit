@@ -1,0 +1,87 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "KeyPrompt",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/keyboard/Keyboard.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "KeyPrompt",
+   "node": "562:177",
+   "codeConnect": true,
+   "map": {
+    "Theme": "theme (lower case)",
+    "State": "Off: checked={false}, Lit: lit"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "code": {
+   "type": "text",
+   "required": true,
+   "about": "The key, by position (KeyboardEvent.code): KeyW, Space, ShiftLeft, ArrowUp... (the element's `key` attribute; React keeps `key` for itself)."
+  },
+  "action": {
+   "type": "text",
+   "about": "What it does here, e.g. \"Move forward\"."
+  },
+  "effect": {
+   "type": "text",
+   "about": "What happens, after the action, e.g. \"hold to sprint\"."
+  },
+  "label": {
+   "type": "text",
+   "about": "Override the key's spoken name (defaults to e.g. \"W key\", \"Space bar\")."
+  },
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "default": "\"boosty\"",
+   "figma": [
+    "KeyPrompt.Theme"
+   ]
+  },
+  "lit": {
+   "type": "boolean",
+   "about": "Lit: the key is the one to press now."
+  },
+  "pulse": {
+   "type": "boolean"
+  },
+  "layout": {
+   "type": "enum",
+   "values": [
+    "auto",
+    "us"
+   ],
+   "about": "\"auto\" shows the layout's own letter where the browser offers it; \"us\" always the US cap."
+  },
+  "labels": {
+   "type": "other",
+   "ts": "Record<string, string>",
+   "about": "Your own cap letters by code, as on Keyboard."
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

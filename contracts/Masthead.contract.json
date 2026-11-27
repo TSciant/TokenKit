@@ -1,0 +1,238 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Masthead",
+ "layer": "pattern",
+ "about": "01 — wordmark, nav, CTA, search. Wide: inline nav (optional mega). Narrow: same facts in a sheet behind Menu. Graceful degradation, not a restructured mobile chrome.",
+ "sources": {
+  "react": "src/react/patterns/Masthead.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/button-group.css",
+  "src/css/components/button.css",
+  "src/css/components/chat.css",
+  "src/css/components/combobox.css",
+  "src/css/components/cookie-consent.css",
+  "src/css/components/eyebrow.css",
+  "src/css/components/field.css",
+  "src/css/components/hero.css",
+  "src/css/components/inline-form.css",
+  "src/css/components/modal.css",
+  "src/css/components/phase-banner.css",
+  "src/css/components/pricing.css",
+  "src/css/components/sample-page.css",
+  "src/css/components/scene.css",
+  "src/css/components/search.css",
+  "src/css/components/site-header.css",
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "button",
+  "eyebrow",
+  "input",
+  "search",
+  "site-header",
+  "site-header-actions",
+  "site-header-bar",
+  "site-header-brand",
+  "site-header-drawer",
+  "site-header-nav",
+  "site-header-promo",
+  "site-header-sheet",
+  "site-header-sheet-cta",
+  "site-header-sheet-heading",
+  "site-header-sheet-list",
+  "site-header-sheet-rule",
+  "visually-hidden"
+ ],
+ "figma": [
+  {
+   "name": "Masthead",
+   "node": "69:393",
+   "codeConnect": true,
+   "map": {
+    "Brand": "brand",
+    "Nav 1": "navItems[0]",
+    "Nav 2": "navItems[1]",
+    "Nav 3": "navItems[2]",
+    "Nav 4": "navItems[3]",
+    "Nav 5": "navItems[4]",
+    "Nav 6": "navItems[5]",
+    "Container": "the box it sits in (a container query), not a prop",
+    "Mega menu": "megaMenu",
+    "Search": "showSearch (true/false)",
+    "Contact CTA": "showContactCta (true/false)"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "brand": {
+   "type": "text",
+   "default": "BRAND",
+   "figma": [
+    "Masthead.Brand"
+   ],
+   "about": "Wordmark text."
+  },
+  "navItems": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "NAV",
+   "figma": [
+    "Masthead.Nav 1",
+    "Masthead.Nav 2",
+    "Masthead.Nav 3",
+    "Masthead.Nav 4",
+    "Masthead.Nav 5",
+    "Masthead.Nav 6"
+   ]
+  },
+  "navLabel": {
+   "type": "text",
+   "default": "\"Primary\"",
+   "about": "Aria label for the primary nav."
+  },
+  "withMegaMenu": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Swaps the inline nav for the mega menu, wide and compact alike."
+  },
+  "megaMenu": {
+   "type": "other",
+   "ts": "MegaMenu",
+   "default": "MEGA",
+   "figma": [
+    "Masthead.Mega menu"
+   ]
+  },
+  "megaTrigger": {
+   "type": "text",
+   "default": "MEGA_TRIGGER",
+   "about": "The nav item that owns the panel; every other item is a plain link."
+  },
+  "megaActions": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "MEGA_ACTIONS"
+  },
+  "megaColumns": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1"
+   ],
+   "default": "3"
+  },
+  "megaInitialOpen": {
+   "type": "boolean",
+   "default": "false",
+   "about": "The mega panel open on first render (wide header only)."
+  },
+  "showSearch": {
+   "type": "boolean",
+   "default": "true",
+   "figma": [
+    "Masthead.Search"
+   ]
+  },
+  "searchLabel": {
+   "type": "text",
+   "about": "The search field's accessible name. Left out, it is “Search” and the brand, so a site named in `brand` is the site searched."
+  },
+  "showContactCta": {
+   "type": "boolean",
+   "default": "true",
+   "figma": [
+    "Masthead.Contact CTA"
+   ]
+  },
+  "contactLabel": {
+   "type": "text",
+   "default": "CONTACT_CTA_LABEL",
+   "about": "The contact button's label (“Contact us”, “Book a call”)."
+  }
+ },
+ "tokens": [
+  "action-danger-fill",
+  "action-danger-fill-active",
+  "action-danger-fill-hover",
+  "action-danger-quiet-text",
+  "action-danger-text",
+  "action-fill",
+  "action-fill-active",
+  "action-fill-hover",
+  "action-quiet-fill",
+  "action-quiet-fill-active",
+  "action-quiet-fill-hover",
+  "action-quiet-text",
+  "action-text",
+  "control-min",
+  "field-min",
+  "focus-color",
+  "font-mono",
+  "font-sans",
+  "gutter",
+  "icon-sm",
+  "leading-snug",
+  "leading-tight",
+  "line-default",
+  "line-strong",
+  "motion-elevation",
+  "motion-enter",
+  "motion-exit",
+  "motion-ink",
+  "motion-line",
+  "motion-size",
+  "motion-surface",
+  "motion-transform",
+  "radius-button",
+  "radius-control",
+  "radius-nested",
+  "search-width",
+  "size-base",
+  "size-heading",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-6",
+  "status-danger-line",
+  "surface-default",
+  "surface-inverse",
+  "surface-raised",
+  "surface-sunken",
+  "target-comfortable",
+  "target-min",
+  "text-disabled",
+  "text-inverse",
+  "text-on-scrim",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "tracking-snug",
+  "tracking-tight",
+  "tracking-wide",
+  "weight-bold",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

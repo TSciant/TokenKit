@@ -1,0 +1,66 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Required",
+ "layer": "pattern",
+ "about": "Required is stated in text as well as marked, because 1.4.1 forbids carrying meaning by colour or glyph alone.",
+ "sources": {
+  "react": "src/react/patterns/form-parts.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/combobox.css",
+  "src/css/components/field.css",
+  "src/css/components/inline-form.css",
+  "src/css/components/scene.css",
+  "src/css/components/search.css",
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "field",
+  "field-hint",
+  "field-label",
+  "input",
+  "visually-hidden"
+ ],
+ "figma": [],
+ "props": {},
+ "tokens": [
+  "field-min",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "icon-sm",
+  "line-strong",
+  "motion-elevation",
+  "motion-enter",
+  "motion-exit",
+  "motion-line",
+  "motion-size",
+  "motion-surface",
+  "radius-control",
+  "radius-nested",
+  "search-width",
+  "size-base",
+  "size-sm",
+  "space-2",
+  "space-3",
+  "status-danger-line",
+  "surface-default",
+  "surface-sunken",
+  "text-disabled",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "weight-medium"
+ ],
+ "checks": [
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

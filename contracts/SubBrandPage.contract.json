@@ -1,0 +1,127 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SubBrandPage",
+ "layer": "pattern",
+ "about": "22 — portfolio and acquisition brand page.",
+ "sources": {
+  "react": "src/react/patterns/templates.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/chip.css",
+  "src/css/components/pricing.css"
+ ],
+ "dataTk": [
+  "card",
+  "card-body",
+  "chip"
+ ],
+ "figma": [
+  {
+   "name": "SubBrandPage",
+   "node": "119:549",
+   "codeConnect": true,
+   "map": {
+    "Body": "body"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "title": {
+   "type": "text",
+   "default": "SUBBRAND_TITLE"
+  },
+  "crumbs": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "SUBBRAND_CRUMBS"
+  },
+  "body": {
+   "type": "text",
+   "default": "SUBBRAND_BODY",
+   "figma": [
+    "SubBrandPage.Body"
+   ]
+  },
+  "facts": {
+   "type": "other",
+   "ts": "Fact[]",
+   "default": "SUBBRAND_FACTS"
+  },
+  "ctaLabel": {
+   "type": "text",
+   "default": "\"Visit the site\""
+  },
+  "seed": {
+   "type": "number",
+   "default": "6",
+   "about": "1-6. Picks the stand-in photograph."
+  },
+  "ratio": {
+   "type": "text",
+   "default": "\"3 / 2\""
+  }
+ },
+ "tokens": [
+  "action-quiet-fill-hover",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-tight",
+  "line-default",
+  "line-strong",
+  "motion-elevation",
+  "motion-ink",
+  "motion-line",
+  "motion-surface",
+  "motion-transform",
+  "radius-full",
+  "radius-nested",
+  "shadow-lift",
+  "shadow-none",
+  "shadow-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-5",
+  "status-danger-line",
+  "status-danger-surface",
+  "status-danger-text",
+  "status-info-line",
+  "status-info-surface",
+  "status-info-text",
+  "status-success-line",
+  "status-success-surface",
+  "status-success-text",
+  "status-warning-line",
+  "status-warning-surface",
+  "status-warning-text",
+  "surface-default",
+  "surface-inverse",
+  "surface-raised",
+  "surface-sunken",
+  "target-min",
+  "text-inverse",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "tracking-wide",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

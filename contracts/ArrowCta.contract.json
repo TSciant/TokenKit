@@ -1,0 +1,127 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ArrowCta",
+ "layer": "pattern",
+ "about": "06 — the repeated conversion pattern. Uppercase label, trailing arrow.",
+ "sources": {
+  "react": "src/react/patterns/ArrowCta.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/button-group.css",
+  "src/css/components/button.css",
+  "src/css/components/chat.css",
+  "src/css/components/cookie-consent.css",
+  "src/css/components/field.css",
+  "src/css/components/hero.css",
+  "src/css/components/inline-form.css",
+  "src/css/components/modal.css",
+  "src/css/components/pricing.css",
+  "src/css/components/sample-page.css",
+  "src/css/components/scene.css",
+  "src/css/components/site-header.css"
+ ],
+ "dataTk": [
+  "button"
+ ],
+ "figma": [
+  {
+   "name": "ArrowCta",
+   "node": "76:255",
+   "codeConnect": true,
+   "map": {
+    "Label": "children",
+    "Variant": "variant",
+    "Size": "size"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "children": {
+   "type": "content",
+   "default": "ARROW_CTA_LABEL",
+   "figma": [
+    "ArrowCta.Label"
+   ]
+  },
+  "variant": {
+   "type": "enum",
+   "values": [
+    "solid",
+    "outline",
+    "quiet"
+   ],
+   "figma": [
+    "ArrowCta.Variant"
+   ]
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "default": "\"lg\"",
+   "figma": [
+    "ArrowCta.Size"
+   ]
+  }
+ },
+ "tokens": [
+  "action-danger-fill",
+  "action-danger-fill-active",
+  "action-danger-fill-hover",
+  "action-danger-quiet-text",
+  "action-danger-text",
+  "action-fill",
+  "action-fill-active",
+  "action-fill-hover",
+  "action-quiet-fill",
+  "action-quiet-fill-active",
+  "action-quiet-fill-hover",
+  "action-quiet-text",
+  "action-text",
+  "control-min",
+  "leading-tight",
+  "line-strong",
+  "motion-elevation",
+  "motion-ink",
+  "motion-line",
+  "motion-surface",
+  "motion-transform",
+  "radius-button",
+  "radius-nested",
+  "size-base",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "surface-inverse",
+  "surface-sunken",
+  "target-comfortable",
+  "target-min",
+  "text-disabled",
+  "text-inverse",
+  "text-on-scrim",
+  "tracking-wide",
+  "weight-medium"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,61 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "TvSidebar",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/tv/Tv.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "TvSidebar",
+   "node": "573:627",
+   "codeConnect": true,
+   "map": {
+    "Theme": "theme (lower case)",
+    "State": "Idle: CSS, Focused: CSS"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "about": "The menu's accessible name (a labelled nav)."
+  },
+  "collapse": {
+   "type": "boolean",
+   "about": "A slim rail until focus comes in, then full width with labels. Put an icon first in each item."
+  },
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "figma": [
+    "TvSidebar.Theme"
+   ]
+  },
+  "children": {
+   "type": "content",
+   "about": "Links or buttons, one per item; mark the open one with aria-current=\"page\"."
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,107 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Drawer",
+ "layer": "primitive",
+ "about": "Drawer — a panel from the edge of the screen, on the native dialog. Modal's anatomy and rules on a different surface: title, a body that scrolls between a fixed header and footer, actions, Close last ",
+ "sources": {
+  "react": "src/react/primitives/Drawer.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/drawer.css"
+ ],
+ "dataTk": [
+  "drawer"
+ ],
+ "figma": [
+  {
+   "name": "Drawer",
+   "node": "292:1547",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "open": {
+   "type": "boolean",
+   "required": true
+  },
+  "onClose": {
+   "type": "event",
+   "required": true
+  },
+  "title": {
+   "type": "text",
+   "required": true
+  },
+  "description": {
+   "type": "content",
+   "about": "One or two sentences under the title, read with it when the drawer opens."
+  },
+  "children": {
+   "type": "content"
+  },
+  "actions": {
+   "type": "other",
+   "ts": "ButtonGroupAction[]",
+   "about": "The footer's actions, as a ButtonGroup, Cancel first and the action last."
+  },
+  "footer": {
+   "type": "content",
+   "about": "Free footer content, for anything that is not a row of buttons."
+  },
+  "side": {
+   "type": "enum",
+   "values": [
+    "start",
+    "end",
+    "bottom"
+   ],
+   "default": "\"end\"",
+   "about": "Which edge it comes from. end (the default) for what belongs to the page in view: filters, details, a quick preview, an assistant. start for navigation, and only for that. bottom for a sheet. On a pho"
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "default": "\"md\"",
+   "about": "Width of a side drawer: 20, 28 or 36rem. Default md."
+  },
+  "modal": {
+   "type": "boolean",
+   "default": "true",
+   "about": "true (the default): the page behind is blocked and dimmed until the drawer closes. false: the page stays usable beside it, for something the reader works alongside (an assistant, a cart, notifications"
+  },
+  "closeOnBackdrop": {
+   "type": "boolean",
+   "about": "Close when the dimmed page is clicked (modal only). By default only a drawer without actions does, as with Modal: one holding a form closes by its buttons, Escape or Close, so a stray click cannot los"
+  }
+ },
+ "tokens": [
+  "duration-base",
+  "measure-drawer-lg",
+  "measure-drawer-md",
+  "measure-drawer-sm",
+  "measure-sheet",
+  "motion-enter",
+  "motion-exit",
+  "scrim-ink"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

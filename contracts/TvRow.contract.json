@@ -1,0 +1,83 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "TvRow",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/tv/Tv.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "TvRow",
+   "node": "571:465",
+   "codeConnect": true,
+   "map": {
+    "Theme": "theme (lower case)",
+    "State": "Idle: CSS, Focused: CSS"
+   },
+   "unpaired": [
+    "Title"
+   ]
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "about": "The row's visible title, also its accessible name (\"Films\")."
+  },
+  "layout": {
+   "type": "enum",
+   "values": [
+    "grid",
+    "row"
+   ],
+   "default": "\"row\"",
+   "about": "\"row\" scrolls sideways to keep focus in view; \"grid\" wraps the tiles into lines."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "about": "Heading level of the title, 2 to 6."
+  },
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "figma": [
+    "TvRow.Theme"
+   ]
+  },
+  "children": {
+   "type": "content",
+   "about": "TvTile elements."
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": {
+  "pairWith": {
+   "TvRow.Title": "label"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

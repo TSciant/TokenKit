@@ -29,6 +29,12 @@ const DIRS = [
   ["pattern", "src/react/patterns"],
 ];
 
+/* --packs adds the shells and the packs' React wrappers (src/packs/<pack>/*.tsx), for the contracts. */
+if (process.argv.includes("--packs")) {
+  DIRS.push(["shell", "src/react/shells"]);
+  for (const p of readdirSync(join(ROOT, "src/packs"), { withFileTypes: true })) if (p.isDirectory()) DIRS.push(["pack", `src/packs/${p.name}`]);
+}
+
 const files = [];
 for (const [layer, dir] of DIRS) {
   for (const f of readdirSync(join(ROOT, dir))) {

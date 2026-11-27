@@ -1,0 +1,75 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "QuestionList",
+ "layer": "primitive",
+ "about": "QuestionList — questions and their answers, all shown at once. Each question is a real heading, so a screen reader's heading list is the list of questions, and each answer follows it in full. Use it w",
+ "sources": {
+  "react": "src/react/primitives/QuestionList.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/question-list.css"
+ ],
+ "dataTk": [
+  "question-list"
+ ],
+ "figma": [
+  {
+   "name": "QuestionList",
+   "node": "490:2099",
+   "codeConnect": true,
+   "map": {
+    "Show item 3": "how many items you pass"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "QuestionList/Question",
+   "node": "490:2095",
+   "codeConnect": true,
+   "map": {
+    "Question": "QuestionList data",
+    "Answer": "QuestionList data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "items": {
+   "type": "other",
+   "ts": "QuestionItem[]",
+   "required": true
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "3",
+    "4"
+   ],
+   "about": "Each question's heading level: h3 under a section's h2 (the default), h4 one deeper."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "3",
+    "4"
+   ]
+  }
+ },
+ "tokens": [
+  "line-subtle"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

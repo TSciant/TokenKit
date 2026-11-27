@@ -1,0 +1,78 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "LanguageSwitcher",
+ "layer": "primitive",
+ "about": "LanguageSwitcher — the same page in another language. Links, each in its own language's name and marked with its language, so a reader who knows none of the page's language still finds theirs, and a s",
+ "sources": {
+  "react": "src/react/primitives/LanguageSwitcher.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/language-switcher.css"
+ ],
+ "dataTk": [
+  "language-switcher",
+  "language-switcher-current",
+  "language-switcher-link",
+  "language-switcher-list"
+ ],
+ "figma": [
+  {
+   "name": "LanguageSwitcher",
+   "node": "497:2368",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": [
+    "Current",
+    "Other"
+   ]
+  }
+ ],
+ "props": {
+  "languages": {
+   "type": "other",
+   "ts": "LanguageSwitcherLanguage[]",
+   "required": true
+  },
+  "label": {
+   "type": "text",
+   "default": "\"Language\"",
+   "about": "The landmark's name, in the page's own language: \"Language\" here, \"Iaith\" on the Welsh page."
+  },
+  "collapseAfter": {
+   "type": "number",
+   "default": "3",
+   "about": "How many to show before the rest move behind a menu. Default 3."
+  },
+  "moreLabel": {
+   "type": "text",
+   "default": "\"More languages\"",
+   "about": "The menu's words, in the page's language: \"More languages\", \"Lisää kieliä\"."
+  }
+ },
+ "tokens": [
+  "size-sm",
+  "space-1",
+  "target-min",
+  "text-primary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "LanguageSwitcher.Current": "languages[n] with current: true",
+   "LanguageSwitcher.Other": "languages[n] without current"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,80 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "GuitarNeck",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/instruments/Instruments.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [],
+ "props": {
+  "frets": {
+   "type": "number",
+   "about": "Frets drawn (5 to 22)."
+  },
+  "highlight": {
+   "type": "text",
+   "about": "Positions to ring, e.g. \"s6f5 s5f7\" (string 1 high e .. 6 low E, fret 0 open)."
+  },
+  "pulse": {
+   "type": "boolean",
+   "about": "Breathe the rings (off under prefers-reduced-motion and `calm`)."
+  },
+  "calm": {
+   "type": "boolean",
+   "about": "No motion at all: strings don't vibrate, rings don't breathe."
+  },
+  "sound": {
+   "type": "boolean",
+   "about": "Play real recordings when a position is played (fetches about 0.6 MB on first note)."
+  },
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "default": "\"boosty\""
+  },
+  "size": {
+   "type": "other",
+   "ts": "string | number",
+   "about": "A multiple of 640px or any CSS length; unset fills the width."
+  },
+  "label": {
+   "type": "text"
+  },
+  "pressed": {
+   "type": "other",
+   "ts": "string[]",
+   "about": "Held positions (\"s6f5\") and/or controller buttons (fret1..5; strum plays what is held)."
+  },
+  "binding": {
+   "type": "other",
+   "ts": "Partial<Record<\"fret1\" | \"fret2\" | \"fret3\" | \"fret4\" | \"fret",
+   "about": "Controller button to position, e.g. { fret1: \"s6f5\" }."
+  },
+  "onNote": {
+   "type": "event"
+  },
+  "className": {
+   "type": "text"
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  }
+ },
+ "tokens": [],
+ "checks": [],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,132 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "DestructiveConfirm",
+ "layer": "primitive",
+ "about": "DestructiveConfirm — a pause before an action that cannot be undone. An alert dialog: the title is a question, the consequence is read with it, Cancel comes first and takes focus, the action is the da",
+ "sources": {
+  "react": "src/react/primitives/DestructiveConfirm.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/field.css"
+ ],
+ "dataTk": [
+  "field-error"
+ ],
+ "figma": [
+  {
+   "name": "DestructiveConfirm",
+   "node": "509:2474",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Consequence": "consequence",
+    "Confirm prompt": "confirmPrompt"
+   },
+   "unpaired": [
+    "Show name field"
+   ]
+  }
+ ],
+ "props": {
+  "open": {
+   "type": "boolean",
+   "required": true
+  },
+  "onClose": {
+   "type": "event",
+   "required": true
+  },
+  "title": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "DestructiveConfirm.Title"
+   ],
+   "about": "A question with the action's words: \"Delete project?\". Never \"Are you sure?\"."
+  },
+  "consequence": {
+   "type": "content",
+   "required": true,
+   "figma": [
+    "DestructiveConfirm.Consequence"
+   ],
+   "about": "What will happen, naming the thing: \"You're deleting acme-web. You cannot undo this action.\" Read when it opens."
+  },
+  "confirmLabel": {
+   "type": "text",
+   "required": true,
+   "about": "The action in the title's words: \"Delete project\", never \"OK\"."
+  },
+  "cancelLabel": {
+   "type": "text",
+   "default": "\"Cancel\"",
+   "about": "\"Cancel\", or \"Keep [thing]\" when the action is itself a cancellation."
+  },
+  "severity": {
+   "type": "enum",
+   "values": [
+    "medium",
+    "high"
+   ],
+   "default": "\"medium\"",
+   "about": "medium: confirm with a button. high (it takes other things with it, or cannot be put back): type the thing's name first. Low needs no dialog: do it, and offer Undo in a Toast."
+  },
+  "confirmText": {
+   "type": "text",
+   "about": "The name to type, for high."
+  },
+  "confirmPrompt": {
+   "type": "text",
+   "figma": [
+    "DestructiveConfirm.Confirm prompt"
+   ],
+   "about": "The label of the field for high. Defaults to \"Enter [name] to confirm\"."
+  },
+  "onConfirm": {
+   "type": "event",
+   "required": true,
+   "about": "The action. The dialog stays open and busy until it settles, and shows the error if it fails."
+  },
+  "busyLabel": {
+   "type": "text",
+   "default": "\"Deleting…\""
+  },
+  "returnFocusTo": {
+   "type": "other",
+   "ts": "() => HTMLElement",
+   "about": "Where focus goes on close when the thing (and the button that opened this) is gone."
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "default": "\"sm\""
+  }
+ },
+ "tokens": [
+  "size-sm",
+  "status-danger-text",
+  "weight-medium"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "DestructiveConfirm.Show name field": "confirmText (omit it to hide the typed confirmation)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

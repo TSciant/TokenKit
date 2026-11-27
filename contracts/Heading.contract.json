@@ -1,0 +1,75 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Heading",
+ "layer": "primitive",
+ "about": "A heading whose level and look are chosen separately. The level is structure; `text` is appearance. Writing the level to get a size (an h4 because it is small) breaks the outline every assistive techn",
+ "sources": {
+  "react": "src/react/primitives/Heading.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "Heading",
+   "node": "482:2025",
+   "codeConnect": true,
+   "map": {
+    "Text": "text",
+    "Level": "level"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "level": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1",
+    "5",
+    "6"
+   ],
+   "required": true,
+   "figma": [
+    "Heading.Level"
+   ],
+   "about": "The level in the page's outline: what a screen reader lists and jumps between. One h1 per page, and no skipped levels. Choose it for the structure, never for the size."
+  },
+  "text": {
+   "type": "enum",
+   "values": [
+    "title",
+    "body",
+    "caption",
+    "small",
+    "display",
+    "heading-l",
+    "heading-m",
+    "heading-s",
+    "heading-xs",
+    "eyebrow",
+    "lead",
+    "metric"
+   ],
+   "figma": [
+    "Heading.Text"
+   ],
+   "about": "How it looks, when that is not the level's own look: an h2 that needs to be small (`heading-s`), or an h1 that is a landing page's `display`. Leave it unset and the level's style applies."
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

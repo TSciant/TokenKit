@@ -1,0 +1,143 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Hero",
+ "layer": "pattern",
+ "about": "26 — the static hero: the top of a page that is not a carousel. Eyebrow, title, lede, actions and a visual, every one optional but the title, so the minimal hero is this component with less in it. `la",
+ "sources": {
+  "react": "src/react/patterns/marketing.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/hero.css"
+ ],
+ "dataTk": [
+  "hero",
+  "hero-actions",
+  "hero-body",
+  "hero-lede",
+  "hero-text",
+  "hero-title",
+  "hero-visual"
+ ],
+ "figma": [
+  {
+   "name": "Hero",
+   "node": "213:747",
+   "codeConnect": true,
+   "map": {
+    "Layout": "layout",
+    "Actions": "actions"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "eyebrow": {
+   "type": "text",
+   "default": "HERO_EYEBROW",
+   "about": "A short line above the title. Leave empty for none."
+  },
+  "title": {
+   "type": "text",
+   "default": "HERO_TITLE"
+  },
+  "lede": {
+   "type": "text",
+   "default": "HERO_LEDE",
+   "about": "One or two sentences under the title. Leave empty for none."
+  },
+  "cta": {
+   "type": "text",
+   "default": "HERO_CTA",
+   "about": "The primary action's label. Leave empty for no primary action."
+  },
+  "secondary": {
+   "type": "text",
+   "default": "HERO_SECONDARY",
+   "about": "A second, quieter action beside the first. Leave empty for none."
+  },
+  "actions": {
+   "type": "enum",
+   "values": [
+    "capture",
+    "buttons"
+   ],
+   "default": "\"buttons\"",
+   "figma": [
+    "Hero.Actions"
+   ],
+   "about": "buttons: the CTA and the secondary. capture: an inline form (one field, `cta` as its submit) in their place."
+  },
+  "captureLabel": {
+   "type": "text",
+   "default": "HERO_CAPTURE_LABEL",
+   "about": "The capture field's label (capture only)."
+  },
+  "captureHint": {
+   "type": "text",
+   "default": "HERO_CAPTURE_HINT",
+   "about": "A line under the capture field: what they are signing up for, how often (capture only)."
+  },
+  "layout": {
+   "type": "enum",
+   "values": [
+    "stacked",
+    "split"
+   ],
+   "default": "\"stacked\"",
+   "figma": [
+    "Hero.Layout"
+   ],
+   "about": "stacked: the visual under the copy. split: copy and visual side by side, stacking when the box cannot hold two."
+  },
+  "media": {
+   "type": "enum",
+   "values": [
+    "none",
+    "plate"
+   ],
+   "default": "\"plate\"",
+   "about": "plate draws the stand-in photograph; none leaves the hero as copy only."
+  },
+  "ratio": {
+   "type": "text",
+   "default": "\"16 / 9\"",
+   "about": "Aspect ratio of the visual."
+  },
+  "seed": {
+   "type": "number",
+   "default": "2",
+   "about": "1-6. Picks the stand-in photograph; deterministic so screenshots match."
+  },
+  "category": {
+   "type": "text",
+   "about": "What the photograph is of, named on the plate while no stock is registered."
+  }
+ },
+ "tokens": [
+  "leading-tight",
+  "measure",
+  "measure-narrow",
+  "size-display",
+  "size-md",
+  "size-title",
+  "space-2",
+  "space-3",
+  "space-7",
+  "space-8",
+  "text-secondary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

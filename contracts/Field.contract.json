@@ -1,0 +1,201 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Field",
+ "layer": "primitive",
+ "about": "Field. Baseline: labelled input. Progressive layers: hint → describedby; error → invalid + error text; required → announced; control=select|textarea → same wiring, native control (works without JS).",
+ "sources": {
+  "react": "src/react/primitives/Field.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/field.css",
+  "src/css/components/scene.css"
+ ],
+ "dataTk": [
+  "field",
+  "field-affix",
+  "field-control",
+  "field-count",
+  "field-hint",
+  "field-label",
+  "field-optional"
+ ],
+ "figma": [
+  {
+   "name": "Field",
+   "node": "38:200",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Hint": "hint",
+    "Error": "error",
+    "Required": "required",
+    "Show hint": "hint (omit it to hide)",
+    "Optional": "optional",
+    "Control": "control",
+    "State": "default: CSS, invalid: error, disabled: disabled, readonly: readOnly"
+   },
+   "unpaired": [
+    "Value"
+   ]
+  },
+  {
+   "name": "FieldAffix",
+   "node": "228:1393",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  },
+  {
+   "name": "FieldPassword",
+   "node": "229:1393",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  },
+  {
+   "name": "FieldCount",
+   "node": "230:1396",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  },
+  {
+   "name": "FieldWidths",
+   "node": "241:144",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  },
+  {
+   "name": "FieldReadOnly",
+   "node": "242:2291",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "Field.Label"
+   ]
+  },
+  "hint": {
+   "type": "text",
+   "figma": [
+    "Field.Hint",
+    "Field.Show hint"
+   ]
+  },
+  "error": {
+   "type": "text",
+   "figma": [
+    "Field.Error"
+   ]
+  },
+  "required": {
+   "type": "boolean",
+   "figma": [
+    "Field.Required"
+   ],
+   "about": "Progressive required marking — text + asterisk, not colour alone."
+  },
+  "optional": {
+   "type": "boolean",
+   "figma": [
+    "Field.Optional"
+   ],
+   "about": "Marks the label \"(optional)\" instead. Mark the minority: when most of a form's fields are required, mark the few that are optional; when most are optional, mark the required ones. Ignored if `required"
+  },
+  "control": {
+   "type": "enum",
+   "values": [
+    "input",
+    "select",
+    "textarea"
+   ],
+   "default": "\"input\"",
+   "figma": [
+    "Field.Control"
+   ]
+  },
+  "chars": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "10",
+    "20",
+    "30",
+    "5"
+   ],
+   "about": "How many characters the answer is expected to be. Sizes the control to fit it (a year is 4, a postcode 10, a phone number 20), because the box's size is a hint about the answer's size. Leave it out to"
+  },
+  "prefix": {
+   "type": "text",
+   "about": "A short unit before the input (\"$\", \"£\") or after it (\"kg\", \"%\"). Drawn attached to the input but outside it, and hidden from screen readers so it is not read as part of the value: say the unit in the"
+  },
+  "suffix": {
+   "type": "text"
+  },
+  "reveal": {
+   "type": "boolean",
+   "default": "true",
+   "about": "For `type=\"password\"`: a Show / Hide button beside the field, on by default. Seeing what you typed is how you catch the typo before the form rejects it. Set false only where the value must never be sh"
+  },
+  "maxChars": {
+   "type": "number",
+   "about": "A character limit, shown as a count under the field (\"You have 12 characters remaining\"). Not the native maxlength: typing past it is allowed and shown as too many, never silently cut off. The count i"
+  },
+  "options": {
+   "type": "other",
+   "ts": "FieldOption[]"
+  },
+  "id": {
+   "type": "text",
+   "about": "The control's id, for something that links to it: an ErrorSummary entry (\"#email\"), or a fragment in a URL. Generated when left out."
+  },
+  "children": {
+   "type": "content"
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "line-strong",
+  "radius-control",
+  "radius-nested",
+  "size-base",
+  "size-sm",
+  "space-2",
+  "space-3",
+  "status-danger-text",
+  "surface-sunken",
+  "text-primary",
+  "text-secondary",
+  "weight-medium",
+  "weight-normal"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "omit": {
+   "Field.Value": "what the person types: the control's own value, or a defaultValue attribute passed through"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

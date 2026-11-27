@@ -1,0 +1,225 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Button",
+ "layer": "primitive",
+ "about": "Button. Props land as attributes; CSS resolves look. Progressive enhancement: - With `href` / `as=\"a\"` it is a real link (works without JS). - `busy` is an enhancement on top of a still-valid disabled",
+ "sources": {
+  "react": "src/react/primitives/Button.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/button-group.css",
+  "src/css/components/button.css",
+  "src/css/components/chat.css",
+  "src/css/components/cookie-consent.css",
+  "src/css/components/field.css",
+  "src/css/components/hero.css",
+  "src/css/components/inline-form.css",
+  "src/css/components/modal.css",
+  "src/css/components/pricing.css",
+  "src/css/components/sample-page.css",
+  "src/css/components/scene.css",
+  "src/css/components/site-header.css"
+ ],
+ "dataTk": [
+  "button",
+  "button-affix",
+  "button-label",
+  "button-reason",
+  "button-turn"
+ ],
+ "figma": [
+  {
+   "name": "Button",
+   "node": "37:332",
+   "codeConnect": true,
+   "map": {
+    "Label": "children",
+    "Show leading": "leading (omit it to hide)",
+    "Show trailing": "trailing (omit it to hide)",
+    "Leading": "leading={<Icon name=\"…\" />}",
+    "Trailing": "trailing={<Icon name=\"…\" />}",
+    "Variant": "variant",
+    "Size": "size",
+    "State": "default: CSS, hover: CSS, active: CSS, disabled: disabled, pressed: pressed",
+    "Tone": "tone"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "ButtonReason",
+   "node": "220:142",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "as": {
+   "type": "other",
+   "ts": "ElementType",
+   "about": "Polymorphic root. Pass \"a\" (or provide href) for a progressive link."
+  },
+  "href": {
+   "type": "text"
+  },
+  "variant": {
+   "type": "enum",
+   "values": [
+    "solid",
+    "outline",
+    "quiet"
+   ],
+   "figma": [
+    "Button.Variant"
+   ]
+  },
+  "tone": {
+   "type": "enum",
+   "values": [
+    "danger",
+    "neutral"
+   ],
+   "figma": [
+    "Button.Tone"
+   ],
+   "about": "Consequence, crossed with `variant`. \"danger\" for destructive or irreversible actions; the colour is the pack's, and the label still has to say what happens. Neutral renders no attribute."
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "figma": [
+    "Button.Size"
+   ]
+  },
+  "pressed": {
+   "type": "boolean",
+   "about": "Makes the button a toggle: true or false renders `aria-pressed`, left out it is an ordinary button. A toggle defaults to `outline`, because a solid button has nowhere to go when it is switched on. Not"
+  },
+  "full": {
+   "type": "boolean"
+  },
+  "busy": {
+   "type": "boolean",
+   "about": "Progressive busy state — disables activation and announces to AT."
+  },
+  "busyLabel": {
+   "type": "content",
+   "about": "The words while it is busy: \"Posting…\", \"Saving…\". The label changes to them and back, in a polite live region that is there from the first render, so a screen reader hears the change while focus stay"
+  },
+  "reason": {
+   "type": "content",
+   "about": "Why a disabled button is unavailable. Shown beside it on hover and on focus, and read as its description. A disabled button stays in the tab order so it can say this; without a reason it is still focu"
+  },
+  "icon": {
+   "type": "icon or content",
+   "about": "Bound icon slot. Prefer this when you have one icon and a position. Maps to leading or trailing via `iconPosition` (default leading). With no children, renders icon-only (set `aria-label`)."
+  },
+  "iconPosition": {
+   "type": "enum",
+   "values": [
+    "leading",
+    "trailing"
+   ],
+   "default": "\"leading\"",
+   "about": "Where `icon` lands. Ignored when `leading` / `trailing` are passed."
+  },
+  "leading": {
+   "type": "icon or content",
+   "figma": [
+    "Button.Show leading",
+    "Button.Leading"
+   ],
+   "about": "Explicit leading slot (wins over `icon` when both are set)."
+  },
+  "trailing": {
+   "type": "icon or content",
+   "figma": [
+    "Button.Show trailing",
+    "Button.Trailing"
+   ],
+   "about": "Explicit trailing slot (wins over `icon` when both are set)."
+  },
+  "type": {
+   "type": "enum",
+   "values": [
+    "button",
+    "submit",
+    "reset"
+   ],
+   "default": "\"button\""
+  },
+  "children": {
+   "type": "content",
+   "figma": [
+    "Button.Label"
+   ]
+  }
+ },
+ "tokens": [
+  "action-danger-fill",
+  "action-danger-fill-active",
+  "action-danger-fill-hover",
+  "action-danger-quiet-text",
+  "action-danger-text",
+  "action-fill",
+  "action-fill-active",
+  "action-fill-hover",
+  "action-quiet-fill",
+  "action-quiet-fill-active",
+  "action-quiet-fill-hover",
+  "action-quiet-text",
+  "action-text",
+  "control-min",
+  "gutter",
+  "leading-snug",
+  "leading-tight",
+  "line-strong",
+  "motion-elevation",
+  "motion-ink",
+  "motion-line",
+  "motion-opacity",
+  "motion-spin",
+  "motion-surface",
+  "motion-transform",
+  "radius-button",
+  "radius-full",
+  "radius-nested",
+  "radius-sm",
+  "size-base",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "surface-inverse",
+  "surface-sunken",
+  "target-comfortable",
+  "target-min",
+  "text-disabled",
+  "text-inverse",
+  "text-on-scrim",
+  "tracking-wide",
+  "weight-medium",
+  "weight-normal"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

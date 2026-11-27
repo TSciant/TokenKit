@@ -1,0 +1,131 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Panel",
+ "layer": "primitive",
+ "about": "Panel — a page's one prominent message: done, or wait. A confirmation panel tells the reader a task is finished, with its reference large enough to note down; what happens next goes under it, on the p",
+ "sources": {
+  "react": "src/react/primitives/Panel.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/panel.css"
+ ],
+ "dataTk": [
+  "panel",
+  "panel-actions",
+  "panel-body",
+  "panel-reference",
+  "panel-reference-line",
+  "panel-title"
+ ],
+ "figma": [
+  {
+   "name": "Panel",
+   "node": "461:1867",
+   "codeConnect": true,
+   "map": {
+    "Reference": "reference",
+    "Show reference": "reference (omit it to hide)",
+    "Variant": "variant (lower case)"
+   },
+   "unpaired": [
+    "Confirmation heading",
+    "Confirmation note",
+    "Show confirmation note",
+    "Interruption heading",
+    "Interruption content"
+   ]
+  }
+ ],
+ "props": {
+  "variant": {
+   "type": "enum",
+   "values": [
+    "confirmation",
+    "interruption"
+   ],
+   "default": "\"confirmation\"",
+   "figma": [
+    "Panel.Variant"
+   ],
+   "about": "confirmation: the task is done (the top of a confirmation page). interruption: the journey pauses for something the reader must see before going on; the only content on its page."
+  },
+  "title": {
+   "type": "text",
+   "required": true,
+   "about": "The heading. A confirmation says what is done (\"Application complete\"); an interruption says it is one (\"Before you continue\", \"Check your salary\"), because nothing announces it when the page loads."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "1"
+   ],
+   "default": "1",
+   "about": "1 on a page of its own (both kinds usually are); 2 inside one."
+  },
+  "reference": {
+   "type": "text",
+   "figma": [
+    "Panel.Reference",
+    "Panel.Show reference"
+   ],
+   "about": "A confirmation's reference, set large so it can be read out or copied."
+  },
+  "referenceLabel": {
+   "type": "text",
+   "default": "\"Your reference number\""
+  },
+  "actions": {
+   "type": "content",
+   "about": "An interruption's two ways out: one Button to go on and one link to go back, nothing else."
+  },
+  "children": {
+   "type": "content"
+  }
+ },
+ "tokens": [
+  "leading-tight",
+  "line-default",
+  "measure",
+  "radius-lg",
+  "radius-nested",
+  "size-md",
+  "size-title",
+  "size-xl",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-6",
+  "space-7",
+  "status-success-line",
+  "status-success-surface",
+  "surface-default",
+  "text-primary",
+  "tracking-wide",
+  "weight-bold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "Panel.Confirmation heading": "title, with variant confirmation",
+   "Panel.Confirmation note": "children",
+   "Panel.Show confirmation note": "children (omit them to hide)",
+   "Panel.Interruption heading": "title, with variant interruption",
+   "Panel.Interruption content": "children"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

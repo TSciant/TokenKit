@@ -1,0 +1,146 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "CaseStudy",
+ "layer": "primitive",
+ "about": "CaseStudy — one piece of work told as a story: who it was for, what was wrong, what was done and what came of it. The parts are a description list (a label, then its paragraph), the results a row of f",
+ "sources": {
+  "react": "src/react/primitives/CaseStudy.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/case-study.css"
+ ],
+ "dataTk": [
+  "case-study",
+  "case-study-head",
+  "case-study-link",
+  "case-study-measure",
+  "case-study-part",
+  "case-study-parts",
+  "case-study-results",
+  "case-study-summary",
+  "case-study-value"
+ ],
+ "figma": [
+  {
+   "name": "CaseStudy",
+   "node": "492:2147",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Summary": "summary",
+    "Show summary": "summary (omit it to hide)",
+    "Show results": "results (omit it to hide)",
+    "Link": "link",
+    "Show link": "link (omit it to hide)"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "CaseStudy/Part",
+   "node": "492:2141",
+   "codeConnect": true,
+   "map": {
+    "Label": "children",
+    "Body": "children"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "CaseStudy/Result",
+   "node": "492:2144",
+   "codeConnect": true,
+   "map": {
+    "Value": "CaseStudy data",
+    "Measure": "CaseStudy data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "client": {
+   "type": "text",
+   "about": "Who or what it is about: the client, the sector. Shown above the title."
+  },
+  "title": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "CaseStudy.Title"
+   ]
+  },
+  "summary": {
+   "type": "text",
+   "figma": [
+    "CaseStudy.Summary",
+    "CaseStudy.Show summary"
+   ],
+   "about": "The story in a sentence or two."
+  },
+  "parts": {
+   "type": "other",
+   "ts": "{ label: string; body: string; }[]",
+   "about": "The story in parts, each a label and a short paragraph: usually the challenge, the approach and the outcome, in that order. Two to four."
+  },
+  "results": {
+   "type": "other",
+   "ts": "{ value: string; label: string; }[]",
+   "figma": [
+    "CaseStudy.Show results"
+   ],
+   "about": "What came of it, as figures: two to four, each a value and what it counts."
+  },
+  "link": {
+   "type": "other",
+   "ts": "{ label: string; href: string; }",
+   "figma": [
+    "CaseStudy.Link",
+    "CaseStudy.Show link"
+   ],
+   "about": "A link to the whole story."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3"
+   ],
+   "about": "The title's heading level: h2 for a page's one case study, h3 for one in a section (the default)."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3"
+   ]
+  }
+ },
+ "tokens": [
+  "leading-tight",
+  "line-default",
+  "measure",
+  "size-2xl",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-6",
+  "text-secondary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

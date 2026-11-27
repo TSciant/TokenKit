@@ -1,0 +1,77 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SessionTimeoutWarning",
+ "layer": "primitive",
+ "about": "SessionTimeoutWarning — the dialog on its own, with the time left given: the title, the sentence with the time in words (seconds only in the last minute), what happens to their answers, the button to ",
+ "sources": {
+  "react": "src/react/primitives/SessionTimeout.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "visually-hidden"
+ ],
+ "figma": [],
+ "props": {
+  "open": {
+   "type": "boolean",
+   "required": true
+  },
+  "remaining": {
+   "type": "number",
+   "required": true,
+   "about": "Seconds left."
+  },
+  "variant": {
+   "type": "enum",
+   "values": [
+    "anonymous",
+    "signed-in"
+   ],
+   "default": "\"signed-in\""
+  },
+  "title": {
+   "type": "text"
+  },
+  "message": {
+   "type": "other",
+   "ts": "(left: string) => string",
+   "about": "In place of the variant's sentence; gets the time left in words."
+  },
+  "extendLabel": {
+   "type": "text"
+  },
+  "signOutLabel": {
+   "type": "text"
+  },
+  "signOutHref": {
+   "type": "text",
+   "required": true
+  },
+  "answers": {
+   "type": "content",
+   "about": "What happens to what they entered: \"We will save your answers.\""
+  },
+  "onExtend": {
+   "type": "event",
+   "required": true
+  },
+  "busy": {
+   "type": "boolean"
+  },
+  "announcement": {
+   "type": "text",
+   "about": "Words for the status region inside the dialog (the page outside it is inert while it is open)."
+  }
+ },
+ "tokens": [],
+ "checks": [],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

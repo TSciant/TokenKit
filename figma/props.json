@@ -1,0 +1,3523 @@
+{
+ "note": "Snapshot of each kit component's Figma properties (file QZCC8HtLON5aYIAmYc56Li), taken 2026-11-27 through the Figma MCP. p: [name, T text | B boolean (default) | I instance swap | V variant (options)]; x: exposed nested instances. Read by tools/figma-propmap.mjs.",
+ "37:332": {
+  "name": "Button",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Show leading",
+    "B",
+    false
+   ],
+   [
+    "Show trailing",
+    "B",
+    false
+   ],
+   [
+    "Leading",
+    "I"
+   ],
+   [
+    "Trailing",
+    "I"
+   ],
+   [
+    "Variant",
+    "V",
+    [
+     "solid",
+     "outline",
+     "quiet"
+    ]
+   ],
+   [
+    "Size",
+    "V",
+    [
+     "sm",
+     "md",
+     "lg"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "default",
+     "hover",
+     "active",
+     "disabled",
+     "pressed"
+    ]
+   ],
+   [
+    "Tone",
+    "V",
+    [
+     "neutral",
+     "danger"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "37:393": {
+  "name": "Chip",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Show leading",
+    "B",
+    false
+   ],
+   [
+    "Leading",
+    "I"
+   ],
+   [
+    "Emphasis",
+    "V",
+    [
+     "default",
+     "strong",
+     "quiet"
+    ]
+   ],
+   [
+    "Pressed",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "default",
+     "hover"
+    ]
+   ],
+   [
+    "Interactive",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "37:404": {
+  "name": "Eyebrow",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Show icon",
+    "B",
+    false
+   ],
+   [
+    "Icon",
+    "I"
+   ],
+   [
+    "Emphasis",
+    "V",
+    [
+     "default",
+     "quiet"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "38:88": {
+  "name": "Card",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Body",
+    "T"
+   ],
+   [
+    "Show footer",
+    "B",
+    false
+   ],
+   [
+    "Footer",
+    "T"
+   ],
+   [
+    "Variant",
+    "V",
+    [
+     "default",
+     "flat",
+     "bare"
+    ]
+   ],
+   [
+    "Interactive",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "default",
+     "hover"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "38:101": {
+  "name": "Alert",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Body",
+    "T"
+   ],
+   [
+    "Status icon",
+    "B",
+    true
+   ],
+   [
+    "Status",
+    "V",
+    [
+     "info",
+     "success",
+     "warning",
+     "danger"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "38:121": {
+  "name": "Guidance",
+  "p": [
+   [
+    "Note",
+    "T"
+   ],
+   [
+    "Tone",
+    "V",
+    [
+     "do",
+     "dont"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "38:200": {
+  "name": "Field",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Value",
+    "T"
+   ],
+   [
+    "Hint",
+    "T"
+   ],
+   [
+    "Error",
+    "T"
+   ],
+   [
+    "Required",
+    "B",
+    false
+   ],
+   [
+    "Show hint",
+    "B",
+    false
+   ],
+   [
+    "Optional",
+    "B",
+    false
+   ],
+   [
+    "Control",
+    "V",
+    [
+     "input",
+     "select",
+     "textarea"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "default",
+     "invalid",
+     "disabled",
+     "readonly"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "38:231": {
+  "name": "Meter",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Value",
+    "V",
+    [
+     "0",
+     "25",
+     "50",
+     "75",
+     "100"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "38:283": {
+  "name": "Modal",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Body",
+    "T"
+   ],
+   [
+    "Show footer",
+    "B",
+    true
+   ],
+   [
+    "Dismissible",
+    "B",
+    true
+   ],
+   [
+    "Description",
+    "B",
+    false
+   ],
+   [
+    "Description text",
+    "T"
+   ],
+   [
+    "Size",
+    "V",
+    [
+     "sm",
+     "md",
+     "lg"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "39:118": {
+  "name": "Figure",
+  "p": [
+   [
+    "Caption",
+    "T"
+   ],
+   [
+    "Credit",
+    "T"
+   ],
+   [
+    "Show caption",
+    "B",
+    true
+   ],
+   [
+    "Show credit",
+    "B",
+    true
+   ],
+   [
+    "Aspect",
+    "V",
+    [
+     "auto",
+     "1/1",
+     "4/3",
+     "16/9",
+     "21/9"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "39:173": {
+  "name": "Media",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Body",
+    "T"
+   ],
+   [
+    "Size",
+    "V",
+    [
+     "sm",
+     "md",
+     "lg"
+    ]
+   ],
+   [
+    "Container",
+    "V",
+    [
+     "wide",
+     "narrow"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "39:189": {
+  "name": "Icon",
+  "p": [
+   [
+    "Name",
+    "I"
+   ],
+   [
+    "Size",
+    "V",
+    [
+     "sm",
+     "md",
+     "lg"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "31:42": {
+  "name": "RailNav/Item",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Kind",
+    "V",
+    [
+     "top",
+     "group",
+     "group-open",
+     "child",
+     "child-current"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "31:43": {
+  "name": "RailNav",
+  "p": [],
+  "x": []
+ },
+ "54:245": {
+  "name": "SiteHeader",
+  "p": [
+   [
+    "Brand",
+    "T"
+   ],
+   [
+    "Nav 1",
+    "T"
+   ],
+   [
+    "Nav 2",
+    "T"
+   ],
+   [
+    "Nav 3",
+    "T"
+   ],
+   [
+    "Nav 4",
+    "T"
+   ],
+   [
+    "Container",
+    "V",
+    [
+     "wide",
+     "narrow"
+    ]
+   ],
+   [
+    "Mega menu",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "69:393": {
+  "name": "Masthead",
+  "p": [
+   [
+    "Brand",
+    "T"
+   ],
+   [
+    "Nav 1",
+    "T"
+   ],
+   [
+    "Nav 2",
+    "T"
+   ],
+   [
+    "Nav 3",
+    "T"
+   ],
+   [
+    "Nav 4",
+    "T"
+   ],
+   [
+    "Nav 5",
+    "T"
+   ],
+   [
+    "Nav 6",
+    "T"
+   ],
+   [
+    "Container",
+    "V",
+    [
+     "wide",
+     "narrow"
+    ]
+   ],
+   [
+    "Mega menu",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ],
+   [
+    "Search",
+    "V",
+    [
+     "true",
+     "false"
+    ]
+   ],
+   [
+    "Contact CTA",
+    "V",
+    [
+     "true",
+     "false"
+    ]
+   ]
+  ],
+  "x": [
+   "contact"
+  ]
+ },
+ "60:558": {
+  "name": "ProofStrip",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ],
+   [
+    "Deck",
+    "T"
+   ],
+   [
+    "Value 1",
+    "T"
+   ],
+   [
+    "Label 1",
+    "T"
+   ],
+   [
+    "Value 2",
+    "T"
+   ],
+   [
+    "Label 2",
+    "T"
+   ],
+   [
+    "Value 3",
+    "T"
+   ],
+   [
+    "Label 3",
+    "T"
+   ],
+   [
+    "Columns",
+    "V",
+    [
+     "3"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "70:204": {
+  "name": "PageHero",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Deck",
+    "T"
+   ],
+   [
+    "Crumb 1",
+    "T"
+   ],
+   [
+    "Crumb 2",
+    "T"
+   ],
+   [
+    "Current",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "74:204": {
+  "name": "SiteFooter",
+  "p": [
+   [
+    "Legal 1",
+    "T"
+   ],
+   [
+    "Legal 2",
+    "T"
+   ],
+   [
+    "Legal 3",
+    "T"
+   ],
+   [
+    "Nav 1",
+    "T"
+   ],
+   [
+    "Nav 2",
+    "T"
+   ],
+   [
+    "Nav 3",
+    "T"
+   ],
+   [
+    "Subscribe",
+    "T"
+   ],
+   [
+    "Subscribe CTA",
+    "T"
+   ],
+   [
+    "Copyright",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "76:255": {
+  "name": "ArrowCta",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Variant",
+    "V",
+    [
+     "solid",
+     "outline",
+     "quiet"
+    ]
+   ],
+   [
+    "Size",
+    "V",
+    [
+     "sm",
+     "md",
+     "lg"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "135:760": {
+  "name": "HeroCarousel",
+  "p": [
+   [
+    "Plate",
+    "I"
+   ],
+   [
+    "Slide",
+    "V",
+    [
+     "1",
+     "2",
+     "3"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "82:577": {
+  "name": "TileGrid",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "82:247": {
+  "name": "TileGrid/Tile",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Seed",
+    "V",
+    [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "86:260": {
+  "name": "HubCards",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "86:250": {
+  "name": "HubCards/Card",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Body",
+    "T"
+   ],
+   [
+    "Read more",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "87:282": {
+  "name": "CtaBlocks",
+  "p": [
+   [
+    "Title 1",
+    "T"
+   ],
+   [
+    "Body 1",
+    "T"
+   ],
+   [
+    "Title 2",
+    "T"
+   ],
+   [
+    "Body 2",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "98:384": {
+  "name": "MediaCards",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "98:288": {
+  "name": "MediaCards/Card",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Duration",
+    "T"
+   ]
+  ],
+  "x": [
+   "kind"
+  ]
+ },
+ "99:319": {
+  "name": "FilterBar",
+  "p": [],
+  "x": []
+ },
+ "104:459": {
+  "name": "PeopleDirectory",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "104:455": {
+  "name": "PeopleDirectory/Card",
+  "p": [
+   [
+    "Name",
+    "T"
+   ],
+   [
+    "Role",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "106:421": {
+  "name": "EventList",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "106:413": {
+  "name": "EventList/Row",
+  "p": [
+   [
+    "Meta",
+    "T"
+   ],
+   [
+    "Title",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "114:519": {
+  "name": "LeadForm",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ],
+   [
+    "Deck",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "115:582": {
+  "name": "ApplyForm",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "118:533": {
+  "name": "SegmentPage",
+  "p": [
+   [
+    "Intro",
+    "T"
+   ],
+   [
+    "Capabilities heading",
+    "T"
+   ],
+   [
+    "CTA heading",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "119:549": {
+  "name": "SubBrandPage",
+  "p": [
+   [
+    "Body",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "120:679": {
+  "name": "ArticlePage",
+  "p": [
+   [
+    "Lede",
+    "T"
+   ],
+   [
+    "Section heading",
+    "T"
+   ],
+   [
+    "Section body",
+    "T"
+   ],
+   [
+    "Author name",
+    "T"
+   ],
+   [
+    "Author role",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "129:584": {
+  "name": "FeatureGrid",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ],
+   [
+    "Deck",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "129:580": {
+  "name": "FeatureGrid/Card",
+  "p": [
+   [
+    "Title",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "131:589": {
+  "name": "EventPromo",
+  "p": [
+   [
+    "Eyebrow",
+    "T"
+   ],
+   [
+    "Heading",
+    "T"
+   ],
+   [
+    "Body",
+    "T"
+   ],
+   [
+    "Meta",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "132:606": {
+  "name": "ArticleFeed",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ],
+   [
+    "Deck",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "132:599": {
+  "name": "ArticleFeed/Card",
+  "p": [
+   [
+    "Kind",
+    "T"
+   ],
+   [
+    "Title",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "137:740": {
+  "name": "HeaderSearch",
+  "p": [
+   [
+    "State",
+    "V",
+    [
+     "closed",
+     "open"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "148:230": {
+  "name": "SectionNav",
+  "p": [],
+  "x": []
+ },
+ "148:229": {
+  "name": "SectionNav/Item",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Current",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "148:250": {
+  "name": "OnThisPage",
+  "p": [
+   [
+    "Title",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "148:249": {
+  "name": "OnThisPage/Item",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Level",
+    "V",
+    [
+     "1",
+     "2"
+    ]
+   ],
+   [
+    "Current",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "148:299": {
+  "name": "MenuButton",
+  "p": [
+   [
+    "Variant",
+    "V",
+    [
+     "outline",
+     "solid",
+     "quiet"
+    ]
+   ],
+   [
+    "Open",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ],
+   [
+    "Size",
+    "V",
+    [
+     "md",
+     "sm",
+     "lg"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "151:753": {
+  "name": "MegaMenu",
+  "p": [],
+  "x": []
+ },
+ "170:1051": {
+  "name": "Faq",
+  "p": [
+   [
+    "Title",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "170:1050": {
+  "name": "Faq/Item",
+  "p": [
+   [
+    "Question",
+    "T"
+   ],
+   [
+    "Answer",
+    "T"
+   ],
+   [
+    "Index",
+    "T"
+   ],
+   [
+    "Open",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "172:308": {
+  "name": "SearchResults",
+  "p": [],
+  "x": []
+ },
+ "172:287": {
+  "name": "SearchResults/Row",
+  "p": [
+   [
+    "Type",
+    "T"
+   ],
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Description",
+    "T"
+   ],
+   [
+    "Meta",
+    "T"
+   ],
+   [
+    "Icon",
+    "I"
+   ]
+  ],
+  "x": []
+ },
+ "173:513": {
+  "name": "LogoLadder",
+  "p": [
+   [
+    "Word",
+    "T"
+   ],
+   [
+    "Tagline",
+    "T"
+   ],
+   [
+    "Stage",
+    "V",
+    [
+     "icon",
+     "mark",
+     "word",
+     "stack",
+     "lockup",
+     "full"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "173:476": {
+  "name": "LogoLadder/Mark",
+  "p": [],
+  "x": []
+ },
+ "176:488": {
+  "name": "Plate",
+  "p": [
+   [
+    "Ratio",
+    "V",
+    [
+     "21x9",
+     "16x9",
+     "16x10",
+     "4x3",
+     "1x1",
+     "3x4",
+     "4x5"
+    ]
+   ],
+   [
+    "Subject",
+    "V",
+    [
+     "None",
+     "Person"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "178:495": {
+  "name": "Gradient",
+  "p": [
+   [
+    "Shape",
+    "V",
+    [
+     "linear",
+     "fade",
+     "conic",
+     "radial"
+    ]
+   ],
+   [
+    "Direction",
+    "V",
+    [
+     "blockend",
+     "blockstart",
+     "inlineend",
+     "inlinestart",
+     "diagonal",
+     "diagonalup"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "181:476": {
+  "name": "SkipLink",
+  "p": [
+   [
+    "Label",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "180:1042": {
+  "name": "Arrow",
+  "p": [],
+  "x": []
+ },
+ "183:476": {
+  "name": "Map",
+  "p": [],
+  "x": []
+ },
+ "185:476": {
+  "name": "SegmentList",
+  "p": [],
+  "x": []
+ },
+ "186:485": {
+  "name": "Tachometer",
+  "p": [
+   [
+    "state",
+    "V",
+    [
+     "default",
+     "pegged"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "190:523": {
+  "name": "Shell",
+  "p": [
+   [
+    "kind",
+    "V",
+    [
+     "stack",
+     "row",
+     "grid",
+     "split",
+     "sidebar"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "213:747": {
+  "name": "Hero",
+  "p": [
+   [
+    "Layout",
+    "V",
+    [
+     "stacked",
+     "split"
+    ]
+   ],
+   [
+    "Actions",
+    "V",
+    [
+     "capture",
+     "buttons"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "215:1393": {
+  "name": "InlineForm",
+  "p": [
+   [
+    "State",
+    "V",
+    [
+     "default",
+     "error"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "217:142": {
+  "name": "ButtonGroup",
+  "p": [],
+  "x": []
+ },
+ "220:142": {
+  "name": "ButtonReason",
+  "p": [],
+  "x": []
+ },
+ "222:150": {
+  "name": "CardHeader",
+  "p": [],
+  "x": []
+ },
+ "224:1407": {
+  "name": "ChoiceCard",
+  "p": [
+   [
+    "State",
+    "V",
+    [
+     "unchecked",
+     "checked"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "228:1393": {
+  "name": "FieldAffix",
+  "p": [],
+  "x": []
+ },
+ "229:1393": {
+  "name": "FieldPassword",
+  "p": [],
+  "x": []
+ },
+ "230:1396": {
+  "name": "FieldCount",
+  "p": [],
+  "x": []
+ },
+ "240:2219": {
+  "name": "ModalDescription",
+  "p": [],
+  "x": []
+ },
+ "241:144": {
+  "name": "FieldWidths",
+  "p": [],
+  "x": []
+ },
+ "242:2291": {
+  "name": "FieldReadOnly",
+  "p": [],
+  "x": []
+ },
+ "254:157": {
+  "name": "TextStyles",
+  "p": [],
+  "x": []
+ },
+ "262:145": {
+  "name": "ShellRatio",
+  "p": [],
+  "x": []
+ },
+ "289:1464": {
+  "name": "ChatPanel",
+  "p": [],
+  "x": []
+ },
+ "292:1547": {
+  "name": "Drawer",
+  "p": [],
+  "x": []
+ },
+ "311:1608": {
+  "name": "Pager",
+  "p": [],
+  "x": []
+ },
+ "311:1654": {
+  "name": "AlertAction",
+  "p": [
+   [
+    "Status icon",
+    "B",
+    true
+   ]
+  ],
+  "x": []
+ },
+ "311:1565": {
+  "name": "Avatar",
+  "p": [
+   [
+    "Size",
+    "V",
+    [
+     "sm",
+     "md",
+     "lg"
+    ]
+   ],
+   [
+    "Shape",
+    "V",
+    [
+     "circle",
+     "square"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "311:1607": {
+  "name": "ChipTone",
+  "p": [
+   [
+    "Tone",
+    "V",
+    [
+     "info",
+     "success",
+     "warning",
+     "danger"
+    ]
+   ]
+  ],
+  "x": [
+   "Chip"
+  ]
+ },
+ "402:1585": {
+  "name": "Code",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Code",
+    "T"
+   ],
+   [
+    "Show label",
+    "B",
+    true
+   ],
+   [
+    "Show copy",
+    "B",
+    false
+   ],
+   [
+    "Copy label",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "403:1585": {
+  "name": "Timeline",
+  "p": [
+   [
+    "Detail title",
+    "T"
+   ],
+   [
+    "Detail when",
+    "T"
+   ],
+   [
+    "Detail",
+    "T"
+   ],
+   [
+    "Today",
+    "T"
+   ],
+   [
+    "Show today",
+    "B",
+    true
+   ],
+   [
+    "Show detail",
+    "B",
+    true
+   ]
+  ],
+  "x": []
+ },
+ "409:2590": {
+  "name": "TimelineJourney",
+  "p": [
+   [
+    "Period",
+    "T"
+   ],
+   [
+    "Earlier period",
+    "T"
+   ],
+   [
+    "Show passed",
+    "B",
+    true
+   ],
+   [
+    "Show periods",
+    "B",
+    true
+   ],
+   [
+    "Side",
+    "V",
+    [
+     "Above",
+     "Below"
+    ]
+   ]
+  ],
+  "x": [
+   "Current moment"
+  ]
+ },
+ "402:1603": {
+  "name": "Timeline/Item",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Kind",
+    "V",
+    [
+     "Span",
+     "Milestone"
+    ]
+   ],
+   [
+    "Current",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "404:1625": {
+  "name": "Timeline/Milestone",
+  "p": [
+   [
+    "Year",
+    "T"
+   ],
+   [
+    "Name",
+    "T"
+   ],
+   [
+    "Detail",
+    "T"
+   ],
+   [
+    "Show detail",
+    "B",
+    true
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Passed",
+     "Current"
+    ]
+   ],
+   [
+    "Side",
+    "V",
+    [
+     "Above",
+     "Below"
+    ]
+   ],
+   [
+    "Type",
+    "V",
+    [
+     "Code",
+     "Text",
+     "Media"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "440:1716": {
+  "name": "ToastRegion",
+  "p": [],
+  "x": []
+ },
+ "444:1801": {
+  "name": "Tooltip",
+  "p": [
+   [
+    "Content",
+    "T"
+   ],
+   [
+    "Placement",
+    "V",
+    [
+     "Above",
+     "Below"
+    ]
+   ]
+  ],
+  "x": [
+   "trigger"
+  ]
+ },
+ "441:1721": {
+  "name": "ChoiceGroup",
+  "p": [
+   [
+    "Legend",
+    "T"
+   ],
+   [
+    "Hint",
+    "T"
+   ],
+   [
+    "Show hint",
+    "B",
+    true
+   ],
+   [
+    "Error",
+    "T"
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Default",
+     "Error"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "441:1775": {
+  "name": "Switch",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Hint",
+    "T"
+   ],
+   [
+    "Show hint",
+    "B",
+    true
+   ],
+   [
+    "State",
+    "V",
+    [
+     "On",
+     "Off"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "442:1781": {
+  "name": "Steps",
+  "p": [],
+  "x": []
+ },
+ "442:1845": {
+  "name": "TaskList",
+  "p": [],
+  "x": []
+ },
+ "442:1885": {
+  "name": "SummaryList",
+  "p": [],
+  "x": []
+ },
+ "447:1820": {
+  "name": "UtilityNav",
+  "p": [
+   [
+    "Align",
+    "V",
+    [
+     "End",
+     "Start"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "449:1840": {
+  "name": "SignIn",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ],
+   [
+    "Show error",
+    "B",
+    false
+   ],
+   [
+    "Show remember",
+    "B",
+    true
+   ],
+   [
+    "Show other ways in",
+    "B",
+    false
+   ],
+   [
+    "Show footer",
+    "B",
+    false
+   ],
+   [
+    "Forgot label",
+    "T"
+   ]
+  ],
+  "x": [
+   "error",
+   "email",
+   "remember",
+   "submit"
+  ]
+ },
+ "447:1839": {
+  "name": "AudioPlayer",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Description",
+    "T"
+   ],
+   [
+    "Show description",
+    "B",
+    true
+   ],
+   [
+    "Duration",
+    "T"
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Stopped",
+     "Playing"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "456:1864": {
+  "name": "ErrorSummary",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Show description",
+    "B",
+    false
+   ],
+   [
+    "Description",
+    "T"
+   ]
+  ],
+  "x": [
+   "Error summary link"
+  ]
+ },
+ "456:1862": {
+  "name": "Error summary link",
+  "p": [
+   [
+    "Label",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "457:1864": {
+  "name": "Callout",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Show title",
+    "B",
+    true
+   ],
+   [
+    "Body",
+    "T"
+   ],
+   [
+    "Variant",
+    "V",
+    [
+     "Warning",
+     "Inset"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "458:1867": {
+  "name": "DateInput",
+  "p": [
+   [
+    "Legend",
+    "T"
+   ],
+   [
+    "Hint",
+    "T"
+   ],
+   [
+    "Show hint",
+    "B",
+    true
+   ],
+   [
+    "Error",
+    "T"
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Default",
+     "Error"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "461:1867": {
+  "name": "Panel",
+  "p": [
+   [
+    "Confirmation heading",
+    "T"
+   ],
+   [
+    "Confirmation note",
+    "T"
+   ],
+   [
+    "Show confirmation note",
+    "B",
+    false
+   ],
+   [
+    "Reference",
+    "T"
+   ],
+   [
+    "Show reference",
+    "B",
+    true
+   ],
+   [
+    "Interruption heading",
+    "T"
+   ],
+   [
+    "Interruption content",
+    "T"
+   ],
+   [
+    "Variant",
+    "V",
+    [
+     "Confirmation",
+     "Interruption"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "468:1940": {
+  "name": "PhaseBanner",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Show title",
+    "B",
+    true
+   ],
+   [
+    "Text",
+    "T"
+   ],
+   [
+    "Show text",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "label"
+  ]
+ },
+ "469:1946": {
+  "name": "Breadcrumbs",
+  "p": [
+   [
+    "Current",
+    "T"
+   ],
+   [
+    "Show step 2",
+    "B",
+    true
+   ],
+   [
+    "Show step 3",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "crumb"
+  ]
+ },
+ "469:1942": {
+  "name": "Breadcrumbs/Crumb",
+  "p": [
+   [
+    "Label",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "472:1972": {
+  "name": "Accordion",
+  "p": [
+   [
+    "Show item 3",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "item"
+  ]
+ },
+ "472:1971": {
+  "name": "Accordion/Item",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ],
+   [
+    "Content",
+    "T"
+   ],
+   [
+    "Open",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "473:1977": {
+  "name": "Tabs",
+  "p": [
+   [
+    "Panel",
+    "T"
+   ],
+   [
+    "Show tab 3",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "tab"
+  ]
+ },
+ "473:1976": {
+  "name": "Tabs/Tab",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Default",
+     "Hover",
+     "Selected"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "474:1973": {
+  "name": "ResourceDownload",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Format",
+    "T"
+   ],
+   [
+    "Size",
+    "T"
+   ],
+   [
+    "Show size",
+    "B",
+    true
+   ],
+   [
+    "Length",
+    "T"
+   ],
+   [
+    "Show length",
+    "B",
+    true
+   ],
+   [
+    "Date",
+    "T"
+   ],
+   [
+    "Show date",
+    "B",
+    true
+   ],
+   [
+    "Description",
+    "T"
+   ],
+   [
+    "Show description",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "icon"
+  ]
+ },
+ "622:2813": {
+  "name": "DataTable",
+  "p": [
+   [
+    "Caption",
+    "T"
+   ],
+   [
+    "Show caption",
+    "B",
+    true
+   ],
+   [
+    "Striped",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ],
+   [
+    "Dense",
+    "V",
+    [
+     "false",
+     "true"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "477:1989": {
+  "name": "DataTable/Cell",
+  "p": [
+   [
+    "Text",
+    "T"
+   ],
+   [
+    "Kind",
+    "V",
+    [
+     "Header",
+     "Row header",
+     "Data"
+    ]
+   ],
+   [
+    "Align",
+    "V",
+    [
+     "Start",
+     "End"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "478:2006": {
+  "name": "CookieConsent",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Message",
+    "T"
+   ],
+   [
+    "Policy",
+    "T"
+   ],
+   [
+    "Show policy",
+    "B",
+    true
+   ],
+   [
+    "Show settings",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "accept",
+   "reject",
+   "settings"
+  ]
+ },
+ "480:2012": {
+  "name": "VideoPlayer",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Show label",
+    "B",
+    true
+   ],
+   [
+    "Duration",
+    "T"
+   ],
+   [
+    "Show duration",
+    "B",
+    true
+   ],
+   [
+    "Show captions",
+    "B",
+    true
+   ],
+   [
+    "Show transcript",
+    "B",
+    true
+   ]
+  ],
+  "x": []
+ },
+ "482:2025": {
+  "name": "Heading",
+  "p": [
+   [
+    "Text",
+    "T"
+   ],
+   [
+    "Level",
+    "V",
+    [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "483:2013": {
+  "name": "SectionHeading",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Show eyebrow",
+    "B",
+    true
+   ],
+   [
+    "Intro",
+    "T"
+   ],
+   [
+    "Show intro",
+    "B",
+    true
+   ],
+   [
+    "Action",
+    "T"
+   ],
+   [
+    "Show action",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "eyebrow"
+  ]
+ },
+ "618:2518": {
+  "name": "Quote",
+  "p": [
+   [
+    "Quote",
+    "T"
+   ],
+   [
+    "Name",
+    "T"
+   ],
+   [
+    "Role",
+    "T"
+   ],
+   [
+    "Show role",
+    "B",
+    true
+   ],
+   [
+    "Show portrait",
+    "B",
+    true
+   ],
+   [
+    "Variant",
+    "V",
+    [
+     "plain",
+     "pull",
+     "testimonial"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "486:2018": {
+  "name": "ArticleMeta",
+  "p": [
+   [
+    "Date",
+    "T"
+   ],
+   [
+    "Author",
+    "T"
+   ],
+   [
+    "Show author",
+    "B",
+    true
+   ],
+   [
+    "Reading time",
+    "T"
+   ],
+   [
+    "Show reading time",
+    "B",
+    true
+   ],
+   [
+    "Show topics",
+    "B",
+    true
+   ],
+   [
+    "Show topic 2",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "eyebrow",
+   "topic"
+  ]
+ },
+ "488:2043": {
+  "name": "LinkList",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Show title",
+    "B",
+    true
+   ],
+   [
+    "Show row 3",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "link"
+  ]
+ },
+ "488:2042": {
+  "name": "LinkList/Link",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Default",
+     "Hover"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "489:2080": {
+  "name": "ContactDetails",
+  "p": [
+   [
+    "Name",
+    "T"
+   ],
+   [
+    "Show hours",
+    "B",
+    true
+   ],
+   [
+    "Show directions",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "address",
+   "phone",
+   "email",
+   "hours",
+   "directions"
+  ]
+ },
+ "489:2079": {
+  "name": "ContactDetails/Row",
+  "p": [
+   [
+    "Text",
+    "T"
+   ],
+   [
+    "Link",
+    "V",
+    [
+     "No",
+     "Yes"
+    ]
+   ]
+  ],
+  "x": [
+   "icon"
+  ]
+ },
+ "490:2099": {
+  "name": "QuestionList",
+  "p": [
+   [
+    "Show item 3",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "question"
+  ]
+ },
+ "490:2095": {
+  "name": "QuestionList/Question",
+  "p": [
+   [
+    "Question",
+    "T"
+   ],
+   [
+    "Answer",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "491:2124": {
+  "name": "Agenda",
+  "p": [
+   [
+    "Note",
+    "T"
+   ],
+   [
+    "Show note",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "session"
+  ]
+ },
+ "491:2104": {
+  "name": "Agenda/Session",
+  "p": [
+   [
+    "Time",
+    "T"
+   ],
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Speakers",
+    "T"
+   ],
+   [
+    "Show speakers",
+    "B",
+    true
+   ],
+   [
+    "Detail",
+    "T"
+   ],
+   [
+    "Show detail",
+    "B",
+    true
+   ],
+   [
+    "Show action",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "button"
+  ]
+ },
+ "492:2147": {
+  "name": "CaseStudy",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Summary",
+    "T"
+   ],
+   [
+    "Show summary",
+    "B",
+    true
+   ],
+   [
+    "Show results",
+    "B",
+    true
+   ],
+   [
+    "Link",
+    "T"
+   ],
+   [
+    "Show link",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "client",
+   "part",
+   "result"
+  ]
+ },
+ "492:2141": {
+  "name": "CaseStudy/Part",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Body",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "492:2144": {
+  "name": "CaseStudy/Result",
+  "p": [
+   [
+    "Value",
+    "T"
+   ],
+   [
+    "Measure",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "493:2263": {
+  "name": "Pricing",
+  "p": [],
+  "x": [
+   "plan"
+  ]
+ },
+ "493:2262": {
+  "name": "Pricing/Plan",
+  "p": [
+   [
+    "Name",
+    "T"
+   ],
+   [
+    "Price",
+    "T"
+   ],
+   [
+    "Period",
+    "T"
+   ],
+   [
+    "Show period",
+    "B",
+    false
+   ],
+   [
+    "Summary",
+    "T"
+   ],
+   [
+    "Show feature 4",
+    "B",
+    true
+   ],
+   [
+    "Recommended",
+    "V",
+    [
+     "No",
+     "Yes"
+    ]
+   ]
+  ],
+  "x": [
+   "feature",
+   "action"
+  ]
+ },
+ "493:2158": {
+  "name": "Pricing/Feature",
+  "p": [
+   [
+    "Text",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "494:2325": {
+  "name": "FloatingAction",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Variant",
+    "V",
+    [
+     "button",
+     "tab"
+    ]
+   ],
+   [
+    "Extended",
+    "V",
+    [
+     "No",
+     "Yes"
+    ]
+   ],
+   [
+    "Position",
+    "V",
+    [
+     "end",
+     "start"
+    ]
+   ]
+  ],
+  "x": [
+   "icon"
+  ]
+ },
+ "496:2337": {
+  "name": "ProfileHeader",
+  "p": [
+   [
+    "Name",
+    "T"
+   ],
+   [
+    "Credentials",
+    "T"
+   ],
+   [
+    "Show credentials",
+    "B",
+    true
+   ],
+   [
+    "Role",
+    "T"
+   ],
+   [
+    "Back",
+    "T"
+   ],
+   [
+    "Show back",
+    "B",
+    true
+   ],
+   [
+    "Portrait label",
+    "T"
+   ],
+   [
+    "Bio",
+    "T"
+   ],
+   [
+    "Bio 2",
+    "T"
+   ],
+   [
+    "Show bio 2",
+    "B",
+    true
+   ],
+   [
+    "Show expertise",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "organisation",
+   "location",
+   "email",
+   "phone",
+   "link",
+   "skill"
+  ]
+ },
+ "496:2336": {
+  "name": "ProfileHeader/Fact",
+  "p": [
+   [
+    "Text",
+    "T"
+   ],
+   [
+    "Link",
+    "V",
+    [
+     "No",
+     "Yes"
+    ]
+   ]
+  ],
+  "x": [
+   "icon"
+  ]
+ },
+ "497:2364": {
+  "name": "BackLink",
+  "p": [
+   [
+    "Label",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "497:2368": {
+  "name": "LanguageSwitcher",
+  "p": [
+   [
+    "Current",
+    "T"
+   ],
+   [
+    "Other",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "497:2373": {
+  "name": "SaveStatus",
+  "p": [
+   [
+    "Words",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "619:2520": {
+  "name": "Spinner",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Show label",
+    "B",
+    true
+   ],
+   [
+    "Size",
+    "V",
+    [
+     "inherit",
+     "sm",
+     "md",
+     "lg"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "502:2367": {
+  "name": "Skeleton",
+  "p": [
+   [
+    "Show row 3",
+    "B",
+    true
+   ]
+  ],
+  "x": []
+ },
+ "502:2383": {
+  "name": "EmptyState",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Description",
+    "T"
+   ],
+   [
+    "Show description",
+    "B",
+    true
+   ],
+   [
+    "Show action",
+    "B",
+    true
+   ],
+   [
+    "Link",
+    "T"
+   ],
+   [
+    "Show link",
+    "B",
+    true
+   ],
+   [
+    "Show mark",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "mark",
+   "action"
+  ]
+ },
+ "502:2458": {
+  "name": "CareCard",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ],
+   [
+    "Reason 1",
+    "T"
+   ],
+   [
+    "Reason 2",
+    "T"
+   ],
+   [
+    "Reason 3",
+    "T"
+   ],
+   [
+    "Show reason 3",
+    "B",
+    true
+   ],
+   [
+    "Level",
+    "V",
+    [
+     "Non-urgent",
+     "Urgent",
+     "Emergency"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "502:2459": {
+  "name": "ErrorPage",
+  "p": [
+   [
+    "Heading",
+    "T"
+   ],
+   [
+    "Body",
+    "T"
+   ],
+   [
+    "Show action",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "action"
+  ]
+ },
+ "507:2391": {
+  "name": "IdentifierField",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Hint",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "507:2437": {
+  "name": "Combobox",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Value",
+    "T"
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Closed",
+     "Open"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "507:2438": {
+  "name": "FileUpload",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Hint",
+    "T"
+   ],
+   [
+    "File name",
+    "T"
+   ],
+   [
+    "File size",
+    "T"
+   ],
+   [
+    "Show file",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "choose",
+   "remove"
+  ]
+ },
+ "507:2487": {
+  "name": "ReorderList",
+  "p": [
+   [
+    "Item 1",
+    "T"
+   ],
+   [
+    "Item 2",
+    "T"
+   ],
+   [
+    "Item 3",
+    "T"
+   ],
+   [
+    "Item 4",
+    "T"
+   ],
+   [
+    "Item 5",
+    "T"
+   ]
+  ],
+  "x": []
+ },
+ "509:2474": {
+  "name": "DestructiveConfirm",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Consequence",
+    "T"
+   ],
+   [
+    "Confirm prompt",
+    "T"
+   ],
+   [
+    "Show name field",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "Cancel",
+   "Delete project"
+  ]
+ },
+ "509:2513": {
+  "name": "SessionTimeout",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Message",
+    "T"
+   ],
+   [
+    "Answers",
+    "T"
+   ],
+   [
+    "Show answers",
+    "B",
+    true
+   ]
+  ],
+  "x": [
+   "Stay signed in",
+   "Sign out"
+  ]
+ },
+ "512:2561": {
+  "name": "PauseMotion",
+  "p": [
+   [
+    "Motion",
+    "V",
+    [
+     "running",
+     "paused",
+     "reduced"
+    ]
+   ]
+  ],
+  "x": [
+   "Button"
+  ]
+ },
+ "550:153": {
+  "name": "Gamepad",
+  "p": [
+   [
+    "Theme",
+    "V",
+    [
+     "Boosty",
+     "Dark",
+     "Light"
+    ]
+   ],
+   [
+    "Glyphs",
+    "V",
+    [
+     "Letters",
+     "Shapes",
+     "Numbers"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Idle",
+     "Highlight",
+     "Pressed"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "550:3149": {
+  "name": "ButtonPrompt",
+  "p": [
+   [
+    "Theme",
+    "V",
+    [
+     "Boosty",
+     "Dark",
+     "Light"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Off",
+     "Lit"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "550:2962": {
+  "name": "Guitar",
+  "p": [
+   [
+    "Theme",
+    "V",
+    [
+     "Boosty",
+     "Dark",
+     "Light"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Idle",
+     "Strum"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "561:1503": {
+  "name": "Keyboard",
+  "p": [
+   [
+    "Theme",
+    "V",
+    [
+     "Boosty",
+     "Dark",
+     "Light"
+    ]
+   ],
+   [
+    "Keys",
+    "V",
+    [
+     "Default",
+     "WASD",
+     "Arrows"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Idle",
+     "Highlight",
+     "Pressed"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "562:177": {
+  "name": "KeyPrompt",
+  "p": [
+   [
+    "Theme",
+    "V",
+    [
+     "Boosty",
+     "Dark",
+     "Light"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Off",
+     "Lit"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "568:207": {
+  "name": "TvTile",
+  "p": [
+   [
+    "Label",
+    "T"
+   ],
+   [
+    "Sub",
+    "T"
+   ],
+   [
+    "Badge",
+    "B",
+    false
+   ],
+   [
+    "Badge text",
+    "T"
+   ],
+   [
+    "Theme",
+    "V",
+    [
+     "Boosty",
+     "Dark",
+     "Light"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Default",
+     "Focused"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "571:465": {
+  "name": "TvRow",
+  "p": [
+   [
+    "Title",
+    "T"
+   ],
+   [
+    "Theme",
+    "V",
+    [
+     "Boosty",
+     "Dark",
+     "Light"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Idle",
+     "Focused"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "572:507": {
+  "name": "TvOsd",
+  "p": [
+   [
+    "Theme",
+    "V",
+    [
+     "Boosty",
+     "Dark",
+     "Light"
+    ]
+   ],
+   [
+    "Kind",
+    "V",
+    [
+     "Volume",
+     "Muted",
+     "Now playing",
+     "Message"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "573:627": {
+  "name": "TvSidebar",
+  "p": [
+   [
+    "Theme",
+    "V",
+    [
+     "Boosty",
+     "Dark",
+     "Light"
+    ]
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Idle",
+     "Focused"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "575:1686": {
+  "name": "TvShell",
+  "p": [
+   [
+    "Theme",
+    "V",
+    [
+     "Boosty",
+     "Dark",
+     "Light"
+    ]
+   ],
+   [
+    "Guides",
+    "V",
+    [
+     "Off",
+     "On"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "577:167": {
+  "name": "CallTile",
+  "p": [
+   [
+    "Name",
+    "T"
+   ],
+   [
+    "State",
+    "V",
+    [
+     "Live",
+     "Camera off",
+     "Connecting"
+    ]
+   ]
+  ],
+  "x": []
+ },
+ "577:280": {
+  "name": "CallBar",
+  "p": [
+   [
+    "Mic",
+    "V",
+    [
+     "On",
+     "Off"
+    ]
+   ],
+   [
+    "Camera",
+    "V",
+    [
+     "On",
+     "Off"
+    ]
+   ]
+  ],
+  "x": []
+ }
+}

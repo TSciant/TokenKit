@@ -34,7 +34,7 @@ const STEPS = [
     name: "generated files",
     cmd:
       "node tools/gen-specimen-packs.mjs --check && node tools/gen-icon-set.mjs --check" +
-      " && node tools/gen-component-stories.mjs --check && node tools/gen-scene-vocabulary.mjs --check && node tools/figma-guidelines.mjs --check" +
+      " && node tools/gen-component-stories.mjs --check && node tools/gen-scene-vocabulary.mjs --check && node tools/tokens-pack.mjs check && node tools/tokens-portable.mjs && node tools/logical-css-gate.mjs && node tools/contracts.mjs --check && node tools/scorecards.mjs --check && node tools/figma-guidelines.mjs --check" +
       " && node tools/planner/questions-check.mjs",
   },
   { name: "scene", cmd: "node tools/scene-gate.mjs" },

@@ -1,0 +1,157 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Chip",
+ "layer": "primitive",
+ "about": "Chip. Baseline is a non-interactive label. Progressive layers: interactive → real button; pressed → aria-pressed; leading → icon/mark.",
+ "sources": {
+  "react": "src/react/primitives/Chip.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/chip.css"
+ ],
+ "dataTk": [
+  "chip",
+  "chip-label",
+  "chip-leading"
+ ],
+ "figma": [
+  {
+   "name": "Chip",
+   "node": "37:393",
+   "codeConnect": true,
+   "map": {
+    "Label": "children",
+    "Show leading": "leading (omit it to hide)",
+    "Leading": "leading={<Icon name=\"…\" />}",
+    "Emphasis": "emphasis",
+    "Pressed": "pressed (true/false)",
+    "State": "default: CSS, hover: CSS",
+    "Interactive": "interactive (true/false)"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "ChipTone",
+   "node": "311:1607",
+   "codeConnect": true,
+   "map": {
+    "Tone": "tone; code also: neutral"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "emphasis": {
+   "type": "enum",
+   "values": [
+    "strong",
+    "quiet",
+    "default"
+   ],
+   "figma": [
+    "Chip.Emphasis"
+   ]
+  },
+  "tone": {
+   "type": "enum",
+   "values": [
+    "info",
+    "success",
+    "warning",
+    "danger",
+    "neutral"
+   ],
+   "figma": [
+    "ChipTone.Tone"
+   ],
+   "about": "A status: info, success, warning, danger, on the pack's status colours. Always a word (\"Closed\", \"Overdue\"), with an icon where it helps, since colour alone means nothing to some readers; and never a "
+  },
+  "interactive": {
+   "type": "boolean",
+   "figma": [
+    "Chip.Interactive"
+   ],
+   "about": "Makes the chip a control (24px target). Prefer with pressed for filters."
+  },
+  "pressed": {
+   "type": "boolean",
+   "figma": [
+    "Chip.Pressed"
+   ],
+   "about": "Toggle / filter selected state. Progressive: absent = plain label."
+  },
+  "leading": {
+   "type": "icon or content",
+   "figma": [
+    "Chip.Show leading",
+    "Chip.Leading"
+   ],
+   "about": "Leading mark — prefer a small Icon."
+  },
+  "statusIcon": {
+   "type": "boolean",
+   "default": "true",
+   "about": "A toned chip shows its status icon before the word (default true); false to drop it, or give your own with leading."
+  },
+  "children": {
+   "type": "content",
+   "figma": [
+    "Chip.Label"
+   ]
+  }
+ },
+ "tokens": [
+  "action-quiet-fill-hover",
+  "focus-color",
+  "focus-width",
+  "leading-tight",
+  "line-strong",
+  "motion-elevation",
+  "motion-ink",
+  "motion-line",
+  "motion-surface",
+  "motion-transform",
+  "radius-full",
+  "shadow-lift",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "status-danger-line",
+  "status-danger-surface",
+  "status-danger-text",
+  "status-info-line",
+  "status-info-surface",
+  "status-info-text",
+  "status-success-line",
+  "status-success-surface",
+  "status-success-text",
+  "status-warning-line",
+  "status-warning-surface",
+  "status-warning-text",
+  "surface-default",
+  "surface-inverse",
+  "surface-raised",
+  "target-min",
+  "text-inverse",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "tracking-wide",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

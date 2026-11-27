@@ -1,0 +1,83 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "PageHero",
+ "layer": "pattern",
+ "about": "14 — breadcrumb over a tinted title band.",
+ "sources": {
+  "react": "src/react/patterns/chrome.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css"
+ ],
+ "dataTk": [
+  "card-body"
+ ],
+ "figma": [
+  {
+   "name": "PageHero",
+   "node": "70:204",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Deck": "deck",
+    "Crumb 1": "crumbs[0]",
+    "Crumb 2": "crumbs[1]"
+   },
+   "unpaired": [
+    "Current"
+   ]
+  }
+ ],
+ "props": {
+  "title": {
+   "type": "text",
+   "default": "PAGE_HERO_TITLE",
+   "figma": [
+    "PageHero.Title"
+   ]
+  },
+  "crumbs": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "PAGE_CRUMBS",
+   "figma": [
+    "PageHero.Crumb 1",
+    "PageHero.Crumb 2"
+   ],
+   "about": "Ancestors only. The current page is appended from `title`."
+  },
+  "deck": {
+   "type": "text",
+   "default": "PAGE_HERO_DECK",
+   "figma": [
+    "PageHero.Deck"
+   ]
+  },
+  "breadcrumbLabel": {
+   "type": "text",
+   "default": "\"Breadcrumb\"",
+   "about": "Aria label for the breadcrumb nav."
+  }
+ },
+ "tokens": [
+  "text-secondary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "PageHero.Current": "title (the current page closes the breadcrumb trail)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

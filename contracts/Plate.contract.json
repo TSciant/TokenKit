@@ -1,0 +1,174 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Plate",
+ "layer": "primitive",
+ "about": null,
+ "sources": {
+  "react": "src/react/primitives/Plate.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/hero.css",
+  "src/css/components/motion-fx.css",
+  "src/css/components/plate.css",
+  "src/css/components/profile-header.css",
+  "src/css/components/video-player.css"
+ ],
+ "dataTk": [
+  "plate",
+  "plate-label",
+  "plate-media",
+  "plate-placement",
+  "plate-subject"
+ ],
+ "figma": [
+  {
+   "name": "Plate",
+   "node": "176:488",
+   "codeConnect": true,
+   "map": {
+    "Ratio": "ratio",
+    "Subject": "subject (lower case)"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "ratio": {
+   "type": "text",
+   "default": "\"16 / 9\"",
+   "figma": [
+    "Plate.Ratio"
+   ]
+  },
+  "label": {
+   "type": "text"
+  },
+  "texture": {
+   "type": "enum",
+   "values": [
+    "none",
+    "grid",
+    "hatch",
+    "dots",
+    "rule",
+    "noise",
+    "weave",
+    "chevron",
+    "grain",
+    "paper",
+    "stone",
+    "mist",
+    "grit",
+    "halftone",
+    "brand",
+    "signature"
+   ]
+  },
+  "crop": {
+   "type": "enum",
+   "values": [
+    "portrait"
+   ]
+  },
+  "bleed": {
+   "type": "other",
+   "ts": "boolean | \"full\"",
+   "about": "Flush to the parent's edge; the parent supplies the corners and clips."
+  },
+  "seed": {
+   "type": "number",
+   "about": "1-6. Deterministic, so two screenshots of the same slot match."
+  },
+  "stock": {
+   "type": "boolean",
+   "default": "false",
+   "about": "When true, fill with a stand-in photograph (by seed) instead of drawing one."
+  },
+  "src": {
+   "type": "text",
+   "about": "Explicit image URL/path; overrides seed and category."
+  },
+  "category": {
+   "type": "text",
+   "about": "What this plate stands in for — \"storefront\", \"dunes\", \"prep bench\". Resolves through STOCK_BY_CATEGORY when an application has registered a manifest, and names the subject on the plate's own label wh"
+  },
+  "subject": {
+   "type": "enum",
+   "values": [
+    "person"
+   ],
+   "figma": [
+    "Plate.Subject"
+   ],
+   "about": "Who the plate draws. \"person\" draws a head and shoulders in silhouette, for a portrait, a bio, a speaker or a directory entry, in place of the light and horizon a plate otherwise draws. Give it a tall"
+  },
+  "placement": {
+   "type": "other",
+   "ts": "boolean | \"quiet\" | \"loud\"",
+   "default": "\"quiet\"",
+   "about": "Stock honesty: quiet whisper (default), loud legacy, or hidden."
+  },
+  "priority": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Mark the one plate that is visible before any scrolling. A plate's photograph is usually the largest thing on the screen, which makes it the Largest Contentful Paint. Everything here defers by default"
+  },
+  "fx": {
+   "type": "other",
+   "ts": "FxProp",
+   "about": "Motion FX. `true` infers plate / plate-stock / plate-hero from stock+bleed."
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  }
+ },
+ "tokens": [
+  "duration-slow",
+  "ease-standard",
+  "font-mono",
+  "fx-y",
+  "line-default",
+  "motion-surface",
+  "plate-bleed-pad",
+  "plate-max",
+  "plate-max-portrait",
+  "plate-min",
+  "radius-full",
+  "radius-nested",
+  "scrim-ink",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "surface-default",
+  "surface-raised",
+  "surface-sunken",
+  "text-on-scrim",
+  "text-primary",
+  "text-tertiary",
+  "texture-dots",
+  "texture-mask",
+  "texture-paint",
+  "texture-rule",
+  "texture-scale",
+  "tracking-wide",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

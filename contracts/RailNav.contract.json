@@ -1,0 +1,99 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "RailNav",
+ "layer": "primitive",
+ "about": "Category navigation for a side rail: a header, and a panel of links with groups that open natively. It fills its container, so the rail's width is the page's decision. The current page is `aria-curren",
+ "sources": {
+  "react": "src/react/primitives/RailNav.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/rail-nav.css"
+ ],
+ "dataTk": [
+  "rail-nav",
+  "rail-nav-chevron",
+  "rail-nav-dot",
+  "rail-nav-link",
+  "rail-nav-list",
+  "rail-nav-mark",
+  "rail-nav-panel",
+  "rail-nav-title"
+ ],
+ "figma": [
+  {
+   "name": "RailNav/Item",
+   "node": "31:42",
+   "codeConnect": true,
+   "map": {
+    "Label": "children"
+   },
+   "unpaired": [
+    "Kind"
+   ]
+  },
+  {
+   "name": "RailNav",
+   "node": "31:43",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "title": {
+   "type": "text",
+   "default": "\"Categories\"",
+   "about": "The small uppercase header, and the landmark's name."
+  },
+  "items": {
+   "type": "other",
+   "ts": "RailNavItem[]",
+   "required": true
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "icon-stroke",
+  "leading-normal",
+  "line-default",
+  "motion-ink",
+  "motion-transform",
+  "radius-full",
+  "radius-lg",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "surface-base",
+  "surface-default",
+  "text-primary",
+  "text-secondary",
+  "tracking-wide",
+  "weight-bold",
+  "weight-normal",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "RailNav/Item.Kind": "the item's place in items: top, a group (open or not), a child, the current child"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

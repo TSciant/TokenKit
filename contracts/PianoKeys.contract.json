@@ -1,0 +1,99 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "PianoKeys",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/instruments/Instruments.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [],
+ "props": {
+  "keys": {
+   "type": "enum",
+   "values": [
+    "25",
+    "37",
+    "49",
+    "61",
+    "76",
+    "88"
+   ],
+   "about": "A standard keyboard size: 25 (C3-C5), 37, 49, 61, 76 or 88 (A0-C8)."
+  },
+  "range": {
+   "type": "text",
+   "about": "Any other span, white key to white key, e.g. \"F3-F5\"; wins over `keys`."
+  },
+  "highlight": {
+   "type": "text",
+   "about": "Keys to mark with a dot, e.g. \"C4 E4 G4\"."
+  },
+  "pulse": {
+   "type": "boolean",
+   "about": "Breathe the dots (off under prefers-reduced-motion and `calm`)."
+  },
+  "calm": {
+   "type": "boolean",
+   "about": "No motion at all: keys go down without travelling, dots don't breathe."
+  },
+  "sound": {
+   "type": "boolean",
+   "about": "Play real recordings when a key goes down (fetches the notes it needs, up to about 1.3 MB)."
+  },
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "default": "\"boosty\""
+  },
+  "size": {
+   "type": "other",
+   "ts": "string | number",
+   "about": "A multiple of 640px or any CSS length; unset fills the width."
+  },
+  "label": {
+   "type": "text"
+  },
+  "pressed": {
+   "type": "other",
+   "ts": "string[]",
+   "about": "Keys held down (\"C4\") and/or gamepad buttons read through `binding`."
+  },
+  "binding": {
+   "type": "other",
+   "ts": "Partial<Record<string, string>>",
+   "about": "Gamepad button to note name, or \"sustain\", e.g. { south: \"D4\", rt: \"sustain\" }."
+  },
+  "sustain": {
+   "type": "boolean",
+   "about": "The sustain pedal."
+  },
+  "onNote": {
+   "type": "event"
+  },
+  "onRelease": {
+   "type": "event"
+  },
+  "className": {
+   "type": "text"
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  }
+ },
+ "tokens": [],
+ "checks": [],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

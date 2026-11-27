@@ -1,0 +1,90 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SubmitButton",
+ "layer": "primitive",
+ "about": "SubmitButton — a form's submit button that shows it is working. While its form is submitting it is busy: the label changes to `busyLabel` and that change is announced, a second press does nothing, and",
+ "sources": {
+  "react": "src/react/primitives/SubmitButton.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [],
+ "props": {
+  "children": {
+   "type": "content"
+  },
+  "leading": {
+   "type": "icon or content",
+   "about": "Explicit leading slot (wins over `icon` when both are set)."
+  },
+  "trailing": {
+   "type": "icon or content",
+   "about": "Explicit trailing slot (wins over `icon` when both are set)."
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ]
+  },
+  "icon": {
+   "type": "icon or content",
+   "about": "Bound icon slot. Prefer this when you have one icon and a position. Maps to leading or trailing via `iconPosition` (default leading). With no children, renders icon-only (set `aria-label`)."
+  },
+  "full": {
+   "type": "boolean"
+  },
+  "variant": {
+   "type": "enum",
+   "values": [
+    "solid",
+    "outline",
+    "quiet"
+   ]
+  },
+  "tone": {
+   "type": "enum",
+   "values": [
+    "danger",
+    "neutral"
+   ],
+   "about": "Consequence, crossed with `variant`. \"danger\" for destructive or irreversible actions; the colour is the pack's, and the label still has to say what happens. Neutral renders no attribute."
+  },
+  "pressed": {
+   "type": "boolean",
+   "about": "Makes the button a toggle: true or false renders `aria-pressed`, left out it is an ordinary button. A toggle defaults to `outline`, because a solid button has nowhere to go when it is switched on. Not"
+  },
+  "busyLabel": {
+   "type": "content",
+   "required": true,
+   "about": "The words while the form is submitting: \"Posting…\", \"Saving…\"."
+  },
+  "reason": {
+   "type": "content",
+   "about": "Why a disabled button is unavailable. Shown beside it on hover and on focus, and read as its description. A disabled button stays in the tab order so it can say this; without a reason it is still focu"
+  },
+  "iconPosition": {
+   "type": "enum",
+   "values": [
+    "leading",
+    "trailing"
+   ],
+   "about": "Where `icon` lands. Ignored when `leading` / `trailing` are passed."
+  },
+  "busy": {
+   "type": "boolean",
+   "about": "Busy regardless of the form, for a submit the page tracks itself."
+  }
+ },
+ "tokens": [],
+ "checks": [],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

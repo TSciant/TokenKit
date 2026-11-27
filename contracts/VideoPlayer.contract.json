@@ -1,0 +1,137 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "VideoPlayer",
+ "layer": "primitive",
+ "about": "VideoPlayer — a video shown as its poster until the viewer presses play. Nothing from a third party loads before that press: no player script, no iframe, no cookie, no request to YouTube or Vimeo. A p",
+ "sources": {
+  "react": "src/react/primitives/VideoPlayer.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/video-player.css"
+ ],
+ "dataTk": [
+  "video-player",
+  "video-player-badge",
+  "video-player-frame",
+  "video-player-media",
+  "video-player-meta",
+  "video-player-play",
+  "video-player-poster",
+  "video-player-transcript"
+ ],
+ "figma": [
+  {
+   "name": "VideoPlayer",
+   "node": "480:2012",
+   "codeConnect": true,
+   "map": {
+    "Label": "children",
+    "Duration": "duration",
+    "Show duration": "duration (omit it to hide)",
+    "Show captions": "captions"
+   },
+   "unpaired": [
+    "Show label",
+    "Show transcript"
+   ]
+  }
+ ],
+ "props": {
+  "title": {
+   "type": "text",
+   "required": true,
+   "about": "What the video is. Names the play button (\"Play: <title>\"), the embedded player and the transcript link."
+  },
+  "poster": {
+   "type": "content",
+   "about": "The picture shown until play is pressed. Default: the kit's Plate, labelled with `posterLabel`."
+  },
+  "posterLabel": {
+   "type": "text",
+   "about": "The words on the default plate (\"Video\", \"Product tour\"). Ignored when `poster` is given."
+  },
+  "ratio": {
+   "type": "text",
+   "default": "\"16 / 9\"",
+   "about": "Width / height, as CSS reads it. The poster and the player share it, so nothing shifts on play."
+  },
+  "duration": {
+   "type": "text",
+   "figma": [
+    "VideoPlayer.Duration",
+    "VideoPlayer.Show duration"
+   ],
+   "about": "How long it runs, as it should read on the poster: \"4:05\", \"52:14\", \"1:02:30\"."
+  },
+  "src": {
+   "type": "text",
+   "about": "A self-hosted file. After play, a native <video> with controls plays it. Wins over `embed`."
+  },
+  "embed": {
+   "type": "other",
+   "ts": "VideoEmbed",
+   "about": "A video on YouTube or Vimeo. After play, that service's player in an iframe. Nothing loads before."
+  },
+  "captions": {
+   "type": "boolean",
+   "default": "false",
+   "figma": [
+    "VideoPlayer.Show captions"
+   ],
+   "about": "The video has captions: marks the poster \"CC\" (said as \"Captions available\")."
+  },
+  "transcriptHref": {
+   "type": "text",
+   "about": "Where its transcript is. Adds a \"Transcript\" link under the player."
+  }
+ },
+ "tokens": [
+  "action-fill",
+  "action-fill-active",
+  "action-fill-hover",
+  "action-text",
+  "font-mono",
+  "leading-normal",
+  "line-default",
+  "line-strong",
+  "motion-line",
+  "motion-surface",
+  "radius-full",
+  "radius-nested",
+  "shadow-md",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-7",
+  "space-8",
+  "surface-default",
+  "surface-inverse",
+  "surface-raised",
+  "surface-sunken",
+  "text-disabled",
+  "text-inverse",
+  "tracking-wide",
+  "weight-medium"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "VideoPlayer.Show label": "posterLabel (omit it to hide)",
+   "VideoPlayer.Show transcript": "transcriptHref (omit it to hide)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,103 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Callout",
+ "layer": "primitive",
+ "about": "Callout — a block set apart from the body text. Two kinds, chosen by how much it matters. Inset text stands out with a thick rule down its edge and no fill: worth noticing, safe to miss. A warning is ",
+ "sources": {
+  "react": "src/react/primitives/Callout.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/callout.css"
+ ],
+ "dataTk": [
+  "callout",
+  "callout-body",
+  "callout-title"
+ ],
+ "figma": [
+  {
+   "name": "Callout",
+   "node": "457:1864",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Show title": "title (omit it to hide)",
+    "Body": "children",
+    "Variant": "variant (lower case)"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "variant": {
+   "type": "enum",
+   "values": [
+    "warning",
+    "inset"
+   ],
+   "default": "\"inset\"",
+   "figma": [
+    "Callout.Variant"
+   ],
+   "about": "inset: content that should stand out from the page, but that a reader will be fine without. warning: something time-critical, that could affect someone's safety, money or rights, or that corrects a co"
+  },
+  "title": {
+   "type": "text",
+   "figma": [
+    "Callout.Title",
+    "Callout.Show title"
+   ],
+   "about": "The heading. Required for a warning (short and specific: \"Travelling in the next 3 weeks\"); optional for inset text."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4"
+   ],
+   "default": "3",
+   "about": "The heading's level, to fit the page's outline."
+  },
+  "label": {
+   "type": "text",
+   "about": "Words only a screen reader hears before the callout, so it is heard as set apart and not as more body text. \"Information\" for inset text, \"Important\" for a warning (left out when the heading already s"
+  },
+  "children": {
+   "type": "content",
+   "figma": [
+    "Callout.Body"
+   ]
+  }
+ },
+ "tokens": [
+  "leading-snug",
+  "line-strong",
+  "measure",
+  "radius-md",
+  "radius-nested",
+  "size-md",
+  "space-1",
+  "space-2",
+  "space-4",
+  "space-5",
+  "status-warning-line",
+  "status-warning-surface",
+  "text-primary",
+  "weight-bold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

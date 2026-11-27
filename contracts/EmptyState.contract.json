@@ -1,0 +1,158 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "EmptyState",
+ "layer": "primitive",
+ "about": "EmptyState — where content would be, why there is none, and what to do. It replaces what is empty (the table, headers and all), so a screen reader does not read an empty table first. A real heading at",
+ "sources": {
+  "react": "src/react/primitives/EmptyState.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/empty-state.css"
+ ],
+ "dataTk": [
+  "empty-state",
+  "empty-state-actions",
+  "empty-state-description",
+  "empty-state-link",
+  "empty-state-mark",
+  "empty-state-media",
+  "empty-state-reference",
+  "empty-state-title"
+ ],
+ "figma": [
+  {
+   "name": "EmptyState",
+   "node": "502:2383",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Description": "description",
+    "Show description": "description (omit it to hide)",
+    "Show action": "action (omit it to hide)"
+   },
+   "unpaired": [
+    "Link",
+    "Show link",
+    "Show mark"
+   ]
+  }
+ ],
+ "props": {
+  "cause": {
+   "type": "enum",
+   "values": [
+    "first-use",
+    "configure",
+    "no-results",
+    "cleared",
+    "pending",
+    "no-access",
+    "error"
+   ],
+   "required": true,
+   "about": "Why it is empty, which decides what it says and offers: first-use \"No [things] yet\" and Create; configure \"Configure [feature]\"; no-results \"No results found\" and nothing louder than Clear filters; cl"
+  },
+  "title": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "EmptyState.Title"
+   ],
+   "about": "About five words, no full stop. Never \"No data\"."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4"
+   ],
+   "default": "2",
+   "about": "Its place in the page's outline. Default 2."
+  },
+  "description": {
+   "type": "content",
+   "figma": [
+    "EmptyState.Description",
+    "EmptyState.Show description"
+   ],
+   "about": "Full sentences: what happened and what to do, without blaming anyone."
+  },
+  "action": {
+   "type": "other",
+   "ts": "{ label: string; href?: string; onClick?: () => void; }",
+   "figma": [
+    "EmptyState.Show action"
+   ],
+   "about": "The one thing to do next. A link when it goes somewhere, a button when it acts."
+  },
+  "secondary": {
+   "type": "other",
+   "ts": "{ label: string; href?: string; onClick?: () => void; }",
+   "about": "A quieter way on: a link to read more, or Clear filters."
+  },
+  "icon": {
+   "type": "other",
+   "ts": "false | \"info\" | \"success\" | \"warning\" | \"circle\" | \"square\"",
+   "about": "The cause's mark by default; false for words alone."
+  },
+  "media": {
+   "type": "content",
+   "about": "A picture in place of the mark (a Plate): decorative, never the message."
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "section",
+    "compact",
+    "page"
+   ],
+   "default": "\"section\"",
+   "about": "compact: one sentence, for a card or a sidebar. section (default), or page for a whole page."
+  },
+  "reference": {
+   "type": "text",
+   "about": "An error's code, after the description, for support: never in the title."
+  }
+ },
+ "tokens": [
+  "font-mono",
+  "leading-normal",
+  "leading-snug",
+  "leading-tight",
+  "measure",
+  "size-2xl",
+  "size-lg",
+  "size-sm",
+  "size-xs",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-6",
+  "space-8",
+  "text-primary",
+  "text-secondary",
+  "weight-normal",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "EmptyState.Link": "secondary.label",
+   "EmptyState.Show link": "secondary (omit it to hide)",
+   "EmptyState.Show mark": "icon or media (omit both to hide)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,120 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SearchResults",
+ "layer": "primitive",
+ "about": "Search results surface: query field + typed icon chips + filtered list. Filter is plain case-insensitive includes — no fuzzy library.",
+ "sources": {
+  "react": "src/react/primitives/SearchResults.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/search-results.css"
+ ],
+ "dataTk": [
+  "search-results",
+  "search-results-chevron",
+  "search-results-count",
+  "search-results-desc",
+  "search-results-empty",
+  "search-results-item",
+  "search-results-link",
+  "search-results-list",
+  "search-results-mark",
+  "search-results-meta",
+  "search-results-row-text",
+  "search-results-title",
+  "search-results-toolbar",
+  "search-results-type",
+  "search-results-types"
+ ],
+ "figma": [
+  {
+   "name": "SearchResults",
+   "node": "172:308",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  },
+  {
+   "name": "SearchResults/Row",
+   "node": "172:287",
+   "codeConnect": true,
+   "map": {
+    "Type": "SearchResults data",
+    "Title": "SearchResults data",
+    "Description": "SearchResults data",
+    "Meta": "SearchResults data"
+   },
+   "unpaired": [
+    "Icon"
+   ]
+  }
+ ],
+ "props": {
+  "items": {
+   "type": "other",
+   "ts": "SearchResultItem[]",
+   "required": true
+  },
+  "types": {
+   "type": "other",
+   "ts": "string[]",
+   "about": "Type filter chips. Defaults to unique types from items, plus All."
+  },
+  "placeholder": {
+   "type": "text",
+   "default": "\"Filter results\""
+  },
+  "empty": {
+   "type": "content"
+  },
+  "defaultQuery": {
+   "type": "text",
+   "default": "\"\"",
+   "about": "Initial query"
+  }
+ },
+ "tokens": [
+  "line-default",
+  "line-strong",
+  "motion-elevation",
+  "motion-line",
+  "motion-surface",
+  "motion-transform",
+  "radius-nested",
+  "shadow-lift",
+  "size-base",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-7",
+  "surface-default",
+  "surface-raised",
+  "surface-sunken",
+  "text-secondary",
+  "tracking-wide",
+  "weight-bold",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "SearchResults/Row.Icon": "items[n].mark"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

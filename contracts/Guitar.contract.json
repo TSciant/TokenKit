@@ -1,0 +1,64 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Guitar",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/gamepad/Gamepad.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "Guitar",
+   "node": "550:2962",
+   "codeConnect": true,
+   "map": {
+    "Theme": "theme (lower case)",
+    "State": "Idle: CSS, Strum: runtime, not a prop"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "default": "\"boosty\"",
+   "figma": [
+    "Guitar.Theme"
+   ]
+  },
+  "size": {
+   "type": "other",
+   "ts": "string | number"
+  },
+  "highlight": {
+   "type": "text"
+  },
+  "pressed": {
+   "type": "other",
+   "ts": "string[]"
+  },
+  "label": {
+   "type": "text"
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

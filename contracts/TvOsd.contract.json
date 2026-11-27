@@ -1,0 +1,98 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "TvOsd",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/tv/Tv.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "TvOsd",
+   "node": "572:507",
+   "codeConnect": true,
+   "map": {
+    "Theme": "theme (lower case)",
+    "Kind": "kind (lower case); Figma only: Muted, Now playing; code also: now-playing"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "kind": {
+   "type": "enum",
+   "values": [
+    "volume",
+    "message",
+    "now-playing"
+   ],
+   "default": "\"volume\"",
+   "figma": [
+    "TvOsd.Kind"
+   ],
+   "about": "volume (a level and a number, or Muted), now-playing (a title, a line and progress) or message."
+  },
+  "value": {
+   "type": "number",
+   "about": "0 to 100: the volume, or how far through the now-playing item."
+  },
+  "muted": {
+   "type": "boolean",
+   "about": "Volume only: shows the slashed speaker and the word Muted."
+  },
+  "label": {
+   "type": "text",
+   "about": "Now playing: the title. Message: the text."
+  },
+  "detail": {
+   "type": "text",
+   "about": "A second line (\"1:24 of 3:30\")."
+  },
+  "paused": {
+   "type": "boolean",
+   "about": "Now playing: paused (the pause mark and the word Paused)."
+  },
+  "open": {
+   "type": "boolean",
+   "about": "Shown. It fades after `timeout` unless `persist` is set."
+  },
+  "persist": {
+   "type": "boolean",
+   "about": "Stay shown until closed."
+  },
+  "timeout": {
+   "type": "number",
+   "about": "Milliseconds before it fades (at least 1000; 3000 by default)."
+  },
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "figma": [
+    "TvOsd.Theme"
+   ]
+  },
+  "calm": {
+   "type": "boolean",
+   "about": "No fade or slide."
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

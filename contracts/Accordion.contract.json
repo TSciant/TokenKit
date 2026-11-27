@@ -1,0 +1,132 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Accordion",
+ "layer": "primitive",
+ "about": "Accordion — sections of one page that a reader opens one at a time, each behind its heading. Use for: a page of several sections where most readers want one or two (past years of an event, the parts o",
+ "sources": {
+  "react": "src/react/primitives/Accordion.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/accordion.css"
+ ],
+ "dataTk": [
+  "accordion",
+  "accordion-heading",
+  "accordion-item",
+  "accordion-mark",
+  "accordion-panel",
+  "accordion-trigger"
+ ],
+ "figma": [
+  {
+   "name": "Accordion",
+   "node": "472:1972",
+   "codeConnect": true,
+   "map": {
+    "Show item 3": "how many items you pass"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "Accordion/Item",
+   "node": "472:1971",
+   "codeConnect": true,
+   "map": {
+    "Heading": "Accordion data",
+    "Content": "children",
+    "Open": "user state (a click), not a prop"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "items": {
+   "type": "other",
+   "ts": "AccordionItem[]",
+   "required": true
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4"
+   ],
+   "about": "The level of each section's heading, to fit the outline of the page it is on."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4"
+   ]
+  }
+ },
+ "tokens": [
+  "control-min",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-snug",
+  "line-default",
+  "motion-ink",
+  "motion-transform",
+  "size-md",
+  "space-3",
+  "space-4",
+  "text-primary",
+  "text-secondary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": {
+  "role": "button + region",
+  "name": "each trigger is named by its heading",
+  "story": "04-primitives-61-accordion--playground",
+  "keys": [
+   {
+    "key": "Enter",
+    "from": "[data-tk=accordion-trigger]",
+    "expect": {
+     "selector": "[data-tk=accordion-trigger]",
+     "attr": "aria-expanded",
+     "value": "true"
+    },
+    "says": "opens the section"
+   },
+   {
+    "key": "Space",
+    "from": "[data-tk=accordion-trigger]",
+    "expect": {
+     "selector": "[data-tk=accordion-trigger]",
+     "attr": "aria-expanded",
+     "value": "true"
+    },
+    "says": "opens the section"
+   },
+   {
+    "key": "Tab",
+    "from": "[data-tk=accordion-trigger]",
+    "expect": {
+     "focused": "[data-tk=accordion-trigger]",
+     "nth": 2
+    },
+    "says": "moves to the next section's trigger"
+   }
+  ],
+  "focus": "stays on the trigger; the panel opens below it"
+ },
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

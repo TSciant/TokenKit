@@ -1,0 +1,123 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Gamepad",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/gamepad/Gamepad.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "Gamepad",
+   "node": "550:153",
+   "codeConnect": true,
+   "map": {
+    "Theme": "theme (lower case)",
+    "Glyphs": "glyphs (lower case)",
+    "State": "Idle: CSS, Highlight: highlight, Pressed: runtime, not a prop"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "default": "\"boosty\"",
+   "figma": [
+    "Gamepad.Theme"
+   ],
+   "about": "boosty (cyan/magenta on black), dark or light. Any --tk-gamepad-* property overrides one colour."
+  },
+  "glyphs": {
+   "type": "enum",
+   "values": [
+    "letters",
+    "shapes",
+    "numbers"
+   ],
+   "default": "\"letters\"",
+   "figma": [
+    "Gamepad.Glyphs"
+   ],
+   "about": "Face-button marks: letters (A/B/X/Y), shapes or numbers. Positions never change."
+  },
+  "highlight": {
+   "type": "text",
+   "about": "Space-separated positional names to outline, e.g. \"up\" or \"south east\"."
+  },
+  "pulse": {
+   "type": "boolean",
+   "about": "Breathe the highlight (off under prefers-reduced-motion and `calm`)."
+  },
+  "calm": {
+   "type": "boolean",
+   "about": "No motion at all, whatever the OS says."
+  },
+  "size": {
+   "type": "other",
+   "ts": "string | number",
+   "about": "A multiple of 340px (1.5) or any CSS length (\"100%\", \"12rem\")."
+  },
+  "source": {
+   "type": "enum",
+   "values": [
+    "live",
+    "replay"
+   ],
+   "about": "\"live\" reads the Gamepad API, \"replay\" plays a timeline; unset uses `state`."
+  },
+  "index": {
+   "type": "number",
+   "about": "With source=\"live\": which pad (navigator.getGamepads() index); unset = first connected."
+  },
+  "label": {
+   "type": "text",
+   "about": "Accessible name."
+  },
+  "status": {
+   "type": "boolean",
+   "about": "Show a one-line status (connected pad, raw mapping, replay time)."
+  },
+  "state": {
+   "type": "other",
+   "ts": "GamepadState",
+   "about": "Hand-fed state when there is no source."
+  },
+  "replay": {
+   "type": "other",
+   "ts": "Replay | { frames: ReplayFrame[]; map?: ReplayMap; hold?: nu",
+   "about": "A createReplay() result or { frames, map, hold }."
+  },
+  "currentTime": {
+   "type": "number",
+   "about": "Replay position in seconds (with `replay`)."
+  },
+  "className": {
+   "type": "text"
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

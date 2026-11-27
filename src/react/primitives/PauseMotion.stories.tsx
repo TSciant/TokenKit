@@ -77,7 +77,8 @@ function Ticker() {
   const rows = [["Turnout", "64%"], ["Counted", "412 of 650"], ["Declared", "38 seats"]];
   return (
     <div data-shell="stack" data-gap="3" style={{ maxInlineSize: "32rem" }}>
-      <style>{"@keyframes tk-story-ticker { from { transform: translateX(100%); } to { transform: translateX(-100%); } }"}</style>
+      {/* Runs against the reading direction: leftwards in English, rightwards right to left (translate has no logical form). */}
+      <style>{"@keyframes tk-story-ticker { from { translate: calc(100% * var(--_ix)) 0; } to { translate: calc(-100% * var(--_ix)) 0; } } [data-story-ticker] { --_ix: 1; } [data-story-ticker]:dir(rtl) { --_ix: -1; }"}</style>
       <div>
         <Button variant="outline" size="sm" aria-controls="tk-results-table" onClick={() => setTable((t) => !t)}>
           {table ? "Show as a ticker" : "Show as a table"}
@@ -85,7 +86,7 @@ function Ticker() {
       </div>
       {table ? null : (
         <div data-motion-class="data" data-equivalent="#tk-results-table" style={{ overflow: "hidden", whiteSpace: "nowrap", paddingBlock: "var(--tk-space-2)", borderBlock: "1px solid var(--tk-line-default)" }}>
-          <div style={{ display: "inline-flex", gap: "var(--tk-space-6)", animation: "tk-story-ticker 20s linear infinite" }}>
+          <div data-story-ticker style={{ display: "inline-flex", gap: "var(--tk-space-6)", animation: "tk-story-ticker 20s linear infinite" }}>
             {rows.map(([k, v]) => <span key={k}>{k}: <strong>{v}</strong></span>)}
           </div>
         </div>

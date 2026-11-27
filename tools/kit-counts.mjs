@@ -25,7 +25,7 @@ export function kitCounts(root = ROOT) {
   const titles = new Set(Object.values(JSON.parse(readFileSync(index, "utf8")).entries).map((e) => e.title));
   const n = Object.fromEntries(Object.entries(GROUPS).map(([k, g]) => [k, [...titles].filter((t) => t.startsWith(g + "/")).length]));
   const check = readFileSync(resolve(root, "tools/check.mjs"), "utf8"), steps = [...check.matchAll(/\{\s*name:\s*"([^"]+)"/g)].map((m) => m[1]);
-  const browser = /const checks = \[([^\]]*)\]/.exec(readFileSync(resolve(root, "tools/browser-gates.mjs"), "utf8"))?.[1].match(/\w+Check\(\)/g) ?? [];
+  const browser = /const checks = \[([^\]]*)\]/.exec(readFileSync(resolve(root, "tools/browser-gates.mjs"), "utf8"))?.[1].match(/\w+Check\(/g) ?? [];
   const gates = steps.filter((s) => s !== "storybook build" && s !== "browser gates").length + browser.length;
   return { ...n, components: n.primitives + n.patterns + n.packs, gates };
 }

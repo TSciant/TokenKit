@@ -1,0 +1,90 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Steps",
+ "layer": "primitive",
+ "about": "Steps — where a reader is in a process with a set order: done, here, still to come. Use for: a form or task in a few fixed stages, read in order (apply, check, pay). Don't use for: tasks that can be d",
+ "sources": {
+  "react": "src/react/primitives/Steps.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/steps.css"
+ ],
+ "dataTk": [
+  "steps",
+  "steps-label",
+  "steps-link",
+  "steps-list",
+  "steps-marker",
+  "steps-name",
+  "steps-step"
+ ],
+ "figma": [
+  {
+   "name": "Steps",
+   "node": "442:1781",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "about": "What the steps are for (\"Apply for a grant\"). Names the list."
+  },
+  "steps": {
+   "type": "other",
+   "ts": "StepItem[]",
+   "required": true
+  },
+  "orientation": {
+   "type": "enum",
+   "values": [
+    "horizontal",
+    "vertical"
+   ],
+   "default": "\"horizontal\"",
+   "about": "In a row (default, falling to a column in a narrow box) or always in a column."
+  },
+  "words": {
+   "type": "other",
+   "ts": "Partial<Record<StepStatus, string>>",
+   "about": "The words said for each status, for a page in another language."
+  }
+ },
+ "tokens": [
+  "action-fill",
+  "action-text",
+  "leading-snug",
+  "line-strong",
+  "radius-full",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "status-danger-line",
+  "status-danger-text",
+  "surface-raised",
+  "text-primary",
+  "text-secondary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,91 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ButtonGroup",
+ "layer": "primitive",
+ "about": "Button group — two or three related actions, and the rule for the rest. The decisions are Carbon's, which the ds-corpus Button brief found to be the only system that writes them down: groups of two or",
+ "sources": {
+  "react": "src/react/primitives/ButtonGroup.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/button-group.css",
+  "src/css/components/modal.css"
+ ],
+ "dataTk": [
+  "button-group",
+  "button-group-row"
+ ],
+ "figma": [
+  {
+   "name": "ButtonGroup",
+   "node": "217:142",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "actions": {
+   "type": "other",
+   "ts": "ButtonGroupAction[]",
+   "required": true,
+   "about": "The actions, in reading order. The first `max` show as buttons."
+  },
+  "label": {
+   "type": "text",
+   "required": true,
+   "about": "The group's accessible name (\"Form actions\", \"Card actions\")."
+  },
+  "align": {
+   "type": "enum",
+   "values": [
+    "start",
+    "end"
+   ],
+   "default": "\"start\"",
+   "about": "Which edge the buttons sit against."
+  },
+  "max": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3"
+   ],
+   "default": "3",
+   "about": "How many controls show before the rest move behind a More button. Three at most: past that a row of buttons stops being a choice and becomes a toolbar to read."
+  },
+  "equal": {
+   "type": "boolean",
+   "about": "Every button as wide as the widest label, so a row reads as a set."
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ]
+  },
+  "moreLabel": {
+   "type": "text",
+   "default": "\"More\"",
+   "about": "The overflow trigger's label."
+  }
+ },
+ "tokens": [
+  "space-2"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

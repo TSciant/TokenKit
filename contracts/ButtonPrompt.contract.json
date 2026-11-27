@@ -1,0 +1,87 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ButtonPrompt",
+ "layer": "pack",
+ "about": null,
+ "sources": {
+  "react": "src/packs/gamepad/Gamepad.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "ButtonPrompt",
+   "node": "550:3149",
+   "codeConnect": true,
+   "map": {
+    "Theme": "theme (lower case)",
+    "State": "Off: checked={false}, Lit: lit"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "btn": {
+   "type": "text",
+   "required": true,
+   "about": "Positional name: south, east, west, north, lb, rb, lt, rt, up, down, left, right, ls, rs, view, menu, home, fret1-5."
+  },
+  "action": {
+   "type": "text",
+   "about": "What it does here, e.g. \"Fetch\"."
+  },
+  "effect": {
+   "type": "text",
+   "about": "What happens, after the action, e.g. \"hold for a jet hover\"."
+  },
+  "label": {
+   "type": "text",
+   "about": "Override the control's spoken name (defaults to e.g. \"D-pad up\")."
+  },
+  "glyphs": {
+   "type": "enum",
+   "values": [
+    "letters",
+    "shapes",
+    "numbers"
+   ],
+   "default": "\"letters\""
+  },
+  "theme": {
+   "type": "enum",
+   "values": [
+    "light",
+    "dark",
+    "boosty"
+   ],
+   "default": "\"boosty\"",
+   "figma": [
+    "ButtonPrompt.Theme"
+   ]
+  },
+  "lit": {
+   "type": "boolean",
+   "about": "Lit: the control is the one to press now."
+  },
+  "pulse": {
+   "type": "boolean"
+  },
+  "terse": {
+   "type": "boolean",
+   "about": "Glyph and action only (\"Ⓐ Fetch\"); the control's name stays in the accessible label."
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

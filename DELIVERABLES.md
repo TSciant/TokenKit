@@ -15,7 +15,7 @@ npm install
 npm run check:delivery
 ```
 
-What the kit brings to it: <!-- kit-counts -->125 components (93 primitives, 27 patterns and 5 device and media packs), checked by 22 automated gates for contrast, reflow, accessibility, motion and Figma parity.<!-- /kit-counts -->
+What the kit brings to it: <!-- kit-counts -->125 components (93 primitives, 27 patterns and 5 device and media packs), checked by 25 automated gates for contrast, reflow, accessibility, motion and Figma parity.<!-- /kit-counts -->
 
 `check:delivery` is `check` (lint · vocabulary · generated-file freshness ·
 boundary · neutral · contrast · type · build, then a11y · radius · attributes ·

@@ -1,6 +1,6 @@
 # token-kit: library guidelines
 
-token-kit 0.3.40. A token-driven design system: components draw only from
+token-kit 0.3.41. A token-driven design system: components draw only from
 variables, so a brand, a density or dark mode is a change of variable mode,
 never a change to a component. Generated from the kit's own documentation,
 stories and component sources; the code is the original and Storybook shows
@@ -444,6 +444,19 @@ Before a component is done:
 - **Do:** Make one thing heavier: the fact the reader came for. Weight is the loudest thing type can do without changing size, so it works once per paragraph.
 - **Don't:** Don't bold everything that matters. A paragraph of bold phrases has no emphasis left, only a texture, and the reader skims the bold and misses the sentence.
 
+## From Figma to code
+
+Figma's MCP returns this library's components by their code names (Code Connect), with Figma's property names. Translate them like this:
+
+- A property becomes the prop of the same name in lower camel case (Variant → `variant`, Mega menu → `megaMenu`). A false/true or No/Yes variant is a boolean prop.
+- Label, Text and Body text become the component's children unless the line below names a prop.
+- State is mostly CSS: default, hover, active and focus are never props. Disabled, read-only and checked are the element's own attributes; an error state is the component's `error` or `invalid` prop.
+- "Show X" means pass X or leave it out. An icon swap (Leading, Icon) takes `<Icon name="…" />`; the MCP gives a Figma node id there, never pass it on.
+- Numbered fields (Nav 1 to Nav 6) are entries in the array prop the line below names.
+- A part (Pricing/Plan, Faq/Item) is a field of its parent's data, not a component of its own.
+
+Each component's line below gives only what these rules don't.
+
 ## Components
 
 ### Button
@@ -471,6 +484,8 @@ Progressive enhancement: - With `href` / `as="a"` it is a real link (works witho
 - **Do:** Use quiet danger for a destructive action that repeats (Remove beside each row) and save solid danger for the one confirmation that cannot be undone. The weight should match how final it is.
 - **Don't:** Don't put a solid danger button on every row. A page of loud red buttons trains people to stop seeing them, which is the opposite of what danger is for.
 
+*From Figma:* State → default: CSS, hover: CSS, active: CSS, disabled: disabled, pressed: pressed.
+
 Figma: node `37:332`.
 
 ### Chip
@@ -491,6 +506,8 @@ Small uppercase label above a headline; optional leading icon as child.
 
 *Properties:* `emphasis`: `quiet`.
 
+*From Figma:* Show icon → children: include the <Icon> or don't; Icon → children: an <Icon> before the words.
+
 Figma: node `37:404`.
 
 ### Card
@@ -509,6 +526,8 @@ Figma: node `37:404`.
 - **Don't:** Don't mix shapes in one row: a picture on one card, a button on the next, three lines of text on a third. Every difference has to be read before the content can be, and the row stops reading as a set.
 - **Do:** CardTitle is a heading (h3 by default; set as to fit the page), so cards appear in a screen reader's list of headings under the section they belong to. Write it in sentence case, as you would say it.
 - **Don't:** Don't fake a title with bold text, and don't Title Case it. The bold text looks the same and is missing from the headings list; capitals on every word slow reading and add nothing.
+
+*From Figma:* not a prop (runtime, layout or content): Title, Show footer, Footer.
 
 Figma: node `38:88`.
 
@@ -553,6 +572,8 @@ Field. Baseline: labelled input. Progressive layers: hint → describedby; error
 - **Do:** Set type, autoComplete and inputMode. The browser fills what it already knows, a phone shows the right keyboard, and people who find typing hard type less. Leave paste alone, and leave the field empty unless there is a reason to pre-fill it.
 - **Don't:** Don't leave a phone number as plain text with no hints, and never block paste on a field (a confirm-your-email box most of all). It looks the same and works worse: no autofill, a letter keyboard on a phone, and a password manager that cannot help.
 
+*From Figma:* State → default: CSS, invalid: error, disabled: disabled, readonly: readOnly; not a prop (runtime, layout or content): Value.
+
 Figma: node `38:200`.
 
 ### Meter
@@ -580,6 +601,8 @@ Modal on native dialog. showModal() for top-layer + focus trap; Escape and backd
 - **Do:** Close, Escape and Cancel all leave without changing anything behind the modal. Knowing they can back out is what lets people open it in the first place.
 - **Don't:** Don't take the way out away (dismissible={false}) to make someone answer a question they could skip. Keep it for the decision that has to be made, like a session about to end, and give it two actions that both close it.
 
+*From Figma:* Description text → `description`.
+
 Figma: node `38:283`.
 
 ### Figure
@@ -591,6 +614,8 @@ Figma: node `39:118`.
 *Use for:* where a picture goes, drawn in the pack; label says what it stands in for.
 
 *Properties:* `ratio`: `16 / 9` · `4 / 3` · `1 / 1` · `3 / 4` · `4 / 5` · `21 / 9`; `label`: text; `texture`: `hatch` · `dots` · `rule` · `grid` · `noise` · `weave` · `chevron` · `grain` · `paper` · `stone` · `mist` · `grit` · `halftone` · `brand` · `signature` · `none`; `subject`: `person`.
+
+*From Figma:* Container → the box it sits in (a container query), not a prop; not a prop (runtime, layout or content): Title.
 
 Figma: node `39:173`.
 
@@ -619,6 +644,8 @@ Figma: node `31:43`.
 
 Site chrome: brand, primary nav, optional mega sheet. Graceful small-box degradation via sheet — not a second mobile DOM.
 
+*From Figma:* Nav 1 → nav[0]; Nav 2 → nav[1]; Nav 3 → nav[2]; Nav 4 → nav[3]; Container → the box it sits in (a container query), not a prop; Mega menu → withMegaMenu (true/false).
+
 Figma: node `54:245`.
 
 ### Masthead
@@ -626,6 +653,8 @@ Figma: node `54:245`.
 01 — wordmark, nav, CTA, search.
 
 Wide: inline nav (optional mega). Narrow: same facts in a sheet behind Menu. Graceful degradation, not a restructured mobile chrome.
+
+*From Figma:* Nav 1 → navItems[0]; Nav 2 → navItems[1]; Nav 3 → navItems[2]; Nav 4 → navItems[3]; Nav 5 → navItems[4]; Nav 6 → navItems[5]; Container → the box it sits in (a container query), not a prop; Search → showSearch (true/false); Contact CTA → showContactCta (true/false).
 
 Figma: node `69:393`.
 
@@ -635,17 +664,23 @@ Figma: node `69:393`.
 
 Three claims run together as one pipe-delimited line read as a single run-on sentence to a screen reader. Three labelled figures say the same thing and can be navigated.
 
+*From Figma:* Columns → columns; code also: 2, 4, 1; Value 1 → stats[0].value; Label 1 → stats[0].label; Value 2 → stats[1].value; Label 2 → stats[1].label; Value 3 → stats[2].value; Label 3 → stats[2].label.
+
 Figma: node `60:558`.
 
 ### PageHero
 
 14 — breadcrumb over a tinted title band.
 
+*From Figma:* Crumb 1 → crumbs[0]; Crumb 2 → crumbs[1]; Current → title (the current page closes the breadcrumb trail).
+
 Figma: node `70:204`.
 
 ### SiteFooter
 
 13 — the inverted closing band.
+
+*From Figma:* Legal 1 → legalLinks[0]; Legal 2 → legalLinks[1]; Legal 3 → legalLinks[2]; Nav 1 → navLinks[0]; Nav 2 → navLinks[1]; Nav 3 → navLinks[2]; Subscribe CTA → `subscribeCta`; Subscribe → `subscribeLabel`.
 
 Figma: node `74:204`.
 
@@ -667,6 +702,8 @@ Figma: node `37:332`.
 
 Does not auto-advance. 2.2.2 requires a pause control for anything that moves by itself, and a wireframe has nothing to prove by moving. The dots are real buttons with names rather than decorative spans.
 
+*From Figma:* Plate → slides[n].seed (picks the stand-in photograph; its category says what it shows); Slide → initialSlide (1-based in Figma, 0-based in code).
+
 Figma: node `135:760`.
 
 ### TileGrid
@@ -684,6 +721,8 @@ Figma: node `86:260`.
 ### CtaBlocks
 
 17 — paired mid-funnel banners.
+
+*From Figma:* Title 1 → blocks[0].title; Body 1 → blocks[0].body; Title 2 → blocks[1].title; Body 2 → blocks[1].body.
 
 Figma: node `87:282`.
 
@@ -729,6 +768,8 @@ Figma: node `115:582`.
 
 21 — the audience landing pattern.
 
+*From Figma:* CTA heading → `ctaHeading`.
+
 Figma: node `118:533`.
 
 ### SubBrandPage
@@ -769,6 +810,8 @@ Figma: node `132:606`.
 
 04 — a disclosure that eases open instead of swapping the DOM.
 
+*From Figma:* State → closed: runtime, not a prop, open: runtime, not a prop.
+
 Figma: node `137:740`.
 
 ### SectionNav
@@ -787,9 +830,13 @@ Figma: node `148:250`.
 
 A button that opens a short list of links or actions. Use for: a handful of related destinations or actions behind one control (More, Share, Account), where a mega menu would be a whole panel for six links. Don't use for: the site's primary navigation, a long or grouped list (use a mega menu or a rail nav), or choosing a value (that is a select). It is the disclosure pattern, not role="menu": the trigger has aria-expanded, the items are ordinary links and buttons, and Tab moves through them as everywhere else. Escape and a click outside close it; the arrow keys move between items.
 
+*From Figma:* Open → initialOpen (true/false).
+
 Figma: node `148:299`.
 
 ### MegaMenu
+
+*From Figma:* drawn by `ContactCta`.
 
 Figma: node `151:753`.
 
@@ -813,12 +860,16 @@ Figma: node `173:513`.
 
 ### Plate
 
+*From Figma:* Subject → subject (lower case).
+
 Figma: node `176:488`.
 
 ### Gradient
 
 - **Do:** Put the text on a scrim and let the gradient be a ground. The scrim composites a wash whose alpha was solved against the lightest backdrop a photograph can produce, so it does not care what is underneath it — including a gradient whose ends it has never seen.
 - **Don't:** Don't set text straight onto a gradient because it looked right in the screenshot. The ratio changes across the element, and the half that fails is the half nobody captured.
+
+*From Figma:* Direction → direction; Figma only: blockend, blockstart, inlineend, inlinestart, diagonalup; code also: block-end, block-start, inline-end, inline-start, diagonal-up.
 
 Figma: node `178:495`.
 
@@ -860,9 +911,13 @@ Figma: node `185:476`.
 
 Token-driven tachometer. Reads --tk-* CSS vars; canvas is decorative; role=meter + live text carry a11y.
 
+*From Figma:* state → default: CSS, pegged: runtime, not a prop.
+
 Figma: node `186:485`.
 
 ### Shell
+
+*From Figma:* kind → kind; code also: center, inline.
 
 Figma: node `190:523`.
 
@@ -880,6 +935,8 @@ Inline form — one field and its submit button on one line.
 
 The shape behind newsletter sign-ups, "get the guide" boxes and the input-capture hero. It is a real <form>: Enter submits, it works without JavaScript when given an `action`, and the browser's own validation runs on `type` and `required`. The label is always there (visible unless hidden on purpose), the hint and error are tied to the field with aria-describedby, and the row wraps to a stack when the box is too narrow for both, field first, so the reading order never changes.
 
+*From Figma:* State → default: CSS, error: error.
+
 Figma: node `215:1393`.
 
 ### ButtonGroup
@@ -894,6 +951,8 @@ Figma: node `217:142`.
 
 Do and Don't: as Button.
 
+*From Figma:* drawn by `Button`.
+
 Figma: node `220:142`.
 
 ### CardHeader
@@ -904,6 +963,8 @@ The action sits above a stretched title link, so a clickable card can still have
 
 Do and Don't: as Card.
 
+*From Figma:* drawn by `Card`.
+
 Figma: node `222:150`.
 
 ### ChoiceCard
@@ -912,11 +973,15 @@ Choice card — a radio or checkbox drawn as a card.
 
 For choosing between a few options that each need a sentence (plans, delivery speeds, a setup path). PatternFly calls these selectable cards and tiles; this one is built on the native input rather than imitating one, so the group, the arrow keys between radios, Space to toggle, required, form submission and the screen-reader announcement ("radio button, 2 of 3, checked") are all the browser's. The whole card is the label, so the whole card is the target. The native control stays visible: the dot or tick says "selected" without relying on the border's colour.
 
+*From Figma:* State → unchecked: runtime, not a prop, checked: checked.
+
 Figma: node `224:1407`.
 
 ### FieldAffix
 
 Do and Don't: as Field.
+
+*From Figma:* drawn by `Field`.
 
 Figma: node `228:1393`.
 
@@ -924,11 +989,15 @@ Figma: node `228:1393`.
 
 Do and Don't: as Field.
 
+*From Figma:* drawn by `Field`.
+
 Figma: node `229:1393`.
 
 ### FieldCount
 
 Do and Don't: as Field.
+
+*From Figma:* drawn by `Field`.
 
 Figma: node `230:1396`.
 
@@ -936,17 +1005,23 @@ Figma: node `230:1396`.
 
 Do and Don't: as Modal.
 
+*From Figma:* drawn by `Modal`.
+
 Figma: node `240:2219`.
 
 ### FieldWidths
 
 Do and Don't: as Field.
 
+*From Figma:* drawn by `Field`.
+
 Figma: node `241:144`.
 
 ### FieldReadOnly
 
 Do and Don't: as Field.
+
+*From Figma:* drawn by `Field`.
 
 Figma: node `242:2291`.
 
@@ -1007,6 +1082,8 @@ Figma: node `311:1608`.
 
 Do and Don't: as Alert.
 
+*From Figma:* drawn by `Alert`.
+
 Figma: node `311:1654`.
 
 ### Avatar
@@ -1019,6 +1096,8 @@ Figma: node `311:1565`.
 
 ### ChipTone
 
+*From Figma:* drawn by `Chip`; Tone → tone; code also: neutral.
+
 Figma: node `311:1607`.
 
 ### Code
@@ -1026,6 +1105,8 @@ Figma: node `311:1607`.
 Code — a short piece of source, labelled.
 
 Use for: a snippet that illustrates a point (a few lines, not a file). Don't use for: a whole file (link to it), or a single token inside a sentence (that is inline code, the plain code element). For a snippet a reader is meant to paste, set `copy`: a button in the corner copies it and says "Copied", aloud too, through a live region.
+
+*From Figma:* Show copy → `copy`; Copy label → `copyWords`.
 
 Figma: node `402:1585`.
 
@@ -1035,13 +1116,19 @@ Timeline — things across time, in lanes: spans (a start and an end) and milest
 
 Use for: how several threads ran side by side and overlapped (eras, a project's phases, a release history). Don't use for: a list of dated events with no duration and one thread (an event list), or exact values a reader must compare (a table).
 
+*From Figma:* Today → `nowLabel`; Show today → now (omit it to hide the today line); not a prop (runtime, layout or content): Detail title, Detail when, Detail, Show detail.
+
 Figma: node `403:1585`.
 
 ### TimelineJourney
 
+*From Figma:* drawn by `Timeline`; Period → the current lane's label in lanes; Earlier period → an earlier lane's label in lanes; Show periods → lanes (one lane shows no period labels); not a prop (runtime, layout or content): Show passed, Side.
+
 Figma: node `409:2590`.
 
 ### Toast
+
+*From Figma:* drawn by `ToastRegion`.
 
 Figma: node `440:1716`.
 
@@ -1051,6 +1138,8 @@ Tooltip — a few words about a control, shown on hover and on focus.
 
 Use for: the name of an icon-only button, or a short supplement to a control that already says what it does. Don't use for: anything a reader needs to complete a task (put it on the page), anything on a touch screen only (there is no hover), rich content or links (a Toggletip), or text on something that cannot take focus. GOV.UK's system has no tooltip at all, for these reasons; this one exists for the icon-button case and holds itself to WCAG 1.4.13: it stays while the pointer is over it, until focus leaves or Escape is pressed, and Escape closes it without moving focus.
 
+*From Figma:* Placement → placement (lower case).
+
 Figma: node `444:1801`.
 
 ### ChoiceGroup
@@ -1059,6 +1148,8 @@ ChoiceGroup — a question answered by choosing from a few options: radio button
 
 Use for: up to about seven options a reader should see all of at once. Don't use for: a long list (a Select, or a search), a single on and off setting that applies at once (a Switch), or options that need room to explain themselves (ChoiceCard).
 
+*From Figma:* State → Default: CSS, Error: error.
+
 Figma: node `441:1721`.
 
 ### Switch
@@ -1066,6 +1157,8 @@ Figma: node `441:1721`.
 Switch — a setting that is on or off and takes effect at once.
 
 Use for: a preference that changes something straight away, with no save button (notifications, a dark theme). Don't use for: a choice that is only sent with a form (a checkbox, in a ChoiceGroup), or more than two states.
+
+*From Figma:* State → On: checked, Off: checked={false}.
 
 Figma: node `441:1775`.
 
@@ -1099,6 +1192,8 @@ UtilityNav — a short row of small links above or beside the primary navigation
 
 The things a reader looks for on every page but that are not what the site is about: contact, careers, a customer portal, log in. A navigation landmark of its own, named so a screen reader hears it apart from the primary one. Small and quiet, so it never competes with the sections; a few links, not a second menu (anything that grows past five or six belongs in the primary navigation or the footer). Put it at the top, above the site-wide header: the general before the specific. SiteHeader takes it in its `utility` slot.
 
+*From Figma:* Align → align (lower case).
+
 Figma: node `447:1820`.
 
 ### SignIn
@@ -1107,6 +1202,8 @@ SignIn — a form that signs someone in.
 
 An email address and a password, a Sign in button, and a way back in for someone who has forgotten. The fields say what they are to a password manager (autocomplete username and current-password), the password can be shown to catch a typo, and paste is never blocked. A failed attempt is said once, above the form, without naming the field at fault, and the password is cleared. Put it only in front of what is private: everything public should be readable without signing in.
 
+*From Figma:* Show other ways in → alternatives (omit it to hide).
+
 Figma: node `449:1840`.
 
 ### AudioPlayer
@@ -1114,6 +1211,8 @@ Figma: node `449:1840`.
 AudioPlayer — a clip or an episode, played on the page.
 
 A native audio element underneath, with the kit's own controls over it, so every control is a real button or slider a keyboard and a screen reader already know: play and pause, back and forward fifteen seconds, the position (arrow keys move it by the same fifteen), the time, the speed and mute. Volume is left to the device. It never plays by itself: nothing sounds until someone presses play. A transcript, when there is one, opens under the controls for anyone who would rather read or cannot hear.
+
+*From Figma:* State → Stopped: runtime, not a prop, Playing: runtime, not a prop.
 
 Figma: node `447:1839`.
 
@@ -1131,6 +1230,8 @@ Callout — a block set apart from the body text.
 
 Two kinds, chosen by how much it matters. Inset text stands out with a thick rule down its edge and no fill: worth noticing, safe to miss. A warning is for what a reader must not miss: a short specific heading, the warning icon and a full border on the warning surface, so its shape says it as well as its colour. Both carry a hidden label, so a screen reader hears where the callout starts. Neither is an alert: a callout is part of the page's content, there when the page loads, never announced (a message about something that just happened is an Alert or a Toast).
 
+*From Figma:* Variant → variant (lower case).
+
 Figma: node `457:1864`.
 
 ### DateInput
@@ -1139,6 +1240,8 @@ DateInput — a date someone already knows, in three short fields.
 
 Day, month and year in a fieldset whose legend is the question, each with its own small label, sized to its answer (two, two and four characters). Text fields with a numeric keypad, never number fields (which round, step and scroll). Focus never jumps on by itself: a reader moves between them, so they can go back and correct one. An error is said once, under the hint, and borders only the parts in error. Ask for month and year alone when the exact day is unlikely to be known. For choosing a date from a calendar (booking, scheduling), a date picker, with typing still allowed.
 
+*From Figma:* State → Default: CSS, Error: error.
+
 Figma: node `458:1867`.
 
 ### Panel
@@ -1146,6 +1249,8 @@ Figma: node `458:1867`.
 Panel — a page's one prominent message: done, or wait.
 
 A confirmation panel tells the reader a task is finished, with its reference large enough to note down; what happens next goes under it, on the page. An interruption panel stops a journey before a likely mistake, something serious that cannot be undone, or something important that was missed: the inverse surface, a heading that says it is an interruption, a little content, one way on and one way back. Use it sparingly; seen often, it stops being seen. Neither is announced as it loads: the heading carries it, which is why the heading has to say what is going on.
+
+*From Figma:* Variant → variant (lower case); Confirmation heading → title, with variant confirmation; Confirmation note → `children`; Show confirmation note → children (omit them to hide); Interruption heading → title, with variant interruption; Interruption content → `children`.
 
 Figma: node `461:1867`.
 
@@ -1157,6 +1262,8 @@ It sits above SiteHeader (SiteHeader's `banner`) and sticks to the top by defaul
 
 - **Do:** Say what state the site is in, in a word, and what that means for the reader in one line: what is not real yet, or where feedback goes.
 - **Don't:** Don't use it for news or promotions. A strip that sometimes carries a sale teaches people to ignore it on the day it says the site is a prototype.
+
+*From Figma:* Show text → children (omit them to hide).
 
 Figma: node `468:1940`.
 
@@ -1192,6 +1299,8 @@ Use for: parts of one subject that a reader looks at one by one and that are all
 
 *Use for:* views of one thing, one at a time: its text names the set (Event details); each tab child is one view, its text the tab's label and its children the panel.
 
+*From Figma:* Panel → `children`.
+
 Figma: node `473:1977`.
 
 ### ResourceDownload
@@ -1208,7 +1317,7 @@ DataTable — data that is a table: rows of the same kind of thing, compared acr
 
 For data only, never for layout. Figures line up (tabular numbers) and end-align in a column set to "end". On a container too narrow for it, the table scrolls sideways inside a region named by its caption, which takes keyboard focus so it can be scrolled without a mouse; the page itself never scrolls sideways. A list of key and value pairs is a description list instead, and a grid of cards is a collection.
 
-Figma: node `477:1990`.
+Figma: node `622:2813`.
 
 ### CookieConsent
 
@@ -1219,6 +1328,8 @@ A region named by its heading, with the message, a link to the cookie policy and
 - **Do:** Give accept and reject the same weight: one variant, one size, side by side. They are two answers to one question.
 - **Don't:** Don't make yes a button and no a link to a settings page. That decides for the reader, and where consent is the law it is not consent.
 
+*From Figma:* Message → `children`; Policy → `policyLabel`; Show policy → policyHref (omit it to hide); Show settings → settingsHref (omit it to hide).
+
 Figma: node `478:2006`.
 
 ### VideoPlayer
@@ -1226,6 +1337,8 @@ Figma: node `478:2006`.
 VideoPlayer — a video shown as its poster until the viewer presses play.
 
 Nothing from a third party loads before that press: no player script, no iframe, no cookie, no request to YouTube or Vimeo. A page with three videos on it costs three pictures, and a reader who never presses play has told nobody they were there. Pressing play swaps the poster for the player in the same box at the same ratio (a native <video> for a self-hosted `src`; youtube-nocookie.com or Vimeo with do-not-track for an `embed`) and moves focus into it, so a keyboard user carries on where they pressed.
+
+*From Figma:* Show captions → `captions`; Show label → posterLabel (omit it to hide); Show transcript → transcriptHref (omit it to hide).
 
 Figma: node `480:2012`.
 
@@ -1248,6 +1361,8 @@ It introduces the content set below it and owns none of it, so a page of section
 - **Do:** Keep the introduction to a sentence or two that says what the section holds. A reader decides from it whether to read on.
 - **Don't:** Don't set a heading on its own band of colour away from what it heads. Two regions read as two things; the heading belongs to its section.
 
+*From Figma:* Intro → `children`; Show intro → children (omit them to hide).
+
 Figma: node `483:2013`.
 
 ### Quote
@@ -1260,13 +1375,17 @@ A figure holding the quotation (a blockquote) and its attribution (the figcaptio
 
 *Properties:* `name`: text; `role`: text; `organisation`: text; `variant`: `plain` · `pull` · `testimonial`.
 
-Figma: node `484:2018`.
+*From Figma:* Quote → `text`.
+
+Figma: node `618:2518`.
 
 ### ArticleMeta
 
 ArticleMeta — the line under an article's title: what it is, when it was published (and updated), who wrote it, how long it takes, and what it is about.
 
 One row that wraps, as a list, so a screen reader takes it a piece at a time. The pieces are parted by quiet dots drawn in CSS, which are shapes rather than characters: nothing is read aloud between them, and a dot that would start a wrapped line is clipped away. Dates are time elements with the ISO date in datetime. Not a place for actions: sharing and saving belong in their own row.
+
+*From Figma:* Author → authors[0].name; Show author → authors (omit it to hide).
 
 Figma: node `486:2018`.
 
@@ -1338,6 +1457,8 @@ ProfileHeader — the top of a person's own page: who they are, what they do and
 
 The name is the page's heading, with any letters after it in a lighter weight. The portrait sits in a narrow column beside the details when the container has room, and above them, smaller, when it does not; that is a container query, so a profile in a sidebar stacks while one on a page sits side by side. Email and phone are real links (mailto:, tel:), and every icon is decoration with its kind spoken as a word. A grid of people is a card collection, each card a name, a role and a link to this.
 
+*From Figma:* Bio 2 → bio[1]; Portrait label → portrait (its initials or alt text).
+
 Figma: node `496:2337`.
 
 ### BackLink
@@ -1354,6 +1475,8 @@ LanguageSwitcher — the same page in another language.
 
 Links, each in its own language's name and marked with its language, so a reader who knows none of the page's language still finds theirs, and a screen reader says it in the right voice. The page's own language is shown as the current one, and never behind the menu. Past a few, the rest move behind a menu. Put it in the same place on every page; it goes to the same page, keeps what was typed, and translates nothing. Only offer a language the service is fully written in.
 
+*From Figma:* Current → languages[n] with current: true; Other → languages[n] without current.
+
 Figma: node `497:2368`.
 
 ### SaveStatus
@@ -1361,6 +1484,8 @@ Figma: node `497:2368`.
 SaveStatus — "Saving…", then "Saved", beside what was changed.
 
 For saving that happens by itself (as you type, or on each change): a quiet line next to the edited content, not a toast, that says one thing and then the next instead of stacking ("3 changes saved"). A polite status region, so a screen reader hears each state once; the time sits outside it. A failed save is not this: a danger Alert with Retry that stays until it saves. A manual Save button says it is working itself (Button busy).
+
+*From Figma:* Words → `children`.
 
 Figma: node `497:2373`.
 
@@ -1370,7 +1495,7 @@ Spinner — something is coming, and it is not known what it looks like.
 
 An arc in the text's colour at the text's size, with its words in one polite status region; focus stays where the reader put it. When the coming content's shape is known, use a Skeleton instead; inside a button, Button's `busy`. One spinner talks at a time: give the others `decorative`. For a long wait, say how long or show progress, not a spinner.
 
-Figma: node `497:2382`.
+Figma: node `619:2520`.
 
 ### Skeleton
 
@@ -1386,6 +1511,8 @@ EmptyState — where content would be, why there is none, and what to do.
 
 It replaces what is empty (the table, headers and all), so a screen reader does not read an empty table first. A real heading at its place in the outline, a sentence or two, and at most two ways on. Left-aligned as one block. Its mark and any picture are decoration. Not while loading (that is a Spinner or a Skeleton), and not for an error that needs action now (an Alert).
 
+*From Figma:* Link → secondary.label; Show link → secondary (omit it to hide); Show mark → icon or media (omit both to hide).
+
 Figma: node `502:2383`.
 
 ### CareCard
@@ -1394,6 +1521,8 @@ CareCard — what care to get, who to contact and how quickly.
 
 Three levels, told apart by the words in the heading (hidden, but read first: "Urgent advice: Call 111 if:"), by the mark and by the edge, not by colour alone. The heading is one call to action; the body is a bulleted list of when. Order cards by how likely and how serious. An emergency card may carry one action link and no other links. Built from one source, the NHS service manual's care cards, and saying so: use it for care advice, not for warnings (a Callout) or in a question page.
 
+*From Figma:* Level → level (lower case); Heading → `title`; not a prop (runtime, layout or content): Reason 1, Reason 2, Reason 3.
+
 Figma: node `502:2458`.
 
 ### ErrorPage
@@ -1401,6 +1530,8 @@ Figma: node `502:2458`.
 ErrorPage — the page that says a page is missing, the service is broken or the service is closed, and what to do.
 
 Inside the site's usual header and footer, without breadcrumbs: the heading in plain words, a short body, what happened to their answers, how to get help, and at most one way on. No error code, no jargon ("404", "bad request"), no humour ("oops"), no red, and no blame. The server still sends the real status. Not for a form's validation errors (ErrorSummary) or for planned downtime while the service still works (an Alert).
+
+*From Figma:* Heading → `title`.
 
 Figma: node `502:2459`.
 
@@ -1418,6 +1549,8 @@ Combobox — type to narrow a long list, then choose.
 
 An editable combobox with a listbox (the APG pattern, list autocomplete, chosen by hand). Focus stays in the text box the whole time; the arrow keys move a highlight through the options (aria-activedescendant), Enter or a click chooses, Escape closes and then clears. Typing never replaces what was typed. The number of matches is said when typing pauses. Without allowCustom, leaving with text that is not an option puts back the last choice, and leaving it empty clears the choice. No placeholder: the label and hint say what to type.
 
+*From Figma:* State → Closed: runtime, not a prop, Open: runtime, not a prop.
+
 Figma: node `507:2437`.
 
 ### FileUpload
@@ -1425,6 +1558,8 @@ Figma: node `507:2437`.
 FileUpload — choose files, see each by name with where it is, remove any.
 
 A native file input first: without JavaScript it is the browser's own. Once the page runs, a real button opens the picker (so speech control can press it), a box around it takes dropped files, and the chosen files are listed by name with their size, their status as an icon and a word, and a Remove button that names the file. A polite region says "2 of 3 files uploaded" and "File scan.heic removed". A file's error is also the field's error. The kit uploads nothing: `onAdd` gets the files, the caller checks them, sends them and keeps `files` up to date.
+
+*From Figma:* File name → files[n].name; File size → files[n].size; Show file → files (an empty list shows none).
 
 Figma: node `507:2438`.
 
@@ -1434,6 +1569,8 @@ ReorderList — put a short list in order by dragging, by keyboard, or with a bu
 
 Each item has a grip to drag it by, which is also a button: Space or Enter picks the item up, the arrows move it, Space or Enter puts it down, Escape puts it back. Each item also has Move up and Move down, so a single tap does it without dragging (WCAG 2.5.7). Every pick-up, move, drop and cancel is said, with the position. For quick reordering of a short list; not when the list is sorted by something (disable it and say so).
 
+*From Figma:* Item 1 → items[0]; Item 2 → items[1]; Item 3 → items[2]; Item 4 → items[3]; Item 5 → items[4].
+
 Figma: node `507:2487`.
 
 ### DestructiveConfirm
@@ -1441,6 +1578,8 @@ Figma: node `507:2487`.
 DestructiveConfirm — a pause before an action that cannot be undone.
 
 An alert dialog: the title is a question, the consequence is read with it, Cancel comes first and takes focus, the action is the danger button in the title's words. A click outside does nothing; Escape and Cancel keep things as they were. For high severity the action stays unavailable until the thing's name is typed, and focus starts in that field. While the action runs the dialog stays open and says so; if it fails, the reason is shown here and nothing closes. Afterwards, go back to the list and confirm in a Toast. No Alert inside, and never a dialog from a dialog.
+
+*From Figma:* Show name field → confirmText (omit it to hide the typed confirmation).
 
 Figma: node `509:2474`.
 
@@ -1458,52 +1597,78 @@ PauseMotion — one button that pauses every loop on the page, and plays them ag
 
 Its words name the action ("Pause animations", then "Play animations") and change when it is pressed, so it carries no pressed state. Put it once, early in the page (the header's utilities), before the moving content; the choice is kept for the next page (put `motionBootScript` in the head so it holds from the first frame). When the device asks for reduced motion nothing loops, so it shows as paused, unavailable, and says why. WCAG 2.2.2: motion that starts on its own, lasts more than five seconds and sits beside other content can be paused.
 
+*From Figma:* not a prop (runtime, layout or content): Motion.
+
 Figma: node `512:2561`.
 
 ### Gamepad
+
+*From Figma:* Theme → theme (lower case); Glyphs → glyphs (lower case); State → Idle: CSS, Highlight: highlight, Pressed: runtime, not a prop.
 
 Figma: node `550:153`.
 
 ### ButtonPrompt
 
+*From Figma:* Theme → theme (lower case); State → Off: checked={false}, Lit: lit.
+
 Figma: node `550:3149`.
 
 ### Guitar
+
+*From Figma:* Theme → theme (lower case); State → Idle: CSS, Strum: runtime, not a prop.
 
 Figma: node `550:2962`.
 
 ### Keyboard
 
+*From Figma:* Theme → theme (lower case); State → Idle: CSS, Highlight: highlight, Pressed: runtime, not a prop.
+
 Figma: node `561:1503`.
 
 ### KeyPrompt
+
+*From Figma:* Theme → theme (lower case); State → Off: checked={false}, Lit: lit.
 
 Figma: node `562:177`.
 
 ### TvTile
 
+*From Figma:* Theme → theme (lower case); Badge text → `badge`.
+
 Figma: node `568:207`.
 
 ### TvRow
+
+*From Figma:* Theme → theme (lower case); Title → `label`.
 
 Figma: node `571:465`.
 
 ### TvOsd
 
+*From Figma:* Theme → theme (lower case); Kind → kind (lower case); Figma only: Muted, Now playing; code also: now-playing.
+
 Figma: node `572:507`.
 
 ### TvSidebar
+
+*From Figma:* Theme → theme (lower case).
 
 Figma: node `573:627`.
 
 ### TvShell
 
+*From Figma:* Theme → theme (lower case).
+
 Figma: node `575:1686`.
 
 ### CallTile
 
+*From Figma:* State → Live: runtime, not a prop, Camera off: runtime, not a prop, Connecting: runtime, not a prop.
+
 Figma: node `577:167`.
 
 ### CallBar
+
+*From Figma:* not a prop (runtime, layout or content): Mic, Camera.
 
 Figma: node `577:280`.

@@ -1,0 +1,108 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Agenda",
+ "layer": "primitive",
+ "about": "Agenda — one event's programme: its sessions in order, each with a time, a title, who leads it, a line on what it covers and one thing to take away. An ordered list, because the order is the point, wi",
+ "sources": {
+  "react": "src/react/primitives/Agenda.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/agenda.css"
+ ],
+ "dataTk": [
+  "agenda",
+  "agenda-action",
+  "agenda-body",
+  "agenda-detail",
+  "agenda-list",
+  "agenda-note",
+  "agenda-session",
+  "agenda-speakers",
+  "agenda-time",
+  "agenda-title"
+ ],
+ "figma": [
+  {
+   "name": "Agenda",
+   "node": "491:2124",
+   "codeConnect": true,
+   "map": {
+    "Note": "note",
+    "Show note": "note (omit it to hide)"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "Agenda/Session",
+   "node": "491:2104",
+   "codeConnect": true,
+   "map": {
+    "Time": "Agenda data",
+    "Title": "Agenda data",
+    "Speakers": "Agenda data",
+    "Show speakers": "Agenda data",
+    "Detail": "Agenda data",
+    "Show detail": "Agenda data",
+    "Show action": "Agenda data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "sessions": {
+   "type": "other",
+   "ts": "AgendaSession[]",
+   "required": true
+  },
+  "note": {
+   "type": "text",
+   "figma": [
+    "Agenda.Note",
+    "Agenda.Show note"
+   ],
+   "about": "Said once above the list, so no row repeats it: \"Times are Eastern.\" Optional."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "3",
+    "4"
+   ],
+   "about": "Each session title's heading level: h3 (the default) under a section's h2, h4 one deeper."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "3",
+    "4"
+   ]
+  }
+ },
+ "tokens": [
+  "font-mono",
+  "line-subtle",
+  "measure",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "text-secondary",
+  "weight-medium"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

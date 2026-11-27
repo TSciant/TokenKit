@@ -1,0 +1,117 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "MediaCards",
+ "layer": "pattern",
+ "about": "19 — media promos with a type badge and a duration.",
+ "sources": {
+  "react": "src/react/patterns/catalog.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/pricing.css",
+  "src/css/components/search-results.css",
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "card",
+  "card-body",
+  "card-footer",
+  "card-title",
+  "search-results-types",
+  "visually-hidden"
+ ],
+ "figma": [
+  {
+   "name": "MediaCards",
+   "node": "98:384",
+   "codeConnect": true,
+   "map": {
+    "Heading": "heading"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "MediaCards/Card",
+   "node": "98:288",
+   "codeConnect": true,
+   "map": {
+    "Title": "MediaCards data",
+    "Duration": "MediaCards data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "heading": {
+   "type": "text",
+   "default": "MEDIA_CARDS_HEADING",
+   "figma": [
+    "MediaCards.Heading"
+   ]
+  },
+  "items": {
+   "type": "other",
+   "ts": "MediaItem[]",
+   "default": "MEDIA_ITEMS"
+  },
+  "icons": {
+   "type": "other",
+   "ts": "Record<string, \"info\" | \"success\" | \"warning\" | \"circle\" | \"",
+   "default": "MEDIA_ICONS"
+  },
+  "columns": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1"
+   ],
+   "default": "3"
+  },
+  "ratio": {
+   "type": "text",
+   "default": "\"16 / 9\"",
+   "about": "Aspect ratio of each card's stand-in photograph."
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-snug",
+  "line-default",
+  "line-strong",
+  "line-subtle",
+  "motion-elevation",
+  "motion-line",
+  "motion-surface",
+  "radius-nested",
+  "shadow-none",
+  "shadow-sm",
+  "size-lg",
+  "size-xl",
+  "space-2",
+  "space-3",
+  "space-5",
+  "surface-raised",
+  "surface-sunken",
+  "text-primary",
+  "text-secondary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

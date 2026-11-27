@@ -1,0 +1,118 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SiteHeader",
+ "layer": "primitive",
+ "about": "Site chrome: brand, primary nav, optional mega sheet. Graceful small-box degradation via sheet — not a second mobile DOM.",
+ "sources": {
+  "react": "src/react/primitives/SiteHeader.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/site-header.css",
+  "src/css/components/utility-nav.css"
+ ],
+ "dataTk": [
+  "site-header",
+  "site-header-actions",
+  "site-header-bar",
+  "site-header-brand",
+  "site-header-nav",
+  "site-header-sheet",
+  "site-header-sheet-heading",
+  "site-header-sheet-list",
+  "site-header-utility"
+ ],
+ "figma": [
+  {
+   "name": "SiteHeader",
+   "node": "54:245",
+   "codeConnect": true,
+   "map": {
+    "Brand": "brand",
+    "Nav 1": "nav[0]",
+    "Nav 2": "nav[1]",
+    "Nav 3": "nav[2]",
+    "Nav 4": "nav[3]",
+    "Container": "the box it sits in (a container query), not a prop",
+    "Mega menu": "withMegaMenu (true/false)"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "brand": {
+   "type": "content",
+   "default": "\"Token Kit\"",
+   "figma": [
+    "SiteHeader.Brand"
+   ]
+  },
+  "nav": {
+   "type": "other",
+   "ts": "{ label: string; href?: string; }[]",
+   "default": "DEFAULT_NAV",
+   "figma": [
+    "SiteHeader.Nav 1",
+    "SiteHeader.Nav 2",
+    "SiteHeader.Nav 3",
+    "SiteHeader.Nav 4"
+   ]
+  },
+  "withMegaMenu": {
+   "type": "boolean",
+   "default": "false",
+   "figma": [
+    "SiteHeader.Mega menu"
+   ],
+   "about": "Mega-menu sheet on small boxes instead of a stacked restructure."
+  },
+  "actions": {
+   "type": "content"
+  },
+  "banner": {
+   "type": "content",
+   "about": "A PhaseBanner (or any one-line strip) above the header: the site's state, where you are. Drawn before the header, not inside it, so a sticky banner stays at the top of the page rather than only the to"
+  },
+  "utility": {
+   "type": "content",
+   "about": "A UtilityNav (contact, careers, log in): a strip inside the header, above the bar. The general before the specific, so it reads first."
+  }
+ },
+ "tokens": [
+  "font-sans",
+  "gutter",
+  "leading-tight",
+  "line-default",
+  "line-strong",
+  "line-subtle",
+  "motion-enter",
+  "radius-nested",
+  "size-base",
+  "size-heading",
+  "space-1",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-6",
+  "surface-default",
+  "surface-raised",
+  "target-comfortable",
+  "tracking-snug",
+  "tracking-tight",
+  "weight-bold",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

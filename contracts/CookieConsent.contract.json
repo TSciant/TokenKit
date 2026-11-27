@@ -1,0 +1,180 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "CookieConsent",
+ "layer": "primitive",
+ "about": "CookieConsent — the banner that asks whether non-essential cookies may be set, before any are. A region named by its heading, with the message, a link to the cookie policy and three actions: Accept al",
+ "sources": {
+  "react": "src/react/primitives/CookieConsent.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/cookie-consent.css"
+ ],
+ "dataTk": [
+  "cookie-consent",
+  "cookie-consent-actions",
+  "cookie-consent-confirmation",
+  "cookie-consent-inner",
+  "cookie-consent-message",
+  "cookie-consent-policy",
+  "cookie-consent-title"
+ ],
+ "figma": [
+  {
+   "name": "CookieConsent",
+   "node": "478:2006",
+   "codeConnect": true,
+   "map": {
+    "Title": "title"
+   },
+   "unpaired": [
+    "Message",
+    "Policy",
+    "Show policy",
+    "Show settings"
+   ]
+  }
+ ],
+ "props": {
+  "title": {
+   "type": "content",
+   "default": "\"Cookies on this site\"",
+   "figma": [
+    "CookieConsent.Title"
+   ],
+   "about": "The heading: what this is about, in a few words. Name the site when it helps (\"Cookies on Example Store\"). It names the region too, and it stays through the confirmation, so the region keeps its name "
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3"
+   ],
+   "about": "The heading's level in the page outline. Default 2."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3"
+   ]
+  },
+  "children": {
+   "type": "content",
+   "default": "\"We use some essential cookies to make this site work. We'd ",
+   "about": "The message: which cookies are essential, which are not, and what the non-essential ones are for. Two short sentences; the policy has the rest."
+  },
+  "policyHref": {
+   "type": "text",
+   "about": "Where the cookie policy is. Without it there is no policy link."
+  },
+  "policyLabel": {
+   "type": "text",
+   "default": "\"Read the cookie policy\"",
+   "about": "The policy link's words. Default \"Read the cookie policy\"."
+  },
+  "settingsHref": {
+   "type": "text",
+   "about": "Where the cookie settings are, when they are a page of their own. With it, \"Cookie settings\" is a link that works without script, and the confirmation offers a way back to it. Without it, it is a butt"
+  },
+  "acceptLabel": {
+   "type": "text",
+   "default": "\"Accept all\"",
+   "about": "The accept button's words. Default \"Accept all\"."
+  },
+  "rejectLabel": {
+   "type": "text",
+   "default": "\"Reject non-essential\"",
+   "about": "The reject button's words. Default \"Reject non-essential\"."
+  },
+  "settingsLabel": {
+   "type": "text",
+   "default": "\"Cookie settings\"",
+   "about": "The settings action's words. Default \"Cookie settings\"."
+  },
+  "hideLabel": {
+   "type": "text",
+   "default": "\"Hide this message\"",
+   "about": "The words on the button that hides the confirmation. Default \"Hide this message\"."
+  },
+  "onAccept": {
+   "type": "event",
+   "about": "Called when they accept. Set the cookies and record the choice here: the banner stores nothing itself. Unmount it here to skip the confirmation."
+  },
+  "onReject": {
+   "type": "event",
+   "about": "Called when they reject non-essential cookies. As `onAccept`, the host records it."
+  },
+  "onSettings": {
+   "type": "event",
+   "about": "Called by the settings button (not when `settingsHref` makes it a link): open the settings."
+  },
+  "onHide": {
+   "type": "event",
+   "about": "Called when the confirmation is hidden, after the banner has gone."
+  },
+  "choice": {
+   "type": "enum",
+   "values": [
+    "accepted",
+    "rejected"
+   ],
+   "about": "The choice, when the host already knows it: shows the confirmation instead of the question. Left out, the banner keeps track of the choice made in it, until it is hidden."
+  },
+  "acceptedMessage": {
+   "type": "content",
+   "about": "The line after accepting. Default: \"You've accepted all cookies.\" plus the way back to the settings."
+  },
+  "rejectedMessage": {
+   "type": "content",
+   "about": "The line after rejecting. Default: \"You've rejected non-essential cookies.\" plus the way back to the settings."
+  },
+  "position": {
+   "type": "enum",
+   "values": [
+    "bottom",
+    "top"
+   ],
+   "default": "\"bottom\"",
+   "about": "Which edge of the viewport it is fixed to. Default bottom. Ignored when `contained`."
+  },
+  "contained": {
+   "type": "boolean",
+   "default": "false",
+   "about": "In the flow of the page instead of fixed to the viewport: for docs, stories, and a settings page that shows the banner in place."
+  }
+ },
+ "tokens": [
+  "gutter",
+  "line-default",
+  "measure",
+  "shadow-md",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-5",
+  "surface-raised",
+  "text-primary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "CookieConsent.Message": "children",
+   "CookieConsent.Policy": "policyLabel",
+   "CookieConsent.Show policy": "policyHref (omit it to hide)",
+   "CookieConsent.Show settings": "settingsHref (omit it to hide)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

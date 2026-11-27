@@ -1,0 +1,152 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "PeopleDirectory",
+ "layer": "pattern",
+ "about": "20 — filter bar over a four-up person grid.",
+ "sources": {
+  "react": "src/react/patterns/PeopleDirectory.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/combobox.css",
+  "src/css/components/field.css",
+  "src/css/components/inline-form.css",
+  "src/css/components/pricing.css",
+  "src/css/components/scene.css",
+  "src/css/components/search.css"
+ ],
+ "dataTk": [
+  "card",
+  "card-body",
+  "card-title",
+  "field",
+  "field-label",
+  "input",
+  "select"
+ ],
+ "figma": [
+  {
+   "name": "PeopleDirectory",
+   "node": "104:459",
+   "codeConnect": true,
+   "map": {
+    "Heading": "heading"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "PeopleDirectory/Card",
+   "node": "104:455",
+   "codeConnect": true,
+   "map": {
+    "Name": "PeopleDirectory data",
+    "Role": "PeopleDirectory data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "heading": {
+   "type": "text",
+   "default": "PEOPLE_DIRECTORY_HEADING",
+   "figma": [
+    "PeopleDirectory.Heading"
+   ]
+  },
+  "people": {
+   "type": "other",
+   "ts": "Person[]",
+   "default": "STAFF"
+  },
+  "columns": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1"
+   ],
+   "default": "4"
+  },
+  "locations": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "PEOPLE_PLACES"
+  },
+  "companies": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "PEOPLE_TEAMS"
+  },
+  "initialLocation": {
+   "type": "text",
+   "default": "\"\"",
+   "about": "Selected on first render; \"\" leaves the any-value option showing."
+  },
+  "initialCompany": {
+   "type": "text",
+   "default": "\"\""
+  },
+  "ctaLabel": {
+   "type": "text",
+   "default": "\"View all people\""
+  },
+  "filterLabel": {
+   "type": "text",
+   "default": "\"Filter the directory\"",
+   "about": "Aria label for the filter form."
+  }
+ },
+ "tokens": [
+  "field-min",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "icon-sm",
+  "leading-snug",
+  "line-default",
+  "line-strong",
+  "motion-elevation",
+  "motion-enter",
+  "motion-exit",
+  "motion-line",
+  "motion-size",
+  "motion-surface",
+  "radius-control",
+  "radius-nested",
+  "search-width",
+  "shadow-none",
+  "shadow-sm",
+  "size-base",
+  "size-lg",
+  "size-sm",
+  "size-xl",
+  "space-2",
+  "space-3",
+  "space-5",
+  "status-danger-line",
+  "surface-default",
+  "surface-raised",
+  "surface-sunken",
+  "text-disabled",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

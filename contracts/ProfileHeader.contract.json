@@ -1,0 +1,184 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ProfileHeader",
+ "layer": "primitive",
+ "about": "ProfileHeader — the top of a person's own page: who they are, what they do and where, how to reach them, a few paragraphs about them and what they know about. The name is the page's heading, with any ",
+ "sources": {
+  "react": "src/react/primitives/ProfileHeader.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/profile-header.css"
+ ],
+ "dataTk": [
+  "profile-header",
+  "profile-header-back",
+  "profile-header-bio",
+  "profile-header-body",
+  "profile-header-credentials",
+  "profile-header-details",
+  "profile-header-expertise",
+  "profile-header-fact",
+  "profile-header-facts",
+  "profile-header-head",
+  "profile-header-label",
+  "profile-header-portrait",
+  "profile-header-role"
+ ],
+ "figma": [
+  {
+   "name": "ProfileHeader",
+   "node": "496:2337",
+   "codeConnect": true,
+   "map": {
+    "Name": "name",
+    "Credentials": "credentials",
+    "Show credentials": "credentials (omit it to hide)",
+    "Role": "role",
+    "Back": "back",
+    "Show back": "back (omit it to hide)",
+    "Bio": "bio",
+    "Bio 2": "bio[1]",
+    "Show bio 2": "how many items you pass",
+    "Show expertise": "expertise (omit it to hide)"
+   },
+   "unpaired": [
+    "Portrait label"
+   ]
+  },
+  {
+   "name": "ProfileHeader/Fact",
+   "node": "496:2336",
+   "codeConnect": true,
+   "map": {
+    "Text": "children",
+    "Link": "ProfileHeader data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "name": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "ProfileHeader.Name"
+   ],
+   "about": "Their name, as they write it. The page's heading."
+  },
+  "credentials": {
+   "type": "text",
+   "figma": [
+    "ProfileHeader.Credentials",
+    "ProfileHeader.Show credentials"
+   ],
+   "about": "Letters after the name (\"PhD, AICP\"), shown after it in a lighter weight."
+  },
+  "role": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "ProfileHeader.Role"
+   ],
+   "about": "What they do, in a line: \"Head of research\", \"Senior designer\"."
+  },
+  "organisation": {
+   "type": "text",
+   "about": "Where they do it."
+  },
+  "location": {
+   "type": "text",
+   "about": "Where they are: a city, an office."
+  },
+  "portrait": {
+   "type": "content",
+   "about": "A photograph. Defaults to a portrait plate standing in for one."
+  },
+  "contacts": {
+   "type": "other",
+   "ts": "ProfileContacts",
+   "about": "How to reach them: email and phone are real links, and each icon is decoration."
+  },
+  "bio": {
+   "type": "other",
+   "ts": "string[]",
+   "figma": [
+    "ProfileHeader.Bio",
+    "ProfileHeader.Bio 2"
+   ],
+   "about": "About them, a paragraph per item. Two or three short ones."
+  },
+  "expertise": {
+   "type": "other",
+   "ts": "string[]",
+   "figma": [
+    "ProfileHeader.Show expertise"
+   ],
+   "about": "What they know about, a few words each, shown as chips."
+  },
+  "expertiseLabel": {
+   "type": "text",
+   "default": "\"Expertise\"",
+   "about": "The word over the expertise chips, which also names their list."
+  },
+  "back": {
+   "type": "other",
+   "ts": "{ label: string; href: string; }",
+   "figma": [
+    "ProfileHeader.Back",
+    "ProfileHeader.Show back"
+   ],
+   "about": "A way back to the list they came from (\"All staff\"), above everything else."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "1"
+   ],
+   "about": "The name's heading level: h1 on their own page (the default), h2 when the profile is a section of another."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "2",
+    "1"
+   ]
+  }
+ },
+ "tokens": [
+  "font-mono",
+  "leading-normal",
+  "leading-snug",
+  "size-md",
+  "size-sm",
+  "size-xs",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-6",
+  "target-min",
+  "text-primary",
+  "text-secondary",
+  "tracking-wide",
+  "weight-normal"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "ProfileHeader.Portrait label": "portrait (its initials or alt text)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

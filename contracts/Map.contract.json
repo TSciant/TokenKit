@@ -1,0 +1,127 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Map",
+ "layer": "primitive",
+ "about": null,
+ "sources": {
+  "react": "src/react/primitives/Map.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/map.css"
+ ],
+ "dataTk": [
+  "map",
+  "map-canvas",
+  "map-exit",
+  "map-exit-note"
+ ],
+ "figma": [
+  {
+   "name": "Map",
+   "node": "183:476",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "scheme": {
+   "type": "enum",
+   "values": [
+    "auto",
+    "light",
+    "dark"
+   ],
+   "default": "\"auto\"",
+   "about": "Basemap. `auto` follows pack on `[data-brand]` (wireframe vs wireframe-dark)."
+  },
+  "center": {
+   "type": "other",
+   "ts": "[number, number]",
+   "default": "DEFAULT_CENTER",
+   "about": "[lng, lat]. Defaults to the prime meridian at Greenwich."
+  },
+  "zoom": {
+   "type": "number",
+   "default": "11"
+  },
+  "pitch": {
+   "type": "number",
+   "default": "0"
+  },
+  "bearing": {
+   "type": "number",
+   "default": "0"
+  },
+  "navigation": {
+   "type": "boolean",
+   "default": "true"
+  },
+  "scale": {
+   "type": "boolean",
+   "default": "true"
+  },
+  "geolocate": {
+   "type": "boolean",
+   "default": "false"
+  },
+  "fullscreen": {
+   "type": "boolean",
+   "default": "false"
+  },
+  "mapStyle": {
+   "type": "text"
+  },
+  "label": {
+   "type": "text",
+   "default": "\"Map\""
+  },
+  "marker": {
+   "type": "boolean",
+   "default": "false"
+  },
+  "className": {
+   "type": "text"
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  },
+  "ratio": {
+   "type": "text",
+   "default": "\"16 / 9\""
+  }
+ },
+ "tokens": [
+  "line-strong",
+  "line-subtle",
+  "measure-narrow",
+  "radius-nested",
+  "size-sm",
+  "space-2",
+  "space-5",
+  "surface-default",
+  "surface-inverse",
+  "surface-raised",
+  "surface-sunken",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "texture-ink",
+  "texture-rule"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

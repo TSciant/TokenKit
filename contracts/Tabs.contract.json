@@ -1,0 +1,132 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Tabs",
+ "layer": "primitive",
+ "about": "Tabs — views of one thing, one at a time, chosen from a row of labels. Use for: parts of one subject that a reader looks at one by one and that are all worth a look (an event's agenda, speakers and re",
+ "sources": {
+  "react": "src/react/primitives/Tabs.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/tabs.css"
+ ],
+ "dataTk": [
+  "tabs",
+  "tabs-list",
+  "tabs-panel",
+  "tabs-tab"
+ ],
+ "figma": [
+  {
+   "name": "Tabs",
+   "node": "473:1977",
+   "codeConnect": true,
+   "map": {
+    "Panel": "children",
+    "Show tab 3": "how many items you pass"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "Tabs/Tab",
+   "node": "473:1976",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "State": "Default: CSS, Hover: CSS, Selected: selected"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "Tabs/Tab.Label"
+   ],
+   "about": "What the set of tabs is about (\"Event details\"). Names the tab list for assistive technology."
+  },
+  "items": {
+   "type": "other",
+   "ts": "TabsItem[]",
+   "required": true
+  },
+  "selected": {
+   "type": "text",
+   "about": "The selected tab, when the caller keeps it. Leave unset and the component keeps its own."
+  },
+  "defaultSelected": {
+   "type": "text",
+   "about": "The tab selected at first, when the component keeps its own. Defaults to the first."
+  },
+  "onSelect": {
+   "type": "event",
+   "about": "Called with the id of the tab chosen, by click or by arrow key."
+  }
+ },
+ "tokens": [
+  "control-min",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-normal",
+  "line-default",
+  "motion-ink",
+  "size-sm",
+  "space-1",
+  "space-3",
+  "space-5",
+  "text-primary",
+  "text-secondary",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": {
+  "role": "tablist, tab, tabpanel",
+  "name": "the tablist is named by its label",
+  "story": "04-primitives-58-tabs--playground",
+  "keys": [
+   {
+    "key": "ArrowRight",
+    "from": "[role=tab]",
+    "expect": {
+     "focused": "[role=tab]",
+     "nth": 2
+    },
+    "says": "moves to the next tab"
+   },
+   {
+    "key": "End",
+    "from": "[role=tab]",
+    "expect": {
+     "focused": "[role=tab]",
+     "nth": -1
+    },
+    "says": "moves to the last tab"
+   },
+   {
+    "key": "ArrowLeft",
+    "from": "[role=tab]",
+    "expect": {
+     "focused": "[role=tab]",
+     "nth": -1
+    },
+    "says": "wraps from the first tab to the last"
+   }
+  ],
+  "focus": "one tab stop for the whole list (roving tabindex)"
+ },
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

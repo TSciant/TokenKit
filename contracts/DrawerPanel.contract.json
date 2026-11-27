@@ -1,0 +1,79 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "DrawerPanel",
+ "layer": "primitive",
+ "about": "The panel a Drawer draws, in place in the page, for guidance and documentation: a real drawer lives in the top layer, over everything, one at a time. It takes the height of what holds it. Not a way to",
+ "sources": {
+  "react": "src/react/primitives/Drawer.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/drawer.css"
+ ],
+ "dataTk": [
+  "drawer"
+ ],
+ "figma": [],
+ "props": {
+  "children": {
+   "type": "content"
+  },
+  "title": {
+   "type": "text",
+   "required": true
+  },
+  "footer": {
+   "type": "content",
+   "about": "Free footer content, for anything that is not a row of buttons."
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "default": "\"md\"",
+   "about": "Width of a side drawer: 20, 28 or 36rem. Default md."
+  },
+  "description": {
+   "type": "content",
+   "about": "One or two sentences under the title, read with it when the drawer opens."
+  },
+  "actions": {
+   "type": "other",
+   "ts": "ButtonGroupAction[]",
+   "about": "The footer's actions, as a ButtonGroup, Cancel first and the action last."
+  },
+  "side": {
+   "type": "enum",
+   "values": [
+    "start",
+    "end",
+    "bottom"
+   ],
+   "default": "\"end\"",
+   "about": "Which edge it comes from. end (the default) for what belongs to the page in view: filters, details, a quick preview, an assistant. start for navigation, and only for that. bottom for a sheet. On a pho"
+  }
+ },
+ "tokens": [
+  "duration-base",
+  "measure-drawer-lg",
+  "measure-drawer-md",
+  "measure-drawer-sm",
+  "measure-sheet",
+  "motion-enter",
+  "motion-exit",
+  "scrim-ink"
+ ],
+ "checks": [
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

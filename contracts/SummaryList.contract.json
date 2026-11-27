@@ -1,0 +1,49 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SummaryList",
+ "layer": "primitive",
+ "about": "SummaryList — facts as pairs of a name and a value, each changeable. Use for: what a reader has entered, before they send it (check your answers); the details of a record (a profile, an order). Don't ",
+ "sources": {
+  "react": "src/react/primitives/SummaryList.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/steps.css"
+ ],
+ "dataTk": [
+  "summary-list"
+ ],
+ "figma": [
+  {
+   "name": "SummaryList",
+   "node": "442:1885",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "rows": {
+   "type": "other",
+   "ts": "SummaryRow[]",
+   "required": true
+  },
+  "divided": {
+   "type": "boolean",
+   "default": "true",
+   "about": "Hairlines between rows (default), or none, for a short list inside a card."
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

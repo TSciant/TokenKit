@@ -1,0 +1,206 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Combobox",
+ "layer": "primitive",
+ "about": "Combobox — type to narrow a long list, then choose. An editable combobox with a listbox (the APG pattern, list autocomplete, chosen by hand). Focus stays in the text box the whole time; the arrow keys",
+ "sources": {
+  "react": "src/react/primitives/Combobox.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/combobox.css"
+ ],
+ "dataTk": [
+  "combobox",
+  "combobox-empty",
+  "combobox-lead",
+  "combobox-list",
+  "combobox-match",
+  "combobox-option",
+  "combobox-option-meta",
+  "combobox-option-text",
+  "combobox-popup",
+  "combobox-toggle"
+ ],
+ "figma": [
+  {
+   "name": "Combobox",
+   "node": "507:2437",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Value": "value",
+    "State": "Closed: runtime, not a prop, Open: runtime, not a prop"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "Combobox.Label"
+   ]
+  },
+  "hint": {
+   "type": "text"
+  },
+  "error": {
+   "type": "text"
+  },
+  "required": {
+   "type": "boolean"
+  },
+  "optional": {
+   "type": "boolean"
+  },
+  "id": {
+   "type": "text",
+   "about": "The input's id, for an ErrorSummary link."
+  },
+  "name": {
+   "type": "text",
+   "about": "Submitted with the form: the chosen option's value (or the typed text, with allowCustom)."
+  },
+  "chars": {
+   "type": "enum",
+   "values": [
+    "10",
+    "20",
+    "30"
+   ]
+  },
+  "disabled": {
+   "type": "boolean"
+  },
+  "options": {
+   "type": "other",
+   "ts": "ComboboxOption[]",
+   "required": true,
+   "about": "More than 15 of them; fewer is a select (Field control=\"select\")."
+  },
+  "value": {
+   "type": "text",
+   "figma": [
+    "Combobox.Value"
+   ],
+   "about": "The chosen option's value. Changes only on Enter or a click, never on the arrow keys."
+  },
+  "defaultValue": {
+   "type": "text",
+   "default": "null"
+  },
+  "onChange": {
+   "type": "event"
+  },
+  "inputValue": {
+   "type": "text",
+   "about": "The typed text, when the page needs to control it (a search that fetches)."
+  },
+  "onInputChange": {
+   "type": "event"
+  },
+  "allowCustom": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Free text is a value too (a search), rather than only the options."
+  },
+  "kind": {
+   "type": "enum",
+   "values": [
+    "search",
+    "select"
+   ],
+   "default": "\"select\"",
+   "about": "select: a chevron at the end. search: a magnifier at the start, no chevron."
+  },
+  "openOnFocus": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Open on focus, for a short list of recent items. Off by default: a list on every Tab is noise."
+  },
+  "filter": {
+   "type": "other",
+   "ts": "(option: ComboboxOption, text: string) => boolean",
+   "default": "contains",
+   "about": "Which options the text finds. Case-insensitive \"contains\" on the label and keywords by default."
+  },
+  "emptyText": {
+   "type": "text",
+   "default": "\"No matches\""
+  },
+  "loading": {
+   "type": "boolean",
+   "default": "false",
+   "about": "The options are on their way (a fetch)."
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-width",
+  "icon-sm",
+  "line-default",
+  "radius-lg",
+  "radius-md",
+  "radius-nested",
+  "shadow-md",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-3",
+  "surface-raised",
+  "surface-sunken",
+  "text-disabled",
+  "text-primary",
+  "text-secondary",
+  "weight-normal",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": {
+  "role": "combobox, listbox, option",
+  "name": "its field label",
+  "story": "04-primitives-86-combobox--playground",
+  "keys": [
+   {
+    "key": "ArrowDown",
+    "from": "[role=combobox]",
+    "expect": {
+     "selector": "[role=combobox]",
+     "attr": "aria-expanded",
+     "value": "true"
+    },
+    "says": "opens the list"
+   },
+   {
+    "key": "Escape",
+    "before": [
+     {
+      "key": "ArrowDown",
+      "from": "[role=combobox]"
+     }
+    ],
+    "from": "[role=combobox]",
+    "expect": {
+     "selector": "[role=combobox]",
+     "attr": "aria-expanded",
+     "value": "false"
+    },
+    "says": "closes the list"
+   }
+  ],
+  "focus": "stays in the field; the active option is aria-activedescendant"
+ },
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

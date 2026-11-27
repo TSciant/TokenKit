@@ -1,0 +1,40 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SkeletonGroup",
+ "layer": "primitive",
+ "about": "SkeletonGroup — the skeletons of one region, busy, with what is loading said once. Not a live region.",
+ "sources": {
+  "react": "src/react/primitives/Loading.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/loading.css"
+ ],
+ "dataTk": [
+  "skeleton-group"
+ ],
+ "figma": [],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "about": "What is loading, for screen readers: \"Loading team members\"."
+  },
+  "children": {
+   "type": "content"
+  }
+ },
+ "tokens": [
+  "space-3"
+ ],
+ "checks": [
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

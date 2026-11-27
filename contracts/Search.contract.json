@@ -1,0 +1,52 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Search",
+ "layer": "primitive",
+ "about": "Header search that does not swap the DOM — input always mounted, collapses to zero inline size when closed (`inert` when collapsed).",
+ "sources": {
+  "react": "src/react/primitives/Search.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/search.css"
+ ],
+ "dataTk": [
+  "search"
+ ],
+ "figma": [],
+ "props": {
+  "open": {
+   "type": "boolean",
+   "about": "Controlled open state; omit for internal state."
+  },
+  "onOpenChange": {
+   "type": "event"
+  },
+  "placeholder": {
+   "type": "text",
+   "default": "\"Search\""
+  },
+  "label": {
+   "type": "text",
+   "default": "\"Search\""
+  },
+  "onSubmit": {
+   "type": "event"
+  }
+ },
+ "tokens": [
+  "space-2"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

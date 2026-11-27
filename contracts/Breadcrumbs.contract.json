@@ -1,0 +1,88 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Breadcrumbs",
+ "layer": "primitive",
+ "about": "Breadcrumbs — where this page sits: the pages above it, each a link, from the top of the site down. Use for: sites more than two levels deep, where a reader may arrive from search and want to go up a ",
+ "sources": {
+  "react": "src/react/primitives/Breadcrumbs.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/breadcrumbs.css"
+ ],
+ "dataTk": [
+  "breadcrumbs",
+  "breadcrumbs-item",
+  "breadcrumbs-list"
+ ],
+ "figma": [
+  {
+   "name": "Breadcrumbs",
+   "node": "469:1946",
+   "codeConnect": true,
+   "map": {
+    "Current": "current",
+    "Show step 2": "how many items you pass",
+    "Show step 3": "how many items you pass"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "Breadcrumbs/Crumb",
+   "node": "469:1942",
+   "codeConnect": true,
+   "map": {
+    "Label": "label"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "items": {
+   "type": "other",
+   "ts": "BreadcrumbsItem[]",
+   "required": true,
+   "about": "The pages above this one, from the top of the site down. Each is a link."
+  },
+  "current": {
+   "type": "text",
+   "figma": [
+    "Breadcrumbs.Current"
+   ],
+   "about": "This page's name, as the last crumb. Not a link, and marked as the current page. Leave it out when the page's heading sits right under the trail and says the same thing."
+  },
+  "label": {
+   "type": "text",
+   "default": "\"Breadcrumb\"",
+   "figma": [
+    "Breadcrumbs/Crumb.Label"
+   ],
+   "about": "The landmark's name. \"Breadcrumb\" unless the page has a second trail."
+  },
+  "collapse": {
+   "type": "boolean",
+   "default": "true",
+   "about": "On a narrow box, show only the way up: the parent, as a back link. On by default; turn it off where the whole trail is short enough to wrap."
+  }
+ },
+ "tokens": [
+  "leading-normal",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "text-secondary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

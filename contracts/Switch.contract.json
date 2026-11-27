@@ -1,0 +1,114 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Switch",
+ "layer": "primitive",
+ "about": "Switch — a setting that is on or off and takes effect at once. Use for: a preference that changes something straight away, with no save button (notifications, a dark theme). Don't use for: a choice th",
+ "sources": {
+  "react": "src/react/primitives/Switch.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/choice-group.css"
+ ],
+ "dataTk": [
+  "switch",
+  "switch-control",
+  "switch-hint",
+  "switch-input",
+  "switch-label",
+  "switch-off",
+  "switch-on",
+  "switch-state",
+  "switch-text",
+  "switch-thumb",
+  "switch-track"
+ ],
+ "figma": [
+  {
+   "name": "Switch",
+   "node": "441:1775",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Hint": "hint",
+    "Show hint": "hint (omit it to hide)",
+    "State": "On: checked, Off: checked={false}"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "content",
+   "required": true,
+   "figma": [
+    "Switch.Label"
+   ],
+   "about": "What it turns on and off (\"Email me when someone replies\")."
+  },
+  "hint": {
+   "type": "content",
+   "figma": [
+    "Switch.Hint",
+    "Switch.Show hint"
+   ],
+   "about": "A line under the label: what on means."
+  },
+  "stateLabels": {
+   "type": "other",
+   "ts": "[on: string, off: string]",
+   "about": "Words for its state, shown beside the track (\"On\", \"Off\"). Left out, the state is in the track alone (and read out by the switch role)."
+  }
+ },
+ "tokens": [
+  "action-fill",
+  "action-text",
+  "duration-fast",
+  "ease-standard",
+  "focus-color",
+  "line-strong",
+  "radius-full",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-6",
+  "surface-raised",
+  "target-min",
+  "text-disabled",
+  "text-primary",
+  "text-secondary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": {
+  "role": "switch (a checkbox input)",
+  "name": "its visible label",
+  "story": "04-primitives-69-switch--with-state",
+  "keys": [
+   {
+    "key": "Space",
+    "from": "[role=switch]",
+    "expect": {
+     "selector": "[role=switch]",
+     "prop": "checked",
+     "value": true
+    },
+    "says": "turns it on"
+   }
+  ],
+  "focus": "stays on the switch"
+ },
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

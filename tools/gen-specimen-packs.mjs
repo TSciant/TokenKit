@@ -88,6 +88,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { parsePack, toJson, fromJson, packCss } from "./tokens-pack.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = resolve(ROOT, "src/css/packs");
@@ -1271,18 +1272,24 @@ let stale = 0;
   }
 }
 
+/* The table writes each pack's JSON (tokens/packs/<slug>.tokens.json, the
+   source every platform reads), and the CSS is generated from that JSON the
+   same way as every other pack's (tools/tokens-pack.mjs). Table → JSON → CSS. */
 for (const brand of BRANDS) {
-  const path = resolve(OUT, `${brand.slug}.css`);
-  const next = emit(brand);
-  const prev = await readLF(path);
-  if (prev === next) continue;
-  if (CHECK) {
-    stale += 1;
-    console.error(`stale  src/css/packs/${brand.slug}.css`);
-    continue;
+  const jsonRel = `tokens/packs/${brand.slug}.tokens.json`;
+  const json = JSON.stringify(toJson(brand.slug, parsePack(emit(brand))), null, 1) + "\n";
+  const css = packCss(fromJson(JSON.parse(json)), jsonRel);
+  for (const [path, next, label] of [[resolve(ROOT, jsonRel), json, jsonRel], [resolve(OUT, `${brand.slug}.css`), css, `src/css/packs/${brand.slug}.css`]]) {
+    const prev = await readLF(path);
+    if (prev === next) continue;
+    if (CHECK) {
+      stale += 1;
+      console.error(`stale  ${label}`);
+      continue;
+    }
+    await writeFile(path, next, "utf8");
+    console.log(`${prev === null ? "wrote " : "update"} ${label}`);
   }
-  await writeFile(path, next, "utf8");
-  console.log(`${prev === null ? "wrote " : "update"} src/css/packs/${brand.slug}.css`);
 }
 
 if (CHECK) {

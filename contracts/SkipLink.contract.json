@@ -1,0 +1,50 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SkipLink",
+ "layer": "primitive",
+ "about": "Skip to main content — hidden until focused. Page chrome outside the concentric chain.",
+ "sources": {
+  "react": "src/react/primitives/SkipLink.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "skip-link"
+ ],
+ "figma": [
+  {
+   "name": "SkipLink",
+   "node": "181:476",
+   "codeConnect": true,
+   "map": {
+    "Label": "children"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {},
+ "tokens": [
+  "focus-color",
+  "radius-md",
+  "space-2",
+  "space-3",
+  "space-4",
+  "surface-raised",
+  "text-primary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,81 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SectionNav",
+ "layer": "primitive",
+ "about": "Local navigation: the pages beside this one, in a row under a hairline. Use for: the siblings in the section you are in (a product's overview, specs and support; a brand's pages). Don't use for: the s",
+ "sources": {
+  "react": "src/react/primitives/SectionNav.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/section-nav.css"
+ ],
+ "dataTk": [
+  "section-nav",
+  "section-nav-link",
+  "section-nav-list"
+ ],
+ "figma": [
+  {
+   "name": "SectionNav",
+   "node": "148:230",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  },
+  {
+   "name": "SectionNav/Item",
+   "node": "148:229",
+   "codeConnect": true,
+   "map": {
+    "Label": "label",
+    "Current": "SectionNav data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "default": "\"In this section\"",
+   "figma": [
+    "SectionNav/Item.Label"
+   ],
+   "about": "The landmark's name, which tells a screen-reader user which navigation this is."
+  },
+  "items": {
+   "type": "other",
+   "ts": "SectionNavItem[]",
+   "required": true
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-normal",
+  "line-default",
+  "motion-ink",
+  "size-sm",
+  "space-3",
+  "space-4",
+  "space-5",
+  "text-primary",
+  "text-secondary",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

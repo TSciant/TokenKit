@@ -1,0 +1,109 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ArticleMeta",
+ "layer": "primitive",
+ "about": "ArticleMeta — the line under an article's title: what it is, when it was published (and updated), who wrote it, how long it takes, and what it is about. One row that wraps, as a list, so a screen read",
+ "sources": {
+  "react": "src/react/primitives/ArticleMeta.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/article-meta.css"
+ ],
+ "dataTk": [
+  "article-meta",
+  "article-meta-topics"
+ ],
+ "figma": [
+  {
+   "name": "ArticleMeta",
+   "node": "486:2018",
+   "codeConnect": true,
+   "map": {
+    "Date": "date",
+    "Reading time": "readingTime",
+    "Show reading time": "readingTime (omit it to hide)",
+    "Show topics": "topics (omit it to hide)",
+    "Show topic 2": "how many items you pass"
+   },
+   "unpaired": [
+    "Author",
+    "Show author"
+   ]
+  }
+ ],
+ "props": {
+  "type": {
+   "type": "text",
+   "about": "What kind of piece it is (\"Blog\", \"Report\", \"Podcast\"), shown as a small label first."
+  },
+  "date": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "ArticleMeta.Date"
+   ],
+   "about": "When it was published, as an ISO date (\"2026-09-08\"). Goes in the time element's datetime."
+  },
+  "dateLabel": {
+   "type": "text",
+   "about": "The date in words, when the formatted one is not what you want (\"Published this morning\", \"Autumn 2026\"). The ISO date stays in the markup."
+  },
+  "updated": {
+   "type": "text",
+   "about": "When it last changed in substance, as an ISO date. Shown as \"Updated …\"."
+  },
+  "authors": {
+   "type": "other",
+   "ts": "ArticleMetaPerson[]",
+   "about": "Who wrote it, in byline order. Shown as \"By A, B and C\"."
+  },
+  "readingTime": {
+   "type": "text",
+   "figma": [
+    "ArticleMeta.Reading time",
+    "ArticleMeta.Show reading time"
+   ],
+   "about": "How long it takes, as it should read: \"6 min read\", \"24 min listen\"."
+  },
+  "topics": {
+   "type": "other",
+   "ts": "ArticleMetaTopic[]",
+   "figma": [
+    "ArticleMeta.Show topics"
+   ],
+   "about": "What it is about. Chips when they go nowhere, links when each has a page."
+  },
+  "locale": {
+   "type": "text",
+   "default": "\"en-US\"",
+   "about": "The locale the dates are written in."
+  }
+ },
+ "tokens": [
+  "leading-normal",
+  "size-sm",
+  "space-1",
+  "space-2",
+  "space-4",
+  "text-secondary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "ArticleMeta.Author": "authors[0].name",
+   "ArticleMeta.Show author": "authors (omit it to hide)"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

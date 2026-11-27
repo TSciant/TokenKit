@@ -1,0 +1,82 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "PauseMotion",
+ "layer": "primitive",
+ "about": "PauseMotion — one button that pauses every loop on the page, and plays them again: spinners, skeletons, a busy button's turn, the tachometer, and any motion of the page's own marked `data-motion-class",
+ "sources": {
+  "react": "src/react/primitives/PauseMotion.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [],
+ "dataTk": [],
+ "figma": [
+  {
+   "name": "PauseMotion",
+   "node": "512:2561",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": [
+    "Motion"
+   ]
+  }
+ ],
+ "props": {
+  "pauseLabel": {
+   "type": "text",
+   "default": "\"Pause animations\"",
+   "about": "The action while motion runs."
+  },
+  "playLabel": {
+   "type": "text",
+   "default": "\"Play animations\"",
+   "about": "The action while it is paused."
+  },
+  "reducedReason": {
+   "type": "content",
+   "default": "\"Animations are off in your device settings.\"",
+   "about": "Said beside it, and read as its description, when the device has motion off and the control has nothing to do."
+  },
+  "variant": {
+   "type": "enum",
+   "values": [
+    "solid",
+    "outline",
+    "quiet"
+   ],
+   "default": "\"quiet\""
+  },
+  "size": {
+   "type": "enum",
+   "values": [
+    "sm",
+    "md",
+    "lg"
+   ],
+   "default": "\"sm\""
+  },
+  "remember": {
+   "type": "boolean",
+   "default": "true",
+   "about": "Keep the choice for the next page (localStorage). Default true."
+  },
+  "onChange": {
+   "type": "event"
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": {
+  "omit": {
+   "PauseMotion.Motion": "runtime state: running or paused is the person's choice (remembered), reduced comes from the device setting"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

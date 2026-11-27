@@ -1,0 +1,113 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "HubCards",
+ "layer": "pattern",
+ "about": "16 — the alternate taxonomy: title, summary, read-more.",
+ "sources": {
+  "react": "src/react/patterns/catalog.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/pricing.css",
+  "src/css/components/search-results.css",
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "card",
+  "card-body",
+  "card-footer",
+  "card-title",
+  "search-results-types",
+  "visually-hidden"
+ ],
+ "figma": [
+  {
+   "name": "HubCards",
+   "node": "86:260",
+   "codeConnect": true,
+   "map": {
+    "Heading": "heading"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "HubCards/Card",
+   "node": "86:250",
+   "codeConnect": true,
+   "map": {
+    "Title": "HubCards data",
+    "Body": "children",
+    "Read more": "HubCards data"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "heading": {
+   "type": "text",
+   "default": "HUB_CARDS_HEADING",
+   "figma": [
+    "HubCards.Heading"
+   ]
+  },
+  "items": {
+   "type": "other",
+   "ts": "HubCard[]",
+   "default": "HUB_CARDS"
+  },
+  "columns": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "1"
+   ],
+   "default": "2"
+  },
+  "readMoreLabel": {
+   "type": "text",
+   "default": "\"Read more\"",
+   "about": "Link text on each card. The card title follows it, visually hidden."
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-snug",
+  "line-default",
+  "line-strong",
+  "line-subtle",
+  "motion-elevation",
+  "motion-line",
+  "motion-surface",
+  "radius-nested",
+  "shadow-none",
+  "shadow-sm",
+  "size-lg",
+  "size-xl",
+  "space-2",
+  "space-3",
+  "space-5",
+  "surface-raised",
+  "surface-sunken",
+  "text-primary",
+  "text-secondary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

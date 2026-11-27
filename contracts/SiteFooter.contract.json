@@ -1,0 +1,150 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SiteFooter",
+ "layer": "pattern",
+ "about": "13 — the inverted closing band.",
+ "sources": {
+  "react": "src/react/patterns/SiteFooter.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/chip.css",
+  "src/css/components/sample-page.css"
+ ],
+ "dataTk": [
+  "chip",
+  "footer-link"
+ ],
+ "figma": [
+  {
+   "name": "SiteFooter",
+   "node": "74:204",
+   "codeConnect": true,
+   "map": {
+    "Legal 1": "legalLinks[0]",
+    "Legal 2": "legalLinks[1]",
+    "Legal 3": "legalLinks[2]",
+    "Nav 1": "navLinks[0]",
+    "Nav 2": "navLinks[1]",
+    "Nav 3": "navLinks[2]",
+    "Subscribe CTA": "subscribeCta",
+    "Copyright": "copyright"
+   },
+   "unpaired": [
+    "Subscribe"
+   ]
+  }
+ ],
+ "props": {
+  "legalLinks": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "FOOTER_LEGAL_LINKS",
+   "figma": [
+    "SiteFooter.Legal 1",
+    "SiteFooter.Legal 2",
+    "SiteFooter.Legal 3"
+   ]
+  },
+  "navLinks": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "FOOTER_NAV_LINKS",
+   "figma": [
+    "SiteFooter.Nav 1",
+    "SiteFooter.Nav 2",
+    "SiteFooter.Nav 3"
+   ]
+  },
+  "socialLinks": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "FOOTER_SOCIAL_LINKS"
+  },
+  "socialLabel": {
+   "type": "text",
+   "default": "\"Social\"",
+   "about": "Aria label for the social list."
+  },
+  "subscribeLabel": {
+   "type": "text",
+   "default": "FOOTER_SUBSCRIBE_LABEL"
+  },
+  "subscribeCta": {
+   "type": "text",
+   "default": "\"Sign up now\"",
+   "figma": [
+    "SiteFooter.Subscribe CTA"
+   ]
+  },
+  "copyright": {
+   "type": "text",
+   "default": "FOOTER_COPYRIGHT",
+   "figma": [
+    "SiteFooter.Copyright"
+   ]
+  },
+  "seed": {
+   "type": "number",
+   "default": "4",
+   "about": "1-6. Picks the stand-in mark."
+  }
+ },
+ "tokens": [
+  "action-quiet-fill-hover",
+  "focus-color",
+  "focus-width",
+  "leading-tight",
+  "line-strong",
+  "motion-elevation",
+  "motion-ink",
+  "motion-line",
+  "motion-surface",
+  "motion-transform",
+  "radius-full",
+  "shadow-lift",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-3",
+  "status-danger-line",
+  "status-danger-surface",
+  "status-danger-text",
+  "status-info-line",
+  "status-info-surface",
+  "status-info-text",
+  "status-success-line",
+  "status-success-surface",
+  "status-success-text",
+  "status-warning-line",
+  "status-warning-surface",
+  "status-warning-text",
+  "surface-default",
+  "surface-inverse",
+  "surface-raised",
+  "target-min",
+  "text-inverse",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "tracking-wide",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "pairWith": {
+   "SiteFooter.Subscribe": "subscribeLabel"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,35 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "RequiredMark",
+ "layer": "primitive",
+ "about": "After the label: a mark the eye reads, and the word a screen reader says.",
+ "sources": {
+  "react": "src/react/primitives/field-parts.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/field.css",
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "field-error",
+  "visually-hidden"
+ ],
+ "figma": [],
+ "props": {},
+ "tokens": [
+  "size-sm",
+  "status-danger-text",
+  "weight-medium"
+ ],
+ "checks": [
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

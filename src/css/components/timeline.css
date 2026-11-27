@@ -25,6 +25,8 @@
 
 @layer components {
   :where([data-tk="timeline"]) {
+    /* translate has no logical form: every sideways shift is multiplied by this, so right to left mirrors it. */
+    --_ix: 1;
     --_row-size: calc(var(--tk-space-6) + var(--tk-space-3));
     /* One width for the lane names, so the now line can find where the track starts. */
     --_lanes-w: clamp(7rem, 20%, 11rem);
@@ -36,6 +38,10 @@
     transition:
       --tk-timeline-from var(--tk-motion-transform),
       --tk-timeline-to var(--tk-motion-transform);
+  }
+  /* After the rule above, which it overrides at the same (zero) specificity. */
+  :where([data-tk="timeline"]:dir(rtl)) {
+    --_ix: -1;
   }
 
   :where([data-tk="timeline-chart"]) {
@@ -158,7 +164,7 @@
   /* A milestone: a mark at its point, its label beside it. */
   :where([data-tk="timeline-item"][data-milestone]) {
     inline-size: max-content;
-    translate: calc(var(--tk-space-2) / -2) 0;
+    translate: calc(var(--tk-space-2) / -2 * var(--_ix)) 0;
   }
   :where([data-tk="timeline-item"][data-milestone] > [data-tk="timeline-bar"]) {
     inline-size: var(--tk-space-2);
@@ -355,7 +361,7 @@
     inset-inline-start: clamp(0%, (var(--tk-timeline-reveal) - var(--tk-timeline-from)) / var(--_span) * 100%, 100%);
     inline-size: var(--tk-space-3);
     block-size: var(--tk-space-3);
-    translate: -50% -50%;
+    translate: calc(-50% * var(--_ix)) -50%;
     border-radius: var(--tk-radius-full);
     background: var(--tk-action-fill);
     box-shadow: 0 0 0 var(--tk-space-1) var(--tk-surface-base);
@@ -365,7 +371,7 @@
     position: absolute;
     inset-block-start: var(--tk-space-3);
     inset-inline-start: calc((var(--_at) - var(--tk-timeline-from)) / var(--_span) * 100%);
-    translate: -50% 0;
+    translate: calc(-50% * var(--_ix)) 0;
     border: 0;
     padding: 0;
     color: var(--tk-text-tertiary);
@@ -481,11 +487,11 @@
   }
   :where([data-tk="timeline-milestone"][data-side="above"])::after {
     inset-block-end: 0;
-    translate: -50% 50%;
+    translate: calc(-50% * var(--_ix)) 50%;
   }
   :where([data-tk="timeline-milestone"][data-side="below"])::after {
     inset-block-start: calc(-1 * var(--_axis));
-    translate: -50% -50%;
+    translate: calc(-50% * var(--_ix)) -50%;
   }
 
   /* The stem, drawn away from the line. */
@@ -583,11 +589,14 @@
   :where([data-tk="timeline-milestone-detail"] [data-tk="code-block"]) {
     clip-path: inset(0 calc((1 - var(--_code-k)) * 100%) 0 0 round min(var(--tk-radius-lg), var(--tk-radius-nested)));
   }
+  :where([data-tk="timeline"]:dir(rtl) [data-tk="timeline-milestone-detail"] [data-tk="code-block"]) {
+    clip-path: inset(0 0 0 calc((1 - var(--_code-k)) * 100%) round min(var(--tk-radius-lg), var(--tk-radius-nested)));
+  }
 
   /* Late in the window a milestone reads back towards the past: its stem, dot
-     and rule at its right-hand side. */
+     and rule at its end side. */
   :where([data-tk="timeline-milestone"][data-label="end"]) {
-    translate: -100% 0;
+    translate: calc(-100% * var(--_ix)) 0;
     align-items: end;
     text-align: end;
   }
@@ -596,10 +605,10 @@
   }
   :where([data-tk="timeline-milestone"][data-label="end"])::after {
     inset-inline: auto 0;
-    translate: 50% 50%;
+    translate: calc(50% * var(--_ix)) 50%;
   }
   :where([data-tk="timeline-milestone"][data-label="end"][data-side="below"])::after {
-    translate: 50% -50%;
+    translate: calc(50% * var(--_ix)) -50%;
   }
   :where([data-tk="timeline-milestone"][data-label="end"] [data-tk="timeline-milestone-label"]) {
     padding-inline: 0 var(--tk-space-2);

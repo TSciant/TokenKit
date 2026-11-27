@@ -1,0 +1,168 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ResourceDownload",
+ "layer": "primitive",
+ "about": "ResourceDownload — a file a reader can take away: a report, a slide deck, a recording. Its title is the link, and under it what the reader is about to get: the format, the size and how long it is. Use",
+ "sources": {
+  "react": "src/react/primitives/ResourceDownload.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/resource-download.css"
+ ],
+ "dataTk": [
+  "resource-download",
+  "resource-download-alternative",
+  "resource-download-body",
+  "resource-download-description",
+  "resource-download-format",
+  "resource-download-meta",
+  "resource-download-tile",
+  "resource-download-title"
+ ],
+ "figma": [
+  {
+   "name": "ResourceDownload",
+   "node": "474:1973",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Format": "format",
+    "Size": "size",
+    "Show size": "size (omit it to hide)",
+    "Length": "length",
+    "Show length": "length (omit it to hide)",
+    "Date": "date",
+    "Show date": "date (omit it to hide)",
+    "Description": "description",
+    "Show description": "description (omit it to hide)"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "title": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "ResourceDownload.Title"
+   ],
+   "about": "What the file is, as a title (\"Annual report 2026\"). It is the link's text."
+  },
+  "href": {
+   "type": "text",
+   "required": true,
+   "about": "Where the file is."
+  },
+  "format": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "ResourceDownload.Format"
+   ],
+   "about": "The file's format as a reader knows it: \"PDF\", \"Excel\", \"PowerPoint\", \"CSV\", \"MP3\"."
+  },
+  "size": {
+   "type": "text",
+   "figma": [
+    "ResourceDownload.Size",
+    "ResourceDownload.Show size"
+   ],
+   "about": "How big it is, as it should read: \"1.2 MB\". Worth giving: it tells a reader on a phone what they are in for."
+  },
+  "length": {
+   "type": "text",
+   "figma": [
+    "ResourceDownload.Length",
+    "ResourceDownload.Show length"
+   ],
+   "about": "How long it is, as it should read: \"24 pages\", \"18 slides\", \"32 minutes\"."
+  },
+  "date": {
+   "type": "text",
+   "figma": [
+    "ResourceDownload.Date",
+    "ResourceDownload.Show date"
+   ],
+   "about": "When it was published, as an ISO date. Goes in the time element's datetime."
+  },
+  "dateLabel": {
+   "type": "text",
+   "about": "The date in words, when the formatted one is not what you want."
+  },
+  "description": {
+   "type": "text",
+   "figma": [
+    "ResourceDownload.Description",
+    "ResourceDownload.Show description"
+   ],
+   "about": "One or two sentences on what is in it."
+  },
+  "download": {
+   "type": "boolean",
+   "about": "Ask the browser to save the file rather than open it. Leave off for PDFs, which most readers want to open."
+  },
+  "alternativeHref": {
+   "type": "text",
+   "about": "Where to ask for the file in another format, when it may not suit assistive technology."
+  },
+  "alternativeLabel": {
+   "type": "text",
+   "default": "\"Request an accessible format\"",
+   "about": "The words of that link."
+  },
+  "headingLevel": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4"
+   ],
+   "about": "The level of the title's heading, to fit the outline of the page it is on."
+  },
+  "level": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "4"
+   ]
+  },
+  "locale": {
+   "type": "text",
+   "default": "\"en-US\"",
+   "about": "The locale the date is written in."
+  }
+ },
+ "tokens": [
+  "leading-normal",
+  "leading-snug",
+  "leading-tight",
+  "line-default",
+  "radius-md",
+  "radius-nested",
+  "size-md",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-2",
+  "space-4",
+  "surface-sunken",
+  "text-secondary",
+  "tracking-wide",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

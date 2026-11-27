@@ -1,0 +1,94 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "FilterBar",
+ "layer": "pattern",
+ "about": "18 — content-type filters. A toggle-button group rather than styled links, so the active state is programmatic (aria-pressed) instead of a colour a screen reader cannot see.",
+ "sources": {
+  "react": "src/react/patterns/catalog.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/pricing.css",
+  "src/css/components/search-results.css",
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "card",
+  "card-body",
+  "card-footer",
+  "card-title",
+  "search-results-types",
+  "visually-hidden"
+ ],
+ "figma": [
+  {
+   "name": "FilterBar",
+   "node": "99:319",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "types": {
+   "type": "other",
+   "ts": "string[]",
+   "default": "FILTER_TYPES"
+  },
+  "icons": {
+   "type": "other",
+   "ts": "Record<string, \"info\" | \"success\" | \"warning\" | \"circle\" | \"",
+   "default": "FILTER_ICONS",
+   "about": "Leading icon per type. A type with no entry gets the tag icon."
+  },
+  "initialType": {
+   "type": "text",
+   "default": "\"All\"",
+   "about": "Which chip is pressed on first render. Falls back to the first type."
+  },
+  "label": {
+   "type": "text",
+   "default": "\"Filter by type\"",
+   "about": "Aria label for the filter group."
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-snug",
+  "line-default",
+  "line-strong",
+  "line-subtle",
+  "motion-elevation",
+  "motion-line",
+  "motion-surface",
+  "radius-nested",
+  "shadow-none",
+  "shadow-sm",
+  "size-lg",
+  "size-xl",
+  "space-2",
+  "space-3",
+  "space-5",
+  "surface-raised",
+  "surface-sunken",
+  "text-primary",
+  "text-secondary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

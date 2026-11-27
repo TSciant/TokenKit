@@ -1,0 +1,83 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "ReorderList",
+ "layer": "primitive",
+ "about": "ReorderList — put a short list in order by dragging, by keyboard, or with a button. Each item has a grip to drag it by, which is also a button: Space or Enter picks the item up, the arrows move it, Sp",
+ "sources": {
+  "react": "src/react/primitives/ReorderList.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/reorder-list.css"
+ ],
+ "dataTk": [
+  "reorder-list"
+ ],
+ "figma": [
+  {
+   "name": "ReorderList",
+   "node": "507:2487",
+   "codeConnect": true,
+   "map": {
+    "Item 1": "items[0]",
+    "Item 2": "items[1]",
+    "Item 3": "items[2]",
+    "Item 4": "items[3]",
+    "Item 5": "items[4]"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "label": {
+   "type": "text",
+   "required": true,
+   "about": "The list's name: \"Team order\"."
+  },
+  "items": {
+   "type": "other",
+   "ts": "ReorderItem[]",
+   "required": true,
+   "figma": [
+    "ReorderList.Item 1",
+    "ReorderList.Item 2",
+    "ReorderList.Item 3",
+    "ReorderList.Item 4",
+    "ReorderList.Item 5"
+   ]
+  },
+  "onReorder": {
+   "type": "event",
+   "required": true,
+   "about": "The new order, and the move that made it."
+  },
+  "disabled": {
+   "type": "boolean",
+   "about": "No reordering (the list is sorted by something). Say why in disabledReason."
+  },
+  "disabledReason": {
+   "type": "content"
+  },
+  "messages": {
+   "type": "other",
+   "ts": "Partial<ReorderMessages>",
+   "about": "The words, for another language."
+  }
+ },
+ "tokens": [
+  "line-subtle"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

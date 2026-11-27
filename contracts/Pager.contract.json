@@ -1,0 +1,103 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Pager",
+ "layer": "primitive",
+ "about": "Pager — the way through a long list, one page at a time. Worded links back and on (\"← Newer conversations\"), absent at the ends rather than disabled (there is nothing to press, so there is no button),",
+ "sources": {
+  "react": "src/react/primitives/Pager.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/pager.css"
+ ],
+ "dataTk": [
+  "pager",
+  "pager-count",
+  "pager-gap",
+  "pager-next",
+  "pager-page",
+  "pager-pages",
+  "pager-prev",
+  "pager-row"
+ ],
+ "figma": [
+  {
+   "name": "Pager",
+   "node": "311:1608",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "page": {
+   "type": "number",
+   "required": true,
+   "about": "The page shown now, from 1."
+  },
+  "total": {
+   "type": "number",
+   "required": true,
+   "about": "How many pages there are."
+  },
+  "href": {
+   "type": "other",
+   "ts": "(page: number) => string",
+   "required": true,
+   "about": "The address of page n. A pager is links: every page has a URL."
+  },
+  "prevLabel": {
+   "type": "text",
+   "default": "\"Previous\"",
+   "about": "The words on the way back, saying what is there: \"Newer conversations\", \"Previous results\". Default \"Previous\"."
+  },
+  "nextLabel": {
+   "type": "text",
+   "default": "\"Next\"",
+   "about": "The words on the way on: \"Older conversations\". Default \"Next\"."
+  },
+  "numbers": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Show the page numbers between them (the first, the last, and the pages either side of this one, with gaps marked). Off, it says \"Page 3 of 12\". On a narrow container the numbers fold back to that sent"
+  },
+  "label": {
+   "type": "text",
+   "default": "\"Pages\"",
+   "about": "The navigation's accessible name. Default \"Pages\"."
+  }
+ },
+ "tokens": [
+  "control-min",
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "line-default",
+  "radius-button",
+  "radius-nested",
+  "space-1",
+  "space-2",
+  "space-3",
+  "space-4",
+  "surface-inverse",
+  "surface-sunken",
+  "text-inverse",
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

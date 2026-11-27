@@ -1,0 +1,102 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "LinkList",
+ "layer": "primitive",
+ "about": "LinkList — links to other pages as a list of short labels: the pages under a section, related reading, quick links. Each row is a whole link with an arrow at its end, ruled off from the next, so a lon",
+ "sources": {
+  "react": "src/react/primitives/LinkList.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/link-list.css"
+ ],
+ "dataTk": [
+  "link-list",
+  "link-list-description",
+  "link-list-items",
+  "link-list-label",
+  "link-list-link",
+  "link-list-text",
+  "link-list-title"
+ ],
+ "figma": [
+  {
+   "name": "LinkList",
+   "node": "488:2043",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Show title": "title (omit it to hide)",
+    "Show row 3": "how many items you pass"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "LinkList/Link",
+   "node": "488:2042",
+   "codeConnect": true,
+   "map": {
+    "Label": "children",
+    "State": "Default: CSS, Hover: CSS"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "title": {
+   "type": "text",
+   "figma": [
+    "LinkList.Title",
+    "LinkList.Show title"
+   ],
+   "about": "A small header naming the list, when nothing above it does. Also the list's accessible name."
+  },
+  "items": {
+   "type": "other",
+   "ts": "LinkListItem[]",
+   "required": true
+  },
+  "columns": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "1"
+   ],
+   "default": "1",
+   "about": "Columns on a wide screen (1, 2 or 3); one on a narrow one."
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "line-strong",
+  "line-subtle",
+  "motion-ink",
+  "motion-line",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-3",
+  "space-5",
+  "text-primary",
+  "text-secondary",
+  "tracking-wide",
+  "weight-bold",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

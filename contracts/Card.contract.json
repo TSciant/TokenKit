@@ -1,0 +1,130 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Card",
+ "layer": "primitive",
+ "about": null,
+ "sources": {
+  "react": "src/react/primitives/Card.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/card.css",
+  "src/css/components/pricing.css"
+ ],
+ "dataTk": [
+  "card",
+  "card-body",
+  "card-footer",
+  "card-header",
+  "card-header-action",
+  "card-header-text",
+  "card-link",
+  "card-subtitle",
+  "card-title"
+ ],
+ "figma": [
+  {
+   "name": "Card",
+   "node": "38:88",
+   "codeConnect": true,
+   "map": {
+    "Body": "children",
+    "Variant": "variant",
+    "Interactive": "interactive (true/false)",
+    "State": "default: CSS, hover: CSS"
+   },
+   "unpaired": [
+    "Title",
+    "Show footer",
+    "Footer"
+   ]
+  },
+  {
+   "name": "CardHeader",
+   "node": "222:150",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "as": {
+   "type": "other",
+   "ts": "ElementType",
+   "default": "\"div\""
+  },
+  "variant": {
+   "type": "enum",
+   "values": [
+    "default",
+    "flat",
+    "bare"
+   ],
+   "figma": [
+    "Card.Variant"
+   ]
+  },
+  "interactive": {
+   "type": "boolean",
+   "figma": [
+    "Card.Interactive"
+   ]
+  },
+  "fx": {
+   "type": "other",
+   "ts": "FxProp",
+   "about": "Motion FX. `true` infers a recipe for this host; or pass a reveal name / object."
+  },
+  "children": {
+   "type": "content",
+   "figma": [
+    "Card.Body"
+   ]
+  }
+ },
+ "tokens": [
+  "focus-color",
+  "focus-offset",
+  "focus-width",
+  "leading-snug",
+  "line-default",
+  "line-strong",
+  "line-subtle",
+  "motion-elevation",
+  "motion-line",
+  "motion-surface",
+  "radius-nested",
+  "shadow-none",
+  "shadow-sm",
+  "size-lg",
+  "size-sm",
+  "size-xl",
+  "space-1",
+  "space-3",
+  "space-5",
+  "surface-raised",
+  "surface-sunken",
+  "text-primary",
+  "text-secondary",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": {
+  "omit": {
+   "Card.Title": "content: a Card takes children; its title is a CardHeader (or a heading) inside it",
+   "Card.Footer": "content: the footer is whatever the card's last child is",
+   "Card.Show footer": "content: pass a footer child or don't"
+  }
+ },
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

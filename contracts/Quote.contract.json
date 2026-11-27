@@ -1,0 +1,124 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Quote",
+ "layer": "primitive",
+ "about": "Quote — something someone said, and who said it. A figure holding the quotation (a blockquote) and its attribution (the figcaption: a name, then a role and organisation), so the two are read as one th",
+ "sources": {
+  "react": "src/react/primitives/Quote.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/quote.css"
+ ],
+ "dataTk": [
+  "quote",
+  "quote-attribution",
+  "quote-name",
+  "quote-portrait",
+  "quote-role",
+  "quote-source",
+  "quote-text"
+ ],
+ "figma": [
+  {
+   "name": "Quote",
+   "node": "618:2518",
+   "codeConnect": true,
+   "map": {
+    "Quote": "text",
+    "Name": "name",
+    "Role": "role",
+    "Show role": "role (omit it to hide)",
+    "Show portrait": "portrait (omit it to hide)",
+    "Variant": "variant"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "text": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "Quote.Quote"
+   ],
+   "about": "The words, without quotation marks: the marks are drawn by the CSS. A blank line starts a new paragraph."
+  },
+  "name": {
+   "type": "text",
+   "required": true,
+   "figma": [
+    "Quote.Name"
+   ],
+   "about": "Who said it."
+  },
+  "role": {
+   "type": "text",
+   "figma": [
+    "Quote.Role",
+    "Quote.Show role"
+   ],
+   "about": "What they do: \"Head of operations\"."
+  },
+  "organisation": {
+   "type": "text",
+   "about": "Where they do it: a company, a team, a school. Follows the role after a comma."
+  },
+  "portrait": {
+   "type": "content",
+   "figma": [
+    "Quote.Show portrait"
+   ],
+   "about": "A small round picture of them, beside the name: an Avatar, an image, a Plate. Decorative; the name says who."
+  },
+  "variant": {
+   "type": "enum",
+   "values": [
+    "plain",
+    "pull",
+    "testimonial"
+   ],
+   "default": "\"plain\"",
+   "figma": [
+    "Quote.Variant"
+   ],
+   "about": "plain (the default) in running text; pull, large, for breaking up an article; testimonial, in a card with the portrait."
+  }
+ },
+ "tokens": [
+  "font-display",
+  "leading-normal",
+  "leading-snug",
+  "line-strong",
+  "measure",
+  "radius-full",
+  "size-2xl",
+  "size-lg",
+  "size-md",
+  "size-sm",
+  "space-1",
+  "space-3",
+  "space-4",
+  "space-5",
+  "space-7",
+  "surface-sunken",
+  "text-primary",
+  "text-secondary",
+  "tracking-tight",
+  "weight-medium",
+  "weight-semibold"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

@@ -1,0 +1,123 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "SessionTimeout",
+ "layer": "primitive",
+ "about": "SessionTimeout — warn before a session ends for inactivity, and let them stay without losing anything. Any activity restarts the clock. `warnBefore` seconds before the end, a dialog says when they wil",
+ "sources": {
+  "react": "src/react/primitives/SessionTimeout.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/visually-hidden.css"
+ ],
+ "dataTk": [
+  "visually-hidden"
+ ],
+ "figma": [
+  {
+   "name": "SessionTimeout",
+   "node": "509:2513",
+   "codeConnect": true,
+   "map": {
+    "Title": "title",
+    "Message": "message",
+    "Answers": "answers",
+    "Show answers": "answers (omit it to hide)"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "timeout": {
+   "type": "number",
+   "default": "900",
+   "about": "Seconds without activity before the session ends. Default 900 (15 minutes)."
+  },
+  "warnBefore": {
+   "type": "number",
+   "default": "120",
+   "about": "Seconds before the end to warn. Default 120 (2 minutes); never under 20."
+  },
+  "onExtend": {
+   "type": "event",
+   "required": true,
+   "about": "Keep the session alive on the server, without reloading the page."
+  },
+  "onTimeout": {
+   "type": "event",
+   "required": true,
+   "about": "The session has ended: go to the page that says so."
+  },
+  "enabled": {
+   "type": "boolean",
+   "default": "true",
+   "about": "Off while there is no session (signed out)."
+  },
+  "announceEvery": {
+   "type": "number",
+   "default": "15",
+   "about": "Seconds between spoken updates while warning. Default 15."
+  },
+  "announceFinal": {
+   "type": "number",
+   "default": "20",
+   "about": "Speak every second in the last this-many seconds. Default 20."
+  },
+  "syncTabs": {
+   "type": "boolean",
+   "default": "false",
+   "about": "Keep tabs of the same service in step (activity and staying in one count in all)."
+  },
+  "title": {
+   "type": "text",
+   "figma": [
+    "SessionTimeout.Title"
+   ]
+  },
+  "message": {
+   "type": "other",
+   "ts": "(left: string) => string",
+   "figma": [
+    "SessionTimeout.Message"
+   ],
+   "about": "In place of the variant's sentence; gets the time left in words."
+  },
+  "variant": {
+   "type": "enum",
+   "values": [
+    "anonymous",
+    "signed-in"
+   ]
+  },
+  "extendLabel": {
+   "type": "text"
+  },
+  "signOutLabel": {
+   "type": "text"
+  },
+  "signOutHref": {
+   "type": "text",
+   "required": true
+  },
+  "answers": {
+   "type": "content",
+   "figma": [
+    "SessionTimeout.Answers",
+    "SessionTimeout.Show answers"
+   ],
+   "about": "What happens to what they entered: \"We will save your answers.\""
+  }
+ },
+ "tokens": [],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

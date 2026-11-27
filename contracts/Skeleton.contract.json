@@ -1,0 +1,85 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Skeleton",
+ "layer": "primitive",
+ "about": "Skeleton — the shape of what is coming, while it comes. Shapes that stand for the content (a line for text, a circle for an avatar, a block for an image), in the text colour at a tenth. Hidden from sc",
+ "sources": {
+  "react": "src/react/primitives/Loading.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/loading.css"
+ ],
+ "dataTk": [
+  "skeleton",
+  "skeleton-group",
+  "skeleton-line"
+ ],
+ "figma": [
+  {
+   "name": "Skeleton",
+   "node": "502:2367",
+   "codeConnect": true,
+   "map": {
+    "Show row 3": "how many items you pass"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "shape": {
+   "type": "enum",
+   "values": [
+    "circle",
+    "text",
+    "block"
+   ],
+   "default": "\"text\"",
+   "about": "A line of text, a block (an image, a card) or a circle (an avatar)."
+  },
+  "lines": {
+   "type": "enum",
+   "values": [
+    "2",
+    "3",
+    "1"
+   ],
+   "default": "1",
+   "about": "Lines of text; the last is shorter. Keep it to a few: not every line needs one."
+  },
+  "width": {
+   "type": "text",
+   "about": "Any CSS length. Text and blocks fill their box by default; a circle is 2.5rem."
+  },
+  "height": {
+   "type": "text",
+   "about": "A block's height, any CSS length (6rem by default)."
+  },
+  "animated": {
+   "type": "boolean",
+   "default": "true",
+   "about": "Breathe while waiting (stopped under reduced motion either way)."
+  }
+ },
+ "tokens": [
+  "motion-pulse",
+  "radius-full",
+  "radius-md",
+  "radius-nested",
+  "radius-sm",
+  "space-3"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

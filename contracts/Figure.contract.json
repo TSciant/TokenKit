@@ -1,0 +1,110 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "Figure",
+ "layer": "primitive",
+ "about": null,
+ "sources": {
+  "react": "src/react/primitives/Figure.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/figure.css"
+ ],
+ "dataTk": [
+  "figure",
+  "figure-caption",
+  "figure-caption-text",
+  "figure-credit",
+  "figure-frame",
+  "figure-media"
+ ],
+ "figma": [
+  {
+   "name": "Figure",
+   "node": "39:118",
+   "codeConnect": true,
+   "map": {
+    "Caption": "caption",
+    "Credit": "credit",
+    "Show caption": "caption (omit it to hide)",
+    "Show credit": "credit (omit it to hide)",
+    "Aspect": "aspect"
+   },
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "caption": {
+   "type": "content",
+   "figma": [
+    "Figure.Caption",
+    "Figure.Show caption"
+   ]
+  },
+  "credit": {
+   "type": "content",
+   "figma": [
+    "Figure.Credit",
+    "Figure.Show credit"
+   ]
+  },
+  "aspect": {
+   "type": "enum",
+   "values": [
+    "auto",
+    "1/1",
+    "4/3",
+    "16/9",
+    "21/9"
+   ],
+   "figma": [
+    "Figure.Aspect"
+   ]
+  },
+  "decorative": {
+   "type": "boolean"
+  },
+  "fx": {
+   "type": "other",
+   "ts": "FxProp"
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  },
+  "className": {
+   "type": "text"
+  },
+  "as": {
+   "type": "enum",
+   "values": [
+    "img",
+    "video"
+   ]
+  }
+ },
+ "tokens": [
+  "line-default",
+  "radius-nested",
+  "size-sm",
+  "size-xs",
+  "space-1",
+  "space-3",
+  "surface-sunken",
+  "text-secondary",
+  "text-tertiary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}

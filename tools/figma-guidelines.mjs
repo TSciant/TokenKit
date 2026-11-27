@@ -14,16 +14,17 @@
  *   npm run figma:guidelines           -> figma/guidelines.md
  *   npm run figma:guidelines -- --check   fail if the file is out of date
  *
- * Figma recommends under 100 KB in total; this stops at 90.
+ * Figma recommends under 100 KB in total; this stops at 95 (90 until the Figma-to-code
+ * prop map joined it, 2026-11-27).
  */
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { execFileSync } from "node:child_process";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "figma", "guidelines.md");
-const LIMIT = 90 * 1024;
+const LIMIT = 95 * 1024;
 const read = (p) => readFileSync(join(ROOT, p), "utf8").replace(/\r\n/g, "\n");
 
 const meta = JSON.parse(read("figma/meta.json"));
@@ -145,6 +146,41 @@ for (const f of foundation) {
 }
 if (foundationOut.length) out.push(`## Practice\n\n${foundationOut.join("\n")}`);
 
+/* The Figma-to-code exceptions for a component, from its contract (contracts/<Name>.contract.json, the
+   figma entry for this Figma component): only what the general rules in "From Figma to code" don't already say. */
+const figmaEntries = new Map();
+if (existsSync(join(ROOT, "contracts")))
+  for (const f of readdirSync(join(ROOT, "contracts")).filter((x) => x.endsWith(".contract.json"))) {
+    const c = JSON.parse(read(`contracts/${f}`));
+    for (const e of c.figma) {
+      /* A decided pairing joins the map; a decided omission is said to be no prop. */
+      const map = { ...e.map }, none = [];
+      for (const u of e.unpaired) {
+        const pair = c.decisions?.pairWith?.[`${e.name}.${u}`];
+        if (pair) map[u] = pair; else none.push(u);
+      }
+      figmaEntries.set(e.name, { code: c.component, map, unpaired: none });
+    }
+  }
+const camelOf = (s) => s.replace(/[^A-Za-z0-9]+(.)?/g, (_, c) => (c ? c.toUpperCase() : "")).replace(/^./, (c) => c.toLowerCase());
+function figmaToCode(name) {
+  const p = figmaEntries.get(name);
+  if (!p) return "";
+  const out = [], none = [...p.unpaired];
+  if (p.code && p.code !== name) out.push(`drawn by \`${p.code}\``);
+  for (const [prop, to] of Object.entries(p.map)) {
+    const k = camelOf(prop);
+    if (to === k || to === `${k} (true/false)` || to === "children" && /^(label|text|body)$/i.test(prop)) continue;
+    if (/^Show /.test(prop) && to === `${camelOf(prop.slice(5))} (omit it to hide)`) continue;
+    if (/^(state)$/i.test(prop) && /^(\w+: CSS(, )?)+$/.test(to)) continue;
+    if (/=\{<Icon/.test(to) && to.startsWith(k + "=")) continue;
+    if (/ data$/.test(to) || to === "how many items you pass") continue;
+    out.push(`${prop} → ${/^[a-z][\w-]*$/.test(to) ? "`" + to + "`" : to}`);
+  }
+  if (none.length) out.push(`not a prop (runtime, layout or content): ${none.join(", ")}`);
+  return out.join("; ");
+}
+
 /* Components, in the order the Figma file builds them. */
 const comps = [];
 /* A variant component reads the same stories as its parent (FieldCount, Field's): its Do and Don't are said
@@ -167,9 +203,24 @@ for (const [name, m] of Object.entries(meta.components)) {
     for (const x of g) parts.push(`- **${x.tone === "do" ? "Do" : "Don't"}:** ${x.note}`);
     if (g.length) { parts.push(""); guidanceOwner.set(storyFile, name); }
   }
+  const fc = figmaToCode(name);
+  if (fc) parts.push(`*From Figma:* ${fc}.`, "");
   parts.push(`Figma: node \`${m.node}\`.`, "");
   comps.push(parts.join("\n"));
 }
+out.push(`## From Figma to code
+
+Figma's MCP returns this library's components by their code names (Code Connect), with Figma's property names. Translate them like this:
+
+- A property becomes the prop of the same name in lower camel case (Variant → \`variant\`, Mega menu → \`megaMenu\`). A false/true or No/Yes variant is a boolean prop.
+- Label, Text and Body text become the component's children unless the line below names a prop.
+- State is mostly CSS: default, hover, active and focus are never props. Disabled, read-only and checked are the element's own attributes; an error state is the component's \`error\` or \`invalid\` prop.
+- "Show X" means pass X or leave it out. An icon swap (Leading, Icon) takes \`<Icon name="…" />\`; the MCP gives a Figma node id there, never pass it on.
+- Numbered fields (Nav 1 to Nav 6) are entries in the array prop the line below names.
+- A part (Pricing/Plan, Faq/Item) is a field of its parent's data, not a component of its own.
+
+Each component's line below gives only what these rules don't.
+`);
 out.push(`## Components\n\n${comps.join("\n")}`);
 
 let text = out.join("\n").replace(/\n{3,}/g, "\n\n").trimEnd() + "\n";

@@ -1,0 +1,127 @@
+{
+ "$schema": "./contract.schema.json",
+ "component": "LogoLadder",
+ "layer": "primitive",
+ "about": null,
+ "sources": {
+  "react": "src/react/primitives/LogoLadder.tsx",
+  "swiftui": null,
+  "compose": null
+ },
+ "css": [
+  "src/css/components/logo-ladder.css"
+ ],
+ "dataTk": [
+  "logo",
+  "logo-body",
+  "logo-mark",
+  "logo-tagline",
+  "logo-text",
+  "logo-word"
+ ],
+ "figma": [
+  {
+   "name": "LogoLadder",
+   "node": "173:513",
+   "codeConnect": true,
+   "map": {
+    "Word": "word",
+    "Tagline": "tagline",
+    "Stage": "stage"
+   },
+   "unpaired": []
+  },
+  {
+   "name": "LogoLadder/Mark",
+   "node": "173:476",
+   "codeConnect": true,
+   "map": {},
+   "unpaired": []
+  }
+ ],
+ "props": {
+  "mark": {
+   "type": "icon or content",
+   "about": "The symbol. An inline `<svg>` is ideal; anything that renders works."
+  },
+  "word": {
+   "type": "text",
+   "default": "\"Brand\"",
+   "figma": [
+    "LogoLadder.Word"
+   ],
+   "about": "The name, as it is set. Also the accessible name unless `label` says otherwise."
+  },
+  "tagline": {
+   "type": "text",
+   "figma": [
+    "LogoLadder.Tagline"
+   ],
+   "about": "Shown at FULL only — the one stage with room for it."
+  },
+  "smStage": {
+   "type": "enum",
+   "values": [
+    "mark",
+    "word"
+   ],
+   "default": "\"mark\"",
+   "about": "Which of the two same-size stages this brand uses at >= 80px. Not a size question, which is why it cannot be a query: it asks whether the brand survives as a symbol or as type. A monogram in a square "
+  },
+  "stage": {
+   "type": "enum",
+   "values": [
+    "mark",
+    "stack",
+    "word",
+    "icon",
+    "lockup",
+    "full"
+   ],
+   "figma": [
+    "LogoLadder.Stage"
+   ],
+   "about": "Pin a stage and ignore the container. For specimen sheets, where six stages have to appear in six boxes of the same width — the one case where the container is the wrong thing to ask. Leave it unset i"
+  },
+  "href": {
+   "type": "text",
+   "about": "Wrap in a link. A logo in a header is nearly always the way home."
+  },
+  "label": {
+   "type": "text",
+   "about": "Accessible name. Defaults to the wordmark, then to \"Logo\"."
+  },
+  "className": {
+   "type": "text"
+  },
+  "style": {
+   "type": "other",
+   "ts": "CSSProperties"
+  }
+ },
+ "tokens": [
+  "logo-ink",
+  "logo-mark-ink",
+  "logo-tagline-ink",
+  "logo-tile",
+  "logo-word-ink",
+  "logo-word-tracking",
+  "logo-word-weight",
+  "radius-sm",
+  "surface-default",
+  "text-primary",
+  "text-secondary"
+ ],
+ "checks": [
+  "figma",
+  "onion",
+  "code-connect",
+  "contrast",
+  "token-lint"
+ ],
+ "decisions": null,
+ "a11y": null,
+ "i18n": null,
+ "events": null,
+ "privacy": null
+}
