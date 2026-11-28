@@ -7,6 +7,7 @@
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { Icon } from "./Icon";
 import { FieldError, RequiredMark } from "./field-parts";
+import { tkEvent } from "../../lib/tk-event";
 
 export type ComboboxOption = {
   value: string;
@@ -138,6 +139,8 @@ export function Combobox({
 
   const choose = (o: ComboboxOption) => {
     if (o.disabled) return;
+    /* Where the chosen option sat and how many were showing: never its label, its value or what was typed. */
+    tkEvent(input.current, "Combobox", "select", { position: shown.indexOf(o) + 1, of: shown.length });
     commit(o.value);
     setText(o.label);
     setOpen(false);

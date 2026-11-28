@@ -203,6 +203,55 @@
   "focus": "moves into the dialog on open, stays inside while open, returns to the trigger on close"
  },
  "i18n": null,
- "events": null,
- "privacy": null
+ "events": {
+  "open": {
+   "when": "the dialog opens",
+   "props": {
+    "size": [
+     "sm",
+     "md",
+     "lg"
+    ],
+    "alert": "boolean"
+   },
+   "trigger": [
+    {
+     "click": "#storybook-root [data-tk=button]"
+    }
+   ],
+   "expect": {}
+  },
+  "dismiss": {
+   "when": "the dialog closes, and how",
+   "props": {
+    "how": [
+     "escape",
+     "backdrop",
+     "button",
+     "app"
+    ]
+   },
+   "trigger": [
+    {
+     "click": "#storybook-root [data-tk=button]"
+    },
+    {
+     "key": "Escape",
+     "from": null
+    }
+   ],
+   "expect": {
+    "how": "escape"
+   }
+  }
+ },
+ "privacy": {
+  "never": [
+   "typed text",
+   "an option's label or value",
+   "names",
+   "emails"
+  ],
+  "consent": "The kit sends nothing: it dispatches tk:event on the page. A page that listens decides what to forward, and only under its own consent."
+ }
 }

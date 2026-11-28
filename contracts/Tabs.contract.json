@@ -127,6 +127,35 @@
   "focus": "one tab stop for the whole list (roving tabindex)"
  },
  "i18n": null,
- "events": null,
- "privacy": null
+ "events": {
+  "select": {
+   "when": "a different tab is chosen",
+   "props": {
+    "position": "number",
+    "how": [
+     "click",
+     "key"
+    ]
+   },
+   "trigger": [
+    {
+     "key": "ArrowRight",
+     "from": "[role=tab]"
+    }
+   ],
+   "expect": {
+    "position": 2,
+    "how": "key"
+   }
+  }
+ },
+ "privacy": {
+  "never": [
+   "typed text",
+   "an option's label or value",
+   "names",
+   "emails"
+  ],
+  "consent": "The kit sends nothing: it dispatches tk:event on the page. A page that listens decides what to forward, and only under its own consent."
+ }
 }

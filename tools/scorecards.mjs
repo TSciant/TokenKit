@@ -53,6 +53,7 @@ const HAND_GAPS = {
   privacy: "no privacy rule is recorded",
 };
 const keyboard = readJson("audits/keyboard.json");
+const events = readJson("audits/events.json");
 
 const cards = {};
 for (const c of contracts) {
@@ -91,8 +92,13 @@ for (const c of contracts) {
   const kb = keyboard?.components?.[c.component];
   if (kb) evidence.keyboard = { source: "audits/keyboard.json", checkedAt: keyboard.generatedAt, keys: kb.results.length, failed: kb.results.filter((r) => !r.pass).map((r) => `${r.key}: ${r.says}`) };
 
+  /* Events: each tk:event its contract declares, triggered and checked against it (tools/event-gate.mjs). */
+  const ev = events?.components?.[c.component];
+  if (ev && ev.declared.length) evidence.events = { source: "audits/events.json", checkedAt: events.generatedAt, declared: ev.declared.length, seen: ev.seen.length, failed: ev.declared.filter((k) => !ev.seen.includes(k)) };
+
   const unchecked = ["screen-reader wording and reading order, heard by a person", "native platforms (no SwiftUI or Compose kit yet)"];
   for (const [k, why] of Object.entries(HAND_GAPS)) if (c[k] === null) unchecked.push(why);
+  if (c.events && Object.keys(c.events).some((k) => !k.startsWith("$")) && !ev) unchecked.push("its events are declared but the event gate has not run on them");
   if (c.a11y && !kb) unchecked.push("its keyboard contract is written but the keyboard gate has not run on it");
   if (stories.length && gates && (!evidence.rtl || !evidence.expansion)) unchecked.push("right-to-left and text expansion have not run on its stories");
   if (!stories.length) unchecked.push("no story renders it, so no browser gate has opened it");

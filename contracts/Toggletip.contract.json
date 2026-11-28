@@ -83,6 +83,25 @@
   "focus": "stays on the button"
  },
  "i18n": null,
- "events": null,
- "privacy": null
+ "events": {
+  "open": {
+   "when": "the tip is shown",
+   "props": {},
+   "trigger": [
+    {
+     "click": "[data-tk=toggletip-button]"
+    }
+   ],
+   "expect": {}
+  }
+ },
+ "privacy": {
+  "never": [
+   "typed text",
+   "an option's label or value",
+   "names",
+   "emails"
+  ],
+  "consent": "The kit sends nothing: it dispatches tk:event on the page. A page that listens decides what to forward, and only under its own consent."
+ }
 }

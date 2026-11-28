@@ -277,6 +277,9 @@ nav{display:flex;flex-direction:column;gap:4px;width:${S('sidebar-w')};padding:v
 /* !important on colour and type: a page's own button reset (the kit's font: inherit; color: inherit) outranks
    ::slotted rules otherwise, and the items came out as body text (found by the Figma onion check, 2026-11-02). */
 ::slotted(a),::slotted(button){all:unset;box-sizing:border-box;border:1px solid transparent;display:flex;align-items:center;gap:var(--_pad);min-height:${S('target-h')};padding:0 var(--_pad);border-radius:calc(var(--_r) - var(--_pad));color:${T('ink-dim')} !important;font:600 ${S('text-body')}/1.2 ${SANS} !important;white-space:nowrap;overflow:hidden;cursor:pointer;outline:${S('ring-width')} solid transparent;outline-offset:${S('ring-offset')};transition:background-color ${DUR} ease,box-shadow ${DUR} ease,transform ${DUR} ease}
+/* Open, a label longer than the menu (a translation runs up to 40% longer) wraps to a second line instead of
+   being cut; collapsed, it stays on one line so the narrow menu shows the icon only. */
+:host(:not([collapse])) ::slotted(a),:host(:not([collapse])) ::slotted(button),:host([collapse]:focus-within) ::slotted(a),:host([collapse]:focus-within) ::slotted(button){white-space:normal !important;padding-block:calc(var(--_pad) / 2)}
 ::slotted(a:hover),::slotted(button:hover){background:${T('surface-hi')};color:${T('ink')} !important}
 ::slotted([aria-current]){color:${T('ink')} !important;font-weight:800 !important;box-shadow:inset 4px 0 0 ${T('accent')}}
 ::slotted(a:focus),::slotted(button:focus){color:${T('ink')} !important;background:${T('surface-hi')};box-shadow:${RING};transform:scale(1.04);outline:${S('ring-width')} solid transparent !important;outline-offset:${S('ring-offset')} !important}

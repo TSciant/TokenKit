@@ -6,6 +6,7 @@
 
 import { cloneElement, useEffect, useId, useRef, useState, type HTMLAttributes, type ReactElement, type ReactNode } from "react";
 import { Icon } from "./Icon";
+import { tkEvent } from "../../lib/tk-event";
 
 export interface TooltipProps extends Omit<HTMLAttributes<HTMLSpanElement>, "content" | "children"> {
   /** The words. Short: a name or a phrase. Anything longer, or anything a reader needs, is not a tooltip. */
@@ -108,7 +109,7 @@ export function Toggletip({ label, content, placement = "above", ...rest }: Togg
   }, [open]);
   return (
     <span data-tk="toggletip" data-placement={placement} ref={root} {...rest}>
-      <button data-tk="toggletip-button" type="button" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+      <button data-tk="toggletip-button" type="button" aria-expanded={open} onClick={(e) => { if (!open) tkEvent(e.currentTarget, "Toggletip", "open"); setOpen((o) => !o); }}>
         <Icon name="info" />
         <span data-tk="visually-hidden">{label}</span>
       </button>

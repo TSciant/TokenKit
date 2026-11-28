@@ -147,6 +147,50 @@
   "focus": "Escape returns focus to the trigger"
  },
  "i18n": null,
- "events": null,
- "privacy": null
+ "events": {
+  "open": {
+   "when": "the list opens",
+   "props": {
+    "how": [
+     "click",
+     "key"
+    ]
+   },
+   "trigger": [
+    {
+     "click": "[data-tk=button][aria-expanded]"
+    }
+   ],
+   "expect": {
+    "how": "click"
+   }
+  },
+  "select": {
+   "when": "an item is chosen",
+   "props": {
+    "position": "number",
+    "link": "boolean"
+   },
+   "trigger": [
+    {
+     "click": "[data-tk=button][aria-expanded]"
+    },
+    {
+     "click": "[data-tk=menu-button-item]"
+    }
+   ],
+   "expect": {
+    "position": 1
+   }
+  }
+ },
+ "privacy": {
+  "never": [
+   "typed text",
+   "an option's label or value",
+   "names",
+   "emails"
+  ],
+  "consent": "The kit sends nothing: it dispatches tk:event on the page. A page that listens decides what to forward, and only under its own consent."
+ }
 }

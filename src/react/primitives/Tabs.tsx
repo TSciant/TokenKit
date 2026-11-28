@@ -5,6 +5,7 @@
    without it is a server component and may not use hooks at all. */
 
 import { useId, useRef, useState, type HTMLAttributes, type KeyboardEvent, type ReactNode } from "react";
+import { tkEvent } from "../../lib/tk-event";
 
 export type TabsItem = {
   /** Stable key for the tab; also what `selected`, `defaultSelected` and `onSelect` speak in. */
@@ -49,7 +50,8 @@ export function Tabs({ label, items, selected, defaultSelected, onSelect, ...res
   const current = items.some((t) => t.id === (selected ?? own)) ? (selected ?? own) : items[0]?.id;
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const choose = (id: string) => {
+  const choose = (id: string, el?: EventTarget, how?: "click" | "key") => {
+    if (el && id !== current) tkEvent(el, "Tabs", "select", { position: items.findIndex((t) => t.id === id) + 1, how: how ?? "click" });
     if (selected === undefined) setOwn(id);
     onSelect?.(id);
   };
@@ -61,7 +63,7 @@ export function Tabs({ label, items, selected, defaultSelected, onSelect, ...res
     const to = step !== undefined ? (i + step + items.length) % items.length : e.key === "Home" ? 0 : e.key === "End" ? last : -1;
     if (to < 0) return;
     e.preventDefault();
-    choose(items[to].id);
+    choose(items[to].id, e.currentTarget, "key");
     refs.current[to]?.focus();
   };
 
@@ -83,7 +85,7 @@ export function Tabs({ label, items, selected, defaultSelected, onSelect, ...res
               aria-selected={on}
               aria-controls={`${base}-panel-${i}`}
               tabIndex={on ? 0 : -1}
-              onClick={() => choose(t.id)}
+              onClick={(e) => choose(t.id, e.currentTarget, "click")}
               onKeyDown={(e) => onKeyDown(e, i)}
             >
               {t.label}

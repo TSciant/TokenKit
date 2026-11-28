@@ -1,8 +1,5 @@
 {
  "$description": "i18n findings already recorded (tools/i18n-gate.mjs): reported as KNOWN, flagged on the component's scorecard, not failing the build. Remove an entry when it is fixed; a new finding still fails. First run 2026-11-27.",
  "rtl": {},
- "expansion": {
-  "02-tokens-01-colour-03-brands--identities": "a brand card cuts its longer name: a token story, not a component; to look at",
-  "10-packs-03-tv--safe-area": "a TV button cuts a 40% longer label inside the 10-foot safe area; to look at with the TV pack"
- }
+ "expansion": {}
 }

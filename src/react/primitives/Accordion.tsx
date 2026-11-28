@@ -4,6 +4,7 @@
 import { useId, type HTMLAttributes, type ReactNode } from "react";
 import { Icon } from "./Icon";
 import { useOpenSet } from "./disclosure-state";
+import { tkEvent } from "../../lib/tk-event";
 
 export type AccordionItem = {
   id?: string;
@@ -53,7 +54,7 @@ export function Accordion({ items, headingLevel, level: legacyLevel, ...rest }: 
         return (
           <div key={id} data-tk="accordion-item">
             <H data-tk="accordion-heading">
-              <button type="button" data-tk="accordion-trigger" id={`${id}-trigger`} aria-expanded={isOpen} aria-controls={`${id}-panel`} onClick={() => toggle(i)}>
+              <button type="button" data-tk="accordion-trigger" id={`${id}-trigger`} aria-expanded={isOpen} aria-controls={`${id}-panel`} onClick={(e) => { tkEvent(e.currentTarget, "Accordion", "toggle", { position: i + 1, open: !isOpen }); toggle(i); }}>
                 <span>{item.heading}</span>
                 <span data-tk="accordion-mark" aria-hidden="true">
                   <Icon name="chevronDown" size="sm" />

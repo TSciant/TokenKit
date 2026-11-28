@@ -1,0 +1,69 @@
+{
+ "note": "Written by tools/event-gate.mjs: each declared tk:event, triggered and checked against its contract. Read by tools/scorecards.mjs.",
+ "generatedAt": "2026-11-28T01:26:59.659Z",
+ "components": {
+  "Accordion": {
+   "declared": [
+    "toggle"
+   ],
+   "seen": [
+    "toggle"
+   ],
+   "decision": null
+  },
+  "Combobox": {
+   "declared": [
+    "select"
+   ],
+   "seen": [
+    "select"
+   ],
+   "decision": null
+  },
+  "MenuButton": {
+   "declared": [
+    "open",
+    "select"
+   ],
+   "seen": [
+    "open",
+    "select"
+   ],
+   "decision": null
+  },
+  "Modal": {
+   "declared": [
+    "open",
+    "dismiss"
+   ],
+   "seen": [
+    "open",
+    "dismiss"
+   ],
+   "decision": null
+  },
+  "Switch": {
+   "declared": [],
+   "seen": [],
+   "decision": "No tk:event: a native checkbox, so the page's own change event already reports it, and sending one would make Switch a client component. Decided 2026-11-27."
+  },
+  "Tabs": {
+   "declared": [
+    "select"
+   ],
+   "seen": [
+    "select"
+   ],
+   "decision": null
+  },
+  "Toggletip": {
+   "declared": [
+    "open"
+   ],
+   "seen": [
+    "open"
+   ],
+   "decision": null
+  }
+ }
+}

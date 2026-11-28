@@ -173,17 +173,18 @@ type Passport = { kit: string; byFile: Record<string, string[]>; components: Rec
   about: string | null; layer: string; props: number; tokens: number;
   figma: { name: string; node: string; codeConnect: boolean }[];
   decided: { paired: number; omitted: number }; open: string[];
-  evidence: Record<string, { checkedAt?: string; cases?: number; failed?: number | string[]; closest?: string; keys?: number; stories?: number; flagged?: string[]; parts?: Record<string, { skins: number; mean: number; worst: number }>; reads?: number; nodes?: string[]; codeConnect?: boolean; propertiesDecided?: number }>;
+  evidence: Record<string, { checkedAt?: string; cases?: number; failed?: number | string[]; closest?: string; keys?: number; declared?: number; seen?: number; stories?: number; flagged?: string[]; parts?: Record<string, { skins: number; mean: number; worst: number }>; reads?: number; nodes?: string[]; codeConnect?: boolean; propertiesDecided?: number }>;
   unchecked: string[];
 }> };
 const passport = passportJson as unknown as Passport;
-const CHECK_NAMES: Record<string, string> = { contrast: "Contrast", a11y: "Accessibility (axe)", reflow: "Reflow at 320px", "forced-colors": "Forced colours", motion: "Reduced motion", controls: "Controls", radius: "Radius", properties: "Properties", attributes: "Attributes", titles: "Titles", keyboard: "Keyboard (its contract's keys)", rtl: "Right to left", expansion: "Text 40% longer", onion: "Design matches code", figma: "Figma", tokens: "Tokens" };
+const CHECK_NAMES: Record<string, string> = { contrast: "Contrast", a11y: "Accessibility (axe)", reflow: "Reflow at 320px", "forced-colors": "Forced colours", motion: "Reduced motion", controls: "Controls", radius: "Radius", properties: "Properties", attributes: "Attributes", titles: "Titles", keyboard: "Keyboard (its contract's keys)", events: "Events (what it reports)", rtl: "Right to left", expansion: "Text 40% longer", onion: "Design matches code", figma: "Figma", tokens: "Tokens" };
 
 function evidenceLine(key: string, e: Passport["components"][string]["evidence"][string]) {
   if (key === "contrast") return `${e.cases} pairs, ${e.failed} failed · closest ${e.closest}`;
   if (key === "onion") return Object.entries(e.parts ?? {}).map(([n, p]) => `${n}: mean Δ ${p.mean}, worst ${p.worst} over ${p.skins} skin${p.skins === 1 ? "" : "s"}`).join(" · ");
   if (key === "figma") return `${(e.nodes ?? []).length} frame${(e.nodes ?? []).length === 1 ? "" : "s"} · Code Connect ${e.codeConnect ? "yes" : "no"}`;
   if (key === "tokens") return `reads ${e.reads} tk slots`;
+  if (key === "events") { const f = Array.isArray(e.failed) ? e.failed : []; return `${e.seen} of ${e.declared} declared event${e.declared === 1 ? "" : "s"} arrive as declared${f.length ? ` · not seen: ${f.join(", ")}` : ""}`; }
   if (key === "keyboard") { const f = Array.isArray(e.failed) ? e.failed : []; return `${e.keys} key${e.keys === 1 ? "" : "s"} pressed · ${f.length ? `${f.length} failed: ${f.join("; ")}` : "all do what the contract says"}`; }
   return `${e.stories} stor${e.stories === 1 ? "y" : "ies"} opened · ${e.flagged?.length ? `${e.flagged.length} flagged` : "none flagged"}`;
 }

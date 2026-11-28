@@ -1,6 +1,6 @@
 {
  "note": "Written by tools/browser-gates.mjs on a full pass: each story, each check that opened it, and whether that check's report named it. Read by tools/scorecards.mjs.",
- "generatedAt": "2026-11-27T23:00:11.394Z",
+ "generatedAt": "2026-11-28T01:26:59.661Z",
  "checks": {
   "controls": {
    "pass": true,
@@ -52,15 +52,20 @@
    "visited": 7,
    "flagged": 0
   },
+  "events": {
+   "pass": true,
+   "visited": 612,
+   "flagged": 0
+  },
   "rtl": {
    "pass": true,
    "visited": 612,
-   "flagged": 1
+   "flagged": 0
   },
   "expansion": {
    "pass": true,
    "visited": 612,
-   "flagged": 2
+   "flagged": 0
   }
  },
  "files": {
@@ -687,6 +692,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -699,6 +705,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -711,6 +718,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -723,6 +731,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -735,6 +744,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -747,6 +757,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -759,8 +770,9 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
-   "expansion": "flagged"
+   "expansion": "pass"
   },
   "02-tokens-01-colour-03-brands--one-component-seven-brands": {
    "controls": "pass",
@@ -771,6 +783,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -783,6 +796,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -795,6 +809,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -807,6 +822,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -819,6 +835,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -831,6 +848,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -843,6 +861,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -855,6 +874,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -867,18 +887,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "02-tokens-04-typography--using-type": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -891,6 +900,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "02-tokens-04-typography--using-type": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -903,6 +926,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -915,6 +939,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -927,6 +952,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -939,6 +965,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -951,6 +978,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -963,6 +991,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -975,6 +1004,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -987,6 +1017,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -999,6 +1030,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1011,6 +1043,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1023,6 +1056,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1035,6 +1069,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1047,6 +1082,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1059,6 +1095,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1071,6 +1108,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1083,6 +1121,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1095,6 +1134,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1107,6 +1147,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1119,6 +1160,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1131,6 +1173,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1143,6 +1186,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1155,6 +1199,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1167,6 +1212,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1179,6 +1225,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1191,6 +1238,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1203,18 +1251,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "03-foundations-04-scrim--textures": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1227,6 +1264,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "03-foundations-04-scrim--textures": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1239,6 +1290,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1251,6 +1303,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1263,6 +1316,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1275,6 +1329,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1287,6 +1342,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1299,6 +1355,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1311,6 +1368,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1323,6 +1381,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1335,6 +1394,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1347,6 +1407,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1359,6 +1420,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1371,6 +1433,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1383,6 +1446,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1395,6 +1459,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1407,6 +1472,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1419,6 +1485,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1431,6 +1498,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1443,6 +1511,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1455,6 +1524,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1467,6 +1537,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1479,6 +1550,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1491,6 +1563,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1503,18 +1576,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-02-chip--playground": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1527,10 +1589,11 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
-  "04-primitives-02-chip--emphasis": {
+  "04-primitives-02-chip--playground": {
    "controls": "pass",
    "radius": "pass",
    "attributes": "pass",
@@ -1539,6 +1602,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1551,10 +1615,11 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
-  "04-primitives-02-chip--onion-skin-tone": {
+  "04-primitives-02-chip--emphasis": {
    "controls": "pass",
    "radius": "pass",
    "attributes": "pass",
@@ -1563,6 +1628,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1575,10 +1641,11 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
-  "04-primitives-02-chip--onion-skin": {
+  "04-primitives-02-chip--onion-skin-tone": {
    "controls": "pass",
    "radius": "pass",
    "attributes": "pass",
@@ -1587,6 +1654,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1599,6 +1667,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-02-chip--onion-skin": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1611,6 +1693,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1623,6 +1706,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1635,6 +1719,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1647,18 +1732,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-03-field--states": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1671,10 +1745,11 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
-  "04-primitives-03-field--prefix-suffix": {
+  "04-primitives-03-field--states": {
    "controls": "pass",
    "radius": "pass",
    "attributes": "pass",
@@ -1683,6 +1758,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1695,6 +1771,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-03-field--prefix-suffix": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1707,6 +1797,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1719,6 +1810,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1731,6 +1823,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1743,6 +1836,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1755,6 +1849,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1767,6 +1862,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1779,6 +1875,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1791,6 +1888,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1803,6 +1901,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1815,6 +1914,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1827,6 +1927,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1839,18 +1940,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-04-icon--onion-skin": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1863,6 +1953,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-04-icon--onion-skin": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1875,6 +1979,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1887,6 +1992,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1899,6 +2005,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1911,6 +2018,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1923,6 +2031,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1935,18 +2044,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-05-card--using-cards": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1959,6 +2057,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-05-card--using-cards": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1971,6 +2083,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1983,6 +2096,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -1995,6 +2109,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2007,6 +2122,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2019,6 +2135,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2031,6 +2148,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2043,6 +2161,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2055,6 +2174,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2067,6 +2187,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2079,6 +2200,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2091,6 +2213,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2103,6 +2226,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2115,6 +2239,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2127,6 +2252,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2140,6 +2266,7 @@
    "forced-colors": "pass",
    "motion": "pass",
    "keyboard": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2152,6 +2279,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2164,6 +2292,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2176,6 +2305,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2188,6 +2318,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2200,6 +2331,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2212,6 +2344,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2224,6 +2357,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2236,6 +2370,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2248,6 +2383,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2260,18 +2396,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-10-faq--onion-skin": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2284,6 +2409,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-10-faq--onion-skin": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2296,6 +2435,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2308,6 +2448,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2320,6 +2461,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2332,6 +2474,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2344,6 +2487,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2356,6 +2500,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2368,6 +2513,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2380,6 +2526,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2392,6 +2539,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2404,6 +2552,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2416,6 +2565,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2428,6 +2578,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2440,6 +2591,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2452,6 +2604,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2464,6 +2617,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2476,6 +2630,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2488,6 +2643,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2500,6 +2656,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2512,6 +2669,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2524,6 +2682,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2536,6 +2695,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2548,6 +2708,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2560,18 +2721,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-19-search--collapsible": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2584,6 +2734,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-19-search--collapsible": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2596,6 +2760,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2608,6 +2773,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2620,6 +2786,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2632,6 +2799,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2644,6 +2812,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2656,6 +2825,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2668,6 +2838,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2680,6 +2851,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2692,6 +2864,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2704,18 +2877,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-22-logo-ladder--type-led": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2728,6 +2890,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-22-logo-ladder--type-led": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2740,6 +2916,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2752,6 +2929,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2764,6 +2942,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2776,6 +2955,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2788,6 +2968,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2800,6 +2981,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2812,6 +2994,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2824,6 +3007,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2836,6 +3020,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2848,6 +3033,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2860,6 +3046,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2872,6 +3059,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2884,6 +3072,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2896,6 +3085,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2908,6 +3098,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2920,6 +3111,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2932,6 +3124,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2944,6 +3137,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2956,6 +3150,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2969,6 +3164,7 @@
    "forced-colors": "pass",
    "motion": "pass",
    "keyboard": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2981,6 +3177,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -2993,6 +3190,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3005,6 +3203,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3017,6 +3216,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3029,6 +3229,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3041,6 +3242,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3053,6 +3255,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3065,6 +3268,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3077,6 +3281,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3089,6 +3294,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3101,6 +3307,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3113,6 +3320,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3125,6 +3333,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3137,6 +3346,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3149,6 +3359,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3161,6 +3372,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3173,6 +3385,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3185,6 +3398,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3197,6 +3411,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3209,6 +3424,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3221,6 +3437,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3233,6 +3450,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3245,6 +3463,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3257,6 +3476,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3269,6 +3489,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3281,6 +3502,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3293,6 +3515,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3305,6 +3528,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3317,6 +3541,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3329,6 +3554,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3341,18 +3567,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-34-scene--find-an-office": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3365,6 +3580,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-34-scene--find-an-office": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3377,6 +3606,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3389,6 +3619,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3401,6 +3632,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3413,6 +3645,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3425,6 +3658,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3437,6 +3671,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3449,6 +3684,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3461,6 +3697,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3473,6 +3710,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3485,6 +3723,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3497,6 +3736,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3509,6 +3749,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3521,6 +3762,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3533,6 +3775,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3545,6 +3788,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3557,6 +3801,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3569,6 +3814,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3581,6 +3827,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3593,6 +3840,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3605,6 +3853,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3617,6 +3866,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3629,6 +3879,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3641,6 +3892,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3653,6 +3905,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3665,6 +3918,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3677,6 +3931,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3689,6 +3944,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3701,6 +3957,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3713,6 +3970,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3725,6 +3983,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3737,6 +3996,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3749,6 +4009,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3761,6 +4022,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3773,6 +4035,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3785,6 +4048,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3797,6 +4061,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3809,6 +4074,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3821,6 +4087,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3833,6 +4100,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3845,6 +4113,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3857,6 +4126,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3869,6 +4139,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3881,6 +4152,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3893,6 +4165,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3905,6 +4178,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3917,6 +4191,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3929,6 +4204,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3941,6 +4217,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3953,6 +4230,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3965,6 +4243,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3977,6 +4256,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -3989,18 +4269,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-50-video-player--self-hosted": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4013,6 +4282,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-50-video-player--self-hosted": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4025,6 +4308,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4037,6 +4321,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4049,6 +4334,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4061,6 +4347,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4073,6 +4360,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4085,6 +4373,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4097,6 +4386,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4109,6 +4399,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4121,6 +4412,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4133,6 +4425,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4145,6 +4438,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4157,6 +4451,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4169,6 +4464,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4181,6 +4477,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4193,6 +4490,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4205,6 +4503,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4217,6 +4516,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4229,6 +4529,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4241,6 +4542,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4253,6 +4555,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4265,6 +4568,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4277,6 +4581,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4289,6 +4594,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4301,6 +4607,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4313,6 +4620,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4325,6 +4633,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4337,6 +4646,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4349,6 +4659,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4362,6 +4673,7 @@
    "forced-colors": "pass",
    "motion": "pass",
    "keyboard": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4374,6 +4686,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4386,6 +4699,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4398,6 +4712,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4410,6 +4725,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4422,6 +4738,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4434,6 +4751,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4446,6 +4764,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4458,6 +4777,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4470,6 +4790,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4482,6 +4803,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4495,6 +4817,7 @@
    "forced-colors": "pass",
    "motion": "pass",
    "keyboard": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4507,6 +4830,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4519,6 +4843,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4531,6 +4856,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4543,6 +4869,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4555,6 +4882,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4567,6 +4895,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4579,6 +4908,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4591,6 +4921,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4603,6 +4934,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4615,6 +4947,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4627,6 +4960,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4639,6 +4973,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4651,6 +4986,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4663,6 +4999,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4675,6 +5012,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4687,18 +5025,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-65-toast--playground": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4711,6 +5038,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-65-toast--playground": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4723,6 +5064,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4735,6 +5077,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4747,6 +5090,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4759,6 +5103,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4772,6 +5117,7 @@
    "forced-colors": "pass",
    "motion": "pass",
    "keyboard": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4784,6 +5130,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4796,6 +5143,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4808,6 +5156,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4820,6 +5169,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4832,6 +5182,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4844,6 +5195,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4857,6 +5209,7 @@
    "forced-colors": "pass",
    "motion": "pass",
    "keyboard": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4869,6 +5222,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4881,6 +5235,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4893,6 +5248,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4905,6 +5261,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4917,18 +5274,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-71-task-list--onion-skin": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4941,6 +5287,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-71-task-list--onion-skin": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4953,6 +5313,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4965,6 +5326,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4977,6 +5339,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -4989,6 +5352,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5001,6 +5365,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5013,6 +5378,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5025,6 +5391,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5037,6 +5404,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5049,6 +5417,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5061,6 +5430,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5073,6 +5443,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5085,6 +5456,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5097,6 +5469,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5109,6 +5482,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5121,6 +5495,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5133,6 +5508,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5145,6 +5521,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5157,6 +5534,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5169,6 +5547,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5181,6 +5560,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5193,6 +5573,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5205,6 +5586,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5217,6 +5599,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5229,6 +5612,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5241,6 +5625,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5253,6 +5638,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5265,6 +5651,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5277,6 +5664,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5289,6 +5677,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5301,6 +5690,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5313,6 +5703,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5325,6 +5716,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5337,6 +5729,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5349,6 +5742,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5361,18 +5755,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-80-identifier-field--every-format": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5385,6 +5768,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-80-identifier-field--every-format": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5397,6 +5794,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5409,6 +5807,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5421,6 +5820,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5433,6 +5833,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5445,6 +5846,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5457,6 +5859,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5469,6 +5872,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5481,6 +5885,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5493,6 +5898,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5505,6 +5911,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5517,6 +5924,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5529,6 +5937,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5541,6 +5950,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5553,6 +5963,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5565,18 +5976,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-83-file-upload--several-files": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5589,6 +5989,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-83-file-upload--several-files": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5601,6 +6015,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5613,6 +6028,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5625,6 +6041,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5637,6 +6054,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5649,18 +6067,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "04-primitives-85-empty-state--playground": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5673,6 +6080,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "04-primitives-85-empty-state--playground": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5685,6 +6106,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5697,6 +6119,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5710,6 +6133,7 @@
    "forced-colors": "pass",
    "motion": "pass",
    "keyboard": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5722,6 +6146,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5734,6 +6159,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5746,6 +6172,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5758,6 +6185,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5770,6 +6198,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5782,6 +6211,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5794,6 +6224,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5806,6 +6237,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5818,6 +6250,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5830,6 +6263,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5842,6 +6276,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5854,6 +6289,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5866,6 +6302,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5878,6 +6315,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5890,6 +6328,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5902,6 +6341,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5914,6 +6354,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5926,6 +6367,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5938,6 +6380,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5950,6 +6393,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5962,6 +6406,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5974,6 +6419,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5986,6 +6432,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -5998,6 +6445,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6010,6 +6458,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6022,6 +6471,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6034,6 +6484,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6046,6 +6497,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6058,6 +6510,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6070,6 +6523,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6082,6 +6536,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6094,6 +6549,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6106,6 +6562,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6118,6 +6575,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6130,6 +6588,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6142,6 +6601,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6154,6 +6614,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6166,7 +6627,8 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "flagged",
+   "events": "pass",
+   "rtl": "pass",
    "expansion": "pass"
   },
   "04-primitives-94-pause-motion--onion-skin": {
@@ -6178,6 +6640,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6190,6 +6653,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6202,6 +6666,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6214,6 +6679,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6226,6 +6692,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6238,6 +6705,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6250,6 +6718,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6262,6 +6731,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6274,6 +6744,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6286,6 +6757,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6298,6 +6770,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6310,6 +6783,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6322,6 +6796,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6334,6 +6809,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6346,6 +6822,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6358,6 +6835,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6370,6 +6848,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6382,6 +6861,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6394,6 +6874,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6406,6 +6887,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6418,6 +6900,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6430,6 +6913,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6442,6 +6926,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6454,6 +6939,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6466,6 +6952,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6478,6 +6965,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6490,6 +6978,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6502,6 +6991,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6514,6 +7004,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6526,6 +7017,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6538,6 +7030,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6550,6 +7043,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6562,6 +7056,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6574,6 +7069,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6586,6 +7082,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6598,6 +7095,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6610,6 +7108,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6622,6 +7121,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6634,6 +7134,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6646,6 +7147,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6658,6 +7160,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6670,6 +7173,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6682,6 +7186,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6694,6 +7199,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6706,6 +7212,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6718,6 +7225,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6730,6 +7238,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6742,6 +7251,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6754,18 +7264,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "05-patterns-25-apply-form--default": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6778,6 +7277,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "05-patterns-25-apply-form--default": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6790,6 +7303,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6802,6 +7316,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6814,6 +7329,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6826,18 +7342,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "05-patterns-30-wireframe-library--a-page": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6850,6 +7355,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "05-patterns-30-wireframe-library--a-page": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6862,6 +7381,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6874,18 +7394,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "06-motion-fx--boolean-infer": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6898,6 +7407,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "06-motion-fx--boolean-infer": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6910,6 +7433,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6922,6 +7446,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6934,6 +7459,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6946,6 +7472,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6958,6 +7485,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6970,6 +7498,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6982,6 +7511,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -6994,6 +7524,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7006,6 +7537,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7018,6 +7550,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7030,6 +7563,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7042,6 +7576,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7054,6 +7589,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7066,6 +7602,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7078,6 +7615,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7090,6 +7628,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7102,6 +7641,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7114,6 +7654,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7126,6 +7667,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7138,6 +7680,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7150,6 +7693,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7162,6 +7706,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7174,6 +7719,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7186,6 +7732,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7198,18 +7745,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "10-packs-01-gamepad--themes": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7222,6 +7758,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "10-packs-01-gamepad--themes": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7234,6 +7784,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7246,6 +7797,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7258,6 +7810,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7270,6 +7823,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7282,6 +7836,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7294,6 +7849,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7306,6 +7862,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7318,6 +7875,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7330,6 +7888,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7342,18 +7901,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "10-packs-01-gamepad--guitar-glyph": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7366,6 +7914,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "10-packs-01-gamepad--guitar-glyph": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7378,6 +7940,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7390,6 +7953,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7402,6 +7966,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7414,6 +7979,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7426,6 +7992,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7438,6 +8005,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7450,6 +8018,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7462,6 +8031,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7474,6 +8044,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7486,6 +8057,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7498,6 +8070,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7510,18 +8083,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "10-packs-02-keyboard--held": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7534,6 +8096,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "10-packs-02-keyboard--held": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7546,6 +8122,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7558,6 +8135,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7570,6 +8148,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7582,6 +8161,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7594,6 +8174,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7606,6 +8187,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7618,6 +8200,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7630,6 +8213,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7642,6 +8226,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7654,18 +8239,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
-   "rtl": "pass",
-   "expansion": "pass"
-  },
-  "10-packs-02-keyboard--prompt-onion-skin": {
-   "controls": "pass",
-   "radius": "pass",
-   "attributes": "pass",
-   "titles": "pass",
-   "a11y": "pass",
-   "reflow": "pass",
-   "forced-colors": "pass",
-   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7678,6 +8252,20 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
+   "rtl": "pass",
+   "expansion": "pass"
+  },
+  "10-packs-02-keyboard--prompt-onion-skin": {
+   "controls": "pass",
+   "radius": "pass",
+   "attributes": "pass",
+   "titles": "pass",
+   "a11y": "pass",
+   "reflow": "pass",
+   "forced-colors": "pass",
+   "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7690,6 +8278,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7702,6 +8291,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7714,6 +8304,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7726,6 +8317,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7738,8 +8330,9 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
-   "expansion": "flagged"
+   "expansion": "pass"
   },
   "10-packs-03-tv--osd": {
    "controls": "pass",
@@ -7750,6 +8343,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7762,6 +8356,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7774,6 +8369,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7786,6 +8382,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7798,6 +8395,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7810,6 +8408,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7822,6 +8421,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7834,6 +8434,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7846,6 +8447,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7858,6 +8460,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7870,6 +8473,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7882,6 +8486,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7894,6 +8499,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7906,6 +8512,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7918,6 +8525,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7930,6 +8538,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7942,6 +8551,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7954,6 +8564,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7966,6 +8577,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7978,6 +8590,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -7990,6 +8603,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -8002,6 +8616,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -8014,6 +8629,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   },
@@ -8026,6 +8642,7 @@
    "reflow": "pass",
    "forced-colors": "pass",
    "motion": "pass",
+   "events": "pass",
    "rtl": "pass",
    "expansion": "pass"
   }

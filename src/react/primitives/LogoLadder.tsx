@@ -112,7 +112,8 @@ export function LogoLadder({
         {mark ?? <PlaceholderMark />}
       </span>
       <span data-tk="logo-text" aria-hidden="true">
-        <span data-tk="logo-word">{word}</span>
+        {/* A name, never translated: translate="no" keeps a page translator (and the i18n gate) off it. */}
+        <span data-tk="logo-word" translate="no">{word}</span>
         {tagline ? <span data-tk="logo-tagline">{tagline}</span> : null}
       </span>
     </span>

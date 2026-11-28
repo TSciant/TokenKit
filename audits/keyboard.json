@@ -1,6 +1,6 @@
 {
  "note": "Written by tools/keyboard-gate.mjs: each key a contract promises, pressed and checked. Read by tools/scorecards.mjs.",
- "generatedAt": "2026-11-27T23:00:11.393Z",
+ "generatedAt": "2026-11-28T01:26:59.659Z",
  "components": {
   "Modal": {
    "story": "04-primitives-09-modal--trigger",

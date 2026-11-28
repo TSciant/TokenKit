@@ -5,6 +5,7 @@
    without it is a server component and may not use hooks at all. */
 
 import { useEffect, useId, useRef, useState, type HTMLAttributes } from "react";
+import { tkEvent } from "../../lib/tk-event";
 import { Icon, type IconName } from "./Icon";
 
 export type MenuButtonItem = {
@@ -110,6 +111,7 @@ export function MenuButton({
       onKeyDown={(e) => {
         if (e.key === "ArrowDown") {
           if (!open) {
+            tkEvent(e.currentTarget, "MenuButton", "open", { how: "key" });
             setOpen(true);
             e.preventDefault();
             requestAnimationFrame(() => entries()[0]?.focus());
@@ -127,7 +129,7 @@ export function MenuButton({
         type="button"
         aria-expanded={open}
         aria-controls={panelId}
-        onClick={() => setOpen(!open)}
+        onClick={(e) => { if (!open) tkEvent(e.currentTarget, "MenuButton", "open", { how: "click" }); setOpen(!open); }}
       >
         {label}
         <svg data-tk="menu-button-chevron" viewBox="0 0 16 16" focusable="false" aria-hidden="true">
@@ -135,10 +137,10 @@ export function MenuButton({
         </svg>
       </button>
       <ul data-tk="menu-button-panel" id={panelId} hidden={!open}>
-        {items.map((item) => (
+        {items.map((item, i) => (
           <li key={item.label}>
             {item.href ? (
-              <a data-tk="menu-button-item" href={item.href} aria-current={item.current ? "page" : undefined} lang={item.lang} hrefLang={item.hreflang} dir={item.dir}>
+              <a data-tk="menu-button-item" onClick={(e) => tkEvent(e.currentTarget, "MenuButton", "select", { position: i + 1, link: true })} href={item.href} aria-current={item.current ? "page" : undefined} lang={item.lang} hrefLang={item.hreflang} dir={item.dir}>
                 {item.icon ? <Icon name={item.icon} size="sm" aria-hidden="true" /> : null}
                 {item.describe ? <><span aria-hidden="true">{item.label}</span><span data-tk="visually-hidden">{item.describe}</span></> : item.label}
               </a>
@@ -146,7 +148,8 @@ export function MenuButton({
               <button
                 data-tk="menu-button-item"
                 type="button"
-                onClick={() => {
+                onClick={(e) => {
+                  tkEvent(e.currentTarget, "MenuButton", "select", { position: i + 1, link: false });
                   item.onSelect?.();
                   setOpen(false);
                 }}

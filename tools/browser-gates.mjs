@@ -25,6 +25,7 @@ import { reflowCheck } from "./reflow-gate.mjs";
 import { motionCheck } from "./motion-gate.mjs";
 import { rtlCheck, expansionCheck } from "./i18n-gate.mjs";
 import { keyboardCheck } from "./keyboard-gate.mjs";
+import { eventCheck } from "./event-gate.mjs";
 
 /* Read-only probes first on each page, axe after them: the checks share one
    settled page, and none of them should see anything another one injected.
@@ -32,7 +33,7 @@ import { keyboardCheck } from "./keyboard-gate.mjs";
    moves focus (it resets both when it is done). Motion after that: it pauses
    the page, emulates reduced motion and presses a data element's control,
    and puts each back. */
-const checks = [controlsCheck(), propertyCheck(), radiusCheck(), attributeCheck(), titlesCheck(), a11yCheck(), reflowCheck(), forcedColorsCheck(), motionCheck(), keyboardCheck({ write: !process.argv.includes("--affected") }), rtlCheck(), expansionCheck()]; /* keyboard reloads its story; expansion rewrites text, so it goes last */
+const checks = [controlsCheck(), propertyCheck(), radiusCheck(), attributeCheck(), titlesCheck(), a11yCheck(), reflowCheck(), forcedColorsCheck(), motionCheck(), keyboardCheck({ write: !process.argv.includes("--affected") }), eventCheck({ write: !process.argv.includes("--affected") }), rtlCheck(), expansionCheck()]; /* keyboard and events reload their stories; expansion rewrites text, so it goes last */
 
 /* The fast tier: only what the change can reach. The controls gate asks whether ANY story drives each prop, a
    question about every story at once, so it waits for the full pass; every other check judges each story alone. */

@@ -109,6 +109,16 @@
   "focus": "stays on the switch"
  },
  "i18n": null,
- "events": null,
- "privacy": null
+ "events": {
+  "$decision": "No tk:event: a native checkbox, so the page's own change event already reports it, and sending one would make Switch a client component. Decided 2026-11-27."
+ },
+ "privacy": {
+  "never": [
+   "typed text",
+   "an option's label or value",
+   "names",
+   "emails"
+  ],
+  "consent": "The kit sends nothing: it dispatches tk:event on the page. A page that listens decides what to forward, and only under its own consent."
+ }
 }

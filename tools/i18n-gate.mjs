@@ -113,8 +113,9 @@ export function expansionCheck() {
         /* Longer by about 40%: each text repeats its own opening words, so line breaking stays realistic. */
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
         const texts = [];
-        /* Not initials: an avatar's letters come from a name and are never translated. */
-        for (let n = walker.nextNode(); n; n = walker.nextNode()) if (n.textContent.trim().length > 1 && n.parentElement && !/^(SCRIPT|STYLE|CODE|PRE)$/.test(n.parentElement.tagName) && !n.parentElement.closest("[data-tk^=avatar]")) texts.push(n);
+        /* Not initials (an avatar's letters come from a name) and not what is marked translate="no" (a wordmark,
+           a product name): neither is ever translated. */
+        for (let n = walker.nextNode(); n; n = walker.nextNode()) if (n.textContent.trim().length > 1 && n.parentElement && !/^(SCRIPT|STYLE|CODE|PRE)$/.test(n.parentElement.tagName) && !n.parentElement.closest("[data-tk^=avatar], [translate=no]")) texts.push(n);
         for (const t of texts) { const s = t.textContent; t.textContent = s + " " + s.trim().slice(0, Math.ceil(s.trim().length * 0.4)); }
         await new Promise((ok) => requestAnimationFrame(() => requestAnimationFrame(ok)));
         const over = de.scrollWidth - W;

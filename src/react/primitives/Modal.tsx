@@ -15,6 +15,7 @@ import {
 import { Icon } from "./Icon";
 import { Button } from "./Button";
 import { ButtonGroup, type ButtonGroupAction } from "./ButtonGroup";
+import { tkEvent } from "../../lib/tk-event";
 
 export type ModalSize = "sm" | "md" | "lg";
 
@@ -100,18 +101,25 @@ export function Modal({
   const hasBody = children != null && children !== false;
   const describedBy = description ? descId : alert && hasBody ? bodyId : undefined;
   const opener = useRef<Element | null>(null);
+  /* How the coming close was asked for, for its tk:event: the Escape key, the backdrop, the close button, or the app. */
+  const how = useRef<"escape" | "backdrop" | "button" | null>(null);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
 
-    const onDialogClose = () => onClose();
+    const onDialogClose = () => {
+      tkEvent(node, "Modal", "dismiss", { how: how.current ?? "app" });
+      how.current = null;
+      onClose();
+    };
     node.addEventListener("close", onDialogClose);
 
     if (open) {
       if (!node.open) {
         opener.current = document.activeElement;
         node.showModal();
+        tkEvent(node, "Modal", "open", { size, alert: !!alert });
       }
     } else if (node.open) {
       node.close();
@@ -140,10 +148,14 @@ export function Modal({
       }}
       onCancel={(e) => {
         if (!dismissible) e.preventDefault();
+        else how.current = "escape";
       }}
       onClick={(e) => {
         if (!backdropCloses) return;
-        if (e.target === ref.current) ref.current?.close();
+        if (e.target === ref.current) {
+          how.current = "backdrop";
+          ref.current?.close();
+        }
       }}
       {...rest}
     >
@@ -153,7 +165,10 @@ export function Modal({
         actions={actions}
         footer={footer}
         dismissible={dismissible}
-        onDismiss={() => ref.current?.close()}
+        onDismiss={() => {
+          how.current = "button";
+          ref.current?.close();
+        }}
         ids={{ title: titleId, description: descId, body: bodyId }}
       >
         {children}
